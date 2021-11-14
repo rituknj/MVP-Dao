@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import GameCard from "../../components/Cards/GameCard";
 import AppHeader from "../../components/Elements/AppHeader";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 //images
 import monotone_soccer from "../../../images/emojione-monotone_soccer-ball.png";
 import park_rugby from "../../../images/icon-park_rugby.png";
@@ -22,7 +22,7 @@ class Index extends Component {
     };
   }
   componentDidMount = () => { 
-    
+    console.log(this.props)
   };
 
 //   getGameCard = () => {
@@ -64,9 +64,9 @@ class Index extends Component {
           <p className="mt-2 mt-md-4 text-white">#Sports</p>
           <div className="nav-scroller-games">
             <div className="d-flex mt-2 mt-md-4 games-scroll">
-
+          <ul><li>
               <div className="pe-2 pe-md-5">
-                <NavLink to='/soccer' style={{textDecoration:"none"}}>
+                <Link to='/app' style={{textDecoration:"none"}}>
                 <div
                   className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 1 ? "active" : ""
                     }`}
@@ -85,9 +85,9 @@ class Index extends Component {
                     Soccer
                   </p>
                 </div>
-                </NavLink>
+                </Link>
               </div>
-
+            </li></ul>
               <div className="pe-2 pe-md-5">
                 <NavLink to='/rugby' style={{textDecoration:"none"}}>
                 <div

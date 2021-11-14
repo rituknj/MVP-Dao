@@ -92,7 +92,7 @@ class Index extends Component {
             </div>
 
             <Switch>
-              <Route exact path="/soccer" component={Soccer} />
+              <Route exact path="/app" component={Soccer} />
               <Route exact path="/rugby" component={Rugby} />
               <Route exact path="/tennis" component={Tennis} />
               <Route exact path="/racing" component={Racing} />

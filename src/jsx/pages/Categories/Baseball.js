@@ -14,6 +14,8 @@ class GameCard extends Component {
     document.getElementById('sidebar').style.display = 'block'
   }
 
+  
+
   render() {
     return (
       <Fragment>

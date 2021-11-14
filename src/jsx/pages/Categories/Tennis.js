@@ -2,19 +2,42 @@ import React, { Component, Fragment } from 'react'
 import greenDot from './../../../images/green-dot.png'
 import cardBackground from './../../../images/ground.png'
 import carbon_timer from './../../../images/carbon_timer.png'
+import {getActiveEvents, getEvent } from './../../../web3/betsMVPService'
+import {initInstance} from './../../../web3/web3'
 
 class GameCard extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      allevents:[]
+      
+    };
   }
 
-  componentDidMount = () => {}
+  componentDidMount = async() => {
+    await initInstance();
+    const events = []
+    let check
+    let active_events = await getActiveEvents();
+    
+    for(let i = 0; i <= active_events.length; i++)
+    { 
+      check = await getEvent(i)
+      if(check[2]=="Tennis"){
+      events.push(check)
+      this.setState({
+        allevents:events
+      })
+      }
+    }      
+  }
 
   handelSideMenu = () => {
     document.getElementById('sidebar').style.display = 'block'
   }
 
   render() {
+    console.log("render",this.state.allevents)
     return (
       <Fragment>
         <div className="row">
@@ -23,7 +46,7 @@ class GameCard extends Component {
               <div className="theam-bg-dark mt-2 mt-md-5 p-1 p-md-5">
                 <div className="row">
 
-
+                {this.state.allevents.map(events =>
                   <div className="col-12 col-sm-12 col-md-6 col-lg-4">
                     <div className="card game-card overflow-hidden">
                       <div
@@ -36,13 +59,13 @@ class GameCard extends Component {
                         </div>
                         <div className="col-12 mt-4">
                           <h4 className="team-name">
-                            Chealsea{' '}
+                            {events[7]} {" "}
                             <span className="theam-text-color">vs</span>{' '}
-                            Machester City
+                            {events[8]}
                           </h4>
                         </div>
                         <div className="col-12 mt-4">
-                        <p className="theam-text-color m-0">Tennis</p>
+                        <p className="theam-text-color m-0">{events[2]}</p>
                           <p className="theam-text-color m-0">Pool size</p>
                         </div>
                         <div className="col-6">
@@ -79,7 +102,7 @@ class GameCard extends Component {
                       </div>
                     </div>
                   </div>
-
+                )}
                   
                 </div>
               </div>
