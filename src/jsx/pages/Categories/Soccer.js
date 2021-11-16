@@ -71,7 +71,7 @@ class GameCard extends Component {
 
   setfalse =() =>{
     this.setState({active:false,
-    onbetteam:this.state.teamone,
+    onbetteam:0,
     betvalue: this.state.stackvalueone
     })
     
@@ -79,7 +79,7 @@ class GameCard extends Component {
 
   settrue =() =>{
     this.setState({active:true,
-    onbetteam: this.state.teamtwo,
+    onbetteam: 1,
     betvalue: this.state.stackvaluetwo
   })
    
@@ -89,18 +89,34 @@ class GameCard extends Component {
   Onsubmit = (event) => {
     event.preventDefault()
     if(!this.state.active){
-      console.log('selection',this.state.id, this.state.onbetteam, this.state.stackvalueone);
+      console.log('selection str',this.state.id, this.state.onbetteam, this.state.stackvalueone);
       this.placebet(this.state.id, this.state.onbetteam, this.state.stackvalueone)
     }
     if(this.state.active){
-      console.log('selection',this.state.id, this.state.onbetteam, this.state.stackvaluetwo);
+      console.log('selection str',this.state.id, this.state.onbetteam, this.state.stackvaluetwo);
       this.placebet(this.state.id, this.state.onbetteam, this.state.stackvaluetwo)
     }
   }
 
   placebet = async(id, team, amount) => {
-    let ret = await placeBet(id, amount, team);
+    const betdata = {
+      event_id: id,
+      amount: parseInt(amount),
+      occured: parseInt(team)
+    }
+    id = parseInt(id)
+    team = parseInt(team)
+    amount = parseInt(amount)
+    try { 
+    console.log('selection int',betdata);
+    // let betcontract = await getBETMVPContract();
+    // await betcontract.methods.placeBet(id,amount,team).call();
+    let ret = await placeBet(betdata);
     console.log('placebet', ret)
+  }
+    catch(error){
+        console.log(error)
+    }
   }
 
 

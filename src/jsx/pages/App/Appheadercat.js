@@ -148,7 +148,7 @@ class Index extends Component {
                     aria-expanded="false"
                     aria-controls="collapseRacing"
                   >
-                    F1 Racing
+                    Hockey
                   </p>
                 </div>
                 </NavLink>
