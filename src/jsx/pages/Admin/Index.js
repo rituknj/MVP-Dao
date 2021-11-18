@@ -2,8 +2,8 @@ import React, { Component, Fragment } from "react";
 import AppHeader from "../../components/Elements/AppHeader";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import {initInstance} from './../../../web3/web3'
-import {createEvent} from './../../../web3/betsMVPService'
+import {getMainChainInformation, initInstance} from './../../../web3/web3'
+import {createEvent, getEvent, getActiveEvents, validateEvent} from './../../../web3/betsMVPService'
 
 import arrow_down from "../../../images/arrow-down.png";
 
@@ -19,12 +19,23 @@ class Index extends Component {
       sub_category:'',
       event1:'',
       event2:'',
-      name:''
+      name:'',
+      allevents:[],
+      occured:0,
+      id:null
     };
   }
   componentDidMount = async() => {
+    let event;
+    let active_event;
     await initInstance();
     AOS.init();
+    active_event = await getActiveEvents();
+    for (let i = 0; i <= active_event.length; i++){
+      event = await getEvent(i);
+      this.state.allevents.push(event);
+    }
+    
   };
 
   handelClick = (tab) => {
@@ -39,11 +50,14 @@ class Index extends Component {
       is_create: false,
     });
   };
-  handelToggle = () => {
+  handelToggle = (eventid) => {
     let handelToggle = this.state.handelToggle;
     this.setState({
       handelToggle: handelToggle ? false : true,
+      id: eventid
     });
+
+
   };
 
   Onsubmit = async(event) => {
@@ -60,7 +74,39 @@ class Index extends Component {
     await createEvent(Event);
   }
 
+  timecovert = (time) =>{
+    const date = new Date(time*1000);
+    return date.toLocaleDateString("en-US");
+  }
+
+  teamfisrt = () => {
+    this.setState({
+      occured:0
+    })
+    
+  }
+
+  teamsecond = () => {
+    this.setState({
+      occured:1
+    })
+    
+  }
+
+  preview = async(event_id) => {
+    this.setState({
+      id:event_id,
+    }, () => {
+      console.log("id is",this.state.id);
+  })
+   await validateEvent(event_id, this.state.occured)
+  }
+
+  
   render() {
+    console.log("all events are", this.state.allevents)
+    
+
     return (
       <Fragment>
           <AppHeader />
@@ -181,9 +227,8 @@ class Index extends Component {
                             <button
                               className="btn"
                               type='submit'
-                              
                             >
-                              Preview
+                              Create Event
                             </button>
                           </div>
                         </>
@@ -228,10 +273,13 @@ class Index extends Component {
                     </form>
                   ) : (
                     <>
+
+{this.state.allevents.map((item) => (
                       <div>
                         <div className="admin-card-view px-3 py-3 mb-5">
                           <p onClick={() => this.handelToggle()}>
-                            Chealsea vs Machester City
+                          <p className="title w-100">Event id {item[0]}</p>
+                            {item[7]} vs {item[8]}
                           </p>
                           <div className="row mt-4">
                             <div className="col-md-7">
@@ -240,7 +288,7 @@ class Index extends Component {
                                 onClick={() => this.handelToggle()}
                               >
                                 <p className="title w-100">Created</p>
-                                <p className="date text-end w-100">1/2/2021</p>
+                                <p className="date text-end w-100">{this.timecovert(item[5])}</p>
                               </div>
                               <div
                                 className="d-flex mb-0"
@@ -258,7 +306,7 @@ class Index extends Component {
                                   <div className="d-flex mt-5 mb-4">
                                     <h4 className="w-100">Winning odd</h4>
                                   </div>
-                                  <div className="d-flex mb-3">
+                                  <div className="d-flex mb-3" onClick={() => this.teamfisrt()}>
                                     <p className="title w-100">
                                       Machester unity
                                     </p>
@@ -267,21 +315,22 @@ class Index extends Component {
                                         className="form-check-input"
                                         type="radio"
                                         name="flexRadioDefault"
-                                        checked
+                                        
                                       />
                                     </p>
                                   </div>
-                                  <div className="d-flex mb-3">
+                                  <div className="d-flex mb-3" onClick={() => this.teamsecond()}>
                                     <p className="title w-100">Chealsea</p>
                                     <p className="text-end w-100">
                                       <input
                                         className="form-check-input"
                                         type="radio"
                                         name="flexRadioDefault"
+                                       
                                       />
                                     </p>
                                   </div>
-                                  <div className="d-flex mb-3">
+                                  {/* <div className="d-flex mb-3">
                                     <p className="title w-100">Draw</p>
                                     <p className="text-end w-100">
                                       <input
@@ -290,7 +339,7 @@ class Index extends Component {
                                         name="flexRadioDefault"
                                       />
                                     </p>
-                                  </div>
+                                  </div> */}
                                 </div>
                               ) : (
                                 ""
@@ -303,7 +352,7 @@ class Index extends Component {
                               ) : (
                                 <button
                                   className="btn button-1"
-                                  
+                                  onClick={() => this.preview(item[0])}
                                 >
                                   validate
                                 </button>
@@ -326,12 +375,12 @@ class Index extends Component {
                                       className="form-check-label title"
                                       for="flexCheckDefault"
                                     >
-                                      i have previewed the selection
+                                      I have previewed the selection
                                     </label>
                                   </div>
                                 </div>
                                 <div className="d-flex mt-5">
-                                  <button className="btn button-2">
+                                  <button className="btn button-2"onClick={() => this.preview(item[0])}>
                                     validate
                                   </button>
                                 </div>
@@ -342,6 +391,10 @@ class Index extends Component {
                           </div>
                         </div>
                       </div>
+                          
+ ))}
+                          
+
                     </>
                   )}
                 </div>

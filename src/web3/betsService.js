@@ -16,6 +16,13 @@ export const getBETBalance = async () => {
     return balanceofBET
 }
 
+export const gettotalsupply = async () => {
+    const betContract = getContract(BETS_ABI, envdev.REACT_APP_BET_SMART_CONTRACT);
+    const totalSupply = await betContract.methods.totalSupply().call()
+    return totalSupply;
+}
+
+
 export const addBETS = async () => {
     await window.ethereum.request({
         method: "wallet_watchAsset",

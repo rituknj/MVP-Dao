@@ -22,7 +22,7 @@ export const fromWei = (number, unit) => {
     const web3Instance = new Web3(provider);
     let result = null;
     if (unit === 'custom') {
-        result = web3Instance.utils.fromWei(number, 'gwei')
+        result = web3Instance.utils.fromWei(number)
             if (result.length !== 1) {
             result = result + '0';
         }

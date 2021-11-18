@@ -35,7 +35,7 @@ class Web extends Component {
                             path="/about"
                             component={About}
                         />
-                        
+                       
                     </Switch>
                 </BrowserRouter>
             </>

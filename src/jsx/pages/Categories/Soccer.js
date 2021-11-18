@@ -21,7 +21,8 @@ class GameCard extends Component {
       teamtwo:'',
       selectedteam:'',
       betvalue:0,
-      onbetteam:''
+      onbetteam:'',
+      currenttime:0
     }
   }
   componentDidMount = async () => {
@@ -48,7 +49,14 @@ class GameCard extends Component {
   }
 
 
-  handelSideMenu = (eventid, teamone,teamtwo) => {
+  handelSideMenu = (eventid, teamone,teamtwo, endtime) => {
+
+    var ts = Math.round((new Date()).getTime() / 1000);
+    let lefttime = endtime - ts
+    lefttime = parseInt(Math.floor(lefttime/3600)/24);
+    if(lefttime <  0){
+      lefttime = 0
+    }
     
     if(this.state.active === false){
       this.setState({
@@ -63,7 +71,8 @@ class GameCard extends Component {
     this.setState({
       id:eventid,
       teamone:teamone,
-      teamtwo:teamtwo
+      teamtwo:teamtwo,
+      currenttime:lefttime
     })
     
     document.getElementById('sidebar').style.display = 'inline';
@@ -119,6 +128,17 @@ class GameCard extends Component {
     }
   }
 
+  getdays = (endime) =>{
+    var ts = Math.round((new Date()).getTime() / 1000);
+    let lefttime = endime - ts
+    lefttime = parseInt(Math.floor(lefttime/3600)/24);
+    if(lefttime <  0){
+      lefttime = 0
+    }
+    // console.log("time remaining",parseInt(lefttime/24), ts);
+    return lefttime
+  }
+
 
   render() {
   
@@ -170,7 +190,7 @@ class GameCard extends Component {
                                   width="23px"
                                   style={{ verticalAlign: 'sub' }}
                                 />
-                                3 Days left
+                                {this.state.currenttime} Days left
                               </h5>
                             </div>
                           </div>
@@ -351,7 +371,7 @@ class GameCard extends Component {
                                   width="18"
                                   style={{ verticalAlign: 'sub' }}
                                 />
-                                3 Days left
+                                {this.getdays(events[6])} Days left
                               </h5>
                             </div>
                           </div>
@@ -366,7 +386,7 @@ class GameCard extends Component {
                             <div className="col-4 button-row">
                               <button
                                 className="btn"
-                                onClick={() => this.handelSideMenu(events[0],events[7],events[8])
+                                onClick={() => this.handelSideMenu(events[0],events[7],events[8],events[6])
                                 }
                               >
                                 BET

@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { initInstance, loginProcess, disconnectWallet, getAccount } from './../../../web3/web3';
 import { getUSDTBalance, addUSDT } from './../../../web3/usdtService';
 import { addBETS, getBETBalance } from './../../../web3/betsService';
+import { getValidationPoint } from './../../../web3/betsMVPService';
 
 class AppHeader extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class AppHeader extends Component {
       balanceofUSDT: 0,
       acc: null,
       balanceBET: 0,
+      validationpoint:0
     }
   }
 
@@ -35,6 +37,13 @@ class AppHeader extends Component {
     console.log("USDT balance", balanceofUSD)
     console.log("BETS balance", balanceofBET)
   };
+
+  getvalidationpoints = async() => {
+    const point = await getValidationPoint();
+    this.setState({
+      validationpoint:point
+    })
+  }
 
   setHistory = () => {
     let items = [];
@@ -205,7 +214,7 @@ class AppHeader extends Component {
             <div className="point-list-data p-2 px-md-4 pt-5">
               <div className="mb-4">
                 <h4 className="">Total validation points earned</h4>
-                <p>50000</p>
+                <p>{this.state.validationpoint}</p>
               </div>
               <div className="mb-4">
                 <h4 className="">Total Token locked</h4>

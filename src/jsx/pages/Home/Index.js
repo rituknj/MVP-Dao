@@ -10,6 +10,9 @@ import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { initInstance } from "./../../../web3/web3";
+import { gettotalsupply } from './../../../web3/betsService'
+import {formatNumber, fromWei} from './../../../web3/utils'
 ////Images
 import TopImage from "../../../images/landing-Bets-cards-games.png";
 import arrowRight from "../../../images/arrow-right.svg";
@@ -32,6 +35,8 @@ class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            totalSupply:0,
+            price:0,
             responsive: {
                 superLargeDesktop: {
                     // the naming can be any, depends on you.
@@ -92,8 +97,41 @@ class Index extends Component {
         };
     }
 
-    componentDidMount = () => {
+    componentDidMount = async() => {
         AOS.init();
+        await initInstance();
+        let totalSupply = await gettotalsupply(); 
+        totalSupply = fromWei(totalSupply)
+        this.setState({
+            totalSupply:totalSupply
+        })
+
+        // fetching price of total
+        request('GET', "https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d")
+        .then((r1) => {
+          var x1 = JSON.parse(r1.target.responseText);
+          let val = Number(x1.data.price).toFixed(13)
+          this.setState({
+              price:val
+          })
+        }).catch(err => {
+          console.log(err);
+        })
+
+
+      function request(method, url) {
+        return new Promise(function (resolve, reject) {
+          var xhr = new XMLHttpRequest();
+          xhr.open(method, url);
+          xhr.onload = resolve;
+          xhr.onerror = reject;
+          xhr.send();
+        });
+      }
+
+
+
+
     };
 
     //GameCard
@@ -185,7 +223,7 @@ class Index extends Component {
 
                                 <div className="card chart-card  overflow-hidden text-center py-3  align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Price</h5>
-                                    <h4 className="text-white mt-3">$ 0.8</h4>
+                                    <h4 className="text-white mt-3">$ {this.state.price}</h4>
                                 </div>
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
@@ -195,12 +233,12 @@ class Index extends Component {
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Market cap</h5>
-                                    <h4 className="text-white mt-3">$10m</h4>
+                                    <h4 className="text-white mt-3">${Number(this.state.price*this.state.totalSupply).toFixed(2)}</h4>
                                 </div>
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Total Supply</h5>
-                                    <h4 className="text-white mt-3">250,000,000</h4>
+                                    <h4 className="text-white mt-3">{this.state.totalSupply}</h4>
                                 </div>
 
                             </Carousel>

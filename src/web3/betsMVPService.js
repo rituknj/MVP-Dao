@@ -3,12 +3,15 @@ import { BETS_ABI } from './../Contract/BetswampMVP';
 import { envdev } from "./environments";
 import { strTimeToInt, fromWei } from './utils';
 
+
 export const getBETMVPContract = async () => {
     const betMVPContract = getContract(
         BETS_ABI, 
         envdev.REACT_APP_BETSWAMP_MVP_CONTRACT);
     return betMVPContract;
 }
+
+
 
 export const addSubbCategory = async (sub_category) => {
     const betMVPContract = await getBETMVPContract();
@@ -53,6 +56,7 @@ export const placeBet = async ({event_id, amount, occured}) => {
 
 export const validateEvent = async (event_id, occured) => {
     const betMVPContract = await getBETMVPContract();
+    console.log("events", event_id, occured)
     var getData = await betMVPContract.methods.validateEvent(event_id, occured).call({'from': await getAccount()});
     let data = getData.encodeABI();
     return await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});

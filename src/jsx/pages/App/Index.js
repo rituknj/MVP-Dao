@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import GameCard from '../../components/Cards/GameCard'
 import AppHeader from '../../components/Elements/AppHeader'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, useRouteMatch } from 'react-router-dom'
 //images
 import Appheadercat from './Appheadercat'
 import Soccer from './../Categories/Soccer'
@@ -12,6 +12,7 @@ import Racing from './../Categories/Racing'
 import Boxing from './../Categories/Boxing'
 import Basketball from './../Categories/Basketball'
 import Baseball from './../Categories/Baseball'
+import Hooks from './Hooks'
 
 class Index extends Component {
   constructor(props) {
@@ -20,10 +21,14 @@ class Index extends Component {
       activeTabTop: 1,
       activeTabBottom: 1,
       selectedcat: 'soccor',
+      path:'/app'
     }
   }
-  componentDidMount = () => {}
-
+  componentDidMount = () => {
+    
+    
+  }
+  
   getGameCard = () => {
     let items = []
     for (var i = 1; i <= 10; i++) {
@@ -59,8 +64,10 @@ class Index extends Component {
     this.selectedcategory(cat)
     console.log(tab, cat)
   }
+  
 
   render() {
+   console.log("path", Hooks)
     return (
         <Fragment>
           <AppHeader />
@@ -90,10 +97,10 @@ class Index extends Component {
                 </button>
               </div>
             </div>
-
+            </div>
             <Switch>
               <Route exact path="/app" component={Soccer} />
-              <Route exact path="/rugby" component={Rugby} />
+              <Route exact path='/rugby' component={Rugby} />
               <Route exact path="/tennis" component={Tennis} />
               <Route exact path="/racing" component={Racing} />
               <Route exact path="/boxing" component={Boxing} />
@@ -101,7 +108,7 @@ class Index extends Component {
               <Route exact path="/baseball" component={Baseball} />
               <Route exact path="/cricket" component={Cricket} />
             </Switch>
-          </div>
+          
           </BrowserRouter>
         </Fragment>
     )

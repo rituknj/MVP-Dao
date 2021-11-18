@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import GameCard from "../../components/Cards/GameCard";
 import AppHeader from "../../components/Elements/AppHeader";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useRouteMatch } from "react-router-dom";
 //images
 import monotone_soccer from "../../../images/emojione-monotone_soccer-ball.png";
 import park_rugby from "../../../images/icon-park_rugby.png";
@@ -55,6 +55,7 @@ class Index extends Component {
     });
     
   };
+ 
 
 
   render() {
@@ -111,7 +112,7 @@ class Index extends Component {
               </div>
 
               <div className="pe-2 pe-md-5">
-                <NavLink to='/tennis' style={{textDecoration:"none"}}>
+                <NavLink to='/app/tennis' style={{textDecoration:"none"}}>
                 <div
                   className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 3 ? "active" : ""
                     }`}
