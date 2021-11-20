@@ -223,7 +223,7 @@ class Index extends Component {
 
                                 <div className="card chart-card  overflow-hidden text-center py-3  align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Price</h5>
-                                    <h4 className="text-white mt-3">$ {this.state.price}</h4>
+                                    <h4 className="text-white mt-3">$ {Number(this.state.price).toFixed(4)}</h4>
                                 </div>
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
@@ -233,12 +233,12 @@ class Index extends Component {
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Market cap</h5>
-                                    <h4 className="text-white mt-3">${Number(this.state.price*this.state.totalSupply).toFixed(2)}</h4>
+                                    <h4 className="text-white mt-3">{Number(this.state.price*this.state.totalSupply/1000000).toFixed(2)} M</h4>
                                 </div>
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Total Supply</h5>
-                                    <h4 className="text-white mt-3">{this.state.totalSupply}</h4>
+                                    <h4 className="text-white mt-3">250,000,000 M</h4>
                                 </div>
 
                             </Carousel>

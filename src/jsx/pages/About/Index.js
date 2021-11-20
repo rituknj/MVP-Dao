@@ -9,6 +9,9 @@ import "react-multi-carousel/lib/styles.css";
 import { trade, lineData } from "./demo.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { initInstance } from "./../../../web3/web3";
+import { gettotalsupply } from './../../../web3/betsService';
+import {fromWei} from './../../../web3/utils'
 ////Images
 import farmeFirst from "../../../images/farme-1.png";
 import farmeSec from "../../../images/frame-2.png";
@@ -24,6 +27,8 @@ class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            price:0,
+            totalSupply:0,
             responsive: {
                 superLargeDesktop: {
                     // the naming can be any, depends on you.
@@ -88,7 +93,7 @@ class Index extends Component {
         chart.resize(document.getElementById("chart").clientWidth, 600);
     };
 
-    componentDidMount = () => {
+    componentDidMount = async() => {
         window.addEventListener("resize", this.updateSize);
         AOS.init();
         chart = createChart(document.querySelector("#chart"), {
@@ -138,6 +143,40 @@ class Index extends Component {
                 loader: false
             });
         }, 2000);
+
+
+        await initInstance();
+        let totalSupply = await gettotalsupply(); 
+        totalSupply = fromWei(totalSupply)
+        this.setState({
+            totalSupply:totalSupply
+        })
+
+        // fetching price of total
+        request('GET', "https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d")
+        .then((r1) => {
+          var x1 = JSON.parse(r1.target.responseText);
+          let val = Number(x1.data.price).toFixed(13)
+          this.setState({
+              price:val
+          })
+        }).catch(err => {
+          console.log(err);
+        })
+
+
+      function request(method, url) {
+        return new Promise(function (resolve, reject) {
+          var xhr = new XMLHttpRequest();
+          xhr.open(method, url);
+          xhr.onload = resolve;
+          xhr.onerror = reject;
+          xhr.send();
+        });
+      }
+
+
+
     };
 
     updateSize = () => {
@@ -259,7 +298,7 @@ class Index extends Component {
                                 <div>
                                     <div className="card chart-card  overflow-hidden text-center py-3">
                                         <h5 className="theam-text-color m-0">Price</h5>
-                                        <h4 className="text-white mt-3">$ 0.8</h4>
+                                        <h4 className="text-white mt-3">$ {Number(this.state.price).toFixed(4)}</h4>
                                     </div>
                                 </div>
                                 <div>
@@ -271,13 +310,13 @@ class Index extends Component {
                                 <div>
                                     <div className="card chart-card  overflow-hidden text-center py-3">
                                         <h5 className="theam-text-color m-0">Market cap</h5>
-                                        <h4 className="text-white mt-3">$10m</h4>
+                                        <h4 className="text-white mt-3">{Number(this.state.price*this.state.totalSupply/1000000).toFixed(2)} M</h4>
                                     </div>
                                 </div>
                                 <div>
                                     <div className="card chart-card  overflow-hidden text-center py-3">
                                         <h5 className="theam-text-color m-0">Total Supply</h5>
-                                        <h4 className="text-white mt-3">250,000,000</h4>
+                                        <h4 className="text-white mt-3">250,000,000 M</h4>
                                     </div>
                                 </div>
                             </Carousel>
