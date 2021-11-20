@@ -67,7 +67,7 @@ class Index extends Component {
   
 
   render() {
-   console.log("path", Hooks)
+  
     return (
         <Fragment>
           <AppHeader />

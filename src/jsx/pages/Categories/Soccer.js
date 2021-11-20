@@ -141,7 +141,7 @@ class GameCard extends Component {
     console.log('selection int',betdata);
     // let betcontract = await getBETMVPContract();
     // await betcontract.methods.placeBet(id,amount,team).call();
-    // let ret = await placeBet(betdata);
+    let ret = await placeBet(betdata);
     // console.log('placebet', ret)
   }
     catch(error){

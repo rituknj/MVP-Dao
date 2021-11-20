@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import Header from "../../components/Elements/Header";
 import Footer from "../../components/Elements/Footer";
-import GameCard from "../../components/Cards/GameCard";
+import GameCardHome from './GameCard'
 import NewsCard from "../../components/Cards/NewsCard";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -13,6 +13,7 @@ import "aos/dist/aos.css";
 import { initInstance } from "./../../../web3/web3";
 import { gettotalsupply } from './../../../web3/betsService'
 import {formatNumber, fromWei} from './../../../web3/utils'
+import { getEvent, getActiveEvents } from "../../../web3/betsMVPService";
 ////Images
 import TopImage from "../../../images/landing-Bets-cards-games.png";
 import arrowRight from "../../../images/arrow-right.svg";
@@ -37,6 +38,7 @@ class Index extends Component {
         this.state = {
             totalSupply:0,
             price:0,
+            item:[],
             responsive: {
                 superLargeDesktop: {
                     // the naming can be any, depends on you.
@@ -100,6 +102,15 @@ class Index extends Component {
     componentDidMount = async() => {
         AOS.init();
         await initInstance();
+
+        const active_events = await getActiveEvents();
+        let items = [];
+        for (var i = active_events.length - 2; i <= active_events.length; i++) {
+            let events = await getEvent(i)
+            this.state.item.push(events)
+        }
+        console.log("3 events", this.state.item)
+
         let totalSupply = await gettotalsupply(); 
         totalSupply = fromWei(totalSupply)
         this.setState({
@@ -136,11 +147,18 @@ class Index extends Component {
 
     //GameCard
     getGameCard = () => {
-        let items = [];
-        for (var i = 1; i <= 10; i++) {
-            items.push(<GameCard key={i} />);
-        }
-        return items;
+        // await initInstance();
+        // const active_events = await getActiveEvents();
+        // let items = [];
+        // for (var i = active_events.length - 3; i <= active_events.length; i++) {
+        //     let events = await getEvent(i)
+        //     console.log("3 events", events)
+        //     // this.setState({
+        //     //     item: events
+        //     // })
+            
+        // }
+        
     };
 
     getNewsCard = () => {
@@ -316,11 +334,11 @@ class Index extends Component {
                     <Carousel
                         swipeable={true}
                         draggable={true}
-                        arrows={true}
+                        arrows={false}
                         showDots={false}
                         responsive={this.state.responsive_game_card}
                         ssr={true} // means to render carousel on server-side.
-                        infinite={true}
+                        infinite={false}
                         keyBoardControl={true}
                         customTransition="all .5"
                         transitionDuration={500}
@@ -328,13 +346,15 @@ class Index extends Component {
                         removeArrowOnDeviceType={["tablet", "mobile"]}
                         deviceType={this.props.deviceType}
                         itemClass="carousel-item-padding-40-px px-4"
-                    >
-                        {this.getGameCard()}
+                    >   
+                        
+                        {this.state.item.map(item => <GameCardHome url={item[2]} teamone={item[7]} teamtwo={item[8]} poolsize={item[4]} lastdate={item[6]} />)}
+                        
                     </Carousel>
                     <div className="mt-4 px-4">
                         <p className="mt-2 mt-md-4 text-white text-end">
-                            View Events
-                            <img src={arrowRight} className="ms-3" width="20" />
+                            {/* View Events
+                            <img src={arrowRight} className="ms-3" width="20" /> */}
                         </p>
                     </div>
                 </div>

@@ -15,9 +15,9 @@ class SideBar extends Component {
     componentDidMount = () => {
         
     };
-    handelSideMenu = () => {
-        document.getElementById('sidebari').style.display = 'none'
-      };
+    // handelSideMenu = () => {
+    //     document.getElementById('sidebari').style.display = 'none'
+    //   };
 
     render() {
        
