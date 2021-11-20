@@ -62,12 +62,14 @@ class Index extends Component {
 
   Onsubmit = async(event) => {
     event.preventDefault();
-    console.log("create event", this.state.sub_category, this.state.time, this.state.endtime, this.state.name, this.state.event1, this.state.event2)
+    const starttime = parseInt((new Date(this.state.time).getTime() / 1000).toFixed(0))
+    const endtime = parseInt((new Date(this.state.endtime).getTime() / 1000).toFixed(0))
+    console.log("create event", this.state.sub_category, starttime, endtime, this.state.name, this.state.event1, this.state.event2)
     const Event = {
       sub_category: this.state.sub_category,
       name: this.state.name,
-      time: this.state.time,
-      endTime: this.state.endtime,
+      time: starttime,
+      endTime: endtime,
       event1: this.state.event1,
       event2: this.state.event2,
     }
@@ -93,11 +95,18 @@ class Index extends Component {
     
   }
 
+  teamthird = () => {
+    this.setState({
+      occured:2
+    })
+    
+  }
+
   preview = async(event_id) => {
     this.setState({
       id:event_id,
     }, () => {
-      console.log("id is",this.state.id);
+      console.log("id is",this.state.id, this.state.occured);
   })
    await validateEvent(event_id, this.state.occured)
   }
@@ -175,7 +184,7 @@ class Index extends Component {
                             <input
                               className="form-control"
                               id="Start_date"
-                              type="number"
+                              type='datetime-local'
                               value={this.state.time} 
                               onChange={(e) => this.setState({time:e.target.value})}
                               placeholder="In unix fomate"
@@ -190,7 +199,7 @@ class Index extends Component {
               
                               className="form-control"
                               id="Start_date"
-                              type="number"
+                              type="datetime-local"
                               value={this.state.endtime} 
                               onChange={(e) => this.setState({endtime:e.target.value})}
                               placeholder="In unix fomate"
@@ -297,7 +306,7 @@ class Index extends Component {
                                 <p className="title w-100">
                                   total participants
                                 </p>
-                                <p className="date text-end w-100">20</p>
+                                <p className="date text-end w-100">{item[12]}</p>
                               </div>
                               {this.state.handelToggle ? (
                                 <div className="toggle-card"   data-aos="fade-down"
@@ -330,7 +339,7 @@ class Index extends Component {
                                       />
                                     </p>
                                   </div>
-                                  {/* <div className="d-flex mb-3">
+                                  <div className="d-flex mb-3" onClick={() => this.teamthird()}>
                                     <p className="title w-100">Draw</p>
                                     <p className="text-end w-100">
                                       <input
@@ -339,7 +348,7 @@ class Index extends Component {
                                         name="flexRadioDefault"
                                       />
                                     </p>
-                                  </div> */}
+                                  </div>
                                 </div>
                               ) : (
                                 ""

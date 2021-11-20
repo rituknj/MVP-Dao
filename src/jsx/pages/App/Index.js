@@ -71,7 +71,6 @@ class Index extends Component {
     return (
         <Fragment>
           <AppHeader />
-          <BrowserRouter>
           <Appheadercat />
           <div className="container-fluid px-md-5 mt-2">
             <div className="space-100"></div>
@@ -98,18 +97,6 @@ class Index extends Component {
               </div>
             </div>
             </div>
-            <Switch>
-              <Route exact path="/app" component={Soccer} />
-              <Route exact path='/rugby' component={Rugby} />
-              <Route exact path="/tennis" component={Tennis} />
-              <Route exact path="/racing" component={Racing} />
-              <Route exact path="/boxing" component={Boxing} />
-              <Route exact path="/basketball" component={Basketball} />
-              <Route exact path="/baseball" component={Baseball} />
-              <Route exact path="/cricket" component={Cricket} />
-            </Switch>
-          
-          </BrowserRouter>
         </Fragment>
     )
   }

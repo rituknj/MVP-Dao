@@ -2,9 +2,12 @@ import React, { Component, Fragment } from 'react'
 import greenDot from './../../../images/green-dot.png'
 import cardBackground from './../../../images/ground.png'
 import carbon_timer from './../../../images/carbon_timer.png'
+import Appheadercat from '../../pages/App/Appheadercat'
+import AppHeader from '../../components/Elements/AppHeader'
 import { getActiveEvents, getEvent, placeBet } from './../../../web3/betsMVPService'
 import { initInstance } from './../../../web3/web3'
 import redDot from './../../../images/red-dot.png'
+import App from './../../pages/App/Index'
 import { event } from 'jquery'
 
 
@@ -17,12 +20,16 @@ class GameCard extends Component {
       id:null,
       stackvalueone:0,
       stackvaluetwo:0,
+      stackvaluethree:0,
       teamone:'',
       teamtwo:'',
       selectedteam:'',
       betvalue:0,
       onbetteam:'',
-      currenttime:0
+      currenttime:0,
+      occurance:0,
+      poolsize:0, 
+      participant:0
     }
   }
   componentDidMount = async () => {
@@ -49,7 +56,7 @@ class GameCard extends Component {
   }
 
 
-  handelSideMenu = (eventid, teamone,teamtwo, endtime) => {
+  handelSideMenu = (eventid, teamone,teamtwo, endtime, poolsize, bettercount) => {
 
     var ts = Math.round((new Date()).getTime() / 1000);
     let lefttime = endtime - ts
@@ -72,24 +79,34 @@ class GameCard extends Component {
       id:eventid,
       teamone:teamone,
       teamtwo:teamtwo,
-      currenttime:lefttime
+      currenttime:lefttime,
+      poolsize:poolsize,
+      participant:bettercount
     })
     
     document.getElementById('sidebar').style.display = 'inline';
   }
 
   setfalse =() =>{
-    this.setState({active:false,
-    onbetteam:0,
+    this.setState({
+    occurance:0,
     betvalue: this.state.stackvalueone
     })
     
   }
 
   settrue =() =>{
-    this.setState({active:true,
-    onbetteam: 1,
+    this.setState({
+    occurance:1,
     betvalue: this.state.stackvaluetwo
+  })
+   
+  }
+
+  setdraw =() =>{
+    this.setState({
+    occurance:2,
+    betvalue: this.state.stackvaluethree
   })
    
   }
@@ -97,13 +114,17 @@ class GameCard extends Component {
 
   Onsubmit = (event) => {
     event.preventDefault()
-    if(!this.state.active){
-      console.log('selection str',this.state.id, this.state.onbetteam, this.state.stackvalueone);
-      this.placebet(this.state.id, this.state.onbetteam, this.state.stackvalueone)
+    if(this.state.occurance==0){
+      // console.log('selection str',this.state.id, this.state.onbetteam, this.state.stackvalueone);
+      this.placebet(this.state.id, this.state.occurance, this.state.stackvalueone)
     }
-    if(this.state.active){
-      console.log('selection str',this.state.id, this.state.onbetteam, this.state.stackvaluetwo);
-      this.placebet(this.state.id, this.state.onbetteam, this.state.stackvaluetwo)
+    if(this.state.occurance==1){
+      // console.log('selection str',this.state.id, this.state.onbetteam, this.state.stackvaluetwo);
+      this.placebet(this.state.id, this.state.occurance, this.state.stackvaluetwo)
+    }
+    if(this.state.occurance==2){
+      // console.log('selection str',this.state.id, this.state.onbetteam, this.state.stackvaluetwo);
+      this.placebet(this.state.id, this.state.occurance, this.state.stackvaluethree)
     }
   }
 
@@ -120,8 +141,8 @@ class GameCard extends Component {
     console.log('selection int',betdata);
     // let betcontract = await getBETMVPContract();
     // await betcontract.methods.placeBet(id,amount,team).call();
-    let ret = await placeBet(betdata);
-    console.log('placebet', ret)
+    // let ret = await placeBet(betdata);
+    // console.log('placebet', ret)
   }
     catch(error){
         console.log(error)
@@ -144,6 +165,7 @@ class GameCard extends Component {
   
     return (
       <Fragment>
+        <App/>
         <div className="sidebar" id="sidebar">
                         <div className="data-list" >
                           <form onSubmit={this.Onsubmit}>
@@ -180,7 +202,7 @@ class GameCard extends Component {
                               <p className="theam-text-color m-0">Pool size</p>
                             </div>
                             <div className="col-6">
-                              <h3 className="mb-0">$3,600</h3>
+                              <h3 className="mb-0">{this.state.poolsize}</h3>
                             </div>
                             <div className="col-6">
                               <h5 className="text-end mb-0">
@@ -195,7 +217,7 @@ class GameCard extends Component {
                             </div>
                           </div>
                           <div className="odds-list p-3">
-                            <div className={`odds-card p-3 mb-3 ${!this.state.active?'active':" "}`} onClick={() =>  this.setState({active:false}), () => this.setfalse()}>
+                            <div className={`odds-card p-3 mb-3 ${this.state.occurance==0?'active':" "}`} onClick={() =>  this.setState({occurance:0}), () => this.setfalse()}>
                               <div className="row mb-3">
                                 <div className="col-6">
                                   <h4>{this.state.teamone}</h4>
@@ -207,7 +229,7 @@ class GameCard extends Component {
                               <div className="row info">
                                 <div className="col-12 mb-2">
                                   <p>
-                                    Participants:&nbsp;&nbsp; <span>5</span>
+                                    Participants:&nbsp;&nbsp; <span>{this.state.participant}</span>
                                   </p>
                                 </div>
                                 <div className="col-12 mb-2">
@@ -256,7 +278,7 @@ class GameCard extends Component {
                                 </div>
                               </div>
                             </div>
-                            <div className={`odds-card p-3 mb-3 ${this.state.active?'active':" "}`} onClick={() => this.setState({active:true}) , () => this.settrue()}>
+                            <div className={`odds-card p-3 mb-3 ${this.state.occurance==1?'active':" "}`} onClick={() => this.setState({occurance:1}) , () => this.settrue()}>
                               <div className="row ">
                                 <div className="col-6">
                                   <h4>{this.state.teamtwo}</h4>
@@ -268,7 +290,7 @@ class GameCard extends Component {
                               <div className="row info">
                                 <div className="col-12 mb-2">
                                   <p>
-                                    Participants:&nbsp;&nbsp; <span>5</span>
+                                    Participants:&nbsp;&nbsp; <span>{this.state.participant}</span>
                                   </p>
                                 </div>
                                 <div className="col-12 mb-2">
@@ -317,6 +339,68 @@ class GameCard extends Component {
                                 </div>
                               </div>
                             </div>
+                            <div className={`odds-card p-3 mb-3 ${this.state.occurance==2?'active':" "}`} onClick={() => this.setState({occurance:1}) , () => this.setdraw()}>
+                              <div className="row ">
+                                <div className="col-6">
+                                  <h4>Draw</h4>
+                                </div>
+                                <div className="col-6 text-end">
+                                  <img src={redDot} className="red-dot" />
+                                </div>
+                              </div>
+                              <div className="row info">
+                                <div className="col-12 mb-2">
+                                  <p>
+                                    Participants:&nbsp;&nbsp; <span>{this.state.participant}</span>
+                                  </p>
+                                </div>
+                                <div className="col-12 mb-2">
+                                  <p>
+                                    Total amount staked::&nbsp;&nbsp;{' '}
+                                    <span>$2000</span>
+                                  </p>
+                                </div>
+                                <div className="col-10 mb-4">
+                                  <div className="progress">
+                                    <div
+                                      className="progress-bar"
+                                      role="progressbar"
+                                      style={{ width: '25%' }}
+                                      aria-valuenow="25"
+                                      aria-valuemin="0"
+                                      aria-valuemax="100"
+                                    ></div>
+                                  </div>
+                                </div>
+                                <div className="col-2 mb-4">
+                                  <p className="percent m-0">55.5%</p>
+                                </div>
+                              </div>
+                              <div className="row form mt-3">
+                                <div className="col-md-5">
+                                  <p>Stake</p>
+                                  <div className="position-relative">
+                                    <input className="form-control" value={this.state.stackvaluethree} onChange={(e) => this.setState({stackvaluethree:e.target.value})} />
+                                    <span className="position-absolute max-btn">
+                                      MAX
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className="col-md-3"></div>
+                                <div className="col-md-4">
+                                  <p style={{ marginTop: '2.3rem' }}>
+                                    Potential Return
+                                  </p>
+                                  <p
+                                    style={{ fontSize: '24px' }}
+                                    className="mb-0 mt-3"
+                                  >
+                                    $0.00
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
                           </div>
                           <div  className="bid-button p-3 mb-3">
                             <button type='submit' className="btn">PLACE BET</button>
@@ -361,7 +445,7 @@ class GameCard extends Component {
                               <p className="theam-text-color m-0">Pool size</p>
                             </div>
                             <div className="col-6">
-                              <h3>$3,600 ~ 2000 BETS</h3>
+                              <h3>{events[4]}</h3>
                             </div>
                             <div className="col-6">
                               <h5 className="text-end">
@@ -386,7 +470,7 @@ class GameCard extends Component {
                             <div className="col-4 button-row">
                               <button
                                 className="btn"
-                                onClick={() => this.handelSideMenu(events[0],events[7],events[8],events[6])
+                                onClick={() => this.handelSideMenu(events[0],events[7],events[8],events[6],events[4], events[13])
                                 }
                               >
                                 BET

@@ -11,8 +11,6 @@ export const getBETMVPContract = async () => {
     return betMVPContract;
 }
 
-
-
 export const addSubbCategory = async (sub_category) => {
     const betMVPContract = await getBETMVPContract();
     var getData = await betMVPContract.methods.addSubbCategory('0x0', sub_category);
@@ -108,4 +106,22 @@ export const getEvent = async (eventID) => {
     const betMVPContract = await getBETMVPContract();
     const eventOccurrenceBetAmount = await betMVPContract.methods.getEvent(eventID).call();
     return eventOccurrenceBetAmount;
+}
+
+export const earnvalidationpoints = async (amount) => {
+    const betMVPContract = await getBETMVPContract();
+    const points = await betMVPContract.methods.earnValidationPoints(amount).call();
+    return points;
+}
+
+export const revokevalidationpointsearning = async () => {
+    const betMVPContract = await getBETMVPContract();
+    const earnedpoints = await betMVPContract.methods.revokeValidationPointsEarning().call();
+    return earnedpoints;
+}
+
+export const claimpoints = async () => {
+    const betMVPContract = await getBETMVPContract();
+    const earnedpoints = await betMVPContract.methods.claimValidationPoint().call();
+    return earnedpoints;
 }

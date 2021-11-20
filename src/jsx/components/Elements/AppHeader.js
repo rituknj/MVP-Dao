@@ -6,7 +6,8 @@ import { NavLink } from "react-router-dom";
 import { initInstance, loginProcess, disconnectWallet, getAccount } from './../../../web3/web3';
 import { getUSDTBalance, addUSDT } from './../../../web3/usdtService';
 import { addBETS, getBETBalance } from './../../../web3/betsService';
-import { getValidationPoint } from './../../../web3/betsMVPService';
+import { getValidationPoint, earnvalidationpoints, revokevalidationpointsearning, claimpoints } from './../../../web3/betsMVPService';
+import { collapseToast } from "react-toastify";
 
 class AppHeader extends Component {
   constructor(props) {
@@ -18,7 +19,9 @@ class AppHeader extends Component {
       balanceofUSDT: 0,
       acc: null,
       balanceBET: 0,
-      validationpoint:0
+      validationpoint:0,
+      lockamount:0,
+      show:false
     }
   }
 
@@ -29,7 +32,15 @@ class AppHeader extends Component {
     let balanceofUSD = await getUSDTBalance();
     let account = await getAccount();
     let balanceofBET = await getBETBalance();
+    const point = await getValidationPoint();
+    
+    if(point > 0){
+      this.setState({
+        show:true
+      })
+    }
     this.setState({
+      validationpoint:point,
       balanceofUSDT: balanceofUSD,
       acc:account,
       balanceBET: balanceofBET
@@ -38,12 +49,12 @@ class AppHeader extends Component {
     console.log("BETS balance", balanceofBET)
   };
 
-  getvalidationpoints = async() => {
-    const point = await getValidationPoint();
-    this.setState({
-      validationpoint:point
-    })
-  }
+  // getvalidationpoints = async() => {
+  //   const point = await getValidationPoint();
+  //   this.setState({
+  //     validationpoint:point
+  //   })
+  // }
 
   setHistory = () => {
     let items = [];
@@ -102,6 +113,33 @@ class AppHeader extends Component {
       showMyBetHistory:false,
       showMyBet: false
     })
+  }
+
+  unlockamount = async() => {
+    try{
+      await revokevalidationpointsearning();
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+
+  lockamount = async(amount) => {
+    try{
+    await earnvalidationpoints(amount)
+    }
+    catch(error){
+      console.log(error);
+    }  
+  }
+
+  claimPoints = async() => {
+    try{
+      await claimpoints()
+    }
+    catch(error){
+      console.log(error)
+    }
   }
 
 
@@ -215,6 +253,7 @@ class AppHeader extends Component {
               <div className="mb-4">
                 <h4 className="">Total validation points earned</h4>
                 <p>{this.state.validationpoint}</p>
+                {this.state.show?<button className="btn btn-danger" style={{backgroundColor:"#FF0000", color:'#000000'}} onClick={() => this.claimPoints()}>Claim Points</button>:null}
               </div>
               <div className="mb-4">
                 <h4 className="">Total Token locked</h4>
@@ -224,17 +263,22 @@ class AppHeader extends Component {
             <div className="point-list-form p-2 px-md-4 pt-3">
               <div className="d-flex mb-4">
                 <p className="w-100">AMOUNT TO LOCK</p>
-                <p className="w-100 text-end">0 BETS</p>
+                <p className="w-100 text-end">{this.state.lockamount} BETS</p>
               </div>
               <div className="position-relative">
-                <input />
+                <input placeholder='amount' value={this.state.lockamount} onChange={(e) => this.setState({lockamount:e.target.value})}/>
                 <span className="position-absolute">MAX</span>
               </div>
               <div className="position-relative mt-4">
                 {/*add class "btn grey" when insufficient balance  */}
-                <button className="btn">Lock tokens</button>
+                <button className="btn" onClick={() => this.lockamount(this.state.lockamount)}>Lock tokens</button>
+               {this.state.show?<button className="btn mt-4" onClick={() => this.unlockamount()}>Unlock Token</button>:null}
               </div>
             </div>
+            {/* <div className="mb-4">
+                <h4 className="">Unlock amount</h4>
+                <button className="btn" onClick={() => this.unlockamount()} >Unlock Token</button>
+              </div> */}
           </div>
         </div> : ""}
 
