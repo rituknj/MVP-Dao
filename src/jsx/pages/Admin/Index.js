@@ -33,7 +33,11 @@ class Index extends Component {
     active_event = await getActiveEvents();
     for (let i = 0; i <= active_event.length; i++){
       event = await getEvent(i);
-      this.state.allevents.push(event);
+      if(event[9] === false){
+        
+        this.state.allevents.push(event);
+      }
+      
     }
     
   };

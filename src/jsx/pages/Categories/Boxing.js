@@ -202,7 +202,7 @@ class GameCard extends Component {
                               <p className="theam-text-color m-0">Pool size</p>
                             </div>
                             <div className="col-6">
-                              <h3 className="mb-0">{this.state.poolsize}</h3>
+                              <h3 className="mb-0">{this.state.poolsize} BETS</h3>
                             </div>
                             <div className="col-6">
                               <h5 className="text-end mb-0">
@@ -445,7 +445,7 @@ class GameCard extends Component {
                               <p className="theam-text-color m-0">Pool size</p>
                             </div>
                             <div className="col-6">
-                              <h3>{events[4]}</h3>
+                              <h3>{events[4]} BETS</h3>
                             </div>
                             <div className="col-6">
                               <h5 className="text-end">
