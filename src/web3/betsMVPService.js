@@ -86,7 +86,7 @@ export const getValidatedEvents = async () => {
 
 export const totalEvents = async () => {
     const betMVPContract = await getBETMVPContract();
-    const totalEvents = await betMVPContract.methods.getActiveEvents().call();
+    const totalEvents = await betMVPContract.methods.totalEvents().call();
     return totalEvents;
 }
 

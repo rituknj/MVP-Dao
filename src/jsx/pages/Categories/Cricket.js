@@ -4,7 +4,7 @@ import cardBackground from './../../../images/ground.png'
 import carbon_timer from './../../../images/carbon_timer.png'
 import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
-import { getActiveEvents, getEvent, placeBet } from './../../../web3/betsMVPService'
+import { getActiveEvents, getEvent, placeBet, totalEvents } from './../../../web3/betsMVPService'
 import { initInstance } from './../../../web3/web3'
 import redDot from './../../../images/red-dot.png'
 import App from './../../pages/App/Index'
@@ -36,9 +36,9 @@ class GameCard extends Component {
     await initInstance()
     const events = []
     let check
-    let active_events = await getActiveEvents()
+    let active_events = await totalEvents()
 
-    for (let i = 0; i <= active_events.length; i++) {
+    for (let i = 0; i <= active_events; i++) {
       check = await getEvent(i)
       if (check[2] == 'Cricket') {
         events.push(check)

@@ -3,7 +3,7 @@ import AppHeader from "../../components/Elements/AppHeader";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import {getMainChainInformation, initInstance, loginProcess} from './../../../web3/web3'
-import {createEvent, getEvent, getActiveEvents, validateEvent} from './../../../web3/betsMVPService'
+import {createEvent, getEvent, getActiveEvents, validateEvent, totalEvents} from './../../../web3/betsMVPService'
 
 import arrow_down from "../../../images/arrow-down.png";
 
@@ -30,8 +30,8 @@ class Index extends Component {
     let active_event;
     await initInstance();
     AOS.init();
-    active_event = await getActiveEvents();
-    for (let i = 0; i <= active_event.length; i++){
+    active_event = await totalEvents();
+    for (let i = 0; i <= active_event; i++){
       event = await getEvent(i);
       if(event[9] === false){
         
