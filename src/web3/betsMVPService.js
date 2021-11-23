@@ -125,3 +125,21 @@ export const claimpoints = async () => {
     const earnedpoints = await betMVPContract.methods.claimValidationPoint().call();
     return earnedpoints;
 }
+
+export const totaltokenlocked = async () => {
+    const betMVPContract = await getBETMVPContract();
+    const earnedpoints = await betMVPContract.methods.userCurrentlyLockedBETS( await getAccount() ).call();
+    return earnedpoints;
+}
+
+export const getusertotalwinnings = async () => {
+    const betMVPContract = await getBETMVPContract();
+    const earnedpoints = await betMVPContract.methods.getUserTotalWinnings( await getAccount() ).call();
+    return earnedpoints;
+}
+
+export const gettotaluserwageramount = async () => {
+    const betMVPContract = await getBETMVPContract();
+    const earnedpoints = await betMVPContract.methods.getTotolUserWagerAmount( await getAccount() ).call();
+    return earnedpoints;
+}

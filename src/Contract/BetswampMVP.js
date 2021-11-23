@@ -378,9 +378,23 @@ export const BETS_ABI = [
     type: 'function',
   },
   {
-    inputs: [],
+    inputs: [{ internalType: 'address', name: '_address', type: 'address' }],
+    name: 'getTotolUserWagerAmount',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'address', name: '_address', type: 'address' }],
     name: 'getUserEventHistory',
     outputs: [{ internalType: 'uint256[]', name: '', type: 'uint256[]' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'address', name: '_address', type: 'address' }],
+    name: 'getUserTotalWinnings',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
   },
@@ -504,6 +518,13 @@ export const BETS_ABI = [
     name: 'transferOwnership',
     outputs: [],
     stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'address', name: '_address', type: 'address' }],
+    name: 'userCurrentlyLockedBETS',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
     type: 'function',
   },
   {

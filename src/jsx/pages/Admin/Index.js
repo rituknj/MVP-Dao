@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import AppHeader from "../../components/Elements/AppHeader";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import {getMainChainInformation, initInstance} from './../../../web3/web3'
+import {getMainChainInformation, initInstance, loginProcess} from './../../../web3/web3'
 import {createEvent, getEvent, getActiveEvents, validateEvent} from './../../../web3/betsMVPService'
 
 import arrow_down from "../../../images/arrow-down.png";

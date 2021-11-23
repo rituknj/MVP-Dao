@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { initInstance, loginProcess, disconnectWallet, getAccount } from './../../../web3/web3';
 import { getUSDTBalance, addUSDT } from './../../../web3/usdtService';
 import { addBETS, getBETBalance } from './../../../web3/betsService';
-import { getValidationPoint, earnvalidationpoints, revokevalidationpointsearning, claimpoints } from './../../../web3/betsMVPService';
+import { getValidationPoint, earnvalidationpoints, revokevalidationpointsearning, claimpoints, totaltokenlocked, getusertotalwinnings, gettotaluserwageramount } from './../../../web3/betsMVPService';
 import { collapseToast } from "react-toastify";
 
 class AppHeader extends Component {
@@ -21,7 +21,10 @@ class AppHeader extends Component {
       balanceBET: 0,
       validationpoint:0,
       lockamount:0,
-      show:false
+      show:false,
+      lockedbets:0,
+      totalwinnings:0,
+      totalwageramount: 0
     }
   }
 
@@ -33,7 +36,15 @@ class AppHeader extends Component {
     let account = await getAccount();
     let balanceofBET = await getBETBalance();
     const point = await getValidationPoint();
-    
+    let totalbetslocked= await totaltokenlocked();
+    let totalwinnings = await getusertotalwinnings();
+    let totalwageramount = await gettotaluserwageramount() 
+    this.setState({
+      lockedbets: totalbetslocked,
+      totalwinnings: totalwinnings,
+      totalwageramount: totalwageramount
+    })
+    // console.log('total bets locked', this.state.lockedbets)
     if(point > 0){
       this.setState({
         show:true
@@ -179,13 +190,8 @@ class AppHeader extends Component {
                   </li>
                   <li className="nav-item px-2">
                     <NavLink className="nav-link text-white" to="#" onClick={() => this.showMyBet()}>
-                      My Bet
-                      <img
-                        src={myBet}
-                        width="40px"
-                        height="40px"
-                        className="ms-2 me-3"
-                      />
+                      My Bet{" "}
+                      {this.state.balanceBET}
                       <img src={arrowDown} width="24px" className={(this.state.showMyBet) ? 'rotate-element' : ''} />
                     </NavLink>
 
@@ -210,15 +216,17 @@ class AppHeader extends Component {
             <div className="p-3">
               <div className="bet-card-custom mb-3">
                 <h4 className="mb-2">Total Bets Made</h4>
-                <p className="m-0">50</p>
+                <p className="m-0">
+                  0
+                </p>
               </div>
               <div className="bet-card-custom mb-3">
                 <h4 className="mb-2">Total amount staked</h4>
-                <p className="m-0">$4000</p>
+                <p className="m-0">{this.state.totalwageramount} BETS</p>
               </div>
               <div className="bet-card-custom">
                 <h4 className="mb-2">Total winnings</h4>
-                <p className="m-0">$500</p>
+                <p className="m-0">{this.state.totalwinnings} BETS</p>
               </div>
             </div>
             <h5 className="mx-3 mb-0">History</h5>
@@ -257,7 +265,7 @@ class AppHeader extends Component {
               </div>
               <div className="mb-4">
                 <h4 className="">Total Token locked</h4>
-                <p>50000 BETS</p>
+                <p>{this.state.lockedbets} BETS</p>
               </div>
             </div>
             <div className="point-list-form p-2 px-md-4 pt-3">

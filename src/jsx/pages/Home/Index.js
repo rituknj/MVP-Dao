@@ -10,10 +10,10 @@ import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { initInstance } from "./../../../web3/web3";
+import { initInstance, loginProcess } from "./../../../web3/web3";
 import { gettotalsupply } from './../../../web3/betsService'
 import {formatNumber, fromWei} from './../../../web3/utils'
-import { getEvent, getActiveEvents } from "../../../web3/betsMVPService";
+import { getEvent, getActiveEvents, totalEvents } from "../../../web3/betsMVPService";
 ////Images
 import TopImage from "../../../images/landing-Bets-cards-games.png";
 import arrowRight from "../../../images/arrow-right.svg";
@@ -102,10 +102,10 @@ class Index extends Component {
     componentDidMount = async() => {
         AOS.init();
         await initInstance();
-
-        const active_events = await getActiveEvents();
+        await loginProcess();
+        const active_events = await totalEvents();
         let items = [];
-        for (var i = active_events.length - 2; i <= active_events.length; i++) {
+        for (var i = 0; i <= active_events.length; i++) {
             let events = await getEvent(i)
             this.state.item.push(events)
         }
