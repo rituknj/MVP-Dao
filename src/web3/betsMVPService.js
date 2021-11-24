@@ -46,7 +46,9 @@ export const placeBet = async ({event_id, amount, occured}) => {
     // const result = await betMVPContract.methods.placeBet(0x4, 0x100, 0x0).call();
     // return result;
     console.log("length ",event_id, amount, occured)
-    var getData = await betMVPContract.methods.placeBet(event_id, amount, occured).call({'from': await getAccount()});
+    var getData = await betMVPContract.methods.placeBet(event_id, amount, occured).send({
+        from: await getAccount(),
+    });
     console.log('getdata',getData)
     // let data = getData.encodeABI()
     // return await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
@@ -110,19 +112,26 @@ export const getEvent = async (eventID) => {
 
 export const earnvalidationpoints = async (amount) => {
     const betMVPContract = await getBETMVPContract();
-    const points = await betMVPContract.methods.earnValidationPoints(amount).call();
+    const points = await betMVPContract.methods.earnValidationPoints(Number(amount)).send({
+        from: await getAccount(),
+        
+    });
+    console.log('locked amount', points)
     return points;
 }
 
 export const revokevalidationpointsearning = async () => {
     const betMVPContract = await getBETMVPContract();
-    const earnedpoints = await betMVPContract.methods.revokeValidationPointsEarning().call();
+    const earnedpoints = await betMVPContract.methods.revokeValidationPointsEarning().send({
+        from: await getAccount(),
+        
+    });
     return earnedpoints;
 }
 
 export const claimpoints = async () => {
     const betMVPContract = await getBETMVPContract();
-    const earnedpoints = await betMVPContract.methods.claimValidationPoint().call();
+    const earnedpoints = await betMVPContract.methods.claimValidationPoint().call({'from': await getAccount()});
     return earnedpoints;
 }
 

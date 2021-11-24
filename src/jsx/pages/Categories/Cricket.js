@@ -5,6 +5,7 @@ import carbon_timer from './../../../images/carbon_timer.png'
 import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
 import { getActiveEvents, getEvent, placeBet, totalEvents } from './../../../web3/betsMVPService'
+// import { approve } from './../../../web3/betsService'
 import { initInstance } from './../../../web3/web3'
 import redDot from './../../../images/red-dot.png'
 import App from './../../pages/App/Index'
@@ -139,13 +140,11 @@ class GameCard extends Component {
     amount = parseInt(amount)
     try { 
     console.log('selection int',betdata);
-    // let betcontract = await getBETMVPContract();
-    // await betcontract.methods.placeBet(id,amount,team).call();
     let ret = await placeBet(betdata);
-    // console.log('placebet', ret)
+    
   }
-    catch(error){
-        console.log(error)
+    catch(e){
+        alert(e.message)
     }
   }
 

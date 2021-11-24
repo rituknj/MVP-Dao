@@ -72,12 +72,17 @@ class Index extends Component {
     const Event = {
       sub_category: this.state.sub_category,
       name: this.state.name,
-      time: starttime,
-      endTime: endtime,
+      time: starttime+60,
+      endTime: endtime+60,
       event1: this.state.event1,
       event2: this.state.event2,
     }
-    await createEvent(Event);
+    console.log("created events", Event)
+    try{await createEvent(Event)}
+    catch(error){
+      alert(error.message)
+    }
+    
   }
 
   timecovert = (time) =>{
@@ -112,10 +117,13 @@ class Index extends Component {
     }, () => {
       console.log("id is",this.state.id, this.state.occured);
   })
-   await validateEvent(event_id, this.state.occured)
+  try{await validateEvent(event_id, this.state.occured)}
+  catch(e){
+    alert(e.message)
+  }
+   
   }
 
-  
   render() {
     console.log("all events are", this.state.allevents)
     
@@ -146,6 +154,16 @@ class Index extends Component {
                 Validate Events
               </button>
             </div>
+            {/* <div className="">
+              <button
+                className={`btn admin-match-button ${
+                  this.state.activeTabTop == 2 ? " active" : ""
+                }`}
+                onClick={() => this.handelClick(3)}
+              >
+                Admin Manage
+              </button>
+            </div> */}
           </div>
           <div className="row">
             <div className="col-12">
@@ -159,14 +177,24 @@ class Index extends Component {
                             <label for="category" className="form-label">
                               Category
                             </label>
-                            <input
-                              type="text"
+                            <select class="form-control" id="sel1" value={this.state.sub_category} onChange={(e) => this.setState({sub_category:e.target.value})}>
+                            <option>Cricket</option>
+                            <option>Tennis</option>
+                            <option>Rugby</option>
+                            <option>Football</option>
+                            <option>Hockey</option>
+                            <option>Boxing</option>
+                            <option>Basketball</option>
+                            <option>Baseball</option>
+                            </select> 
+                            {/* <input
+                              type='d'
                               className="form-control"
                               id="category"
                               value={this.state.sub_category} 
                               onChange={(e) => this.setState({sub_category:e.target.value})}
                               aria-describedby=""
-                            />
+                            /> */}
                           </div>
                           <div className="mb-3 mb-md-5 maindiv">
                             <label for="Event" className="form-label">

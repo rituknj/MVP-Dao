@@ -5,7 +5,7 @@ import greenArrow from "../../../images/green-arrow.png";
 import { NavLink } from "react-router-dom";
 import { initInstance, loginProcess, disconnectWallet, getAccount, checkChain } from './../../../web3/web3';
 import { getUSDTBalance, addUSDT } from './../../../web3/usdtService';
-import { addBETS, getBETBalance } from './../../../web3/betsService';
+import { addBETS, getBETBalance, approve } from './../../../web3/betsService';
 import { getValidationPoint, earnvalidationpoints, revokevalidationpointsearning, claimpoints, totaltokenlocked, getusertotalwinnings, gettotaluserwageramount, getBetsHistory, getEvent } from './../../../web3/betsMVPService';
 import { collapseToast } from "react-toastify";
 
@@ -25,36 +25,37 @@ class AppHeader extends Component {
       lockedbets:0,
       totalwinnings:0,
       totalwageramount: 0,
-      bethistory:[]
+      bethistory:[],
+      totalbetsmade:0
     }
   }
 
   componentDidMount = async () => { 
     let check =[ ]
+    let count = 0
     await initInstance();
     await loginProcess();
     let balanceofUSD = await getUSDTBalance();
     let account = await getAccount();
     let balanceofBET = await getBETBalance();
     const point = await getValidationPoint();
-    let totalbetslocked= await totaltokenlocked();
+    let totalbetslocked = await totaltokenlocked();
     let totalwinnings = await getusertotalwinnings();
     let totalwageramount = await gettotaluserwageramount() 
     let history = await getBetsHistory()
+    console.log("len")
     
-
     history.forEach(async element => {
+      count ++ 
       let i = await getEvent(element)
       check.push(i)
       this.setState({
         bethistory: check
       })
-      console.log('history', this.state.bethistory)
     });
 
-    
-
     this.setState({
+      totalbetsmade: count,
       lockedbets: totalbetslocked,
       totalwinnings: totalwinnings,
       totalwageramount: totalwageramount
@@ -81,7 +82,10 @@ class AppHeader extends Component {
   //     validationpoint:point
   //   })
   // }
-
+  approveyourself = async() => {
+    console.log("apprived run")
+    await approve();
+  }
   setHistory = () => {
     
     let items = [];
@@ -145,19 +149,22 @@ class AppHeader extends Component {
 
   unlockamount = async() => {
     try{
+      console.log("run")
       await revokevalidationpointsearning();
     }
     catch(error){
-      console.log(error)
+      alert(error)
     }
   }
 
   lockamount = async(amount) => {
     try{
-    await earnvalidationpoints(amount)
+    
+    console.log("run")
+    await earnvalidationpoints(Number(amount))
     }
     catch(error){
-      console.log(error);
+      alert(error.message);
     }  
   }
 
@@ -166,7 +173,7 @@ class AppHeader extends Component {
       await claimpoints()
     }
     catch(error){
-      console.log(error)
+      alert(error.message)
     }
   }
 
@@ -208,7 +215,7 @@ class AppHeader extends Component {
                   <li className="nav-item px-2">
                     <NavLink className="nav-link text-white" to="#" onClick={() => this.showMyBet()}>
                       My Bet{" "}
-                      {this.state.balanceBET}
+                      {Number(this.state.balanceBET).toFixed(2)}
                       <img src={arrowDown} width="24px" className={(this.state.showMyBet) ? 'rotate-element' : ''} />
                     </NavLink>
 
@@ -234,7 +241,7 @@ class AppHeader extends Component {
               <div className="bet-card-custom mb-3">
                 <h4 className="mb-2">Total Bets Made</h4>
                 <p className="m-0">
-                  0
+                  {this.state.totalbetsmade}
                 </p>
               </div>
               <div className="bet-card-custom mb-3">
@@ -264,7 +271,7 @@ class AppHeader extends Component {
                 <p className="m-0">Total amount staked:</p>
               </div>
               <div className="col-3">
-                <h4 className="m-0">{items[4]} BETS</h4>
+                <h4 className="m-0">{items[4]}{'BETS'}</h4>
               </div>
             </div>
             <div className="row mb-3 ">
@@ -310,7 +317,7 @@ class AppHeader extends Component {
               </div>
               <div className="mb-4">
                 <h4 className="">Total Token locked</h4>
-                <p>{this.state.lockedbets} BETS</p>
+                <p>{Number(this.state.lockedbets/10**18).toFixed(4)} BETS</p>
               </div>
             </div>
             <div className="point-list-form p-2 px-md-4 pt-3">
@@ -325,9 +332,11 @@ class AppHeader extends Component {
               <div className="position-relative mt-4">
                 {/*add class "btn grey" when insufficient balance  */}
                 <button className="btn" onClick={() => this.lockamount(this.state.lockamount)}>Lock tokens</button>
-               {this.state.show?<button className="btn mt-4" onClick={() => this.unlockamount()}>Unlock Token</button>:null}
+               {this.state.lockedbets>0?<button className="btn mt-4" onClick={() => this.unlockamount()}>Unlock Token</button>:null}
+               <button className="btn mt-4" onClick={() => this.approveyourself()}>Approve Yourself</button>
               </div>
             </div>
+
             {/* <div className="mb-4">
                 <h4 className="">Unlock amount</h4>
                 <button className="btn" onClick={() => this.unlockamount()} >Unlock Token</button>
