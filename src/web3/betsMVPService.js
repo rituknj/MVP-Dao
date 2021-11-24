@@ -68,7 +68,7 @@ export const getValidationPoint = async () => {
 
 export const getBetsHistory = async () => {
     const betMVPContract = await getBETMVPContract();
-    const betsHistory = await betMVPContract.methods.getUserEventHistory().call({'from': await getAccount()});
+    const betsHistory = await betMVPContract.methods.getUserEventHistory(await getAccount() ).call({'from': await getAccount()});
     return betsHistory;
 }
 
@@ -143,3 +143,4 @@ export const gettotaluserwageramount = async () => {
     const earnedpoints = await betMVPContract.methods.getTotolUserWagerAmount( await getAccount() ).call();
     return earnedpoints;
 }
+

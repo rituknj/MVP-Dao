@@ -3,10 +3,10 @@ import arrowDown from "../../../images/arrow-down.png";
 import myBet from "../../../images/my-bet.png";
 import greenArrow from "../../../images/green-arrow.png";
 import { NavLink } from "react-router-dom";
-import { initInstance, loginProcess, disconnectWallet, getAccount } from './../../../web3/web3';
+import { initInstance, loginProcess, disconnectWallet, getAccount, checkChain } from './../../../web3/web3';
 import { getUSDTBalance, addUSDT } from './../../../web3/usdtService';
 import { addBETS, getBETBalance } from './../../../web3/betsService';
-import { getValidationPoint, earnvalidationpoints, revokevalidationpointsearning, claimpoints, totaltokenlocked, getusertotalwinnings, gettotaluserwageramount } from './../../../web3/betsMVPService';
+import { getValidationPoint, earnvalidationpoints, revokevalidationpointsearning, claimpoints, totaltokenlocked, getusertotalwinnings, gettotaluserwageramount, getBetsHistory, getEvent } from './../../../web3/betsMVPService';
 import { collapseToast } from "react-toastify";
 
 class AppHeader extends Component {
@@ -24,12 +24,13 @@ class AppHeader extends Component {
       show:false,
       lockedbets:0,
       totalwinnings:0,
-      totalwageramount: 0
+      totalwageramount: 0,
+      bethistory:[]
     }
   }
 
   componentDidMount = async () => { 
-
+    let check =[ ]
     await initInstance();
     await loginProcess();
     let balanceofUSD = await getUSDTBalance();
@@ -39,6 +40,20 @@ class AppHeader extends Component {
     let totalbetslocked= await totaltokenlocked();
     let totalwinnings = await getusertotalwinnings();
     let totalwageramount = await gettotaluserwageramount() 
+    let history = await getBetsHistory()
+    
+
+    history.forEach(async element => {
+      let i = await getEvent(element)
+      check.push(i)
+      this.setState({
+        bethistory: check
+      })
+      console.log('history', this.state.bethistory)
+    });
+
+    
+
     this.setState({
       lockedbets: totalbetslocked,
       totalwinnings: totalwinnings,
@@ -68,8 +83,10 @@ class AppHeader extends Component {
   // }
 
   setHistory = () => {
+    
     let items = [];
     for (var i = 1; i <= 5; i++) {
+
       items.push(<div className="bet-card-custom mb-3">
         <div className="row">
           <div className="col-8">
@@ -229,14 +246,42 @@ class AppHeader extends Component {
                 <p className="m-0">{this.state.totalwinnings} BETS</p>
               </div>
             </div>
-            <h5 className="mx-3 mb-0">History</h5>
+            {/* <h5 className="mx-3 mb-0">History</h5>
             <hr className="mb-0 mt-2" />
             <div className="p-3">
-              {this.setHistory()}
-            </div>
+             
+            </div> */}
           </div> : <div className="nav-tabs-data">
             <div className="p-3">
-              {this.setHistory()}
+              {/* {this.setHistory()} */}
+
+          {this.state.bethistory.map(items =>    <div className="bet-card-custom mb-3">
+            <div className="row">
+          <div className="col-8">
+            <h4 className="mb-4 w-100">{items[3]}</h4>
+            <div className="row mb-3 history-list">
+              <div className="col-9">
+                <p className="m-0">Total amount staked:</p>
+              </div>
+              <div className="col-3">
+                <h4 className="m-0">{items[4]} BETS</h4>
+              </div>
+            </div>
+            <div className="row mb-3 ">
+              <div className="col-9">
+                <p className="m-0">Total amount won:</p>
+              </div>
+              <div className="col-3">
+                <h4 className="m-0">$2000</h4>
+              </div>
+            </div>
+          </div>
+          <div className="col-4">
+            <p className="m-0 text-end w-100">ENDED</p>
+          </div>
+        </div>
+      </div>)}
+
             </div>
           </div>}
         </div> : ""}
