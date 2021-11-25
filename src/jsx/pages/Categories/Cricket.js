@@ -2,13 +2,14 @@ import React, { Component, Fragment } from 'react'
 import greenDot from './../../../images/green-dot.png'
 import cardBackground from './../../../images/ground.png'
 import carbon_timer from './../../../images/carbon_timer.png'
+import App from './../../pages/App/Index'
 import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
-import { getActiveEvents, getEvent, placeBet, totalEvents } from './../../../web3/betsMVPService'
-// import { approve } from './../../../web3/betsService'
+import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts } from './../../../web3/betsMVPService'
 import { initInstance } from './../../../web3/web3'
+import { fromWei, formatNumber } from '../../../web3/utils'
 import redDot from './../../../images/red-dot.png'
-import App from './../../pages/App/Index'
+import BigInt from 'big-integer'
 import { event } from 'jquery'
 
 
@@ -30,7 +31,12 @@ class GameCard extends Component {
       currenttime:0,
       occurance:0,
       poolsize:0, 
-      participant:0
+      participant:0,
+      category:null,
+      eventoneparticipant:0,
+      eventtwoparticipant:0,
+      eventthreeparticipant:0,
+      endtime:0
     }
   }
   componentDidMount = async () => {
@@ -57,8 +63,8 @@ class GameCard extends Component {
   }
 
 
-  handelSideMenu = (eventid, teamone,teamtwo, endtime, poolsize, bettercount) => {
-
+  handelSideMenu = async(eventid, teamone,teamtwo, endtime, poolsize, bettercount, category) => {
+    await this.countbettors(eventid);
     var ts = Math.round((new Date()).getTime() / 1000);
     let lefttime = endtime - ts
     lefttime = parseInt(Math.floor(lefttime/3600)/24);
@@ -77,11 +83,13 @@ class GameCard extends Component {
       })
     }
     this.setState({
+      endtime:endtime,
+      category:category,
       id:eventid,
       teamone:teamone,
       teamtwo:teamtwo,
       currenttime:lefttime,
-      poolsize:poolsize,
+      poolsize:Number(poolsize/10**18).toFixed(2),
       participant:bettercount
     })
     
@@ -129,28 +137,47 @@ class GameCard extends Component {
     }
   }
 
+  countbettors = async(id,) => {
+      let one = await bettorscounts(id,0)
+      let two = await bettorscounts(id,1)
+      let three = await bettorscounts(id,2)
+      this.setState({
+      eventoneparticipant:one,
+      eventtwoparticipant:two,
+      eventthreeparticipant:three
+      })
+      console.log('participants', this.state.eventoneparticipant,this.state.eventtwoparticipant,this.state.eventthreeparticipant)
+  }
+
   placebet = async(id, team, amount) => {
+    var ts = Math.round((new Date()).getTime() / 1000);
+    let lefttime = this.state.endtime - ts
     const betdata = {
       event_id: id,
-      amount: parseInt(amount),
-      occured: parseInt(team)
+      amount: amount,
+      occured: team
     }
-    id = parseInt(id)
-    team = parseInt(team)
-    amount = parseInt(amount)
+    console.log('selection int',betdata, lefttime);
     try { 
-    console.log('selection int',betdata);
-    let ret = await placeBet(betdata);
+    if(lefttime > 0)
+    {
+      await placeBet(betdata);
+    }
+
+    else{
+      alert("Event Time ended")
+    }
     
   }
-    catch(e){
-        alert(e.message)
+    catch(error){
+      alert(error.message)
     }
   }
 
   getdays = (endime) =>{
     var ts = Math.round((new Date()).getTime() / 1000);
     let lefttime = endime - ts
+    
     lefttime = parseInt(Math.floor(lefttime/3600)/24);
     if(lefttime <  0){
       lefttime = 0
@@ -181,7 +208,7 @@ class GameCard extends Component {
                                 className="me-4 mb-1"
                                 width="14px"
                               />
-                              <span>Soccer</span>
+                              <span>{this.state.category}</span>
                             </div>
                             <div
                               className="col-2 text-white text-end mb-3 close-btn"
@@ -228,7 +255,7 @@ class GameCard extends Component {
                               <div className="row info">
                                 <div className="col-12 mb-2">
                                   <p>
-                                    Participants:&nbsp;&nbsp; <span>{this.state.participant}</span>
+                                    Participants:&nbsp;&nbsp; <span>{this.state.eventoneparticipant}</span>
                                   </p>
                                 </div>
                                 <div className="col-12 mb-2">
@@ -289,7 +316,7 @@ class GameCard extends Component {
                               <div className="row info">
                                 <div className="col-12 mb-2">
                                   <p>
-                                    Participants:&nbsp;&nbsp; <span>{this.state.participant}</span>
+                                    Participants:&nbsp;&nbsp; <span>{this.state.eventtwoparticipant}</span>
                                   </p>
                                 </div>
                                 <div className="col-12 mb-2">
@@ -350,7 +377,7 @@ class GameCard extends Component {
                               <div className="row info">
                                 <div className="col-12 mb-2">
                                   <p>
-                                    Participants:&nbsp;&nbsp; <span>{this.state.participant}</span>
+                                    Participants:&nbsp;&nbsp; <span>{this.state.eventthreeparticipant}</span>
                                   </p>
                                 </div>
                                 <div className="col-12 mb-2">
@@ -444,7 +471,7 @@ class GameCard extends Component {
                               <p className="theam-text-color m-0">Pool size</p>
                             </div>
                             <div className="col-6">
-                              <h3>{events[4]} BETS</h3>
+                              <h3>{Number(events[4]/10**18).toFixed(2)} BETS</h3>
                             </div>
                             <div className="col-6">
                               <h5 className="text-end">
@@ -469,7 +496,8 @@ class GameCard extends Component {
                             <div className="col-4 button-row">
                               <button
                                 className="btn"
-                                onClick={() => this.handelSideMenu(events[0],events[7],events[8],events[6],events[4], events[13])
+                                onClick={() => this.handelSideMenu(events[0],events[7],events[8],events[6],events[4], events[12], events[2])
+                                  
                                 }
                               >
                                 BET

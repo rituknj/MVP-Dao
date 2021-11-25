@@ -1,6 +1,7 @@
 import { getAccount, getContract, web3Instance } from "./web3";
 import { BETS_ABI } from './../Contract/BetswampMVP';
 import { envdev } from "./environments";
+import BigInt from "big-integer";
 import { strTimeToInt, fromWei } from './utils';
 
 
@@ -43,15 +44,12 @@ export const createEvent = async ({sub_category, name, time, endTime, event1, ev
 
 export const placeBet = async ({event_id, amount, occured}) => {
     const betMVPContract = await getBETMVPContract();
-    // const result = await betMVPContract.methods.placeBet(0x4, 0x100, 0x0).call();
-    // return result;
-    console.log("length ",event_id, amount, occured)
-    var getData = await betMVPContract.methods.placeBet(event_id, amount, occured).send({
+    amount = BigInt(amount*10**18)
+    console.log("length ",event_id, amount.value, occured)
+    var getData = await betMVPContract.methods.placeBet(event_id, amount.value, occured).send({
         from: await getAccount(),
     });
     console.log('getdata',getData)
-    // let data = getData.encodeABI()
-    // return await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
 }
 
 export const validateEvent = async (event_id, occured) => {
@@ -111,8 +109,9 @@ export const getEvent = async (eventID) => {
 }
 
 export const earnvalidationpoints = async (amount) => {
+    console.log("values of big number",amount)
     const betMVPContract = await getBETMVPContract();
-    const points = await betMVPContract.methods.earnValidationPoints(Number(amount)).send({
+    const points = await betMVPContract.methods.earnValidationPoints(amount).send({
         from: await getAccount(),
         
     });
@@ -153,3 +152,20 @@ export const gettotaluserwageramount = async () => {
     return earnedpoints;
 }
 
+export const claimrewards = async (id) => {
+    const betMVPContract = await getBETMVPContract();
+    const resutl = await betMVPContract.methods.claimReward(id).call();
+    return resutl;
+}
+
+export const reclaimwager = async (id) => {
+    const betMVPContract = await getBETMVPContract();
+    const resutl = await betMVPContract.methods.reclaimWager(id).call();
+    return resutl;
+}
+
+export const bettorscounts = async (id, occured) => {
+    const betMVPContract = await getBETMVPContract();
+    const resutl = await betMVPContract.methods.getOccurrenceBetCount(id, occured).call();
+    return resutl;
+}
