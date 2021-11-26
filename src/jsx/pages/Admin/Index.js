@@ -16,7 +16,7 @@ class Index extends Component {
       handelToggle: false,
       time:0,
       endtime:0,
-      sub_category:'',
+      sub_category:'Cricket',
       event1:'',
       event2:'',
       name:'',
@@ -78,7 +78,23 @@ class Index extends Component {
       event2: this.state.event2,
     }
     console.log("created events", Event)
-    try{await createEvent(Event)}
+    try{
+      
+      if(Event.sub_category != '' && Event.name != '' && Event.event1 != '' && Event.event2 != '')
+      {
+        console.log("run4")
+      let result = await createEvent(Event)
+      console.log("result", result)
+      // if (result == true){
+      //   alert("Event created successfully")
+      // }
+      }
+
+      else{
+        alert("Fill the details correctly")
+      }
+      
+    }
     catch(error){
       alert(error.message)
     }
@@ -111,13 +127,22 @@ class Index extends Component {
     
   }
 
-  preview = async(event_id) => {
+  preview = async(event_id, endtime) => {
+    var ts = Math.round((new Date()).getTime() / 1000);
     this.setState({
       id:event_id,
     }, () => {
       console.log("id is",this.state.id, this.state.occured);
   })
-  try{await validateEvent(event_id, this.state.occured)}
+  try{
+    if(ts > endtime){
+      await validateEvent(event_id, this.state.occured)
+    }
+    else{
+      alert("Envent is not ended yet")
+    }
+  }
+  
   catch(e){
     alert(e.message)
   }
@@ -349,7 +374,7 @@ class Index extends Component {
                                   </div>
                                   <div className="d-flex mb-3" onClick={() => this.teamfisrt()}>
                                     <p className="title w-100">
-                                      Machester unity
+                                      {item[7]}
                                     </p>
                                     <p className="text-end w-100">
                                       <input
@@ -361,7 +386,7 @@ class Index extends Component {
                                     </p>
                                   </div>
                                   <div className="d-flex mb-3" onClick={() => this.teamsecond()}>
-                                    <p className="title w-100">Chealsea</p>
+                                    <p className="title w-100">{item[8]}</p>
                                     <p className="text-end w-100">
                                       <input
                                         className="form-check-input"
@@ -390,13 +415,13 @@ class Index extends Component {
                             <div className="col-md-4 d-none d-md-flex justify-content-center align-items-center">
                               {this.state.handelToggle ? (
                                 ""
-                              ) : (
-                                <button
-                                  className="btn button-1"
-                                  onClick={() => this.preview(item[0])}
-                                >
-                                  validate
-                                </button>
+                              ) : (false
+                                // <button
+                                //   className="btn button-1"
+                                //   onClick={() => this.preview(item[0])}
+                                // >
+                                //   validate
+                                // </button>
                               )}
                             </div>
 
@@ -421,7 +446,7 @@ class Index extends Component {
                                   </div>
                                 </div>
                                 <div className="d-flex mt-5">
-                                  <button className="btn button-2"onClick={() => this.preview(item[0])}>
+                                  <button className="btn button-2"onClick={() => this.preview(item[0],item[6])}>
                                     validate
                                   </button>
                                 </div>

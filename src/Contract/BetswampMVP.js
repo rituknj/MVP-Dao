@@ -392,6 +392,26 @@ export const BETS_ABI = [
     type: 'function',
   },
   {
+    inputs: [
+      { internalType: 'uint256', name: 'event_id', type: 'uint256' },
+      { internalType: 'address', name: '_bettor', type: 'address' },
+    ],
+    name: 'getUserEventWager',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'event_id', type: 'uint256' },
+      { internalType: 'address', name: '_bettor', type: 'address' },
+    ],
+    name: 'getUserEventWon',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
     inputs: [{ internalType: 'address', name: '_address', type: 'address' }],
     name: 'getUserTotalWinnings',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
@@ -490,7 +510,7 @@ export const BETS_ABI = [
     type: 'function',
   },
   {
-    inputs: [],
+    inputs: [{ internalType: 'address', name: '_address', type: 'address' }],
     name: 'showValidationPoints',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',

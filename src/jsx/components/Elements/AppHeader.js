@@ -3,7 +3,7 @@ import arrowDown from '../../../images/arrow-down.png'
 import myBet from '../../../images/my-bet.png'
 import greenArrow from '../../../images/green-arrow.png'
 import { NavLink } from 'react-router-dom'
-import BigInt from 'big-integer'
+import BigInt, { max } from 'big-integer'
 import {
   initInstance,
   loginProcess,
@@ -12,7 +12,7 @@ import {
   checkChain,
 } from './../../../web3/web3'
 import { getUSDTBalance, addUSDT } from './../../../web3/usdtService'
-import { addBETS, getBETBalance, approve } from './../../../web3/betsService'
+import { addBETS, getBETBalance, approve, isapproved } from './../../../web3/betsService'
 import {
   getValidationPoint,
   earnvalidationpoints,
@@ -24,10 +24,13 @@ import {
   getBetsHistory,
   getEvent,
   claimrewards,
-  reclaimwager
+  reclaimwager,
+  AmountStackOnEventByaUser,
+  GetUserWonAmountOnEvent
 } from './../../../web3/betsMVPService'
 import { collapseToast } from 'react-toastify'
 import './elements.css'
+import AbstractModalHeader from 'react-bootstrap/esm/AbstractModalHeader'
 
 class AppHeader extends Component {
   constructor(props) {
@@ -47,6 +50,8 @@ class AppHeader extends Component {
       totalwageramount: 0,
       bethistory: [],
       totalbetsmade: 0,
+      userAmountstakedonanevent:0,
+      userWoninEvent:0
     }
   }
 
@@ -106,6 +111,12 @@ class AppHeader extends Component {
     console.log('apprived run')
     await approve()
   }
+
+  showid = (id) => {
+    let uas = AmountStackOnEventByaUser(id)
+    return uas
+  }
+
   setHistory = () => {
     let items = []
     for (var i = 1; i <= 5; i++) {
@@ -147,12 +158,13 @@ class AppHeader extends Component {
     })
   }
 
-  reclaimwagers = async(item) => {
-    console.log("id2",item[0])
+  reclaimwagers = async(id, starttime) => {
     var ts = Math.round((new Date()).getTime() / 1000);
-      if(item[5] - ts < 0){
+    let time = starttime - ts
+    console.log("time",time, id )
+      if(time < 0){
         try{
-          await this.reclaimwagers(item[0])
+          await reclaimwager(id)
         }
         catch(e){
           alert(e.message)
@@ -163,13 +175,47 @@ class AppHeader extends Component {
     }
   }
 
-  claimrewardsamounts = async(item) => {
-    console.log("id2",item[0])
+  // getUserStackAmountAnEvnet = async(id) => {
+  //   let amount = await AmountStackOnEventByaUser(id)
+  //   let wons = await GetUserWonAmountOnEvent(id)
+  //   this.setState({
+  //     userAmountstakedonanevent: Number(amount/10**18).toFixed(2),
+  //     userWoninEvent: Number(wons/10**18).toFixed(2)
+  //   })
+  //   console.log("User won and amount", this.state.userWoninEvent, this.state.userAmountstakedonanevent)
+  // }
+  getUserStackAmountAnEvnet = async(id) => {
+    return AmountStackOnEventByaUser(id).then(x => {
+      return x
+     }).catch(e =>{
+       console.log(e)
+     })
+    // let wons = await GetUserWonAmountOnEvent(id)
+    // this.setState({
+    //   userAmountstakedonanevent: Number(amount/10**18).toFixed(2),
+    //   userWoninEvent: Number(wons/10**18).toFixed(2)
+    // })
+    // console.log("User won and amount", amount)
+   
+  }
+  // latestTime(id) {
+  //     return new Promise((resolve, reject) => {
+  //       AmountStackOnEventByaUser(id).then(bl => {
+  //             console.log(bl.timestamp);
+  //             console.log(typeof bl.timestamp.then == 'function');
+  //             resolve(bl.timestamp);
+  //         })
+  //         .catch(reject);
+  //     });
+  // }
+
+  claimrewardsamounts = async(id, endtime, isvalidate) => {
+   
     var ts = Math.round((new Date()).getTime() / 1000);
-    if(item[9]==true){
-      if(ts > item[6]){
+    if(isvalidate==true){
+      if(ts > endtime){
         try{
-          await claimrewards(item[0])
+          await claimrewards(id)
         }
         catch(e){
           alert(e.message)
@@ -216,12 +262,18 @@ class AppHeader extends Component {
   }
 
   lockamount = async (amount) => {
+    let maxamount = await isapproved();
     let value = BigInt(amount*10**18)
     amount = value.value
     
     try {
-      console.log('run')
-      await earnvalidationpoints(amount)
+      if(value.value < maxamount){
+        await earnvalidationpoints(amount)
+      }
+      else{
+        alert("Plases approve yourself for this much amount")
+      }
+      
     } catch (error) {
       alert(error.message)
     }
@@ -348,11 +400,6 @@ class AppHeader extends Component {
                     <p className="m-0">{this.state.totalwinnings} BETS</p>
                   </div>
                 </div>
-                {/* <h5 className="mx-3 mb-0">History</h5>
-            <hr className="mb-0 mt-2" />
-            <div className="p-3">
-             
-            </div> */}
               </div>
             ) : (
               <div className="nav-tabs-data">
@@ -360,7 +407,8 @@ class AppHeader extends Component {
                   {/* {this.setHistory()} */}
 
                   {this.state.bethistory.map((items) => (
-                    <div className="bet-card-custom mb-3">
+                    <div className="bet-card-custom mb-3" >
+                      {console.log("123")}
                       <div className="row">
                         <div className="col-8">
                           <h4 className="mb-4 w-100">{items[3]}</h4>
@@ -368,6 +416,7 @@ class AppHeader extends Component {
                             <div className="col-9">
                               <p className="m-0">Total amount staked:</p>
                             </div>
+                            
                             <div className="col-3">
                               <h4 className="m-0">
                                 {Number(items[4]/(10**18)).toFixed(2)}
@@ -380,21 +429,29 @@ class AppHeader extends Component {
                               <p className="m-0">Total amount won:</p>
                             </div>
                             <div className="col-3">
-                              <h4 className="m-0">0BETS</h4>
+                              <h4 className="m-0">{this.state.userWoninEvent}BETS</h4>
                             </div>
                           </div>
+                          {/* <div className="row mb-3 ">
+                            <div className="col-9">
+                              <p className="m-0">Your staked amount:</p>
+                            </div>
+                            <div className="col-3">
+                              <h4 className="m-0">{this.getUserStackAmountAnEvnet(items[0])}BETS</h4>
+                            </div>
+                          </div> */}
                         </div>
                         <div className="col-4">
                           <p className="m-0 text-end w-100">ENDED</p>
                         </div>
                       </div>
-                      <button className="bethistory-claim" onClick={() => this.claimrewardsamounts(items)}>
+                      <button className="bethistory-claim" onClick={() => this.claimrewardsamounts(items[0], items[6], items[9])}>
                         Claim Rewards
                       </button>
                       <button
                         className="bethistory-claim"
                         style={{ marginLeft: '10px' }}
-                        onClick={() => this.reclaimwagers(items)}
+                        onClick={() => this.reclaimwagers(items[0], items[5])}
                       >
                         Refund Amount
                       </button>
@@ -429,7 +486,7 @@ class AppHeader extends Component {
                 <div className="mb-4">
                   <h4 className="">Total validation points earned</h4>
                   <p>{this.state.validationpoint}</p>
-                  {this.state.show ? (
+                  {this.state.lockedbets > 0 ? (
                     <button
                       className="btn btn-danger"
                       style={{ backgroundColor: '#FF0000', color: '#000000' }}

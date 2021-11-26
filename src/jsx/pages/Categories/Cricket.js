@@ -44,9 +44,10 @@ class GameCard extends Component {
     const events = []
     let check
     let active_events = await totalEvents()
-
+    
     for (let i = 0; i <= active_events; i++) {
       check = await getEvent(i)
+      console.log("total eventsddd", check, i)
       if (check[2] == 'Cricket') {
         events.push(check)
         this.setState({
@@ -488,7 +489,7 @@ class GameCard extends Component {
                           <div className="row p-3">
                             <div className="col-8">
                               <ul>
-                                <li>30% &nbsp;&nbsp;Chealsea</li>
+                              <li>30% &nbsp;&nbsp;Chealsea</li>
                                 <li>65% &nbsp;&nbsp;Machester City</li>
                                 <li>5% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
                               </ul>

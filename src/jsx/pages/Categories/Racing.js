@@ -6,6 +6,7 @@ import App from './../../pages/App/Index'
 import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
 import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts } from './../../../web3/betsMVPService'
+import {isapproved} from './../../../web3/betsService'
 import { initInstance } from './../../../web3/web3'
 import { fromWei, formatNumber } from '../../../web3/utils'
 import redDot from './../../../images/red-dot.png'
@@ -47,7 +48,7 @@ class GameCard extends Component {
 
     for (let i = 0; i <= active_events; i++) {
       check = await getEvent(i)
-      if (check[2] == 'Racing') {
+      if (check[2] == 'Hockey') {
         events.push(check)
         this.setState({
           allevents: events,
@@ -157,6 +158,7 @@ class GameCard extends Component {
       amount: amount,
       occured: team
     }
+
     console.log('selection int',betdata, lefttime);
     try { 
     if(lefttime > 0)
