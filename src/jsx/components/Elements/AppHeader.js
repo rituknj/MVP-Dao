@@ -51,7 +51,9 @@ class AppHeader extends Component {
       bethistory: [],
       totalbetsmade: 0,
       userAmountstakedonanevent:0,
-      userWoninEvent:0
+      userWoninEvent:0,
+      bal:"BETS",
+      showbalance:0,
     }
   }
 
@@ -99,6 +101,28 @@ class AppHeader extends Component {
     })
     console.log('USDT balance', balanceofUSD)
     console.log('BETS balance', balanceofBET)
+    if(this.state.bal == 'BETS'){
+      this.setState({
+        showbalance:balanceofBET
+      })
+    }
+    else{
+      this.setState({
+        showbalance: balanceofUSD
+      })
+    }
+  }
+  setbal =() => {
+    if(this.state.bal == 'BETS'){
+      this.setState({
+        showbalance:this.state.balanceBET
+      })
+    }
+    else{
+      this.setState({
+        showbalance: this.state.balanceofUSDT
+      })
+    }
   }
 
   // getvalidationpoints = async() => {
@@ -257,7 +281,7 @@ class AppHeader extends Component {
       console.log('run')
       await revokevalidationpointsearning()
     } catch (error) {
-      alert(error)
+      alert("Failed")
     }
   }
 
@@ -275,7 +299,7 @@ class AppHeader extends Component {
       }
       
     } catch (error) {
-      alert(error.message)
+      alert("Failed")
     }
   }
 
@@ -417,10 +441,9 @@ class AppHeader extends Component {
                               <p className="m-0">Total amount staked:</p>
                             </div>
                             
-                            <div className="col-3">
+                            <div className="col-3 betsflex" style={{display:'flex'}}>
                               <h4 className="m-0">
-                                {Number(items[4]/(10**18)).toFixed(2)}
-                                {'BETS'}
+                                {Number(items[4]/(10**18)).toFixed(2)}&nbsp;&nbsp;BETS
                               </h4>
                             </div>
                           </div>
@@ -428,8 +451,8 @@ class AppHeader extends Component {
                             <div className="col-9">
                               <p className="m-0">Total amount won:</p>
                             </div>
-                            <div className="col-3">
-                              <h4 className="m-0">{this.state.userWoninEvent}BETS</h4>
+                            <div className="col-3 betsflex">
+                              <h4 className="m-0">{this.state.userWoninEvent}&nbsp;&nbsp;BETS</h4>
                             </div>
                           </div>
                           {/* <div className="row mb-3 ">
@@ -471,12 +494,12 @@ class AppHeader extends Component {
               <div className="wallet-card p-3">
                 <div className="d-flex mb-4">
                   <p className="w-100 m-0">BALANCE</p>
-                  <h4 className="w-100 m-0 text-end">
-                    <img src={greenArrow} width="auto" className="me-3" />
-                    USDT
-                  </h4>
+                  <select id="sel1" style={{backgroundColor:'transparent', color:'red',fontSize:'17px',textDecoration:'none',border:"none"}} value={this.state.bal} onChange={(e) => this.setState({bal:e.target.value})} onClick={()=> this.setbal()}>
+                  <option >BETS</option>
+                  <option >BUSD</option>
+                  </select> 
                 </div>
-                <h2 className="mb-0">0 USDT</h2>
+                <h2 className="mb-0">{Number(this.state.showbalance).toFixed(2)} {this.state.bal}</h2>
               </div>
               <div className="point-list mt-5">
                 <h4 className="px-3">VALIDATION POINTS</h4>
@@ -516,7 +539,7 @@ class AppHeader extends Component {
                       this.setState({ lockamount: e.target.value })
                     }
                   />
-                  <span className="position-absolute">MAX</span>
+                  <span className="position-absolute" style={{cursor:"pointer"}} onClick={() => this.setState({lockamount:this.state.balanceBET})}>MAX</span>
                 </div>
                 <div className="position-relative mt-4">
                   {/*add class "btn grey" when insufficient balance  */}

@@ -490,8 +490,8 @@ class GameCard extends Component {
                           <div className="row p-3">
                             <div className="col-8">
                               <ul>
-                                <li>30% &nbsp;&nbsp;Chealsea</li>
-                                <li>65% &nbsp;&nbsp;Machester City</li>
+                                <li>30% &nbsp;&nbsp;{events[7]}</li>
+                                <li>65% &nbsp;&nbsp;{events[8]}</li>
                                 <li>5% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
                               </ul>
                             </div>

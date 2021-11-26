@@ -6,6 +6,7 @@ import App from './../../pages/App/Index'
 import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
 import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts } from './../../../web3/betsMVPService'
+import {isapproved} from './../../../web3/betsService'
 import { initInstance } from './../../../web3/web3'
 import { fromWei, formatNumber } from '../../../web3/utils'
 import redDot from './../../../images/red-dot.png'
@@ -157,6 +158,7 @@ class GameCard extends Component {
       amount: amount,
       occured: team
     }
+
     console.log('selection int',betdata, lefttime);
     try { 
     if(lefttime > 0)
@@ -488,8 +490,8 @@ class GameCard extends Component {
                           <div className="row p-3">
                             <div className="col-8">
                               <ul>
-                                <li>30% &nbsp;&nbsp;Chealsea</li>
-                                <li>65% &nbsp;&nbsp;Machester City</li>
+                                <li>30% &nbsp;&nbsp;{events[7]}</li>
+                                <li>65% &nbsp;&nbsp;{events[8]}</li>
                                 <li>5% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
                               </ul>
                             </div>

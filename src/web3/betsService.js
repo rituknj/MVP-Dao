@@ -37,6 +37,12 @@ export const approve = async () => {
     const result = await betContract.methods.approve('0xB7FAc7003C2aD86Cb93d0d64dcf23456f6adE8bf',115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
         from: await getAccount(),
     });
+    if(result.status == true){
+        alert('Approved')
+    }
+    else{
+        alert("Failded")
+    }
     console.log("is approved", result)
     return result;
 }

@@ -6,6 +6,7 @@ import App from './../../pages/App/Index'
 import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
 import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts } from './../../../web3/betsMVPService'
+import {isapproved} from './../../../web3/betsService'
 import { initInstance } from './../../../web3/web3'
 import { fromWei, formatNumber } from '../../../web3/utils'
 import redDot from './../../../images/red-dot.png'
@@ -36,9 +37,6 @@ class GameCard extends Component {
       eventoneparticipant:0,
       eventtwoparticipant:0,
       eventthreeparticipant:0,
-      eventonepercent:0,
-      eventtwopercent:0,
-      eventthreepercent:0,
       endtime:0
     }
   }
@@ -47,10 +45,9 @@ class GameCard extends Component {
     const events = []
     let check
     let active_events = await totalEvents()
-    
+
     for (let i = 0; i <= active_events; i++) {
       check = await getEvent(i)
-      console.log("total eventsddd", check, i)
       if (check[2] == 'Football') {
         events.push(check)
         this.setState({
@@ -68,7 +65,7 @@ class GameCard extends Component {
 
 
   handelSideMenu = async(eventid, teamone,teamtwo, endtime, poolsize, bettercount, category) => {
-    await this.countbettors(eventid, bettercount);
+    await this.countbettors(eventid);
     var ts = Math.round((new Date()).getTime() / 1000);
     let lefttime = endtime - ts
     lefttime = parseInt(Math.floor(lefttime/3600)/24);
@@ -141,37 +138,17 @@ class GameCard extends Component {
     }
   }
 
-  countbettors = async(id, bettercount) => {
+  countbettors = async(id,) => {
       let one = await bettorscounts(id,0)
       let two = await bettorscounts(id,1)
       let three = await bettorscounts(id,2)
       this.setState({
       eventoneparticipant:one,
-      
       eventtwoparticipant:two,
-      
-      eventthreeparticipant:three,
-      
+      eventthreeparticipant:three
       })
       console.log('participants', this.state.eventoneparticipant,this.state.eventtwoparticipant,this.state.eventthreeparticipant)
   }
-
-  countbetpercent = async(id, occured, bettor) => {
-    let one = await bettorscounts(id,occured)
-    const item = {
-      num: (one/bettor)*100
-    }
-    // console.log("what is this",item.num)
-    return Promise.resolve(item.num)
-    // let two = await bettorscounts(id,1)
-    // let three = await bettorscounts(id,2)
-    // this.setState({
-    //   eventonepercent: (one/bettercount)*100,
-    //   eventtwopercent: (two/bettercount)*100,
-    //   eventthreepercent: (three/bettercount)*100
-    // })
-  }
-
 
   placebet = async(id, team, amount) => {
     var ts = Math.round((new Date()).getTime() / 1000);
@@ -181,6 +158,7 @@ class GameCard extends Component {
       amount: amount,
       occured: team
     }
+
     console.log('selection int',betdata, lefttime);
     try { 
     if(lefttime > 0)
@@ -285,7 +263,7 @@ class GameCard extends Component {
                                 <div className="col-12 mb-2">
                                   <p>
                                     Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>{this.state.poolsize}BETS</span>
+                                    <span>$2000</span>
                                   </p>
                                 </div>
                                 <div className="col-9 col-md-10 mb-4">
@@ -346,7 +324,7 @@ class GameCard extends Component {
                                 <div className="col-12 mb-2">
                                   <p>
                                     Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>{this.state.poolsize}BETS</span>
+                                    <span>$2000</span>
                                   </p>
                                 </div>
                                 <div className="col-10 mb-4">
@@ -407,7 +385,7 @@ class GameCard extends Component {
                                 <div className="col-12 mb-2">
                                   <p>
                                     Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>{this.state.poolsize}BETS</span>
+                                    <span>$2000</span>
                                   </p>
                                 </div>
                                 <div className="col-10 mb-4">
@@ -468,7 +446,7 @@ class GameCard extends Component {
                 <div className="row">
 
                   {this.state.allevents.map((events) => (
-                      <div className="col-12 col-sm-12 col-md-6 col-lg-4" >
+                      <div className="col-12 col-sm-12 col-md-6 col-lg-4">
                         
                         <div className="card game-card overflow-hidden">
                           <div
@@ -511,10 +489,9 @@ class GameCard extends Component {
                           </div>
                           <div className="row p-3">
                             <div className="col-8">
-                              <ul >
-                                
-                              <li>30% &nbsp;&nbsp;Chealsea</li>
-                                <li>65% &nbsp;&nbsp;Machester City</li>
+                              <ul>
+                                <li>30% &nbsp;&nbsp;{events[7]}</li>
+                                <li>65% &nbsp;&nbsp;{events[8]}</li>
                                 <li>5% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
                               </ul>
                             </div>
@@ -522,6 +499,7 @@ class GameCard extends Component {
                               <button
                                 className="btn"
                                 onClick={() => this.handelSideMenu(events[0],events[7],events[8],events[6],events[4], events[12], events[2])
+                                  
                                 }
                               >
                                 BET

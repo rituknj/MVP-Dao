@@ -82,12 +82,15 @@ class Index extends Component {
       
       if(Event.sub_category != '' && Event.name != '' && Event.event1 != '' && Event.event2 != '')
       {
-        console.log("run4")
+      console.log("run4")
       let result = await createEvent(Event)
-      console.log("result", result)
-      // if (result == true){
-      //   alert("Event created successfully")
-      // }
+      
+      if(result.status == true){
+        alert('Event created successfully')
+      }
+      else{
+        alert("Failed")
+      }
       }
 
       else{

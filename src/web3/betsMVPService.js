@@ -4,6 +4,7 @@ import { envdev } from "./environments";
 import BigInt from "big-integer";
 import { approve, isapproved } from "./betsService";
 import { strTimeToInt, fromWei } from './utils';
+import { get } from "jquery";
 
 
 export const getBETMVPContract = async () => {
@@ -40,25 +41,33 @@ export const createEvent = async ({sub_category, name, time, endTime, event1, ev
     console.log("lengh",sub_category, name, time, endTime, event1, event2)
     var getData = await betMVPContract.methods.createEvent('0x0', sub_category, name, time, endTime, event1, event2);
     let data = getData.encodeABI()
-    await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
-    return getData
+    return await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
 }
 
 export const placeBet = async ({event_id, amount, occured}) => {
+    var getData
     let maxamount = await isapproved()
     const betMVPContract = await getBETMVPContract();
     amount = BigInt(amount*10**18)
     console.log("length ",event_id, amount.value, occured)
     if(amount.value < maxamount){
-        var getData = await betMVPContract.methods.placeBet(event_id, amount.value, occured).send({
+        getData = await betMVPContract.methods.placeBet(event_id, amount.value, occured).send({
             from: await getAccount(),
         });
     }
     else{
         alert("Please approve yourself for this much amount")
     }
+    console.log('get data is ', getData)
+    if(getData.status == true){
+        alert('Bet placed successfully')
+    }
+    else{
+        alert("Failed")
+    }
+    // let data = getData.encodeABI()
+    //  await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data });
     
-    console.log('getdata',getData)
 }
 
 export const validateEvent = async (event_id, occured) => {
@@ -67,8 +76,11 @@ export const validateEvent = async (event_id, occured) => {
     var getData = await betMVPContract.methods.validateEvent(event_id, occured).send({
         from: await getAccount(),
     });
-    let data = getData.encodeABI();
-    return await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
+    // let data = getData.encodeABI();
+    // return await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
+    if(getData.status == true){
+        alert('Validated successfully')
+    }
 }
 export const getValidationPoint = async () => {
     const betMVPContract = await getBETMVPContract();
@@ -126,6 +138,12 @@ export const earnvalidationpoints = async (amount) => {
         from: await getAccount(),
     
     });
+    if(points.status == true){
+        alert("Locked successfully")
+    }
+    else{
+        alert("Failed")
+    }
     console.log('locked amount', points)
     return points;
 }
@@ -136,6 +154,12 @@ export const revokevalidationpointsearning = async () => {
         from: await getAccount(),
         
     });
+    if(earnedpoints.status == true){
+        alert("Unlocked successfully")
+    }
+    else{
+        alert("Failed")
+    }
     return earnedpoints;
 }
 
@@ -144,6 +168,12 @@ export const claimpoints = async () => {
     const earnedpoints = await betMVPContract.methods.claimValidationPoint().send({
         from: await getAccount(),   
     });;
+    if(earnedpoints.status == true){
+        alert("Claimed Successfully")
+    }
+    else{
+        alert("Failed")
+    }
     return earnedpoints;
 }
 
@@ -170,7 +200,13 @@ export const claimrewards = async (id) => {
     const resutl = await betMVPContract.methods.claimReward(id).send({
         from: await getAccount(),
         
-    });;
+    });
+    if(resutl.status == true){
+        alert("Claimed Successfully")
+    }
+    else{
+        alert("Failed")
+    }
     return resutl;
 }
 
@@ -179,6 +215,12 @@ export const reclaimwager = async (id) => {
     const resutl = await betMVPContract.methods.reclaimWager(id).send({
         from: await getAccount(),      
     });;
+    if(resutl.status == true){
+        alert("Refund Successfully")
+    }
+    else{
+        alert("Failed")
+    }
     return resutl;
 }
 
