@@ -5,7 +5,7 @@ import carbon_timer from './../../../images/carbon_timer.png'
 import App from './../../pages/App/Index'
 import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
-import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts } from './../../../web3/betsMVPService'
+import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts, bettorscountspercent } from './../../../web3/betsMVPService'
 import {isapproved} from './../../../web3/betsService'
 import { initInstance } from './../../../web3/web3'
 import { fromWei, formatNumber } from '../../../web3/utils'
@@ -37,18 +37,44 @@ class GameCard extends Component {
       eventoneparticipant:0,
       eventtwoparticipant:0,
       eventthreeparticipant:0,
-      endtime:0
+      endtime:0,
+      v:0
     }
   }
-  componentDidMount = async () => {
+  componentDidMount = async() => {
     await initInstance()
     const events = []
-    let check
+    let check = []
+    let zero
+    let one
+    let two
+    let check2
     let active_events = await totalEvents()
-
+    
     for (let i = 0; i <= active_events; i++) {
-      check = await getEvent(i)
-      if (check[2] == 'Rugby') {
+      check2 = await getEvent(i)
+      check = Object.create(check2)
+      
+      
+      if (check2[2] == 'Rugby'){
+      zero = await bettorscountspercent(check2[0],0,check2[12])
+      one = await bettorscountspercent(check2[0],1,check2[12])
+      two = await bettorscountspercent(check2[0],2,check2[12])
+     
+        check.zero = zero
+        check.one = one 
+        check.two = two
+        // check.id = check2[0]
+        // check.name = check2[3] 
+        // check.validate = check2[9]
+        // check.poolsize = check2[4]
+        // check.starttime = check2[5]
+        // check.endtime = check2[6]
+        // check.teamone = check2[7]
+        // check.teamtwo = check2[8]
+        // check.subcategory = check2[2]
+        // check.Categories = check2[1]
+        // check.BettorsCount = check2[12]
         events.push(check)
         this.setState({
           allevents: events,
@@ -56,15 +82,16 @@ class GameCard extends Component {
       }
       console.log('all events', this.state.allevents)
     }
-
+  
   }
-
   closehandelSideMenu = () => {
     document.getElementById('sidebar').style.display = 'none'
   }
 
 
   handelSideMenu = async(eventid, teamone,teamtwo, endtime, poolsize, bettercount, category) => {
+    
+    
     await this.countbettors(eventid);
     var ts = Math.round((new Date()).getTime() / 1000);
     let lefttime = endtime - ts
@@ -137,18 +164,21 @@ class GameCard extends Component {
       this.placebet(this.state.id, this.state.occurance, this.state.stackvaluethree)
     }
   }
-
-  countbettors = async(id,) => {
-      let one = await bettorscounts(id,0)
-      let two = await bettorscounts(id,1)
-      let three = await bettorscounts(id,2)
-      this.setState({
-      eventoneparticipant:one,
-      eventtwoparticipant:two,
-      eventthreeparticipant:three
-      })
-      console.log('participants', this.state.eventoneparticipant,this.state.eventtwoparticipant,this.state.eventthreeparticipant)
+  getdata = (v) => {
+      console.log("value",v)
   }
+
+  countbettors = async(id) => {
+    let one = await bettorscounts(id,0)
+    let two = await bettorscounts(id,1)
+    let three = await bettorscounts(id,2)
+    this.setState({
+    eventoneparticipant:one,
+    eventtwoparticipant:two,
+    eventthreeparticipant:three
+    })
+    console.log('participants', this.state.eventoneparticipant,this.state.eventtwoparticipant,this.state.eventthreeparticipant)
+}
 
   placebet = async(id, team, amount) => {
     var ts = Math.round((new Date()).getTime() / 1000);
@@ -490,16 +520,15 @@ class GameCard extends Component {
                           <div className="row p-3">
                             <div className="col-8">
                               <ul>
-                                <li>30% &nbsp;&nbsp;{events[7]}</li>
-                                <li>65% &nbsp;&nbsp;{events[8]}</li>
-                                <li>5% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
+                                <li>{events.zero}% &nbsp;&nbsp;{events[7]}</li>
+                                <li>{events.one}% &nbsp;&nbsp;{events[8]}</li>
+                                <li>{events.two}% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
                               </ul>
                             </div>
                             <div className="col-4 button-row">
                               <button
                                 className="btn"
                                 onClick={() => this.handelSideMenu(events[0],events[7],events[8],events[6],events[4], events[12], events[2])
-                                  
                                 }
                               >
                                 BET

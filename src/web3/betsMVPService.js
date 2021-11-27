@@ -226,8 +226,15 @@ export const reclaimwager = async (id) => {
 
 export const bettorscounts = async (id, occured) => {
     const betMVPContract = await getBETMVPContract();
-    const resutl = await betMVPContract.methods.getOccurrenceBetCount(id, occured).call();
-    return resutl;
+    let result = await betMVPContract.methods.getOccurrenceBetCount(id, occured).call();
+    return result
+}
+
+export const bettorscountspercent = async (id, occured,bettcont) => {
+    console.log("id occured betcount",id, occured,bettcont)
+    const betMVPContract = await getBETMVPContract();
+    return await (betMVPContract.methods.getOccurrenceBetCount(id, occured).call())/bettcont*100
+    
 }
 
 export const AmountStackOnEventByaUser = async (id) => {
