@@ -78,12 +78,13 @@ class AppHeader extends Component {
       let x = Object.create(i)
       let won = await GetUserWonAmountOnEvent(element)
       x.won =  won
+     
       check.push(x)
       this.setState({
         bethistory: check,
       })
     })
-    
+    console.log('final won', this.state.bethistory.won)
     console.log('bet won history', this.state.bethistory)
     this.setState({
       totalbetsmade: count,
@@ -425,7 +426,7 @@ class AppHeader extends Component {
                   </div>
                   <div className="bet-card-custom">
                     <h4 className="mb-2">Total winnings</h4>
-                    <p className="m-0">{Number(this.state.totalwinnings).toFixed(2)} BETS</p>
+                    <p className="m-0">{Number(this.state.totalwinnings/10**18).toFixed(2)} BETS</p>
                   </div>
                 </div>
               </div>
@@ -456,7 +457,7 @@ class AppHeader extends Component {
                               <p className="m-0">Total amount won:</p>
                             </div>
                             <div className="col-3 betsflex">
-                              <h4 className="m-0">{Number(items.won).toFixed(2)}&nbsp;&nbsp;BETS</h4>
+                              <h4 className="m-0">{Number(items.won/10**18).toFixed(2)}&nbsp;&nbsp;BETS</h4>
                             </div>
                           </div>
                           {/* <div className="row mb-3 ">

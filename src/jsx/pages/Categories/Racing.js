@@ -5,7 +5,7 @@ import carbon_timer from './../../../images/carbon_timer.png'
 import App from './../../pages/App/Index'
 import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
-import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts, bettorscountspercent } from './../../../web3/betsMVPService'
+import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser } from './../../../web3/betsMVPService'
 import {isapproved} from './../../../web3/betsService'
 import { initInstance } from './../../../web3/web3'
 import { fromWei, formatNumber } from '../../../web3/utils'
@@ -38,7 +38,8 @@ class GameCard extends Component {
       eventtwoparticipant:0,
       eventthreeparticipant:0,
       endtime:0,
-      v:0
+      v:0,
+      potential_wins:0,
     }
   }
   componentDidMount = async() => {
@@ -60,10 +61,15 @@ class GameCard extends Component {
       zero = await bettorscountspercent(check2[0],0,check2[12])
       one = await bettorscountspercent(check2[0],1,check2[12])
       two = await bettorscountspercent(check2[0],2,check2[12])
+      let stakeonevent = await AmountStackOnEventByaUser(check2[0])
+      let stake =  (stakeonevent*100)/check2[4]
+      let potentialwinnings = Number(((check2[4]-stakeonevent)*stake)/10**18).toFixed(2)
+      // console.log('potential winning', potentialwinnings)
      
         check.zero = zero
         check.one = one 
         check.two = two
+        check.potential_wins = potentialwinnings
         // check.id = check2[0]
         // check.name = check2[3] 
         // check.validate = check2[9]
@@ -89,9 +95,9 @@ class GameCard extends Component {
   }
 
 
-  handelSideMenu = async(eventid, teamone,teamtwo, endtime, poolsize, bettercount, category) => {
+  handelSideMenu = async(eventid, teamone,teamtwo, endtime, poolsize, bettercount, category, potentialwins) => {
     
-    
+    console.log("potential win", potentialwins)
     await this.countbettors(eventid);
     var ts = Math.round((new Date()).getTime() / 1000);
     let lefttime = endtime - ts
@@ -118,7 +124,8 @@ class GameCard extends Component {
       teamtwo:teamtwo,
       currenttime:lefttime,
       poolsize:Number(poolsize/10**18).toFixed(2),
-      participant:bettercount
+      participant:bettercount,
+      potential_wins:potentialwins
     })
     
     document.getElementById('sidebar').style.display = 'inline';
@@ -331,7 +338,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    $0.00
+                                    {this.state.potential_wins}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>
@@ -392,7 +399,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    $0.00
+                                    {this.state.potential_wins}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>
@@ -453,7 +460,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    $0.00
+                                    {this.state.potential_wins}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>
@@ -528,7 +535,7 @@ class GameCard extends Component {
                             <div className="col-4 button-row">
                               <button
                                 className="btn"
-                                onClick={() => this.handelSideMenu(events[0],events[7],events[8],events[6],events[4], events[12], events[2])
+                                onClick={() => this.handelSideMenu(events[0],events[7],events[8],events[6],events[4], events[12], events[2], events.potential_wins)
                                 }
                               >
                                 BET
