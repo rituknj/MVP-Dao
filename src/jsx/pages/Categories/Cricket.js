@@ -6,6 +6,7 @@ import App from './../../pages/App/Index'
 import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
 import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser } from './../../../web3/betsMVPService'
+import {TotalEventsCount,addingnewevents} from './../../../web3/Countallevents'
 import {isapproved} from './../../../web3/betsService'
 import { initInstance } from './../../../web3/web3'
 import { fromWei, formatNumber } from '../../../web3/utils'
@@ -43,50 +44,44 @@ class GameCard extends Component {
     }
   }
   componentDidMount = async() => {
-    await initInstance()
+    await initInstance();
+    let active_events = await totalEvents()
+    let getstoredevents = window.localStorage.getItem('events')
+    if(getstoredevents == null)
+    {
+      window.localStorage.setItem('events',JSON.stringify(''))
+      await TotalEventsCount();
+    }
+    let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+
+    if(decodestoredevents.length != active_events){
+      console.log("runed")
+      await TotalEventsCount();
+    }
+    decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+    // console.log("what is this",decodestoredevents)
+
+    // setInterval(async() => { 
+    //   console.log("run every things")
+      
+    //   await addingnewevents();
+    // }, 2000);
+    
     const events = []
     let check = []
-    let zero
-    let one
-    let two
     let check2
-    let active_events = await totalEvents()
     
-    for (let i = 0; i <= active_events; i++) {
-      check2 = await getEvent(i)
-      check = Object.create(check2)
-      
-      
-      if (check2[2] == 'Cricket'){
-      zero = await bettorscountspercent(check2[0],0,check2[12])
-      one = await bettorscountspercent(check2[0],1,check2[12])
-      two = await bettorscountspercent(check2[0],2,check2[12])
-      let stakeonevent = await AmountStackOnEventByaUser(check2[0])
-      let stake =  (stakeonevent*100)/check2[4]
-      let potentialwinnings = Number(((check2[4]-stakeonevent)*stake)/10**18).toFixed(2)
-      // console.log('potential winning', potentialwinnings)
-     
-        check.zero = zero
-        check.one = one 
-        check.two = two
-        check.potential_wins = potentialwinnings
-        // check.id = check2[0]
-        // check.name = check2[3] 
-        // check.validate = check2[9]
-        // check.poolsize = check2[4]
-        // check.starttime = check2[5]
-        // check.endtime = check2[6]
-        // check.teamone = check2[7]
-        // check.teamtwo = check2[8]
-        // check.subcategory = check2[2]
-        // check.Categories = check2[1]
-        // check.BettorsCount = check2[12]
-        events.push(check)
+    
+    for (let i = decodestoredevents.length-1; i >= 0; i--) {
+      check2 = decodestoredevents[i]
+      // check = Object.create(check2)  
+      if (check2.subcategory == 'Cricket'){
+        events.push(check2)
         this.setState({
           allevents: events,
         })
+        console.log("check3", this.state.allevents)
       }
-      console.log('all events', this.state.allevents)
     }
   
   }
@@ -94,10 +89,9 @@ class GameCard extends Component {
     document.getElementById('sidebar').style.display = 'none'
   }
 
-
   handelSideMenu = async(eventid, teamone,teamtwo, endtime, poolsize, bettercount, category, potentialwins) => {
     
-    console.log("potential win", potentialwins)
+    // console.log("potential win", potentialwins)
     await this.countbettors(eventid);
     var ts = Math.round((new Date()).getTime() / 1000);
     let lefttime = endtime - ts
@@ -209,7 +203,7 @@ class GameCard extends Component {
     
   }
     catch(error){
-      alert(error.message)
+      // alert(error.message)
     }
   }
 
@@ -498,19 +492,19 @@ class GameCard extends Component {
                             </div>
                             <div className="col-12 mt-4">
                               <h4 className="team-name">
-                                {events[7]}{' '}
+                                {events.teamone}{' '}
                                 <span className="theam-text-color">vs</span>{' '}
-                                {events[8]}
+                                {events.teamtwo}
                               </h4>
                             </div>
                             <div className="col-12 mt-4">
                               <p className="theam-text-color m-0">
-                                {events[2]}
+                                {events.subcategory}
                               </p>
                               <p className="theam-text-color m-0">Pool size</p>
                             </div>
                             <div className="col-6">
-                              <h3>{Number(events[4]/10**18).toFixed(2)} BETS</h3>
+                              <h3>{Number(events.poolsize/10**18).toFixed(2)} BETS</h3>
                             </div>
                             <div className="col-6">
                               <h5 className="text-end">
@@ -520,22 +514,22 @@ class GameCard extends Component {
                                   width="18"
                                   style={{ verticalAlign: 'sub' }}
                                 />
-                                {this.getdays(events[6])} Days left
+                                {this.getdays(events.endtime)} Days left
                               </h5>
                             </div>
                           </div>
                           <div className="row p-3">
                             <div className="col-8">
                               <ul>
-                                <li>{events.zero}% &nbsp;&nbsp;{events[7]}</li>
-                                <li>{events.one}% &nbsp;&nbsp;{events[8]}</li>
-                                <li>{events.two}% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
+                              <li>{Number(events.zero).toFixed(2)}% &nbsp;&nbsp;{events.teamone}</li>
+                                <li>{Number(events.one).toFixed(2)}% &nbsp;&nbsp;{events.teamtwo}</li>
+                                <li>{Number(events.two).toFixed(2)}% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
                               </ul>
                             </div>
                             <div className="col-4 button-row">
                               <button
                                 className="btn"
-                                onClick={() => this.handelSideMenu(events[0],events[7],events[8],events[6],events[4], events[12], events[2], events.potential_wins)
+                                onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins)
                                 }
                               >
                                 BET

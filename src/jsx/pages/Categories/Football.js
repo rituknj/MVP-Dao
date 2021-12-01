@@ -2,13 +2,13 @@ import React, { Component, Fragment } from 'react'
 import greenDot from './../../../images/green-dot.png'
 import cardBackground from './../../../images/ground.png'
 import carbon_timer from './../../../images/carbon_timer.png'
-import App from './../../pages/App/Index'
-import Appheadercat from '../../pages/App/Appheadercat'
+import App from '../App/Index'
+import Appheadercat from '../App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
-import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser } from './../../../web3/betsMVPService'
-import {TotalEventsCount,addingnewevents} from './../../../web3/Countallevents'
-import {isapproved} from './../../../web3/betsService'
-import { initInstance } from './../../../web3/web3'
+import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser } from '../../../web3/betsMVPService'
+import {TotalEventsCount,addingnewevents} from '../../../web3/Countallevents'
+import {isapproved} from '../../../web3/betsService'
+import { initInstance } from '../../../web3/web3'
 import { fromWei, formatNumber } from '../../../web3/utils'
 import redDot from './../../../images/red-dot.png'
 import BigInt from 'big-integer'
@@ -61,10 +61,11 @@ class GameCard extends Component {
     decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
     // console.log("what is this",decodestoredevents)
 
-    // setInterval(async() => { 
-    //   console.log("run every things")
-    //   await addingnewevents();
-    // }, 2000);
+    setInterval(async() => { 
+      console.log("run every things")
+      
+      await addingnewevents();
+    }, 2000);
     
     const events = []
     let check = []
@@ -73,8 +74,8 @@ class GameCard extends Component {
     
     for (let i = decodestoredevents.length-1; i >= 0; i--) {
       check2 = decodestoredevents[i]
-  
-      if (check2.subcategory == 'Tennis'){
+      // check = Object.create(check2)  
+      if (check2.subcategory == 'Football'){
         events.push(check2)
         this.setState({
           allevents: events,
@@ -520,7 +521,7 @@ class GameCard extends Component {
                           <div className="row p-3">
                             <div className="col-8">
                               <ul>
-                              <li>{Number(events.zero).toFixed(2)}% &nbsp;&nbsp;{events.teamone}</li>
+                                <li>{Number(events.zero).toFixed(2)}% &nbsp;&nbsp;{events.teamone}</li>
                                 <li>{Number(events.one).toFixed(2)}% &nbsp;&nbsp;{events.teamtwo}</li>
                                 <li>{Number(events.two).toFixed(2)}% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
                               </ul>

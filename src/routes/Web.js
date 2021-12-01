@@ -15,6 +15,7 @@ import Boxing from './../jsx/pages/Categories/Boxing'
 import Basketball from './../jsx/pages/Categories/Basketball'
 import Baseball from './../jsx/pages/Categories/Baseball'
 import Cricket from './../jsx/pages/Categories/Cricket'
+import Football from './../jsx/pages/Categories/Football'
 
 class Web extends Component {
   render() {
@@ -26,7 +27,7 @@ class Web extends Component {
             <Route exact path="/app" component={Soccer} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/about" component={About} />
-            <Route exact path="/football" component={Soccer} />
+            <Route exact path="/soccer" component={Soccer} />
             <Route exact path="/rugby" component={Rugby} />
             <Route exact path="/tennis" component={Tennis} />
             <Route exact path="/racing" component={Racing} />
@@ -34,6 +35,7 @@ class Web extends Component {
             <Route exact path="/basketball" component={Basketball} />
             <Route exact path="/baseball" component={Baseball} />
             <Route exact path="/cricket" component={Cricket} />
+            <Route exact path="/football" component={Football} />
           </Switch>
         </BrowserRouter>
       </>

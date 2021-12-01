@@ -14,6 +14,7 @@ import { initInstance, loginProcess } from "./../../../web3/web3";
 import { gettotalsupply } from './../../../web3/betsService'
 import {formatNumber, fromWei} from './../../../web3/utils'
 import { getEvent, getActiveEvents, totalEvents } from "../../../web3/betsMVPService";
+import { TotalEventsCount } from "../../../web3/Countallevents";
 ////Images
 import TopImage from "../../../images/landing-Bets-cards-games.png";
 import arrowRight from "../../../images/arrow-right.svg";
@@ -140,7 +141,12 @@ class Index extends Component {
         });
       }
 
-
+      let getstoredevents = window.localStorage.getItem('events')
+        if(getstoredevents == null)
+        {
+        window.localStorage.setItem('events',JSON.stringify(''))
+        await TotalEventsCount();
+        }
 
 
     };

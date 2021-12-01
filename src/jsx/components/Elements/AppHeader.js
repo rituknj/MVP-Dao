@@ -36,6 +36,7 @@ class AppHeader extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      betbalanceinloop:0,
       myBetTab: 1,
       showMyBet: false,
       showMyBetHistory: false,
@@ -49,6 +50,7 @@ class AppHeader extends Component {
       totalwinnings: 0,
       totalwageramount: 0,
       bethistory: [],
+      historyid:[],
       totalbetsmade: 0,
       userAmountstakedonanevent:0,
       userWoninEvent:0,
@@ -60,20 +62,41 @@ class AppHeader extends Component {
   componentDidMount = async () => {
     let check = []
     let count = 0
+    let balanceofBET = 0
+    let point = 0
+    let totalbetslocked
+    let history = []
+    let totalwageramount = 0
+    let totalwinnings = 0
     await initInstance()
     await loginProcess()
     let balanceofUSD = await getUSDTBalance()
     let account = await getAccount()
-    let balanceofBET = await getBETBalance()
-    const point = await getValidationPoint()
-    let totalbetslocked = await totaltokenlocked()
-    let totalwinnings = await getusertotalwinnings()
-    let totalwageramount = await gettotaluserwageramount()
-    let history = await getBetsHistory()
+    setInterval(async() => { 
+      balanceofBET = await getBETBalance()
+      point = await getValidationPoint()
+      totalbetslocked = await totaltokenlocked()
+      history = await getBetsHistory()
+      totalwageramount = await gettotaluserwageramount()
+      totalwinnings = await getusertotalwinnings()
+      this.setState({
+        historyid: history,
+        totalbetsmade: history.length,
+        balanceBET: balanceofBET,
+        validationpoint: point,
+        lockedbets: totalbetslocked,
+        totalwageramount: totalwageramount,
+        totalwinnings: totalwinnings,
+      })
+      console.log('what is my balance',this.state.balanceBET)
+    }, 100);
+
+    
+    let historyi = await getBetsHistory()
+    
     console.log('len',history)
 
-    history.forEach(async (element) => {
-      count++
+    historyi.forEach(async (element) => {
       let i = await getEvent(element)
       let x = Object.create(i)
       let won = await GetUserWonAmountOnEvent(element)
@@ -87,10 +110,8 @@ class AppHeader extends Component {
     console.log('final won', this.state.bethistory.won)
     console.log('bet won history', this.state.bethistory)
     this.setState({
-      totalbetsmade: count,
-      lockedbets: totalbetslocked,
-      totalwinnings: totalwinnings,
-      totalwageramount: totalwageramount,
+      // totalbetsmade: count,
+      // lockedbets: totalbetslocked,
     })
     // console.log('total bets locked', this.state.lockedbets)
     if (point > 0) {
@@ -99,16 +120,14 @@ class AppHeader extends Component {
       })
     }
     this.setState({
-      validationpoint: point,
       balanceofUSDT: balanceofUSD,
       acc: account,
-      balanceBET: balanceofBET,
     })
     console.log('USDT balance', balanceofUSD)
     console.log('BETS balance', balanceofBET)
     if(this.state.bal == 'BETS'){
       this.setState({
-        showbalance:balanceofBET
+        showbalance:this.state.betbalanceinloop
       })
     }
     else{
@@ -117,6 +136,8 @@ class AppHeader extends Component {
       })
     }
   }
+
+
   setbal =() => {
     if(this.state.bal == 'BETS'){
       this.setState({

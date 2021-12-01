@@ -67,7 +67,7 @@ class Index extends Component {
             <div className="d-flex mt-2 mt-md-4 games-scroll">
        
               <div className="pe-2 pe-md-5">
-                <NavLink to='/football' style={{textDecoration:"none"}}>
+                <NavLink to='/soccer' style={{textDecoration:"none"}}>
                 <div
                   className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 1 ? "" : ""
                     }`}
@@ -238,6 +238,28 @@ class Index extends Component {
                     aria-controls="collapseCricket"
                   >
                     Cricket
+                  </p>
+                </div>
+                </NavLink>
+              </div>
+
+              <div className="pe-2 pe-md-5">
+                <NavLink to='/football' style={{textDecoration:"none"}}>
+                <div
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 8 ? "a" : ""
+                    }`}
+                  onClick={() => this.handelGamesTab(8)}
+                >
+                  <img src={cil_cricket} width="30px" />
+                  <p
+                    className="text-white m-0 mt-1 mt-md-3"
+                    data-bs-toggle="collapse"
+                    href="#collapseCricket"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="collapseCricket"
+                  >
+                    Football
                   </p>
                 </div>
                 </NavLink>
