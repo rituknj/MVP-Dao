@@ -13,7 +13,7 @@ export const getBETBalance = async () => {
     const betContract = await getBETContract();
     const address = await getAccount();
     const _balance = await betContract.methods.balanceOf(address).call();
-    const  balanceofBET = fromWei(_balance, 'custom')
+    const  balanceofBET = _balance/10**18
     return balanceofBET
 }
 
@@ -25,16 +25,15 @@ export const gettotalsupply = async () => {
 
 export const isapproved = async () => {
     const betContract = getContract(BETS_ABI, envdev.REACT_APP_BET_SMART_CONTRACT);
-    const result = await betContract.methods.allowance( await getAccount(),"0xB7FAc7003C2aD86Cb93d0d64dcf23456f6adE8bf").call()
+    const result = await betContract.methods.allowance( await getAccount(),"0x145CF48d2dea6ECfaCA917A44b24EA3d7b70c22A").call()
     return result;
 }
 
 
 export const approve = async () => {
-    let address = "0x2BcE2Ba5D801D9c6C90Ee137Ec3b50AEf6cc1085"
     const betContract = getContract(BETS_ABI, envdev.REACT_APP_BET_SMART_CONTRACT);
     console.log('approve run')
-    const result = await betContract.methods.approve('0xB7FAc7003C2aD86Cb93d0d64dcf23456f6adE8bf',115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
+    const result = await betContract.methods.approve('0x145CF48d2dea6ECfaCA917A44b24EA3d7b70c22A',115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
         from: await getAccount(),
     });
     if(result.status == true){

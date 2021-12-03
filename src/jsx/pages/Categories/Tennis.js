@@ -5,10 +5,10 @@ import carbon_timer from './../../../images/carbon_timer.png'
 import App from './../../pages/App/Index'
 import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
-import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser } from './../../../web3/betsMVPService'
+import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser,cancelevent } from './../../../web3/betsMVPService'
 import {TotalEventsCount,addingnewevents} from './../../../web3/Countallevents'
 import {isapproved} from './../../../web3/betsService'
-import { initInstance } from './../../../web3/web3'
+import { initInstance,getAccount } from './../../../web3/web3'
 import { fromWei, formatNumber } from '../../../web3/utils'
 import redDot from './../../../images/red-dot.png'
 import BigInt from 'big-integer'
@@ -41,10 +41,15 @@ class GameCard extends Component {
       endtime:0,
       v:0,
       potential_wins:0,
+      account:0,
     }
   }
   componentDidMount = async() => {
     await initInstance();
+    let account = await getAccount()
+    this.setState({
+      account: account
+    })
     let active_events = await totalEvents()
     let getstoredevents = window.localStorage.getItem('events')
     if(getstoredevents == null)
@@ -54,17 +59,17 @@ class GameCard extends Component {
     }
     let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
 
-    if(decodestoredevents.length != active_events){
-      console.log("runed")
-      await TotalEventsCount();
-    }
+    // if(decodestoredevents.length != active_events){
+    //   console.log("runed")
+    //   await TotalEventsCount();
+    // }
     decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
     // console.log("what is this",decodestoredevents)
 
-    // setInterval(async() => { 
-    //   console.log("run every things")
-    //   await addingnewevents();
-    // }, 2000);
+    setInterval(async() => { 
+      // console.log("run every things")
+      await addingnewevents();
+    }, 2000);
     
     const events = []
     let check = []
@@ -86,6 +91,10 @@ class GameCard extends Component {
   }
   closehandelSideMenu = () => {
     document.getElementById('sidebar').style.display = 'none'
+  }
+
+  cancelevent = async(id) => {
+     await cancelevent(id)
   }
 
   handelSideMenu = async(eventid, teamone,teamtwo, endtime, poolsize, bettercount, category, potentialwins) => {
@@ -165,7 +174,7 @@ class GameCard extends Component {
     }
   }
   getdata = (v) => {
-      console.log("value",v)
+      // console.log("value",v)
   }
 
   countbettors = async(id) => {
@@ -177,7 +186,7 @@ class GameCard extends Component {
     eventtwoparticipant:two,
     eventthreeparticipant:three
     })
-    console.log('participants', this.state.eventoneparticipant,this.state.eventtwoparticipant,this.state.eventthreeparticipant)
+    // console.log('participants', this.state.eventoneparticipant,this.state.eventtwoparticipant,this.state.eventthreeparticipant)
 }
 
   placebet = async(id, team, amount) => {
@@ -188,12 +197,11 @@ class GameCard extends Component {
       amount: amount,
       occured: team
     }
-
-    console.log('selection int',betdata, lefttime);
     try { 
     if(lefttime > 0)
     {
       await placeBet(betdata);
+      window.location.reload(false);
     }
 
     else{
@@ -525,7 +533,14 @@ class GameCard extends Component {
                                 <li>{Number(events.two).toFixed(2)}% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
                               </ul>
                             </div>
-                            <div className="col-4 button-row">
+                            <div className="col-4 button-row gap-2">
+                            {events.creator == this.state.account ? <button
+                                className="btn"
+                                onClick={() => this.cancelevent(events.id)
+                                }
+                              >
+                              Cancel 
+                            </button>:""}
                               <button
                                 className="btn"
                                 onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins)

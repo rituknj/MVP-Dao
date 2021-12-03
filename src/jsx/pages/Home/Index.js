@@ -147,6 +147,9 @@ class Index extends Component {
         window.localStorage.setItem('events',JSON.stringify(''))
         await TotalEventsCount();
         }
+        else{
+        await TotalEventsCount();
+        }
 
 
     };

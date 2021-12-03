@@ -1,5 +1,5 @@
 import { getAccount, getContract, web3Instance } from "./web3";
-import {TotalEventsCount} from './Countallevents'
+import {TotalEventsCount, updatingeventdata} from './Countallevents'
 import { BETS_ABI } from './../Contract/BetswampMVP';
 import { envdev } from "./environments";
 import BigInt from "big-integer";
@@ -63,6 +63,7 @@ export const placeBet = async ({event_id, amount, occured}) => {
     if(getData.status == true){
         alert('Bet placed successfully')
         await TotalEventsCount();
+        
     }
     else{
         alert("Failed")
@@ -75,8 +76,6 @@ export const validateEvent = async (event_id, occured) => {
     var getData = await betMVPContract.methods.validateEvent(event_id, occured).send({
         from: await getAccount(),
     });
-    // let data = getData.encodeABI();
-    // return await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
     if(getData.status == true){
         alert('Validated successfully')
     }
@@ -84,7 +83,7 @@ export const validateEvent = async (event_id, occured) => {
 export const getValidationPoint = async () => {
     const betMVPContract = await getBETMVPContract();
     const validationPoint = await betMVPContract.methods.showValidationPoints(await getAccount()).call();
-    const  _validationPoint = fromWei(validationPoint, 'custom')
+    const  _validationPoint = validationPoint
     return _validationPoint;
 }
 
@@ -213,7 +212,7 @@ export const reclaimwager = async (id) => {
     const betMVPContract = await getBETMVPContract();
     const resutl = await betMVPContract.methods.reclaimWager(id).send({
         from: await getAccount(),      
-    });;
+    });
     if(resutl.status == true){
         alert("Refund Successfully")
     }
@@ -246,4 +245,25 @@ export const GetUserWonAmountOnEvent = async (id) => {
     const betMVPContract = await getBETMVPContract();
     const resutl = await betMVPContract.methods.getUserEventWon(id, await getAccount() ).call();
     return resutl;
+}
+export const pendingpoint = async () => {
+    const betMVPContract = await getBETMVPContract();
+    const resutl = await betMVPContract.methods.getUserPendingPoints(await getAccount()).call();
+    return resutl
+}
+export const cancelevent = async (id) => {
+    const betMVPContract = await getBETMVPContract();
+    const resutl = await betMVPContract.methods.cancelEvent(id).send({
+        from: await getAccount(),      
+    });
+    if(resutl.status == true){
+        alert("Event Canceled")
+        await TotalEventsCount();
+        window.location.reload(false);
+
+    }
+    else{
+        alert("Failed")
+    }
+    return resutl
 }

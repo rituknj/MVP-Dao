@@ -25,17 +25,6 @@ class Index extends Component {
     console.log(this.props)
   };
 
-//   getGameCard = () => {
-//     let items = [];
-//     for (var i = 1; i <= 10; i++) {
-//       items.push(
-//         <div key={i} className="col-12 col-sm-12 col-md-6 col-lg-4">
-//           <GameCard cat={this.state.selectedcat}/>
-//         </div>
-//       );
-//     }
-//     return items;
-//   };
 
   handelMatchTab = (tab) => {
     this.setState({
@@ -259,7 +248,7 @@ class Index extends Component {
                     aria-expanded="false"
                     aria-controls="collapseCricket"
                   >
-                    Football
+                   American Football
                   </p>
                 </div>
                 </NavLink>

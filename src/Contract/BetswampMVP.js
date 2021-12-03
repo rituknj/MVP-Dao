@@ -219,6 +219,20 @@ export const BETS_ABI = [
     type: 'function',
   },
   {
+    inputs: [{ internalType: 'uint256', name: 'event_id', type: 'uint256' }],
+    name: 'cancelEvent',
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'cancelledEventsList',
+    outputs: [{ internalType: 'uint256[]', name: '', type: 'uint256[]' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
     inputs: [
       { internalType: 'address', name: '_busd', type: 'address' },
       { internalType: 'address', name: '_bet', type: 'address' },
@@ -302,6 +316,7 @@ export const BETS_ABI = [
           { internalType: 'string', name: 'eventOne', type: 'string' },
           { internalType: 'string', name: 'eventTwo', type: 'string' },
           { internalType: 'bool', name: 'validated', type: 'bool' },
+          { internalType: 'bool', name: 'isCancelled', type: 'bool' },
           {
             internalType: 'uint256',
             name: 'validatorsNeeded',
@@ -407,6 +422,13 @@ export const BETS_ABI = [
       { internalType: 'address', name: '_bettor', type: 'address' },
     ],
     name: 'getUserEventWon',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'address', name: '_address', type: 'address' }],
+    name: 'getUserPendingPoints',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',

@@ -26,7 +26,8 @@ import {
   claimrewards,
   reclaimwager,
   AmountStackOnEventByaUser,
-  GetUserWonAmountOnEvent
+  GetUserWonAmountOnEvent,
+  pendingpoint
 } from './../../../web3/betsMVPService'
 import { collapseToast } from 'react-toastify'
 import './elements.css'
@@ -56,6 +57,7 @@ class AppHeader extends Component {
       userWoninEvent:0,
       bal:"BETS",
       showbalance:0,
+      pendingvalidationpoints:0
     }
   }
 
@@ -68,6 +70,7 @@ class AppHeader extends Component {
     let history = []
     let totalwageramount = 0
     let totalwinnings = 0
+    let pendingvalidationpoints = 0
     await initInstance()
     await loginProcess()
     let balanceofUSD = await getUSDTBalance()
@@ -79,6 +82,7 @@ class AppHeader extends Component {
       history = await getBetsHistory()
       totalwageramount = await gettotaluserwageramount()
       totalwinnings = await getusertotalwinnings()
+      pendingvalidationpoints = await pendingpoint()
       this.setState({
         historyid: history,
         totalbetsmade: history.length,
@@ -87,6 +91,7 @@ class AppHeader extends Component {
         lockedbets: totalbetslocked,
         totalwageramount: totalwageramount,
         totalwinnings: totalwinnings,
+        pendingvalidationpoints:pendingvalidationpoints
       })
       console.log('what is my balance',this.state.balanceBET)
     }, 100);
@@ -535,6 +540,8 @@ class AppHeader extends Component {
                 <div className="mb-4">
                   <h4 className="">Total validation points earned</h4>
                   <p>{this.state.validationpoint}</p>
+                  <h4 className="">Pending validation points</h4>
+                  <p>{this.state.pendingvalidationpoints}</p>
                   {this.state.lockedbets > 0 ? (
                     <button
                       className="btn btn-danger"

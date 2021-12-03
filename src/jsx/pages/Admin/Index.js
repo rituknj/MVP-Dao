@@ -31,12 +31,14 @@ class Index extends Component {
       event2: '',
       name: '',
       allevents: [],
-      nonevalidatedevents:[],
+      validatedevents:[],
       occured: 0,
       id: null,
+      expiredevents:[]
     }
   }
   componentDidMount = async () => {
+    var ts = Math.round((new Date()).getTime() / 1000);
     let event
     let active_event
     await initInstance()
@@ -44,12 +46,16 @@ class Index extends Component {
     active_event = await totalEvents()
     for (let i = 0; i <= active_event; i++) {
       event = await getEvent(i)
-      if (event[9] === false) {
+      if (event[9] === false && event[10] == false) {
         this.state.allevents.push(event)
       }
-      else{
-        this.state.nonevalidatedevents.push(event)
+      if(event[9] === true && event[10] == false){
+        this.state.validatedevents.push(event)
       }
+      if(ts > event[6] && event[10] == false){
+        this.state.expiredevents.push(event)
+      }
+
     }
   }
 
@@ -167,7 +173,7 @@ class Index extends Component {
   }
 
   render() {
-    console.log('all events are', this.state.allevents)
+    console.log('all events are',this.state.expiredevents)
 
     return (
       <Fragment>
@@ -195,7 +201,7 @@ class Index extends Component {
                 Validate Events
               </button>
             </div>
-            <br />
+            <br/>
             <div className="me-md-4 me-2">
               <button
                 className={`btn admin-match-button ${
@@ -206,6 +212,18 @@ class Index extends Component {
                 Validated Events
               </button>
             </div>
+            <br/>
+            <div className="me-md-4 me-2">
+              <button
+                className={`btn admin-match-button ${
+                  this.state.activeTabTop == 4 ? ' active' : ''
+                }`}
+                onClick={() => this.handelClick(4)}
+              >
+                Expired Events
+              </button>
+            </div>
+            
           </div>
           <div className="row">
             <div className="col-12">
@@ -349,7 +367,7 @@ class Index extends Component {
                                     total participants
                                   </p>
                                   <p className="date text-end w-100">
-                                    {item[12]}
+                                    {item[13]}
                                   </p>
                                 </div>
                                 {this.state.handelToggle ? (
@@ -464,7 +482,7 @@ class Index extends Component {
                     </>
                   ) : this.state.activeTabTop == 3 ? (
                     <>
-                      {this.state.nonevalidatedevents.map((item) => (
+                      {this.state.validatedevents.map((item) => (
                         <div>
                           <div className="admin-card-view px-3 py-3 mb-5">
                             <p >
@@ -492,7 +510,7 @@ class Index extends Component {
                                     total participants
                                   </p>
                                   <p className="date text-end w-100">
-                                    {item[12]}
+                                    {item[13]}
                                   </p>
                                 </div>
                                 {this.state.handelToggle ? (
@@ -593,9 +611,149 @@ class Index extends Component {
                         </div>
                       ))}
                     </>
-                  ) : (
-                    ''
-                  )}
+                  ) : this.state.activeTabTop == 4 ? (
+                    <>
+                      {this.state.expiredevents.map((item) => (
+                        <div>
+                          <div className="admin-card-view px-3 py-3 mb-5">
+                            <p >
+                              <p className="title w-100">
+                                Event id {item[0]}
+                              </p>
+                              {item[7]} vs {item[8]}
+                            </p>
+                            <div className="row mt-4">
+                              <div className="col-md-7">
+                                <div
+                                  className="d-flex mb-3"
+                                  
+                                >
+                                  <p className="title w-100">Created</p>
+                                  <p className="date text-end w-100">
+                                    {this.timecovert(item[5])}
+                                  </p>
+                                </div>
+                                <div
+                                  className="d-flex mb-0"
+                                  
+                                >
+                                  <p className="title w-100">
+                                    total participants
+                                  </p>
+                                  <p className="date text-end w-100">
+                                    {item[13]}
+                                  </p>
+                                </div>
+                                <div
+                                  className="d-flex mb-0"
+                                  
+                                >
+                                  <p className="title w-100">
+                                    Pool size
+                                  </p>
+                                  <p className="date text-end w-100">
+                                    {item[4]}
+                                  </p>
+                                </div>
+                                {this.state.handelToggle ? (
+                                  <div
+                                    className="toggle-card"
+                                    data-aos="fade-down"
+                                    data-aos-duration="400"
+                                    data-aos-easing="linear"
+                                  >
+                                    <div className="d-flex mt-5 mb-4">
+                                      <h4 className="w-100">Winning odd</h4>
+                                    </div>
+                                    <div
+                                      className="d-flex mb-3"
+                                      onClick={() => this.teamfisrt()}
+                                    >
+                                      <p className="title w-100">{item[7]}</p>
+                                      <p className="text-end w-100">
+                                        <input
+                                          className="form-check-input"
+                                          type="radio"
+                                          name="flexRadioDefault"
+                                        />
+                                      </p>
+                                    </div>
+                                    <div
+                                      className="d-flex mb-3"
+                                      onClick={() => this.teamsecond()}
+                                    >
+                                      <p className="title w-100">{item[8]}</p>
+                                      <p className="text-end w-100">
+                                        <input
+                                          className="form-check-input"
+                                          type="radio"
+                                          name="flexRadioDefault"
+                                        />
+                                      </p>
+                                    </div>
+                                    <div
+                                      className="d-flex mb-3"
+                                      onClick={() => this.teamthird()}
+                                    >
+                                      <p className="title w-100">Draw</p>
+                                      <p className="text-end w-100">
+                                        <input
+                                          className="form-check-input"
+                                          type="radio"
+                                          name="flexRadioDefault"
+                                        />
+                                      </p>
+                                    </div>
+                                  </div>
+                                ) : (
+                                  ''
+                                )}
+                              </div>
+                              <div className="col-md-1"></div>
+
+                              {this.state.handelToggle ? (
+                                <div
+                                  className="col-md-12 toggle-card"
+                                  data-aos="fade-down"
+                                  data-aos-duration="500"
+                                  data-aos-easing="linear"
+                                >
+                                  <div className="d-flex mt-4">
+                                    <div className="form-check">
+                                      <input
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        value=""
+                                        id="flexCheckDefault"
+                                      />
+                                      <label
+                                        className="form-check-label title"
+                                        for="flexCheckDefault"
+                                      >
+                                        I have previewed the selection
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div className="d-flex mt-5">
+                                    {/* <button
+                                      className="btn button-2"
+                                      onClick={() =>
+                                        this.preview(item[0], item[6])
+                                      }
+                                    >
+                                      validate
+                                    </button> */}
+                                  </div>
+                                </div>
+                              ) : (
+                                ''
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  ):''}
                 </div>
               </div>
             </div>
