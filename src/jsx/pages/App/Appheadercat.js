@@ -6,7 +6,7 @@ import { NavLink, Link, useRouteMatch } from "react-router-dom";
 import monotone_soccer from "../../../images/emojione-monotone_soccer-ball.png";
 import park_rugby from "../../../images/icon-park_rugby.png";
 import monotone_tennis from "../../../images/emojione-monotone_tennis.png";
-import monotone_racing from "../../../images/emojione-monotone_racing-car.png";
+import monotone_racing from "../../../images/hockey.png";
 import monotone_boxing from "../../../images/emojione-monotone_boxing-glove.png";
 import monotone_basketball from "../../../images/emojione-monotone_basketball.png";
 import cil_baseball from "../../../images/cil_baseball.png";
@@ -239,7 +239,7 @@ class Index extends Component {
                     }`}
                   onClick={() => this.handelGamesTab(8)}
                 >
-                  <img src={cil_cricket} width="30px" />
+                  <img src={park_rugby} width="30px" />
                   <p
                     className="text-white m-0 mt-1 mt-md-3"
                     data-bs-toggle="collapse"
@@ -248,7 +248,7 @@ class Index extends Component {
                     aria-expanded="false"
                     aria-controls="collapseCricket"
                   >
-                   American Football
+                   American <br/>Football
                   </p>
                 </div>
                 </NavLink>
