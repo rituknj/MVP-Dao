@@ -82,7 +82,7 @@ class GameCard extends Component {
     for (let i = decodestoredevents.length-1; i >= 0; i--) {
       check2 = decodestoredevents[i]
   
-      if (check2.subcategory == 'Football'){
+      if (check2.subcategory == 'American football'){
         events.push(check2)
         this.setState({
           allevents: events,

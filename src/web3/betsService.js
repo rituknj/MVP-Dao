@@ -25,7 +25,7 @@ export const gettotalsupply = async () => {
 
 export const isapproved = async () => {
     const betContract = getContract(BETS_ABI, envdev.REACT_APP_BET_SMART_CONTRACT);
-    const result = await betContract.methods.allowance( await getAccount(),"0x6A7c7D18386588AF14a82c272C614D08E760Fd25").call()
+    const result = await betContract.methods.allowance( await getAccount(),"0x3e0C7191eC127767EC4fB94bc315Bc416cc85747").call()
     return result;
 }
 
@@ -33,7 +33,7 @@ export const isapproved = async () => {
 export const approve = async () => {
     const betContract = getContract(BETS_ABI, envdev.REACT_APP_BET_SMART_CONTRACT);
     console.log('approve run')
-    const result = await betContract.methods.approve('0x6A7c7D18386588AF14a82c272C614D08E760Fd25',115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
+    const result = await betContract.methods.approve('0x3e0C7191eC127767EC4fB94bc315Bc416cc85747',115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
         from: await getAccount(),
     });
     if(result.status == true){

@@ -249,7 +249,7 @@ class Index extends Component {
                             <option>Soccer</option>
                             <option>Tennis</option>
                             <option>Rugby</option>
-                            <option>Football</option>
+                            <option>American football</option>
                             <option>Hockey</option>
                             <option>Boxing</option>
                             <option>Basketball</option>
