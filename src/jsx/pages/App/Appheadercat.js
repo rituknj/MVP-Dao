@@ -16,7 +16,7 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTabTop: 1,
+      activeTabTop: 0,
       activeTabBottom: 1,
       selectedcat: 'soccor'
     };
@@ -37,11 +37,11 @@ class Index extends Component {
     console.log("clicked on",this.state.selectedcat)
   };
   
-  handelGamesTab = (tab, cat) => {
-    this.selectedcategory(cat)
+  handelGamesTab = (tab) => {
     this.setState({
-      activeTabTop: tab,
-    });
+      activeTabTop:tab
+    })
+    console.log("Active tab is ", this.state.activeTabTop)
     
   };
  
@@ -58,7 +58,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/soccer' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 1 ? "" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 1 ? "active" : ""
                     }`}
                   onClick={() => this.handelGamesTab(1)
                   }
@@ -81,7 +81,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/rugby' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 2 ? "" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 2 ? "active" : ""
                     }`}
                   onClick={() => this.handelGamesTab(2)}
                 >
@@ -103,7 +103,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/tennis' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 3 ? "" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 3 ? "active" : ""
                     }`}
                   onClick={() => this.handelGamesTab(3)}
                 >
@@ -125,7 +125,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/racing' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 4 ? "" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 4 ? "active" : ""
                     }`}
                   onClick={() => this.handelGamesTab(4)}
                 >
@@ -147,7 +147,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/boxing' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 5 ? "" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 5 ? "active" : ""
                     }`}
                   onClick={() => this.handelGamesTab(5)}
                 >
@@ -169,7 +169,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/basketball' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 6 ? "" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 6 ? "active" : ""
                     }`}
                   onClick={() => this.handelGamesTab(6)}
                 >
@@ -191,7 +191,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/baseball' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 7 ? "" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 7 ? "active" : ""
                     }`}
                   onClick={() => this.handelGamesTab(7)}
                 >
@@ -213,7 +213,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/cricket' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 8 ? "a" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 8 ? "active" : ""
                     }`}
                   onClick={() => this.handelGamesTab(8)}
                 >
@@ -235,9 +235,9 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/football' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 8 ? "a" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 8 ? "active" : ""
                     }`}
-                  onClick={() => this.handelGamesTab(8)}
+                  onClick={() => this.handelGamesTab(9)}
                 >
                   <img src={park_rugby} width="30px" />
                   <p
@@ -258,38 +258,7 @@ class Index extends Component {
           </div>
         </div>
 
-        {/* <div className="container-fluid px-md-5 mt-2">
-          <div className="space-100"></div>
-          <div className="d-flex flex-wrap">
-            <div className="me-md-4 me-2">
-              <button
-                className={`btn admin-match-button ${this.state.activeTabBottom == 1 ? " active" : ""
-                  }`}
-                onClick={() => this.handelMatchTab(1)}
-              >
-                Matched events
-              </button>
-            </div>
-            <div className="">
-              <button
-                className={`btn admin-match-button ${this.state.activeTabBottom == 2 ? " active" : ""
-                  }`}
-                onClick={() => this.handelMatchTab(2)}
-              >
-                Un-Matched Events
-              </button>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <div className="match-main-div">
-                <div className="theam-bg-dark mt-2 mt-md-5 p-1 p-md-5">
-                  <div className="row">{this.getGameCard()}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
+       
       </Fragment>
     );
   }

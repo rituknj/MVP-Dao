@@ -198,7 +198,7 @@ class Index extends Component {
                                 <span>Peer-to-Peer Betting</span>
                             </h2>
                             <p className="mt-5 mt-md-4 text-white text-center text-md-start">
-                                Create events on litrally anything verifiable and place
+                                Create events on literally anything verifiable and place
                                 unlimited bets.{" "}
                             </p>
                             <div className="text-center text-md-start my-4 my-md-0">

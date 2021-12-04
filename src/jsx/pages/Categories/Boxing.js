@@ -42,6 +42,9 @@ class GameCard extends Component {
       v:0,
       potential_wins:0,
       account:0,
+      zero:0,
+      one:0,
+      two:0
     }
   }
   componentDidMount = async() => {
@@ -97,7 +100,7 @@ class GameCard extends Component {
      await cancelevent(id)
   }
 
-  handelSideMenu = async(eventid, teamone,teamtwo, endtime, poolsize, bettercount, category, potentialwins) => {
+  handelSideMenu = async(eventid, teamone,teamtwo, endtime, poolsize, bettercount, category, potentialwins, zero, one, two) => {
     
     // console.log("potential win", potentialwins)
     await this.countbettors(eventid);
@@ -119,6 +122,9 @@ class GameCard extends Component {
       })
     }
     this.setState({
+      zero:zero,
+      one:one,
+      two:two,
       endtime:endtime,
       category:category,
       id:eventid,
@@ -309,7 +315,7 @@ class GameCard extends Component {
                                     <div
                                       className="progress-bar"
                                       role="progressbar"
-                                      style={{ width: '25%' }}
+                                      style={{ width: `${Number(this.state.zero).toFixed(2)}%` }}
                                       aria-valuenow="25"
                                       aria-valuemin="0"
                                       aria-valuemax="100"
@@ -317,7 +323,7 @@ class GameCard extends Component {
                                   </div>
                                 </div>
                                 <div className="col-3 col-md-2 mb-4">
-                                  <p className="percent m-0">55.5%</p>
+                                  <p className="percent m-0">{Number(this.state.zero).toFixed(2)}%</p>
                                 </div>
                               </div>
                               <div className="row form mt-3">
@@ -370,7 +376,7 @@ class GameCard extends Component {
                                     <div
                                       className="progress-bar"
                                       role="progressbar"
-                                      style={{ width: '25%' }}
+                                      style={{ width: `${Number(this.state.one).toFixed(2)}%` }}
                                       aria-valuenow="25"
                                       aria-valuemin="0"
                                       aria-valuemax="100"
@@ -378,7 +384,7 @@ class GameCard extends Component {
                                   </div>
                                 </div>
                                 <div className="col-2 mb-4">
-                                  <p className="percent m-0">55.5%</p>
+                                  <p className="percent m-0">{Number(this.state.one).toFixed(2)}%</p>
                                 </div>
                               </div>
                               <div className="row form mt-3">
@@ -431,7 +437,7 @@ class GameCard extends Component {
                                     <div
                                       className="progress-bar"
                                       role="progressbar"
-                                      style={{ width: '25%' }}
+                                      style={{ width: `${Number(this.state.two).toFixed(2)}%` }}
                                       aria-valuenow="25"
                                       aria-valuemin="0"
                                       aria-valuemax="100"
@@ -439,7 +445,7 @@ class GameCard extends Component {
                                   </div>
                                 </div>
                                 <div className="col-2 mb-4">
-                                  <p className="percent m-0">55.5%</p>
+                                  <p className="percent m-0">{Number(this.state.two).toFixed(2)}%</p>
                                 </div>
                               </div>
                               <div className="row form mt-3">
@@ -480,6 +486,7 @@ class GameCard extends Component {
         <div className="row">
           <div className="col-12">
             <div className="match-main-div">
+            <h3 className='ml-3' style={{color:"white"}}>Boxing</h3>
               <div className="theam-bg-dark mt-2 mt-md-5 p-1 p-md-5">
                 <div className="row">
 
@@ -543,7 +550,7 @@ class GameCard extends Component {
                             </button>:""}
                               <button
                                 className="btn"
-                                onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins)
+                                onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins,events.zero,events.one,events.two)
                                 }
                               >
                                 BET

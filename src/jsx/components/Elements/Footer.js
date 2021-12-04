@@ -14,18 +14,16 @@ class Footer extends Component {
     socialIcons = () => {
         return (
             <div className="d-flex justify-content-center justify-content-sm-end my-3 flex-wrap social-icons">
-                <img src={facebook} className="mx-2" />
-                <img src={icons_twitter} className="mx-2" />
-                <img src={icons_instagram} className="mx-2" />
-                <img src={icons_discord} className="mx-2" />
-                <img src={bi_medium} className="mx-2" />
-                <img src={icons_github} className="mx-2" />
-                <img src={cib_telegram} className="mx-2" />
+              <a href="https://www.facebook.com/Betswamp?_rdc=1&_rdr" target="_blank" ><img src={facebook} className="mx-2" /></a> 
+               <a href="https://twitter.com/betswamp" target="_blank" > <img src={icons_twitter} className="mx-2" /></a>
+               <a href="https://www.instagram.com/betswamp/" target="_blank"> <img src={icons_instagram} className="mx-2" /></a>
+               <a href="#" ><img src={icons_discord} className="mx-2" /></a> 
+               <a href="https://betswamp.medium.com/" target="_blank"> <img src={bi_medium} className="mx-2" /></a>
+                <a href="https://github.com/Betswamp" target="_blank"> <img src={icons_github} className="mx-2" /></a>
+            <a href="https://t.me/betswamp_official" target='_blank'><img src={cib_telegram} className="mx-2" /></a>
             </div>
         )
     }
-
-
     render() {
         return (
             <Fragment>

@@ -93,7 +93,7 @@ class AppHeader extends Component {
         totalwinnings: totalwinnings,
         pendingvalidationpoints:pendingvalidationpoints
       })
-      console.log('what is my balance',this.state.balanceBET)
+      // console.log('what is my balance',this.state.balanceBET)
     }, 100);
 
     
@@ -460,7 +460,8 @@ class AppHeader extends Component {
               <div className="nav-tabs-data">
                 <div className="p-3">
                   {/* {this.setHistory()} */}
-
+                {this.state.totalbetsmade == 0 ? <h1>You have not placed any bet yet</h1> :
+                <>
                   {this.state.bethistory.map((items) => (
                     <div className="bet-card-custom mb-3" >
                       {console.log("123")}
@@ -511,6 +512,8 @@ class AppHeader extends Component {
                       </button>
                     </div>
                   ))}
+                </>
+                  }
                 </div>
               </div>
             )}

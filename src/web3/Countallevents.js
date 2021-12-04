@@ -56,7 +56,7 @@ export const addingnewevents = async() => {
   let activeEvents = await getActiveEvents();
   let newevent = await totalEvents();
   let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-  console.log('adding new events',decodestoredevents.length, activeEvents.length)
+  // console.log('adding new events',decodestoredevents.length, activeEvents.length)
   if(activeEvents.length > decodestoredevents.length) {
               check2 = await getEvent(newevent-1)
               check = Object.create(check2)
