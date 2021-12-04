@@ -17,9 +17,9 @@ let newevents = 0
             if(check2[10] == false){
               console.log('creator is ', check2)
               check = Object.create(check2)
-              zero = await bettorscountspercent(check2[0],0,check2[13])
-              one = await bettorscountspercent(check2[0],1,check2[13])
-              two = await bettorscountspercent(check2[0],2,check2[13])
+              zero = await bettorscountspercent(check2[0],0,check2[14])
+              one = await bettorscountspercent(check2[0],1,check2[14])
+              two = await bettorscountspercent(check2[0],2,check2[14])
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])
               let stake =  (stakeonevent*100)/check2[4]
               let potentialwinnings = Number(((check2[4]-stakeonevent)*stake)/10**18).toFixed(2)
@@ -29,16 +29,16 @@ let newevents = 0
                 check.potential_wins = potentialwinnings
                 check.id = check2[0]
                 check.name = check2[3] 
-                check.validate = check2[9]
+                check.validate = check2[10]
                 check.poolsize = check2[4]
                 check.starttime = check2[5]
                 check.endtime = check2[6]
-                check.teamone = check2[7]
-                check.teamtwo = check2[8]
+                check.teamone = check2[8]
+                check.teamtwo = check2[9]
                 check.subcategory = check2[2]
                 check.Categories = check2[1]
-                check.BettorsCount = check2[13]
-                check.creator = check2[16]
+                check.BettorsCount = check2[14]
+                check.creator = check2[17]
                 getevents.push(check)
                 newevents = getevents
               
@@ -60,9 +60,9 @@ export const addingnewevents = async() => {
   if(activeEvents.length > decodestoredevents.length) {
               check2 = await getEvent(newevent-1)
               check = Object.create(check2)
-              zero = await bettorscountspercent(check2[0],0,check2[13])
-              one = await bettorscountspercent(check2[0],1,check2[13])
-              two = await bettorscountspercent(check2[0],2,check2[13])
+              zero = await bettorscountspercent(check2[0],0,check2[14])
+              one = await bettorscountspercent(check2[0],1,check2[14])
+              two = await bettorscountspercent(check2[0],2,check2[14])
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])
               let stake =  (stakeonevent*100)/check2[4]
               let potentialwinnings = Number(((check2[4]-stakeonevent)*stake)/10**18).toFixed(2)
@@ -73,16 +73,16 @@ export const addingnewevents = async() => {
                 check.potential_wins = potentialwinnings
                 check.id = check2[0]
                 check.name = check2[3] 
-                check.validate = check2[9]
+                check.validate = check2[10]
                 check.poolsize = check2[4]
                 check.starttime = check2[5]
                 check.endtime = check2[6]
-                check.teamone = check2[7]
-                check.teamtwo = check2[8]
+                check.teamone = check2[8]
+                check.teamtwo = check2[9]
                 check.subcategory = check2[2]
                 check.Categories = check2[1]
-                check.BettorsCount = check2[13]
-                check.creator = check2[16]
+                check.BettorsCount = check2[14]
+                check.creator = check2[17]
                 decodestoredevents.push(check)
                 window.localStorage.setItem('events',JSON.stringify(decodestoredevents))
       }

@@ -142,6 +142,7 @@ class Index extends Component {
       }
 
       let getstoredevents = window.localStorage.getItem('events')
+      console.log("what is this",getstoredevents)
         if(getstoredevents == null)
         {
         window.localStorage.setItem('events',JSON.stringify(''))

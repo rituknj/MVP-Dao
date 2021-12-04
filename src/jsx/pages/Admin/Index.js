@@ -46,13 +46,14 @@ class Index extends Component {
     active_event = await totalEvents()
     for (let i = 0; i <= active_event; i++) {
       event = await getEvent(i)
-      if (event[9] === false && event[10] == false) {
+      // console.log("events are", event)
+      if (event[10] === false && event[11] == false) {
         this.state.allevents.push(event)
       }
-      if(event[9] === true && event[10] == false){
+      if(event[10] === true){
         this.state.validatedevents.push(event)
       }
-      if(ts > event[6] && event[10] == false){
+      if(ts > event[6]){
         this.state.expiredevents.push(event)
       }
 
@@ -173,7 +174,7 @@ class Index extends Component {
   }
 
   render() {
-    console.log('all events are',this.state.expiredevents)
+    console.log('all events are',this.state.validatedevents)
 
     return (
       <Fragment>
@@ -346,7 +347,7 @@ class Index extends Component {
                           <div className="admin-card-view px-3 py-3 mb-5">
                             <p onClick={() => this.handelToggle()}>
                               <p className="title w-100">Event id {item[0]}</p>
-                              {item[7]} vs {item[8]}
+                              {item[8]} vs {item[9]}
                             </p>
                             <div className="row mt-4">
                               <div className="col-md-7">
@@ -367,7 +368,7 @@ class Index extends Component {
                                     total participants
                                   </p>
                                   <p className="date text-end w-100">
-                                    {item[13]}
+                                    {item[14]}
                                   </p>
                                 </div>
                                 {this.state.handelToggle ? (
@@ -384,7 +385,7 @@ class Index extends Component {
                                       className="d-flex mb-3"
                                       onClick={() => this.teamfisrt()}
                                     >
-                                      <p className="title w-100">{item[7]}</p>
+                                      <p className="title w-100">{item[8]}</p>
                                       <p className="text-end w-100">
                                         <input
                                           className="form-check-input"
@@ -397,7 +398,7 @@ class Index extends Component {
                                       className="d-flex mb-3"
                                       onClick={() => this.teamsecond()}
                                     >
-                                      <p className="title w-100">{item[8]}</p>
+                                      <p className="title w-100">{item[9]}</p>
                                       <p className="text-end w-100">
                                         <input
                                           className="form-check-input"
@@ -489,7 +490,7 @@ class Index extends Component {
                               <p className="title w-100">
                                 Event id {item[0]}
                               </p>
-                              {item[7]} vs {item[8]}
+                              {item[8]} vs {item[9]}
                             </p>
                             <div className="row mt-4">
                               <div className="col-md-7">
@@ -510,7 +511,7 @@ class Index extends Component {
                                     total participants
                                   </p>
                                   <p className="date text-end w-100">
-                                    {item[13]}
+                                    {item[14]}
                                   </p>
                                 </div>
                                 {this.state.handelToggle ? (
@@ -620,7 +621,7 @@ class Index extends Component {
                               <p className="title w-100">
                                 Event id {item[0]}
                               </p>
-                              {item[7]} vs {item[8]}
+                              {item[8]} vs {item[9]}
                             </p>
                             <div className="row mt-4">
                               <div className="col-md-7">
@@ -641,7 +642,7 @@ class Index extends Component {
                                     total participants
                                   </p>
                                   <p className="date text-end w-100">
-                                    {item[13]}
+                                    {item[14]}
                                   </p>
                                 </div>
                                 <div
