@@ -4,6 +4,7 @@ import myBet from '../../../images/my-bet.png'
 import greenArrow from '../../../images/green-arrow.png'
 import { NavLink } from 'react-router-dom'
 import BigInt, { max } from 'big-integer'
+import logo from '../../../images/logo.png'
 import {
   initInstance,
   loginProcess,
@@ -32,6 +33,7 @@ import {
 import { collapseToast } from 'react-toastify'
 import './elements.css'
 import AbstractModalHeader from 'react-bootstrap/esm/AbstractModalHeader'
+import { width } from 'dom-helpers'
 
 class AppHeader extends Component {
   constructor(props) {
@@ -363,7 +365,9 @@ class AppHeader extends Component {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarsExample05">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li><img src={logo} style={{height:'100px', width: '100px'}}/></li>
+              </ul>
               <form>
                 <ul className="navbar-nav" id="admin-navbar-nav">
                   <li className="nav-item px-2">

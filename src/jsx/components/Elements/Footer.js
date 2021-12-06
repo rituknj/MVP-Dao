@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Link } from 'react-router-dom'
 import logo from '../../../images/logo.png';
 import logoFooter from '../../../images/logo-footer.png';
 import emailImg from '../../../images/email.png';
@@ -40,8 +41,8 @@ class Footer extends Component {
                         <div className="col-md-2 text-center text-md-start">
                             <p className="theam-text-color mb-4">INFO</p>
                             <ul className="list-unstyled text-small footerList">
-                                <li><a className="text-white" href="#">About</a></li>
-                                <li><a className="text-white" href="#">News</a></li>
+                          <Link to='/about'>    <li><a className="text-white" href="#">About</a></li></Link>  
+                          <li><a className="text-white" href="#">News</a></li>  
                             </ul>
                         </div>
                         <div className="col-md-3 text-center text-md-start">
@@ -49,9 +50,9 @@ class Footer extends Component {
                             <p className="text-white text-email mb-0"><img src={emailImg} width="22" /> admin@betswamp.com</p>
                         </div>
                         <div className="col-md-3 text-center text-md-start my-5 my-md-0">
-                            <button className="btn btn-md theam-bg-red">
+                      <Link to='/app'> <button className="btn btn-md theam-bg-red">
                                 Launch app
-                            </button>
+                            </button></Link>
                         </div>
                     </div>
                     <div className="space-100"></div>
