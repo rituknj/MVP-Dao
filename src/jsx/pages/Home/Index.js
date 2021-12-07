@@ -39,6 +39,7 @@ class Index extends Component {
         this.state = {
             totalSupply:0,
             price:0,
+
             item:[],
             responsive: {
                 superLargeDesktop: {
@@ -108,9 +109,9 @@ class Index extends Component {
         let items = [];
         for (var i = 0; i <= active_events.length; i++) {
             let events = await getEvent(i)
-            this.state.item.push(events)
+            // this.state.item.push(events)
         }
-        console.log("3 events", this.state.item)
+        // console.log("3 events", this.state.item)
 
         let totalSupply = await gettotalsupply(); 
         totalSupply = fromWei(totalSupply)
@@ -142,17 +143,22 @@ class Index extends Component {
       }
 
       let getstoredevents = window.localStorage.getItem('events')
-      console.log("what is this",getstoredevents)
         if(getstoredevents == null)
         {
         window.localStorage.setItem('events',JSON.stringify(''))
         await TotalEventsCount();
+        let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+        this.setState({
+            item:decodestoredevents
+        })
         }
         else{
         await TotalEventsCount();
+        let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+        this.setState({
+            item:decodestoredevents
+        })
         }
-
-
     };
 
     //GameCard
@@ -342,24 +348,23 @@ class Index extends Component {
                 <div className="space-100"></div>
                 <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
                     <Carousel
-                       swipeable={true}
-                       draggable={true}
-                       arrows={false}
-                       showDots={false}
-                       responsive={this.state.responsive_game_card}
-                       ssr={true} // means to render carousel on server-side.
-                       autoPlay={true}
-                       autoPlaySpeed={1500}
-                       keyBoardControl={true}
-                       customTransition="all .5"
-                       transitionDuration={500}
-                       containerClass="carousel-container"
-                       removeArrowOnDeviceType={["tablet", "mobile"]}
-                       deviceType={this.props.deviceType}
-                       itemClass="carousel-item-padding-40-px px-4"
+                      swipeable={true}
+                      draggable={true}
+                      arrows={true}
+                      showDots={false}
+                      responsive={this.state.responsive_game_card}
+                      ssr={true} // means to render carousel on server-side.
+                      infinite={true}
+                      keyBoardControl={true}
+                      customTransition="all .5"
+                      transitionDuration={500}
+                      containerClass="carousel-container"
+                      removeArrowOnDeviceType={["tablet", "mobile"]}
+                      deviceType={this.props.deviceType}
+                      itemClass="carousel-item-padding-40-px px-4"
                     >   
                         
-                        {this.state.item.map(item => <GameCardHome url={item[2]} teamone={item[7]} teamtwo={item[8]} poolsize={item[4]} lastdate={item[6]} />)}
+                        {this.state.item.map(item => <GameCardHome url={item.subcategory} poolsize={item.poolsize} subcategories={item.subcategory} teamone={item.teamone} teamtwo={item.teamtwo} endtime={item.endtime} zero={item.zero} one={item.one} two={item.two}/>)}                                 
                         
                     </Carousel>
                     <div className="mt-4 px-4">

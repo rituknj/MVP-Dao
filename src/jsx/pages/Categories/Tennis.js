@@ -231,23 +231,23 @@ class GameCard extends Component {
     // console.log("time remaining",parseInt(lefttime/24), ts);
     return lefttime
   }
-
-  moussecloas = (event) =>{
-    let x = event.screenX;     
-    let y = event.screenY;
+  MouseEvent = (event) => {
+    let x = event.screenX;
+    let  y = event.screenY;
+    
     if(x>633){
       document.getElementById('sidebar').style.display = 'none';
     }
-    console.log("position", x, y)
-  }
+    console.log('postion',x,y)
+   }
 
 
   render() {
-    
+  
     return (
       <Fragment>
         <App/>
-        <div className="sidebar" id="sidebar" onClick={this.moussecloas}>
+        <div className="sidebar" id="sidebar" onClick={this.MouseEvent}>
                         <div className="data-list" >
                           <form onSubmit={this.Onsubmit}>
                           <div

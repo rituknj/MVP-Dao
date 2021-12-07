@@ -48,14 +48,13 @@ class GameCardHome extends Component {
             <div className="col-12 mt-4">
               <h4 className="team-name">
                 {this.props.teamone} <span className="theam-text-color">vs</span> {this.props.teamtwo}
-                City
               </h4>
             </div>
             <div className="col-12 mt-4">
               <p className="theam-text-color m-0">Pool size</p>
             </div>
             <div className="col-6">
-              <h3>{this.props.poolsize} BETS</h3>
+              <h3>{Number(this.props.poolsize/10**18).toFixed(2)} BETS</h3>
             </div>
             <div className="col-6">
               <h5 className="text-end">
@@ -65,16 +64,16 @@ class GameCardHome extends Component {
                   width="18"
                   style={{ verticalAlign: "sub" }}
                 />
-                {this.getdays(this.props.lastdate)} Days left
+                {this.getdays(this.props.endtime)} Days left
               </h5>
             </div>
           </div>
           <div className="row p-3">
             <div className="col-8">
               <ul>
-                <li>30% &nbsp;&nbsp;Chealsea</li>
-                <li>65% &nbsp;&nbsp;Machester City</li>
-                <li>5% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
+                <li>{Number(this.props.zero).toFixed(2)}% &nbsp;&nbsp;{this.props.teamone}</li>
+                <li>{Number(this.props.one).toFixed(2)}% &nbsp;&nbsp;{this.props.teamtwo}</li>
+                <li>{Number(this.props.two).toFixed(2)}% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
               </ul>
             </div>
             <div className="col-4 button-row">

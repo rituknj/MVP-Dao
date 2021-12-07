@@ -366,7 +366,7 @@ class AppHeader extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarsExample05">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li><img src={logo} style={{height:'100px', width: '100px'}}/></li>
+                <li><img src={logo} style={{height:'70px', width: '70px'}}/></li>
               </ul>
               <form>
                 <ul className="navbar-nav" id="admin-navbar-nav">
