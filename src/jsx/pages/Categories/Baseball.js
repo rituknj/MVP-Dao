@@ -495,7 +495,7 @@ class GameCard extends Component {
         <div className="row">
           <div className="col-12">
             <div className="match-main-div">
-            <div style={{textAlign:"center"}}>
+            <div style={{textAlign:"center",backgroundColor:"#938585", height:'37px'}}>
             <h3 className='ml-3' style={{color:"white"}}>Baseball</h3>
             </div>
               <div className="theam-bg-dark mt-2 mt-md-5 p-1 p-md-5">
