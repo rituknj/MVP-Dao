@@ -342,20 +342,21 @@ class Index extends Component {
                 <div className="space-100"></div>
                 <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
                     <Carousel
-                        swipeable={true}
-                        draggable={true}
-                        arrows={false}
-                        showDots={false}
-                        responsive={this.state.responsive_game_card}
-                        ssr={true} // means to render carousel on server-side.
-                        infinite={false}
-                        keyBoardControl={true}
-                        customTransition="all .5"
-                        transitionDuration={500}
-                        containerClass="carousel-container"
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
-                        deviceType={this.props.deviceType}
-                        itemClass="carousel-item-padding-40-px px-4"
+                       swipeable={true}
+                       draggable={true}
+                       arrows={false}
+                       showDots={false}
+                       responsive={this.state.responsive_game_card}
+                       ssr={true} // means to render carousel on server-side.
+                       autoPlay={true}
+                       autoPlaySpeed={1500}
+                       keyBoardControl={true}
+                       customTransition="all .5"
+                       transitionDuration={500}
+                       containerClass="carousel-container"
+                       removeArrowOnDeviceType={["tablet", "mobile"]}
+                       deviceType={this.props.deviceType}
+                       itemClass="carousel-item-padding-40-px px-4"
                     >   
                         
                         {this.state.item.map(item => <GameCardHome url={item[2]} teamone={item[7]} teamtwo={item[8]} poolsize={item[4]} lastdate={item[6]} />)}
@@ -363,8 +364,8 @@ class Index extends Component {
                     </Carousel>
                     <div className="mt-4 px-4">
                         <p className="mt-2 mt-md-4 text-white text-end">
-                            {/* View Events
-                            <img src={arrowRight} className="ms-3" width="20" /> */}
+                            View Events
+                            <img src={arrowRight} className="ms-3" width="20" />
                         </p>
                     </div>
                 </div>

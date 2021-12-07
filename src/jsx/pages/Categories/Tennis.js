@@ -232,13 +232,22 @@ class GameCard extends Component {
     return lefttime
   }
 
+  moussecloas = (event) =>{
+    let x = event.screenX;     
+    let y = event.screenY;
+    if(x>633){
+      document.getElementById('sidebar').style.display = 'none';
+    }
+    console.log("position", x, y)
+  }
+
 
   render() {
-  
+    
     return (
       <Fragment>
         <App/>
-        <div className="sidebar" id="sidebar">
+        <div className="sidebar" id="sidebar" onClick={this.moussecloas}>
                         <div className="data-list" >
                           <form onSubmit={this.Onsubmit}>
                           <div
@@ -486,7 +495,9 @@ class GameCard extends Component {
         <div className="row">
           <div className="col-12">
             <div className="match-main-div">
+            <div style={{textAlign:"center",backgroundColor:"#938585"}}>
             <h3 className='ml-3' style={{color:"white"}}>Tennis</h3>
+            </div>
               <div className="theam-bg-dark mt-2 mt-md-5 p-1 p-md-5">
                 <div className="row">
 

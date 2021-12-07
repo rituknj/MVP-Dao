@@ -16,7 +16,7 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTabTop: 0,
+      activeTabTop: null,
       activeTabBottom: 1,
       selectedcat: 'soccor'
     };
@@ -28,7 +28,7 @@ class Index extends Component {
 
   handelMatchTab = (tab) => {
     this.setState({
-      activeTabBottom: tab,
+      activeTabBottom: tab
     });
   };
 
@@ -38,9 +38,11 @@ class Index extends Component {
   };
   
   handelGamesTab = (tab) => {
+  if(this.state.activeTabTop != tab){
     this.setState({
       activeTabTop:tab
     })
+  }
     console.log("Active tab is ", this.state.activeTabTop)
     
   };
@@ -50,7 +52,7 @@ class Index extends Component {
   render() {
     return (
       <Fragment>
-        <div className="container-fluid px-md-5">
+        <div className="container-fluid px-md-5 slider">
           <p className="mt-2 mt-md-4 text-white">#Sports</p>
           <div className="nav-scroller-games">
             <div className="d-flex mt-2 mt-md-4 games-scroll">
@@ -58,7 +60,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/soccer' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 1 ? "active" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 1 ? ' active' : ''
                     }`}
                   onClick={() => this.handelGamesTab(1)
                   }
@@ -81,7 +83,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/rugby' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 2 ? "active" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 2 ? ' active' : ''
                     }`}
                   onClick={() => this.handelGamesTab(2)}
                 >
@@ -103,7 +105,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/tennis' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 3 ? "active" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 3 ? ' active' : ''
                     }`}
                   onClick={() => this.handelGamesTab(3)}
                 >
@@ -125,7 +127,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/racing' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 4 ? "active" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 4 ? 'active' : ""
                     }`}
                   onClick={() => this.handelGamesTab(4)}
                 >
@@ -235,7 +237,7 @@ class Index extends Component {
               <div className="pe-2 pe-md-5">
                 <NavLink to='/football' style={{textDecoration:"none"}}>
                 <div
-                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 8 ? "active" : ""
+                  className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 9? "active" : ""
                     }`}
                   onClick={() => this.handelGamesTab(9)}
                 >

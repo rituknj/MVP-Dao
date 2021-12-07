@@ -192,7 +192,28 @@
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  /* Styles */
+  .navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    gap:50px;
+    height: 700px;
+    align-items: center;
+  }
+  .navbar-nav {
+    display: flex;
+    gap:50px;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    text-align: center;
+  }
+  .collapsing {
+    height: 100px;
+    overflow: hidden;
+    transition: height 0.35s ease;
+  }
 }
 
 /* Smartphones (landscape) ----------- */
