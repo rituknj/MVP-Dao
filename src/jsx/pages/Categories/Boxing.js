@@ -5,7 +5,7 @@ import carbon_timer from './../../../images/carbon_timer.png'
 import App from './../../pages/App/Index'
 import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
-import { getActiveEvents, getEvent, placeBet, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser,cancelevent } from './../../../web3/betsMVPService'
+import { getActiveEvents, getEvent, placeBet, getEventOccurrenceBetAmount, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser,cancelevent } from './../../../web3/betsMVPService'
 import {TotalEventsCount,addingnewevents} from './../../../web3/Countallevents'
 import {isapproved} from './../../../web3/betsService'
 import { initInstance,getAccount } from './../../../web3/web3'
@@ -22,6 +22,9 @@ class GameCard extends Component {
       allevents: [],
       active:false,
       id:null,
+      zeroEventAmount:0,
+      oneEventAmount:0,
+      twoEventAmount:0,
       stackvalueone:0,
       stackvaluetwo:0,
       stackvaluethree:0,
@@ -187,10 +190,16 @@ class GameCard extends Component {
     let one = await bettorscounts(id,0)
     let two = await bettorscounts(id,1)
     let three = await bettorscounts(id,2)
+    let zeroamount = await getEventOccurrenceBetAmount(id, 0)
+    let oneamount = await getEventOccurrenceBetAmount(id, 1)
+    let twoamount = await getEventOccurrenceBetAmount(id, 2)
     this.setState({
     eventoneparticipant:one,
     eventtwoparticipant:two,
-    eventthreeparticipant:three
+    eventthreeparticipant:three,
+    zeroEventAmount:zeroamount,
+    oneEventAmount:oneamount,
+    twoEventAmount:twoamount
     })
     // console.log('participants', this.state.eventoneparticipant,this.state.eventtwoparticipant,this.state.eventthreeparticipant)
 }
@@ -316,7 +325,7 @@ class GameCard extends Component {
                                 <div className="col-12 mb-2">
                                   <p>
                                     Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>$2000</span>
+                                    <span>{(Number(this.state.zeroEventAmount)/10**18).toFixed(2)}&nbsp;BETS</span>
                                   </p>
                                 </div>
                                 <div className="col-9 col-md-10 mb-4">
@@ -354,7 +363,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {this.state.potential_wins}&nbsp;BETS
+                                    {isNaN(this.state.potential_wins)?'0':this.state.potential_wins}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>
@@ -377,7 +386,7 @@ class GameCard extends Component {
                                 <div className="col-12 mb-2">
                                   <p>
                                     Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>$2000</span>
+                                    <span>{(Number(this.state.oneEventAmount)/10**18).toFixed(2)}&nbsp;BETS</span>
                                   </p>
                                 </div>
                                 <div className="col-10 mb-4">
@@ -415,7 +424,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {this.state.potential_wins}&nbsp;BETS
+                                    {isNaN(this.state.potential_wins)?'0':this.state.potential_wins}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>
@@ -438,7 +447,7 @@ class GameCard extends Component {
                                 <div className="col-12 mb-2">
                                   <p>
                                     Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>$2000</span>
+                                    <span>{(Number(this.state.twoEventAmount)/10**18).toFixed(2)}&nbsp;BETS</span>
                                   </p>
                                 </div>
                                 <div className="col-10 mb-4">
@@ -476,7 +485,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {this.state.potential_wins}&nbsp;BETS
+                                    {isNaN(this.state.potential_wins)?'0':this.state.potential_wins}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>
@@ -496,7 +505,7 @@ class GameCard extends Component {
           <div className="col-12">
             <div className="match-main-div">
             <div style={{textAlign:"center",backgroundColor:"#938585", height:'37px'}}>
-            <h3 className='ml-3' style={{color:"white"}}>Boxing</h3>
+            <h3 className='ml-3' style={{color:"white"}}>Combat</h3>
             </div>
               <div className="theam-bg-dark mt-2 mt-md-5 p-1 p-md-5">
                 <div className="row">

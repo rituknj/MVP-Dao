@@ -113,13 +113,12 @@ class Index extends Component {
         Event.event1 != '' &&
         Event.event2 != ''
       ) {
-        console.log('run4')
         let result = await createEvent(Event)
 
-        if (result.status == true) {
-          alert('Event created successfully')
+        if (result == true) {
+          // alert('Event created successfully')
         } else {
-          alert('Failed')
+          // alert('Failed')
         }
       } else {
         alert('Fill the details correctly')

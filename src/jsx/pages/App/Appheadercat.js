@@ -162,7 +162,7 @@ class Index extends Component {
                     aria-expanded="false"
                     aria-controls="collapseBoxing"
                   >
-                    Boxing
+                    Combat
                   </p>
                 </div>
                 </NavLink>

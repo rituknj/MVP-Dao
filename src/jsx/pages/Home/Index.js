@@ -13,7 +13,7 @@ import "aos/dist/aos.css";
 import { initInstance, loginProcess } from "./../../../web3/web3";
 import { gettotalsupply } from './../../../web3/betsService'
 import {formatNumber, fromWei} from './../../../web3/utils'
-import { getEvent, getActiveEvents, totalEvents } from "../../../web3/betsMVPService";
+import {allactiveusers,totalpayout, totalEvents,totalbetcreated,getActiveEvents } from "../../../web3/betsMVPService";
 import { TotalEventsCount } from "../../../web3/Countallevents";
 ////Images
 import TopImage from "../../../images/landing-Bets-cards-games.png";
@@ -29,6 +29,7 @@ import segaImage from "../../../images/sega.png";
 import xboxImage from "../../../images/xbox.png";
 import psImage from "../../../images/ps.png";
 import chartImage from "../../../images/chart.png";
+import { act } from "react-dom/cjs/react-dom-test-utils.development";
 
 const SalesChart = loadable(() =>
     pMinDelay(import("../../components/Chart/SalesChart"), 1000)
@@ -39,8 +40,12 @@ class Index extends Component {
         this.state = {
             totalSupply:0,
             price:0,
-
+            activeusers:0,
+            payout:0,
+            events:0,
             item:[],
+            activeevents:0,
+            totalbetsmade:0,
             responsive: {
                 superLargeDesktop: {
                     // the naming can be any, depends on you.
@@ -105,20 +110,20 @@ class Index extends Component {
         AOS.init();
         await initInstance();
         await loginProcess();
-        const active_events = await totalEvents();
-        let items = [];
-        for (var i = 0; i <= active_events.length; i++) {
-            let events = await getEvent(i)
-            // this.state.item.push(events)
-        }
-        // console.log("3 events", this.state.item)
-
-        let totalSupply = await gettotalsupply(); 
-        totalSupply = fromWei(totalSupply)
+        let activeusers = await allactiveusers();
+        let payout = await totalpayout();
+        let events = await totalEvents();
+        let totalbets = await totalbetcreated();
+        let activeevents = await getActiveEvents();
+        // let totalSupply = await gettotalsupply(); 
+        // totalSupply = fromWei(totalSupply)
         this.setState({
-            totalSupply:totalSupply
+            activeusers: activeusers,
+            payout:payout,
+            events:events,
+            totalbetsmade:totalbets,
+            activeevents:activeevents
         })
-
         // fetching price of total
         request('GET', "https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d")
         .then((r1) => {
@@ -128,10 +133,8 @@ class Index extends Component {
               price:val
           })
         }).catch(err => {
-          console.log(err);
+          console.log("error is",err);
         })
-
-
       function request(method, url) {
         return new Promise(function (resolve, reject) {
           var xhr = new XMLHttpRequest();
@@ -141,8 +144,8 @@ class Index extends Component {
           xhr.send();
         });
       }
-
-      let getstoredevents = window.localStorage.getItem('events')
+        window.localStorage.clear();
+        let getstoredevents = window.localStorage.getItem('events')
         if(getstoredevents == null)
         {
         window.localStorage.setItem('events',JSON.stringify(''))
@@ -151,6 +154,7 @@ class Index extends Component {
         this.setState({
             item:decodestoredevents
         })
+        console.log('sdkfjasokdjflksadfjnal;oksdufpoksartn',this.state.item)
         }
         else{
         await TotalEventsCount();
@@ -158,24 +162,12 @@ class Index extends Component {
         this.setState({
             item:decodestoredevents
         })
+        console.log('sdkfjasokdjflksadfjnal;oksdufpoksartn',this.state.item)
         }
-    };
-
-    //GameCard
-    getGameCard = () => {
-        // await initInstance();
-        // const active_events = await getActiveEvents();
-        // let items = [];
-        // for (var i = active_events.length - 3; i <= active_events.length; i++) {
-        //     let events = await getEvent(i)
-        //     console.log("3 events", events)
-        //     // this.setState({
-        //     //     item: events
-        //     // })
-            
-        // }
         
     };
+    
+
 
     getNewsCard = () => {
         let items = [];
@@ -323,22 +315,22 @@ class Index extends Component {
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Total Payout</h5>
-                                    <h4 className="text-white mt-4">$100,000,00</h4>
+                                    <h4 className="text-white mt-4">{this.state.payout} BETS</h4>
                                 </div>
 
                                 <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12">
-                                    <h5 className="theam-text-color m-0">Total 24hr Payout</h5>
-                                    <h4 className="text-white mt-4">$25,000,00</h4>
+                                    <h5 className="theam-text-color m-0">Total Events</h5>
+                                    <h4 className="text-white mt-4">{this.state.events}</h4>
                                 </div>
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Active users</h5>
-                                    <h4 className="text-white mt-4">4,000,00</h4>
+                                    <h4 className="text-white mt-4">{this.state.activeusers}</h4>
                                 </div>
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Total bet Created</h5>
-                                    <h4 className="text-white mt-4">250,00</h4>
+                                    <h4 className="text-white mt-4">{this.state.totalbetsmade}</h4>
                                 </div>
 
                             </Carousel>
@@ -364,7 +356,7 @@ class Index extends Component {
                       itemClass="carousel-item-padding-40-px px-4"
                     >   
                         
-                        {this.state.item.map(item => <GameCardHome url={item.subcategory} poolsize={item.poolsize} subcategories={item.subcategory} teamone={item.teamone} teamtwo={item.teamtwo} endtime={item.endtime} zero={item.zero} one={item.one} two={item.two}/>)}                                 
+                        {this.state.activeevents != 0 && this.state.item.map(item => <GameCardHome url={item.subcategory} poolsize={item.poolsize} subcategories={item.subcategory} teamone={item.teamone} teamtwo={item.teamtwo} endtime={item.endtime} zero={item.zero} one={item.one} two={item.two}/>)}                                 
                         
                     </Carousel>
                     <div className="mt-4 px-4">

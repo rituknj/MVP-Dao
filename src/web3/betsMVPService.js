@@ -40,9 +40,17 @@ export const createEvent = async ({sub_category, name, time, endTime, event1, ev
     // let time = strTimeToInt(Event.time);
     // let endTime = strTimeToInt(Event.endTime);
     // console.log("lengh",sub_category, name, time, endTime, event1, event2)
-    var getData = await betMVPContract.methods.createEvent('0x0', sub_category, name, time, endTime, event1, event2);
-    let data = getData.encodeABI()
-    return await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
+    var getData = await betMVPContract.methods.createEvent('0x0', sub_category, name, time, endTime, event1, event2).send({
+        from: await getAccount(),
+    });
+    if(getData.status == true){
+        alert('Event created successfully')
+    }
+    else{
+        alert("Failed")
+    }
+    // let data = getData.encodeABI()
+    // return await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
 }
 
 export const placeBet = async ({event_id, amount, occured}) => {
@@ -87,9 +95,9 @@ export const getValidationPoint = async () => {
     return _validationPoint/10**9;
 }
 
-export const getBetsHistory = async () => {
+export const getBetsHistory = async () =>{
     const betMVPContract = await getBETMVPContract();
-    const betsHistory = await betMVPContract.methods.getUserEventHistory(await getAccount() ).call({'from': await getAccount()});
+    const betsHistory = await betMVPContract.methods.getUserEventHistory(await getAccount()).call({'from': await getAccount()});
     return betsHistory;
 }
 
@@ -266,4 +274,40 @@ export const cancelevent = async (id) => {
         alert("Failed")
     }
     return resutl
+}
+
+export const allactiveusers = async () => {
+    const betMVPContract = await getBETMVPContract();
+    const resutl = await betMVPContract.methods.getActiveUsers().call();
+    return resutl
+}
+
+export const totalpayout = async () => {
+    const betMVPContract = await getBETMVPContract();
+    const resutl = await betMVPContract.methods.getTotalPayout().call();
+    return resutl
+}
+
+export const activeuserslist = async () => {
+    const betMVPContract = await getBETMVPContract();
+    const resutl = await betMVPContract.methods.getActiveUsersList().call();
+    return resutl
+}
+export const counttotalbetscreated = async (address) =>{
+    const betMVPContract = await getBETMVPContract();
+    const betsHistory = await betMVPContract.methods.getUserEventHistory(address).call({'from': await getAccount()});
+    return betsHistory;
+}
+
+export const totalbetcreated = async() => {
+    let users = await activeuserslist();
+    let history = []
+    let createbets = 0
+    console.log("histroy is",history)
+    for(const m of users){
+        history = await counttotalbetscreated(m);
+        createbets = createbets + history.length
+    }
+    console.log("created bets are", createbets)
+    return createbets
 }

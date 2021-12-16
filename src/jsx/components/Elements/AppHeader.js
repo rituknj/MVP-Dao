@@ -107,8 +107,10 @@ class AppHeader extends Component {
       let i = await getEvent(element)
       let x = Object.create(i)
       let won = await GetUserWonAmountOnEvent(element)
-      x.won =  won
-     
+      let userWagerAmount = await AmountStackOnEventByaUser(element)
+      x.won = won
+      x.userwageramount = userWagerAmount
+      
       check.push(x)
       this.setState({
         bethistory: check,
@@ -479,7 +481,7 @@ class AppHeader extends Component {
                             
                             <div className="col-3 betsflex" style={{display:'flex'}}>
                               <h4 className="m-0">
-                                {Number(items[4]/(10**18)).toFixed(2)}&nbsp;&nbsp;BETS
+                                {Number(items.userwageramount/(10**18)).toFixed(2)}&nbsp;&nbsp;BETS
                               </h4>
                             </div>
                           </div>
@@ -504,7 +506,7 @@ class AppHeader extends Component {
                           <p className="m-0 text-end w-100">ENDED</p>
                         </div>
                       </div>
-                      <button className="bethistory-claim" onClick={() => this.claimrewardsamounts(items[0], items[6], items[9])}>
+                      <button className="bethistory-claim" onClick={() => this.claimrewardsamounts(items[0], items[6], items[10])}>
                         Claim Rewards
                       </button>
                       <button

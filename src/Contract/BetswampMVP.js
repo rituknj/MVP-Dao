@@ -304,6 +304,20 @@ export const BETS_ABI = [
     type: 'function',
   },
   {
+    inputs: [],
+    name: 'getActiveUsers',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getActiveUsersList',
+    outputs: [{ internalType: 'address[]', name: '', type: 'address[]' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
     inputs: [{ internalType: 'uint256', name: 'index', type: 'uint256' }],
     name: 'getEvent',
     outputs: [
@@ -401,6 +415,13 @@ export const BETS_ABI = [
     ],
     name: 'getSubCategory',
     outputs: [{ internalType: 'string[]', name: '', type: 'string[]' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getTotalPayout',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
   },
@@ -546,6 +567,13 @@ export const BETS_ABI = [
   {
     inputs: [{ internalType: 'address', name: '_address', type: 'address' }],
     name: 'showValidationPoints',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'totalBetCreated',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',

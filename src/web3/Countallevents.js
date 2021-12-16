@@ -15,7 +15,6 @@ let newevents = 0
           for (let i = 0; i < events.length; i++) {
               check2 = await getEvent(events[i])
             if(check2[10] == false){
-              console.log('creator is ', check2)
               check = Object.create(check2)
               zero = await bettorscountspercent(check2[0],0,check2[14])
               one = await bettorscountspercent(check2[0],1,check2[14])
