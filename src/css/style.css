@@ -378,6 +378,9 @@ footer {
   width: 128px;
   position: relative;
 }
+.activeLink {
+  color: red;
+}
 .tab-view-card.active::before {
   content: "";
   position: absolute;

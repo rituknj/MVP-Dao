@@ -256,6 +256,7 @@ class GameCard extends Component {
     return (
       <Fragment>
         <App/>
+        
         <div className="sidebar" id="sidebar" onClick={this.moussecloas}>
                         <div className="data-list" >
                           <form onSubmit={this.Onsubmit}>

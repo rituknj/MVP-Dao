@@ -74,10 +74,11 @@ class Index extends Component {
   }
   handelToggle = (eventid) => {
     let handelToggle = this.state.handelToggle
+    if(eventid == eventid){
     this.setState({
-      handelToggle: handelToggle ? false : true,
+      handelToggle: eventid,
       id: eventid,
-    })
+    })}
   }
 
   Onsubmit = async (event) => {
@@ -344,7 +345,7 @@ class Index extends Component {
                       {this.state.allevents.map((item) => (
                         <div>
                           <div className="admin-card-view px-3 py-3 mb-5">
-                            <p onClick={() => this.handelToggle()}>
+                            <p onClick={() => this.handelToggle(item[0])}>
                               <p className="title w-100">Event id {item[0]}</p>
                               {item[8]} vs {item[9]}
                             </p>
@@ -352,7 +353,7 @@ class Index extends Component {
                               <div className="col-md-7">
                                 <div
                                   className="d-flex mb-3"
-                                  onClick={() => this.handelToggle()}
+                                  onClick={() => this.handelToggle(item[0])}
                                 >
                                   <p className="title w-100">Created</p>
                                   <p className="date text-end w-100">
@@ -361,7 +362,7 @@ class Index extends Component {
                                 </div>
                                 <div
                                   className="d-flex mb-0"
-                                  onClick={() => this.handelToggle()}
+                                  onClick={() => this.handelToggle(item[0])}
                                 >
                                   <p className="title w-100">
                                     total participants
@@ -370,7 +371,7 @@ class Index extends Component {
                                     {item[14]}
                                   </p>
                                 </div>
-                                {this.state.handelToggle ? (
+                                {this.state.handelToggle == item[0] ? (
                                   <div
                                     className="toggle-card"
                                     data-aos="fade-down"
@@ -425,20 +426,9 @@ class Index extends Component {
                                 )}
                               </div>
                               <div className="col-md-1"></div>
-                              <div className="col-md-4 d-none d-md-flex justify-content-center align-items-center">
-                                {this.state.handelToggle
-                                  ? ''
-                                  : false
-                                    // <button
-                                    //   className="btn button-1"
-                                    //   onClick={() => this.preview(item[0])}
-                                    // >
-                                    //   validate
-                                    // </button>
-                                }
-                              </div>
+                              
 
-                              {this.state.handelToggle ? (
+                              {this.state.handelToggle == item[0]  ? (
                                 <div
                                   className="col-md-12 toggle-card"
                                   data-aos="fade-down"
@@ -513,7 +503,7 @@ class Index extends Component {
                                     {item[14]}
                                   </p>
                                 </div>
-                                {this.state.handelToggle ? (
+                                {false ? (
                                   <div
                                     className="toggle-card"
                                     data-aos="fade-down"
@@ -569,7 +559,7 @@ class Index extends Component {
                               </div>
                               <div className="col-md-1"></div>
 
-                              {this.state.handelToggle ? (
+                              {false ? (
                                 <div
                                   className="col-md-12 toggle-card"
                                   data-aos="fade-down"
@@ -655,7 +645,7 @@ class Index extends Component {
                                     {item[4]}
                                   </p>
                                 </div>
-                                {this.state.handelToggle ? (
+                                {false ? (
                                   <div
                                     className="toggle-card"
                                     data-aos="fade-down"
@@ -711,7 +701,7 @@ class Index extends Component {
                               </div>
                               <div className="col-md-1"></div>
 
-                              {this.state.handelToggle ? (
+                              {false ? (
                                 <div
                                   className="col-md-12 toggle-card"
                                   data-aos="fade-down"
