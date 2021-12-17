@@ -59,7 +59,8 @@ class AppHeader extends Component {
       userWoninEvent:0,
       bal:"BETS",
       showbalance:0,
-      pendingvalidationpoints:0
+      pendingvalidationpoints:0,
+      currenttime:0
     }
   }
 
@@ -78,6 +79,7 @@ class AppHeader extends Component {
     let balanceofUSD = await getUSDTBalance()
     let account = await getAccount()
     setInterval(async() => { 
+      var ts = Math.round((new Date()).getTime() / 1000);
       balanceofBET = await getBETBalance()
       point = await getValidationPoint()
       totalbetslocked = await totaltokenlocked()
@@ -86,6 +88,7 @@ class AppHeader extends Component {
       totalwinnings = await getusertotalwinnings()
       pendingvalidationpoints = await pendingpoint()
       this.setState({
+        currenttime:ts,
         historyid: history,
         totalbetsmade: history.length,
         balanceBET: balanceofBET,
@@ -101,7 +104,7 @@ class AppHeader extends Component {
     
     let historyi = await getBetsHistory()
     
-    console.log('len',history)
+    
 
     historyi.forEach(async (element) => {
       let i = await getEvent(element)
@@ -116,8 +119,7 @@ class AppHeader extends Component {
         bethistory: check,
       })
     })
-    console.log('final won', this.state.bethistory.won)
-    console.log('bet won history', this.state.bethistory)
+    
     this.setState({
       // totalbetsmade: count,
       // lockedbets: totalbetslocked,
@@ -132,8 +134,8 @@ class AppHeader extends Component {
       balanceofUSDT: balanceofUSD,
       acc: account,
     })
-    console.log('USDT balance', balanceofUSD)
-    console.log('BETS balance', balanceofBET)
+    // console.log('USDT balance', balanceofUSD)
+    // console.log('BETS balance', balanceofBET)
     if(this.state.bal == 'BETS'){
       this.setState({
         showbalance:this.state.betbalanceinloop
@@ -167,7 +169,6 @@ class AppHeader extends Component {
   //   })
   // }
   approveyourself = async () => {
-    console.log('apprived run')
     await approve()
   }
 
@@ -217,19 +218,13 @@ class AppHeader extends Component {
     })
   }
 
-  reclaimwagers = async(id, starttime, validationtime) => {
+  reclaimwagers = async(id, starttime) => {
     var ts = Math.round((new Date()).getTime() / 1000);
     let time = starttime - ts
     console.log("time",time, id )
       if(time < 0){
         try{
-          if(validationtime < ts){
             await reclaimwager(id)
-          }
-          else{
-            alert("Can't claim refund yet. Please wait for 3 hours after expiry of the event!")
-          }
-          
         }
         catch(e){
           alert(e.message)
@@ -515,13 +510,13 @@ class AppHeader extends Component {
                       <button className="bethistory-claim" onClick={() => this.claimrewardsamounts(items[0], items[6], items[10])}>
                         Claim Rewards
                       </button>
-                      <button
+                      {this.state.currenttime > items[7] ?<button
                         className="bethistory-claim"
                         style={{ marginLeft: '10px' }}
                         onClick={() => this.reclaimwagers(items[0], items[5],items[7])}
                       >
                         Refund Amount
-                      </button>
+                      </button>:''}
                     </div>
                   ))}
                 </>

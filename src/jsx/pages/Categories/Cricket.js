@@ -104,7 +104,9 @@ class GameCard extends Component {
   }
 
   handelSideMenu = async(eventid, teamone,teamtwo, endtime, poolsize, bettercount, category, potentialwins, zero, one, two) => {
-    
+    if(isNaN(potentialwins)){
+      potentialwins = 0
+    }
     // console.log("potential win", potentialwins)
     await this.countbettors(eventid);
     var ts = Math.round((new Date()).getTime() / 1000);
@@ -371,7 +373,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {this.winningamount(Number(this.state.stackvalueone),Number(this.state.poolsize))}&nbsp;BETS
+                                    {this.state.stackvalueone == 0 ? this.state.potential_wins: this.winningamount(Number(this.state.stackvalueone),Number(this.state.poolsize))}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>
@@ -432,7 +434,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {this.winningamount(Number(this.state.stackvaluetwo),Number(this.state.poolsize))}&nbsp;BETS
+                                    {this.state.stackvaluetwo== 0 ? this.state.potential_wins: this.winningamount(Number(this.state.stackvaluetwo),Number(this.state.poolsize))}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>
@@ -493,7 +495,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {this.winningamount(Number(this.state.stackvaluethree),Number(this.state.poolsize))}&nbsp;BETS
+                                    {this.state.stackvaluethree == 0 ? this.state.potential_wins: this.winningamount(Number(this.state.stackvaluethree),Number(this.state.poolsize))}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>
@@ -569,7 +571,7 @@ class GameCard extends Component {
                               </ul>
                             </div>
                             <div className="col-4 button-row gap-2">
-                            {events.creator == this.state.account ? <button
+                            {events.creator == this.state.account && events.endime > (Math.round((new Date()).getTime() / 1000))  ? <button
                                 className="btn"
                                 onClick={() => this.cancelevent(events.id)
                                 }

@@ -22,7 +22,7 @@ class Index extends Component {
     };
   }
   componentDidMount = () => { 
-    console.log(this.props)
+    
   };
 
 
@@ -38,21 +38,13 @@ class Index extends Component {
   };
   
   handelGamesTab = (tab) => {
-    console.log("ruin1")
     this.setState({
       activeTabTop:tab
     })
-    this.handelGamesTab2(tab)
+    console.log('this is ', this.state.activeTabTop)
   };
 
-  handelGamesTab2 = (tab) => {
-    console.log("ruin2")
-    this.setState({
-      activeTabTop:tab
-    })
-    console.log("Active tab is ", this.state.activeTabTop)
-    
-  };
+
  
 
 
@@ -65,12 +57,12 @@ class Index extends Component {
             <div className="d-flex mt-2 mt-md-4 games-scroll">
        
               <div className="pe-2 pe-md-5">
-                <NavLink activeClassName="activeLink" to='/soccer' style={{textDecoration:"none"}}>
+                <a href='/soccer' style={{textDecoration:"none"}} >
                 <div
                   className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 1 ? ' active' : ''
                     }`}
-                  onClick={() => this.handelGamesTab(1)
-                  }
+                  
+                  
                 >
                   <img src={monotone_soccer} />
                   <p
@@ -84,15 +76,15 @@ class Index extends Component {
                     Soccer
                   </p>
                 </div>
-                </NavLink>
+                </a>
               </div>
             
               <div className="pe-2 pe-md-5">
-                <NavLink activeClassName="activeLink" to='/rugby' style={{textDecoration:"none"}}>
+                <NavLink activeClassName="activeLink" to='/rugby' style={{textDecoration:"none"}} onClick={() => this.handelGamesTab(2)}>
                 <div
                   className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 2 ? ' active' : ''
                     }`}
-                  onClick={() => this.handelGamesTab(2)}
+                  
                 >
                   <img src={park_rugby} />
                   <p
