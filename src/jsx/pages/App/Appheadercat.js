@@ -57,7 +57,7 @@ class Index extends Component {
             <div className="d-flex mt-2 mt-md-4 games-scroll">
        
               <div className="pe-2 pe-md-5">
-                <a href='/soccer' style={{textDecoration:"none"}} >
+                <NavLink to='/soccer' style={{textDecoration:"none"}} >
                 <div
                   className={`text-center tab-view-card p-3 ${this.state.activeTabTop == 1 ? ' active' : ''
                     }`}
@@ -76,7 +76,7 @@ class Index extends Component {
                     Soccer
                   </p>
                 </div>
-                </a>
+                </NavLink>
               </div>
             
               <div className="pe-2 pe-md-5">

@@ -240,7 +240,7 @@ class GameCard extends Component {
     if(lefttime <  0){
       lefttime = 0
     }
-    // console.log("time remaining",parseInt(lefttime/24), ts);
+    
     return lefttime
   }
 
@@ -305,7 +305,7 @@ class GameCard extends Component {
                               <p className="theam-text-color m-0">Pool size</p>
                             </div>
                             <div className="col-6">
-                              <h3 className="mb-0">{this.state.poolsize} BETS</h3>
+                              <h3 className="mb-0">{this.state.poolsize} BUSE</h3>
                             </div>
                             <div className="col-6">
                               <h5 className="text-end mb-0">
@@ -338,7 +338,7 @@ class GameCard extends Component {
                                 <div className="col-12 mb-2">
                                   <p>
                                     Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>{(Number(this.state.zeroEventAmount)/10**18).toFixed(2)}&nbsp;BETS</span>
+                                    <span>{(Number(this.state.zeroEventAmount)/10**18).toFixed(2)}&nbsp;BUSD</span>
                                   </p>
                                 </div>
                                 <div className="col-9 col-md-10 mb-4">
@@ -376,7 +376,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {this.state.stackvalueone == 0 ? this.state.potential_wins: this.winningamount(Number(this.state.stackvalueone),Number(this.state.poolsize))}&nbsp;BETS
+                                    {this.state.stackvalueone == 0 ? this.state.potential_wins: this.winningamount(Number(this.state.stackvalueone),Number(this.state.poolsize))}&nbsp;BUSD
                                   </p>
                                 </div>
                               </div>
@@ -399,8 +399,9 @@ class GameCard extends Component {
                                 <div className="col-12 mb-2">
                                   <p>
                                     Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>{(Number(this.state.oneEventAmount)/10**18).toFixed(2)}&nbsp;BETS</span>
+                                    <span>{(Number(this.state.oneEventAmount)/10**18).toFixed(2)}&nbsp;BUSD</span>
                                   </p>
+
                                 </div>
                                 <div className="col-10 mb-4">
                                   <div className="progress">
@@ -437,7 +438,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {this.state.stackvaluetwo == 0 ? this.state.potential_wins: this.winningamount(Number(this.state.stackvaluetwo),Number(this.state.poolsize))}&nbsp;BETS
+                                    {this.state.stackvaluetwo == 0 ? this.state.potential_wins: this.winningamount(Number(this.state.stackvaluetwo),Number(this.state.poolsize))}&nbsp;BUSD
                                   </p>
                                 </div>
                               </div>
@@ -460,7 +461,8 @@ class GameCard extends Component {
                                 <div className="col-12 mb-2">
                                   <p>
                                     Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>{(Number(this.state.twoEventAmount)/10**18).toFixed(2)}&nbsp;BETS</span>
+                                    <span>{(Number(this.state.twoEventAmount)/10**18).toFixed(2)}&nbsp;BUSD
+                                    </span>
                                   </p>
                                 </div>
                                 <div className="col-10 mb-4">
@@ -498,7 +500,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {this.state.stackvaluethree == 0 ? this.state.potential_wins:this.winningamount(Number(this.state.stackvaluethree),Number(this.state.poolsize))}&nbsp;BETS
+                                    {this.state.stackvaluethree == 0 ? this.state.potential_wins:this.winningamount(Number(this.state.stackvaluethree),Number(this.state.poolsize))}&nbsp;BUSD
                                   </p>
                                 </div>
                               </div>
@@ -551,7 +553,7 @@ class GameCard extends Component {
                               <p className="theam-text-color m-0">Pool size</p>
                             </div>
                             <div className="col-6">
-                              <h3>{Number(events.poolsize/10**18).toFixed(2)} BETS</h3>
+                              <h3>{Number(events.poolsize/10**18).toFixed(2)} BUSD</h3>
                             </div>
                             <div className="col-6">
                               <h5 className="text-end">
@@ -597,6 +599,9 @@ class GameCard extends Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div style={{textAlign:'center'}}>
+            <h1>Beta Version</h1>
           </div>
         </div>
       </Fragment>

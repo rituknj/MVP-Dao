@@ -96,53 +96,53 @@ class Index extends Component {
     componentDidMount = async() => {
         window.addEventListener("resize", this.updateSize);
         AOS.init();
-        chart = createChart(document.querySelector("#chart"), {
-            width: this.state.chartWidth,
-            height: 600,
-            layout: {
-                backgroundColor: "transparent",
-                textColor: "rgba(255, 255, 255, 0.8)",
-            },
-            timeScale: {
-                timeVisible: false,
-                secondsVisible: false,
-            },
-            rightPriceScale: {
-                scaleMargins: {
-                    top: 0.1,
-                    bottom: 0.1,
-                },
-            },
-            grid: {
-                vertLines: {
-                    color: "transparent",
-                },
-                horzLines: {
-                    color: "transparent",
-                },
-            },
-            entireTextOnly: false,
-        });
-        var candleSeries = chart.addCandlestickSeries();
-        candleSeries.setData(trade);
-        chart
-            .addLineSeries({
-                color: "rgba(4, 111, 232, 1)",
-                lineWidth: 1,
-            })
-            .setData(lineData);
-        setTimeout(async () => {
-            this.setState({
-                chartWidth: document.getElementById("chart").clientWidth,
-                loader: false
-            });
-            await this.updateSize();
-        }, 1500);
-        setTimeout(async () => {
-            this.setState({
-                loader: false
-            });
-        }, 2000);
+        // chart = createChart(document.querySelector("#chart"), {
+        //     width: this.state.chartWidth,
+        //     height: 600,
+        //     layout: {
+        //         backgroundColor: "transparent",
+        //         textColor: "rgba(255, 255, 255, 0.8)",
+        //     },
+        //     timeScale: {
+        //         timeVisible: false,
+        //         secondsVisible: false,
+        //     },
+        //     rightPriceScale: {
+        //         scaleMargins: {
+        //             top: 0.1,
+        //             bottom: 0.1,
+        //         },
+        //     },
+        //     grid: {
+        //         vertLines: {
+        //             color: "transparent",
+        //         },
+        //         horzLines: {
+        //             color: "transparent",
+        //         },
+        //     },
+        //     entireTextOnly: false,
+        // });
+        // var candleSeries = chart.addCandlestickSeries();
+        // candleSeries.setData(trade);
+        // chart
+        //     .addLineSeries({
+        //         color: "rgba(4, 111, 232, 1)",
+        //         lineWidth: 1,
+        //     })
+        //     .setData(lineData);
+        // setTimeout(async () => {
+        //     this.setState({
+        //         chartWidth: document.getElementById("chart").clientWidth,
+        //         loader: false
+        //     });
+        //     await this.updateSize();
+        // }, 1500);
+        // setTimeout(async () => {
+        //     this.setState({
+        //         loader: false
+        //     });
+        // }, 2000);
 
 
         await initInstance();
@@ -259,7 +259,7 @@ class Index extends Component {
     render() {
         return (
             <Fragment>
-                {this.state.loader ?
+                {false ?
                     <div className="loading">
                         <img src={loading} width="250" />
                     </div>
@@ -271,7 +271,10 @@ class Index extends Component {
                         className="pb-md-1 pb-2"
                         id="chart"
                         style={{ width: "100%" }}
-                    ></div>
+                    >
+                    <h1 style={{textAlign:"center",padding:"50px"}}>Chart Comming Soon </h1>
+
+                    </div>
                 </div>
                 <div
                     className="container-fluid px-md-5 py-md-5 py-3"
@@ -303,14 +306,14 @@ class Index extends Component {
                                 </div>
                                 <div>
                                     <div className="card chart-card  overflow-hidden text-center py-3">
-                                        <h5 className="theam-text-color m-0">24 Hr change</h5>
-                                        <h4 className="theam-text-green mt-3">5.89 %</h4>
+                                        <h5 className="theam-text-color m-0">Holders</h5>
+                                        <h4 className="theam-text-green mt-3">731</h4>
                                     </div>
                                 </div>
                                 <div>
                                     <div className="card chart-card  overflow-hidden text-center py-3">
                                         <h5 className="theam-text-color m-0">Market cap</h5>
-                                        <h4 className="text-white mt-3">{Number(this.state.price*this.state.totalSupply/1000000).toFixed(2)} M</h4>
+                                        <h4 className="text-white mt-3">{((Number(this.state.price).toFixed(4) * 250000000)/10**6).toFixed(2)} M</h4>
                                     </div>
                                 </div>
                                 <div>
@@ -487,7 +490,7 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-                <div
+                {/* <div
                     className="container-fluid px-md-5 py-md-5 py-5"
                     id="about-section-4"
                 >
@@ -541,7 +544,7 @@ class Index extends Component {
                             ))}
                         </Carousel>
                     </div>
-                </div>
+                </div> */}
 
                 <div
                     className="container-fluid px-md-5 py-md-5 py-4 text-center"
@@ -555,7 +558,7 @@ class Index extends Component {
                     <button className="btn mt-4">Read Whitepaper</button>
                     <div className="space-100"></div>
                 </div>
-                <div
+                {/* <div
                     className="container-fluid px-md-5 py-md-5 py-3"
                     id="about-section-6"
                 >
@@ -565,7 +568,7 @@ class Index extends Component {
                     <div className="accordion" id="accordionFaq">
                         {this.faqs()}
                     </div>
-                </div>
+                </div> */}
 
                 <div
                     className="container-fluid px-md-5 py-md-5 py-3"

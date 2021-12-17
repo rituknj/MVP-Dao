@@ -13,8 +13,10 @@ import "aos/dist/aos.css";
 import { initInstance, loginProcess } from "./../../../web3/web3";
 import { gettotalsupply } from './../../../web3/betsService'
 import {formatNumber, fromWei} from './../../../web3/utils'
-import {allactiveusers,totalpayout, totalEvents,totalbetcreated,getActiveEvents } from "../../../web3/betsMVPService";
+import {allactiveusers,totalpayout, totalEvents, totalbetcreated, getActiveEvents } from "../../../web3/betsMVPService";
 import { TotalEventsCount } from "../../../web3/Countallevents";
+import ModalVideo from 'react-modal-video';
+
 ////Images
 import TopImage from "../../../images/landing-Bets-cards-games.png";
 import arrowRight from "../../../images/arrow-right.svg";
@@ -23,7 +25,7 @@ import statiImage from "../../../images/stati.png";
 import validateImage from "../../../images/validate.png";
 import mobileImage from "../../../images/mobile.png";
 import lineImage from "../../../images/line.png";
-import ueImage from "../../../images/ue.png";
+import ueImage from "../../../images/CryptoKidFinance.png";
 import bscImage from "../../../images/bsc.png";
 import segaImage from "../../../images/sega.png";
 import xboxImage from "../../../images/xbox.png";
@@ -40,7 +42,9 @@ class Index extends Component {
         this.state = {
             totalSupply:0,
             price:0,
+            liquidity:0,
             activeusers:0,
+            isOpen: false,
             payout:0,
             events:0,
             item:[],
@@ -104,6 +108,7 @@ class Index extends Component {
                 },
             },
         };
+        this.openModal = this.openModal.bind(this)
     }
 
     componentDidMount = async() => {
@@ -115,9 +120,10 @@ class Index extends Component {
         let events = await totalEvents();
         let totalbets = await totalbetcreated();
         let activeevents = await getActiveEvents();
-        // let totalSupply = await gettotalsupply(); 
+        let totalSupply = await gettotalsupply(); 
         // totalSupply = fromWei(totalSupply)
         this.setState({
+            totalSupply:totalSupply,
             activeusers: activeusers,
             payout:payout,
             events:events,
@@ -130,11 +136,25 @@ class Index extends Component {
           var x1 = JSON.parse(r1.target.responseText);
           let val = Number(x1.data.price).toFixed(13)
           this.setState({
-              price:val
+              price:val,
+              realprice:x1.data.price
           })
         }).catch(err => {
           console.log("error is",err);
         })
+
+        // request('GET', "https://api.pancakeswap.info/api/v2/summary/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c_0x749f031FDa3a4904b026f2275A697096492a129d")
+        // .then((r1) => {
+        //   var x1 = JSON.parse(r1.target.responseText);
+        //   console.log("data is ",)
+        //   let val = Number(x1.data.liquidity)
+        //   console.log("liquidity",val)
+        //   this.setState({
+        //     liquidity:val
+        //   })
+        // }).catch(err => {
+        //   console.log("error is",err);
+        // })
       function request(method, url) {
         return new Promise(function (resolve, reject) {
           var xhr = new XMLHttpRequest();
@@ -154,7 +174,7 @@ class Index extends Component {
         this.setState({
             item:decodestoredevents
         })
-        console.log('sdkfjasokdjflksadfjnal;oksdufpoksartn',this.state.item)
+        
         }
         else{
         await TotalEventsCount();
@@ -162,22 +182,26 @@ class Index extends Component {
         this.setState({
             item:decodestoredevents
         })
-        console.log('sdkfjasokdjflksadfjnal;oksdufpoksartn',this.state.item)
+       
         }
         
     };
-    
+
+    openModal () {
+        this.setState({isOpen: true})
+      }
 
 
     getNewsCard = () => {
         let items = [];
-        for (var i = 1; i <= 10; i++) {
-            items.push(<NewsCard key={i} />);
+        for (var i = 1; i <= 1; i++) {
+            items.push(<h1 style={{textAlign:"center"}}>Comming soon</h1>);
         }
         return items;
     };
 
     render() {
+      
         return (
             <Fragment>
                 <Header />
@@ -228,24 +252,24 @@ class Index extends Component {
                     >
                         <div className="col-lg-12">
                             <Carousel
-                                swipeable={true}
-                                draggable={true}
-                                arrows={false}
-                                showDots={false}
-                                responsive={this.state.responsive}
-                                ssr={true} // means to render carousel on server-side.
-                                infinite={true}
-                                keyBoardControl={true}
-                                customTransition="all .5"
-                                transitionDuration={500}
-                                containerClass="carousel-container"
-                                removeArrowOnDeviceType={["tablet", "mobile"]}
-                                deviceType={this.props.deviceType}
-                                itemClass="px-2"
+                                 swipeable={true}
+                                 draggable={true}
+                                 arrows={false}
+                                 showDots={false}
+                                 responsive={this.state.responsive_center}
+                                 ssr={true} // means to render carousel on server-side.
+                                 infinite={true}
+                                 keyBoardControl={true}
+                                 customTransition="all .5"
+                                 transitionDuration={500}
+                                 containerClass="carousel-container"
+                                 removeArrowOnDeviceType={["tablet", "mobile"]}
+                                 deviceType={this.props.deviceType}
+                                 itemClass="px-2"
                             >
-                                <div className="card chart-card py-4 px-2  overflow-hidden align-items-stretch col-12">
+                                {/* <div className="card chart-card py-4 px-2  overflow-hidden align-items-stretch col-12">
                                     <img src={chartImage} className="mt-3" />
-                                </div>
+                                </div> */}
 
                                 <div className="card chart-card  overflow-hidden text-center py-3  align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Price</h5>
@@ -253,13 +277,13 @@ class Index extends Component {
                                 </div>
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
-                                    <h5 className="theam-text-color m-0">24 Hr change</h5>
-                                    <h4 className="theam-text-green mt-3">5.89 %</h4>
+                                    <h5 className="theam-text-color m-0">Holders</h5>
+                                    <h4 className="theam-text-green mt-3">731</h4>
                                 </div>
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Market cap</h5>
-                                    <h4 className="text-white mt-3">{Number(this.state.price*this.state.totalSupply/1000000).toFixed(2)} M</h4>
+                                    <h4 className="text-white mt-3">{((Number(this.state.price).toFixed(4) * 250000000)/10**6).toFixed(2)} M</h4>
                                 </div>
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
@@ -278,7 +302,7 @@ class Index extends Component {
                                 <source src="movie.mp4" type="video/mp4" />
                                 <source src="movie.ogg" type="video/ogg" />
                             </video>
-                            <a id="play-video" className="video-play-button " href="#">
+                            <a id="play-video" className="video-play-button " target='_blank' href="https://www.youtube.com/watch?v=KWLdJQR_4pA">
                                 <span></span>
                             </a>
                         </div>
@@ -485,7 +509,7 @@ class Index extends Component {
                         >
                             <img src={ueImage} width="100" />
                         </div>
-                        <div
+                        {/* <div
                             data-aos="zoom-in"
                             data-aos-duration="400"
                             data-aos-easing="linear"
@@ -512,7 +536,7 @@ class Index extends Component {
                             data-aos-easing="linear"
                         >
                             <img src={psImage} width="100%" />
-                        </div>
+                        </div> */}
                     </Carousel>
                 </div>
                 <Footer />

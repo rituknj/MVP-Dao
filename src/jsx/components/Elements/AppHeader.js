@@ -13,7 +13,8 @@ import {
   checkChain,
 } from './../../../web3/web3'
 import { getUSDTBalance, addUSDT } from './../../../web3/usdtService'
-import { addBETS, getBETBalance, approve, isapproved } from './../../../web3/betsService'
+import { addBETS, getBETBalanceBUSD } from './../../../web3/betsService'
+import { approveBETS, isapproved, getBETBalancebets } from './../../../web3/BETS2Services'
 import {
   getValidationPoint,
   earnvalidationpoints,
@@ -74,13 +75,16 @@ class AppHeader extends Component {
     let totalwageramount = 0
     let totalwinnings = 0
     let pendingvalidationpoints = 0
+    let balanceofUSD = 0
     await initInstance()
     await loginProcess()
-    let balanceofUSD = await getUSDTBalance()
+    
+    
     let account = await getAccount()
     setInterval(async() => { 
       var ts = Math.round((new Date()).getTime() / 1000);
-      balanceofBET = await getBETBalance()
+      balanceofBET = await getBETBalancebets()
+      let balanceofUSD = await getBETBalanceBUSD()
       point = await getValidationPoint()
       totalbetslocked = await totaltokenlocked()
       history = await getBetsHistory()
@@ -89,6 +93,7 @@ class AppHeader extends Component {
       pendingvalidationpoints = await pendingpoint()
       this.setState({
         currenttime:ts,
+        balanceofUSDT: balanceofUSD,
         historyid: history,
         totalbetsmade: history.length,
         balanceBET: balanceofBET,
@@ -98,7 +103,7 @@ class AppHeader extends Component {
         totalwinnings: totalwinnings,
         pendingvalidationpoints:pendingvalidationpoints
       })
-      // console.log('what is my balance',this.state.balanceBET)
+      // console.log("USDT Balance", balanceofUSD)
     }, 100);
 
     
@@ -120,11 +125,8 @@ class AppHeader extends Component {
       })
     })
     
-    this.setState({
-      // totalbetsmade: count,
-      // lockedbets: totalbetslocked,
-    })
-    // console.log('total bets locked', this.state.lockedbets)
+  
+  
     if (point > 0) {
       this.setState({
         show: true,
@@ -134,8 +136,7 @@ class AppHeader extends Component {
       balanceofUSDT: balanceofUSD,
       acc: account,
     })
-    // console.log('USDT balance', balanceofUSD)
-    // console.log('BETS balance', balanceofBET)
+    
     if(this.state.bal == 'BETS'){
       this.setState({
         showbalance:this.state.betbalanceinloop
@@ -168,9 +169,9 @@ class AppHeader extends Component {
   //     validationpoint:point
   //   })
   // }
-  approveyourself = async () => {
-    await approve()
-  }
+  // approveyourself = async () => {
+  //   await approve()
+  // }
 
   showid = (id) => {
     let uas = AmountStackOnEventByaUser(id)
@@ -323,6 +324,7 @@ class AppHeader extends Component {
 
   lockamount = async (amount) => {
     let maxamount = await isapproved();
+    console.log(maxamount,"approved ti not1")
     let value = BigInt(amount*10**18)
     amount = value.value
     
@@ -331,7 +333,11 @@ class AppHeader extends Component {
         await earnvalidationpoints(amount)
       }
       else{
-        alert("Plases approve yourself for this much amount")
+        let approve = await approveBETS();
+        if(approve.status == true){
+          await earnvalidationpoints(amount)
+        }
+        
       }
       
     } catch (error) {
@@ -397,7 +403,7 @@ class AppHeader extends Component {
                       to="#"
                       onClick={() => this.showMyBet()}
                     >
-                      My Bet {Number(this.state.balanceBET).toFixed(2)}
+                      My BET {Number(this.state.balanceBET).toFixed(2)}
                       <img
                         src={arrowDown}
                         width="24px"
@@ -600,12 +606,12 @@ class AppHeader extends Component {
                       Unlock Token
                     </button>
                   ) : null}
-                  <button
+                  {/* <button
                     className="btn mt-4"
                     onClick={() => this.approveyourself()}
                   >
                     Approve Yourself
-                  </button>
+                  </button> */}
                 </div>
               </div>
 

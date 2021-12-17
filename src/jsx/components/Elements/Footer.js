@@ -41,7 +41,9 @@ class Footer extends Component {
                         <div className="col-md-2 text-center text-md-start">
                             <p className="theam-text-color mb-4">INFO</p>
                             <ul className="list-unstyled text-small footerList">
-                          <Link to='/about'>    <li><a className="text-white" href="#">About</a></li></Link>  
+                          <Link to='/about'   className="text-white" href="#" style={{textDecoration:"none"}}> About</Link> 
+                          <br/> 
+                          <br/> 
                           <li><a className="text-white" href="#">News</a></li>  
                             </ul>
                         </div>

@@ -2,7 +2,7 @@ import Web3 from 'web3';
 import Web3Modal from "web3modal";
 
 import { ConnectorID, CONNECTOR_ID } from './constants';
-import { envdev } from './environments';
+import { envdev, envprod } from './environments';
 
 export let web3Instance = null;
 export let web3Modal = null;
@@ -122,7 +122,7 @@ export const checkChain = (force = true) => {
 }
 
 export const getMainChainInformation = () => {
-    if (envdev.REACT_APP_MAIN_CHAIN_ID === 'mainnet') {
+    if (envprod.REACT_APP_MAIN_CHAIN_ID === 'bsc_mainnet') {
         return {
             chainId: 56,
             providerNetworkOption: {
@@ -137,7 +137,7 @@ export const getMainChainInformation = () => {
                 blockExplorerUrls: ['https://bscscan.com']
             }
         };
-    } else if (envdev.REACT_APP_MAIN_CHAIN_ID === 'bsc_testnet') {
+    } else if (envprod.REACT_APP_MAIN_CHAIN_ID === 'bsc_testnet') {
         return {
             chainId: 97,
             providerNetworkOption: {

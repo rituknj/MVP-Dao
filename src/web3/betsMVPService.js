@@ -1,7 +1,7 @@
 import { getAccount, getContract, web3Instance } from "./web3";
 import {TotalEventsCount, updatingeventdata} from './Countallevents'
 import { BETS_ABI } from './../Contract/BetswampMVP';
-import { envdev } from "./environments";
+import { envprod } from "./environments";
 import BigInt from "big-integer";
 import { approve, isapproved } from "./betsService";
 import { strTimeToInt, fromWei } from './utils';
@@ -11,7 +11,7 @@ import { get } from "jquery";
 export const getBETMVPContract = async () => {
     const betMVPContract = getContract(
         BETS_ABI, 
-        envdev.REACT_APP_BETSWAMP_MVP_CONTRACT);
+        envprod.REACT_APP_BETSWAMP_MVP_CONTRACT);
     return betMVPContract;
 }
 
@@ -19,7 +19,7 @@ export const addSubbCategory = async (sub_category) => {
     const betMVPContract = await getBETMVPContract();
     var getData = await betMVPContract.methods.addSubbCategory('0x0', sub_category);
     let data = getData.encodeABI()
-    let res = await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data})
+    let res = await web3Instance.eth.sendTransaction({to: envprod.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data})
     return res
 }
 
@@ -50,7 +50,7 @@ export const createEvent = async ({sub_category, name, time, endTime, event1, ev
         alert("Failed")
     }
     // let data = getData.encodeABI()
-    // return await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
+    // return await web3Instance.eth.sendTransaction({to: envprod.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
 }
 
 export const placeBet = async ({event_id, amount, occured}) => {
@@ -58,16 +58,23 @@ export const placeBet = async ({event_id, amount, occured}) => {
     let maxamount = await isapproved()
     const betMVPContract = await getBETMVPContract();
     amount = BigInt(amount*10**18)
-    // console.log("length ",event_id, amount.value, occured)
+    
     if(amount.value < maxamount){
         getData = await betMVPContract.methods.placeBet(event_id, amount.value, occured).send({
             from: await getAccount(),
         });
     }
     else{
-        alert("Please approve yourself for this much amount")
+        let approve = await approve();
+        if(approve.status == true){
+            getData = await betMVPContract.methods.placeBet(event_id, amount.value, occured).send({
+                from: await getAccount(),
+            });
+        }
+        
+
     }
-    console.log('get data is ', getData)
+    console.log('get data is', getData)
     if(getData.status == true){
         alert('Bet placed successfully')
         await TotalEventsCount();
