@@ -217,13 +217,19 @@ class AppHeader extends Component {
     })
   }
 
-  reclaimwagers = async(id, starttime) => {
+  reclaimwagers = async(id, starttime, validationtime) => {
     var ts = Math.round((new Date()).getTime() / 1000);
     let time = starttime - ts
     console.log("time",time, id )
       if(time < 0){
         try{
-          await reclaimwager(id)
+          if(validationtime < ts){
+            await reclaimwager(id)
+          }
+          else{
+            alert("Can't claim refund yet. Please wait for 3 hours after expiry of the event!")
+          }
+          
         }
         catch(e){
           alert(e.message)
@@ -512,7 +518,7 @@ class AppHeader extends Component {
                       <button
                         className="bethistory-claim"
                         style={{ marginLeft: '10px' }}
-                        onClick={() => this.reclaimwagers(items[0], items[5])}
+                        onClick={() => this.reclaimwagers(items[0], items[5],items[7])}
                       >
                         Refund Amount
                       </button>

@@ -250,6 +250,15 @@ class GameCard extends Component {
     console.log("position", x, y)
   }
 
+  winningamount = (amountstake , poolsize) => {
+    let totalstake =  poolsize + amountstake
+    let winningspercents =  (amountstake/totalstake)*100
+    let potentialwinnings = ((totalstake-amountstake)/100)*winningspercents
+    if(isNaN(potentialwinnings)){
+      potentialwinnings = 0
+    }
+    return Number(potentialwinnings+amountstake).toFixed(2)
+}
 
   render() {
     
@@ -364,7 +373,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {isNaN(this.state.potential_wins)?'0':this.state.potential_wins}&nbsp;BETS
+                                    {this.winningamount(Number(this.state.stackvalueone),Number(this.state.poolsize))}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>
@@ -425,7 +434,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {isNaN(this.state.potential_wins)?'0':this.state.potential_wins}&nbsp;BETS
+                                    {this.winningamount(Number(this.state.stackvaluetwo),Number(this.state.poolsize))}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>
@@ -486,7 +495,7 @@ class GameCard extends Component {
                                     style={{ fontSize: '24px' }}
                                     className="mb-0 mt-3"
                                   >
-                                    {isNaN(this.state.potential_wins)?'0':this.state.potential_wins}&nbsp;BETS
+                                    {this.winningamount(Number(this.state.stackvaluethree),Number(this.state.poolsize))}&nbsp;BETS
                                   </p>
                                 </div>
                               </div>

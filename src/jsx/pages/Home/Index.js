@@ -315,7 +315,7 @@ class Index extends Component {
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Total Payout</h5>
-                                    <h4 className="text-white mt-4">{this.state.payout} BETS</h4>
+                                    <h4 className="text-white mt-4">{this.state.payout/10**18} BETS</h4>
                                 </div>
 
                                 <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12">
