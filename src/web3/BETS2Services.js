@@ -26,15 +26,14 @@ export const gettotalsupply = async () => {
 export const isapproved = async () => {
    
     const betContract = getContract(BETS2, envprod.REACT_APP_BETS2_SMART_CONTRACT);
-    const result = await betContract.methods.allowance( await getAccount(),envprod.REACT_APP_BETS2_SMART_CONTRACT).call()
+    const result = await betContract.methods.allowance( await getAccount(),envprod.REACT_APP_BETSWAMP_MVP_CONTRACT).call()
     return result;
 }
 
 
 export const approveBETS = async () => {
-    const betContract = getContract(BETS2, envprod.REACT_APP_BET_SMART_CONTRACT);
-  
-    const result = await betContract.methods.approve(envprod.REACT_APP_BETS2_SMART_CONTRACT, 115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
+    const betContract = getContract(BETS2, envprod.REACT_APP_BETS2_SMART_CONTRACT);
+    const result = await betContract.methods.approve(envprod.REACT_APP_BETSWAMP_MVP_CONTRACT, 115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
         from: await getAccount(),
     });
     if(result.status == true){

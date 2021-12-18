@@ -7,7 +7,7 @@ import Appheadercat from '../../pages/App/Appheadercat'
 import AppHeader from '../../components/Elements/AppHeader'
 import { getActiveEvents, getEvent, placeBet, getEventOccurrenceBetAmount, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser,cancelevent } from './../../../web3/betsMVPService'
 import {TotalEventsCount,addingnewevents} from './../../../web3/Countallevents'
-import {isapproved} from './../../../web3/betsService'
+import {isapproved, getBETBalanceBUSD} from './../../../web3/betsService'
 import { initInstance,getAccount } from './../../../web3/web3'
 import { fromWei, formatNumber } from '../../../web3/utils'
 import redDot from './../../../images/red-dot.png'
@@ -47,13 +47,17 @@ class GameCard extends Component {
       account:0,
       zero:0,
       one:0,
-      two:0
+      two:0,
+      globalendtime:0,
+      BUSDbal:0,
     }
   }
   componentDidMount = async() => {
     await initInstance();
+    let bal = await getBETBalanceBUSD()
     let account = await getAccount()
     this.setState({
+      BUSDbal: bal,
       account: account
     })
     let active_events = await totalEvents()
@@ -110,6 +114,7 @@ class GameCard extends Component {
     
     // console.log("potential win", potentialwins)
     await this.countbettors(eventid);
+
     var ts = Math.round((new Date()).getTime() / 1000);
     let lefttime = endtime - ts
     lefttime = parseInt(Math.floor(lefttime/3600)/24);
@@ -128,6 +133,8 @@ class GameCard extends Component {
       })
     }
     this.setState({
+      
+      globalendtime:endtime,
       zero:zero,
       one:one,
       two:two,
@@ -280,12 +287,13 @@ class GameCard extends Component {
                           >
                             <div className="layer"></div>
                             <div className="col-10 text-white top-text mb-3">
-                              <img
+                            { Math.round((new Date()).getTime() / 1000) > this.state.globalendtime ? <img src={redDot} className="red-dot me-4 mb-1" width="14px"/> :  <img
                                 src={greenDot}
                                 className="me-4 mb-1"
                                 width="14px"
-                              />
-                              <span>{this.state.category}</span>
+                                
+                              />}
+                              <span >{this.state.category}</span>
                             </div>
                             <div
                               className="col-2 text-white text-end mb-3 close-btn"
@@ -305,7 +313,7 @@ class GameCard extends Component {
                               <p className="theam-text-color m-0">Pool size</p>
                             </div>
                             <div className="col-6">
-                              <h3 className="mb-0">{this.state.poolsize} BUSE</h3>
+                              <h3 className="mb-0">{this.state.poolsize} BUSD</h3>
                             </div>
                             <div className="col-6">
                               <h5 className="text-end mb-0">
@@ -362,7 +370,7 @@ class GameCard extends Component {
                                   <p>Stake</p>
                                   <div className="position-relative">
                                     <input className="form-control" value={this.state.stackvalueone} onChange={(e) => this.setState({stackvalueone:e.target.value})}/>
-                                    <span className="position-absolute max-btn">
+                                    <span className="position-absolute max-btn" onClick={() => this.setState({stackvalueone:this.state.BUSDbal})} style={{cursor:'pointer'}}>
                                       MAX
                                     </span>
                                   </div>
@@ -424,7 +432,7 @@ class GameCard extends Component {
                                   <p>Stake</p>
                                   <div className="position-relative">
                                     <input className="form-control" value={this.state.stackvaluetwo} onChange={(e) => this.setState({stackvaluetwo:e.target.value})} />
-                                    <span className="position-absolute max-btn">
+                                    <span className="position-absolute max-btn" onClick={() => this.setState({stackvaluetwo:this.state.BUSDbal})} style={{cursor:'pointer'}}>
                                       MAX
                                     </span>
                                   </div>
@@ -486,7 +494,7 @@ class GameCard extends Component {
                                   <p>Stake</p>
                                   <div className="position-relative">
                                     <input className="form-control" value={this.state.stackvaluethree} onChange={(e) => this.setState({stackvaluethree:e.target.value})} />
-                                    <span className="position-absolute max-btn">
+                                    <span className="position-absolute max-btn" onClick={() => this.setState({stackvaluethree:this.state.BUSDbal})} style={{cursor:'pointer'}}>
                                       MAX
                                     </span>
                                   </div>
@@ -508,7 +516,7 @@ class GameCard extends Component {
 
                           </div>
                           <div  className="bid-button p-3 mb-3">
-                            <button type='submit' className="btn">PLACE BET</button>
+                          {Math.round((new Date()).getTime() / 1000) > this.state.globalendtime ? <button type='submit' className="btn">EXPIRED</button> : <button type='submit' className="btn">PLACE BET</button>}
                           </div>
                           </form>
                         </div>
@@ -520,7 +528,7 @@ class GameCard extends Component {
           <div className="col-12">
             <div className="match-main-div">
             <div style={{textAlign:"center",backgroundColor:"#938585", height:'37px'}}>
-            <h3 className='ml-3' style={{color:"white"}}>Boxing</h3>
+            <h3 className='ml-3' style={{color:"white"}}>Combat</h3>
             </div>
               <div className="theam-bg-dark mt-2 mt-md-5 p-1 p-md-5">
                 <div className="row">
@@ -537,7 +545,7 @@ class GameCard extends Component {
                           >
                             <div class="layer"></div>
                             <div className="col-12 text-white">
-                              <img src={greenDot} className="me-2" width="12" />
+                            {Math.round((new Date()).getTime() / 1000) > events.endtime ? <img src={redDot} className="red-dot" width="12"/> : <img src={greenDot} className="me-2" width="12" />}  
                             </div>
                             <div className="col-12 mt-4">
                               <h4 className="team-name">
@@ -588,7 +596,7 @@ class GameCard extends Component {
                                 onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins,events.zero,events.one,events.two)
                                 }
                               >
-                                BET
+                               {Math.round((new Date()).getTime() / 1000) > events.endtime ? "View" : "BET"}
                               </button>
                             </div>
                           </div>

@@ -3,7 +3,7 @@ import {TotalEventsCount, updatingeventdata} from './Countallevents'
 import { BETS_ABI } from './../Contract/BetswampMVP';
 import { envprod } from "./environments";
 import BigInt from "big-integer";
-import { approve, isapproved } from "./betsService";
+import { approveBUSD, isapproved } from "./betsService";
 import { strTimeToInt, fromWei } from './utils';
 import { get } from "jquery";
 
@@ -53,19 +53,21 @@ export const createEvent = async ({sub_category, name, time, endTime, event1, ev
     // return await web3Instance.eth.sendTransaction({to: envprod.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
 }
 
-export const placeBet = async ({event_id, amount, occured}) => {
+export const placeBet = async({event_id, amount, occured}) => {
+    console.log("details ", event_id, amount, occured)
     var getData
     let maxamount = await isapproved()
+    console.log("details ", maxamount)
     const betMVPContract = await getBETMVPContract();
     amount = BigInt(amount*10**18)
     
-    if(amount.value < maxamount){
+    if(amount.value < Number(maxamount)){
         getData = await betMVPContract.methods.placeBet(event_id, amount.value, occured).send({
             from: await getAccount(),
         });
     }
     else{
-        let approve = await approve();
+        let approve = await approveBUSD();
         if(approve.status == true){
             getData = await betMVPContract.methods.placeBet(event_id, amount.value, occured).send({
                 from: await getAccount(),
