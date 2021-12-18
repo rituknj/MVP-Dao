@@ -375,7 +375,7 @@ class AppHeader extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarsExample05">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li><img src={logo} style={{height:'70px', width: '70px'}}/></li>
+                <li> <a href='/'> <img src={logo} style={{height:'70px', width: '70px'}}/></a></li>
               </ul>
               <form>
                 <ul className="navbar-nav" id="admin-navbar-nav">
@@ -461,11 +461,11 @@ class AppHeader extends Component {
                   </div>
                   <div className="bet-card-custom mb-3">
                     <h4 className="mb-2">Total amount staked</h4>
-                    <p className="m-0">{Number(this.state.totalwageramount/10**18).toFixed(2)} BETS</p>
+                    <p className="m-0">{Number(this.state.totalwageramount/10**18).toFixed(2)} BUSD</p>
                   </div>
                   <div className="bet-card-custom">
                     <h4 className="mb-2">Total winnings</h4>
-                    <p className="m-0">{Number(this.state.totalwinnings/10**18).toFixed(2)} BETS</p>
+                    <p className="m-0">{Number(this.state.totalwinnings/10**18).toFixed(2)} BUSD</p>
                   </div>
                 </div>
               </div>
@@ -488,7 +488,7 @@ class AppHeader extends Component {
                             
                             <div className="col-3 betsflex" style={{display:'flex'}}>
                               <h4 className="m-0">
-                                {Number(items.userwageramount/(10**18)).toFixed(2)}&nbsp;&nbsp;BETS
+                                {Number(items.userwageramount/(10**18)).toFixed(2)}&nbsp;&nbsp;BUSD
                               </h4>
                             </div>
                           </div>
@@ -497,7 +497,7 @@ class AppHeader extends Component {
                               <p className="m-0">Total amount won:</p>
                             </div>
                             <div className="col-3 betsflex">
-                              <h4 className="m-0">{Number(items.won/10**18).toFixed(2)}&nbsp;&nbsp;BETS</h4>
+                              <h4 className="m-0">{Number(items.won/10**18).toFixed(2)}&nbsp;&nbsp;BUSD</h4>
                             </div>
                           </div>
                           {/* <div className="row mb-3 ">
@@ -513,9 +513,9 @@ class AppHeader extends Component {
                           <p className="m-0 text-end w-100">ENDED</p>
                         </div>
                       </div>
-                      <button className="bethistory-claim" onClick={() => this.claimrewardsamounts(items[0], items[6], items[10])}>
+                      {Number(items.won) <=0 ? <button className="bethistory-claim" onClick={() => this.claimrewardsamounts(items[0], items[6], items[10])}>
                         Claim Rewards
-                      </button>
+                      </button>:""}
                       {this.state.currenttime > items[7] ?<button
                         className="bethistory-claim"
                         style={{ marginLeft: '10px' }}

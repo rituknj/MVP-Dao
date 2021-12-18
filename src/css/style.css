@@ -160,6 +160,21 @@ body {
   padding: 18px 20px 18px 28px;
 }
 
+.playing_video {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  box-sizing: content-box;
+  display: block;
+  width: 75%;
+  height: 100%;
+  /* background: #fa183d; */
+  border-radius: 00%;
+  padding: 18px 20px 18px 28px;
+}
+
 .video-play-button:before {
   content: "";
   position: absolute;

@@ -20,13 +20,15 @@ let newevents = 0
               one = await bettorscountspercent(check2[0],1,check2[14])
               two = await bettorscountspercent(check2[0],2,check2[14])
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])
-              let totalpoolsize = check2[4] + stakeonevent
+              // console.log("id",check2[0], stakeonevent/10**18)
+              let totalpoolsize = check2[4] 
               let percentwinnings = (stakeonevent/totalpoolsize)*100
               let potentialwinnings = Number((((totalpoolsize-stakeonevent)/100)*percentwinnings)/10**18).toFixed(2)
+              // console.log("id ", check2[0], Number(potentialwinnings) + Number(stakeonevent/10**18))
                 check.zero = zero
                 check.one = one 
                 check.two = two
-                check.potential_wins = potentialwinnings
+                check.potential_wins = (Number(potentialwinnings) + Number(stakeonevent/10**18)).toFixed(2)
                 check.id = check2[0]
                 check.name = check2[3] 
                 check.validate = check2[10]
@@ -64,13 +66,14 @@ export const addingnewevents = async() => {
               one = await bettorscountspercent(check2[0],1,check2[14])
               two = await bettorscountspercent(check2[0],2,check2[14])
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])
-              let stake =  (stakeonevent*100)/check2[4]
-              let potentialwinnings = Number(((check2[4]-stakeonevent)*stake)/10**18).toFixed(2)
+              let totalpoolsize = check2[4] 
+              let percentwinnings = (stakeonevent/totalpoolsize)*100
+              let potentialwinnings = Number((((totalpoolsize-stakeonevent)/100)*percentwinnings)/10**18).toFixed(2)
             
                 check.zero = zero
                 check.one = one 
                 check.two = two
-                check.potential_wins = potentialwinnings
+                check.potential_wins = (Number(potentialwinnings) + Number(stakeonevent/10**18)).toFixed(2)
                 check.id = check2[0]
                 check.name = check2[3] 
                 check.validate = check2[10]
@@ -111,7 +114,7 @@ export const updatingeventdata = async(id) => {
               check.zero = zero
               check.one = one 
               check.two = two
-              check.potential_wins = potentialwinnings
+              check.potential_wins = potentialwinnings 
               check.id = check2[0]
               check.name = check2[3] 
               check.validate = check2[9]

@@ -15,7 +15,7 @@ import { gettotalsupply } from './../../../web3/betsService'
 import {formatNumber, fromWei} from './../../../web3/utils'
 import {allactiveusers,totalpayout, totalEvents, totalbetcreated, getActiveEvents } from "../../../web3/betsMVPService";
 import { TotalEventsCount } from "../../../web3/Countallevents";
-import ModalVideo from 'react-modal-video';
+import YouTube from 'react-youtube';
 
 ////Images
 import TopImage from "../../../images/landing-Bets-cards-games.png";
@@ -44,7 +44,7 @@ class Index extends Component {
             price:0,
             liquidity:0,
             activeusers:0,
-            isOpen: false,
+            isOpen:false,
             payout:0,
             events:0,
             item:[],
@@ -108,7 +108,7 @@ class Index extends Component {
                 },
             },
         };
-        this.openModal = this.openModal.bind(this)
+        this.videoOnReady = this.videoOnReady.bind(this);
     }
 
     componentDidMount = async() => {
@@ -187,9 +187,12 @@ class Index extends Component {
         
     };
 
-    openModal () {
-        this.setState({isOpen: true})
-      }
+    videoOnReady(event) {
+        // access to player in all event handlers via event.target
+        this.setState({
+          playerPlayVideo: event.target.playVideo
+        });
+    }
 
 
     getNewsCard = () => {
@@ -199,12 +202,33 @@ class Index extends Component {
         }
         return items;
     };
+    _onReady(event) {
+        // access to player in all event handlers via event.target
+        event.target.pauseVideo();
+    }
+    moussecloas = (event) =>{
+        let x = event.screenX;     
+        let y = event.screenY;
+        
+        if(x>633){
+          
+        }
+        console.log("position", x, y)
+      }
 
     render() {
-      
+        const opts = {
+            height: '390',
+            width: '640',
+            playerVars: {
+              // https://developers.google.com/youtube/player_parameters
+              autoplay: 1,
+            },
+          };
         return (
-            <Fragment>
+            <Fragment onClick={this.moussecloas}>
                 <Header />
+                <div onClick={this.moussecloas}>
                 <div className="container mb-5 mb-md-0" id="section-home">
                     <div className="space-100"></div>
                     <div className="space-100"></div>
@@ -302,9 +326,10 @@ class Index extends Component {
                                 <source src="movie.mp4" type="video/mp4" />
                                 <source src="movie.ogg" type="video/ogg" />
                             </video>
-                            <a id="play-video" className="video-play-button " target='_blank' href="https://www.youtube.com/watch?v=KWLdJQR_4pA">
+                            
+                            {this.state.isOpen ? <YouTube videoId="KWLdJQR_4pA" id="play-video" className="playing_video" opts={opts} onReady={this._onReady} /> : <a id="play-video" className="video-play-button " onClick={() => this.setState({isOpen:true})}>
                                 <span></span>
-                            </a>
+                            </a>}
                         </div>
                     </div>
                 </div>
@@ -540,6 +565,7 @@ class Index extends Component {
                     </Carousel>
                 </div>
                 <Footer />
+                </div>
             </Fragment>
         );
     }
