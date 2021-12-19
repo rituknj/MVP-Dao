@@ -101,7 +101,7 @@ export const getValidationPoint = async () => {
     const betMVPContract = await getBETMVPContract();
     const validationPoint = await betMVPContract.methods.showValidationPoints(await getAccount()).call();
     const  _validationPoint = validationPoint
-    return _validationPoint/10**9;
+    return _validationPoint/10**18;
 }
 
 export const getBetsHistory = async () =>{
@@ -266,7 +266,7 @@ export const GetUserWonAmountOnEvent = async (id) => {
 export const pendingpoint = async () => {
     const betMVPContract = await getBETMVPContract();
     const resutl = await betMVPContract.methods.getUserPendingPoints(await getAccount()).call();
-    return Number(resutl/10**9)
+    return Number(resutl/10**18)
 }
 export const cancelevent = async (id) => {
     const betMVPContract = await getBETMVPContract();

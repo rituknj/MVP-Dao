@@ -571,7 +571,7 @@ class AppHeader extends Component {
                 <div className="mb-4">
                   <h4 className="">Total Token locked</h4>
                   <p>
-                    {Number(this.state.lockedbets / 10 ** 18).toFixed(4)} BETS
+                    {Number(this.state.lockedbets / 10 ** 18).toFixed(2)} BETS
                   </p>
                 </div>
               </div>
