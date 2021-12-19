@@ -172,7 +172,7 @@ class Index extends Component {
         await TotalEventsCount();
         let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
         this.setState({
-            item:decodestoredevents
+            item:decodestoredevents.reverse()
         })
         
         }
@@ -180,7 +180,7 @@ class Index extends Component {
         await TotalEventsCount();
         let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
         this.setState({
-            item:decodestoredevents
+            item:decodestoredevents.reverse()
         })
        
         }
@@ -306,13 +306,13 @@ class Index extends Component {
                                 </div>
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
-                                    <h5 className="theam-text-color m-0">Market cap</h5>
-                                    <h4 className="text-white mt-3">{((Number(this.state.price).toFixed(4) * 250000000)/10**6).toFixed(2)} M</h4>
+                                    <h5 className="theam-text-color m-0">Market Cap</h5>
+                                    <h4 className="text-white mt-3">$ {((Number(this.state.price).toFixed(4) * 250000000)/10**6).toFixed(2)} M</h4>
                                 </div>
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Total Supply</h5>
-                                    <h4 className="text-white mt-3">250,000,000 M</h4>
+                                    <h4 className="text-white mt-3">250,000,000</h4>
                                 </div>
 
                             </Carousel>
@@ -364,7 +364,7 @@ class Index extends Component {
 
                                 <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                                     <h5 className="theam-text-color m-0">Total Payout</h5>
-                                    <h4 className="text-white mt-4">{this.state.payout/10**18} BETS</h4>
+                                    <h4 className="text-white mt-4">{(this.state.payout/10**18).toFixed(0)} BUSD</h4>
                                 </div>
 
                                 <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12">

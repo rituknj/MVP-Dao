@@ -287,7 +287,7 @@ class AppHeader extends Component {
       }
     }
     else{
-      alert("Evnet is not validated")
+      alert("Event is not validated")
     }
   }
 
@@ -379,6 +379,15 @@ class AppHeader extends Component {
               </ul>
               <form>
                 <ul className="navbar-nav" id="admin-navbar-nav">
+                  <li className="nav-item px-2">
+                    <a
+                      className="nav-link text-white mt-1"
+                      href="/"
+                      onClick={() => this.hideEvent()}
+                    >
+                      Home
+                    </a>
+                  </li>
                   <li className="nav-item px-2">
                     <NavLink
                       className="nav-link text-white mt-1"
@@ -516,7 +525,7 @@ class AppHeader extends Component {
                       {Number(items.won) <=0 ? <button className="bethistory-claim" onClick={() => this.claimrewardsamounts(items[0], items[6], items[10])}>
                         Claim Rewards
                       </button>:""}
-                      {this.state.currenttime > items[7] ?<button
+                      {this.state.currenttime > items[7] && items[10] == false ? <button
                         className="bethistory-claim"
                         style={{ marginLeft: '10px' }}
                         onClick={() => this.reclaimwagers(items[0], items[5],items[7])}
@@ -592,12 +601,12 @@ class AppHeader extends Component {
                 </div>
                 <div className="position-relative mt-4">
                   {/*add class "btn grey" when insufficient balance  */}
-                  <button
+                  {/* <button
                     className="btn"
                     onClick={() => this.lockamount(this.state.lockamount)}
                   >
                     Lock tokens
-                  </button>
+                  </button> */}
                   {this.state.lockedbets > 0 ? (
                     <button
                       className="btn mt-4"

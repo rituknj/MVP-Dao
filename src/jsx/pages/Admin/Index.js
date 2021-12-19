@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import arrowDown from './../../../images/arrow-down.png'
 import AppHeader from '../../components/Elements/AppHeader'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -13,6 +14,7 @@ import {
   getActiveEvents,
   validateEvent,
   totalEvents,
+  getEventOccurrenceBetAmount,
 } from './../../../web3/betsMVPService'
 
 import arrow_down from '../../../images/arrow-down.png'
@@ -39,6 +41,7 @@ class Index extends Component {
   }
   componentDidMount = async () => {
     var ts = Math.round((new Date()).getTime() / 1000);
+    let x
     let event
     let active_event
     await initInstance()
@@ -54,9 +57,15 @@ class Index extends Component {
         this.state.validatedevents.push(event)
       }
       if(ts > event[6]){
-        this.state.expiredevents.push(event)
+        let x = Object.create(event)
+        let zeroamount = await getEventOccurrenceBetAmount(event[0], 0)
+        let oneamount = await getEventOccurrenceBetAmount(event[0], 1)
+        let twoamount = await getEventOccurrenceBetAmount(event[0], 2)
+        x.zeroamount = zeroamount
+        x.oneamount = oneamount
+        x.twoamount = twoamount
+        this.state.expiredevents.push(x)
       }
-
     }
   }
 
@@ -605,12 +614,16 @@ class Index extends Component {
                     <>
                       {this.state.expiredevents.map((item) => (
                         <div>
+                          
                           <div className="admin-card-view px-3 py-3 mb-5">
-                            <p >
-                              <p className="title w-100">
-                                Event id {item[0]}
-                              </p>
+                            <p onClick={() => this.handelToggle(item[0])}>
                               {item[8]} vs {item[9]}
+                              <img
+                        src={arrowDown}
+                        style={{marginLeft:'95%',cursor:"pointer"}}
+                        width="24px"
+                        className={this.state.showMyBet ? 'rotate-element' : ''}
+                      />
                             </p>
                             <div className="row mt-4">
                               <div className="col-md-7">
@@ -621,6 +634,15 @@ class Index extends Component {
                                   <p className="title w-100">Created</p>
                                   <p className="date text-end w-100">
                                     {this.timecovert(item[5])}
+                                  </p>
+                                </div>
+                                <div
+                                  className="d-flex mb-3"
+                                  
+                                >
+                                  <p className="title w-100">Expired</p>
+                                  <p className="date text-end w-100">
+                                    {this.timecovert(item[6])}
                                   </p>
                                 </div>
                                 <div
@@ -642,43 +664,35 @@ class Index extends Component {
                                     Pool size
                                   </p>
                                   <p className="date text-end w-100">
-                                    {item[4]}
+                                    {item[4]/10**18} BUSD
                                   </p>
                                 </div>
-                                {false ? (
+                                {this.state.handelToggle == item[0] ? (
                                   <div
                                     className="toggle-card"
                                     data-aos="fade-down"
                                     data-aos-duration="400"
                                     data-aos-easing="linear"
                                   >
-                                    <div className="d-flex mt-5 mb-4">
-                                      <h4 className="w-100">Winning odd</h4>
+                                    <div className="d-flex mb-2">
+                                      {/* <h4 className="w-100">Winning odd</h4> */}
                                     </div>
                                     <div
                                       className="d-flex mb-3"
                                       onClick={() => this.teamfisrt()}
                                     >
-                                      <p className="title w-100">{item[7]}</p>
+                                      <p className="title w-100">{item[8]}</p>
                                       <p className="text-end w-100">
-                                        <input
-                                          className="form-check-input"
-                                          type="radio"
-                                          name="flexRadioDefault"
-                                        />
+                                      <p className="date text-end w-100">{(Number(item.zeroamount)/10**18).toFixed(2)}&nbsp;BUSD</p>
                                       </p>
                                     </div>
                                     <div
                                       className="d-flex mb-3"
                                       onClick={() => this.teamsecond()}
                                     >
-                                      <p className="title w-100">{item[8]}</p>
+                                      <p className="title w-100">{item[9]}</p>
                                       <p className="text-end w-100">
-                                        <input
-                                          className="form-check-input"
-                                          type="radio"
-                                          name="flexRadioDefault"
-                                        />
+                                        <p className="date text-end w-100">{(Number(item.oneamount)/10**18).toFixed(2)}&nbsp;BUSD</p>
                                       </p>
                                     </div>
                                     <div
@@ -687,11 +701,7 @@ class Index extends Component {
                                     >
                                       <p className="title w-100">Draw</p>
                                       <p className="text-end w-100">
-                                        <input
-                                          className="form-check-input"
-                                          type="radio"
-                                          name="flexRadioDefault"
-                                        />
+                                      <p className="date text-end w-100"> {(Number(item.twoamount)/10**18).toFixed(2)}&nbsp;BUSD</p>
                                       </p>
                                     </div>
                                   </div>
