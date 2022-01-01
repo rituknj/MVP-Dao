@@ -243,8 +243,18 @@ export const BETS_ABI = [
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'uint256', name: '_time', type: 'uint256' }],
+    inputs: [
+      { internalType: 'uint256', name: '_time', type: 'uint256' },
+      { internalType: 'uint256', name: 'event_id', type: 'uint256' },
+    ],
     name: 'changeValidationElapseTime',
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'uint256', name: '_difficulty', type: 'uint256' }],
+    name: 'changeValidationPointDifficulty',
     outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -380,6 +390,13 @@ export const BETS_ABI = [
       },
     ],
     name: 'getEventOccurrenceBetAmount',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getEventValidationElapseTime',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
@@ -623,4 +640,4 @@ export const BETS_ABI = [
     stateMutability: 'nonpayable',
     type: 'function',
   },
-]
+];

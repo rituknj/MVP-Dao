@@ -609,7 +609,7 @@ class GameCard extends Component {
             </div>
           </div>
           <div style={{textAlign:'center'}}>
-            <h1>Beta Version</h1>
+            <h3>V 1.0</h3>
           </div>
         </div>
       </Fragment>

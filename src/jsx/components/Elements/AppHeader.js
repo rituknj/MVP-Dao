@@ -585,7 +585,7 @@ class AppHeader extends Component {
                 </div>
               </div>
               <div className="point-list-form p-2 px-md-4 pt-3">
-                <div className="d-flex mb-4">
+                {/* <div className="d-flex mb-4">
                   <p className="w-100">AMOUNT TO LOCK</p>
                   <p className="w-100 text-end">{this.state.lockamount} BETS</p>
                 </div>
@@ -598,7 +598,7 @@ class AppHeader extends Component {
                     }
                   />
                   <span className="position-absolute" style={{cursor:"pointer"}} onClick={() => this.setState({lockamount:this.state.balanceBET})}>MAX</span>
-                </div>
+                </div> */}
                 <div className="position-relative mt-4">
                   {/*add class "btn grey" when insufficient balance  */}
                   {/* <button
@@ -607,6 +607,7 @@ class AppHeader extends Component {
                   >
                     Lock tokens
                   </button> */}
+                  <p style={{fontSize:"12px"}}>*The token locking feature will be available in V 2.0</p>
                   {this.state.lockedbets > 0 ? (
                     <button
                       className="btn mt-4"
