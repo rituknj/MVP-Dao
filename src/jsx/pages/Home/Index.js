@@ -16,6 +16,7 @@ import {formatNumber, fromWei} from './../../../web3/utils'
 import {allactiveusers,totalpayout, totalEvents, totalbetcreated, getActiveEvents } from "../../../web3/betsMVPService";
 import { TotalEventsCount } from "../../../web3/Countallevents";
 import YouTube from 'react-youtube';
+import axios from 'axios'
 
 ////Images
 import TopImage from "../../../images/landing-Bets-cards-games.png";
@@ -48,6 +49,7 @@ class Index extends Component {
             payout:0,
             events:0,
             item:[],
+            bloglength:[],
             activeevents:0,
             totalbetsmade:0,
             responsive: {
@@ -130,6 +132,23 @@ class Index extends Component {
             totalbetsmade:totalbets,
             activeevents:activeevents
         })
+
+        // **************** API FOR NEWS DATA ****************//
+        let data = []
+        const blog = 'http://betswamp-strapi-ckkbf.ondigitalocean.app/api/blogs'
+        await axios.get(blog)
+        .then(function (response) {
+            data = response.data.data
+            // 
+        })
+        .catch(function (error) {
+            console.log("error is",error);
+        })
+        this.setState({ bloglength: data});
+        console.log("blog is ", this.state.bloglength);
+         // **************** API FOR NEWS DATA ****************//
+        
+        
         // fetching price of total
         request('GET', "https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d")
         .then((r1) => {
@@ -143,18 +162,6 @@ class Index extends Component {
           console.log("error is",err);
         })
 
-        // request('GET', "https://api.pancakeswap.info/api/v2/summary/0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c_0x749f031FDa3a4904b026f2275A697096492a129d")
-        // .then((r1) => {
-        //   var x1 = JSON.parse(r1.target.responseText);
-        //   console.log("data is ",)
-        //   let val = Number(x1.data.liquidity)
-        //   console.log("liquidity",val)
-        //   this.setState({
-        //     liquidity:val
-        //   })
-        // }).catch(err => {
-        //   console.log("error is",err);
-        // })
       function request(method, url) {
         return new Promise(function (resolve, reject) {
           var xhr = new XMLHttpRequest();
@@ -197,11 +204,12 @@ class Index extends Component {
 
     getNewsCard = () => {
         let items = [];
-        for (var i = 1; i <= 1; i++) {
-            items.push(<h1 style={{textAlign:"center"}}>Comming soon</h1>);
+        for (var i = this.state.bloglength.length; i >= 0; i--) {
+            items.push(<NewsCard news={this.state.bloglength[i]}/>);
         }
         return items;
     };
+
     _onReady(event) {
         // access to player in all event handlers via event.target
         event.target.pauseVideo();
@@ -327,7 +335,11 @@ class Index extends Component {
                                 <source src="movie.ogg" type="video/ogg" />
                             </video>
                             
-                            {this.state.isOpen ? <YouTube videoId="KWLdJQR_4pA" id="play-video" className="playing_video" opts={opts} onReady={this._onReady} /> : <a id="play-video" className="video-play-button " onClick={() => this.setState({isOpen:true})}>
+                            {this.state.isOpen ? 
+                            
+                            
+                            <YouTube videoId="KWLdJQR_4pA" id="play-video" className="playing_video" opts={opts} onReady={this._onReady} /> 
+                            : <a id="play-video" className="video-play-button " onClick={() => this.setState({isOpen:true})}>
                                 <span></span>
                             </a>}
                         </div>
