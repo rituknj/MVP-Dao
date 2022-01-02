@@ -24,7 +24,7 @@ class NewsCard extends Component {
                 title:this.state.news.attributes.Title,
                 summery:this.state.news.attributes.Summary
             })
-            console.log("received data", this.state.news.attributes)
+            // console.log("received data",`${this.state.news.attributes.Image.data.attributes.url}`)
         }
     }
 
@@ -34,7 +34,7 @@ class NewsCard extends Component {
                 {this.state.news != undefined ? <div className="card game-card overflow-hidden game-news-card">
                     <div className="row image-card">
                         <div className="col-12 text-white">
-                            <img src={darkImage} width="100%" />
+                            <img src={`https://betswamp-strapi-ckkbf.ondigitalocean.app${this.state.news.attributes.Image.data.attributes.url}`} width="100%" />
                         </div>
                         <div className="col-12 bg-black">
                             <h6 className="px-2 m-0 py-1">
@@ -50,7 +50,7 @@ class NewsCard extends Component {
                                 Yahoo finance
                             </p>
                             <p className="text-start">
-                                <img src={carbon_timer} className="me-2 time-img" width="20" /> Created on {this.state.news.attributes.createdAt.substring(0,10)}
+                                Created on {this.state.news.attributes.createdAt.substring(0,10)}
                             </p>
                         </div>
                         <div className="col-6">

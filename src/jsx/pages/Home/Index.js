@@ -4,6 +4,7 @@ import Header from "../../components/Elements/Header";
 import Footer from "../../components/Elements/Footer";
 import GameCardHome from './GameCard'
 import NewsCard from "../../components/Cards/NewsCard";
+import PartnerCom from "../../components/Cards/Partner";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import loadable from "@loadable/component";
@@ -50,6 +51,7 @@ class Index extends Component {
             events:0,
             item:[],
             bloglength:[],
+            partner:[],
             activeevents:0,
             totalbetsmade:0,
             responsive: {
@@ -135,7 +137,7 @@ class Index extends Component {
 
         // **************** API FOR NEWS DATA ****************//
         let data = []
-        const blog = 'http://betswamp-strapi-ckkbf.ondigitalocean.app/api/blogs'
+        const blog = 'http://betswamp-strapi-ckkbf.ondigitalocean.app/api/blogs?populate=*'
         await axios.get(blog)
         .then(function (response) {
             data = response.data.data
@@ -145,8 +147,23 @@ class Index extends Component {
             console.log("error is",error);
         })
         this.setState({ bloglength: data});
-        console.log("blog is ", this.state.bloglength);
+        
          // **************** API FOR NEWS DATA ****************//
+
+          // **************** API FOR PARTNER DATA ****************//
+        let partner = []
+        const partnerAPI = 'http://betswamp-strapi-ckkbf.ondigitalocean.app/api/partners?populate=*'
+        await axios.get(partnerAPI)
+        .then(function (response) {
+            partner = response.data.data
+            // console.log('recevied data ', partner);
+        })
+        .catch(function (error) {
+            console.log("error is",error);
+        })
+        this.setState({ partner: partner});
+        console.log("partner is ", this.state.partner.length);
+         // **************** API FOR PARTNER DATA ****************//
         
         
         // fetching price of total
@@ -193,6 +210,13 @@ class Index extends Component {
         }
         
     };
+    parterImg = () => {
+        let items = [];
+        for (var i = this.state.partner.length; i > 0; i--) {
+            items.push(<PartnerCom img={this.state.partner[i]}/>);
+        }
+        return items;
+    }
 
     videoOnReady(event) {
         // access to player in all event handlers via event.target
@@ -539,21 +563,24 @@ class Index extends Component {
                         deviceType={this.props.deviceType}
                         itemClass="d-flex justify-content-center align-items-center flex-column"
                     >
-                        <div
+                       {this.parterImg()}
+                        {/* <div
                             data-aos="zoom-in"
                             data-aos-duration="100"
                             data-aos-easing="linear"
                         >
                             <img src={ueImage} width="100" />
-                        </div>
-                        {/* <div
+                        </div> */}
+                        {/* {this.state.partner.map(data => {
+                            <div
                             data-aos="zoom-in"
                             data-aos-duration="400"
                             data-aos-easing="linear"
                         >
-                            <img src={bscImage} width="100%" />
+                            <img src={ueImage} width="100" />
                         </div>
-                        <div
+                        })} */}
+                        {/* <div
                             data-aos="zoom-in"
                             data-aos-duration="800"
                             data-aos-easing="linear"

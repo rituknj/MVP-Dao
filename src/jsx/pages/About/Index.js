@@ -96,34 +96,46 @@ class Index extends Component {
     componentDidMount = async() => {
         window.addEventListener("resize", this.updateSize);
         AOS.init();
-        // chart = createChart(document.querySelector("#chart"), {
-        //     width: this.state.chartWidth,
-        //     height: 600,
-        //     layout: {
-        //         backgroundColor: "transparent",
-        //         textColor: "rgba(255, 255, 255, 0.8)",
-        //     },
-        //     timeScale: {
-        //         timeVisible: false,
-        //         secondsVisible: false,
-        //     },
-        //     rightPriceScale: {
-        //         scaleMargins: {
-        //             top: 0.1,
-        //             bottom: 0.1,
-        //         },
-        //     },
-        //     grid: {
-        //         vertLines: {
-        //             color: "transparent",
-        //         },
-        //         horzLines: {
-        //             color: "transparent",
-        //         },
-        //     },
-        //     entireTextOnly: false,
-        // });
-        // var candleSeries = chart.addCandlestickSeries();
+        chart = createChart(document.querySelector("#chart"), {
+            width: this.state.chartWidth,
+            height: 600,
+            layout: {
+                backgroundColor: "transparent",
+                textColor: "rgba(255, 255, 255, 0.8)",
+            },
+            timeScale: {
+                timeVisible: true,
+                secondsVisible: false,
+            },
+            rightPriceScale: {
+                scaleMargins: {
+                    top: 0.1,
+                    bottom: 0.1,
+                },
+            },
+            grid: {
+                vertLines: {
+                    color: "transparent",
+                },
+                horzLines: {
+                    color: "transparent",
+                },
+            },
+            entireTextOnly: false,
+        });
+        var candleSeries = chart.addCandlestickSeries();
+        fetch(`http://api.binance.com/api/v3/klines?symbol=ETHUSDT&interval=1d&limit=1000`)
+        .then(res => res.json())
+        .then(data => {
+            const cdata = data.map(d => {
+            return {time:d[0]/1000,open:parseFloat(d[1]),high:parseFloat(d[2]),low:parseFloat(d[3]),close:parseFloat(d[4])}
+            });
+            console.log("the data was", typeof(cdata))
+            candleSeries.setData(cdata);
+        })
+        .catch(err => console.log("there was an error to fetch to data, the error was",err))
+
+
         // candleSeries.setData(trade);
         // chart
         //     .addLineSeries({
@@ -131,18 +143,18 @@ class Index extends Component {
         //         lineWidth: 1,
         //     })
         //     .setData(lineData);
-        // setTimeout(async () => {
-        //     this.setState({
-        //         chartWidth: document.getElementById("chart").clientWidth,
-        //         loader: false
-        //     });
-        //     await this.updateSize();
-        // }, 1500);
-        // setTimeout(async () => {
-        //     this.setState({
-        //         loader: false
-        //     });
-        // }, 2000);
+        setTimeout(async () => {
+            this.setState({
+                chartWidth: document.getElementById("chart").clientWidth,
+                loader: false
+            });
+            await this.updateSize();
+        }, 1500);
+        setTimeout(async () => {
+            this.setState({
+                loader: false
+            });
+        }, 2000);
 
 
         await initInstance();
