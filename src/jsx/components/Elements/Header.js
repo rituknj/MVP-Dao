@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import logo from '../../../images/logo.png';
 import { NavLink } from "react-router-dom";
+import whitepaper from '../../../images/PDF/Betswamp-Whitepaper-v1.2.pdf';
 class Header extends Component {
     render() {
         return (
@@ -28,6 +29,10 @@ class Header extends Component {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
                             <form>
                                 <ul className="navbar-nav">
+                                    <li className="nav-item px-2 px-md-4">
+                                        <a className="nav-link text-white mt-1" href={whitepaper} target='_blank'>Read Whitepaper</a>
+                                    </li>
+
                                     <li className="nav-item px-2 px-md-4">
                                         <NavLink className="nav-link text-white mt-1" to="/about">About</NavLink>
                                     </li>

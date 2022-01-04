@@ -12,6 +12,7 @@ import "aos/dist/aos.css";
 import { initInstance } from "./../../../web3/web3";
 import { gettotalsupply } from './../../../web3/betsService';
 import {fromWei} from './../../../web3/utils'
+import whitepaper from './../../../images/PDF/Betswamp-Whitepaper-v1.2.pdf';
 ////Images
 import farmeFirst from "../../../images/farme-1.png";
 import farmeSec from "../../../images/frame-2.png";
@@ -131,12 +132,12 @@ class Index extends Component {
             return {time:d[0]/1000,open:parseFloat(d[1]),high:parseFloat(d[2]),low:parseFloat(d[3]),close:parseFloat(d[4])}
             });
             console.log("the data was", typeof(cdata))
-            candleSeries.setData(cdata);
+            // candleSeries.setData(cdata);
         })
         .catch(err => console.log("there was an error to fetch to data, the error was",err))
 
 
-        // candleSeries.setData(trade);
+        candleSeries.setData(trade);
         // chart
         //     .addLineSeries({
         //         color: "rgba(4, 111, 232, 1)",
@@ -502,7 +503,7 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-                {/* <div
+                <div
                     className="container-fluid px-md-5 py-md-5 py-5"
                     id="about-section-4"
                 >
@@ -556,7 +557,7 @@ class Index extends Component {
                             ))}
                         </Carousel>
                     </div>
-                </div> */}
+                </div>
 
                 <div
                     className="container-fluid px-md-5 py-md-5 py-4 text-center"
@@ -567,7 +568,7 @@ class Index extends Component {
                         GET THE BIG <br />
                         <span>PICTURE</span>
                     </h3>
-                    <button className="btn mt-4">Read Whitepaper</button>
+                  <a href={whitepaper} target='_blank'>  <button className="btn mt-4" >Read Whitepaper</button></a>
                     <div className="space-100"></div>
                 </div>
                 {/* <div

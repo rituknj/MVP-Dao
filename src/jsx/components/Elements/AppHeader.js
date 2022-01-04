@@ -379,6 +379,14 @@ class AppHeader extends Component {
               </ul>
               <form>
                 <ul className="navbar-nav" id="admin-navbar-nav">
+                {/* <li className="nav-item px-2">
+                    <a
+                      className="nav-link text-white mt-1"
+                      href='#'
+                    >
+                      Read Whitepaper
+                    </a>
+                  </li> */}
                   <li className="nav-item px-2">
                     <a
                       className="nav-link text-white mt-1"
