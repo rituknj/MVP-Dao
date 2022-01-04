@@ -164,7 +164,7 @@ class Index extends Component {
             console.log("error is",error);
         })
         this.setState({ partner: partner});
-        // console.log("partner is ", this.state.partner);
+        console.log("partner is ", this.state.partner);
          // **************** API FOR PARTNER DATA ****************//
 
 
@@ -230,8 +230,8 @@ class Index extends Component {
     };
     parterImg = () => {
         let items = [];
-        for (var i = this.state.partner.length; i > 1; i--) {
-            items.push(<PartnerCom img={this.state.partner[1]}/>);
+        for (var i = this.state.partner.length; i > 0; i--) {
+            items.push(<PartnerCom img={this.state.partner[i-1]}/>);
         }
         return items;
     }
@@ -242,7 +242,13 @@ class Index extends Component {
           playerPlayVideo: event.target.playVideo
         });
     }
-
+    videos = () => {
+        let items = [];
+        for (var i = this.state.video; i > 0; i--) {
+            items.push(<Videocom img={this.state.partner[i-1]}/>);
+        }
+        return items;
+    }
 
     getNewsCard = () => {
         let items = [];
