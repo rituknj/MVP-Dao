@@ -15,8 +15,8 @@ class PARTNET extends Component {
     };
 
     Handleprops = async() => {
+      
         if(this.state.news != undefined){
-            // console.log("data img ", this.state.img.attributes.Image.data.attributes.url)
             console.log("data img ", this.state.img)
         }
     }

@@ -5,6 +5,7 @@ import Footer from "../../components/Elements/Footer";
 import GameCardHome from './GameCard'
 import NewsCard from "../../components/Cards/NewsCard";
 import PartnerCom from "../../components/Cards/Partner";
+import Videocom from "../../components/Cards/Videos";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import loadable from "@loadable/component";
@@ -52,6 +53,7 @@ class Index extends Component {
             item:[],
             bloglength:[],
             partner:[],
+            video:[],
             activeevents:0,
             totalbetsmade:0,
             responsive: {
@@ -162,8 +164,24 @@ class Index extends Component {
             console.log("error is",error);
         })
         this.setState({ partner: partner});
-        console.log("partner is ", this.state.partner.length);
+        // console.log("partner is ", this.state.partner);
          // **************** API FOR PARTNER DATA ****************//
+
+
+           // **************** API FOR VIDEO DATA ****************//
+        let video = []
+        const videoAPI = 'https://betswamp-strapi-ckkbf.ondigitalocean.app/api/videos?populate=*'
+        await axios.get(videoAPI)
+        .then(function (response) {
+            video = response.data.data
+            // console.log('recevied data ', partner);
+        })
+        .catch(function (error) {
+            console.log("error is",error);
+        })
+        this.setState({ video: video});
+        console.log("video is ", this.state.video);
+         // **************** API FOR VIDEO DATA ****************//
         
         
         // fetching price of total
@@ -212,8 +230,8 @@ class Index extends Component {
     };
     parterImg = () => {
         let items = [];
-        for (var i = this.state.partner.length; i > 0; i--) {
-            items.push(<PartnerCom img={this.state.partner[i]}/>);
+        for (var i = this.state.partner.length; i > 1; i--) {
+            items.push(<PartnerCom img={this.state.partner[1]}/>);
         }
         return items;
     }
@@ -351,23 +369,40 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="container-fluid px-md-5" id="section-analytics">
+                {/* <div className="container-fluid px-md-5" id="section-analytics">
                     <div className="row py-5">
                         <div className="col-lg-12 position-relative" id="video-frame">
                             <video poster="placeholder.png" controls={false}>
                                 <source src="movie.mp4" type="video/mp4" />
                                 <source src="movie.ogg" type="video/ogg" />
                             </video>
-                            
                             {this.state.isOpen ? 
-                            
-                            
                             <YouTube videoId="KWLdJQR_4pA" id="play-video" className="playing_video" opts={opts} onReady={this._onReady} /> 
                             : <a id="play-video" className="video-play-button " onClick={() => this.setState({isOpen:true})}>
                                 <span></span>
                             </a>}
                         </div>
                     </div>
+                </div> */}
+                <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
+                    <Carousel
+                      swipeable={true}
+                      draggable={true}
+                      arrows={true}
+                      showDots={false}
+                      responsive={this.state.responsive_game_card}
+                      ssr={true} // means to render carousel on server-side.
+                      infinite={true}
+                      keyBoardControl={true}
+                      customTransition="all .5"
+                      transitionDuration={500}
+                      containerClass="carousel-container"
+                      removeArrowOnDeviceType={["tablet", "mobile"]}
+                      deviceType={this.props.deviceType}
+                      itemClass="carousel-item-padding-40-px px-4"
+                    >                   
+                        <Videocom/>
+                    </Carousel>
                 </div>
                 <div className="container-fluid px-md-5" id="section-statistics">
                     <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p">
