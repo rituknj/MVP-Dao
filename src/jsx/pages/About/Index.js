@@ -9,6 +9,7 @@ import "react-multi-carousel/lib/styles.css";
 import { trade, lineData } from "./demo.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import axios from 'axios'
 import { initInstance } from "./../../../web3/web3";
 import { gettotalsupply } from './../../../web3/betsService';
 import {fromWei} from './../../../web3/utils'
@@ -30,6 +31,7 @@ class Index extends Component {
         this.state = {
             price:0,
             totalSupply:0,
+            Lineprice:[],
             responsive: {
                 superLargeDesktop: {
                     // the naming can be any, depends on you.
@@ -125,25 +127,46 @@ class Index extends Component {
             entireTextOnly: false,
         });
         var candleSeries = chart.addCandlestickSeries();
-        fetch(`http://api.binance.com/api/v3/klines?symbol=ETHUSDT&interval=1d&limit=1000`)
+        fetch(`https://api.coingecko.com/api/v3/coins/betswamp/ohlc?vs_currency=usd&days=30`)
         .then(res => res.json())
         .then(data => {
-            const cdata = data.map(d => {
-            return {time:d[0]/1000,open:parseFloat(d[1]),high:parseFloat(d[2]),low:parseFloat(d[3]),close:parseFloat(d[4])}
+           const cdata = data.map(d => {
+                return {time:d[0]/1000,open:parseFloat(d[1]),high:parseFloat(d[2]),low:parseFloat(d[3]),close:parseFloat(d[4])}
             });
-            console.log("the data was", typeof(cdata))
-            // candleSeries.setData(cdata);
+            console.log('api data', data)
+            candleSeries.setData(cdata);
         })
-        .catch(err => console.log("there was an error to fetch to data, the error was",err))
+       .catch(err => console.log("there was an error to fetch to data, the error was",err))
+        
 
+       let LineData = []
+       let Lineprice = []
+     
+       const Line = 'https://api.coingecko.com/api/v3/coins/betswamp/market_chart?vs_currency=usd&days=30*'
+       await axios
+         .get(Line)
+         .then(function (response) {
+           LineData = response.data.prices
+           if (LineData) {
+               Lineprice = LineData.map(d => {
+                   return {time:d[0]/1000,value:d[1]}
+               })
+           }
+         })
+         .catch(function (error) {
+           console.log('error is', error)
+         })
+       this.setState({
+         Lineprice: Lineprice,
+       })
+       console.log("line data", this.state.Lineprice)
 
-        candleSeries.setData(trade);
-        // chart
-        //     .addLineSeries({
-        //         color: "rgba(4, 111, 232, 1)",
-        //         lineWidth: 1,
-        //     })
-        //     .setData(lineData);
+        // candleSeries.setData(trade);
+        chart.addLineSeries({
+                color: "rgba(4, 111, 232, 1)",
+                lineWidth: 1,
+            })
+            .setData(this.state.Lineprice);
         setTimeout(async () => {
             this.setState({
                 chartWidth: document.getElementById("chart").clientWidth,
@@ -285,7 +308,6 @@ class Index extends Component {
                         id="chart"
                         style={{ width: "100%" }}
                     >
-                    <h1 style={{textAlign:"center",padding:"50px"}}>Chart Comming Soon </h1>
 
                     </div>
                 </div>
@@ -503,7 +525,7 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-                <div
+                {/* <div
                     className="container-fluid px-md-5 py-md-5 py-5"
                     id="about-section-4"
                 >
@@ -535,10 +557,10 @@ class Index extends Component {
                         >
 
                             {Object.entries(this.state.roadMap).map(([k, v]) => (
-                                <div className="col-12">
+                                <div className="col-11">
                                     <div className={`roadMapNav mb-4 pb-0 mb-md-5 pb-md-5 ${(v.is_active) ? '' : 'active'}`}>
                                         <p className={(v.is_active) ? '' : 'mt-3'}>
-                                            <img src={(v.is_active) ? navIcon : greyDot} width={(v.is_active) ? '64' : '40'} />
+                                            <img src={(v.is_active) ? navIcon : greyDot} width={(v.is_active) ? '50' : '40'} />
                                             <hr style={{ marginTop: (v.is_active) ? '' : '8px' }} />
                                         </p>
                                     </div>
@@ -557,7 +579,7 @@ class Index extends Component {
                             ))}
                         </Carousel>
                     </div>
-                </div>
+                </div> */}
 
                 <div
                     className="container-fluid px-md-5 py-md-5 py-4 text-center"

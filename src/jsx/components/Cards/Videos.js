@@ -6,20 +6,21 @@ class VIDEO extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            img:this.props.img,
+            videos:this.props.videos,
             isOpen:false,
         }
 
     }
 
     componentDidMount = async() => { 
+        console.log("video data is ", this.state.videos)
         this.Handleprops();
     };
 
     Handleprops = async() => {
       
-        if(this.state.news != undefined){
-            console.log("data img ", this.state.img)
+        if(this.state.videos != undefined){
+            console.log("data img ", this.state.videos)
         }
     }
     _onReady(event) {
@@ -38,7 +39,7 @@ class VIDEO extends Component {
           };
         return (
             <Fragment>
-                <div className="container-fluid px-md-5" id="section-analytics">
+              {this.state.videos != undefined ? <div className="container-fluid px-md-5" id="section-analytics">
                     <div className="row py-5">
                         <div className="col-lg-12 position-relative" id="video-frame">
                             <video poster="placeholder.png" controls={false}>
@@ -46,13 +47,13 @@ class VIDEO extends Component {
                                 <source src="movie.ogg" type="video/ogg" />
                             </video>
                             {this.state.isOpen ? 
-                            <YouTube videoId="KWLdJQR_4pA" id="play-video" className="playing_video" opts={opts} onReady={this._onReady} /> 
+                            <YouTube videoId={this.state.videos.attributes.VideoID} id="play-video" className="playing_video" opts={opts} onReady={this._onReady} /> 
                             : <a id="play-video" className="video-play-button " onClick={() => this.setState({isOpen:true})}>
                                 <span></span>
                             </a>}
                         </div>
                     </div>
-                </div>
+                </div> : ''}  
             </Fragment>
         );
     }
