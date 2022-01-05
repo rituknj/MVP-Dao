@@ -58,7 +58,7 @@ class Index extends Component {
                     items: 1,
                 },
                 desktop: {
-                    breakpoint: { max: 3000, min: 1024 },
+                    breakpoint: { max: 2000, min: 1024 },
                     items: 1,
                 },
                 tablet: {
@@ -79,14 +79,57 @@ class Index extends Component {
             roadMap: {
                 0: {
                     title: 'Phase 1',
+                    pointone:' Market analysis and product research',
+                    pointtwo:'System architecture and concept design',
+                    pointthree:' Token and platform contracts developed and tested',
+                    pointfour:'  MVP development initialized',
+                    pointfive:'  Token contract deployed',
+                    pointsix:'  Platform contract deployed',
+                    pointseven:'  Private Pre-sale',
+                    pointteight:' Phase 1 marketing initialied ',
                     is_active: true,
                 },
                 1: {
                     title: 'Phase 2',
+                    pointone:'Public presale',
+                    pointtwo:'Dex listing (Pancakeswap)',
+                    pointthree:'Team expansion',
+                    pointfour:' Coingecko listing',
+                    pointfive:'Coinmarketcap listing',
+                    pointsix:' Platform beta testing',
+                    pointseven:'Phase 2 marketing initialized',
                     is_active: false,
                 },
                 2: {
                     title: 'Phase 3',
+                    pointone:'Strategic partnership deals',
+                    pointtwo:'Whitepaper update',
+                    pointthree:'Betswamp platform launch',
+                    pointfour:' CEX Exchange listing',
+                    pointfive:'Phase 3 marketing initialized',
+                    is_active: false,
+                },
+                3: {
+                    title: 'Phase 4',
+                    pointone:'$BNB to $BETS swap itegration',
+                    pointtwo:'Betswamp Tournaments launch',
+                    pointthree:'Strategic partnership deals expansion',
+                    pointfour:' NFT reward badges integration',
+                    pointfive:'Phase 4 marketing initialized',
+                    is_active: false,
+                },
+                4: {
+                    title: 'Phase 5',
+                    pointone:'Betswamp Android and IOS app launch',
+                    pointtwo:'Phase 5 marketing initialized',
+                    pointthree:' CEX Exchange listing',
+                    is_active: false,
+                },
+                4: {
+                    title: 'Phase 6',
+                    pointone:'The first set of operational online gambling licenses acquired in selected countries',
+                    pointtwo:'Regional marketing expansion and Strategic partnership  within these countries',
+                    pointthree:'Continuous Regional focused marketing and brand expansion',
                     is_active: false,
                 },
             }
@@ -526,7 +569,7 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-                {/* <div
+                <div
                     className="container-fluid px-md-5 py-md-5 py-5"
                     id="about-section-4"
                 >
@@ -536,9 +579,9 @@ class Index extends Component {
 
                     <div className="col-lg-12">
                         <Carousel
-                            swipeable={true}
-                            draggable={true}
-                            arrows={false}
+                            swipeable={false}
+                            draggable={false}
+                            arrows={true}
                             showDots={false}
                             responsive={this.state.roadMapSlide}
                             ssr={true} // means to render carousel on server-side.
@@ -550,7 +593,7 @@ class Index extends Component {
                             removeArrowOnDeviceType={["tablet", "mobile"]}
                             deviceType={this.props.deviceType}
 
-                            //centerMode={true}
+                            centerMode={true}
                             itemClass="row"
                             afterChange={(previousSlide, { currentSlide, onMove }) => {
                                 this.doSpeicalThing(currentSlide);
@@ -558,7 +601,7 @@ class Index extends Component {
                         >
 
                             {Object.entries(this.state.roadMap).map(([k, v]) => (
-                                <div className="col-11">
+                                <div className="container col-11">
                                     <div className={`roadMapNav mb-4 pb-0 mb-md-5 pb-md-5 ${(v.is_active) ? '' : 'active'}`}>
                                         <p className={(v.is_active) ? '' : 'mt-3'}>
                                             <img src={(v.is_active) ? navIcon : greyDot} width={(v.is_active) ? '50' : '40'} />
@@ -570,17 +613,37 @@ class Index extends Component {
                                     </div>
                                     <div className={`px-3`}>
                                         <div className={`roadMapCard ${(v.is_active) ? 'active' : ''}`}>
-                                            <p>
-                                                <img src={whiteDot} className="me-4" />
-                                                {v.title}
-                                            </p>
+                                           {v.pointone != undefined ? <p>
+                                                <img src={whiteDot} className="me-4" />{v.pointone}
+                                            </p> :''}
+                                            {v.pointtwo != undefined ? <p>
+                                                <img src={whiteDot} className="me-4" />{v.pointtwo}
+                                            </p> :''}
+                                            {v.pointthree != undefined ? <p>
+                                                <img src={whiteDot} className="me-4" />{v.pointthree}
+                                            </p> :''}
+                                            {v.pointfour != undefined ? <p>
+                                                <img src={whiteDot} className="me-4" />{v.pointfour}
+                                            </p> :''}
+                                            {v.pointfive!= undefined ? <p>
+                                                <img src={whiteDot} className="me-4" />{v.pointfive}
+                                            </p> :''}
+                                            {v.pointsix != undefined ? <p>
+                                                <img src={whiteDot} className="me-4" />{v.pointsix}
+                                            </p> :''}
+                                            {v.pointseven != undefined ? <p>
+                                                <img src={whiteDot} className="me-4" />{v.pointseven}
+                                            </p> :''}
+                                            {v.pointteight != undefined ? <p>
+                                                <img src={whiteDot} className="me-4" />{v.pointteight}
+                                            </p> :''}
                                         </div>
                                     </div>
                                 </div>
                             ))}
                         </Carousel>
                     </div>
-                </div> */}
+                </div>
 
                 <div
                     className="container-fluid px-md-5 py-md-5 py-4 text-center"
