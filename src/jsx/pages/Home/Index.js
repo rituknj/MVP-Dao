@@ -154,33 +154,33 @@ class Index extends Component {
       activeevents: activeevents,
     })
     AOS.init()
-    chart = createChart(document.querySelector('#linechart'), {
-      width: this.state.chartWidth,
-      height: 100,
-      layout: {
-        backgroundColor: 'transparent',
-        textColor: 'rgba(255, 255, 255, 0.8)',
-      },
-      timeScale: {
-        timeVisible: true,
-        secondsVisible: false,
-      },
-      rightPriceScale: {
-        scaleMargins: {
-          top: 0.1,
-          bottom: 0.1,
-        },
-      },
-      grid: {
-        vertLines: {
-          color: 'transparent',
-        },
-        horzLines: {
-          color: 'transparent',
-        },
-      },
-      entireTextOnly: false,
-    })
+    // chart = createChart(document.querySelector('#linechart'), {
+    //   width: this.state.chartWidth,
+    //   height: 100,
+    //   layout: {
+    //     backgroundColor: 'transparent',
+    //     textColor: 'rgba(255, 255, 255, 0.8)',
+    //   },
+    //   timeScale: {
+    //     timeVisible: true,
+    //     secondsVisible: false,
+    //   },
+    //   rightPriceScale: {
+    //     scaleMargins: {
+    //       top: 0.1,
+    //       bottom: 0.1,
+    //     },
+    //   },
+    //   grid: {
+    //     vertLines: {
+    //       color: 'transparent',
+    //     },
+    //     horzLines: {
+    //       color: 'transparent',
+    //     },
+    //   },
+    //   entireTextOnly: false,
+    // })
     // **************** API FOR LINE CHART DATA ****************//
     let LineData = []
     let Lineprice = []
@@ -206,21 +206,19 @@ class Index extends Component {
       Lineprice: Lineprice,
     })
 
-    chart.addLineSeries({
-        color: "rgba(4, 111, 232, 1)",
-        lineWidth: 1,
-    })
-    .setData(this.state.Lineprice);
+    // chart.addLineSeries({
+    //     color: "rgba(4, 111, 232, 1)",
+    //     lineWidth: 1,
+    // })
+    // .setData(this.state.Lineprice);
 
     // **************** API LINE CHART DATA ****************//
 
     // **************** API FOR NEWS DATA ****************//
     let data = []
-    const blog =
-      'http://betswamp-strapi-ckkbf.ondigitalocean.app/api/blogs?populate=*'
-    await axios
-      .get(blog)
-      .then(function (response) {
+    const blog ='http://betswamp-strapi-ckkbf.ondigitalocean.app/api/blogs?populate=*'
+    await axios.get(blog)
+    .then(function (response) {
         data = response.data.data
         //
       })
@@ -316,18 +314,6 @@ class Index extends Component {
     return items
   }
 
-  LineChart = () => {
-    // const datasets = {
-    //     labels: ['jan', 'feb', 'march', 'april', 'may', 'jun'],
-    //     dataSets: [
-    //         {
-    //             label: 'Betswamp',
-    //             data: [1, 2, 3, 4, 5, 6]
-    //         }
-    //     ]
-    // }
-    // return <Line data={datasets} />
-  }
 
   videoOnReady(event) {
     // access to player in all event handlers via event.target
@@ -440,7 +426,7 @@ class Index extends Component {
                   deviceType={this.props.deviceType}
                   itemClass="px-2"
                 >
-                  <div className="card chart-card  overflow-hidden text-center py-3  align-items-stretch col-12">
+                  {/* <div className="card chart-card  overflow-hidden text-center py-3  align-items-stretch col-12">
                     <div className="container-fluid">
                       <div
                         className=""
@@ -448,7 +434,7 @@ class Index extends Component {
                         style={{ width: '100%' }}
                       ></div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="card chart-card  overflow-hidden text-center py-3  align-items-stretch col-12">
                     <h5 className="theam-text-color m-0">Price</h5>
@@ -462,7 +448,7 @@ class Index extends Component {
                     <h4 className="theam-text-green mt-3">731</h4>
                   </div>
 
-                  {/* <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
+                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                     <h5 className="theam-text-color m-0">Market Cap</h5>
                     <h4 className="text-white mt-3">
                       ${' '}
@@ -472,12 +458,12 @@ class Index extends Component {
                       ).toFixed(2)}{' '}
                       M
                     </h4>
-                  </div> */}
+                  </div>
 
-                  {/* <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
+                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
                     <h5 className="theam-text-color m-0">Total Supply</h5>
                     <h4 className="text-white mt-3">250,000,000</h4>
-                  </div> */}
+                  </div>
                 </Carousel>
               </div>
             </div>

@@ -167,6 +167,7 @@ class Index extends Component {
                 lineWidth: 1,
             })
             .setData(this.state.Lineprice);
+            
         setTimeout(async () => {
             this.setState({
                 chartWidth: document.getElementById("chart").clientWidth,
