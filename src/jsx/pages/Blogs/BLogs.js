@@ -49,7 +49,7 @@ class BLogs extends Component {
                     </div>
                 </div> :' '}
             
-                {this.state.blogs != undefined ? <p className="updated">Created on {this.props.location.query.updated.slice(0,10)}</p>:''}
+                {this.state.blogs != undefined ? <p className="updated">Published on {this.props.location.query.updated.slice(0,10)}</p>:''}
                 <Footer/>
             </Fragment>
         );

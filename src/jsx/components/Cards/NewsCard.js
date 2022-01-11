@@ -14,7 +14,7 @@ class NewsCard extends Component {
     }
 
     componentDidMount = async() => { 
-        await this.Handleprops();
+      console.log("", this.state.news)
     };
 
     Handleprops = async() => {
@@ -34,7 +34,7 @@ class NewsCard extends Component {
                 {this.state.news != undefined ? <div className="card game-card overflow-hidden game-news-card">
                     <div className="row image-card">
                         <div className="col-12 text-white">
-                            <img src={this.state.news.image.full_url} width="100%" />
+                            <img src={this.state.news.image.full_url} style={{height:'300px', width:'100%'}} />
                         </div>
                         <div className="col-12 bg-black">
                             <h6 className="px-2 m-0 py-1">
@@ -50,7 +50,7 @@ class NewsCard extends Component {
                                {this.state.news.source}
                             </p>
                             <p className="text-start">
-                                Created on {this.state.news.created_at.substring(0,10)}
+                                Published on {this.state.news.published_at.substring(0,10)}
                             </p>
                         </div>
                         <div className="col-6">

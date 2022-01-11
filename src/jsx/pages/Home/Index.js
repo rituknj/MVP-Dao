@@ -759,7 +759,7 @@ class Index extends Component {
             <div className="space-50"></div>
             <Carousel
               swipeable={true}
-              draggable={true}
+              draggable={false}
               arrows={true}
               showDots={false}
               responsive={this.state.responsive}
