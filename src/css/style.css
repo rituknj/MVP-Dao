@@ -168,8 +168,8 @@ body {
   transform: translateX(-50%) translateY(-50%);
   box-sizing: content-box;
   display: block;
-  width: 95%;
-  height: 70%;
+  width: 75%;
+  height: 75%;
   /* background: #fa183d; */
   border-radius: 00%;
   padding: 18px 20px 18px 28px;
@@ -1421,4 +1421,30 @@ footer button {
   font-size: 14px;
   line-height: 18px;
   color: #ffffff;
+}
+
+.blogbody{
+  display: grid;
+  justify-content: center;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.blogtext{
+  color: white;
+}
+
+.blogtitle{
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.blogartical{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+.updated{
+  padding-left: 20px;
+  color: white;
+  margin-top: 20px;
 }

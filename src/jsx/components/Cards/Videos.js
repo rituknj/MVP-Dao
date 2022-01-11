@@ -13,16 +13,10 @@ class VIDEO extends Component {
     }
 
     componentDidMount = async() => { 
-        console.log("video data is ", this.state.videos)
-        this.Handleprops();
+        // console.log("video data is ", this.state.videos)
+        
     };
 
-    Handleprops = async() => {
-      
-        if(this.state.videos != undefined){
-            console.log("data img ", this.state.videos)
-        }
-    }
     _onReady(event) {
         // access to player in all event handlers via event.target
         event.target.pauseVideo();
@@ -47,8 +41,8 @@ class VIDEO extends Component {
                                 <source src="movie.ogg" type="video/ogg" />
                             </video>
                             {this.state.isOpen ? 
-                            <YouTube videoId={this.state.videos.attributes.VideoID} id="play-video" className="playing_video" opts={opts} onReady={this._onReady} /> 
-                            : <a id="play-video" className="video-play-button " onClick={() => this.setState({isOpen:true})}>
+                            <YouTube videoId={this.state.videos.id} id="play-video" className="playing_video" opts={opts} onReady={this._onReady} /> 
+                            : <a id="play-video" className="video-play-button" onClick={() => this.setState({isOpen:true})}>
                                 <span></span>
                             </a>}
                         </div>

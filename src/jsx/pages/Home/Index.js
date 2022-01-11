@@ -6,6 +6,7 @@ import GameCardHome from './GameCard'
 import NewsCard from '../../components/Cards/NewsCard'
 import PartnerCom from '../../components/Cards/Partner'
 import Videocom from '../../components/Cards/Videos'
+import ExternalBlog from '../../components/Cards/ExternalBlog'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import loadable from '@loadable/component'
@@ -15,6 +16,7 @@ import 'aos/dist/aos.css'
 import { initInstance, loginProcess } from './../../../web3/web3'
 import { gettotalsupply } from './../../../web3/betsService'
 import { formatNumber, fromWei } from './../../../web3/utils'
+
 import {
   allactiveusers,
   totalpayout,
@@ -68,6 +70,7 @@ class Index extends Component {
       dataset: {},
       activeevents: 0,
       totalbetsmade: 0,
+      indernalblog:[],
       responsive: {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -120,6 +123,25 @@ class Index extends Component {
         desktop: {
           breakpoint: { max: 3000, min: 1024 },
           items: 3,
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 1,
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 1,
+        },
+      },
+      responsive_video_card: {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 1,
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 1,
         },
         tablet: {
           breakpoint: { max: 1024, min: 464 },
@@ -213,67 +235,47 @@ class Index extends Component {
       Lineprice: Lineprice,
     })
 
-    // chart.addLineSeries({
-    //     color: "rgba(4, 111, 232, 1)",
-    //     lineWidth: 1,
-    // })
-    // .setData(this.state.Lineprice);
-
-    // **************** API LINE CHART DATA ****************//
-
-    // **************** API FOR NEWS DATA ****************//
-    let data = []
-    const blog ='http://betswamp-strapi-ckkbf.ondigitalocean.app/api/blogs?populate=*'
-    await axios.get(blog)
-    .then(function (response) {
-        data = response.data.data
-        //
-      })
-      .catch(function (error) {
-        console.log('error is', error)
-      })
-    this.setState({ bloglength: data })
-
-    // **************** API FOR NEWS DATA ****************//
-
-    // **************** API FOR PARTNER DATA ****************//
-    let partner = []
-    const partnerAPI =
-      'http://betswamp-strapi-ckkbf.ondigitalocean.app/api/partners?populate=*'
-    await axios
-      .get(partnerAPI)
-      .then(function (response) {
-        partner = response.data.data
-        // console.log('recevied data ', partner);
-      })
-      .catch(function (error) {
-        console.log('error is', error)
-      })
-    this.setState({ partner: partner })
-    // console.log("partner is ", this.state.partner);
-    // **************** API FOR PARTNER DATA ****************//
-
-    // **************** API FOR VIDEO DATA ****************//
-    let video = []
-    const videoAPI =
-      'https://betswamp-strapi-ckkbf.ondigitalocean.app/api/videos?populate=*'
-    await axios
-      .get(videoAPI)
-      .then(function (response) {
-        video = response.data.data
-        // console.log('recevied data ', partner);
-      })
-      .catch(function (error) {
-        console.log('error is', error)
-      })
-    this.setState({ video: video })
-    // console.log("video is ", this.state.video);
-
-
-
 
     
+
+       var myHeaders = new Headers();
+       myHeaders.append("Accept", "application/json");
+       myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
+        var requestOptions = {
+         method: 'GET',
+         headers: myHeaders,
+         redirect: 'follow'
+     };
+     await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
+        .then(response => response.json())
+        .then(result => this.setState({partner:result}))
+      .catch(error => console.log('error', error));
+      // console.log("partners",this.state.partner.length)
+    // **************** API FOR PARTNER DATA ****************//
+
     // **************** API FOR VIDEO DATA ****************//
+    await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/videos", requestOptions)
+        .then(response => response.json())
+        .then(result => this.setState({video: result}))
+      .catch(error => console.log('error', error));
+    // console.log("video is ", this.state.video);
+    
+    // **************** API FOR VIDEO DATA ****************//
+
+     // **************** API LINE EXTERNAL BLOG DATA ****************//
+     await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/in-house-articles", requestOptions)
+      .then(response => response.json())
+      .then(result => this.setState({indernalblog:result}))
+    .catch(error => console.log('error', error));
+    // console.log("blog",this.state.indernalblog)
+      // **************** API LINE EXTERNAL BLOG DATA ****************//
+
+       // **************** API LINE INTERNAL BLOG DATA ****************//
+      await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/external-articles", requestOptions)
+      .then(response => response.json())
+      .then(result => this.setState({bloglength: result}))
+    .catch(error => console.log('error', error));
+     // **************** API LINE INTERNAL BLOG DATA ****************//
 
     // fetching price of total
     request(
@@ -318,6 +320,24 @@ class Index extends Component {
       })
     }
   }
+
+  fetchdata = async() => {
+    console.log("run")
+       var myHeaders = new Headers();
+       myHeaders.append("Accept", "application/json");
+       myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
+     var requestOptions = {
+         method: 'GET',
+         headers: myHeaders,
+         redirect: 'follow'
+     };
+     fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
+      .then(response => response.json())
+      .then(result => this.setState({partner:result}))
+     .catch(error => console.log('error', error));
+     console.log("partners",this.state.partner.logo.length)
+ }
+
   parterImg = () => {
     let items = []
     for (var i = this.state.partner.length; i > 0; i--) {
@@ -326,31 +346,7 @@ class Index extends Component {
     return items
   }
 
-   fetchdata = async() => {
-     console.log("run")
-        var myHeaders = new Headers();
-        myHeaders.append("Accept", "application/json");
-        myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
-
-      var requestOptions = {
-          method: 'GET',
-          headers: myHeaders,
-          redirect: 'follow'
-      };
-
-      fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/1e124355acb64ffbb39fc774b8d1c30b/FAQS", requestOptions)
-        .then(response => console.log("HEllo",response))
-        .then(result => console.log("HEllo",result))
-        .catch(error => console.log('error', error));
-    // await axios.get("admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/1e124355acb64ffbb39fc774b8d1c30b/FAQS",requestOptions)
-    // .then(function (response) {
-    //   console.log("HEllo",response)
-    //     //
-    //   })
-    //   .catch(function (error) {
-    //     console.log('error is', error)
-    //   })
-  }
+  
 
   videoOnReady(event) {
     // access to player in all event handlers via event.target
@@ -370,6 +366,13 @@ class Index extends Component {
     let items = []
     for (var i = this.state.bloglength.length; i > 0; i--) {
       items.push(<NewsCard news={this.state.bloglength[i-1]} />)
+    }
+    return items
+  }
+  internalblogs = () => {
+    let items = []
+    for (var i = this.state.indernalblog.length; i > 0; i--) {
+      items.push(<ExternalBlog blogs={this.state.indernalblog[i-1]} />)
     }
     return items
   }
@@ -413,7 +416,7 @@ class Index extends Component {
                   Decentralized <br />
                   <span>Peer-to-Peer Betting</span>
                 </h2>
-                <p className="mt-5 mt-md-4 text-white text-center text-md-start" onClick={() => this.fetchdata()}>
+                <p className="mt-5 mt-md-4 text-white text-center text-md-start">
                   Create events on literally anything verifiable and place
                   unlimited bets.{' '}
                 </p>
@@ -526,7 +529,7 @@ class Index extends Component {
               draggable={true}
               arrows={true}
               showDots={false}
-              responsive={this.state.responsive_game_card}
+              responsive={this.state.responsive_video_card}
               ssr={true} // means to render carousel on server-side.
               infinite={true}
               keyBoardControl={true}
@@ -702,8 +705,8 @@ class Index extends Component {
             <div className="space-50"></div>
             <Carousel
               swipeable={true}
-              draggable={true}
-              arrows={false}
+              draggable={false}
+              arrows={true}
               showDots={false}
               responsive={this.state.responsive_game_card}
               ssr={true} // means to render carousel on server-side.
@@ -718,6 +721,33 @@ class Index extends Component {
               itemClass="carousel-item-padding-40-px px-4"
             >
               {this.getNewsCard()}
+            </Carousel>
+          </div>
+
+          <div className="container-fluid px-md-5 my-5" id="section-news">
+            <div className="space-100"></div>
+            <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
+              IN HOUSE ARTICLES <img src={lineImage} className="ms-3" />
+            </p>
+            <div className="space-50"></div>
+            <Carousel
+              swipeable={true}
+              draggable={false}
+              arrows={true}
+              showDots={false}
+              responsive={this.state.responsive_game_card}
+              ssr={true} // means to render carousel on server-side.
+              autoPlay={true}
+              autoPlaySpeed={1500}
+              keyBoardControl={true}
+              customTransition="all .5"
+              transitionDuration={500}
+              containerClass="carousel-container"
+              removeArrowOnDeviceType={['tablet', 'mobile']}
+              deviceType={this.props.deviceType}
+              itemClass="carousel-item-padding-40-px px-4"
+            >
+              {this.internalblogs()}
             </Carousel>
           </div>
 

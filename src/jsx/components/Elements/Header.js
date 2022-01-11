@@ -30,9 +30,9 @@ class Header extends Component {
                             <form>
                                 <ul className="navbar-nav">
                                     <li className="nav-item px-2 px-md-4">
-                                        <a className="nav-link text-white mt-1" href={whitepaper} target='_blank'>Read Whitepaper</a>
+                                        <a className="nav-link text-white mt-1" href={whitepaper} target='_blank'>Whitepaper</a>
                                     </li>
-
+                                
                                     <li className="nav-item px-2 px-md-4">
                                         <NavLink className="nav-link text-white mt-1" to="/about">About</NavLink>
                                     </li>

@@ -11,14 +11,11 @@ class PARTNET extends Component {
     }
 
     componentDidMount = async() => { 
-        this.Handleprops();
+        // console.log("partners",this.state.img)
     };
 
     Handleprops = async() => {
       
-        if(this.state.news != undefined){
-            console.log("data img ", this.state.img)
-        }
     }
 
     render() {
@@ -29,7 +26,7 @@ class PARTNET extends Component {
                   data-aos-duration="400"
                   data-aos-easing="linear"
                 >
-                    <img src={`https://betswamp-strapi-ckkbf.ondigitalocean.app${this.state.img.attributes.Image.data.attributes.url}`} width="100" />
+                    <img src={this.state.img.logo.full_url} width="100" />
                 </div> :''} 
             </Fragment>
         );

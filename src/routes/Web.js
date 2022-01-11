@@ -5,6 +5,7 @@ import SideBar from '../jsx/pages/Home/SideBar'
 //Pages
 import Home from '../jsx/pages/Home/Index'
 import App from '../jsx/pages/App/Index'
+import BLogs from '../jsx/pages/Blogs/BLogs'
 import Admin from '../jsx/pages/Admin/Index'
 import About from '../jsx/pages/About/Index'
 import Tennis from './../jsx/pages/Categories/Tennis'
@@ -27,6 +28,7 @@ class Web extends Component {
             <Route exact path="/app" component={Soccer} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/blogs" component={BLogs} />
             <Route exact path="/soccer" component={Soccer} />
             <Route exact path="/rugby" component={Rugby} />
             <Route exact path="/tennis" component={Tennis} />
