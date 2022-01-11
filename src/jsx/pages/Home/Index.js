@@ -181,6 +181,13 @@ class Index extends Component {
     //   },
     //   entireTextOnly: false,
     // })
+
+// **************** API FOR ALL DATA ****************//
+  
+  
+
+  // **************** API FOR ALL DATA ****************//
+
     // **************** API FOR LINE CHART DATA ****************//
     let LineData = []
     let Lineprice = []
@@ -261,6 +268,11 @@ class Index extends Component {
       })
     this.setState({ video: video })
     // console.log("video is ", this.state.video);
+
+
+
+
+    
     // **************** API FOR VIDEO DATA ****************//
 
     // fetching price of total
@@ -314,6 +326,31 @@ class Index extends Component {
     return items
   }
 
+   fetchdata = async() => {
+     console.log("run")
+        var myHeaders = new Headers();
+        myHeaders.append("Accept", "application/json");
+        myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
+
+      var requestOptions = {
+          method: 'GET',
+          headers: myHeaders,
+          redirect: 'follow'
+      };
+
+      fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/1e124355acb64ffbb39fc774b8d1c30b/FAQS", requestOptions)
+        .then(response => console.log("HEllo",response))
+        .then(result => console.log("HEllo",result))
+        .catch(error => console.log('error', error));
+    // await axios.get("admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/1e124355acb64ffbb39fc774b8d1c30b/FAQS",requestOptions)
+    // .then(function (response) {
+    //   console.log("HEllo",response)
+    //     //
+    //   })
+    //   .catch(function (error) {
+    //     console.log('error is', error)
+    //   })
+  }
 
   videoOnReady(event) {
     // access to player in all event handlers via event.target
@@ -376,7 +413,7 @@ class Index extends Component {
                   Decentralized <br />
                   <span>Peer-to-Peer Betting</span>
                 </h2>
-                <p className="mt-5 mt-md-4 text-white text-center text-md-start">
+                <p className="mt-5 mt-md-4 text-white text-center text-md-start" onClick={() => this.fetchdata()}>
                   Create events on literally anything verifiable and place
                   unlimited bets.{' '}
                 </p>
