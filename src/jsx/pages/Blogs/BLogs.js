@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import Header from '../../components/Elements/Header'
 import Footer from '../../components/Elements/Footer'
 
+
+
 class BLogs extends Component {
     constructor(props) {
         super(props);
@@ -28,9 +30,16 @@ class BLogs extends Component {
         .then(result => this.setState({blogs:result}))
         .catch(error => console.log('error', error));
         if(this.state.blogs != undefined){
-            console.log(this.state.blogs.image.full_url)
+            console.log(this.state.blogs)
         }  
     };
+
+    textreplace = (text) =>{
+        if(this.props.location.query.body != undefined){
+            const format = this.props.location.query.body.replace(/<style([\s\S]*?)<\/style>/gi, ' ').replace(/<script([\s\S]*?)<\/script>/gi, ' ').replace(/(<(?:.|\n)*?>)/gm, ' ').replace(/\s+/gm, ' ').replace(/\s+/gm, ' ');
+            return format
+        }
+    }
 
 
     render() {
@@ -40,12 +49,17 @@ class BLogs extends Component {
                 {this.state.blogs != undefined ? <div className="blogbody">
                     <div className="blogtitle">
                         <h1 className="blogtext">{this.state.blogs.title}</h1>
+                        {this.state.blogs.category != undefined ? this.state.blogs.category.map(data => 
+                            {<h4>
+                            {data.category} 
+                            </h4>})
+                            :''}
                     </div>
                     <div className="blogimg" style={{textAlign:'center'}}>
                          <img src={`${this.props.location.query.image}`} style={{height:'auto', maxWidth:'70%'}}/> : 
                     </div>
                     <div className="blogartical">
-                     <p className="blogtext">{this.state.blogs.excerpt}</p>
+                     <p className="blogtext">{this.textreplace()}</p>
                     </div>
                 </div> :' '}
             

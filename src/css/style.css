@@ -1428,6 +1428,7 @@ footer button {
   justify-content: center;
   padding: 20px;
   margin-bottom: 20px;
+  border: white;
 }
 .blogtext{
   color: white;

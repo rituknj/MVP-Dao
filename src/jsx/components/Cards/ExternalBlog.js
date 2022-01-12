@@ -45,7 +45,7 @@ class ExternalBlog extends Component {
                              
                             </p>
                             <a  href="#" target='_blank' style={{textDecoration:'none'}} >  <p className="text-end">
-                             <Link to={{pathname: `/blogs`, query:{id:this.state.blogs.id,updated:this.state.blogs.published_at,image:this.state.blogs.image.full_url}}}> Read  <img src={arrowRight} className="ms-3" width="20" /></Link> 
+                             <Link style={{textDecoration:'none',color:'#ffff'}}  to={{pathname: `/blogs`, query:{id:this.state.blogs.id,updated:this.state.blogs.date,image:this.state.blogs.image.full_url,body:this.state.blogs.body,categories:this.state.blogs.category}}}> Read  <img src={arrowRight} className="ms-3" width="20" /></Link> 
                         </p></a>
                         </div>
                     </div>
