@@ -37,7 +37,7 @@ class ExternalBlog extends Component {
                                {this.state.blogs.source}
                             </p>
                             <p className="text-start">
-                                Published on {this.state.blogs.published_at.substring(0,10)}
+                                Published on {this.state.blogs.date.substring(0,10)}
                             </p>
                         </div>
                         <div className="col-6">

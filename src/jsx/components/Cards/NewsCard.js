@@ -14,7 +14,7 @@ class NewsCard extends Component {
     }
 
     componentDidMount = async() => { 
-      console.log("", this.state.news)
+      console.log("NEw card", this.state.news)
     };
 
     Handleprops = async() => {
@@ -50,7 +50,7 @@ class NewsCard extends Component {
                                {this.state.news.source}
                             </p>
                             <p className="text-start">
-                                Published on {this.state.news.published_at.substring(0,10)}
+                                Published on {this.state.news.date.substring(0,10)}
                             </p>
                         </div>
                         <div className="col-6">

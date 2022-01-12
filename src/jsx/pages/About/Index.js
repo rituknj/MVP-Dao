@@ -31,6 +31,7 @@ class Index extends Component {
         this.state = {
             price:0,
             totalSupply:0,
+            faq:null,
             Lineprice:[],
             responsive: {
                 superLargeDesktop: {
@@ -232,6 +233,28 @@ class Index extends Component {
             totalSupply:totalSupply
         })
 
+        var myHeaders = new Headers();
+        myHeaders.append("Accept", "application/json");
+        myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
+         var requestOptions = {
+          method: 'GET',
+          headers: myHeaders,
+          redirect: 'follow'
+        };
+        await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/faqs", requestOptions)
+         .then(response => response.json())
+         .then(result => this.setState({faq:result}))
+        .catch(error => console.log('error', error));
+        console.log("faq",this.state.faq)
+
+
+
+
+
+
+
+
+
         // fetching price of total
         request('GET', "https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d")
         .then((r1) => {
@@ -291,7 +314,7 @@ class Index extends Component {
     };
     faqs = () => {
         let items = [];
-        for (var i = 1; i <= 10; i++) {
+        for (var i = 0; i < this.state.faq.length; i++) {
             items.push(
                 <div className="accordion-item text-white mb-4 mb-md-5" key={i}>
                     <h2 className="accordion-header head-color" id={`heading-${i}`}>
@@ -303,7 +326,7 @@ class Index extends Component {
                             aria-expanded="true"
                             aria-controls={`#collapse-${i}`}
                         >
-                            question {i}
+                            Question {this.state.faq[i].questions}
                         </button>
                     </h2>
                     <div
@@ -312,7 +335,7 @@ class Index extends Component {
                         aria-labelledby={`heading-${i}`}
                     >
                         <div className="accordion-body">
-                            <p className="pt-2 pb-4"> What is Lorem Ipsum?</p>
+                            <p className="pt-2 pb-4"> {this.state.faq[i].answers}</p>
                         </div>
                     </div>
                 </div>
@@ -657,7 +680,7 @@ class Index extends Component {
                   <a href={whitepaper} target='_blank'>  <button className="btn mt-4" >Read Whitepaper</button></a>
                     <div className="space-100"></div>
                 </div>
-                {/* <div
+                <div
                     className="container-fluid px-md-5 py-md-5 py-3"
                     id="about-section-6"
                 >
@@ -665,9 +688,12 @@ class Index extends Component {
                         <h4>FAQS</h4>
                     </div>
                     <div className="accordion" id="accordionFaq">
-                        {this.faqs()}
+
+
+                   {this.state.faq ? this.faqs() : ''}
+
                     </div>
-                </div> */}
+                </div>
 
                 <div
                     className="container-fluid px-md-5 py-md-5 py-3"

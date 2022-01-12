@@ -7,6 +7,7 @@ import NewsCard from '../../components/Cards/NewsCard'
 import PartnerCom from '../../components/Cards/Partner'
 import Videocom from '../../components/Cards/Videos'
 import ExternalBlog from '../../components/Cards/ExternalBlog'
+import Amessador from '../../components/Cards/Amessador'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import loadable from '@loadable/component'
@@ -67,6 +68,7 @@ class Index extends Component {
       video: [],
       Lineprice: [],
       Linetime: [],
+      Ambassador:[],
       dataset: {},
       activeevents: 0,
       totalbetsmade: 0,
@@ -277,6 +279,14 @@ class Index extends Component {
     .catch(error => console.log('error', error));
      // **************** API LINE INTERNAL BLOG DATA ****************//
 
+    // **************** API LINEambassador BLOG DATA ****************//
+     await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/ambassadors", requestOptions)
+      .then(response => response.json())
+      .then(result => this.setState({Ambassador:result}) )
+    .catch(error => console.log('error', error));
+    console.log("amemsador", this.state.Ambassador)
+    // **************** API LINE ambassador BLOG DATA ****************//
+
     // fetching price of total
     request(
       'GET',
@@ -346,6 +356,13 @@ class Index extends Component {
     return items
   }
 
+  amessador = () => {
+    let items = []
+    for (var i = this.state.Ambassador.length; i > 0; i--) {
+      items.push(<Amessador img={this.state.Ambassador[i - 1]} />)
+    }
+    return items
+  }
   
 
   videoOnReady(event) {
@@ -776,43 +793,34 @@ class Index extends Component {
               itemClass="d-flex justify-content-center align-items-center flex-column"
             >
               {this.parterImg()}
-              {/* <div
-                            data-aos="zoom-in"
-                            data-aos-duration="100"
-                            data-aos-easing="linear"
-                        >
-                            <img src={ueImage} width="100" />
-                        </div> */}
-              {/* {this.state.partner.map(data => {
-                            <div
-                            data-aos="zoom-in"
-                            data-aos-duration="400"
-                            data-aos-easing="linear"
-                        >
-                            <img src={ueImage} width="100" />
-                        </div>
-                        })} */}
-              {/* <div
-                            data-aos="zoom-in"
-                            data-aos-duration="800"
-                            data-aos-easing="linear"
-                        >
-                            <img src={segaImage} width="100%" />
-                        </div>
-                        <div
-                            data-aos="zoom-in"
-                            data-aos-duration="1000"
-                            data-aos-easing="linear"
-                        >
-                            <img src={xboxImage} width="100%" />
-                        </div>
-                        <div
-                            data-aos="zoom-in"
-                            data-aos-duration="1200"
-                            data-aos-easing="linear"
-                        >
-                            <img src={psImage} width="100%" />
-                        </div> */}
+            </Carousel>
+          </div>
+
+          <div className="container-fluid px-md-5 my-5" id="section-partners">
+            <div className="space-100"></div>
+            <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1 text-uppercase">
+            Ambassadors <img src={lineImage} className="ms-3" />
+            </p>
+            <div className="space-50"></div>
+            <Carousel
+              swipeable={true}
+              draggable={false}
+              arrows={true}
+              showDots={false}
+              responsive={this.state.responsive}
+              ssr={true} // means to render carousel on server-side.
+              infinite={true}
+              autoPlay={true}
+              autoPlaySpeed={1500}
+              keyBoardControl={true}
+              customTransition="all .5"
+              transitionDuration={500}
+              containerClass="carousel-container"
+              removeArrowOnDeviceType={['tablet', 'mobile']}
+              deviceType={this.props.deviceType}
+              itemClass="d-flex justify-content-center align-items-center flex-column"
+            >
+              {this.amessador()}
             </Carousel>
           </div>
           <Footer />
