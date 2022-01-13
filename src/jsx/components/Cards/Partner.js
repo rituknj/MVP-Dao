@@ -11,7 +11,7 @@ class PARTNET extends Component {
     }
 
     componentDidMount = async() => { 
-        // console.log("partners",this.state.img)
+        console.log("partners",this.state.img)
     };
 
     Handleprops = async() => {

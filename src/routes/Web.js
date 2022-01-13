@@ -8,6 +8,7 @@ import App from '../jsx/pages/App/Index'
 import BLogs from '../jsx/pages/Blogs/BLogs'
 import Admin from '../jsx/pages/Admin/Index'
 import About from '../jsx/pages/About/Index'
+import NEWPAGE from './../jsx/pages/News/Newpage'
 import Tennis from './../jsx/pages/Categories/Tennis'
 import Soccer from './../jsx/pages/Categories/Soccer'
 import Rugby from './../jsx/pages/Categories/Rugby'
@@ -29,6 +30,7 @@ class Web extends Component {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/about" component={About} />
             <Route exact path="/blogs" component={BLogs} />
+            <Route exact path="/news" component={NEWPAGE} />
             <Route exact path="/soccer" component={Soccer} />
             <Route exact path="/rugby" component={Rugby} />
             <Route exact path="/tennis" component={Tennis} />

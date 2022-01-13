@@ -603,7 +603,7 @@ class Index extends Component {
                     <div className="col-lg-12">
                         <Carousel
                             swipeable={false}
-                            draggable={false}
+                            draggable={true}
                             arrows={true}
                             showDots={false}
                             responsive={this.state.roadMapSlide}
@@ -613,10 +613,10 @@ class Index extends Component {
                             customTransition="all .5"
                             transitionDuration={500}
                             containerClass="carousel-container"
-                            removeArrowOnDeviceType={["tablet", "mobile"]}
+                            removeArrowOnDeviceType={["tablet"]}
                             deviceType={this.props.deviceType}
 
-                            centerMode={true}
+                            centerMode={false}
                             itemClass="row"
                             afterChange={(previousSlide, { currentSlide, onMove }) => {
                                 this.doSpeicalThing(currentSlide);

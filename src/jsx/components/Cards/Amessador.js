@@ -25,9 +25,13 @@ class AMESSADOR extends Component {
                   data-aos="zoom-in"
                   data-aos-duration="400"
                   data-aos-easing="linear"
+                  style={{textAlign:'center', color:'#ffff'}}
                 >
                     <img src={this.state.img.logo.full_url} width="100" />
-                </div> :''} 
+                    <p style={{marginTop:'10px',backgroundColor:'#161616',padding:'5px 10px',borderRadius:'5px'}}>{this.state.img.name}</p>
+                </div>
+                
+                :''} 
             </Fragment>
         );
     }

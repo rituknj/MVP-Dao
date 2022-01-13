@@ -37,7 +37,7 @@ class Header extends Component {
                                         <NavLink className="nav-link text-white mt-1" to="/about">About</NavLink>
                                     </li>
                                     <li className="nav-item px-2 px-md-4">
-                                        <NavLink className="nav-link text-white mt-1" to="/#news">News</NavLink>
+                                        <NavLink className="nav-link text-white mt-1" to="/news">News</NavLink>
                                     </li>
                                     <li className="nav-item px-2 px-md-4">
                                         <NavLink className="btn btn-md theam-bg-red mt-1" to="/app">Launch app </NavLink>

@@ -714,7 +714,7 @@ class Index extends Component {
               </div>
             </div>
           </div>
-          <div className="container-fluid px-md-5 my-5" id="section-news">
+         {this.state.bloglength.length != 0 || this.state.indernalblog.length != 0 ? <div className="container-fluid px-md-5 my-5" id="section-news">
             <div className="space-100"></div>
             <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
               NEWS <img src={lineImage} className="ms-3" />
@@ -739,9 +739,35 @@ class Index extends Component {
             >
               {this.getNewsCard()}
             </Carousel>
-          </div>
 
-          <div className="container-fluid px-md-5 my-5" id="section-news">
+            <div className="space-100"></div>
+
+
+            {/* ***************************In House Articles************************** */}
+
+            <Carousel
+              swipeable={true}
+              draggable={false}
+              arrows={true}
+              showDots={false}
+              responsive={this.state.responsive_game_card}
+              ssr={true} // means to render carousel on server-side.
+              autoPlay={true}
+              autoPlaySpeed={1500}
+              keyBoardControl={true}
+              customTransition="all .5"
+              transitionDuration={500}
+              containerClass="carousel-container"
+              removeArrowOnDeviceType={['tablet', 'mobile']}
+              deviceType={this.props.deviceType}
+              itemClass="carousel-item-padding-40-px px-4"
+            >
+              {this.internalblogs()}
+            </Carousel>
+
+          </div> :''}
+
+          {/* <div className="container-fluid px-md-5 my-5" id="section-news">
             <div className="space-100"></div>
             <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
               IN HOUSE ARTICLES <img src={lineImage} className="ms-3" />
@@ -766,9 +792,9 @@ class Index extends Component {
             >
               {this.internalblogs()}
             </Carousel>
-          </div>
+          </div> */}
 
-          <div className="container-fluid px-md-5 my-5" id="section-partners">
+         {this.state.partner.length != 0 ? <div className="container-fluid px-md-5 my-5" id="section-partners">
             <div className="space-100"></div>
             <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1 text-uppercase">
               partners <img src={lineImage} className="ms-3" />
@@ -794,9 +820,9 @@ class Index extends Component {
             >
               {this.parterImg()}
             </Carousel>
-          </div>
+          </div>: ''}
 
-          <div className="container-fluid px-md-5 my-5" id="section-partners">
+         {this.state.Ambassador.length != 0 ? <div className="container-fluid px-md-5 my-5" id="section-partners">
             <div className="space-100"></div>
             <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1 text-uppercase">
             Ambassadors <img src={lineImage} className="ms-3" />
@@ -822,7 +848,7 @@ class Index extends Component {
             >
               {this.amessador()}
             </Carousel>
-          </div>
+          </div> :''}
           <Footer />
         </div>
       </Fragment>
