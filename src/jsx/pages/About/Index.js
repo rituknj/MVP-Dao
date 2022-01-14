@@ -99,7 +99,7 @@ class Index extends Component {
                     pointfive:'Coinmarketcap listing',
                     pointsix:' Platform beta testing',
                     pointseven:'Phase 2 marketing initialized',
-                    is_active: false,
+                    is_active: true,
                 },
                 2: {
                     title: 'Phase 3',
@@ -348,11 +348,11 @@ class Index extends Component {
         let roadMap = this.state.roadMap
       
         if (e == 0) {
-            roadMap[0].is_active = true
-            roadMap[1].is_active = false
-            roadMap[2].is_active = false
+            // roadMap[0].is_active = true
+            // roadMap[1].is_active = false
+            // roadMap[2].is_active = false
         } else {
-            roadMap[e].is_active = true
+            // roadMap[e].is_active = true
         }
         this.setState({
             roadMap: roadMap
@@ -602,7 +602,7 @@ class Index extends Component {
 
                     <div className="col-lg-12">
                         <Carousel
-                            swipeable={false}
+                            swipeable={true}
                             draggable={true}
                             arrows={true}
                             showDots={false}
@@ -613,11 +613,11 @@ class Index extends Component {
                             customTransition="all .5"
                             transitionDuration={500}
                             containerClass="carousel-container"
-                            removeArrowOnDeviceType={["tablet"]}
+                            // removeArrowOnDeviceType={["tablet"]}
                             deviceType={this.props.deviceType}
 
                             centerMode={false}
-                            itemClass="row"
+                            // itemClass="row"
                             afterChange={(previousSlide, { currentSlide, onMove }) => {
                                 this.doSpeicalThing(currentSlide);
                             }}
@@ -634,25 +634,25 @@ class Index extends Component {
                                     <div className="roadMapTitle mb-4 px-2">
                                         <p>{v.title}</p>
                                     </div>
-                                    <div className={`px-3`}>
+                                    <div className={`px-2`}>
                                         <div className={`roadMapCard ${(v.is_active) ? 'active' : ''}`}>
                                            {v.pointone != undefined ? <p>
-                                                <img src={whiteDot} className="me-4" />{v.pointone}
+                                                <img src={whiteDot} className="me-4" /><p>{v.pointone}</p>
                                             </p> :''}
                                             {v.pointtwo != undefined ? <p>
-                                                <img src={whiteDot} className="me-4" />{v.pointtwo}
+                                                <img src={whiteDot} className="me-4" /><p>{v.pointtwo}</p>
                                             </p> :''}
                                             {v.pointthree != undefined ? <p>
-                                                <img src={whiteDot} className="me-4" />{v.pointthree}
+                                                <img src={whiteDot} className="me-4" /><p>{v.pointthree}</p>
                                             </p> :''}
                                             {v.pointfour != undefined ? <p>
-                                                <img src={whiteDot} className="me-4" />{v.pointfour}
+                                                <img src={whiteDot} className="me-4" /><p>{v.pointfour}</p>
                                             </p> :''}
                                             {v.pointfive!= undefined ? <p>
-                                                <img src={whiteDot} className="me-4" />{v.pointfive}
+                                                <img src={whiteDot} className="me-4" /><p>{v.pointfive}</p>
                                             </p> :''}
                                             {v.pointsix != undefined ? <p>
-                                                <img src={whiteDot} className="me-4" />{v.pointsix}
+                                                <img src={whiteDot} className="me-4" /><p>{v.pointsix}</p>
                                             </p> :''}
                                             {v.pointseven != undefined ? <p>
                                                 <img src={whiteDot} className="me-4" />{v.pointseven}
