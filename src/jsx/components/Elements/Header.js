@@ -29,11 +29,20 @@ class Header extends Component {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
                             <form>
                                 <ul className="navbar-nav">
-                                    <li className="nav-item px-2 px-md-4">
+                                    {/* <li className="nav-item px-2 px-md-4">
                                         <a className="nav-link text-white mt-1" href={whitepaper} target='_blank'>Whitepaper</a>
+                                    </li> */}
+                                    <li className="nav-item px-2 px-md-4">
+                                        <NavLink className="nav-link text-white mt-1" to="/">DAO</NavLink>
+                                    </li>
+                                    <li className="nav-item px-2 px-md-4">
+                                        <NavLink className="nav-link text-white mt-1" to="/">MARKET</NavLink>
+                                    </li>
+                                    <li className="nav-item px-2 px-md-4">
+                                        <NavLink className="nav-link text-white mt-1" to="/">WALLET</NavLink>
                                     </li>
                                 
-                                    <li className="nav-item px-2 px-md-4">
+                                    {/* <li className="nav-item px-2 px-md-4">
                                         <NavLink className="nav-link text-white mt-1" to="/about">About</NavLink>
                                     </li>
                                     <li className="nav-item px-2 px-md-4">
@@ -41,7 +50,7 @@ class Header extends Component {
                                     </li>
                                     <li className="nav-item px-2 px-md-4">
                                         <NavLink className="btn btn-md theam-bg-red mt-1" to="/app">Launch app </NavLink>
-                                    </li>
+                                    </li> */}
                                 </ul>
                             </form>
                         </div>

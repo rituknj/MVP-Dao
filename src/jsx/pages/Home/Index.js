@@ -420,46 +420,70 @@ class Index extends Component {
       <Fragment onClick={this.moussecloas}>
         <Header />
         <div onClick={this.moussecloas}>
+          <div className='topBoxBg'>
           <div className="container mb-5 mb-md-0" id="section-home">
             <div className="space-100"></div>
-            <div className="space-100"></div>
+            
             <div className="row">
               <div
-                className="col-lg-8 col-md-7 col-sm-12"
+                className="col-lg-8 col-md-7 col-sm-11 hometopBox"
                 data-aos="zoom-in-up"
                 data-aos-easing="linear"
               >
                 <h2 className="text-white text-center text-md-start">
-                  Decentralized <br />
-                  <span>Peer-to-Peer Betting</span>
+                A DAO YOU CAN LITERALY<br />
+                  <span>BET</span> ON
                 </h2>
                 <p className="mt-5 mt-md-4 text-white text-center text-md-start">
-                  Create events on literally anything verifiable and place
-                  unlimited bets.{' '}
+                Get the best APY in the market staking on the betswamp DAO and have<br/> fun
+                betting on your favorite market.{' '}
                 </p>
-                <div className="text-center text-md-start my-4 my-md-0">
+                <div className="text-center text-md-center my-1 my-md-0 topAppBtn">
+                  <NavLink
+                    to="/"
+                    className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtnDao"
+                  >
+                    LAUNCH DAO
+                  </NavLink>
                   <NavLink
                     to="/app"
                     className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtn"
                   >
-                    Launch app
+                    START BETING
                   </NavLink>
                 </div>
               </div>
               <div
-                className="col-lg-4 col-md-5 col-sm-12 text-center homeTopImage"
-                data-aos="zoom-in-up"
-                data-aos-easing="linear"
+                className="col-lg-4 col-md-5 col-sm-12 homeTopImage"
+              
               >
-                <img src={TopImage} className="img-fluid my-5 my-md-0" />
+                <div className="container-fluid px-md-5" id="section-analytics">
+                    <div className="row py-5">
+                        <div className="col-lg-12 position-relative" id="video-frame">
+                            <video poster="placeholder.png" controls={false}>
+                                <source src="movie.mp4" type="video/mp4" />
+                                <source src="movie.ogg" type="video/ogg" />
+                            </video>
+                            {this.state.isOpen ? 
+                            <YouTube videoId="KWLdJQR_4pA" id="play-video" className="playing_video" opts={opts} onReady={this._onReady} /> 
+                            : <a id="play-video" className="video-play-button " onClick={() => this.setState({isOpen:true})}>
+                                <span></span>
+                            </a>}
+                        </div>
+                    </div>
+                </div>
+                {/* <img src={TopImage} className="img-fluid my-5 my-md-0" /> */}
               </div>
             </div>
           </div>
+          </div>
+
           <div className="container-fluid px-md-5" id="section-analytics">
-            <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p">
+            {/* <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p">
               Market Analytics{' '}
               <img src={arrowRight} className="ms-3" width="21px" />
-            </p>
+            </p> */}
+            <div className="space-100"></div>
             <div
               className="row"
               data-aos="fade-up"
@@ -493,20 +517,20 @@ class Index extends Component {
                     </div>
                   </div> */}
 
-                  <div className="card chart-card  overflow-hidden text-center py-3  align-items-stretch col-12">
-                    <h5 className="theam-text-color m-0">Price</h5>
+                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
+                    <h5 className="text-white m-0">Price</h5>
                     <h4 className="text-white mt-3">
                       $ {Number(this.state.price).toFixed(4)}
                     </h4>
                   </div>
 
-                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
-                    <h5 className="theam-text-color m-0">Holders</h5>
-                    <h4 className="theam-text-green mt-3">731</h4>
+                  <div className=" overflow-hidden text-center py-3 align-items-stretch col-12">
+                    <h5 className="text-white m-0">Holders</h5>
+                    <h4 className="text-white mt-3">731</h4>
                   </div>
 
-                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
-                    <h5 className="theam-text-color m-0">Market Cap</h5>
+                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
+                    <h5 className="text-white m-0">Market Cap</h5>
                     <h4 className="text-white mt-3">
                       ${' '}
                       {(
@@ -517,29 +541,22 @@ class Index extends Component {
                     </h4>
                   </div>
 
-                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
-                    <h5 className="theam-text-color m-0">Total Supply</h5>
+                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
+                    <h5 className="text-white m-0">Total Supply</h5>
                     <h4 className="text-white mt-3">250,000,000</h4>
                   </div>
+
+                  {/* <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
+                    <h5 className="text-white m-0">Total Supply</h5>
+                    <h4 className="text-white mt-3">250,000,000</h4>
+                  </div> */}
                 </Carousel>
               </div>
             </div>
           </div>
-          {/* <div className="container-fluid px-md-5" id="section-analytics">
-                    <div className="row py-5">
-                        <div className="col-lg-12 position-relative" id="video-frame">
-                            <video poster="placeholder.png" controls={false}>
-                                <source src="movie.mp4" type="video/mp4" />
-                                <source src="movie.ogg" type="video/ogg" />
-                            </video>
-                            {this.state.isOpen ? 
-                            <YouTube videoId="KWLdJQR_4pA" id="play-video" className="playing_video" opts={opts} onReady={this._onReady} /> 
-                            : <a id="play-video" className="video-play-button " onClick={() => this.setState({isOpen:true})}>
-                                <span></span>
-                            </a>}
-                        </div>
-                    </div>
-                </div> */}
+          <div className="container-fluid px-md-5" id="section-analytics">
+          
+          </div>
           <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
             <Carousel
               swipeable={true}

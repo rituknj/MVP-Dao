@@ -76,6 +76,12 @@ body {
   padding: 10px 15px;
 }
 
+.topBoxBg{
+  background: url("./../images/topBG.png");
+  background-position: center;
+  background-size: cover;
+}
+
 #section-home h2 {
   font-style: normal;
   font-weight: 900;
@@ -94,7 +100,20 @@ body {
   color: #ffffff;
 }
 #section-home .homeTopBtn {
-  background: #ff0000;
+  background: #2B2A2A;
+  padding: 12px 10px;
+  width: 300px;
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+  color: #ffffff;
+  
+}
+
+#section-home .homeTopBtnDao {
+  background: #ffffff;
   padding: 12px 10px;
   width: 300px;
   border-radius: 10px;
@@ -103,7 +122,30 @@ body {
   font-size: 18px;
   line-height: 23px;
   color: #0f0f0f;
+  
 }
+.homeTopImage{
+  margin-top: -60px;
+}
+
+.topAppBtn{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.hometopBox{
+  margin-top: 30px;
+  background-color: #0F0F0F;
+  height: 100%;
+  width: auto;
+  padding: 10px;
+}
+.about{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .div-p {
   font-style: normal;
   font-weight: normal;
