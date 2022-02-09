@@ -109,7 +109,18 @@ body {
   font-size: 18px;
   line-height: 23px;
   color: #ffffff;
-  
+}
+
+.nftsTopBtn {
+  background: #2B2A2A;
+  padding: 12px 10px;
+  width: 300px;
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+  color: #ffffff;
 }
 
 #section-home .homeTopBtnDao {
@@ -1492,3 +1503,76 @@ footer button {
   margin-top: 20px;
 }
 
+.vl {
+  border-left: 3px solid rgb(247, 247, 247);
+  height: 55px;
+}
+
+.ecosystem{
+  background-color: #232323;
+  height: 300px;
+}
+
+.nfts-box{
+  /* background: url("./../images/nfts.png"); */
+  background-color: #2B2A2A;
+}
+
+.side-text-nfts{
+  position: absolute;
+  right: 5%;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.1); /* Black see-through */ 
+}
+
+.subscribe{
+  padding: 10px;
+}
+
+.outer-box{
+  background-color: #202020E5;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.sub-input{
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  background-color:#151515;
+  border-radius: 5px;
+  padding: 6px;
+}
+.btn-signup{
+  background-color: #2B2A2A;
+}
+.sighup-btn{
+  display: flex;
+  justify-content: end;
+
+}
+
+.question-box{
+  display: grid;
+  justify-content: center;
+}
+.faqbox{
+  margin: 0px;
+  padding: 0px;
+  padding-top: 40px;
+}
+.faq-box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+@media screen and (max-width:766px) {
+  .side-text-nfts{
+    position: absolute;
+    right: 30%;
+    max-width: 800px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.1);
+  }
+}

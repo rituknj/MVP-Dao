@@ -14,7 +14,7 @@ class Footer extends Component {
 
     socialIcons = () => {
         return (
-            <div className="d-flex justify-content-center justify-content-sm-end my-3 flex-wrap social-icons">
+            <div className="d-flex justify-content-center justify-content-sm-start my-3 flex-wrap social-icons">
               <a href="https://www.facebook.com/Betswamp?_rdc=1&_rdr" target="_blank" ><img src={facebook} className="mx-2" /></a> 
                <a href="https://twitter.com/betswamp" target="_blank" > <img src={icons_twitter} className="mx-2" /></a>
                <a href="https://www.instagram.com/betswamp/" target="_blank"> <img src={icons_instagram} className="mx-2" /></a>
@@ -32,29 +32,39 @@ class Footer extends Component {
                     <div className="space-100"></div>
 
                     <div className="row">
-                        <div className="col-md-4 text-center text-md-start mb-5 mb-md-0">
+                        <div className="col-md-6 text-center text-md-start mb-5 mb-md-0">
                             <img src={logo} width="146" />
                         </div>
-                        <div className="col-md-12 d-block d-md-none mb-4 mb-md-0">
+                        <div className="col-md-12 d-block d-md-none mb-4 mb-md-0 text-center">
                             {this.socialIcons()}
                         </div>
                         <div className="col-md-2 text-center text-md-start">
-                            <p className="theam-text-color mb-4">INFO</p>
+                            {/* <p className="text-white font-weight-bold mb-4">INFO</p> */}
                             <ul className="list-unstyled text-small footerList">
-                          <Link to='/about'   className="text-white" href="#" style={{textDecoration:"none"}}> About</Link> 
+                          <Link to='/about'   className="text-white font-weight-bold" href="#" style={{textDecoration:"none"}}>About</Link> 
                           <br/> 
                           <br/> 
                           <li><a className="text-white" href="#">News</a></li>  
                             </ul>
                         </div>
-                        <div className="col-md-3 text-center text-md-start">
-                            <p className="theam-text-color mb-2 mb-md-4">CONTACT</p>
+                        <div className="col-md-2 text-center text-md-start">
+                            {/* <p className="text-white font-weight-bold mb-4">INFO</p> */}
+                            <ul className="list-unstyled text-small footerList">
+                          <Link to='/about' className="text-white font-weight-bold" href="#" style={{textDecoration:"none"}}>Apps</Link> 
+                          <br/> 
+                          <br/> 
+                          <li><a className="text-white" href="#">BETTING PLATFORM</a></li>  
+                          <li><a className="text-white" href="#">DAO</a></li> 
+                            </ul>
+                        </div>
+                        <div className="col-md-2 text-center text-md-start">
+                            <p className="text-white font-weight-bold mb-2 mb-md-4">CONTACT</p>
                             <p className="text-white text-email mb-0"><img src={emailImg} width="22" /> admin@betswamp.com</p>
                         </div>
                         <div className="col-md-3 text-center text-md-start my-5 my-md-0">
-                      <Link to='/app'> <button className="btn btn-md theam-bg-red">
+                      {/* <Link to='/app'> <button className="btn btn-md theam-bg-red">
                                 Launch app
-                            </button></Link>
+                            </button></Link> */}
                         </div>
                     </div>
                     <div className="space-100"></div>
@@ -63,12 +73,12 @@ class Footer extends Component {
                     </div>
                     <div className="media-icons"></div>
                     <div className="row mt-4" id="footer-bottom">
-                        <div className="col-6">
+                        {/* <div className="col-6">
                             <p className="theam-text-grey">Legal Disclaimer</p>
                         </div>
                         <div className="col-6 text-end">
                             <p className="theam-text-grey">© 2021 Betswamp.com</p>
-                        </div>
+                        </div> */}
                     </div>
                 </footer>
 

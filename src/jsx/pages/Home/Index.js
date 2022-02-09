@@ -16,7 +16,19 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { initInstance, loginProcess } from './../../../web3/web3'
 import { gettotalsupply } from './../../../web3/betsService'
-import { formatNumber, fromWei } from './../../../web3/utils'
+import NFTs from "./../../../images/nfts.png"
+import menone from "./../../../images/manone.png"
+import women from "./../../../images/womenone.png"
+import womentwo from "./../../../images/womentwo.png"
+import emailImg from './../../../images/email.png';
+import Partners from "./../../../images/unreal.png"
+import Binance from "./../../../images/binance.png"
+import Saga from "./../../../images/saga.png"
+import Football from './../../../images/football.png'
+import Playstation from "./../../../images/playstation.png"
+import {FaTwitter} from "react-icons/fa"
+import { AiFillLinkedin } from "react-icons/ai"
+import NFTsText from "./../../../images/nfts-side-text.png"
 
 import {
   allactiveusers,
@@ -478,6 +490,8 @@ class Index extends Component {
           </div>
           </div>
 
+          
+
           <div className="container-fluid px-md-5" id="section-analytics">
             {/* <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p">
               Market Analytics{' '}
@@ -554,10 +568,30 @@ class Index extends Component {
               </div>
             </div>
           </div>
-          <div className="container-fluid px-md-5" id="section-analytics">
-          
+          <div className="space-100"></div>
+          <div className="space-100"></div>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-12 col-md-8 text-white'><img src={NFTs} style={{width:'100%'}}/></div>
+              <div className='col-6 col-md-4 text-white side-text-nfts' style={{width:'40%',marginTop:'50px'}}>
+              <p className="mt-2 mt-md-4 text-white d-flex">
+                <div class="vl me-2"></div> <span><p className='m-0'>BETSWAPM</p> <h4>ECOSYSTEM</h4></span> 
+              </p>
+                <p >BETSWAMP IS BUILDING A DECENTRALIZED ECOSYSTEM WHERE ALL IT'S UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO WHICH PROVIDES INVESTORS A SECURED PLATFORM THEY CAN VOCOUNT ON.</p>
+                <NavLink
+                    to="/app"
+                    className="btn btn-md text-white mt-2 mt-md-5 nftsTopBtn"
+                  >
+                    LEARN MORE
+                  </NavLink>
+              </div>
+              
+            </div>
           </div>
-          <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
+          <div className="container-fluid px-md-5" id="section-analytics">
+          {/*  */}
+          </div>
+          {/* <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
             <Carousel
               swipeable={true}
               draggable={true}
@@ -576,11 +610,11 @@ class Index extends Component {
             >
               {this.videos()}
             </Carousel>
-          </div>
+          </div> */}
+          <div className="space-100"></div>
           <div className="container-fluid px-md-5" id="section-statistics">
-            <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p">
-              <img src={statiImage} className="me-2" width="20.02" /> Platform
-              Statistics
+            <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
+              <div class="vl me-2"></div> <span><p className='m-0'>BETSWAPM</p> <h4>ECOSYSTEM</h4></span> 
             </p>
             <div
               className="row py-5"
@@ -605,36 +639,188 @@ class Index extends Component {
                   deviceType={this.props.deviceType}
                   itemClass="px-2"
                 >
-                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
-                    <h5 className="theam-text-color m-0">Total Payout</h5>
+                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
+                    <h5 className="m-0 text-white text-start">DAO</h5>
                     <h4 className="text-white mt-4">
-                      {(this.state.payout / 10 ** 18).toFixed(0)} BUSD
+                      {/* {(this.state.payout / 10 ** 18).toFixed(0)} BUSD */}
                     </h4>
                   </div>
 
-                  <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12">
-                    <h5 className="theam-text-color m-0">Total Events</h5>
-                    <h4 className="text-white mt-4">{this.state.events}</h4>
+                  <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
+                    <h5 className="m-0 text-white text-start"><p className='m-0' style={{fontSize:'10px'}}>DECENTRALISED</p>P2P BETTING</h5>
+                    {/* <h4 className="text-white mt-4">{this.state.events}</h4> */}
                   </div>
 
-                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
-                    <h5 className="theam-text-color m-0">Active users</h5>
+                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
+                    <h5 className="m-0 text-white text-start">BETSVERSE</h5>
                     <h4 className="text-white mt-4">
-                      {this.state.activeusers}
+                      {/* {this.state.activeusers} */}
                     </h4>
                   </div>
 
-                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
-                    <h5 className="theam-text-color m-0">Total bet Created</h5>
+                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
+                    <h5 className="m-0 text-white text-start">NFT</h5>
                     <h4 className="text-white mt-4">
-                      {this.state.totalbetsmade}
+                      {/* {this.state.totalbetsmade} */}
                     </h4>
                   </div>
                 </Carousel>
               </div>
             </div>
           </div>
+          <div className="space-50"></div>
+
+          <div className="container-fluid px-md-5 my-5" id="section-partners">
+            <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
+              <div class="vl me-2"></div> <span><h4 style={{marginTop:'10px'}}>AMBASSADORS</h4></span> 
+            </p>
+            <div className="space-50"></div>
+            <Carousel
+              swipeable={true}
+              draggable={false}
+              arrows={true}
+              showDots={false}
+              responsive={this.state.responsive}
+              ssr={true} // means to render carousel on server-side.
+              infinite={true}
+              autoPlay={true}
+              autoPlaySpeed={1500}
+              keyBoardControl={true}
+              customTransition="all .5"
+              transitionDuration={500}
+              containerClass="carousel-container"
+              removeArrowOnDeviceType={['tablet', 'mobile']}
+              deviceType={this.props.deviceType}
+              itemClass="d-flex justify-content-center align-items-center flex-column"
+            >
+              {/* {this.amessador()} */}
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                  style={{textAlign:'center', color:'#ffff'}}
+                >
+                    <img src={menone} width="100" style={{borderRadius:'80px'}} />
+                    <p className='m-0'>Name</p>
+                    <p className='m-0'>Title</p>
+                    <div className='d-flex m-0 justify-content-evenly'>
+                    <FaTwitter/>{" "}
+                    <AiFillLinkedin/>
+                    </div>
+              </div>
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                  style={{textAlign:'center', color:'#ffff'}}
+                >
+                    <img src={women} width="100" style={{borderRadius:'80px'}} />
+                    <p className='m-0'>Name</p>
+                    <p className='m-0'>Title</p>
+                    <div className='d-flex m-0 justify-content-evenly'>
+                    <FaTwitter/>{" "}
+                    <AiFillLinkedin/>
+                    </div>
+              </div>
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                  style={{textAlign:'center', color:'#ffff'}}
+                >
+                    <img src={menone} width="100" style={{borderRadius:'80px'}} />
+                    <p className='m-0'>Name</p>
+                    <p className='m-0'>Title</p>
+                    <div className='d-flex m-0 justify-content-evenly'>
+                    <FaTwitter/>{" "}
+                    <AiFillLinkedin/>
+                    </div>
+              </div>
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                  style={{textAlign:'center', color:'#ffff'}}
+                >
+                    <img src={womentwo} width="100" style={{borderRadius:'80px'}} />
+                    <p className='m-0'>Name</p>
+                    <p className='m-0'>Title</p>
+                    <div className='d-flex m-0 justify-content-evenly'>
+                    <FaTwitter/>{" "}
+                    <AiFillLinkedin/>
+                    </div>
+              </div>
+              
+            </Carousel>
+          </div>
           <div className="space-100"></div>
+          <div className="container-fluid px-md-5 my-5" id="section-partners">
+            <p className="mt-2 mt-md-4 text-white d-flex">
+                <div class="vl me-2"></div> <span><p className='m-0'>STRATEGIC</p> <h4>PARTNERS</h4></span> 
+              </p>
+            <div className="space-50"></div>
+            <Carousel
+              swipeable={true}
+              draggable={false}
+              arrows={true}
+              showDots={false}
+              responsive={this.state.responsive}
+              ssr={true} // means to render carousel on server-side.
+              infinite={true}
+              autoPlay={true}
+              autoPlaySpeed={1500}
+              keyBoardControl={true}
+              customTransition="all .5"
+              transitionDuration={500}
+              containerClass="carousel-container"
+              removeArrowOnDeviceType={['tablet', 'mobile']}
+              deviceType={this.props.deviceType}
+              itemClass="d-flex justify-content-center align-items-center flex-column"
+            >
+              {/* {this.amessador()} */}
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                >
+                    <img src={Partners} style={{width:"100%"}}/>
+              </div>
+
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                >
+                    <img src={Binance} style={{width:"100%"}}/>
+              </div>
+
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                >
+                    <img src={Saga} style={{width:"100%"}}/>
+              </div>
+
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                >
+                    <img src={Football} style={{width:"100%"}}/>
+              </div>
+
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                >
+                    <img src={Playstation} style={{width:"100%"}}/>
+              </div>
+              
+            </Carousel>
+          </div>
+
           <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
             <Carousel
               swipeable={true}
@@ -673,13 +859,14 @@ class Index extends Component {
                 <img src={arrowRight} className="ms-3" width="20" />
               </p>
             </div>
+            
           </div>
-          <div className="container-fluid px-md-5 mt-5" id="section-validate">
+          {/* <div className="container-fluid px-md-5 mt-5" id="section-validate">
             <div className="space-100"></div>
             <div className="space-100"></div>
             <div className="row">
               <div
-                className="col-lg-7 mt-5"
+                className="col-lg-7 mt-5 nfts-box"
                 data-aos="zoom-in-down"
                 data-aos-easing="linear"
               >
@@ -695,6 +882,7 @@ class Index extends Component {
                   BUILD YOUR REPUTATION AS A VALIDATOR AND Earn passive income
                   WHILE YOU AT IT.
                 </p>
+                
               </div>
               <div
                 className="col-lg-4 text-center"
@@ -705,8 +893,8 @@ class Index extends Component {
               </div>
               <div className="col-lg-1"></div>
             </div>
-          </div>
-          <div className="container-fluid my-2" id="section-bet-on">
+          </div> */}
+          {/* <div className="container-fluid my-2" id="section-bet-on">
             <div className="space-20"></div>
             <div className="row">
               <div
@@ -730,8 +918,8 @@ class Index extends Component {
                 <p className="mt-3">Coming soon to your app store</p>
               </div>
             </div>
-          </div>
-         {this.state.bloglength.length != 0 || this.state.indernalblog.length != 0 ? <div className="container-fluid px-md-5 my-5" id="section-news">
+          </div> */}
+         {false ? <div className="container-fluid px-md-5 my-5" id="section-news">
             <div className="space-100"></div>
             <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
               NEWS <img src={lineImage} className="ms-3" />
@@ -811,7 +999,7 @@ class Index extends Component {
             </Carousel>
           </div> */}
 
-         {this.state.partner.length != 0 ? <div className="container-fluid px-md-5 my-5" id="section-partners">
+         {false? <div className="container-fluid px-md-5 my-5" id="section-partners">
             <div className="space-100"></div>
             <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1 text-uppercase">
               partners <img src={lineImage} className="ms-3" />
@@ -836,13 +1024,38 @@ class Index extends Component {
               itemClass="d-flex justify-content-center align-items-center flex-column"
             >
               {this.parterImg()}
+              
             </Carousel>
           </div>: ''}
+          <div className="space-100"></div>
+            <div className='container faq-box '>
+              <div className='subscribe'>
+                <div className='outer-box text-white'>
+                <h4 className='font-weight-bold'>GET THE LATEST</h4>
+                <p>SUBSCRIBE  TO GET THE LATEST OF OUR NEWS, AND<br/> 
+                  LATEST UPDATES</p>
+                <input className='sub-input' placeholder='email@domain.com'/>
+                <div className='sighup-btn'>
+                  <button className='btn btn-md text-white mt-1 mt-md-5 pl-4 pr-4 btn-signup'>SIGN UP</button>
+                </div>
 
-         {this.state.Ambassador.length != 0 ? <div className="container-fluid px-md-5 my-5" id="section-partners">
+                </div>
+              </div>
+              <div className='text-white faqbox'>
+                <div className='question-box'>
+                  <h4 className='font-weight-bold'>HAVE A QUESTION?</h4>
+                  <p>SEND US A MAIL</p>
+                  <div>
+                  <p className="text-white text-email mb-0"><img src={emailImg} width="22" /> admin@betswamp.com</p>
+                  </div>
+                </div>
+                </div> 
+              
+            </div>
+         {/* <div className="container-fluid px-md-5 my-5" id="section-partners">
             <div className="space-100"></div>
-            <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1 text-uppercase">
-            Ambassadors <img src={lineImage} className="ms-3" />
+            <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
+              <div class="vl me-2"></div> <span><h4 style={{marginTop:'10px'}}>AMBASSADORS</h4></span> 
             </p>
             <div className="space-50"></div>
             <Carousel
@@ -864,9 +1077,67 @@ class Index extends Component {
               itemClass="d-flex justify-content-center align-items-center flex-column"
             >
               {this.amessador()}
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                  style={{textAlign:'center', color:'#ffff'}}
+                >
+                    <img src={menone} width="100" style={{borderRadius:'80px'}} />
+                    <p className='m-0'>Name</p>
+                    <p className='m-0'>Title</p>
+                    <div className='d-flex m-0 justify-content-evenly'>
+                    <FaTwitter/>{" "}
+                    <AiFillLinkedin/>
+                    </div>
+              </div>
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                  style={{textAlign:'center', color:'#ffff'}}
+                >
+                    <img src={women} width="100" style={{borderRadius:'80px'}} />
+                    <p className='m-0'>Name</p>
+                    <p className='m-0'>Title</p>
+                    <div className='d-flex m-0 justify-content-evenly'>
+                    <FaTwitter/>{" "}
+                    <AiFillLinkedin/>
+                    </div>
+              </div>
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                  style={{textAlign:'center', color:'#ffff'}}
+                >
+                    <img src={menone} width="100" style={{borderRadius:'80px'}} />
+                    <p className='m-0'>Name</p>
+                    <p className='m-0'>Title</p>
+                    <div className='d-flex m-0 justify-content-evenly'>
+                    <FaTwitter/>{" "}
+                    <AiFillLinkedin/>
+                    </div>
+              </div>
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                  style={{textAlign:'center', color:'#ffff'}}
+                >
+                    <img src={womentwo} width="100" style={{borderRadius:'80px'}} />
+                    <p className='m-0'>Name</p>
+                    <p className='m-0'>Title</p>
+                    <div className='d-flex m-0 justify-content-evenly'>
+                    <FaTwitter/>{" "}
+                    <AiFillLinkedin/>
+                    </div>
+              </div> 
             </Carousel>
-          </div> :''}
-          <Footer />
+          </div> */}
+
+          <div className='d-flex'><Footer /></div>
+          
         </div>
       </Fragment>
     )
