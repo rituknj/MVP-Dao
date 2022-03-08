@@ -1,34 +1,59 @@
 import React, { Component, Fragment } from 'react'
-import GameCard from '../../components/Cards/GameCard'
 import AppHeader from '../../components/Elements/AppHeader'
-import { BrowserRouter, Switch, Route, useRouteMatch } from 'react-router-dom'
-//images
+import { NavLink } from 'react-router-dom'
+import {
+  allactiveusers,
+  totalpayout,
+  totalEvents,
+  totalbetcreated,
+  getActiveEvents,
+} from './../../../web3/betsMVPService'
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
+import Match from './../../../images/match.png'
+import UNMatch from './../../../images/un-match.png'
+import Down from './../../../images/down.png'
+import Search from './../../../images/search.png'
+import Filter from './../../../images/filter.png'
 import Appheadercat from './Appheadercat'
 import Soccer from './../Categories/Soccer'
-import Tennis from './../Categories/Tennis'
-import Rugby from './../Categories/Rugby'
-import Cricket from './../Categories/Cricket'
-import Racing from './../Categories/Racing'
-import Boxing from './../Categories/Boxing'
-import Basketball from './../Categories/Basketball'
-import Baseball from './../Categories/Baseball'
-import Hooks from './Hooks'
 
 class Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeTabTop: 1,
-      activeTabBottom: 1,
-      selectedcat: 'soccor',
-      path:'/app'
+      activeTabTop: false,
+      catogries: '',
+      selectedcat: false,
+      payout: 0,
+      activeusers: 0,
+      activeevents: 0,
+      totalbetsmade: 0,
+      events: 0,
+      path: '/app',
+      responsive_center: {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 4,
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 4,
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 2,
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 2,
+        },
+      },
     }
   }
-  componentDidMount = () => {
-    
-    
-  }
-  
+  componentDidMount = () => {}
+
   getGameCard = () => {
     let items = []
     for (var i = 1; i <= 10; i++) {
@@ -47,57 +72,196 @@ class Index extends Component {
     })
   }
 
-  selectedcategory = (cat) => {
-    this.setState({ selectedcat: cat })
-    console.log('clicked on', this.state.selectedcat)
-  }
-
-  handelGamesTab = (tab, cat) => {
-    this.selectedcategory(cat)
+  catorgy = (Cat)=> {
     this.setState({
-      activeTabTop: tab,
+      catogries: Cat
     })
   }
 
-  calling = (tab, cat) => {
-    this.handelGamesTab(tab)
-    this.selectedcategory(cat)
-    console.log(tab, cat)
+  selectedcategory = (cat) => {
+    if (!this.state.selectedcat) {
+      this.setState({ selectedcat: true })
+    } else {
+      this.setState({ selectedcat: false })
+    }
   }
-  
 
   render() {
-  
     return (
-        <Fragment>
-          <AppHeader />
-          <Appheadercat />
-          <div className="container-fluid px-md-5 mt-2">
-            <div className="space-100"></div>
-            <div className="d-flex flex-wrap">
-              <div className="me-md-4 me-2">
-                <button
-                  className={`btn admin-match-button ${
-                    this.state.activeTabBottom == 1 ? ' active' : ''
-                  }`}
-                  onClick={() => this.handelMatchTab(1)}
+      <Fragment>
+        <AppHeader />
+        <div
+        >
+          <div className="container-fluid px-md-5" id="section-statistics">
+            <div
+              className="row py-5"
+            >
+              <div className="col-lg-12">
+                <Carousel
+                  swipeable={true}
+                  draggable={true}
+                  arrows={false}
+                  showDots={false}
+                  responsive={this.state.responsive_center}
+                  infinite={true}
+                  keyBoardControl={true}
+                  customTransition="all .5"
+                  transitionDuration={500}
+                  containerClass="carousel-container"
+                  removeArrowOnDeviceType={['tablet', 'mobile']}
+                  itemClass="px-2"
                 >
-                  Matched events
-                </button>
-              </div>
-              <div className="">
-                <button
-                  className={`btn admin-match-button ${
-                    this.state.activeTabBottom == 2 ? ' active' : ''
-                  }`}
-                  onClick={() => this.handelMatchTab(2)}
-                >
-                  Un-Matched Events
-                </button>
+                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
+                    <h6 className="theam-text-color m-0">Total Payout</h6>
+                    <h6 className="text-white mt-4">
+                      {(this.state.payout / 10 ** 18).toFixed(0)} BUSD
+                    </h6>
+                  </div>
+
+                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
+                    <h6 className="theam-text-color m-0">Total Events</h6>
+                    <h6 className="text-white mt-4">{this.state.events}</h6>
+                  </div>
+
+                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
+                    <h6 className="theam-text-color m-0">Active users</h6>
+                    <h6 className="text-white mt-4">
+                      {this.state.activeusers}
+                    </h6>
+                  </div>
+
+                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
+                    <h6 className="theam-text-color m-0">Total bet Created</h6>
+                    <h6 className="text-white mt-4">
+                      {this.state.totalbetsmade}
+                    </h6>
+                  </div>
+                </Carousel>
               </div>
             </div>
+          </div>
+        </div>
+        <Appheadercat />
+        <div className="container-fluid px-md-5">
+          <div className="space-20"></div>
+          <div className="d-flex flex-wrap">
+            <div className="me-md-4 me-2">
+              <button
+                className={`d-flex justify-content-around btn admin-match-button font-weight-bold ${
+                  this.state.activeTabBottom == 1 ? ' active' : ''
+                }`}
+                onClick={() => this.handelMatchTab(1)}
+              >
+                <p>Matched Events</p>{' '}
+                <img className="mt-2" src={Match} width={20} />
+              </button>
             </div>
-        </Fragment>
+            <div className="">
+              <button
+                className={`d-flex justify-content-around btn admin-match-button font-weight-bold ${
+                  this.state.activeTabBottom == 2 ? ' active' : ''
+                }`}
+                onClick={() => this.handelMatchTab(2)}
+              >
+                <p>Un-Matched Events</p>
+                <img lassName="mt-2" src={UNMatch} width={20} />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="sub-catogries mt-0 p-1 p-md-5 text-white">
+          <div className="catogories-dropdown">
+            <div>
+              <p>Select Subcategory Categories</p>
+              <div
+                className="select-catogries m-0"
+                style={{ borderRadius: '10px 10px 0px 0px' }}
+                onClick={() => this.selectedcategory()}
+              >
+                <p>Soccer</p>
+                <img src={Down} style={{ height: '10px', marginTop: '10px' }} />
+              </div>
+              {this.state.selectedcat ? (
+                <div
+                  className="catorgies"
+                  style={{ borderRadius: '0px 10px 10px 10px' }}
+                >
+                  <NavLink
+                    to="/soccer"
+                    className="sublinks"
+                    style={{ textDecoration: 'none', color: '#ffffff' }}
+            
+                  >
+                    Soccer
+                  </NavLink>
+                  <NavLink
+                    to="/rugby"
+                    className="sublinks"
+                    style={{ textDecoration: 'none', color: '#ffffff' }}
+                  >
+                    Rugby
+                  </NavLink>
+                  <NavLink
+                    to="/tennis"
+                    className="sublinks"
+                    style={{ textDecoration: 'none', color: '#ffffff' }}
+                  >
+                    Tennis
+                  </NavLink>
+                  <NavLink
+                    to="/racing"
+                    className="sublinks"
+                    style={{ textDecoration: 'none', color: '#ffffff' }}
+                  >
+                    Hockey
+                  </NavLink>
+                  <NavLink
+                    to="/boxing"
+                    className="sublinks"
+                    style={{ textDecoration: 'none', color: '#ffffff' }}
+                  >
+                    Combat
+                  </NavLink>
+                  <NavLink
+                    to="/basketball"
+                    className="sublinks"
+                    style={{ textDecoration: 'none', color: '#ffffff' }}
+                  >
+                    Basketball
+                  </NavLink>
+                  <NavLink
+                    to="/baseball"
+                    className="sublinks"
+                    style={{ textDecoration: 'none', color: '#ffffff' }}
+                  >
+                    Baseball
+                  </NavLink>
+                  <NavLink
+                    to="/cricket"
+                    className="sublinks"
+                    style={{ textDecoration: 'none', color: '#ffffff' }}
+                  >
+                    Cricket
+                  </NavLink>
+                  <NavLink
+                    to="/football"
+                    className="sublinks"
+                    style={{ textDecoration: 'none', color: '#ffffff' }}
+                  >
+                    Football
+                  </NavLink>
+                </div>
+              ) : (
+                ''
+              )}
+            </div>
+          </div>
+          <div className="sub-tools">
+            <img src={Search} width={25} height={25} />
+            <img src={Filter} width={25} height={25} />
+          </div>
+        </div>
+      </Fragment>
     )
   }
 }

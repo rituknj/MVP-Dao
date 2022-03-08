@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import arrowDown from '../../../images/arrow-down.png'
-import myBet from '../../../images/my-bet.png'
-import greenArrow from '../../../images/green-arrow.png'
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
 import { NavLink } from 'react-router-dom'
 import BigInt, { max } from 'big-integer'
+import statiImage from '../../../images/stati.png'
 import logo from '../../../images/logo.png'
 import {
   initInstance,
@@ -12,6 +13,13 @@ import {
   getAccount,
   checkChain,
 } from './../../../web3/web3'
+import {
+  allactiveusers,
+  totalpayout,
+  totalEvents,
+  totalbetcreated,
+  getActiveEvents,
+} from './../../../web3/betsMVPService'
 import { getUSDTBalance, addUSDT } from './../../../web3/usdtService'
 import { addBETS, getBETBalanceBUSD } from './../../../web3/betsService'
 import { approveBETS, isapproved, getBETBalancebets } from './../../../web3/BETS2Services'
@@ -47,6 +55,10 @@ class AppHeader extends Component {
       balanceofUSDT: 0,
       acc: null,
       balanceBET: 0,
+      payout: 0,
+      activeevents: 0,
+      totalbetsmade: 0,
+      events: 0,
       validationpoint: 0,
       lockamount: 0,
       show: false,
@@ -61,7 +73,26 @@ class AppHeader extends Component {
       bal:"BETS",
       showbalance:0,
       pendingvalidationpoints:0,
-      currenttime:0
+      currenttime:0,
+      responsive_center: {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 4,
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 4,
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 2,
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 2,
+        },
+      },
     }
   }
 

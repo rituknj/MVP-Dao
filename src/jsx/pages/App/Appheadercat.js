@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import Down from './../../../images/down.png'
 import GameCard from "../../components/Cards/GameCard";
 import AppHeader from "../../components/Elements/AppHeader";
 import { NavLink, Link, useRouteMatch } from "react-router-dom";
@@ -51,7 +52,20 @@ class Index extends Component {
   render() {
     return (
       <Fragment>
-        <div className="container-fluid px-md-5 slider">
+        <div className="container-fluid px-md-5 p-2 slider top-image">
+            <p className="mt-4 mt-md-4 text-white sporttag">#Sports</p>
+        <div className="catogories-dropdown">
+          <div>
+            <p>Select Categories</p>
+            <div className="select-catogries m-0">
+                <p>Sports</p><img src={Down} style={{height:"10px",marginTop:'10px'}}/>
+            </div>
+            {/* <div className="catorgies">
+            </div> */}
+          </div>
+        </div>
+        </div>
+        {/* <div className="container-fluid px-md-5 slider top-image">
           <p className="mt-2 mt-md-4 text-white">#Sports</p>
           <div className="nav-scroller-games">
             <div className="d-flex mt-2 mt-md-4 games-scroll">
@@ -257,7 +271,7 @@ class Index extends Component {
 
             </div>
           </div>
-        </div>
+        </div> */}
 
        
       </Fragment>

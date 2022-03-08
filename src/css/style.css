@@ -1,5 +1,5 @@
 * {
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Orbitron', sans-serif;
 }
 body {
   background: #0f0f0f;
@@ -23,7 +23,7 @@ body {
   background: rgba(35, 35, 35, 0.3);
 }
 .theam-font {
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Orbitron', sans-serif;
 }
 .space-10 {
   height: 10px;
@@ -46,10 +46,10 @@ body {
   width: 100%;
 }
 .font-raleway {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 .font-montserrat {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .home-header .nav-link {
@@ -76,8 +76,8 @@ body {
   padding: 10px 15px;
 }
 
-.topBoxBg{
-  background: url("./../images/topBG.png");
+.topBoxBg {
+  background: url('./../images/topBG.png');
   background-position: center;
   background-size: cover;
 }
@@ -92,7 +92,7 @@ body {
   color: #ff0000;
 }
 #section-home p {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -100,7 +100,7 @@ body {
   color: #ffffff;
 }
 #section-home .homeTopBtn {
-  background: #2B2A2A;
+  background: #2b2a2a;
   padding: 12px 10px;
   width: 300px;
   border-radius: 10px;
@@ -112,7 +112,7 @@ body {
 }
 
 .nftsTopBtn {
-  background: #2B2A2A;
+  background: #2b2a2a;
   padding: 12px 10px;
   width: 300px;
   border-radius: 10px;
@@ -133,26 +133,25 @@ body {
   font-size: 18px;
   line-height: 23px;
   color: #0f0f0f;
-  
 }
-.homeTopImage{
+.homeTopImage {
   margin-top: -60px;
 }
 
-.topAppBtn{
+.topAppBtn {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
-.hometopBox{
+.hometopBox {
   margin-top: 30px;
-  background-color: #0F0F0F;
+  background-color: #0f0f0f;
   height: 100%;
   width: auto;
   padding: 10px;
 }
-.about{
+.about {
   display: flex;
   flex-wrap: wrap;
 }
@@ -165,7 +164,7 @@ body {
   color: #ffffff;
 }
 .div-p-1 {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -229,7 +228,7 @@ body {
 }
 
 .video-play-button:before {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 0;
   left: 50%;
@@ -244,7 +243,7 @@ body {
 }
 
 .video-play-button:after {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 1;
   left: 50%;
@@ -385,7 +384,7 @@ body {
   font-weight: normal;
   font-size: 1rem;
   text-transform: uppercase;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #aaaaaa;
 }
 #section-bet-on h1 {
@@ -399,7 +398,7 @@ body {
   font-style: normal;
   font-weight: normal;
   font-size: 1rem;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #aaaaaa;
 }
 
@@ -438,7 +437,7 @@ footer {
 
 .tab-view-card {
   border-radius: 10px;
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 100;
@@ -448,7 +447,7 @@ footer {
 }
 
 .tab-view-card.active::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 10px;
   height: 10px;
@@ -471,11 +470,11 @@ footer {
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
 }
 .admin-match-button {
-  background: #151515;
-  border-radius: 10px 10px 0px 0px;
+  background: transparent;
+  border: none;
   height: 60px;
   width: 250px;
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -483,8 +482,7 @@ footer {
   color: #ffffff;
 }
 .admin-match-button.active {
-  border: 1px solid #ffffff26;
-  border-bottom: none;
+  border-bottom: 2px solid red;
 }
 .admin-match-button:hover {
   color: #ffffff;
@@ -515,7 +513,7 @@ footer {
   overflow-y: hidden;
 }
 .admin-form label {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -554,7 +552,7 @@ footer {
   border-radius: 10px;
 }
 .admin-form p {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -568,7 +566,7 @@ footer {
 }
 .admin-card-view P {
   color: #ffffff;
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -581,7 +579,7 @@ footer {
   background: #ff0101;
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -589,7 +587,7 @@ footer {
   color: #000000;
 }
 .admin-card-view .title {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -597,7 +595,7 @@ footer {
   color: #aaaaaa;
 }
 .admin-card-view .date {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -614,7 +612,7 @@ footer {
   width: 520px;
 }
 .toggle-card h4 {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -628,14 +626,14 @@ footer {
   background: #ff0101;
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
   color: #000000;
 }
-.toggle-card .form-check-input[type="radio"] {
+.toggle-card .form-check-input[type='radio'] {
   border-radius: 50%;
   background: #232323;
   box-shadow: inset 0px 4px 4px #000000;
@@ -645,7 +643,7 @@ footer {
   border-color: #ff0000;
   box-shadow: none !important;
 }
-.toggle-card .form-check-input[type="checkbox"] {
+.toggle-card .form-check-input[type='checkbox'] {
   border-radius: 0.25em;
   background: #232323;
   box-shadow: inset 0px 4px 4px #000000;
@@ -656,7 +654,7 @@ footer {
   margin-left: 15px;
   vertical-align: sub;
 }
-.sidebar  {
+.sidebar {
   display: none;
   width: 100%;
   position: relative;
@@ -710,7 +708,7 @@ footer {
   line-height: 29px;
   text-transform: uppercase;
   color: #0f0f0f;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 .sidebar .data-list {
   width: 633px;
@@ -762,7 +760,7 @@ footer {
   line-height: 22px;
 }
 .data-list .image-card h3 {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -795,7 +793,7 @@ footer {
 }
 
 .odds-card h4 {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -815,7 +813,7 @@ footer {
   border-bottom: 2px solid #232323;
 }
 .odds-card .info p {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -840,7 +838,7 @@ footer {
   border-radius: 20px;
 }
 .odds-card .info .percent {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -852,7 +850,7 @@ footer {
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #aaaaaa;
 }
 .odds-card .form input {
@@ -865,7 +863,7 @@ footer {
   color: #ffffff;
 }
 .odds-card .form .max-btn {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -876,7 +874,7 @@ footer {
 }
 
 #admin-navbar-nav a {
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -955,7 +953,7 @@ footer {
   color: #ffffff;
 }
 .nav-tabs-data .bet-card-custom p {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -977,7 +975,7 @@ footer {
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #aaaaaa;
 }
 .history-list h4 {
@@ -985,7 +983,7 @@ footer {
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #ffffff;
 }
 .rotate-element {
@@ -1042,21 +1040,21 @@ footer {
   font-size: 18px;
   line-height: 22px;
   color: #aaaaaa;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 .wallet-card h4 {
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
   line-height: 29px;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #ffffff;
 }
 .wallet-card h4 img {
   vertical-align: middle;
 }
 .wallet-card h2 {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -1068,7 +1066,7 @@ footer {
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #ffffff;
 }
 .point-list hr {
@@ -1076,7 +1074,7 @@ footer {
   margin: 0;
 }
 .point-list-data p {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -1091,7 +1089,7 @@ footer {
   color: #ffffff;
 }
 .point-list-form p {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -1126,7 +1124,7 @@ footer {
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   color: #232323;
 }
@@ -1183,7 +1181,7 @@ footer {
   border-color: #ff0000;
   box-shadow: none !important;
 }
-#about-section-3 .form-check-input[type="radio"] {
+#about-section-3 .form-check-input[type='radio'] {
   border-radius: 50%;
   background: #232323;
   box-shadow: inset 0px 4px 4px #000000;
@@ -1233,10 +1231,10 @@ footer {
   color: #ffffff;
 }
 #accordionFaq .accordion-button::after {
-  background-image: url("../images/carbon_add-alt.png") !important;
+  background-image: url('../images/carbon_add-alt.png') !important;
 }
 #accordionFaq .accordion-button:not(.collapsed)::after {
-  background-image: url("../images/carbon_subtract-alt.png") !important;
+  background-image: url('../images/carbon_subtract-alt.png') !important;
 }
 #accordionFaq .accordion-button {
   background: #0f0f0f;
@@ -1389,7 +1387,7 @@ footer {
 #about-section-4 .roadMapCard p {
   font-style: normal;
   font-weight: normal;
-  
+
   line-height: 30px;
   color: #ffffff;
   display: flex;
@@ -1476,28 +1474,28 @@ footer button {
   color: #ffffff;
 }
 
-.blogbody{
+.blogbody {
   display: grid;
   justify-content: center;
   padding: 20px;
   margin-bottom: 20px;
   border: white;
 }
-.blogtext{
+.blogtext {
   color: white;
 }
 
-.blogtitle{
+.blogtitle {
   text-align: center;
   margin-bottom: 15px;
 }
 
-.blogartical{
+.blogartical {
   text-align: center;
   margin-top: 15px;
   margin-bottom: 30px;
 }
-.updated{
+.updated {
   padding-left: 20px;
   color: white;
   margin-top: 20px;
@@ -1508,71 +1506,129 @@ footer button {
   height: 55px;
 }
 
-.ecosystem{
+.ecosystem {
   background-color: #232323;
   height: 300px;
 }
 
-.nfts-box{
+.nfts-box {
   /* background: url("./../images/nfts.png"); */
-  background-color: #2B2A2A;
+  background-color: #2b2a2a;
 }
 
-.side-text-nfts{
+.side-text-nfts {
   position: absolute;
   right: 5%;
   background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.1); /* Black see-through */ 
+  background: rgba(0, 0, 0, 0.1); /* Black see-through */
 }
 
-.subscribe{
+.subscribe {
   padding: 10px;
 }
 
-.outer-box{
-  background-color: #202020E5;
+.outer-box {
+  background-color: #202020e5;
   padding: 10px;
   border-radius: 6px;
 }
 
-.sub-input{
+.sub-input {
   background-color: transparent;
   border: none;
   width: 100%;
-  background-color:#151515;
+  background-color: #151515;
   border-radius: 5px;
   padding: 6px;
 }
-.btn-signup{
-  background-color: #2B2A2A;
+.btn-signup {
+  background-color: #2b2a2a;
 }
-.sighup-btn{
+.sighup-btn {
   display: flex;
   justify-content: end;
-
 }
 
-.question-box{
+.question-box {
   display: grid;
   justify-content: center;
 }
-.faqbox{
+.faqbox {
   margin: 0px;
   padding: 0px;
   padding-top: 40px;
 }
-.faq-box{
+.faq-box {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-@media screen and (max-width:766px) {
-  .side-text-nfts{
+@media screen and (max-width: 766px) {
+  .side-text-nfts {
     position: absolute;
     right: 30%;
     max-width: 800px;
     background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.1);
   }
+}
+
+.top-image {
+  background-image: url('./../images/ground-bg.png');
+  height: 400px;
+}
+
+.sporttag{
+  background-color: #000000;
+  width: fit-content;
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+.catogories-dropdown {
+  display: grid;
+  justify-content: end;
+  align-items:flex-end;
+  height: 80%;
+  color: white;
+  vertical-align: middle;
+}
+
+.select-catogries {
+  background: #4d4a4a;
+  border-radius: 10px 10px 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  width: 200px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.catorgies {
+  display: grid;
+  color: white;
+  padding: 10px;
+  background: #4d4a4a;
+  border-radius: 0px 0px 10px 10px;;
+}
+.sub-catogries{
+  background-color: #0b0b0b;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.sub-tools{
+  display: flex;
+  gap: 30px;
+}
+
+.sub-tools img{
+  cursor: pointer;
+}
+.sublinks{
+  padding: 5px;
+}
+.top-details{
+  color: #00ffa3;
 }

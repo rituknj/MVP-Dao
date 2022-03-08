@@ -177,7 +177,7 @@ export const login = () => {
                 saveConnectorId(provider);
                 if (provider.selectedAddress) {
                     resolve(provider.selectedAddress);
-                } else if (provider.accounts.length) {
+                } else if (provider.accounts.length != undefined) {
                     resolve(provider.accounts[0]);
                 } else {
                     provider.on('accountsChanged', (accounts) => {

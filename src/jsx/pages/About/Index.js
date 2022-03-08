@@ -680,7 +680,8 @@ class Index extends Component {
                   <a href={whitepaper} target='_blank'>  <button className="btn mt-4" >Read Whitepaper</button></a>
                     <div className="space-100"></div>
                 </div>
-                <div
+
+               {this.state.faq && this.state.faq.length != 0 ? <div
                     className="container-fluid px-md-5 py-md-5 py-3"
                     id="about-section-6"
                 >
@@ -693,7 +694,7 @@ class Index extends Component {
                    {this.state.faq ? this.faqs() : ''}
 
                     </div>
-                </div>
+                </div>:''}
 
                 <div
                     className="container-fluid px-md-5 py-md-5 py-3"
