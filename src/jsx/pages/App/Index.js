@@ -52,7 +52,22 @@ class Index extends Component {
       },
     }
   }
-  componentDidMount = () => {}
+  componentDidMount = async() => {
+    let activeUser = await allactiveusers();
+    let totalpay = await totalpayout();
+    let totalEvent = await totalEvents();
+    let totalbetsmade = await totalbetcreated();
+    let activeevnets = await getActiveEvents();
+
+    this.setState({
+      payout:totalpay,
+      activeusers: activeUser,
+      activeevents: activeevnets,
+      totalbetsmade: totalbetsmade,
+      events: totalEvent
+    })
+    console.log("subcatogries",window.location.pathname)
+  }
 
   getGameCard = () => {
     let items = []
@@ -85,8 +100,9 @@ class Index extends Component {
       this.setState({ selectedcat: false })
     }
   }
-
+  
   render() {
+    
     return (
       <Fragment>
         <AppHeader />
@@ -164,31 +180,55 @@ class Index extends Component {
                 onClick={() => this.handelMatchTab(2)}
               >
                 <p>Un-Matched Events</p>
-                <img lassName="mt-2" src={UNMatch} width={20} />
+                <img className="mt-1 ml-2" src={UNMatch} width={25} />
               </button>
             </div>
           </div>
         </div>
-        <div className="sub-catogries mt-0 p-1 p-md-5 text-white">
-          <div className="catogories-dropdown">
-            <div>
-              <p>Select Subcategory Categories</p>
+        <div className=" sub-catogries mt-0 p-1 p-md-5 text-white" id="navbarsExample05">
+          <div style={{overflow:'visible'}}>
+          <p>Select Subcategory Categories</p>
+            <div className='main-dropdown'
+            disabled
+            contentEditable='true'
+            >
               <div
                 className="select-catogries m-0"
-                style={{ borderRadius: '10px 10px 0px 0px' }}
                 onClick={() => this.selectedcategory()}
+                contentEditable='false'
               >
-                <p>Soccer</p>
+                <p>{
+                  window.location.pathname == '/soccer'
+                  ? 'Soccer'
+                  : window.location.pathname == '/rugby'
+                  ? 'Rugby'
+                  : window.location.pathname == '/tennis'
+                  ? 'Tennis'
+                  : window.location.pathname == '/racing' 
+                  ? 'Hockey'
+                  : window.location.pathname == '/boxing' 
+                  ? 'Combat'
+                  : window.location.pathname == '/baseball' 
+                  ? 'Baseball'
+                  : window.location.pathname == '/basketball'
+                  ? 'Basketball'
+                  : window.location.pathname == '/football'
+                  ? 'Football'
+                  : window.location.pathname == '/cricket'
+                  ? 'Cricket'
+                  : 'Soccer'
+                  }</p>
                 <img src={Down} style={{ height: '10px', marginTop: '10px' }} />
               </div>
-              {this.state.selectedcat ? (
                 <div
-                  className="catorgies"
-                  style={{ borderRadius: '0px 10px 10px 10px' }}
+                  className="catorgies" 
+                  style={{ borderRadius: '0px 10px 10px 10px'}}
+                  
                 >
                   <NavLink
                     to="/soccer"
                     className="sublinks"
+                    
                     style={{ textDecoration: 'none', color: '#ffffff' }}
             
                   >
@@ -197,6 +237,7 @@ class Index extends Component {
                   <NavLink
                     to="/rugby"
                     className="sublinks"
+                    
                     style={{ textDecoration: 'none', color: '#ffffff' }}
                   >
                     Rugby
@@ -251,9 +292,6 @@ class Index extends Component {
                     Football
                   </NavLink>
                 </div>
-              ) : (
-                ''
-              )}
             </div>
           </div>
           <div className="sub-tools">

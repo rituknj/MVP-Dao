@@ -149,15 +149,14 @@ class GameCard extends Component {
       potential_wins:potentialwins
     })
     
-    document.getElementById('sidebar').style.display = 'inline';
+    document.getElementById('sidebar').style.display = 'block';
   }
 
-  setfalse =() =>{
+  setfalse =()=> {
     this.setState({
     occurance:0,
     betvalue: this.state.stackvalueone
-    })
-    
+    }) 
   }
 
   settrue =() =>{
@@ -276,266 +275,22 @@ class GameCard extends Component {
     return (
       <Fragment>
         <App/>
-        <div className="sidebar" id="sidebar" onClick={this.moussecloas}>
-                        <div className="data-list" >
-                          <form onSubmit={this.Onsubmit}>
-                          <div
-                            className="row p-3 image-card"
-                            style={{
-                              backgroundImage: `url(${cardBackground})`,
-                            }}
-                          >
-                            <div className="layer"></div>
-                            <div className="col-10 text-white top-text mb-3">
-                            { Math.round((new Date()).getTime() / 1000) > this.state.globalendtime ? <img src={redDot} className="red-dot me-4 mb-1" width="14px"/> :  <img
-                                src={greenDot}
-                                className="me-4 mb-1"
-                                width="14px"
-                                
-                              />}
-                              <span >{this.state.category}</span>
-                            </div>
-                            <div
-                              className="col-2 text-white text-end mb-3 close-btn"
-                              onClick={() => this.closehandelSideMenu()}
-                            >
-                              <i className="fas fa-times"></i>
-                            </div>
-                            <div className="col-12 mt-4 mb-3">
-                              <h4 className="team-name">
-                                {this.state.teamone}{' '}
-                                <span className="theam-text-color">vs</span>{' '}
-                                {this.state.teamtwo}
-                              </h4>
-                              <h5>Event id {this.state.id}</h5>
-                            </div>
-                            <div className="col-12 mt-4 mb-3">
-                              <p className="theam-text-color m-0">Pool size</p>
-                            </div>
-                            <div className="col-6">
-                              <h3 className="mb-0">{this.state.poolsize} BUSD</h3>
-                            </div>
-                            <div className="col-6">
-                              <h5 className="text-end mb-0">
-                                <img
-                                  src={carbon_timer}
-                                  className="me-3"
-                                  width="23px"
-                                  style={{ verticalAlign: 'sub' }}
-                                />
-                                {this.state.currenttime} Days left
-                              </h5>
-                            </div>
-                          </div>
-                          <div className="odds-list p-3">
-                            <div className={`odds-card p-3 mb-3 ${this.state.occurance==0?'active':" "}`} onClick={() =>  this.setState({occurance:0}), () => this.setfalse()}>
-                              <div className="row mb-3">
-                                <div className="col-6">
-                                  <h4>{this.state.teamone}</h4>
-                                </div>
-                                <div className="col-6 text-end">
-                                  <img src={redDot} className="red-dot" />
-                                </div>
-                              </div>
-                              <div className="row info">
-                                <div className="col-12 mb-2">
-                                  <p>
-                                    Participants:&nbsp;&nbsp; <span>{this.state.eventoneparticipant}</span>
-                                  </p>
-                                </div>
-                                <div className="col-12 mb-2">
-                                  <p>
-                                    Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>{(Number(this.state.zeroEventAmount)/10**18).toFixed(2)}&nbsp;BUSD</span>
-                                  </p>
-                                </div>
-                                <div className="col-9 col-md-10 mb-4">
-                                  <div className="progress">
-                                    <div
-                                      className="progress-bar"
-                                      role="progressbar"
-                                      style={{ width: `${Number(this.state.zero).toFixed(2)}%` }}
-                                      aria-valuenow="25"
-                                      aria-valuemin="0"
-                                      aria-valuemax="100"
-                                    ></div>
-                                  </div>
-                                </div>
-                                <div className="col-3 col-md-2 mb-4">
-                                  <p className="percent m-0">{Number(this.state.zero).toFixed(2)}%</p>
-                                </div>
-                              </div>
-                              <div className="row form mt-3">
-                                <div className="col-md-5">
-                                  <p>Stake</p>
-                                  <div className="position-relative">
-                                    <input className="form-control" value={this.state.stackvalueone} onChange={(e) => this.setState({stackvalueone:e.target.value})}/>
-                                    <span className="position-absolute max-btn" onClick={() => this.setState({stackvalueone:this.state.BUSDbal})} style={{cursor:'pointer'}}>
-                                      MAX
-                                    </span>
-                                  </div>
-                                </div>
-                                <div className="col-md-3"></div>
-                                <div className="col-md-4">
-                                  <p style={{ marginTop: '2.3rem' }}>
-                                    Potential Return
-                                  </p>
-                                  <p
-                                    style={{ fontSize: '24px' }}
-                                    className="mb-0 mt-3"
-                                  >
-                                    {this.state.stackvalueone == 0 ? this.state.potential_wins: this.winningamount(Number(this.state.stackvalueone),Number(this.state.poolsize))}&nbsp;BUSD
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div className={`odds-card p-3 mb-3 ${this.state.occurance==1?'active':" "}`} onClick={() => this.setState({occurance:1}) , () => this.settrue()}>
-                              <div className="row ">
-                                <div className="col-6">
-                                  <h4>{this.state.teamtwo}</h4>
-                                </div>
-                                <div className="col-6 text-end">
-                                  <img src={redDot} className="red-dot" />
-                                </div>
-                              </div>
-                              <div className="row info">
-                                <div className="col-12 mb-2">
-                                  <p>
-                                    Participants:&nbsp;&nbsp; <span>{this.state.eventtwoparticipant}</span>
-                                  </p>
-                                </div>
-                                <div className="col-12 mb-2">
-                                  <p>
-                                    Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>{(Number(this.state.oneEventAmount)/10**18).toFixed(2)}&nbsp;BUSD</span>
-                                  </p>
-
-                                </div>
-                                <div className="col-10 mb-4">
-                                  <div className="progress">
-                                    <div
-                                      className="progress-bar"
-                                      role="progressbar"
-                                      style={{ width: `${Number(this.state.one).toFixed(2)}%` }}
-                                      aria-valuenow="25"
-                                      aria-valuemin="0"
-                                      aria-valuemax="100"
-                                    ></div>
-                                  </div>
-                                </div>
-                                <div className="col-2 mb-4">
-                                  <p className="percent m-0">{Number(this.state.one).toFixed(2)}%</p>
-                                </div>
-                              </div>
-                              <div className="row form mt-3">
-                                <div className="col-md-5">
-                                  <p>Stake</p>
-                                  <div className="position-relative">
-                                    <input className="form-control" value={this.state.stackvaluetwo} onChange={(e) => this.setState({stackvaluetwo:e.target.value})} />
-                                    <span className="position-absolute max-btn" onClick={() => this.setState({stackvaluetwo:this.state.BUSDbal})} style={{cursor:'pointer'}}>
-                                      MAX
-                                    </span>
-                                  </div>
-                                </div>
-                                <div className="col-md-3"></div>
-                                <div className="col-md-4">
-                                  <p style={{ marginTop: '2.3rem' }}>
-                                    Potential Return
-                                  </p>
-                                  <p
-                                    style={{ fontSize: '24px' }}
-                                    className="mb-0 mt-3"
-                                  >
-                                    {this.state.stackvaluetwo == 0 ? this.state.potential_wins: this.winningamount(Number(this.state.stackvaluetwo),Number(this.state.poolsize))}&nbsp;BUSD
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                            <div className={`odds-card p-3 mb-3 ${this.state.occurance==2?'active':" "}`} onClick={() => this.setState({occurance:1}) , () => this.setdraw()}>
-                              <div className="row ">
-                                <div className="col-6">
-                                  <h4>Draw</h4>
-                                </div>
-                                <div className="col-6 text-end">
-                                  <img src={redDot} className="red-dot" />
-                                </div>
-                              </div>
-                              <div className="row info">
-                                <div className="col-12 mb-2">
-                                  <p>
-                                    Participants:&nbsp;&nbsp; <span>{this.state.eventthreeparticipant}</span>
-                                  </p>
-                                </div>
-                                <div className="col-12 mb-2">
-                                  <p>
-                                    Total amount staked::&nbsp;&nbsp;{' '}
-                                    <span>{(Number(this.state.twoEventAmount)/10**18).toFixed(2)}&nbsp;BUSD
-                                    </span>
-                                  </p>
-                                </div>
-                                <div className="col-10 mb-4">
-                                  <div className="progress">
-                                    <div
-                                      className="progress-bar"
-                                      role="progressbar"
-                                      style={{ width: `${Number(this.state.two).toFixed(2)}%` }}
-                                      aria-valuenow="25"
-                                      aria-valuemin="0"
-                                      aria-valuemax="100"
-                                    ></div>
-                                  </div>
-                                </div>
-                                <div className="col-2 mb-4">
-                                  <p className="percent m-0">{Number(this.state.two).toFixed(2)}%</p>
-                                </div>
-                              </div>
-                              <div className="row form mt-3">
-                                <div className="col-md-5">
-                                  <p>Stake</p>
-                                  <div className="position-relative">
-                                    <input className="form-control" value={this.state.stackvaluethree} onChange={(e) => this.setState({stackvaluethree:e.target.value})} />
-                                    <span className="position-absolute max-btn" onClick={() => this.setState({stackvaluethree:this.state.BUSDbal})} style={{cursor:'pointer'}}>
-                                      MAX
-                                    </span>
-                                  </div>
-                                </div>
-                                <div className="col-md-3"></div>
-                                <div className="col-md-4">
-                                  <p style={{ marginTop: '2.3rem' }}>
-                                    Potential Return
-                                  </p>
-                                  <p
-                                    style={{ fontSize: '24px' }}
-                                    className="mb-0 mt-3"
-                                  >
-                                    {this.state.stackvaluethree == 0 ? this.state.potential_wins:this.winningamount(Number(this.state.stackvaluethree),Number(this.state.poolsize))}&nbsp;BUSD
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                          <div  className="bid-button p-3 mb-3">
-                          {Math.round((new Date()).getTime() / 1000) > this.state.globalendtime ? <button type='submit' className="btn">EXPIRED</button> : <button type='submit' className="btn">PLACE BET</button>}
-                          </div>
-                          </form>
-                        </div>
-                      </div>
-
-
-
         <div className="row">
           <div className="col-12">
             <div className="match-main-div">
-            {/* <div style={{textAlign:"center",backgroundColor:"#938585", height:'37px'}}>
-            <h3 className='ml-3' style={{color:"white"}}>Soccer</h3>
-            </div> */}
               <div className="theam-bg-dark mt-2 mt-md-5 p-1 p-md-5">
-                <div className="row">
+                <div className="betting-cards">
 
+                 {/* *******************Slider*************** */}
+                 <div className='sidebar' id="sidebar" onClick={this.moussecloas}>
+                    sdkfjskldjf  
+                 </div>
+                  
+        
+                 {/* *******************Slider*************** */}
+                  <div className='game-cards' >
                   {this.state.allevents.map((events) => (
                       <div className="col-12 col-sm-12 col-md-6 col-lg-4">
-                        
                         <div className="card game-card overflow-hidden">
                           <div
                             className="row p-3 image-card"
@@ -604,6 +359,7 @@ class GameCard extends Component {
                       </div>
                     
                   ))}
+                  </div>
                 </div>
               </div>
             </div>

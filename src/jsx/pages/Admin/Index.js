@@ -181,10 +181,10 @@ class Index extends Component {
       alert(e.message)
     }
   }
-
+  
   render() {
-    console.log('all events are',this.state.validatedevents)
-
+    
+    
     return (
       <Fragment>
         <AppHeader />

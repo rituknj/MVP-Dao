@@ -656,14 +656,13 @@ footer {
 }
 .sidebar {
   display: none;
-  width: 100%;
   position: relative;
-  background-color: #000000b3;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  bottom: 0;
+  left: 0;
+  background-color: #00ffa3;
+  width: 400px;
+  height: 800px;
 }
+
 .sidebar .close-btn {
   cursor: pointer;
 }
@@ -1605,13 +1604,31 @@ footer button {
   cursor: pointer;
 }
 
-.catorgies {
-  display: grid;
-  color: white;
-  padding: 10px;
-  background: #4d4a4a;
-  border-radius: 0px 0px 10px 10px;;
+.main-dropdown{
+  position: relative;
+  outline: none;
+  z-index: 10000;
 }
+
+.catorgies {
+  position: absolute;
+  margin-top: -8px;
+  display: grid;
+  opacity: 0;
+  background: #4d4a4a;
+  width: 100%;
+  pointer-events: none;
+  border-radius: 10px 10px 10px 10px;
+  transform: translateY(-10px);
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.main-dropdown:focus .catorgies{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
 .sub-catogries{
   background-color: #0b0b0b;
   display: flex;
@@ -1631,4 +1648,16 @@ footer button {
 }
 .top-details{
   color: #00ffa3;
+}
+
+.betting-cards{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: baseline;
+}
+.game-cards{
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
 }

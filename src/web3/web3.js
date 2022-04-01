@@ -222,7 +222,8 @@ export const getAccount = async () => {
     return account[0];
 }
 
-export const getContract = (abi, address) => {
+export const getContract = async(abi, address) => {
+    await initInstance();
     let web3 = web3Instance;
     const customeContract = new web3.eth.Contract(abi, address);
     return customeContract;
