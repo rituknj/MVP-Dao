@@ -11,8 +11,9 @@ import {isapproved, getBETBalanceBUSD} from './../../../web3/betsService'
 import { initInstance,getAccount } from './../../../web3/web3'
 import { fromWei, formatNumber } from '../../../web3/utils'
 import redDot from './../../../images/red-dot.png'
-import BigInt from 'big-integer'
-import { event } from 'jquery'
+import FIRE from './../../../images/fire.png'
+import PLUS from './../../../images/plus.png'
+import OPEN from './../../../images/open.png'
 
 
 class GameCard extends Component {
@@ -283,7 +284,58 @@ class GameCard extends Component {
 
                  {/* *******************Slider*************** */}
                  <div className='sidebar' id="sidebar" onClick={this.moussecloas}>
-                    sdkfjskldjf  
+                 <div className="data-list" >
+                      <form onSubmit={this.Onsubmit}>
+                          <div
+                            className="row image-card"
+                            style={{
+                              backgroundImage: `url(${cardBackground})`,
+                            }}
+                          >
+                            <div className="layer"></div>
+                            <div className="col-10 text-white top-text mb-3">
+                            { Math.round((new Date()).getTime() / 1000) > this.state.globalendtime ? <img src={redDot} className="red-dot me-4 mb-1" width="14px"/> :  <img
+                                src={greenDot}
+                                className="me-4 mb-1"
+                                width="14px"
+                                
+                              />}
+                              <span >{this.state.category}</span>
+                            </div>
+                            <div
+                              className="col-2 text-white text-end mb-3 close-btn"
+                              onClick={() => this.closehandelSideMenu()}
+                            >
+                              <i className="fas fa-times"></i>
+                            </div>
+                            <div className="col-12 mt-4 mb-3">
+                              <h4 className="team-name">
+                                {this.state.teamone}{' '}
+                                <span className="theam-text-color">vs</span>{' '}
+                                {this.state.teamtwo}
+                              </h4>
+                              <h5>Event id {this.state.id}</h5>
+                            </div>
+                            <div className="col-12 mt-4 mb-3">
+                              <p className="theam-text-color m-0">Pool size</p>
+                            </div>
+                            <div className="col-6">
+                              <h3 className="mb-0">{this.state.poolsize} BUSD</h3>
+                            </div>
+                            <div className="col-6">
+                              <h5 className="text-end mb-0">
+                                <img
+                                  src={carbon_timer}
+                                  className="me-3"
+                                  width="23px"
+                                  style={{ verticalAlign: 'sub' }}
+                                />
+                                {this.state.currenttime} Days left
+                              </h5>
+                            </div>
+                          </div>
+                      </form>
+                    </div> 
                  </div>
                   
         
@@ -291,7 +343,10 @@ class GameCard extends Component {
                   <div className='game-cards' >
                   {this.state.allevents.map((events) => (
                       <div className="col-12 col-sm-12 col-md-6 col-lg-4">
-                        <div className="card game-card overflow-hidden">
+                        <div className="card game-card overflow-hidden"
+                        onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins,events.zero,events.one,events.two)
+                        }
+                        >
                           <div
                             className="row p-3 image-card"
                             style={{
@@ -335,11 +390,14 @@ class GameCard extends Component {
                               <ul>
                               <li>{Number(events.zero).toFixed(2)}% &nbsp;&nbsp;{events.teamone}</li>
                                 <li>{Number(events.one).toFixed(2)}% &nbsp;&nbsp;{events.teamtwo}</li>
-                                <li>{Number(events.two).toFixed(2)}% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li>
+                                {/* <li>{Number(events.two).toFixed(2)}% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li> */}
                               </ul>
                             </div>
                             <div className="col-4 button-row gap-2">
-                            {events.creator == this.state.account && events.endime > (Math.round((new Date()).getTime() / 1000)) ? <button
+                            <div><img src={FIRE} style={{width:'10px'}}/></div>
+                            <div className='text-white mb-1' style={{fontSize:'10px'}}>OPNE</div>
+                            <div><img src={PLUS} style={{width:'10px'}}/></div>
+                            {/* {events.creator == this.state.account && events.endime > (Math.round((new Date()).getTime() / 1000)) ? <button
                                 className="btn"
                                 onClick={() => this.cancelevent(events.id)
                                 }
@@ -348,11 +406,10 @@ class GameCard extends Component {
                             </button>:""}
                               <button
                                 className="btn"
-                                onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins,events.zero,events.one,events.two)
-                                }
+                                
                               >
                                {Math.round((new Date()).getTime() / 1000) > events.endtime ? "View" : "BET"}
-                              </button>
+                              </button> */}
                             </div>
                           </div>
                         </div>
