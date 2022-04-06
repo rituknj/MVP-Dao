@@ -736,6 +736,7 @@ footer {
   color: #fff;
   overflow-x: hidden;
   overflow-y: auto;
+  transition-duration: 0.5s;
 }
 .category-title{
   background-image: url(../images/dark-img.png);

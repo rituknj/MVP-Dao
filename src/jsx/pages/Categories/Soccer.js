@@ -102,9 +102,9 @@ class GameCard extends Component {
     }
 
   }
-  closehandelSideMenu = () => {
-    document.getElementById('sidebar').style.display = 'none'
-  }
+  // closehandelSideMenu = () => {
+  //   document.getElementById('sidebar').style.display = 'none'
+  // }
 
   cancelevent = async (id) => {
     await cancelevent(id)
@@ -152,7 +152,8 @@ class GameCard extends Component {
       potential_wins: potentialwins
     })
 
-    document.getElementById('sidebar').style.display = 'block';
+    document.getElementById('sidebar').style.transform = 'translateX(0%)';
+    document.getElementById('sidebar').style.position = 'relative';
   }
 
   setfalse = () => {
@@ -252,11 +253,12 @@ class GameCard extends Component {
     return lefttime
   }
 
-  moussecloas = (event) => {
+  mouseclass = (event) => {
     let x = event.screenX;
     let y = event.screenY;
-    if (x > 633) {
-      document.getElementById('sidebar').style.display = 'none';
+    if (x > 600) {
+      document.getElementById('sidebar').style.transform = 'translateX(-200%)';
+      document.getElementById('sidebar').style.position = 'absolute';
     }
     console.log("position", x, y)
   }
@@ -281,10 +283,10 @@ class GameCard extends Component {
           <div className="col-12">
             <div className="match-main-div">
               <div className="theam-bg-dark mt-2 mt-md-5 p-1 p-md-5">
-                <div className="betting-cards">
+                <div className="betting-cards" onClick={this.mouseclass}>
 
                   {/* *******************Slider*************** */}
-                  <div className='sidebarNew shadow-lg me-auto' id="sidebar" onClick={this.moussecloas}>
+                  <div className='sidebarNew shadow-lg me-auto' id="sidebar">
                     <div className="container-fluid category-title py-4">
                       <div className='d-flex justify-content-between'>
                         <div id="img-head">
@@ -356,7 +358,7 @@ class GameCard extends Component {
 
 
                   {/* *******************Slider*************** */}
-                  <div className='game-cards' >
+                  <div className='game-cards'>
                     {this.state.allevents.map((events) => (
                       <div className="col-12 col-sm-12 col-md-6 col-lg-4">
                         <div className="card game-card overflow-hidden"
