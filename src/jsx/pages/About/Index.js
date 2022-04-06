@@ -247,14 +247,6 @@ class Index extends Component {
         .catch(error => console.log('error', error));
         console.log("faq",this.state.faq)
 
-
-
-
-
-
-
-
-
         // fetching price of total
         request('GET', "https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d")
         .then((r1) => {

@@ -295,7 +295,7 @@ class GameCard extends Component {
                       </div>
                       <div className='d-flex mt-5 justify-content-between'>
                         <div id="poolSize"><p>Pool Size</p>
-                          <span>$300,000</span>
+                          <span>${this.state.poolsize}</span>
                         </div>
                         <div id="timeLeft"><TiStopwatch /> 3 Days Left</div>
                       </div>
