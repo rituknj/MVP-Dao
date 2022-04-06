@@ -292,7 +292,6 @@ body {
 }
 
 .game-card {
-  margin-bottom: 1.875rem;
   background-color: rgba(35, 35, 35, 0.3);
   transition: all 0.5s ease-in-out;
   position: relative;
@@ -300,7 +299,6 @@ body {
   cursor: pointer;
   border-radius: 0.75rem;
   box-shadow: 0px 12px 33px 0px rgb(62 73 84 / 8%);
-  height: calc(100% - 30px);
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
 }
 .game-card .team-name {
@@ -1714,8 +1712,7 @@ footer button {
   align-items: baseline;
   gap: 20px;
 }
-.game-cards{
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 65%;
+.game-cards .card{
+  width: 350px;
+  margin: 15px auto;
 }
