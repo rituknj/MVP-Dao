@@ -279,14 +279,14 @@ console.log(this.state.occurance)
     return (
       <Fragment>
         <App />
-        <div className="row">
+        <div className="row gx-0">
           <div className="col-12">
             <div className="match-main-div">
               <div className="theam-bg-dark mt-2 mt-md-5 p-1 p-md-5">
                 <div className="betting-cards" onClick={this.mouseclass}>
 
                   {/* *******************Slider*************** */}
-                  <div className='sidebarNew shadow-lg me-auto' id="sidebar">
+                  <div className='sidebarNew shadow-lg me-auto gx-3' id="sidebar">
                     <div className="container-fluid category-title py-4">
                       <div className='d-flex justify-content-between'>
                         <div id="img-head">
@@ -358,9 +358,9 @@ console.log(this.state.occurance)
 
 
                   {/* *******************Slider*************** */}
-                  <div className='game-cards'>
+                  <div className='game-cards row'>
                     {this.state.allevents.map((events) => (
-                      <div className="col-12 col-sm-12 col-md-6 col-lg-4">
+                      <div className="col">
                         <div className="card game-card overflow-hidden"
                           onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins, events.zero, events.one, events.two)
                           }
