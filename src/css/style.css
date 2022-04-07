@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 * {
   font-family: 'Orbitron', sans-serif;
 }
@@ -734,6 +735,8 @@ footer {
   color: #fff;
   overflow-x: hidden;
   overflow-y: auto;
+  transform: translateX(-200%);
+  position: absolute;
   transition-duration: 0.5s;
 }
 .category-title{
@@ -1719,4 +1722,69 @@ footer button {
 .game-cards .card{
   width: 350px;
   margin: 15px auto;
+}
+
+/* ADMIN INDEX */
+.adminIndex{
+  background-color: #000;
+}
+
+/* ADMIN SIDEBAR */
+#AdminSidebar {
+  position: fixed;
+  font-family: 'Montserrat';
+  width: fit-content;
+}
+/* #AdminSidebar .closemenu {
+  color: #000;
+  position: absolute;
+  right: 0;
+  z-index: 9999;
+  line-height: 20px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 22px;
+  top: 55px;
+  cursor: pointer;
+}
+#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .logotext p {
+  font-size: 20px;
+  padding: 0 20px;
+  color: #BCBCBC;
+  font-weight: bold;
+} */
+#AdminSidebar .pro-sidebar {
+  width: 270px;
+  margin-top: 15px;
+}
+#AdminSidebar .pro-sidebar.collapsed {
+  width: 80px;
+  min-width: 80px;
+}
+#AdminSidebar .pro-sidebar-inner {
+  background-color: white;
+  box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
+}
+#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout {
+  background-color: #0F0F0F;
+  min-height: calc(100vh - 100px);
+}
+#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
+  color: #BCBCBC;
+  font-size: 14px;
+  margin: 10px 0px;
+}
+#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper img {
+  height: 28px;
+}
+#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper .pro-item-content {
+  color: #BCBCBC;
+}
+#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .active {
+  background-color: #0A0A0A;
+  font-weight: 500 !important;
+}
+#AdminSidebar .pro-sidebar-footer{
+  border: none;
+  text-align: center;
 }
