@@ -772,6 +772,10 @@ footer {
 .selectBet span{
   color: #fff;
 }
+.selectBet .active{
+  border: 1px solid #fff !important;
+
+}
 .returnBet{
   font-size: 12px;
   color: #aaaaaa;
