@@ -1788,3 +1788,41 @@ footer button {
   border: none;
   text-align: center;
 }
+
+.adminGlobalContainer{
+  margin: 15px auto 0px 300px;
+  background-color: #0F0F0F;
+  min-height: 90vh;
+  width: 100%;
+}
+
+/* CREATE EVENT */
+.createEvent-main .multistep{
+  width: fit-content;
+  background-color: #1C1C1C;
+  height: fit-content;
+  overflow: hidden;
+  color: #AAAAAA;
+  font-size: 14px;
+  padding: 25px;
+}
+.createEvent-main .multistep h5{
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  margin: 20px auto;
+}
+.createEvent-main .multistep input{
+  background-color: #151515;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+}
+.createEvent-main #history{
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  outline: none;
+  margin-left: auto;
+  display: block;
+}
