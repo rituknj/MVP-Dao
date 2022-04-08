@@ -3,6 +3,7 @@ import AdminHeader from '../../components/Elements/AdminHeader'
 import 'aos/dist/aos.css'
 import AdminSidebar from '../../components/Elements/AdminSidebar'
 import CreateEvent from './CreateEvent'
+import BetSlip from './BetSlip'
 
 class Index extends Component {
   render() {
@@ -14,7 +15,8 @@ class Index extends Component {
 
             {/* COMPONENTS TO BE SHOWN BESIDE SIDEBAR */}
             <div className="adminGlobalContainer">
-                <CreateEvent/>
+                {/* <CreateEvent/> */}
+                <BetSlip/>
             </div>
         </div>
       </div>

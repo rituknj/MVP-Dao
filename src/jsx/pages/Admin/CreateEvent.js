@@ -71,8 +71,8 @@ export default function CreateEvent() {
     return (
         <div className='createEvent-main py-3'>
             <div className="container-fluid d-flex justify-content-between">
-                <button onClick={() => setHistoryVisibility(false)} id='history'><FiArrowLeft />&nbsp; BACK</button>
-                <button onClick={() => setHistoryVisibility(true)} id='history'>History &nbsp;<img src={icon} alt="" /></button>
+                {historyVisibility && <button onClick={() => setHistoryVisibility(false)} id='history'><FiArrowLeft />&nbsp; BACK</button>}
+                <button onClick={() => setHistoryVisibility(true)} id='history' className='ms-auto'>History &nbsp;<img src={icon} alt="" /></button>
             </div>
             <div className='multistep rounded shadow pt-4 px-3 my-5 mx-auto' style={historyVisibility === false ? {display:"block"} : {display: "none"}}>
             <MultiStep steps={steps} nextStyle={{backgroundColor:"#fff", color:"#000", width:"100%", margin:"25px auto", display:"block", border:"none", padding:"8px 20px", borderRadius:"5px", fontWeight:"bold"}} prevStyle={{backgroundColor:"#fff", color:"#000", width:"100%", margin:"25px auto", display:"block", border:"none", padding:"8px 20px", borderRadius:"5px", fontWeight:"bold"}}/>

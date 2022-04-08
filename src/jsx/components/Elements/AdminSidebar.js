@@ -8,12 +8,12 @@ import {
   SidebarContent,
 } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import whh_coins from '../../../images/whh_coins.png'
-import tickets from '../../../images/ep_tickets.png'
-import file from '../../../images/gala_file-doc.png'
-import validate from '../../../images/VALIDATE (2).png'
-import plus from '../../../images/ant-design_plus-circle-outlined.png'
-import self from '../../../images/twemoji_people-hugging.png'
+import whh_coins from '../../../images/whh_coins.svg'
+import tickets from '../../../images/ep_tickets.svg'
+import file from '../../../images/gala_file-doc.svg'
+import validate from '../../../images/VALIDATE.svg'
+import plus from '../../../images/ant-design_plus-circle-outlined.svg'
+import self from '../../../images/twemoji_people-hugging.svg'
 
 const AdminSidebar = () => {
   
@@ -44,7 +44,7 @@ const AdminSidebar = () => {
           </SidebarHeader> */}
           <SidebarContent>
             <Menu>
-              <MenuItem icon={<img src={tickets} alt=""/>}>BET SLIP</MenuItem>
+              <MenuItem icon={<img src={tickets} style={{color:"#fff"}} alt=""/>}>BET SLIP</MenuItem>
               <MenuItem active={true} icon={<img src={plus} alt=""/>}>Create Event</MenuItem>
               <MenuItem icon={<img src={validate} alt=""/>}>VALIDATE EVENTS</MenuItem>
               <MenuItem icon={<img src={self} alt=""/>}>SELF HELP</MenuItem>
