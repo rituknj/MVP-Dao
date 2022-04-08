@@ -371,7 +371,7 @@ console.log(this.state.occurance)
                               backgroundImage: `url(${cardBackground})`,
                             }}
                           >
-                            <div class="layer"></div>
+                            <div className="layer"></div>
                             <div className="col-12 text-white">
                               {Math.round((new Date()).getTime() / 1000) > events.endtime ? <img src={redDot} className="red-dot" width="12" /> : <img src={greenDot} className="me-2" width="12" />}
                             </div>

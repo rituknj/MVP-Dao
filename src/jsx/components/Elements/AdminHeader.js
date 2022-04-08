@@ -11,7 +11,7 @@ class AdminHeader extends Component {
           aria-label="Fifth navbar example"
         >
           <div className="container-fluid">
-            <a class="navbar-brand" href="#"></a>
+            <a className="navbar-brand" href="#"></a>
             <button
               className="navbar-toggler"
               type="button"

@@ -1823,6 +1823,14 @@ footer button {
   color: #fff;
   border: none;
   outline: none;
-  margin-left: auto;
-  display: block;
+}
+.createEvent-main .card{
+  font-size: 14px;
+}
+.createEvent-main .card-body span{
+  color: #fff;
+}
+.createEvent-main .card-body p{
+  color: #AAAAAA;
+  font-size: 12px;
 }
