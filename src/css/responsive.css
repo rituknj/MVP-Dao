@@ -15,13 +15,12 @@
 @media screen and (max-width: 1024px) {
   .space-100 {
     height: 10px;
-  
   }
   #section-home h2 {
     font-size: 1.5rem;
     line-height: 30px;
   }
-  #section-home .homeTopBtn{
+  #section-home .homeTopBtn {
     width: 100%;
   }
   #section-home p {
@@ -184,11 +183,17 @@
   .chart-card h5 {
     font-size: 0.9rem;
   }
-  .homeTopImage img{
+  .homeTopImage img {
     width: 70%;
   }
 }
 @media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 1440px) {
+  .betslip-main .row .col {
+    min-width: 200px;
+  }
 }
 
 /* Smartphones (portrait and landscape) ----------- */
@@ -196,13 +201,13 @@
   .navbar-collapse {
     flex-basis: 100%;
     flex-grow: 1;
-    gap:50px;
+    gap: 50px;
     height: 700px;
     align-items: center;
   }
   .navbar-nav {
     display: flex;
-    gap:50px;
+    gap: 50px;
     flex-direction: column;
     padding-top: 50px;
     padding-left: 0;

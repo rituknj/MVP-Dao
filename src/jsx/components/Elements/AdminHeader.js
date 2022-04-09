@@ -5,7 +5,7 @@ import logo from '../../../images/logo.png'
 class AdminHeader extends Component {
   render() {
     return (
-      <div style={{backgroundColor: "#0F0F0F"}}>
+      <div style={{backgroundColor: "#0F0F0F", position: "fixed", zIndex: "5", width: "100%",}}>
         <nav
           className="navbar navbar-expand-lg navbar-dark bg-dark bg-transparent"
           aria-label="Fifth navbar example"
