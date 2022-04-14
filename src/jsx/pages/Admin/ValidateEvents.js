@@ -1,6 +1,6 @@
 import React from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import {MdOutlineArrowForwardIos} from 'react-icons/md'
+import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 export default function ValidateEvents() {
   const formatRemainingTime = (time) => {
@@ -19,6 +19,64 @@ export default function ValidateEvents() {
       <div className="timer text-light text-center">
         <div className="text">Remaining time</div>
         <div className="value">{formatRemainingTime(remainingTime)}</div>
+      </div>
+    );
+  };
+
+  // FAKE CARDS
+  const fakeCards = [
+    {
+      hashtags: "#SOCCER",
+      title: "Chealsea  vs  Machester City",
+      starts: "20 DEC 2020",
+      ends: "20 DEC 2021",
+      pool: "$1,600",
+      reward: "$3",
+    },
+    {
+      hashtags: "#SOCCER",
+      title: "Chealsea  vs  Machester City",
+      starts: "20 DEC 2020",
+      ends: "20 DEC 2021",
+      pool: "$1,600",
+      reward: "$30",
+    },
+    {
+      hashtags: "#SOCCER",
+      title: "Chealsea  vs  Machester City",
+      starts: "20 DEC 2020",
+      pool: "$1,600",
+      reward: "$30",
+    },
+  ];
+
+  const renderFake = (fakeCards, index) => {
+    return (
+      <div
+        className="card my-4"
+        key={index}
+        style={{ backgroundColor: "#1c1c1c" }}
+      >
+        <div className="card-head p-3">
+          <p>{fakeCards.hashtags}</p>
+          <h5 className="card-title">{fakeCards.title}</h5>
+          <span>{fakeCards.starts}</span>
+        </div>
+        <div className="card-body">
+          <div>
+            <p>STATISTICS</p>
+            <ul className="p-0">
+              <li>30% CHEALSEA</li>
+              <li>65% MANCHESTAR CITY</li>
+              <li>5% DRAW</li>
+            </ul>
+          </div>
+          <p className="mt-3">POOL SIZE</p>
+          <span>{fakeCards.pool}</span>
+          <p className="mt-3">REWARDS</p>
+          <span>{fakeCards.reward}</span>
+          <button className="btn">CLAIM</button>
+        </div>
       </div>
     );
   };
@@ -94,9 +152,7 @@ export default function ValidateEvents() {
             </CountdownCircleTimer>
           </div>
           <div className="col-lg-6">
-            <div
-              className="container py-3 mb-2 rounded"
-            >
+            <div className="container py-3 mb-2 rounded">
               <h5>EVENT</h5>
               <p>CHEALSEA VS MANCHESTER CITY</p>
               <br />
@@ -126,11 +182,32 @@ export default function ValidateEvents() {
               </label>
             </div>
             <div className="d-flex justify-content-evenly">
-            <button className="btn my-3 p-3 fw-bold justify-content-between d-flex" style={{backgroundColor:"#fff", color:"#000", width:"45%",}}><span>VALIDATE</span><MdOutlineArrowForwardIos className='mt-1'/></button>
-            <button className="btn my-3 p-3 fw-bold justify-content-between d-flex shadow" style={{backgroundColor:"#3b3b3b", color:"#fff", width:"45%",}}><span>SKIP</span><MdOutlineArrowForwardIos className='mt-1'/></button>
+              <button
+                className="btn my-3 p-3 fw-bold justify-content-between d-flex"
+                style={{ backgroundColor: "#fff", color: "#000", width: "45%" }}
+              >
+                <span>VALIDATE</span>
+                <MdOutlineArrowForwardIos className="mt-1" />
+              </button>
+              <button
+                className="btn my-3 p-3 fw-bold justify-content-between d-flex shadow"
+                style={{
+                  backgroundColor: "#3b3b3b",
+                  color: "#fff",
+                  width: "45%",
+                }}
+              >
+                <span>SKIP</span>
+                <MdOutlineArrowForwardIos className="mt-1" />
+              </button>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* VALIDATE CARDS */}
+      <div className="validCards container-fluid">
+        {fakeCards.map(renderFake)}
       </div>
     </div>
   );
