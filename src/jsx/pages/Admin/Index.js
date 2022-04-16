@@ -16,9 +16,9 @@ class Index extends Component {
 
             {/* COMPONENTS TO BE SHOWN BESIDE SIDEBAR */}
             <div className="adminGlobalContainer">
-                {/* <CreateEvent/> */}
-                {/* <BetSlip/> */}
-                <ValidateEvents/>
+                <CreateEvent/>
+                {/* <BetSlip/>
+                <ValidateEvents/> */}
             </div>
         </div>
       </div>

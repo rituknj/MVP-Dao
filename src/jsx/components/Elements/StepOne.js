@@ -15,12 +15,14 @@ export class StepOne extends React.Component {
 
   handleEvenTitleChanged(event) {
     this.setState({ eventtitle: event.target.value });
+    window.eventTitle = event.target.value
   }
   handleCategoryChanged(event) {
     this.setState({ category: event.target.value });
   }
   handleSubCategoryChanged(event) {
-    this.setState({ category: event.target.value });
+    this.setState({ subcategory: event.target.value });
+    window.subTitle = event.target.value
   }
 
   render() {

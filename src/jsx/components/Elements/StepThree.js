@@ -15,10 +15,12 @@ export class StepThree extends React.Component {
 
   handleStartDateChanged(event) {
     this.setState({ startdate: event.target.value });
+    window.starttime = parseInt((new Date(event.target.value).getTime() / 1000).toFixed(0),)
   }
 
   handleEndDateChanged(event) {
     this.setState({ enddate: event.target.value });
+    window.endtime = parseInt((new Date(event.target.value).getTime() / 1000).toFixed(0),)
   }
 
   render() {

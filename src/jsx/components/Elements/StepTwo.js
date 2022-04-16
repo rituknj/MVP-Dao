@@ -15,12 +15,16 @@ export class StepTwo extends React.Component {
 
   handleOutcomeCountChanged(event) {
     this.setState({ outcomecount: event.target.value });
+    window.outcome = event.target.value
   }
   handlePreferredOutcomeChanged(event) {
     this.setState({ prefferedoutcome: event.target.value });
+    window.preferredoutcome = event.target.value
+
   }
   handleOpposingOutcomeChanged(event) {
     this.setState({ opposingoutcome: event.target.value });
+    window.oppossingoutcome = event.target.value
   }
 
   render() {

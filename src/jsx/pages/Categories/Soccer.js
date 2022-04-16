@@ -180,23 +180,16 @@ class GameCard extends Component {
   }
 
 
-  Onsubmit = (event) => {
-    event.preventDefault()
-    if (this.state.occurance == 0) {
-      // console.log('selection str',this.state.id, this.state.onbetteam, this.state.stackvalueone);
+  Onplacebet = () => {
+    try{
       this.placebet(this.state.id, this.state.occurance, this.state.stackvalueone)
     }
-    if (this.state.occurance == 1) {
-      // console.log('selection str',this.state.id, this.state.onbetteam, this.state.stackvaluetwo);
-      this.placebet(this.state.id, this.state.occurance, this.state.stackvaluetwo)
-    }
-    if (this.state.occurance == 2) {
-      // console.log('selection str',this.state.id, this.state.onbetteam, this.state.stackvaluetwo);
-      this.placebet(this.state.id, this.state.occurance, this.state.stackvaluethree)
+    catch(e){
+      //
     }
   }
   getdata = (v) => {
-    // console.log("value",v)
+
   }
 
   countbettors = async (id) => {
@@ -306,8 +299,8 @@ console.log(this.state.occurance)
                       <div className="row p-3">
                         <div className="col-8">
                           <ul>
-                            <li>{Number(this.state.one).toFixed(2)}% &nbsp;&nbsp;Team 1</li>
-                            <li>{Number(this.state.two).toFixed(2)}% &nbsp;&nbsp;Team 2</li>
+                            <li>{Number(this.state.one).toFixed(2)}% &nbsp;&nbsp;{this.state.teamone}</li>
+                            <li>{Number(this.state.two).toFixed(2)}% &nbsp;&nbsp;{this.state.teamtwo}</li>
                           </ul>
                         </div>
                         <div className="col-4 button-row gap-2">
@@ -350,7 +343,7 @@ console.log(this.state.occurance)
                         </div>
                       </div>
                       <div className="sideBtnContainer">
-                        <button className="btn mx-auto my-3 p-3 fw-bold justify-content-between d-flex" style={{backgroundColor:"#fff", color:"#000", width:"80%",}}><span>PLACE BET</span><MdOutlineArrowForwardIos className='mt-1'/></button>
+                        <button className="btn mx-auto my-3 p-3 fw-bold justify-content-between d-flex" onClick={()=>this.Onplacebet()} style={{backgroundColor:"#fff", color:"#000", width:"80%",}}><span>PLACE BET</span><MdOutlineArrowForwardIos className='mt-1'/></button>
                         {/* <button className="btn mx-auto my-3 p-3 fw-bold justify-content-between d-flex shadow" style={{backgroundColor:"#3b3b3b", color:"#fff", width:"80%",}}><span>VIEW STREAM</span><TiSocialYoutube className='mt-1'/></button> */}
                       </div>
                     </div>
@@ -371,7 +364,7 @@ console.log(this.state.occurance)
                               backgroundImage: `url(${cardBackground})`,
                             }}
                           >
-                            <div className="layer"></div>
+                            <div class="layer"></div>
                             <div className="col-12 text-white">
                               {Math.round((new Date()).getTime() / 1000) > events.endtime ? <img src={redDot} className="red-dot" width="12" /> : <img src={greenDot} className="me-2" width="12" />}
                             </div>
