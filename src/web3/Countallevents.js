@@ -11,6 +11,7 @@ let newevents = 0
           let two 
           let zero
           let events = await getActiveEvents();
+          console.log("totalEvents",events)
           let getevents = []
           for (let i = 0; i < events.length; i++) {
               check2 = await getEvent(events[i])
@@ -20,11 +21,11 @@ let newevents = 0
               one = await bettorscountspercent(check2[0],1,check2[14])
               two = await bettorscountspercent(check2[0],2,check2[14])
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])
-              // console.log("id",check2[0], stakeonevent/10**18)
+              
               let totalpoolsize = check2[4] 
               let percentwinnings = (stakeonevent/totalpoolsize)*100
               let potentialwinnings = Number((((totalpoolsize-stakeonevent)/100)*percentwinnings)/10**18).toFixed(2)
-              // console.log("id ", check2[0], Number(potentialwinnings) + Number(stakeonevent/10**18))
+              
                 check.zero = zero
                 check.one = one 
                 check.two = two
@@ -58,7 +59,7 @@ export const addingnewevents = async() => {
   let activeEvents = await getActiveEvents();
   let newevent = await totalEvents();
   let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-  // console.log('adding new events',decodestoredevents.length, activeEvents.length)
+  
   if(activeEvents.length > decodestoredevents.length) {
               check2 = await getEvent(newevent-1)
               check = Object.create(check2)
@@ -128,9 +129,9 @@ export const updatingeventdata = async(id) => {
               check.BettorsCount = check2[13]
               check.creator = check2[16]
               
-              // decodestoredevents[i] = check
+             
       }
-              // window.localStorage.setItem('events',JSON.stringify(decodestoredevents))
+              
     }
   }
 

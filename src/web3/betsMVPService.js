@@ -37,7 +37,7 @@ export const getSubCategory = async () => {
 }
 
 export const createEvent = async (sub_category, description, url, name, time, endTime, event1, event2 ) => {
-    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     // let time = strTimeToInt(Event.time);
     // let endTime = strTimeToInt(Event.endTime);
     // console.log("lengh",sub_category, name, time, endTime, event1, event2)
@@ -59,7 +59,7 @@ export const placeBet = async({event_id, amount, occured}) => {
     var getData
     let maxamount = await isapproved()
     console.log("details ", maxamount)
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     amount = BigInt(amount*10**18)
     
     if(amount.value < Number(maxamount)){
@@ -106,13 +106,13 @@ export const getValidationPoint = async () => {
 }
 
 export const getBetsHistory = async () =>{
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const betsHistory = await betMVPContract.methods.getUserEventHistory(await getAccount()).call({'from': await getAccount()});
     return betsHistory;
 }
 
 export const getActiveEvents = async () => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const activeEvents = await betMVPContract.methods.getActiveEvents().call();
     return activeEvents;
 }
@@ -142,7 +142,7 @@ export const getEventOccurrenceBetAmount = async (eventID, occured) => {
 }
 
 export const getEvent = async (eventID) => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const eventOccurrenceBetAmount = await betMVPContract.methods.getEvent(eventID).call();
     return eventOccurrenceBetAmount;
 }
@@ -241,20 +241,20 @@ export const reclaimwager = async (id) => {
 }
 
 export const bettorscounts = async (id, occured) => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     let result = await betMVPContract.methods.getOccurrenceBetCount(id, occured).call();
     return result
 }
 
 export const bettorscountspercent = async (id, occured,bettcont) => {
     // console.log("id occured betcount",id, occured,bettcont)
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     return await (betMVPContract.methods.getOccurrenceBetCount(id, occured).call())/bettcont*100
     
 }
 
 export const AmountStackOnEventByaUser = async (id) => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const resutl = await betMVPContract.methods.getUserEventWager(id, await getAccount() ).call();
     return resutl;
 }

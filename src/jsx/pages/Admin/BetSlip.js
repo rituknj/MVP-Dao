@@ -1,8 +1,19 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import {ImStopwatch, ImFire} from 'react-icons/im'
+import { getBetsHistory, getusertotalwinnings } from "../../../web3/betsMVPService";
 
 export default function BetSlip() {
+
+  useEffect(async() => {
+    const getUserBetData = async()=>{
+      const userBethistory = await getBetsHistory();
+      const totalwinning = await getusertotalwinnings();
+    } 
+  }, [])
+  
+
+
   const completedCards = [
     {
       hashtags: "#SPORTS #SOCCER",

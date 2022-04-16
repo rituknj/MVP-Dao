@@ -328,18 +328,28 @@ class Index extends Component {
     window.localStorage.clear()
     let getstoredevents = window.localStorage.getItem('events')
     if (getstoredevents == null) {
-      window.localStorage.setItem('events', JSON.stringify(''))
-      await TotalEventsCount()
-      let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-      this.setState({
-        item: decodestoredevents.reverse(),
-      })
+      try{
+        window.localStorage.setItem('events', JSON.stringify(''))
+        await TotalEventsCount()
+        let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+        this.setState({
+          item: decodestoredevents.reverse(),
+        })
+      }
+      catch(e){
+        //
+      }
     } else {
+     try{
       await TotalEventsCount()
       let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
       this.setState({
         item: decodestoredevents.reverse(),
       })
+     }
+     catch(e){
+       //
+     }
     }
   }
 
