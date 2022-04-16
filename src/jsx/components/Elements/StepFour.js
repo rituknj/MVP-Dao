@@ -1,5 +1,7 @@
+import { createEvent } from './../../../web3/betsMVPService'
 import React from 'react'
 import { GoPrimitiveDot } from 'react-icons/go'
+
 
 export class StepFour extends React.Component {
   constructor() {
@@ -14,10 +16,10 @@ export class StepFour extends React.Component {
   handleBetAmountChanged(event) {
     window.anmount = event.target.value
   }
-  CreateEvent(){
-    console.log(window.anmount,window.subTitle,window.MainTitle,window.eventTitle,window.endtime,window.starttime,window.oppossingoutcome,window.preferredoutcome,window.outcome)
-
-    
+  CreateEvent =async()=>{
+    const starttime = parseInt((new Date(window.starttime).getTime() / 1000).toFixed(0),)
+    const endtime = parseInt((new Date(window.endtime).getTime() / 1000).toFixed(0),)
+    await createEvent(window.subTitle,"","",window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome);  
   }
 
   render() {

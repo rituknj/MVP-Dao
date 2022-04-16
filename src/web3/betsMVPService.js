@@ -1,7 +1,8 @@
 import { getAccount, getContract, web3Instance } from "./web3";
 import {TotalEventsCount, updatingeventdata} from './Countallevents'
 import { BETS_ABI } from './../Contract/BetswampMVP';
-import { envprod } from "./environments";
+import { MVPBetsV2 } from "../Contract/BetingContractV2";
+import { envdev } from "./environments";
 import BigInt from "big-integer";
 import { approveBUSD, isapproved } from "./betsService";
 import { strTimeToInt, fromWei } from './utils';
@@ -11,7 +12,7 @@ import { get } from "jquery";
 export const getBETMVPContract = async () => {
     const betMVPContract = getContract(
         BETS_ABI, 
-        envprod.REACT_APP_BETSWAMP_MVP_CONTRACT);
+        envdev.REACT_APP_BETSWAMP_MVP_CONTRACT);
     return betMVPContract;
 }
 
@@ -19,7 +20,7 @@ export const addSubbCategory = async (sub_category) => {
     const betMVPContract = await getBETMVPContract();
     var getData = await betMVPContract.methods.addSubbCategory('0x0', sub_category);
     let data = getData.encodeABI()
-    let res = await web3Instance.eth.sendTransaction({to: envprod.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data})
+    let res = await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data})
     return res
 }
 
@@ -35,12 +36,12 @@ export const getSubCategory = async () => {
     return subCategories;
 }
 
-export const createEvent = async ({sub_category, name, time, endTime, event1, event2 }) => {
-    const betMVPContract = await getBETMVPContract();
+export const createEvent = async (sub_category, description, url, name, time, endTime, event1, event2 ) => {
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     // let time = strTimeToInt(Event.time);
     // let endTime = strTimeToInt(Event.endTime);
     // console.log("lengh",sub_category, name, time, endTime, event1, event2)
-    var getData = await betMVPContract.methods.createEvent('0x0', sub_category, name, time, endTime, event1, event2).send({
+    var getData = await betMVPContract.methods.createEvent('0x0', sub_category, name, description, url, time, endTime, event1, event2).send({
         from: await getAccount(),
     });
     if(getData.status == true){

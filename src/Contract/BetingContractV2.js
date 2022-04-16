@@ -1,4 +1,4 @@
-;[
+export const MVPBetsV2 = [
   {
     inputs: [
       { internalType: 'address', name: 'busd_token', type: 'address' },

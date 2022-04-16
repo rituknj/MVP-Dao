@@ -122,7 +122,7 @@ export const checkChain = (force = true) => {
 }
 
 export const getMainChainInformation = () => {
-    if (envprod.REACT_APP_MAIN_CHAIN_ID === 'bsc_mainnet') {
+    if (envdev.REACT_APP_MAIN_CHAIN_ID === 'bsc_mainnet') {
         return {
             chainId: 56,
             providerNetworkOption: {
@@ -137,7 +137,7 @@ export const getMainChainInformation = () => {
                 blockExplorerUrls: ['https://bscscan.com']
             }
         };
-    } else if (envprod.REACT_APP_MAIN_CHAIN_ID === 'bsc_testnet') {
+    } else if (envdev.REACT_APP_MAIN_CHAIN_ID === 'bsc_testnet') {
         return {
             chainId: 97,
             providerNetworkOption: {
