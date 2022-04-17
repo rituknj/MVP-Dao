@@ -19,7 +19,8 @@ export class StepFour extends React.Component {
   CreateEvent =async()=>{
     const starttime = parseInt((new Date(window.starttime).getTime() / 1000).toFixed(0),)
     const endtime = parseInt((new Date(window.endtime).getTime() / 1000).toFixed(0),)
-    await createEvent(window.subTitle,"","",window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome);  
+    // await createEvent(window.subTitle,"","",window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome);  
+    console.log(window.subTitle,"","",window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome)
   }
 
   render() {

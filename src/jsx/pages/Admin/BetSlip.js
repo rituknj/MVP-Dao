@@ -4,12 +4,20 @@ import {ImStopwatch, ImFire} from 'react-icons/im'
 import { getBetsHistory, getusertotalwinnings } from "../../../web3/betsMVPService";
 
 export default function BetSlip() {
+  const [events, setEvents] = useState([])
 
   useEffect(async() => {
     const getUserBetData = async()=>{
       const userBethistory = await getBetsHistory();
       const totalwinning = await getusertotalwinnings();
     } 
+  }, [])
+  useEffect(async() => {
+    const getUserBetData = async()=>{
+      const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+      setEvents(decodestoredevents)
+    } 
+    await getUserBetData();
   }, [])
   
 

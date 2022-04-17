@@ -39,7 +39,21 @@ export class StepOne extends React.Component {
         </div>
         <div className="mb-3">
           <label for="inputSubCategory" className="form-label">SUB CATEGORY</label>
-          <input type="text" className="form-control" id="inputSubCategory" onChange={this.handleSubCategoryChanged} value={this.state.subcategory} />
+          <select
+            className="form-select bg-dark border-0 text-light "
+            id="specificSizeSelect"
+            onChange={this.handleSubCategoryChanged}
+          >
+            <option selected>Cricket</option>
+            <option>Soccer</option>
+            <option>Tennis</option>
+            <option>Rugby</option>
+            <option>Football</option>
+            <option>Hockey</option>
+            <option>Boxing</option>
+            <option>Basketball</option>
+            <option>Baseball</option>
+          </select>
         </div>
       </div>
     );
