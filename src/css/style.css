@@ -1946,3 +1946,7 @@ footer button {
   right: 20px;
   box-shadow: 4px 4px 5px #000;
 }
+
+.react-multi-carousel-track{
+  margin: auto;
+}

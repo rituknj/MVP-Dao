@@ -5,17 +5,23 @@ import { getBetsHistory, getusertotalwinnings } from "../../../web3/betsMVPServi
 
 export default function BetSlip() {
   const [events, setEvents] = useState([])
+  const [userTotalWinning, setUserTotalWinning] = useState(0)
 
   useEffect(async() => {
     const getUserBetData = async()=>{
       const userBethistory = await getBetsHistory();
       const totalwinning = await getusertotalwinnings();
+      setUserTotalWinning(totalwinning)
+      console.log("history",userBethistory,totalwinning)
     } 
+    await getUserBetData();
   }, [])
+  
   useEffect(async() => {
     const getUserBetData = async()=>{
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
       setEvents(decodestoredevents)
+      var ts = Math.round((new Date()).getTime() / 1000);
     } 
     await getUserBetData();
   }, [])
@@ -121,7 +127,7 @@ export default function BetSlip() {
           <span>TOTAL</span>
           <h5>AMOUNT WON</h5>
           <hr className="text-success" />
-          <p>$10,000,000</p>
+          <p>${userTotalWinning}</p>
         </div>
       </div>
 

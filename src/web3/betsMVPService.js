@@ -124,7 +124,7 @@ export const getValidatedEvents = async () => {
 }
 
 export const totalEvents = async () => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const totalEvents = await betMVPContract.methods.totalEvents().call();
     return totalEvents;
 }

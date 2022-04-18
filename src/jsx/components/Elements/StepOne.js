@@ -1,4 +1,5 @@
 import React from "react";
+window.subTitle = 'Cricket'
 
 export class StepOne extends React.Component {
   constructor() {
@@ -44,15 +45,15 @@ export class StepOne extends React.Component {
             id="specificSizeSelect"
             onChange={this.handleSubCategoryChanged}
           >
-            <option selected>Cricket</option>
-            <option>Soccer</option>
-            <option>Tennis</option>
-            <option>Rugby</option>
-            <option>Football</option>
-            <option>Hockey</option>
-            <option>Boxing</option>
-            <option>Basketball</option>
-            <option>Baseball</option>
+            <option value="Cricket">Cricket</option>
+            <option value="Soccer">Soccer</option>
+            <option value="Tennis">Tennis</option>
+            <option value="Rugby">Rugby</option>
+            <option value="Football">Football</option>
+            <option value="Hockey">Hockey</option>
+            <option value="Boxing">Boxing</option>
+            <option value="Basketball">Basketball</option>
+            <option value="Baseball">Baseball</option>
           </select>
         </div>
       </div>

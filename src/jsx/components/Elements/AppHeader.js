@@ -142,7 +142,7 @@ class AppHeader extends Component {
     
     
 
-    historyi.forEach(async (element) => {
+  historyi.forEach(async (element) => {
       let i = await getEvent(element)
       let x = Object.create(i)
       let won = await GetUserWonAmountOnEvent(element)

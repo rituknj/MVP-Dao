@@ -3,7 +3,6 @@ import {
   ProSidebar,
   Menu,
   MenuItem,
-  SidebarHeader,
   SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
@@ -31,17 +30,6 @@ const AdminSidebar = () => {
       <div id="AdminSidebar">
           {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
-          {/* <SidebarHeader>
-          <div className="logotext">
-              <p>{menuCollapse ? "Logo" : "Big Logo"}</p>
-            </div><div className="closemenu" onClick={menuIconClick}>
-              {menuCollapse ? (
-                <FiArrowRightCircle/>
-              ) : (
-                <FiArrowLeftCircle/>
-              )}
-            </div>
-          </SidebarHeader> */}
           <SidebarContent>
             <Menu>
               <MenuItem icon={<img src={tickets} style={{color:"#fff"}} alt=""/>}>BET SLIP</MenuItem>

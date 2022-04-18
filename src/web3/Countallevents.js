@@ -10,12 +10,12 @@ let newevents = 0
           let one
           let two 
           let zero
-          let events = await getActiveEvents();
-          console.log("totalEvents",events)
+          let events = await totalEvents();
+        
           let getevents = []
-          for (let i = 0; i < events.length; i++) {
-              check2 = await getEvent(events[i])
-            if(check2[10] == false){
+          for (let i = 0; i < events; i++) {
+              check2 = await getEvent(i)
+            if(true){
               check = Object.create(check2)
               zero = await bettorscountspercent(check2[0],0,check2[14])
               one = await bettorscountspercent(check2[0],1,check2[14])
@@ -32,16 +32,16 @@ let newevents = 0
                 check.potential_wins = (Number(potentialwinnings) + Number(stakeonevent/10**18)).toFixed(2)
                 check.id = check2[0]
                 check.name = check2[3] 
-                check.validate = check2[10]
-                check.poolsize = check2[4]
-                check.starttime = check2[5]
-                check.endtime = check2[6]
-                check.teamone = check2[8]
-                check.teamtwo = check2[9]
+                check.validate = check2[12]
+                check.poolsize = check2[6]
+                check.starttime = check2[7]
+                check.endtime = check2[8]
+                check.teamone = check2[10]
+                check.teamtwo = check2[11]
                 check.subcategory = check2[2]
                 check.Categories = check2[1]
-                check.BettorsCount = check2[14]
-                check.creator = check2[17]
+                check.BettorsCount = check2[15]
+                check.creator = check2[22]
                 getevents.push(check)
                 newevents = getevents
               
@@ -77,16 +77,16 @@ export const addingnewevents = async() => {
                 check.potential_wins = (Number(potentialwinnings) + Number(stakeonevent/10**18)).toFixed(2)
                 check.id = check2[0]
                 check.name = check2[3] 
-                check.validate = check2[10]
-                check.poolsize = check2[4]
-                check.starttime = check2[5]
-                check.endtime = check2[6]
-                check.teamone = check2[8]
-                check.teamtwo = check2[9]
+                check.validate = check2[12]
+                check.poolsize = check2[6]
+                check.starttime = check2[7]
+                check.endtime = check2[8]
+                check.teamone = check2[10]
+                check.teamtwo = check2[11]
                 check.subcategory = check2[2]
                 check.Categories = check2[1]
-                check.BettorsCount = check2[14]
-                check.creator = check2[17]
+                check.BettorsCount = check2[15]
+                check.creator = check2[22]
                 decodestoredevents.push(check)
                 window.localStorage.setItem('events',JSON.stringify(decodestoredevents))
       }
