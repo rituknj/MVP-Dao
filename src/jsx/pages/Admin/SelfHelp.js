@@ -39,8 +39,9 @@ export default function SelfHelp() {
 
   return (
     <div className="self-help-main">
-      <div className="row py-3 px-2 mb-3 justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto">
-        <div className="col-md-8">
+      <div className="outerRow py-5 px-2 mb-3">
+        <div className="row justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto mx-auto p-5" style={{backgroundColor: "#1C1C1C", width: "90%", borderRadius: "10px", boxShadow: "10px 10px 4px #000"}}>
+        <div className="col-lg-8">
           <p>
             want to take a break from betting? set a temporary restriction on
             your account using the custom selector below to pause betting on
@@ -68,10 +69,10 @@ export default function SelfHelp() {
             <MdOutlineArrowForwardIos className="mt-1" />
           </button>
         </div>
-        <div className="col-md-4">
+        <div className="col-lg-4">
           <CountdownCircleTimer
             isPlaying
-            size={300}
+            size={250}
             duration={259200}
             colors={["#006600", "#33cc33", "#ff9900", "#ff0000"]}
             colorsTime={[120, 75, 40, 0]}
@@ -80,20 +81,19 @@ export default function SelfHelp() {
             {renderTime}
           </CountdownCircleTimer>
         </div>
+        </div>
       </div>
 
       <div
-        className="row py-3 px-3 px-xxl-5 px-sm-2 mb-3"
+        className="row secondRow py-5 justify-content-around px-2"
         style={{ borderBottomLeftRadius: "0" }}
       >
-        <div className="col-lg-6">
+        <div className="col-lg-6 py-2 px-4">
           <h3>
             <BiDonateHeart /> DONATE
           </h3>
           <p>
-            JOIN US AND BE PART OF THE SOLUTION TO GAMBLING ADDICTION, MAKE A
-            SMALL DONATION TO OUR PARTNERS WORKING HARD TO HELP PEOPLE WITH
-            ADDICTIONS.
+            JOIN US AND BE PART OF THE SOLUTION TO GAMBLING ADDICTION, MAKE A SMALL DONATION TO OUR <span className="text-danger">PARTNERS</span> WORKING HARD TO HELP PEOPLE WITH ADDICTIONS.
           </p>
           <p>
             TOTAL DONATIONS : <span>$500</span>
@@ -106,8 +106,9 @@ export default function SelfHelp() {
             <button className="btn">$100</button>
             <button className="btn">OTHER</button>
           </div>
-          <div className="customAmount">
-            <input type="text" name="" id="" />
+          <div className="customAmount mt-3">
+            <span className="rounded border-end p-2 border-secondary">$</span>
+            <input type="number" name="" id="" />
             <span>BUSD</span>
           </div>
           <button
@@ -122,7 +123,7 @@ export default function SelfHelp() {
             <MdOutlineArrowForwardIos className="mt-1" />
           </button>
         </div>
-        <div className="col-lg-6">
+        <div className="col-lg-6 py-2 px-4 d-flex flex-column justify-content-between pb-4">
             <h3><FaTeamspeak/> SPEAK TO SOMEONE</h3>
             <p>Connect to a trained, compasionate listiner online who can  offer you free, confidential advice on gambling addiction. Whether you need advice for yourself or to support a friend or relative, we're here for you.</p>
             <button

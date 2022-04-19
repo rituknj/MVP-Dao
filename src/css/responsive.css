@@ -8,6 +8,12 @@
 }
 
 @media screen and (max-width: 768px) {
+  .adminGlobalContainer{
+    margin: 15px auto 0px auto;
+  }
+  #AdminSidebar {
+    left: -200%;
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -187,12 +193,18 @@
     width: 70%;
   }
 }
-@media screen and (max-width: 1200px) {
-}
 
 @media screen and (max-width: 1440px) {
   .betslip-main .row .col {
     min-width: 200px;
+  }
+  .self-help-main .row .col-lg-6{
+    max-width: 475px;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .self-help-main .row .col-lg-6{
+    max-width: 450px;
   }
 }
 
