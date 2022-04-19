@@ -80,7 +80,7 @@ class GameCard extends Component {
     // console.log("what is this",decodestoredevents)
 
     setInterval(async () => {
-      // console.log("run every things")
+      
       await addingnewevents();
     }, 2000);
 

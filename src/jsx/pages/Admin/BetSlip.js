@@ -1,19 +1,43 @@
+import { one, zero } from "big-integer";
 import React,{useEffect,useState} from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import {ImStopwatch, ImFire} from 'react-icons/im'
-import { getBetsHistory, getusertotalwinnings } from "../../../web3/betsMVPService";
+import { getBetsHistory, getusertotalwinnings, getEvent, GetUserWonAmountOnEvent, claimrewards,BoostEvent } from "../../../web3/betsMVPService";
 
 export default function BetSlip() {
   const [events, setEvents] = useState([])
   const [userTotalWinning, setUserTotalWinning] = useState(0)
+  const [totalbetmade, setTotalBetMade] = useState(0)
+  const [historyevents, setHistroyEvents] = useState(1)
 
   useEffect(async() => {
     const getUserBetData = async()=>{
+      let check = []
       const userBethistory = await getBetsHistory();
+      setTotalBetMade(userBethistory.length)
       const totalwinning = await getusertotalwinnings();
-      setUserTotalWinning(totalwinning)
-      console.log("history",userBethistory,totalwinning)
+      setUserTotalWinning(totalwinning) 
+      // console.log("User History outer",userBethistory)
+      // userBethistory.forEach(async (element) => {
+      //   console.log("User History",userBethistory)
+      //   let i = await getEvent(element)
+      //   let x = Object.create(i)
+      //   let won = await GetUserWonAmountOnEvent(element)
+      //   let userWagerAmount = await AmountStackOnEventByaUser(element)
+      //   let zero = await bettorscountspercent(x[0],0,x[15])
+      //   let one = await bettorscountspercent(x[0],1,x[15])
+      //   let two = await bettorscountspercent(x[0],2,x[15])
+      //   x.won = won
+      //   x.userwageramount = userWagerAmount
+      //   x.zero = zero
+      //   x.one = one
+      //   x.two = two
+        
+      //   check.push(x)
+      //   setEvents(check)
+      // })
     } 
+
     await getUserBetData();
   }, [])
   
@@ -22,11 +46,17 @@ export default function BetSlip() {
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
       setEvents(decodestoredevents)
       var ts = Math.round((new Date()).getTime() / 1000);
+      console.log(ts)
     } 
     await getUserBetData();
   }, [])
   
-
+  const timing=(time)=>{
+    var ts = Math.round((new Date()).getTime() / 1000);
+    let lefttime = time - ts
+    lefttime = parseInt(Math.floor(lefttime / 3600) / 24);
+    return lefttime
+  } 
 
   const completedCards = [
     {
@@ -54,10 +84,24 @@ export default function BetSlip() {
       reward: "$0",
     },
   ];
+ 
 
-  const renderCompleted = (completedCards, index) => {
+  const Boost=async(id)=>{
+      await BoostEvent(id)
+  }
+  const UserWonAmountOnEvent = async(id)=>{
+     const amount = await GetUserWonAmountOnEvent(id);
+     return amount
+  }
+  const RewardClaim=async(id)=>{
+    await claimrewards(id);
+  }
+
+  console.log(historyevents)
+  const ActiveEvents = (completedCards, index) => {
     return (
-      <div
+      <>
+    {completedCards.starttime < Math.round((new Date()).getTime() / 1000) && completedCards.endtime > Math.round((new Date()).getTime() / 1000) ?  <div
         className="card my-4"
         key={index}
         style={{ backgroundColor: "#1c1c1c" }}
@@ -70,10 +114,10 @@ export default function BetSlip() {
             <span className="text-light">
               <GoPrimitiveDot color="green" size={18} /> ACTIVE
             </span>
-            <span className="text-secondary">#SOCCER</span>
+            <span className="text-secondary">#{completedCards.subcategory}</span>
           </div>
           <h5 className="card-title text-center">
-            Chealsea <span className="text-danger">vs</span> Machester City
+          {completedCards.teamone} <span className="text-danger">vs</span>{completedCards.teamtwo}
           </h5>
           <p
             className="text-center text-light my-3"
@@ -81,25 +125,135 @@ export default function BetSlip() {
           >
             POOL SIZE
             <br />
-            <span className="fs-6">$3,600</span>
+            <span className="fs-6">${completedCards.poolsize}</span>
           </p>
           <div className="d-flex justify-content-between text-secondary" style={{fontSize: "12px"}}>
             <ul className="p-0" style={{listStyle: "none"}}>
-                <li>30% CHEALSEA</li>
-                <li>65% MANCHESTAR CITY</li>
-                <li>5% DRAW</li>
+                <li>{completedCards.zero}% {completedCards.teamone}</li>
+                <li>{completedCards.one}% {completedCards.teamtwo}</li>
+                <li>{completedCards.two}% DRAW</li>
             </ul>
             <div>
-                <p><ImStopwatch/> 3 DAYS LEFT</p>
-                <ImFire size={20}/>&nbsp;&nbsp;&nbsp;<a href="#" className="btn btn-warning ms-auto fw-bold">
+                <p><ImStopwatch/> {timing(completedCards.endtime)} DAYS LEFT</p>
+                <ImFire size={20}/>&nbsp;&nbsp;&nbsp;<button onClick={()=>Boost(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
                 BOOST
-                </a>
+                </button>
             </div>
           </div>
         </div>
-      </div>
+      </div>:''}
+      </>
     );
   };
+
+  const InactiveEvents = (completedCards, index) => {
+    return (
+      <>
+    {Math.round((new Date()).getTime() / 1000) > completedCards.endtime ?  <div
+        className="card my-4"
+        key={index}
+        style={{ backgroundColor: "#1c1c1c" }}
+      >
+        <div className="card-body">
+          <div
+            className="d-flex justify-content-between"
+            style={{ fontSize: "12px" }}
+          >
+            <span className="text-light">
+              <GoPrimitiveDot color="green" size={18} /> ACTIVE
+            </span>
+            <span className="text-secondary">#{completedCards.subcategory}</span>
+          </div>
+          <h5 className="card-title text-center">
+          {completedCards.teamone} <span className="text-danger">vs</span>{completedCards.teamtwo}
+          </h5>
+          <p
+            className="text-center text-light my-3"
+            style={{ fontSize: "12px" }}
+          >
+            POOL SIZE
+            <br />
+            <span className="fs-6">${completedCards.poolsize}</span>
+          </p>
+          <br />
+          <br />
+          <p
+            className="text-center text-light my-3"
+            style={{ fontSize: "12px" }}
+          >
+            You Won
+            <span className="fs-6">${UserWonAmountOnEvent(completedCards.id)}</span>
+          </p>
+          <div className="d-flex justify-content-between text-secondary" style={{fontSize: "12px"}}>
+            <ul className="p-0" style={{listStyle: "none"}}>
+                <li>{completedCards.zero}% {completedCards.teamone}</li>
+                <li>{completedCards.one}% {completedCards.teamtwo}</li>
+                <li>{completedCards.two}% DRAW</li>
+            </ul>
+            <div>
+                <p><ImStopwatch/> {timing(completedCards.endtime)} DAYS LEFT</p>
+                <ImFire size={20}/>&nbsp;&nbsp;&nbsp;<button onClick={()=>RewardClaim(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
+                Claim
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>:''}
+      </>
+    );
+  };
+
+  const UpComming = (completedCards, index) => {
+    return (
+      <>
+    {completedCards.starttime > Math.round((new Date()).getTime() / 1000) ?  <div
+        className="card my-4"
+        key={index}
+        style={{ backgroundColor: "#1c1c1c" }}
+      >
+        <div className="card-body">
+          <div
+            className="d-flex justify-content-between"
+            style={{ fontSize: "12px" }}
+          >
+            <span className="text-light">
+              <GoPrimitiveDot color="green" size={18} />UPCOMING
+            </span>
+            <span className="text-secondary">#{completedCards.subcategory}</span>
+          </div>
+          <h5 className="card-title text-center">
+          {completedCards.teamone} <span className="text-danger">vs</span>{completedCards.teamtwo}
+          </h5>
+          <p
+            className="text-center text-light my-3"
+            style={{ fontSize: "12px" }}
+          >
+            POOL SIZE
+            <br />
+            <span className="fs-6">${completedCards.poolsize}</span>
+          </p>
+          <br />
+          <br />
+         
+          <div className="d-flex justify-content-between text-secondary" style={{fontSize: "12px"}}>
+            <ul className="p-0" style={{listStyle: "none"}}>
+                <li>{completedCards.zero}% {completedCards.teamone}</li>
+                <li>{completedCards.one}% {completedCards.teamtwo}</li>
+                <li>{completedCards.two}% DRAW</li>
+            </ul>
+            <div>
+                <p><ImStopwatch/> {timing(completedCards.starttime)} DAYS LEFT</p>
+                {/* <ImFire size={20}/>&nbsp;&nbsp;&nbsp;<button onClick={()=>RewardClaim(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
+                Claim
+                </button> */}
+            </div>
+          </div>
+        </div>
+      </div>:''}
+      </>
+    );
+  };
+
 
   return (
     <div className="container-fluid betslip-main">
@@ -109,7 +263,7 @@ export default function BetSlip() {
           <span>TOTAL</span>
           <h5>BETS MADE</h5>
           <hr className="text-light" />
-          <p>500</p>
+          <p>{totalbetmade}</p>
         </div>
         <div className="col p-2 shadow rounded my-3 mx-1 border-primary">
           <span>TOTAL</span>
@@ -140,15 +294,23 @@ export default function BetSlip() {
           <select
             className="form-select bg-dark border-0 text-light py-3"
             id="specificSizeSelect"
+            onChange={(e)=>setHistroyEvents(e.target.options.selectedIndex)}
           >
-            <option selected>ACTIVE</option>
-            <option value="1">INACTIVE</option>
-            <option value="2">HISTORY</option>
+            <option selected >ACTIVE</option>
+            <option >UPCOMING</option>
+            <option >HISTORY</option>
           </select>
         </div>
+        {historyevents == 0 && events.length > 0 ?  
         <div className="container activeBets">
-          {completedCards.map(renderCompleted)}
-        </div>
+          {events.map((data)=> ActiveEvents(data))}
+        </div> : historyevents == 1 && events.length > 0 ? 
+         <div className="container activeBets">
+         {events.map((data)=> UpComming(data))}
+       </div>: historyevents == 2 && events.length > 0 ?
+       <div className="container activeBets">
+       {events.map((data)=> InactiveEvents(data))}
+     </div> : ''}
       </div>
     </div>
   );
