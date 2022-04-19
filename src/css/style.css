@@ -1967,5 +1967,7 @@ footer button {
 }
 .self-help-main .amount .btn:hover{
   background-color: #FF4003;
-  color: #fff;
+  color: #fff;}
+.react-multi-carousel-track{
+  margin: auto;
 }
