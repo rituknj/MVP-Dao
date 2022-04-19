@@ -17,9 +17,9 @@ let newevents = 0
               check2 = await getEvent(i)
             if(true){
               check = Object.create(check2)
-              zero = await bettorscountspercent(check2[0],0,check2[14])
-              one = await bettorscountspercent(check2[0],1,check2[14])
-              two = await bettorscountspercent(check2[0],2,check2[14])
+              zero = await bettorscountspercent(check2[0],0,check2[15])
+              one = await bettorscountspercent(check2[0],1,check2[15])
+              two = await bettorscountspercent(check2[0],2,check2[15])
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])
               
               let totalpoolsize = check2[4] 

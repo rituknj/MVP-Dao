@@ -260,7 +260,7 @@ export const AmountStackOnEventByaUser = async (id) => {
 }
 
 export const GetUserWonAmountOnEvent = async (id) => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const resutl = await betMVPContract.methods.getUserEventWon(id, await getAccount() ).call();
     return resutl;
 }
