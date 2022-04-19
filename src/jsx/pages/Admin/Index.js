@@ -19,6 +19,7 @@ import file from '../../../images/gala_file-doc.svg'
 import validate from '../../../images/VALIDATE.svg'
 import plus from '../../../images/ant-design_plus-circle-outlined.svg'
 import self from '../../../images/twemoji_people-hugging.svg'
+import SelfHelp from './SelfHelp'
 
 class Index extends Component {
   constructor(props) {
@@ -79,7 +80,8 @@ class Index extends Component {
           <div className="adminGlobalContainer">
           { this.state.showAdminSlider == 2  ? <CreateEvent /> 
           : this.state.showAdminSlider == 1  ? <BetSlip/> 
-          : this.state.showAdminSlider == 3  ? <ValidateEvents/> : ''}
+          : this.state.showAdminSlider == 3  ? <ValidateEvents/>
+          : this.state.showAdminSlider == 4  ? <SelfHelp/> : ''}
           </div>
         </div>
       </div>

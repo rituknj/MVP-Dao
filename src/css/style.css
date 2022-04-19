@@ -1946,3 +1946,26 @@ footer button {
   right: 20px;
   box-shadow: 4px 4px 5px #000;
 }
+
+/* SELF HELP */
+.self-help-main{
+  background-color: #000;
+}
+.self-help-main .row {
+  background-color: #0F0F0F;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+.self-help-main .row .col-md-8 p{
+  color: #AAAAAA;
+}
+.self-help-main .amount .btn{
+  font-weight: 500;
+  background-color: #fff;
+  margin: 5px;
+  padding: 8px 10px;
+}
+.self-help-main .amount .btn:hover{
+  background-color: #FF4003;
+  color: #fff;
+}
