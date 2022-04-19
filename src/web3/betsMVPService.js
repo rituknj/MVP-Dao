@@ -107,7 +107,13 @@ export const getValidationPoint = async () => {
 
 export const getBetsHistory = async () =>{
     const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-    const betsHistory = await betMVPContract.methods.getUserEventHistory(await getAccount()).call({'from': await getAccount()});
+    const betsHistory = await betMVPContract.methods.getUserEventHistory(await getAccount()).call();
+    return betsHistory;
+}
+
+export const BoostEvent = async (id) =>{
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const betsHistory = await betMVPContract.methods.boostEvent('5000000000000000000', id).send({'from': await getAccount()});
     return betsHistory;
 }
 
@@ -212,7 +218,7 @@ export const gettotaluserwageramount = async () => {
 }
 
 export const claimrewards = async (id) => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const resutl = await betMVPContract.methods.claimReward(id).send({
         from: await getAccount(),
         
