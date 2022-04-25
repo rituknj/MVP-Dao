@@ -1,11 +1,11 @@
 import { getAccount, getContract } from "./web3";
-import { BETS_ABI } from './../Contract/Bets';
+import { BETS_ABI } from '../Contract/BetsToken';
 import { envdev, envprod } from "./environments";
 import { fromWei } from "./utils";
 import { Form } from "react-bootstrap";
 
 export const getBETContract = async () => {
-    const betContract = getContract(BETS_ABI, envdev.REACT_APP_BETS2_SMART_CONTRACT);
+    const betContract = getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
     return betContract;
 }
 
@@ -18,22 +18,24 @@ export const getBETBalanceBUSD = async () => {
 }
 
 export const gettotalsupply = async () => {
-    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETS2_SMART_CONTRACT);
+    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
     const totalSupply = await betContract.methods.totalSupply().call()
     return totalSupply;
 }
 
 export const isapproved = async () => {
-    const betContract = getContract(BETS_ABI, envdev.REACT_APP_BETS2_SMART_CONTRACT);
-    const result = await betContract.methods.allowance( await getAccount(),envdev.REACT_APP_BETSWAMP_MVP_CONTRACT).call()
+    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
+    const result = await betContract.methods.allowance( await getAccount(),envdev.REACT_APP_BET_BETSWAMP_V2).call()
+    const name = await betContract.methods.name().call()
+    console.log("contract",name)
     return result;
 }
 
 
 export const approveBUSD = async () => {
-    const betContract = getContract(BETS_ABI, envdev.REACT_APP_BETS2_SMART_CONTRACT);
+    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
     console.log('approve run')
-    const result = await betContract.methods.approve(envdev.REACT_APP_BET_SMART_CONTRACT,115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
+    const result = await betContract.methods.approve(envdev.REACT_APP_BET_BETSWAMP_V2, 115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
         from: await getAccount(),
     });
     if(result.status == true){
@@ -52,7 +54,7 @@ export const addBETS = async () => {
         params: {
             type: "ERC20",
             options: {
-                address: envdev.REACT_APP_BET_SMART_CONTRACT,
+                address: envdev.REACT_APP_BUSD_TOKEN,
                 symbol: 'BETS',
                 decimals: 8,
             },

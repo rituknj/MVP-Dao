@@ -15,7 +15,7 @@ let newevents = 0
           let getevents = []
           for (let i = 0; i < events; i++) {
               check2 = await getEvent(i)
-            if(true){
+            if(events > 0){
               check = Object.create(check2)
               zero = await bettorscountspercent(check2[0],0,check2[15])
               one = await bettorscountspercent(check2[0],1,check2[15])
@@ -60,8 +60,7 @@ export const addingnewevents = async() => {
   let activeEvents = await getActiveEvents();
   let newevent = await totalEvents();
   decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-  console.log("Events",decodestoredevents)
-  if(activeEvents.length > decodestoredevents.length) {
+  if(newevent > decodestoredevents.length) {
               check2 = await getEvent(newevent-1)
               check = Object.create(check2)
               zero = await bettorscountspercent(check2[0],0,check2[14])

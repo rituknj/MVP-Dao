@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { MdOutlineArrowForwardIos, MdArrowDropDown } from "react-icons/md";
 import { BiDonateHeart } from "react-icons/bi";
 import {FaTeamspeak} from 'react-icons/fa'
+import { pausebet, Unpausebet, Ispausebet } from "../../../web3/betsMVPService";
 
 export default function SelfHelp() {
+
+  const [pausingtime, setPausingTime] = useState(0)
+  const [ispaused, setIspaused] = useState(false)
+  const [pausetimeend, setPauseTimeEnd] = useState(0)
+
+  useEffect(async() => {
+    const isbetpaused = await Ispausebet();
+    const endpaushtime = window.localStorage.getItem('duration')
+    setPauseTimeEnd(endpaushtime)
+    setIspaused(isbetpaused)
+  }, [])
+  
   const formatRemainingTime = (time) => {
     // const minutes = Math.floor((time % 3600) / 60);
     // const seconds = time % 60;
 
     // return `${minutes}:${seconds}`;
+    console.log(time)
     var d = Math.floor(time / (3600 * 24));
     var h = Math.floor((time % (3600 * 24)) / 3600);
     var m = Math.floor((time % 3600) / 60);
@@ -24,7 +38,7 @@ export default function SelfHelp() {
 
   const renderTime = ({ remainingTime }) => {
     if (remainingTime === 0) {
-      return <div className="timer text-danger">Too late...</div>;
+      return <div className="timer text-danger">Lets bet again</div>
     }
 
     return (
@@ -37,6 +51,26 @@ export default function SelfHelp() {
     );
   };
 
+  const pause =async(event)=>{
+    if(ispaused){
+      const data = await Unpausebet()
+      if(data.status){
+        setPausingTime(0)
+        setIspaused(false)
+        
+        window.localStorage.removeItem('duration')
+      }
+      return true
+    }
+    const duration = parseInt((new Date(pausingtime).getTime() / 1000).toFixed(0),)
+    const data = await pausebet(duration)
+    if(data.status){
+      setIspaused(true)
+      window.localStorage.setItem('duration',duration)
+    }
+  }
+
+  console.log(ispaused)
   return (
     <div className="self-help-main">
       <div className="outerRow py-5 px-2 mb-3">
@@ -49,23 +83,26 @@ export default function SelfHelp() {
             or create bets on betswamp for the selected period but you would be
             able to validate events and use other betswamp features.
           </p>
-          <button
-            className="btn my-3 p-3 fw-bold justify-content-between d-flex shadow"
+          <input
+            className="my-3 p-3 fw-bold shadow"
+            type='datetime-local'
             style={{
               backgroundColor: "#3b3b3b",
               color: "#fff",
               width: "45%",
+              outline:'none',
+              border: 'none'
             }}
-          >
-            <span>SELECT DURATION</span>
-            <MdArrowDropDown className="fs-5" />
-          </button>
+            onChange={(e)=>setPausingTime(e.target.value)}
+            placeholder='SELECT DURATION'
+          />
           <br />
           <button
             className="btn my-3 p-3 fw-bold justify-content-between d-flex"
             style={{ backgroundColor: "#fff", color: "#000", width: "45%" }}
+            onClick={()=>pause()}
           >
-            <span>PAUSE BETTING</span>
+            <span>{ispaused ? "UNPAUSE BETTING" : "PAUSE BETTING"}</span>
             <MdOutlineArrowForwardIos className="mt-1" />
           </button>
         </div>
@@ -73,7 +110,7 @@ export default function SelfHelp() {
           <CountdownCircleTimer
             isPlaying
             size={250}
-            duration={259200}
+            duration={pausetimeend-Math.round((new Date()).getTime() / 1000)}
             colors={["#006600", "#33cc33", "#ff9900", "#ff0000"]}
             colorsTime={[120, 75, 40, 0]}
             onComplete={() => [true, 1000]}

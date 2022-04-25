@@ -54,7 +54,7 @@ export const createEvent = async (sub_category, description, url, name, time, en
     // return await web3Instance.eth.sendTransaction({to: envprod.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
 }
 
-export const placeBet = async({event_id, amount, occured}) => {
+export const placeBet = async(event_id, occured, amount) => {
     console.log("details ", event_id, amount, occured)
     var getData
     let maxamount = await isapproved()
@@ -137,12 +137,12 @@ export const totalEvents = async () => {
 
 
 export const getOccurrenceBetCount = async (eventID, occured) => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const occurrenceBetCount = await betMVPContract.methods.getOccurrenceBetCount(eventID, occured).call();
     return occurrenceBetCount;
 }
 export const getEventOccurrenceBetAmount = async (eventID, occured) => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const eventOccurrenceBetAmount = await betMVPContract.methods.getEventOccurrenceBetAmount(eventID, occured).call();
     return eventOccurrenceBetAmount;
 }
@@ -253,10 +253,8 @@ export const bettorscounts = async (id, occured) => {
 }
 
 export const bettorscountspercent = async (id, occured,bettcont) => {
-    // console.log("id occured betcount",id, occured,bettcont)
     const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-    return await (betMVPContract.methods.getOccurrenceBetCount(id, occured).call())/bettcont*100
-    
+    const bettes = await (betMVPContract.methods.getOccurrenceBetCount(id, occured).call())/bettcont*100
 }
 
 export const AmountStackOnEventByaUser = async (id) => {
@@ -305,13 +303,30 @@ export const totalpayout = async () => {
 }
 
 export const activeuserslist = async () => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const resutl = await betMVPContract.methods.getActiveUsersList().call();
     return resutl
 }
 export const counttotalbetscreated = async (address) =>{
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const betsHistory = await betMVPContract.methods.getUserEventHistory(address).call({'from': await getAccount()});
+    return betsHistory;
+}
+
+export const pausebet = async (time) =>{
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const betsHistory = await betMVPContract.methods.pauseBet(time).send({'from': await getAccount()});
+    return betsHistory;
+}
+export const Unpausebet = async () =>{
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const betsHistory = await betMVPContract.methods.unpauseBet().send({'from': await getAccount()});
+    return betsHistory;
+}
+
+export const Ispausebet = async () =>{
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const betsHistory = await betMVPContract.methods.isBetPaused(await getAccount()).call();
     return betsHistory;
 }
 
@@ -319,11 +334,31 @@ export const totalbetcreated = async() => {
     let users = await activeuserslist();
     let history = []
     let createbets = 0
-    console.log("histroy is",history)
+    
     for(const m of users){
         history = await counttotalbetscreated(m);
         createbets = createbets + history.length
     }
     console.log("created bets are", createbets)
     return createbets
+}
+
+export const getUserWonAmount = async (id, address) => {
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const resutl = await betMVPContract.methods.getUserEventWon(id, address).call();
+    return resutl;
+}
+
+export const totalAmountWon =async()=>{
+    let wonamount = 0 
+    const userlist = await activeuserslist();
+    const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+    userlist.forEach(address => {
+        decodestoredevents.forEach(async(event )=> {
+            const won = await getUserWonAmount(event.id,address);
+            console.log("user and thier won",won,address,event.id)
+            wonamount = wonamount + won
+        });
+    });
+    return wonamount
 }

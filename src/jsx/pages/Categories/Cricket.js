@@ -180,12 +180,12 @@ class GameCard extends Component {
   }
 
 
-  Onplacebet = () => {
+  Onplacebet =async() => {
     try{
-      this.placebet(this.state.id, this.state.occurance, this.state.stackvalueone)
+      await placeBet(this.state.id, this.state.occurance, this.state.stackvalueone)
     }
     catch(e){
-      //
+      console.log("bet Error",e)
     }
   }
   getdata = (v) => {
@@ -210,40 +210,39 @@ class GameCard extends Component {
     // console.log('participants', this.state.eventoneparticipant,this.state.eventtwoparticipant,this.state.eventthreeparticipant)
   }
 
-  placebet = async (id, team, amount) => {
-    var ts = Math.round((new Date()).getTime() / 1000);
-    let lefttime = this.state.endtime - ts
-    const betdata = {
-      event_id: id,
-      amount: amount,
-      occured: team
-    }
-    try {
-      if (lefttime > 0) {
-        await placeBet(betdata);
-        window.location.reload(false);
-      }
+  // placebet = async (id, team, amount) => {
+  //   var ts = Math.round((new Date()).getTime() / 1000);
+  //   let lefttime = this.state.endtime - ts
+  //   const betdata = {
+  //     event_id: id,
+  //     amount: amount,
+  //     occured: team
+  //   }
+  //   try {
+  //     if (lefttime > 0) {
+  //       await placeBet(betdata);
+  //       window.location.reload(false);
+  //     }
 
-      else {
-        alert("Event Time ended")
-      }
+  //     else {
+  //       alert("Event Time ended")
+  //     }
 
-    }
-    catch (error) {
-      // alert(error.message)
-    }
-  }
+  //   }
+  //   catch (error) {
+  //   }
+  // }
 
   getdays = (endime) => {
-    var ts = Math.round((new Date()).getTime() / 1000);
-    let lefttime = endime - ts
-
-    lefttime = parseInt(Math.floor(lefttime / 3600) / 24);
-    if (lefttime < 0) {
-      lefttime = 0
+    var current = Math.round(new Date().getTime()/1000)
+    var seconds =  (endime)-current 
+    var day = Math.floor(seconds/86400)
+    if(day>0){
+      return day;
     }
-
-    return lefttime
+    else{
+      return 0;
+    }
   }
 
   mouseclass = (event) => {
@@ -253,7 +252,7 @@ class GameCard extends Component {
       document.getElementById('sidebar').style.transform = 'translateX(-200%)';
       document.getElementById('sidebar').style.position = 'absolute';
     }
-    console.log("position", x, y)
+ 
   }
   winningamount = (amountstake, poolsize) => {
     let totalstake = poolsize + amountstake
@@ -268,7 +267,7 @@ class GameCard extends Component {
 
 
   render() {
-console.log(this.state.occurance)
+
     return (
       <Fragment>
         <App />
@@ -299,8 +298,8 @@ console.log(this.state.occurance)
                       <div className="row p-3">
                         <div className="col-8">
                           <ul>
-                            <li>{Number(this.state.one).toFixed(2)}% &nbsp;&nbsp;{this.state.teamone}</li>
-                            <li>{Number(this.state.two).toFixed(2)}% &nbsp;&nbsp;{this.state.teamtwo}</li>
+                            <li>{Number(this.state.zero).toFixed(2)}% &nbsp;&nbsp;{this.state.teamone}</li>
+                            <li>{Number(this.state.one).toFixed(2)}% &nbsp;&nbsp;{this.state.teamtwo}</li>
                           </ul>
                         </div>
                         <div className="col-4 button-row gap-2">
@@ -408,19 +407,6 @@ console.log(this.state.occurance)
                               <div><img src={FIRE} style={{ width: '10px' }} /></div>
                               <div className='text-white mb-1' style={{ fontSize: '10px' }}>OPNE</div>
                               <div><img src={PLUS} style={{ width: '10px' }} /></div>
-                              {/* {events.creator == this.state.account && events.endime > (Math.round((new Date()).getTime() / 1000)) ? <button
-                                className="btn"
-                                onClick={() => this.cancelevent(events.id)
-                                }
-                              >
-                              Cancel 
-                            </button>:""}
-                              <button
-                                className="btn"
-                                
-                              >
-                               {Math.round((new Date()).getTime() / 1000) > events.endtime ? "View" : "BET"}
-                              </button> */}
                             </div>
                           </div>
                         </div>

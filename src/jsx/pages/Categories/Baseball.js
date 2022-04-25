@@ -182,7 +182,7 @@ class GameCard extends Component {
 
   Onplacebet = () => {
     try{
-      this.placebet(this.state.id, this.state.occurance, this.state.stackvalueone)
+      placeBet(this.state.id, this.state.occurance, this.state.stackvalueone)
     }
     catch(e){
       //
@@ -210,40 +210,16 @@ class GameCard extends Component {
     // console.log('participants', this.state.eventoneparticipant,this.state.eventtwoparticipant,this.state.eventthreeparticipant)
   }
 
-  placebet = async (id, team, amount) => {
-    var ts = Math.round((new Date()).getTime() / 1000);
-    let lefttime = this.state.endtime - ts
-    const betdata = {
-      event_id: id,
-      amount: amount,
-      occured: team
-    }
-    try {
-      if (lefttime > 0) {
-        await placeBet(betdata);
-        window.location.reload(false);
-      }
-
-      else {
-        alert("Event Time ended")
-      }
-
-    }
-    catch (error) {
-      // alert(error.message)
-    }
-  }
-
   getdays = (endime) => {
-    var ts = Math.round((new Date()).getTime() / 1000);
-    let lefttime = endime - ts
-
-    lefttime = parseInt(Math.floor(lefttime / 3600) / 24);
-    if (lefttime < 0) {
-      lefttime = 0
+    var current = Math.round(new Date().getTime()/1000)
+    var seconds =  (endime)-current 
+    var day = Math.floor(seconds/86400)
+    if(day>0){
+      return day;
     }
-
-    return lefttime
+    else{
+      return 0;
+    }
   }
 
   mouseclass = (event) => {
@@ -299,8 +275,8 @@ console.log(this.state.occurance)
                       <div className="row p-3">
                         <div className="col-8">
                           <ul>
-                            <li>{Number(this.state.one).toFixed(2)}% &nbsp;&nbsp;{this.state.teamone}</li>
-                            <li>{Number(this.state.two).toFixed(2)}% &nbsp;&nbsp;{this.state.teamtwo}</li>
+                            <li>{Number(this.state.zero).toFixed(2)}% &nbsp;&nbsp;{this.state.teamone}</li>
+                            <li>{Number(this.state.one).toFixed(2)}% &nbsp;&nbsp;{this.state.teamtwo}</li>
                           </ul>
                         </div>
                         <div className="col-4 button-row gap-2">

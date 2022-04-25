@@ -1,8 +1,29 @@
-import React from "react";
+import { event } from "jquery";
+import React,{useEffect, useState} from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { totalEvents, totalAmountWon } from "../../../web3/betsMVPService";
 
 export default function ValidateEvents() {
+    const [allvalidatevents, setAllValidateEvent] = useState([])
+    const [totalwon, setTotalWon] = useState(0)
+
+    useEffect(async()=>{
+      const totalwon = await totalAmountWon();
+      setTotalWon(totalwon)
+      console.log('total won',totalwon)
+      const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+      const evnets = []
+      decodestoredevents.forEach(element => {
+        if(element.validate){
+          evnets.push(element)
+        }
+      });
+      setAllValidateEvent(evnets)
+    },[])
+
+
+ 
   const formatRemainingTime = (time) => {
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;
@@ -92,7 +113,7 @@ export default function ValidateEvents() {
           <span>TOTAL</span>
           <h5>EVENTS VALIDATED</h5>
           <hr style={{ color: "#FF4003" }} />
-          <p>500</p>
+          <p>{allvalidatevents.length}</p>
         </div>
         <div className="col p-2 shadow rounded my-3 mx-1 border-primary">
           <span>TOTAL</span>
@@ -116,7 +137,7 @@ export default function ValidateEvents() {
           <span>TOTAL</span>
           <h5>AMOUNT WON</h5>
           <hr className="text-success" />
-          <p>$10,000,000</p>
+          <p>${totalwon}</p>
         </div>
         <div className="col p-2 shadow rounded my-3 mx-1 border-success">
           <span>PENDING</span>
