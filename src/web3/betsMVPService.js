@@ -253,8 +253,9 @@ export const bettorscounts = async (id, occured) => {
 }
 
 export const bettorscountspercent = async (id, occured,bettcont) => {
-    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const bettes = await (betMVPContract.methods.getOccurrenceBetCount(id, occured).call())/bettcont*100
+    return bettes
 }
 
 export const AmountStackOnEventByaUser = async (id) => {
@@ -356,7 +357,6 @@ export const totalAmountWon =async()=>{
     userlist.forEach(address => {
         decodestoredevents.forEach(async(event )=> {
             const won = await getUserWonAmount(event.id,address);
-            console.log("user and thier won",won,address,event.id)
             wonamount = wonamount + won
         });
     });

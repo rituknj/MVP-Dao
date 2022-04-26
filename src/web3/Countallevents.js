@@ -25,10 +25,6 @@ let newevents = 0
               let totalpoolsize = check2[4] 
               let percentwinnings = (stakeonevent/totalpoolsize)*100
               let potentialwinnings = Number((((totalpoolsize-stakeonevent)/100)*percentwinnings)/10**18).toFixed(2)
-              
-                check.zero = zero
-                check.one = one 
-                check.two = two
                 check.potential_wins = (Number(potentialwinnings) + Number(stakeonevent/10**18)).toFixed(2)
                 check.id = check2[0]
                 check.name = check2[3] 
@@ -42,6 +38,11 @@ let newevents = 0
                 check.Categories = check2[1]
                 check.BettorsCount = check2[15]
                 check.creator = check2[22]
+                check.validationtime = check2[9]
+                check.zero = zero
+                check.one = one 
+                check.two = two
+                console.log("check",check, zero,one,two)
                 getevents.push(check)
                 newevents = getevents
               

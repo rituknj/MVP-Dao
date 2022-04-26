@@ -1,3 +1,4 @@
+import { computeHeadingLevel } from "@testing-library/react";
 import { event } from "jquery";
 import React,{useEffect, useState} from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
@@ -6,7 +7,9 @@ import { totalEvents, totalAmountWon } from "../../../web3/betsMVPService";
 
 export default function ValidateEvents() {
     const [allvalidatevents, setAllValidateEvent] = useState([])
+    const [allnonevnets, setAllnonevents] = useState([])
     const [totalwon, setTotalWon] = useState(0)
+    const [skip, setSkip] = useState(0)
 
     useEffect(async()=>{
       const totalwon = await totalAmountWon();
@@ -14,16 +17,23 @@ export default function ValidateEvents() {
       console.log('total won',totalwon)
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
       const evnets = []
+      const nonvalidated = []
       decodestoredevents.forEach(element => {
         if(element.validate){
           evnets.push(element)
         }
       });
+      decodestoredevents.forEach(element => {
+        if(!element.validate){
+          nonvalidated.push(element)
+        }
+      });
+      setAllnonevents(nonvalidated)
       setAllValidateEvent(evnets)
     },[])
 
 
- 
+  console.log("All non evnets ",allnonevnets)
   const formatRemainingTime = (time) => {
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;
@@ -79,28 +89,39 @@ export default function ValidateEvents() {
         style={{ backgroundColor: "#1c1c1c" }}
       >
         <div className="card-head p-3">
-          <p>{fakeCards.hashtags}</p>
-          <h5 className="card-title">{fakeCards.title}</h5>
-          <span>{fakeCards.starts}</span>
+          <p>{fakeCards.subcategory}</p>
+          <h5 className="card-title">{fakeCards.teamone} vs {fakeCards.teamtwo}</h5>
+          <span>{fakeCards.starttime}</span>
         </div>
         <div className="card-body">
           <div>
             <p>STATISTICS</p>
             <ul className="p-0">
-              <li>30% CHEALSEA</li>
-              <li>65% MANCHESTAR CITY</li>
-              <li>5% DRAW</li>
+              <li>{fakeCards.zero}% {fakeCards.teamone}</li>
+              <li>{fakeCards.one}% {fakeCards.teamtwo}</li>
+              <li>{fakeCards.two}% DRAW</li>
             </ul>
           </div>
           <p className="mt-3">POOL SIZE</p>
-          <span>{fakeCards.pool}</span>
+          <span>{fakeCards.poolsize}</span>
           <p className="mt-3">REWARDS</p>
-          <span>{fakeCards.reward}</span>
+          <span>$00</span>
           <button className="btn">CLAIM</button>
         </div>
       </div>
     );
   };
+
+  const slipEvents =()=>{
+   if(skip == allnonevnets.length-1){
+     setSkip(0)
+   }
+   else{
+    setSkip(skip+1)
+   }
+    
+  }
+  console.log(skip)
 
   return (
     <div className="validate-event-main">
@@ -148,7 +169,7 @@ export default function ValidateEvents() {
       </div>
 
       {/* TIMER & TERMS */}
-      <div
+      {allnonevnets && allnonevnets.length > 0 ?  <div
         className="row py-3 px-3 px-xxl-5 px-sm-2 mb-3 terms"
         style={{ borderBottomLeftRadius: "0" }}
       >
@@ -164,7 +185,7 @@ export default function ValidateEvents() {
             <CountdownCircleTimer
               isPlaying
               size={300}
-              duration={120}
+              duration={Number(allnonevnets[skip].validationtime) - Math.round((new Date()).getTime() / 1000)}
               colors={["#006600", "#33cc33", "#ff9900", "#ff0000"]}
               colorsTime={[120, 75, 40, 0]}
               onComplete={() => [true, 1000]}
@@ -175,20 +196,20 @@ export default function ValidateEvents() {
           <div className="col-lg-6">
             <div className="container py-3 mb-2 rounded">
               <h5>EVENT</h5>
-              <p>CHEALSEA VS MANCHESTER CITY</p>
+              <p>{allnonevnets[skip].teamone} VS {allnonevnets[skip].teamtwo}</p>
               <br />
               <h5>LINK</h5>
-              <a href="#">https://verificationdemo.com/event</a>
+              {/* <a href="#">https://verificationdemo.com/event</a> */}
               <br />
               <br />
               <h5>PREFFERED ODD</h5>
               <input type="radio" name="team" id="odd1" />
               &nbsp;&nbsp;&nbsp;
-              <label htmlFor="odd1">CHEALSEA</label>
+              <label htmlFor="odd1">{allnonevnets[skip].teamone}</label>
               <br />
               <input type="radio" name="team" id="odd2" />
               &nbsp;&nbsp;&nbsp;
-              <label htmlFor="odd2">MANCHESTAR</label>
+              <label htmlFor="odd2">{allnonevnets[skip].teamtwo}</label>
               <br />
               <input type="radio" name="team" id="odd3" />
               &nbsp;&nbsp;&nbsp;
@@ -217,18 +238,21 @@ export default function ValidateEvents() {
                   color: "#fff",
                   width: "45%",
                 }}
+                onClick={()=>slipEvents()}
               >
                 <span>SKIP</span>
                 <MdOutlineArrowForwardIos className="mt-1" />
               </button>
             </div>
           </div>
+
+
         </div>
-      </div>
+      </div>:''}
 
       {/* VALIDATE CARDS */}
       <div className="validCards container-fluid">
-        {fakeCards.map(renderFake)}
+      {allvalidatevents.map((data)=>renderFake(data))}
       </div>
     </div>
   );
