@@ -89,7 +89,7 @@ export const placeBet = async(event_id, occured, amount) => {
 }
 
 export const validateEvent = async (event_id, occured) => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     // console.log("events", event_id, occured)
     var getData = await betMVPContract.methods.validateEvent(event_id, occured).send({
         from: await getAccount(),
@@ -105,7 +105,7 @@ export const getValidationPoint = async () => {
     return _validationPoint/10**18;
 }
 
-export const getBetsHistory = async () =>{
+export const UserEventHistory = async () =>{
     const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const betsHistory = await betMVPContract.methods.getUserEventHistory(await getAccount()).call();
     return betsHistory;
@@ -348,6 +348,39 @@ export const getUserWonAmount = async (id, address) => {
     const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const resutl = await betMVPContract.methods.getUserEventWon(id, address).call();
     return resutl;
+}
+
+export const userBethistory = async (id, address) => {
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const resutl = await betMVPContract.methods.getUserBetHistory(await getAccount()).call();
+    return resutl;
+}
+
+export const getvalidatorHistory = async()=>{
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const resutl = await betMVPContract.methods.validatorHistory(await getAccount()).call();
+    return resutl;
+}
+export const validatorsRewardOnEvnet = async(id)=>{
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const resutl = await betMVPContract.methods.getValidatorRewardOnEvent(id,await getAccount()).call();
+    return resutl;
+}
+
+export const getvalidatorsRewardOnEvnet = async(id)=>{
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const resutl = await betMVPContract.methods.getValidatorRewardOnEvent(await getAccount(),id).call();
+    return resutl;
+}
+
+export const getTotalValidatorRewardEarned = async()=>{
+    let reward = 0;
+    const ids = await getvalidatorHistory();
+    ids.forEach(async(ele)=>{
+        const i = await validatorsRewardOnEvnet(ele)
+        reward = reward + i
+    })
+    return reward;
 }
 
 export const totalAmountWon =async()=>{

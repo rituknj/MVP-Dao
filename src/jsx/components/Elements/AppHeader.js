@@ -31,7 +31,7 @@ import {
   totaltokenlocked,
   getusertotalwinnings,
   gettotaluserwageramount,
-  getBetsHistory,
+  UserEventHistory,
   getEvent,
   claimrewards,
   reclaimwager,
@@ -118,7 +118,7 @@ class AppHeader extends Component {
       let balanceofUSD = await getBETBalanceBUSD()
       point = await getValidationPoint()
       totalbetslocked = await totaltokenlocked()
-      history = await getBetsHistory()
+      history = await UserEventHistory()
       totalwageramount = await gettotaluserwageramount()
       totalwinnings = await getusertotalwinnings()
       pendingvalidationpoints = await pendingpoint()
@@ -138,7 +138,7 @@ class AppHeader extends Component {
     }, 100);
 
     
-    let historyi = await getBetsHistory()
+    let historyi = await UserEventHistory()
     
     
 

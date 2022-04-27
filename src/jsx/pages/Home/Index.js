@@ -44,20 +44,8 @@ import { createChart } from 'lightweight-charts'
 import { lineData } from './../About/demo';
 
 ////Images
-import TopImage from '../../../images/landing-Bets-cards-games.png'
 import arrowRight from '../../../images/arrow-right.svg'
-import playImage from '../../../images/play.png'
-import statiImage from '../../../images/stati.png'
-import validateImage from '../../../images/validate.png'
-import mobileImage from '../../../images/mobile.png'
 import lineImage from '../../../images/line.png'
-import ueImage from '../../../images/CryptoKidFinance.png'
-import bscImage from '../../../images/bsc.png'
-import segaImage from '../../../images/sega.png'
-import xboxImage from '../../../images/xbox.png'
-import psImage from '../../../images/ps.png'
-import chartImage from '../../../images/chart.png'
-import { act } from 'react-dom/cjs/react-dom-test-utils.development'
 var chart = null
 
 const SalesChart = loadable(() =>

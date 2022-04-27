@@ -3,26 +3,49 @@ import { event } from "jquery";
 import React,{useEffect, useState} from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { totalEvents, totalAmountWon } from "../../../web3/betsMVPService";
+import { getTotalValidatorRewardEarned, getvalidatorsRewardOnEvnet,getusertotalwinnings, AmountStackOnEventByaUser, userBethistory,claimrewards,validateEvent } from "../../../web3/betsMVPService";
 
 export default function ValidateEvents() {
     const [allvalidatevents, setAllValidateEvent] = useState([])
     const [allnonevnets, setAllnonevents] = useState([])
     const [totalwon, setTotalWon] = useState(0)
     const [skip, setSkip] = useState(0)
+    const [totaluserbetlost, setTotalUserBetLost] = useState(0)
+    const [validatorReward, setValidatorReward] = useState(0)
+    const [occur, setoccur] = useState(0)
+    
 
     useEffect(async()=>{
-      const totalwon = await totalAmountWon();
+      let stake = 0
+      const totalwon = await getusertotalwinnings();
       setTotalWon(totalwon)
-      console.log('total won',totalwon)
+      const reward = await getTotalValidatorRewardEarned()
+      setValidatorReward(reward)
+      const userbethty = await userBethistory()
+      userbethty.forEach(async (ele) =>{
+        const amountstake = await AmountStackOnEventByaUser(ele)
+        stake = amountstake + stake
+        setTotalUserBetLost(stake/10**18)
+      })
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-      const evnets = []
       const nonvalidated = []
-      decodestoredevents.forEach(element => {
-        if(element.validate){
-          evnets.push(element)
+      const evnets = []
+
+      for(let i = 0; i<decodestoredevents.length; i++){
+        if(decodestoredevents[i].validate){
+          const data = decodestoredevents[i]
+          data.reward = await getvalidatorsRewardOnEvnet(data.id)
+          evnets.push(data)
         }
-      });
+      }
+      // decodestoredevents.forEach(async(element) => {
+      //   if(element.validate){
+      //     let eent = element
+      //     eent.reward = await getvalidatorsRewardOnEvnet(element.id)
+      //     evnets.push(eent)
+      //   }
+      // });
+      
       decodestoredevents.forEach(element => {
         if(!element.validate){
           nonvalidated.push(element)
@@ -33,11 +56,9 @@ export default function ValidateEvents() {
     },[])
 
 
-  console.log("All non evnets ",allnonevnets)
   const formatRemainingTime = (time) => {
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;
-
     return `${minutes}:${seconds}`;
   };
 
@@ -105,8 +126,8 @@ export default function ValidateEvents() {
           <p className="mt-3">POOL SIZE</p>
           <span>{fakeCards.poolsize}</span>
           <p className="mt-3">REWARDS</p>
-          <span>$00</span>
-          <button className="btn">CLAIM</button>
+          <span>${fakeCards.reward}</span>
+          {Number(fakeCards.reward) <= 0 ? <button className="btn" onClick={()=>claimReward(fakeCards.id)}>CLAIM</button>: ''}
         </div>
       </div>
     );
@@ -119,9 +140,14 @@ export default function ValidateEvents() {
    else{
     setSkip(skip+1)
    }
-    
   }
-  console.log(skip)
+  
+  const claimReward =async(id)=>{
+    await claimrewards(id);
+  }
+  const validateEvenet=async(id)=>{
+    await validateEvent(id, occur)
+  }
 
   return (
     <div className="validate-event-main">
@@ -140,16 +166,16 @@ export default function ValidateEvents() {
           <span>TOTAL</span>
           <h5>REWARDS EARNED</h5>
           <hr className="text-primary" />
-          <p>50</p>
+          <p>{validatorReward}</p>
         </div>
         <div
           className="col p-2 shadow rounded my-3 mx-1"
           style={{ borderColor: "#ED2FC3" }}
         >
           <span>TOTAL</span>
-          <h5>BETS LOST</h5>
+          <h5>AMOUNT LOST</h5>
           <hr className="text-danger" />
-          <p>300</p>
+          <p>${totaluserbetlost - totalwon}</p>
         </div>
         <div
           className="col p-2 shadow rounded my-3 mx-1"
@@ -160,12 +186,12 @@ export default function ValidateEvents() {
           <hr className="text-success" />
           <p>${totalwon}</p>
         </div>
-        <div className="col p-2 shadow rounded my-3 mx-1 border-success">
+        {/* <div className="col p-2 shadow rounded my-3 mx-1 border-success">
           <span>PENDING</span>
           <h5>REWARDS</h5>
           <hr className="text-success" />
           <p>$2,000</p>
-        </div>
+        </div> */}
       </div>
 
       {/* TIMER & TERMS */}
@@ -203,15 +229,15 @@ export default function ValidateEvents() {
               <br />
               <br />
               <h5>PREFFERED ODD</h5>
-              <input type="radio" name="team" id="odd1" />
+              <input type="radio" name="team" id="odd1" value='0' onChange={(e)=>setoccur(e.target.value)}/>
               &nbsp;&nbsp;&nbsp;
               <label htmlFor="odd1">{allnonevnets[skip].teamone}</label>
               <br />
-              <input type="radio" name="team" id="odd2" />
+              <input type="radio" name="team" id="odd2" value='1' onChange={(e)=>setoccur(e.target.value)}/>
               &nbsp;&nbsp;&nbsp;
               <label htmlFor="odd2">{allnonevnets[skip].teamtwo}</label>
               <br />
-              <input type="radio" name="team" id="odd3" />
+              <input type="radio" name="team" id="odd3" value='2'  onChange={(e)=>setoccur(e.target.value)}/>
               &nbsp;&nbsp;&nbsp;
               <label htmlFor="odd3">DRAW</label>
             </div>
@@ -227,6 +253,7 @@ export default function ValidateEvents() {
               <button
                 className="btn my-3 p-3 fw-bold justify-content-between d-flex"
                 style={{ backgroundColor: "#fff", color: "#000", width: "45%" }}
+                onClick={()=>validateEvenet(allnonevnets[skip].id)}
               >
                 <span>VALIDATE</span>
                 <MdOutlineArrowForwardIos className="mt-1" />

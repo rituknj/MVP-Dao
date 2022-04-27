@@ -2,21 +2,31 @@ import { one, zero } from "big-integer";
 import React,{useEffect,useState} from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import {ImStopwatch, ImFire} from 'react-icons/im'
-import { getusertotalwinnings, getBetsHistory, GetUserWonAmountOnEvent, claimrewards,BoostEvent } from "../../../web3/betsMVPService";
+import { getusertotalwinnings, UserEventHistory, GetUserWonAmountOnEvent, claimrewards,BoostEvent, userBethistory, AmountStackOnEventByaUser } from "../../../web3/betsMVPService";
 
 export default function BetSlip() {
   const [events, setEvents] = useState([])
   const [userHistory, setUserHistory] = useState([])
   const [userTotalWinning, setUserTotalWinning] = useState(0)
-  const [totalbetmade, setTotalBetMade] = useState(0)
+  const [totalEvnetUserHistory, setTotalUserEvent] = useState(0)
   const [historyevents, setHistroyEvents] = useState(0)
+  const [totaluserBetHistory, setTotalUserBetHistory] = useState(0)
+  const [totaluserbetlost, setTotalUserBetLost] = useState(0)
 
   useEffect(async() => {
     const getUserBetData = async()=>{
       let check = []
-      const userBethistory = await getBetsHistory();
-      setTotalBetMade(userBethistory.length)
+      let stake = 0
+      const usereventhty = await UserEventHistory();
+      setTotalUserEvent(usereventhty.length)
       const totalwinning = await getusertotalwinnings();
+      const userbethty = await userBethistory()
+      setTotalUserBetHistory(userbethty.length)
+      userbethty.forEach(async (ele) =>{
+        const amountstake = await AmountStackOnEventByaUser(ele)
+        stake = amountstake + stake
+        setTotalUserBetLost(stake/10**18)
+      })
       setUserTotalWinning(totalwinning) 
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
       decodestoredevents.forEach(async (element) => {
@@ -245,19 +255,19 @@ export default function BetSlip() {
           <span>TOTAL</span>
           <h5>BETS MADE</h5>
           <hr className="text-light" />
-          <p>{totalbetmade}</p>
+          <p>{totaluserBetHistory}</p>
         </div>
         <div className="col p-2 shadow rounded my-3 mx-1 border-primary">
           <span>TOTAL</span>
-          <h5>BETS WON</h5>
+          <h5>EVENT CREATED</h5>
           <hr className="text-primary" />
-          <p>50</p>
+          <p>{totalEvnetUserHistory}</p>
         </div>
         <div className="col p-2 shadow rounded my-3 mx-1 border-danger">
           <span>TOTAL</span>
-          <h5>BETS LOST</h5>
+          <h5>AMOUNT LOST</h5>
           <hr className="text-danger" />
-          <p>300</p>
+          <p>${totaluserbetlost - userTotalWinning}</p>
         </div>
         <div className="col p-2 shadow rounded my-3 mx-1 border-success">
           <span>TOTAL</span>
