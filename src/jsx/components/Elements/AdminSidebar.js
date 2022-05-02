@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ProSidebar,
   Menu,
@@ -14,22 +14,16 @@ import validate from '../../../images/VALIDATE.svg'
 import plus from '../../../images/ant-design_plus-circle-outlined.svg'
 import self from '../../../images/twemoji_people-hugging.svg'
 
-const AdminSidebar = () => {
-  
+const AdminSidebar = (props) => {
     //create initial menuCollapse state using useState hook
-    const [menuCollapse, setMenuCollapse] = useState(false)
 
     //create a custom function that will change menucollapse state from false to true and true to false
-  const menuIconClick = () => {
-    //condition checking to change state from true to false and vice versa
-    menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
-  };
 
   return (
     <>
       <div id="AdminSidebar">
           {/* collapsed props to change menu size using menucollapse state */}
-        <ProSidebar collapsed={menuCollapse}>
+        <ProSidebar className="collapsed">
           <SidebarContent>
             <Menu>
               <MenuItem icon={<img src={tickets} style={{color:"#fff"}} alt=""/>}>BET SLIP</MenuItem>
@@ -43,7 +37,7 @@ const AdminSidebar = () => {
             </Menu>
           </SidebarContent>
           <SidebarFooter>
-            <Menu>  
+            <Menu>
               <MenuItem>Version 2.0</MenuItem>
             </Menu>
           </SidebarFooter>
