@@ -15,7 +15,8 @@ class AdminHeader extends Component {
               <li className="nav-item px-2">
                 <a
                   className="nav-link text-white mt-1"
-                  href="/"
+                  href="https://betdao.netlify.app/re-ui/stake"
+                  target='_blank'
                 >
                   DAO
                 </a>
@@ -23,7 +24,7 @@ class AdminHeader extends Component {
               <li className="nav-item px-2">
                 <NavLink
                   className="nav-link text-white mt-1"
-                  to="#"
+                  to="/admin"
                 >
                   Wallet
                 </NavLink>

@@ -3,21 +3,21 @@ import greenDot from './../../../images/green-dot.png'
 import cardBackground from './../../../images/ground.png'
 import carbon_timer from './../../../images/carbon_timer.png'
 import App from './../../pages/App/Index'
-import Appheadercat from '../../pages/App/Appheadercat'
-import AppHeader from '../../components/Elements/AppHeader'
-import { getActiveEvents, getEvent, placeBet, getEventOccurrenceBetAmount, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser, cancelevent } from './../../../web3/betsMVPService'
+import {placeBet, getEventOccurrenceBetAmount, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser, cancelevent } from './../../../web3/betsMVPService'
 import { TotalEventsCount, addingnewevents } from './../../../web3/Countallevents'
-import { isapproved, getBETBalanceBUSD } from './../../../web3/betsService'
+import {getBETBalanceBUSD } from './../../../web3/betsService'
 import { initInstance, getAccount } from './../../../web3/web3'
-import { fromWei, formatNumber } from '../../../web3/utils'
 import redDot from './../../../images/red-dot.png'
 import FIRE from './../../../images/fire.png'
 import PLUS from './../../../images/plus.png'
 import OPEN from './../../../images/open.png'
 import { GoPrimitiveDot } from 'react-icons/go'
-import { TiStopwatch, TiSocialYoutube } from 'react-icons/ti'
+import { TiStopwatch} from 'react-icons/ti'
 import {MdOutlineArrowForwardIos} from 'react-icons/md'
 import {ImFire} from 'react-icons/im'
+
+
+
 
 class GameCard extends Component {
   constructor(props) {
@@ -54,6 +54,7 @@ class GameCard extends Component {
       two: 0,
       globalendtime: 0,
       BUSDbal: 0,
+      match:0
     }
   }
   componentDidMount = async () => {
@@ -72,17 +73,20 @@ class GameCard extends Component {
     }
     let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
 
-    // if(decodestoredevents.length != active_events){
-    //   console.log("runed")
-    //   await TotalEventsCount();
-    // }
     decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-    // console.log("what is this",decodestoredevents)
+
 
     setInterval(async () => {
-      // console.log("run every things")
       await addingnewevents();
     }, 2000);
+    setInterval(async () => {
+      this.setState({
+        match: window.match
+      })
+    }, 500);
+    
+    
+
 
     const events = []
     let check = []
@@ -102,9 +106,7 @@ class GameCard extends Component {
     }
 
   }
-  // closehandelSideMenu = () => {
-  //   document.getElementById('sidebar').style.display = 'none'
-  // }
+ 
 
   cancelevent = async (id) => {
     await cancelevent(id)
@@ -180,12 +182,12 @@ class GameCard extends Component {
   }
 
 
-  Onplacebet = () => {
+  Onplacebet =async() => {
     try{
-      placeBet(this.state.id, this.state.occurance, this.state.stackvalueone)
+      await placeBet(this.state.id, this.state.occurance, this.state.stackvalueone)
     }
     catch(e){
-      //
+      console.log("bet Error",e)
     }
   }
   getdata = (v) => {
@@ -211,6 +213,7 @@ class GameCard extends Component {
   }
 
 
+
   getdays = (endime) => {
     var current = Math.round(new Date().getTime()/1000)
     var seconds =  (endime/1000)-current 
@@ -222,6 +225,7 @@ class GameCard extends Component {
       return 0;
     }
   }
+
   mouseclass = (event) => {
     let x = event.screenX;
     let y = event.screenY;
@@ -229,7 +233,7 @@ class GameCard extends Component {
       document.getElementById('sidebar').style.transform = 'translateX(-200%)';
       document.getElementById('sidebar').style.position = 'absolute';
     }
-    console.log("position", x, y)
+ 
   }
   winningamount = (amountstake, poolsize) => {
     let totalstake = poolsize + amountstake
@@ -244,7 +248,7 @@ class GameCard extends Component {
 
 
   render() {
-
+    console.log("cricket",this.state.match,window.match)
     return (
       <Fragment>
         <App />
@@ -275,8 +279,8 @@ class GameCard extends Component {
                       <div className="row p-3">
                         <div className="col-8">
                           <ul>
-                            <li>{Number(this.state.one).toFixed(2)}% &nbsp;&nbsp;{this.state.teamone}</li>
-                            <li>{Number(this.state.two).toFixed(2)}% &nbsp;&nbsp;{this.state.teamtwo}</li>
+                            <li>{Number(this.state.zero).toFixed(2)}% &nbsp;&nbsp;{this.state.teamone}</li>
+                            <li>{Number(this.state.one).toFixed(2)}% &nbsp;&nbsp;{this.state.teamtwo}</li>
                           </ul>
                         </div>
                         <div className="col-4 button-row gap-2">
@@ -327,9 +331,12 @@ class GameCard extends Component {
 
 
                   {/* *******************Slider*************** */}
-                  <div className='game-cards row'>
+
+               {  this.state.match == 1 ?  
+               <div className='game-cards row'>
                     {this.state.allevents.map((events) => (
-                      <div className="col">
+                      <>
+                      {Number(events.teamtwoParticipate) > 0 && Number(events.teamOneParticipate) > 0 ? <div className="col">
                         <div className="card game-card overflow-hidden"
                           onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins, events.zero, events.one, events.two)
                           }
@@ -381,29 +388,86 @@ class GameCard extends Component {
                               </ul>
                             </div>
                             <div className="col-4 button-row gap-2">
-                            <div><ImFire fill={events.isboosted ? "#fc9b00" : "#04c91e"}/></div>
+                              <div><ImFire fill={events.isboosted ? "#fc9b00" : "#04c91e"}/></div>
                               <div className='text-white mb-1' style={{ fontSize: '10px' }}>OPEN</div>
                               <div><img src={PLUS} style={{ width: '10px' }} /></div>
-                              {/* {events.creator == this.state.account && events.endime > (Math.round((new Date()).getTime() / 1000)) ? <button
-                                className="btn"
-                                onClick={() => this.cancelevent(events.id)
-                                }
-                              >
-                              Cancel 
-                            </button>:""}
-                              <button
-                                className="btn"
-                                
-                              >
-                               {Math.round((new Date()).getTime() / 1000) > events.endtime ? "View" : "BET"}
-                              </button> */}
                             </div>
                           </div>
                         </div>
-                      </div>
-
+                      </div>:''}
+                    </>
                     ))}
-                  </div>
+                  </div> 
+
+                  : this.state.match == 2 ? 
+
+                  <div className='game-cards row'>
+                    {this.state.allevents.map((events) => (
+                      <>
+                     {Number(events.teamtwoParticipate) == 0 || Number(events.teamOneParticipate) == 0 ? <div className="col">
+                        <div className="card game-card overflow-hidden"
+                          onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins, events.zero, events.one, events.two)
+                          }
+                        >
+                          <div
+                            className="row p-3 image-card"
+                            style={{
+                              backgroundImage: `url(${cardBackground})`,
+                            }}
+                          >
+                            <div class="layer"></div>
+                            <div className="col-12 text-white">
+                              {Math.round((new Date()).getTime() / 1000) > events.endtime ? <img src={redDot} className="red-dot" width="12" /> : <img src={greenDot} className="me-2" width="12" />}
+                            </div>
+                            <div className="col-12 mt-4">
+                              <h4 className="team-name">
+                                {events.teamone}{' '}
+                                <span className="theam-text-color">vs</span>{' '}
+                                {events.teamtwo}
+                              </h4>
+                            </div>
+                            <div className="col-12 mt-4">
+                              <p className="theam-text-color m-0">
+                                {events.subcategory}
+                              </p>
+                              <p className="theam-text-color m-0">Pool size</p>
+                            </div>
+                            <div className="col-6">
+                              <h3>{Number(events.poolsize / 10 ** 18).toFixed(2)} BUSD</h3>
+                            </div>
+                            <div className="col-6">
+                              <h5 className="text-end">
+                                <img
+                                  src={carbon_timer}
+                                  className="me-2"
+                                  width="18"
+                                  style={{ verticalAlign: 'sub' }}
+                                />
+                                {this.getdays(events.endtime)} Days left
+                              </h5>
+                            </div>
+                          </div>
+                          <div className="row p-3">
+                            <div className="col-8">
+                              <ul>
+                                <li>{Number(events.zero).toFixed(2)}% &nbsp;&nbsp;{events.teamone}</li>
+                                <li>{Number(events.one).toFixed(2)}% &nbsp;&nbsp;{events.teamtwo}</li>
+                                {/* <li>{Number(events.two).toFixed(2)}% &nbsp;&nbsp;&nbsp;&nbsp;Draw</li> */}
+                              </ul>
+                            </div>
+                            <div className="col-4 button-row gap-2">
+                              <div><ImFire fill={events.isboosted ? "#fc9b00" : "#04c91e"}/></div>
+                              <div className='text-white mb-1' style={{ fontSize: '10px' }}>OPEN</div>
+                              <div><img src={PLUS} style={{ width: '10px' }} /></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>:''}
+                      </>
+                    ))}
+                  </div> :''}
+
+
                 </div>
               </div>
             </div>

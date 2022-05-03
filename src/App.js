@@ -3,6 +3,7 @@ import Web from "./routes/Web";
 import './css/bootstrap.min.css';
 import './css/style.css';
 import './css/responsive.css';
+window.match = 1
 class App extends Component {
   render() {
     return (

@@ -1,6 +1,6 @@
 import { get } from 'jquery'
 import React, { Component } from 'react'
-import { totalEvents, getEvent,getActiveEvents, bettorscountspercent, AmountStackOnEventByaUser } from './betsMVPService'
+import { totalEvents, getEvent,getActiveEvents, bettorscountspercent, AmountStackOnEventByaUser,bettorscounts } from './betsMVPService'
 let newevents = 0
 
  export const TotalEventsCount = async() => {
@@ -20,6 +20,8 @@ let newevents = 0
               zero = await bettorscountspercent(check2[0],0,check2[15])
               one = await bettorscountspercent(check2[0],1,check2[15])
               two = await bettorscountspercent(check2[0],2,check2[15])
+              let teamOneParticipate = await bettorscounts(check2[0],0)
+              let teamtwoParticipate = await bettorscounts(check2[0],1)
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])
               
               let totalpoolsize = check2[4] 
@@ -43,6 +45,8 @@ let newevents = 0
                 check.zero = zero
                 check.one = one 
                 check.two = two
+                check.teamtwoParticipate = teamtwoParticipate
+                check.teamOneParticipate = teamOneParticipate
                 console.log("check",check, zero,one,two)
                 getevents.push(check)
                 newevents = getevents
@@ -68,6 +72,8 @@ export const addingnewevents = async() => {
               zero = await bettorscountspercent(check2[0],0,check2[14])
               one = await bettorscountspercent(check2[0],1,check2[14])
               two = await bettorscountspercent(check2[0],2,check2[14])
+              let teamOneParticipate = await bettorscounts(check2[0],0)
+              let teamtwoParticipate = await bettorscounts(check2[0],1)
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])
               let totalpoolsize = check2[4] 
               let percentwinnings = (stakeonevent/totalpoolsize)*100
@@ -90,7 +96,10 @@ export const addingnewevents = async() => {
                 check.BettorsCount = check2[15]
                 check.isboosted = check2[18]
                 check.creator = check2[22]
+                check.teamtwoParticipate = teamtwoParticipate
+                check.teamOneParticipate = teamOneParticipate
                 decodestoredevents.push(check)
+                
                 window.localStorage.setItem('events',JSON.stringify(decodestoredevents))
       }
 }

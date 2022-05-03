@@ -29,28 +29,15 @@ class Header extends Component {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
                             <form>
                                 <ul className="navbar-nav">
-                                    {/* <li className="nav-item px-2 px-md-4">
-                                        <a className="nav-link text-white mt-1" href={whitepaper} target='_blank'>Whitepaper</a>
-                                    </li> */}
                                     <li className="nav-item px-2 px-md-4">
-                                        <NavLink className="nav-link text-white mt-1" to="/">DAO</NavLink>
+                                        <a className="nav-link text-white mt-1" href="https://betdao.netlify.app/re-ui/stake" target='_blank'>DAO</a>
                                     </li>
                                     <li className="nav-item px-2 px-md-4">
                                         <NavLink className="nav-link text-white mt-1" to="/">MARKET</NavLink>
                                     </li>
                                     <li className="nav-item px-2 px-md-4">
-                                        <NavLink className="nav-link text-white mt-1" to="/">WALLET</NavLink>
+                                        <NavLink className="nav-link text-white mt-1" to="/admin">WALLET</NavLink>
                                     </li>
-                                
-                                    {/* <li className="nav-item px-2 px-md-4">
-                                        <NavLink className="nav-link text-white mt-1" to="/about">About</NavLink>
-                                    </li>
-                                    <li className="nav-item px-2 px-md-4">
-                                        <NavLink className="nav-link text-white mt-1" to="/news">News</NavLink>
-                                    </li>
-                                    <li className="nav-item px-2 px-md-4">
-                                        <NavLink className="btn btn-md theam-bg-red mt-1" to="/app">Launch app </NavLink>
-                                    </li> */}
                                 </ul>
                             </form>
                         </div>

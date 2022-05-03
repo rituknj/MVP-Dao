@@ -85,6 +85,12 @@ class Index extends Component {
     this.setState({
       activeTabBottom: tab,
     })
+    if(tab){
+      window.match = tab
+    }
+    else{
+      window.match = tab
+    }
   }
 
   catorgy = (Cat)=> {
@@ -100,16 +106,18 @@ class Index extends Component {
       this.setState({ selectedcat: false })
     }
   }
+
+  
   
   render() {
     
     return (
+
       <Fragment>
         <AppHeader />
         <br/>
-        <div
-        >
-          <div className="container-fluid px-md-5" id="section-statistics">
+        <div>
+          <div className="container-fluid px-md-5 mt-5" id="section-statistics">
             <div
               className="row py-5"
             >
