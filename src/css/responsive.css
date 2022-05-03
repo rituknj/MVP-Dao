@@ -2,17 +2,33 @@
 }
 
 @media screen and (max-width: 480px) {
+  .navbar-brand img{
+    height: 50px !important;
+    width: 50px !important;
+  }
+  .navbar-nav{
+    padding-top: 0px !important;
+    gap: 0px !important;
+  }
 }
 
 @media screen and (max-width: 600px) {
 }
 
 @media screen and (max-width: 768px) {
+  #AdminSidebar .pro-sidebar.collapsed{
+    width: 0px;
+    min-width: 0px;
+  }
+  #AdminSidebar{
+    z-index: 5;
+  }
+  #admin-navbar-nav a{
+    font-size: 16px;
+    line-height: 18px;
+  }
   .adminGlobalContainer{
     margin: 15px auto 0px auto;
-  }
-  #AdminSidebar {
-    left: -200%;
   }
 }
 
@@ -21,6 +37,12 @@
 @media screen and (max-width: 1024px) {
   .space-100 {
     height: 10px;
+  }
+  .side-text-nfts{
+    position: relative;
+    margin-left: auto;
+    right: 0;
+    width: min-content !important;
   }
   #section-home h2 {
     font-size: 1.5rem;

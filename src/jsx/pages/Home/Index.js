@@ -26,7 +26,7 @@ import Binance from "./../../../images/binance.png"
 import Saga from "./../../../images/saga.png"
 import Football from './../../../images/football.png'
 import Playstation from "./../../../images/playstation.png"
-import {FaTwitter} from "react-icons/fa"
+import { FaTwitter } from "react-icons/fa"
 import { AiFillLinkedin } from "react-icons/ai"
 import NFTsText from "./../../../images/nfts-side-text.png"
 
@@ -68,11 +68,11 @@ class Index extends Component {
       video: [],
       Lineprice: [],
       Linetime: [],
-      Ambassador:[],
+      Ambassador: [],
       dataset: {},
       activeevents: 0,
       totalbetsmade: 0,
-      indernalblog:[],
+      indernalblog: [],
       responsive: {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -206,11 +206,11 @@ class Index extends Component {
     //   entireTextOnly: false,
     // })
 
-// **************** API FOR ALL DATA ****************//
-  
-  
+    // **************** API FOR ALL DATA ****************//
 
-  // **************** API FOR ALL DATA ****************//
+
+
+    // **************** API FOR ALL DATA ****************//
 
     // **************** API FOR LINE CHART DATA ****************//
     let LineData = []
@@ -223,11 +223,11 @@ class Index extends Component {
       .then(function (response) {
         LineData = response.data.prices
         if (LineData) {
-            Lineprice = LineData.map(d => {
-                return {time:d[0]/1000,value:d[1]}
-            })
-            // console.log("line data is ", Lineprice)
-            // console.log("Line series data is ", lineData)
+          Lineprice = LineData.map(d => {
+            return { time: d[0] / 1000, value: d[1] }
+          })
+          // console.log("line data is ", Lineprice)
+          // console.log("Line series data is ", lineData)
         }
       })
       .catch(function (error) {
@@ -238,52 +238,52 @@ class Index extends Component {
     })
 
 
-    
 
-       var myHeaders = new Headers();
-       myHeaders.append("Accept", "application/json");
-       myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
-        var requestOptions = {
-         method: 'GET',
-         headers: myHeaders,
-         redirect: 'follow'
-     };
-     await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
-        .then(response => response.json())
-        .then(result => this.setState({partner:result}))
+
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
+      .then(response => response.json())
+      .then(result => this.setState({ partner: result }))
       .catch(error => console.log('error', error));
-      // console.log("partners",this.state.partner.length)
+    // console.log("partners",this.state.partner.length)
     // **************** API FOR PARTNER DATA ****************//
 
     // **************** API FOR VIDEO DATA ****************//
     await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/videos", requestOptions)
-        .then(response => response.json())
-        .then(result => this.setState({video: result}))
+      .then(response => response.json())
+      .then(result => this.setState({ video: result }))
       .catch(error => console.log('error', error));
     // console.log("video is ", this.state.video);
-    
+
     // **************** API FOR VIDEO DATA ****************//
 
-     // **************** API LINE EXTERNAL BLOG DATA ****************//
-     await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/in-house-articles", requestOptions)
+    // **************** API LINE EXTERNAL BLOG DATA ****************//
+    await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/in-house-articles", requestOptions)
       .then(response => response.json())
-      .then(result => this.setState({indernalblog:result}))
-    .catch(error => console.log('error', error));
+      .then(result => this.setState({ indernalblog: result }))
+      .catch(error => console.log('error', error));
     // console.log("blog",this.state.indernalblog)
-      // **************** API LINE EXTERNAL BLOG DATA ****************//
+    // **************** API LINE EXTERNAL BLOG DATA ****************//
 
-       // **************** API LINE INTERNAL BLOG DATA ****************//
-      await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/external-articles", requestOptions)
+    // **************** API LINE INTERNAL BLOG DATA ****************//
+    await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/external-articles", requestOptions)
       .then(response => response.json())
-      .then(result => this.setState({bloglength: result}))
-    .catch(error => console.log('error', error));
-     // **************** API LINE INTERNAL BLOG DATA ****************//
+      .then(result => this.setState({ bloglength: result }))
+      .catch(error => console.log('error', error));
+    // **************** API LINE INTERNAL BLOG DATA ****************//
 
     // **************** API LINEambassador BLOG DATA ****************//
-     await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/ambassadors", requestOptions)
+    await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/ambassadors", requestOptions)
       .then(response => response.json())
-      .then(result => this.setState({Ambassador:result}) )
-    .catch(error => console.log('error', error));
+      .then(result => this.setState({ Ambassador: result }))
+      .catch(error => console.log('error', error));
     console.log("amemsador", this.state.Ambassador)
     // **************** API LINE ambassador BLOG DATA ****************//
 
@@ -316,7 +316,7 @@ class Index extends Component {
     window.localStorage.clear()
     let getstoredevents = window.localStorage.getItem('events')
     if (getstoredevents == null) {
-      try{
+      try {
         window.localStorage.setItem('events', JSON.stringify(''))
         await TotalEventsCount()
         let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
@@ -324,39 +324,39 @@ class Index extends Component {
           item: decodestoredevents.reverse(),
         })
       }
-      catch(e){
+      catch (e) {
         //
       }
     } else {
-     try{
-      await TotalEventsCount()
-      let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-      this.setState({
-        item: decodestoredevents.reverse(),
-      })
-     }
-     catch(e){
-       //
-     }
+      try {
+        await TotalEventsCount()
+        let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+        this.setState({
+          item: decodestoredevents.reverse(),
+        })
+      }
+      catch (e) {
+        //
+      }
     }
   }
 
-  fetchdata = async() => {
+  fetchdata = async () => {
     console.log("run")
-       var myHeaders = new Headers();
-       myHeaders.append("Accept", "application/json");
-       myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
-     var requestOptions = {
-         method: 'GET',
-         headers: myHeaders,
-         redirect: 'follow'
-     };
-     fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
       .then(response => response.json())
-      .then(result => this.setState({partner:result}))
-     .catch(error => console.log('error', error));
-     console.log("partners",this.state.partner.logo.length)
- }
+      .then(result => this.setState({ partner: result }))
+      .catch(error => console.log('error', error));
+    console.log("partners", this.state.partner.logo.length)
+  }
 
   parterImg = () => {
     let items = []
@@ -373,7 +373,7 @@ class Index extends Component {
     }
     return items
   }
-  
+
 
   videoOnReady(event) {
     // access to player in all event handlers via event.target
@@ -392,14 +392,14 @@ class Index extends Component {
   getNewsCard = () => {
     let items = []
     for (var i = this.state.bloglength.length; i > 0; i--) {
-      items.push(<NewsCard news={this.state.bloglength[i-1]} />)
+      items.push(<NewsCard news={this.state.bloglength[i - 1]} />)
     }
     return items
   }
   internalblogs = () => {
     let items = []
     for (var i = this.state.indernalblog.length; i > 0; i--) {
-      items.push(<ExternalBlog blogs={this.state.indernalblog[i-1]} />)
+      items.push(<ExternalBlog blogs={this.state.indernalblog[i - 1]} />)
     }
     return items
   }
@@ -431,64 +431,62 @@ class Index extends Component {
         <Header />
         <div onClick={this.moussecloas}>
           <div className='topBoxBg'>
-          <div className="container mb-5 mb-md-0" id="section-home">
-            <div className="space-100"></div>
-            
-            <div className="row">
-              <div
-                className="col-lg-8 col-md-7 col-sm-11 hometopBox"
-                data-aos="zoom-in-up"
-                data-aos-easing="linear"
-              >
-                <h2 className="text-white text-center text-md-start">
-                A DAO YOU CAN LITERALY<br />
-                  <span>BET</span> ON
-                </h2>
-                <p className="mt-5 mt-md-4 text-white text-center text-md-start">
-                Get the best APY in the market staking on the betswamp DAO and have<br/> fun
-                betting on your favorite market.{' '}
-                </p>
-                <div className="text-center text-md-center my-1 my-md-0 topAppBtn">
-                  <NavLink
-                    to="/"
-                    className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtnDao"
-                  >
-                    LAUNCH DAO
-                  </NavLink>
-                  <NavLink
-                    to="/app"
-                    className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtn"
-                  >
-                    START BETING
-                  </NavLink>
+            <div className="container mb-5 mb-md-0" id="section-home">
+              <div className="space-100"></div>
+
+              <div className="row">
+                <div
+                  className="col-lg-8 col-md-7 col-sm-11 hometopBox"
+                  data-aos="zoom-in-up"
+                  data-aos-easing="linear"
+                >
+                  <h2 className="text-white text-center text-md-start">
+                    A DAO YOU CAN LITERALY<br />
+                    <span>BET</span> ON
+                  </h2>
+                  <p className="mt-5 mt-md-4 text-white text-center text-md-start">
+                    Get the best APY in the market staking on the betswamp DAO and have<br /> fun
+                    betting on your favorite market.{' '}
+                  </p>
+                  <div className="text-center text-md-center my-1 my-md-0 topAppBtn">
+                    <NavLink
+                      to="/"
+                      className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtnDao"
+                    >
+                      LAUNCH DAO
+                    </NavLink>
+                    <NavLink
+                      to="/app"
+                      className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtn"
+                    >
+                      START BETING
+                    </NavLink>
+                  </div>
                 </div>
-              </div>
-              <div
-                className="col-lg-4 col-md-5 col-sm-12 homeTopImage"
-              
-              >
-                <div className="container-fluid px-md-5" id="section-analytics">
+                <div
+                  className="col-lg-4 col-md-5 col-sm-12 homeTopImage"
+
+                >
+                  <div className="container-fluid px-md-5" id="section-analytics">
                     <div className="row py-5">
-                        <div className="col-lg-12 position-relative" id="video-frame">
-                            <video poster="placeholder.png" controls={false}>
-                                <source src="movie.mp4" type="video/mp4" />
-                                <source src="movie.ogg" type="video/ogg" />
-                            </video>
-                            {this.state.isOpen ? 
-                            <YouTube videoId="KWLdJQR_4pA" id="play-video" className="playing_video" opts={opts} onReady={this._onReady} /> 
-                            : <a id="play-video" className="video-play-button " onClick={() => this.setState({isOpen:true})}>
-                                <span></span>
-                            </a>}
-                        </div>
+                      <div className="col-lg-12 position-relative" id="video-frame">
+                        <video poster="placeholder.png" controls={false}>
+                          <source src="movie.mp4" type="video/mp4" />
+                          <source src="movie.ogg" type="video/ogg" />
+                        </video>
+                        {this.state.isOpen ?
+                          <YouTube videoId="KWLdJQR_4pA" id="play-video" className="playing_video" opts={opts} onReady={this._onReady} />
+                          : <a id="play-video" className="video-play-button " onClick={() => this.setState({ isOpen: true })}>
+                            <span></span>
+                          </a>}
+                      </div>
                     </div>
+                  </div>
+                  {/* <img src={TopImage} className="img-fluid my-5 my-md-0" /> */}
                 </div>
-                {/* <img src={TopImage} className="img-fluid my-5 my-md-0" /> */}
               </div>
             </div>
           </div>
-          </div>
-
-          
 
           <div className="container-fluid px-md-5" id="section-analytics">
             {/* <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p">
@@ -570,24 +568,24 @@ class Index extends Component {
           <div className="space-100"></div>
           <div className='container'>
             <div className='row'>
-              <div className='col-12 col-md-8 text-white'><img src={NFTs} style={{width:'100%'}}/></div>
-              <div className='col-6 col-md-4 text-white side-text-nfts' style={{width:'40%',marginTop:'50px'}}>
-              <p className="mt-2 mt-md-4 text-white d-flex">
-                <div class="vl me-2"></div> <span><p className='m-0'>BETSWAPM</p> <h4>ECOSYSTEM</h4></span> 
-              </p>
+              <div className='col-12 col-md-8 text-white'><img src={NFTs} style={{ width: '100%' }} /></div>
+              <div className='col-6 col-md-4 text-white side-text-nfts' style={{ width: '40%', marginTop: '50px' }}>
+                <p className="mt-2 mt-md-4 text-white d-flex">
+                  <div class="vl me-2"></div> <span><p className='m-0'>BETSWAPM</p> <h4>ECOSYSTEM</h4></span>
+                </p>
                 <p >BETSWAMP IS BUILDING A DECENTRALIZED ECOSYSTEM WHERE ALL IT'S UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO WHICH PROVIDES INVESTORS A SECURED PLATFORM THEY CAN VOCOUNT ON.</p>
                 <NavLink
-                    to="/app"
-                    className="btn btn-md text-white mt-2 mt-md-5 nftsTopBtn"
-                  >
-                    LEARN MORE
-                  </NavLink>
+                  to="/app"
+                  className="btn btn-md text-white mt-2 mt-md-5 nftsTopBtn"
+                >
+                  LEARN MORE
+                </NavLink>
               </div>
-              
+
             </div>
           </div>
           <div className="container-fluid px-md-5" id="section-analytics">
-          {/*  */}
+            {/*  */}
           </div>
           {/* <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
             <Carousel
@@ -612,7 +610,7 @@ class Index extends Component {
           <div className="space-100"></div>
           <div className="container-fluid px-md-5" id="section-statistics">
             <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
-              <div class="vl me-2"></div> <span><p className='m-0'>BETSWAPM</p> <h4>ECOSYSTEM</h4></span> 
+              <div class="vl me-2"></div> <span><p className='m-0'>BETSWAPM</p> <h4>ECOSYSTEM</h4></span>
             </p>
             <div
               className="row py-5"
@@ -645,7 +643,7 @@ class Index extends Component {
                   </div>
 
                   <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
-                    <h5 className="m-0 text-white text-start"><p className='m-0' style={{fontSize:'10px'}}>DECENTRALISED</p>P2P BETTING</h5>
+                    <h5 className="m-0 text-white text-start"><p className='m-0' style={{ fontSize: '10px' }}>DECENTRALISED</p>P2P BETTING</h5>
                     {/* <h4 className="text-white mt-4">{this.state.events}</h4> */}
                   </div>
 
@@ -670,7 +668,7 @@ class Index extends Component {
 
           <div className="container-fluid px-md-5 my-5" id="section-partners">
             <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
-              <div class="vl me-2"></div> <span><h4 style={{marginTop:'10px'}}>AMBASSADORS</h4></span> 
+              <div class="vl me-2"></div> <span><h4 style={{ marginTop: '10px' }}>AMBASSADORS</h4></span>
             </p>
             <div className="space-50"></div>
             <Carousel
@@ -693,69 +691,69 @@ class Index extends Component {
             >
               {/* {this.amessador()} */}
               <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                  style={{textAlign:'center', color:'#ffff'}}
-                >
-                    <img src={menone} width="100" style={{borderRadius:'80px'}} />
-                    <p className='m-0'>Name</p>
-                    <p className='m-0'>Title</p>
-                    <div className='d-flex m-0 justify-content-evenly'>
-                    <FaTwitter/>{" "}
-                    <AiFillLinkedin/>
-                    </div>
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-easing="linear"
+                style={{ textAlign: 'center', color: '#ffff' }}
+              >
+                <img src={menone} width="100" style={{ borderRadius: '80px' }} />
+                <p className='m-0'>Name</p>
+                <p className='m-0'>Title</p>
+                <div className='d-flex m-0 justify-content-evenly'>
+                  <FaTwitter />{" "}
+                  <AiFillLinkedin />
+                </div>
               </div>
               <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                  style={{textAlign:'center', color:'#ffff'}}
-                >
-                    <img src={women} width="100" style={{borderRadius:'80px'}} />
-                    <p className='m-0'>Name</p>
-                    <p className='m-0'>Title</p>
-                    <div className='d-flex m-0 justify-content-evenly'>
-                    <FaTwitter/>{" "}
-                    <AiFillLinkedin/>
-                    </div>
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-easing="linear"
+                style={{ textAlign: 'center', color: '#ffff' }}
+              >
+                <img src={women} width="100" style={{ borderRadius: '80px' }} />
+                <p className='m-0'>Name</p>
+                <p className='m-0'>Title</p>
+                <div className='d-flex m-0 justify-content-evenly'>
+                  <FaTwitter />{" "}
+                  <AiFillLinkedin />
+                </div>
               </div>
               <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                  style={{textAlign:'center', color:'#ffff'}}
-                >
-                    <img src={menone} width="100" style={{borderRadius:'80px'}} />
-                    <p className='m-0'>Name</p>
-                    <p className='m-0'>Title</p>
-                    <div className='d-flex m-0 justify-content-evenly'>
-                    <FaTwitter/>{" "}
-                    <AiFillLinkedin/>
-                    </div>
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-easing="linear"
+                style={{ textAlign: 'center', color: '#ffff' }}
+              >
+                <img src={menone} width="100" style={{ borderRadius: '80px' }} />
+                <p className='m-0'>Name</p>
+                <p className='m-0'>Title</p>
+                <div className='d-flex m-0 justify-content-evenly'>
+                  <FaTwitter />{" "}
+                  <AiFillLinkedin />
+                </div>
               </div>
               <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                  style={{textAlign:'center', color:'#ffff'}}
-                >
-                    <img src={womentwo} width="100" style={{borderRadius:'80px'}} />
-                    <p className='m-0'>Name</p>
-                    <p className='m-0'>Title</p>
-                    <div className='d-flex m-0 justify-content-evenly'>
-                    <FaTwitter/>{" "}
-                    <AiFillLinkedin/>
-                    </div>
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-easing="linear"
+                style={{ textAlign: 'center', color: '#ffff' }}
+              >
+                <img src={womentwo} width="100" style={{ borderRadius: '80px' }} />
+                <p className='m-0'>Name</p>
+                <p className='m-0'>Title</p>
+                <div className='d-flex m-0 justify-content-evenly'>
+                  <FaTwitter />{" "}
+                  <AiFillLinkedin />
+                </div>
               </div>
-              
+
             </Carousel>
           </div>
           <div className="space-100"></div>
           <div className="container-fluid px-md-5 my-5" id="section-partners">
             <p className="mt-2 mt-md-4 text-white d-flex">
-                <div class="vl me-2"></div> <span><p className='m-0'>STRATEGIC</p> <h4>PARTNERS</h4></span> 
-              </p>
+              <div class="vl me-2"></div> <span><p className='m-0'>STRATEGIC</p> <h4>PARTNERS</h4></span>
+            </p>
             <div className="space-50"></div>
             <Carousel
               swipeable={true}
@@ -777,45 +775,45 @@ class Index extends Component {
             >
               {/* {this.amessador()} */}
               <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                >
-                    <img src={Partners} style={{width:"100%"}}/>
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-easing="linear"
+              >
+                <img src={Partners} style={{ width: "100%" }} />
               </div>
 
               <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                >
-                    <img src={Binance} style={{width:"100%"}}/>
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-easing="linear"
+              >
+                <img src={Binance} style={{ width: "100%" }} />
               </div>
 
               <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                >
-                    <img src={Saga} style={{width:"100%"}}/>
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-easing="linear"
+              >
+                <img src={Saga} style={{ width: "100%" }} />
               </div>
 
               <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                >
-                    <img src={Football} style={{width:"100%"}}/>
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-easing="linear"
+              >
+                <img src={Football} style={{ width: "100%" }} />
               </div>
 
               <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                >
-                    <img src={Playstation} style={{width:"100%"}}/>
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-easing="linear"
+              >
+                <img src={Playstation} style={{ width: "100%" }} />
               </div>
-              
+
             </Carousel>
           </div>
 
@@ -857,7 +855,7 @@ class Index extends Component {
                 <img src={arrowRight} className="ms-3" width="20" />
               </p>
             </div>
-            
+
           </div>
           {/* <div className="container-fluid px-md-5 mt-5" id="section-validate">
             <div className="space-100"></div>
@@ -917,7 +915,7 @@ class Index extends Component {
               </div>
             </div>
           </div> */}
-         {false ? <div className="container-fluid px-md-5 my-5" id="section-news">
+          {false ? <div className="container-fluid px-md-5 my-5" id="section-news">
             <div className="space-100"></div>
             <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
               NEWS <img src={lineImage} className="ms-3" />
@@ -968,7 +966,7 @@ class Index extends Component {
               {this.internalblogs()}
             </Carousel>
 
-          </div> :''}
+          </div> : ''}
 
           {/* <div className="container-fluid px-md-5 my-5" id="section-news">
             <div className="space-100"></div>
@@ -997,7 +995,7 @@ class Index extends Component {
             </Carousel>
           </div> */}
 
-         {false? <div className="container-fluid px-md-5 my-5" id="section-partners">
+          {false ? <div className="container-fluid px-md-5 my-5" id="section-partners">
             <div className="space-100"></div>
             <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1 text-uppercase">
               partners <img src={lineImage} className="ms-3" />
@@ -1022,35 +1020,35 @@ class Index extends Component {
               itemClass="d-flex justify-content-center align-items-center flex-column"
             >
               {this.parterImg()}
-              
+
             </Carousel>
-          </div>: ''}
+          </div> : ''}
           <div className="space-100"></div>
-            <div className='container faq-box '>
-              <div className='subscribe'>
-                <div className='outer-box text-white'>
+          <div className='container faq-box '>
+            <div className='subscribe'>
+              <div className='outer-box text-white'>
                 <h4 className='font-weight-bold'>GET THE LATEST</h4>
-                <p>SUBSCRIBE  TO GET THE LATEST OF OUR NEWS, AND<br/> 
+                <p>SUBSCRIBE  TO GET THE LATEST OF OUR NEWS, AND<br />
                   LATEST UPDATES</p>
-                <input className='sub-input' placeholder='email@domain.com'/>
+                <input className='sub-input' placeholder='email@domain.com' />
                 <div className='sighup-btn'>
                   <button className='btn btn-md text-white mt-1 mt-md-5 pl-4 pr-4 btn-signup'>SIGN UP</button>
                 </div>
 
+              </div>
+            </div>
+            <div className='text-white faqbox'>
+              <div className='question-box'>
+                <h4 className='font-weight-bold'>HAVE A QUESTION?</h4>
+                <p>SEND US A MAIL</p>
+                <div>
+                  <p className="text-white text-email mb-0"><img src={emailImg} width="22" /> admin@betswamp.com</p>
                 </div>
               </div>
-              <div className='text-white faqbox'>
-                <div className='question-box'>
-                  <h4 className='font-weight-bold'>HAVE A QUESTION?</h4>
-                  <p>SEND US A MAIL</p>
-                  <div>
-                  <p className="text-white text-email mb-0"><img src={emailImg} width="22" /> admin@betswamp.com</p>
-                  </div>
-                </div>
-                </div> 
-              
             </div>
-         {/* <div className="container-fluid px-md-5 my-5" id="section-partners">
+
+          </div>
+          {/* <div className="container-fluid px-md-5 my-5" id="section-partners">
             <div className="space-100"></div>
             <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
               <div class="vl me-2"></div> <span><h4 style={{marginTop:'10px'}}>AMBASSADORS</h4></span> 
@@ -1135,7 +1133,7 @@ class Index extends Component {
           </div> */}
 
           <div className='d-flex'><Footer /></div>
-          
+
         </div>
       </Fragment>
     )
