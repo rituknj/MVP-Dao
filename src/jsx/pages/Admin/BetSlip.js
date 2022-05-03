@@ -4,6 +4,7 @@ import { GoPrimitiveDot } from "react-icons/go";
 import {ImStopwatch, ImFire} from 'react-icons/im'
 import { getusertotalwinnings, UserEventHistory, GetUserWonAmountOnEvent, claimrewards,BoostEvent, userBethistory, AmountStackOnEventByaUser } from "../../../web3/betsMVPService";
 
+
 export default function BetSlip() {
   const [events, setEvents] = useState([])
   const [userHistory, setUserHistory] = useState([])
@@ -12,6 +13,7 @@ export default function BetSlip() {
   const [historyevents, setHistroyEvents] = useState(0)
   const [totaluserBetHistory, setTotalUserBetHistory] = useState(0)
   const [totaluserbetlost, setTotalUserBetLost] = useState(0)
+  
 
   useEffect(async() => {
     const getUserBetData = async()=>{

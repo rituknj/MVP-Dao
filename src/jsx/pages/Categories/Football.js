@@ -17,7 +17,7 @@ import OPEN from './../../../images/open.png'
 import { GoPrimitiveDot } from 'react-icons/go'
 import { TiStopwatch, TiSocialYoutube } from 'react-icons/ti'
 import {MdOutlineArrowForwardIos} from 'react-icons/md'
-
+import {ImFire} from 'react-icons/im'
 
 class GameCard extends Component {
   constructor(props) {
@@ -214,7 +214,7 @@ class GameCard extends Component {
 
   getdays = (endime) => {
     var current = Math.round(new Date().getTime()/1000)
-    var seconds =  (endime)-current 
+    var seconds =  (endime/1000)-current 
     var day = Math.floor(seconds/86400)
     if(day>0){
       return day;
@@ -383,8 +383,8 @@ console.log(this.state.occurance)
                               </ul>
                             </div>
                             <div className="col-4 button-row gap-2">
-                              <div><img src={FIRE} style={{ width: '10px' }} /></div>
-                              <div className='text-white mb-1' style={{ fontSize: '10px' }}>OPNE</div>
+                            <div><ImFire fill={events.isboosted ? "#fc9b00" : "#04c91e"}/></div>
+                              <div className='text-white mb-1' style={{ fontSize: '10px' }}>OPEN</div>
                               <div><img src={PLUS} style={{ width: '10px' }} /></div>
                               {/* {events.creator == this.state.account && events.endime > (Math.round((new Date()).getTime() / 1000)) ? <button
                                 className="btn"

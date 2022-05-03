@@ -55,11 +55,10 @@ class Index extends Component {
         <div className="container-fluid px-md-5 p-2 slider top-image">
             <p className="mt-4 mt-md-4 text-white sporttag">#Sports</p>
         <div className="catogories-dropdown">
-          <div>
-            <p>Select Categories</p>
-            <div className="select-catogries m-0">
-                <p>Sports</p><img src={Down} style={{height:"10px",marginTop:'10px'}}/>
-            </div>
+          <div>  
+            {/* <div className="select-catogries m-0">
+                <p>Sports</p>
+            </div> */}
             {/* <div className="catorgies">
             </div> */}
           </div>

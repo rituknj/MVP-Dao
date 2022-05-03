@@ -292,13 +292,13 @@ export const cancelevent = async (id) => {
 }
 
 export const allactiveusers = async () => {
-    const betMVPContract = await getBETMVPContract();
-    const resutl = await betMVPContract.methods.getActiveUsers().call();
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const resutl = await betMVPContract.methods.getActiveUsersList().call();
     return resutl
 }
 
 export const totalpayout = async () => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const resutl = await betMVPContract.methods.getTotalPayout().call();
     return resutl
 }

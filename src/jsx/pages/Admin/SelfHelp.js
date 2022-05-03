@@ -4,12 +4,14 @@ import { MdOutlineArrowForwardIos, MdArrowDropDown } from "react-icons/md";
 import { BiDonateHeart } from "react-icons/bi";
 import {FaTeamspeak} from 'react-icons/fa'
 import { pausebet, Unpausebet, Ispausebet } from "../../../web3/betsMVPService";
+import { donatefund } from './../../../web3/DonateMethos'
 
 export default function SelfHelp() {
 
   const [pausingtime, setPausingTime] = useState(0)
   const [ispaused, setIspaused] = useState(false)
   const [pausetimeend, setPauseTimeEnd] = useState(0)
+  const [amountDonate, setAmountDonate] = useState(0)
 
   useEffect(async() => {
     const isbetpaused = await Ispausebet();
@@ -69,8 +71,11 @@ export default function SelfHelp() {
       window.localStorage.setItem('duration',duration)
     }
   }
+  const Donatethem =async()=>{
+    await donatefund(amountDonate);
+  }
 
-  console.log(ispaused)
+  
   return (
     <div className="self-help-main">
       <div className="outerRow py-5 px-2 mb-3">
@@ -137,15 +142,15 @@ export default function SelfHelp() {
           </p>
           <div className="amount">
             <p>CHOOSE DONATION AMOUNT</p>
-            <button className="btn">$5</button>
-            <button className="btn">$25</button>
-            <button className="btn">$50</button>
-            <button className="btn">$100</button>
-            <button className="btn">OTHER</button>
+            <button className="btn" onClick={()=>setAmountDonate(5)}>$5</button>
+            <button className="btn"  onClick={()=>setAmountDonate(25)}>$25</button>
+            <button className="btn" onClick={()=>setAmountDonate(50)}>$50</button>
+            <button className="btn" onClick={()=>setAmountDonate(100)}>$100</button>
+            {/* <button className="btn" >OTHER</button> */}
           </div>
           <div className="customAmount mt-3">
             <span className="rounded border-end p-2 border-secondary">$</span>
-            <input type="number" name="" id="" />
+            <input type="number" name="" id="" value={amountDonate} onChange={(e)=>setAmountDonate(e.target.value)} />
             <span>BUSD</span>
           </div>
           <button
@@ -155,6 +160,7 @@ export default function SelfHelp() {
               color: "#fff",
               width: "45%",
             }}
+            onClick={()=>Donatethem()}
           >
             <span>DONATE</span>
             <MdOutlineArrowForwardIos className="mt-1" />
@@ -170,6 +176,7 @@ export default function SelfHelp() {
               color: "#fff",
               width: "45%",
             }}
+            
           >
             <span>CONNECT NOW</span>
             <MdOutlineArrowForwardIos className="mt-1" />

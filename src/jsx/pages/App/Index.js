@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import AppHeader from '../../components/Elements/AppHeader'
+import AppHeader from '../../components/Elements/AdminHeader'
 import { NavLink } from 'react-router-dom'
 import {
   allactiveusers,
@@ -61,7 +61,7 @@ class Index extends Component {
 
     this.setState({
       payout:totalpay,
-      activeusers: activeUser,
+      activeusers: activeUser.length,
       activeevents: activeevnets,
       totalbetsmade: totalbetsmade,
       events: totalEvent
@@ -106,6 +106,7 @@ class Index extends Component {
     return (
       <Fragment>
         <AppHeader />
+        <br/>
         <div
         >
           <div className="container-fluid px-md-5" id="section-statistics">

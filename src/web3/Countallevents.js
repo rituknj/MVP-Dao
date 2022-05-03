@@ -39,6 +39,7 @@ let newevents = 0
                 check.BettorsCount = check2[15]
                 check.creator = check2[22]
                 check.validationtime = check2[9]
+                check.isboosted = check2[18]
                 check.zero = zero
                 check.one = one 
                 check.two = two
@@ -87,6 +88,7 @@ export const addingnewevents = async() => {
                 check.subcategory = check2[2]
                 check.Categories = check2[1]
                 check.BettorsCount = check2[15]
+                check.isboosted = check2[18]
                 check.creator = check2[22]
                 decodestoredevents.push(check)
                 window.localStorage.setItem('events',JSON.stringify(decodestoredevents))

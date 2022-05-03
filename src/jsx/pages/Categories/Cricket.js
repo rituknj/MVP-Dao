@@ -3,13 +3,10 @@ import greenDot from './../../../images/green-dot.png'
 import cardBackground from './../../../images/ground.png'
 import carbon_timer from './../../../images/carbon_timer.png'
 import App from './../../pages/App/Index'
-import Appheadercat from '../../pages/App/Appheadercat'
-import AppHeader from '../../components/Elements/AppHeader'
 import { getActiveEvents, getEvent, placeBet, getEventOccurrenceBetAmount, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser, cancelevent } from './../../../web3/betsMVPService'
 import { TotalEventsCount, addingnewevents } from './../../../web3/Countallevents'
 import { isapproved, getBETBalanceBUSD } from './../../../web3/betsService'
 import { initInstance, getAccount } from './../../../web3/web3'
-import { fromWei, formatNumber } from '../../../web3/utils'
 import redDot from './../../../images/red-dot.png'
 import FIRE from './../../../images/fire.png'
 import PLUS from './../../../images/plus.png'
@@ -17,6 +14,8 @@ import OPEN from './../../../images/open.png'
 import { GoPrimitiveDot } from 'react-icons/go'
 import { TiStopwatch, TiSocialYoutube } from 'react-icons/ti'
 import {MdOutlineArrowForwardIos} from 'react-icons/md'
+import {ImFire} from 'react-icons/im'
+
 
 
 class GameCard extends Component {
@@ -235,7 +234,7 @@ class GameCard extends Component {
 
   getdays = (endime) => {
     var current = Math.round(new Date().getTime()/1000)
-    var seconds =  (endime)-current 
+    var seconds =  (endime/1000)-current 
     var day = Math.floor(seconds/86400)
     if(day>0){
       return day;
@@ -404,8 +403,8 @@ class GameCard extends Component {
                               </ul>
                             </div>
                             <div className="col-4 button-row gap-2">
-                              <div><img src={FIRE} style={{ width: '10px' }} /></div>
-                              <div className='text-white mb-1' style={{ fontSize: '10px' }}>OPNE</div>
+                              <div><ImFire fill={events.isboosted ? "#fc9b00" : "#04c91e"}/></div>
+                              <div className='text-white mb-1' style={{ fontSize: '10px' }}>OPEN</div>
                               <div><img src={PLUS} style={{ width: '10px' }} /></div>
                             </div>
                           </div>
