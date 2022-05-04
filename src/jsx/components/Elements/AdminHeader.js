@@ -2,8 +2,14 @@ import React, { Component, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../../../images/logo.png'
 import { GiHamburgerMenu } from 'react-icons/gi'
+import { computeHeadingLevel } from '@testing-library/react'
 
 class AdminHeader extends Component {
+
+  slidbarcollapsed=(tab)=>{
+    window.collapsed = !window.collapsed
+  }
+
   render() {
     return (
       <div style={{ backgroundColor: "#0F0F0F", position: "fixed", zIndex: "5", width: "100%", }}>
@@ -30,7 +36,7 @@ class AdminHeader extends Component {
                 </NavLink>
               </li>
             </ul>
-            <button className='btn text-light fs-4 d-md-none mt-n2'><GiHamburgerMenu /></button>
+            <button className='btn text-light fs-4 d-md-none mt-n2' onClick={()=>this.slidbarcollapsed(true)}><GiHamburgerMenu /></button>
             </div>
           </div>
         </nav>

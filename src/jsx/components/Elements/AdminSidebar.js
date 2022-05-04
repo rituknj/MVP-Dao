@@ -21,12 +21,12 @@ const AdminSidebar = (props) => {
 
   return (
     <>
-      <div id="AdminSidebar">
+      
           {/* collapsed props to change menu size using menucollapse state */}
-        <ProSidebar className="collapsed">
+        <ProSidebar collapsed={true} className='collapsed'>
           <SidebarContent>
             <Menu>
-              <MenuItem icon={<img src={tickets} style={{color:"#fff"}} alt=""/>}>BET SLIP</MenuItem>
+              {/* <MenuItem icon={<img src={tickets} style={{color:"#fff"}} alt=""/>}>BET SLIP</MenuItem> */}
               <MenuItem active={true} icon={<img src={plus} alt=""/>}>Create Event</MenuItem>
               <MenuItem icon={<img src={validate} alt=""/>}>VALIDATE EVENTS</MenuItem>
               <MenuItem icon={<img src={self} alt=""/>}>SELF HELP</MenuItem>
@@ -42,7 +42,7 @@ const AdminSidebar = (props) => {
             </Menu>
           </SidebarFooter>
         </ProSidebar>
-      </div>
+      
     </>
   );
 };

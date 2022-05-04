@@ -337,6 +337,7 @@ class AppHeader extends Component {
       showMyBet: false,
     })
   }
+  
   hideEvent = () => {
     this.setState({
       showMyBetHistory: false,

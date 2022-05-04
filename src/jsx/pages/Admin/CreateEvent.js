@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { StepFour } from '../../components/Elements/StepFour';
 import { StepOne } from '../../components/Elements/StepOne';
 import { StepThree } from '../../components/Elements/StepThree';
@@ -10,7 +10,19 @@ import { FiArrowLeft } from 'react-icons/fi'
 export default function CreateEvent() {
 
     const [historyVisibility, setHistoryVisibility] = useState(false)
-
+    const [completed, setCompleted] = useState([])
+    useEffect(()=>{
+        const completed =async()=>{
+            try{
+                const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+                setCompleted(decodestoredevents)
+            }
+            catch(e){
+                //
+            }
+            completed();
+        }
+    },[])
     const steps = [
         { name: "Name A", component: <StepOne /> },
         { name: "Email", component: <StepTwo /> },
@@ -45,26 +57,40 @@ export default function CreateEvent() {
         },
     ]
 
+    const getdays = (endime) => {
+        var current = Math.round(new Date().getTime()/1000)
+        var seconds =  (endime/1000)-current 
+        var day = Math.floor(seconds/86400)
+        if(day>0){
+          return day;
+        }
+        else{
+          return 0;
+        }
+      }
+
     const renderCompleted = (completedCards, index) => {
         return (
-            <div className="card my-4" key={index} style={{backgroundColor:"#1c1c1c"}}>
+            <>
+            {completedCards.validate ? <div className="card my-4" key={index} style={{backgroundColor:"#1c1c1c"}}>
         <div className="card-header text-secondary">
-            <span>{completedCards.hashtags}</span>
-            <h4 className='text-light fs-5'>{completedCards.title}</h4>
+            <span>#{completedCards.subcategory}</span>
+            <h4 className='text-light fs-5'>{completedCards.name}</h4>
             <div className='justify-content-between d-flex'>
-                <span>Starts: {completedCards.starts}</span>
-                <span>Ends: {completedCards.ends}</span>
+                <span>Starts: {getdays(completedCards.starttime)}</span>
+                <span>Ends: {getdays(completedCards.endtime)}</span>
             </div>
         </div>
         <div className="card-body bg-dark text-light">
             <span className="card-text">ODDS</span>
-            <p>CHEALSEA<br />MANCHESTER CITY<br/>DRAW</p>
+            <p>{completedCards.teamone}<br />{completedCards.teamtwo}<br/>DRAW</p>
             <span>POOL SIZE</span>
-            <p>{completedCards.pool}</p>
+            <p>{completedCards.poolsize}</p>
             <span>CREATOR's REWARD</span>
             <p>{completedCards.reward}</p>
         </div>
-    </div>
+    </div>:''}
+            </>
         )
     }
 
@@ -87,7 +113,7 @@ export default function CreateEvent() {
                     </select>
                 </div>
                 <div className="container">
-                    {completedCards.map(renderCompleted)}
+                    {completed.map((data)=>renderCompleted(data))}
                 </div>
             </div>
         </div>

@@ -30,6 +30,12 @@ class Index extends Component {
     }
   }
 
+  componentDidMount =async()=>{
+    setInterval(()=>{
+      this.setState({menuCollapse: window.collapsed})
+    },100)
+  }
+
   render() {
     return (
       <div className="adminIndex">
