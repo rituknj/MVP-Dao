@@ -46,6 +46,7 @@ import { lineData } from './../About/demo';
 ////Images
 import arrowRight from '../../../images/arrow-right.svg'
 import lineImage from '../../../images/line.png'
+import HeroModal from './HeroModal'
 var chart = null
 
 const SalesChart = loadable(() =>
@@ -73,6 +74,7 @@ class Index extends Component {
       activeevents: 0,
       totalbetsmade: 0,
       indernalblog: [],
+      modalShow: false,
       responsive: {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -108,7 +110,7 @@ class Index extends Component {
         },
         mobile: {
           breakpoint: { max: 464, min: 0 },
-          items: 2,
+          items: 1,
         },
       },
       chartWidth:
@@ -182,8 +184,7 @@ class Index extends Component {
     let LineData = []
     let Lineprice = []
     const Linetime = []
-    const Line =
-      'https://api.coingecko.com/api/v3/coins/betswamp/market_chart?vs_currency=usd&days=30*'
+    const Line = 'https://api.coingecko.com/api/v3/coins/betswamp/market_chart?vs_currency=usd&days=30*'
     await axios
       .get(Line)
       .then(function (response) {
@@ -281,8 +282,8 @@ class Index extends Component {
     }
 
 
-    try{
-      
+    try {
+
       window.localStorage.setItem('events', JSON.stringify(''))
       await TotalEventsCount()
       let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
@@ -290,11 +291,11 @@ class Index extends Component {
         item: decodestoredevents.reverse(),
       })
     }
-    catch(e){
-      console.log("Error on home page",e)
+    catch (e) {
+      console.log("Error on home page", e)
     }
 
-   
+
     // window.localStorage.clear()
     // let getstoredevents = window.localStorage.getItem('events')
     // if (getstoredevents == null) {
@@ -307,7 +308,7 @@ class Index extends Component {
     //     })
     //   }
     //   catch (e) {
-        
+
     //   }
     // } else {
     //   try {
@@ -318,7 +319,7 @@ class Index extends Component {
     //     })
     //   }
     //   catch (e) {
-        
+
     //   }
     // }
   }
@@ -418,7 +419,7 @@ class Index extends Component {
 
               <div className="row">
                 <div
-                  className="col-lg-8 col-md-7 col-sm-11 hometopBox"
+                  className="col-md-8 col-11 hometopBox"
                   data-aos="zoom-in-up"
                   data-aos-easing="linear"
                 >
@@ -445,26 +446,13 @@ class Index extends Component {
                     </NavLink>
                   </div>
                 </div>
-                <div
-                  className="col-lg-4 col-md-5 col-sm-12 homeTopImage"
-
-                >
-                  <div className="container-fluid px-md-5" id="section-analytics">
-                    <div className="row py-5">
-                      <div className="col-lg-12 position-relative" id="video-frame">
-                        <video poster="placeholder.png" controls={false}>
-                          <source src="movie.mp4" type="video/mp4" />
-                          <source src="movie.ogg" type="video/ogg" />
-                        </video>
-                        {this.state.isOpen ?
-                          <YouTube videoId="KWLdJQR_4pA" id="play-video" className="playing_video" opts={opts} onReady={this._onReady} />
-                          : <a id="play-video" className="video-play-button " onClick={() => this.setState({ isOpen: true })}>
-                            <span></span>
-                          </a>}
-                      </div>
-                    </div>
-                  </div>
-                  {/* <img src={TopImage} className="img-fluid my-5 my-md-0" /> */}
+                <div className="col-xxl-4 col-xl-3 col-12 homeTopImage d-flex align-items-center justify-content-center" >
+                  <span class="btn-video-zm" onClick={() => this.setState({modalShow: true})}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 12.282 14.739">
+                      <path d="M7.369,0l7.369,12.282H0Z" transform="translate(12.282) rotate(90)" fill="#4D0202" />
+                    </svg>
+                  </span>
+                  <HeroModal show={this.state.modalShow} onHide={() => this.setState({modalShow: false})} />
                 </div>
               </div>
             </div>
@@ -553,7 +541,7 @@ class Index extends Component {
               <div className='col-12 col-md-8 text-white'><img src={NFTs} style={{ width: '100%' }} /></div>
               <div className='col-6 col-md-4 text-white side-text-nfts' style={{ width: '40%', marginTop: '50px' }}>
                 <p className="mt-2 mt-md-4 text-white d-flex">
-                  <div class="vl me-2"></div> <span><p className='m-0'>BETSWAPM</p> <h4>ECOSYSTEM</h4></span>
+                  <div class="vl me-2"></div> <span><p className='m-0'>BETSWAMP</p> <h4>ECOSYSTEM</h4></span>
                 </p>
                 <p >BETSWAMP IS BUILDING A DECENTRALIZED ECOSYSTEM WHERE ALL IT'S UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO WHICH PROVIDES INVESTORS A SECURED PLATFORM THEY CAN VOCOUNT ON.</p>
                 <NavLink
@@ -591,11 +579,11 @@ class Index extends Component {
           </div> */}
           <div className="space-100"></div>
           <div className="container-fluid px-md-5" id="section-statistics">
-            <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
-              <div class="vl me-2"></div> <span><p className='m-0'>BETSWAPM</p> <h4>ECOSYSTEM</h4></span>
+            <p className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
+              <div class="vl me-2"></div> <span><p className='m-0'>BETSWAMP</p> <h4 className='m-0'>ECOSYSTEM</h4></span>
             </p>
             <div
-              className="row py-5"
+              className="row pb-5"
               data-aos="fade-up"
               data-aos-duration="1000"
               data-aos-easing="linear"
