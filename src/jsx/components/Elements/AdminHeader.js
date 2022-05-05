@@ -12,7 +12,7 @@ class AdminHeader extends Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: "#0F0F0F", position: "fixed", zIndex: "5", width: "100%", }}>
+      <div style={{ backgroundColor: "rgb(11 11 11)", position: "fixed", zIndex: "5", width: "100%", }}>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark bg-transparent" aria-label="Fifth navbar example" >
           <div className="container-fluid">
             <a className="navbar-brand" href="/"><img src={logo} style={{ height: '70px', width: '70px' }} /></a>
