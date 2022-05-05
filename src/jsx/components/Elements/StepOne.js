@@ -22,8 +22,9 @@ export class StepOne extends React.Component {
     this.setState({ category: event.target.value });
   }
   handleSubCategoryChanged(event) {
-    this.setState({ subcategory: event.target.value });
+    // this.setState({ subcategory: event.target.value });
     window.subTitle = event.target.value
+    console.log('subtitle',window.subTitle)
   }
 
   render() {
@@ -43,7 +44,8 @@ export class StepOne extends React.Component {
           <select
             className="form-select bg-dark border-0 text-light "
             id="specificSizeSelect"
-            onChange={this.handleSubCategoryChanged}
+            value={window.subTitle}
+            onChange={(e)=>this.handleSubCategoryChanged(e)}
           >
             <option value="Cricket">Cricket</option>
             <option value="Soccer">Soccer</option>

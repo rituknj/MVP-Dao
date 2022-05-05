@@ -162,6 +162,7 @@ class Index extends Component {
     AOS.init()
     await initInstance()
     await loginProcess()
+    window.localStorage.clear()
     let activeusers = await allactiveusers()
     let payout = await totalpayout()
     let events = await totalEvents()
@@ -178,41 +179,6 @@ class Index extends Component {
       activeevents: activeevents,
     })
     AOS.init()
-    // chart = createChart(document.querySelector('#linechart'), {
-    //   width: this.state.chartWidth,
-    //   height: 100,
-    //   layout: {
-    //     backgroundColor: 'transparent',
-    //     textColor: 'rgba(255, 255, 255, 0.8)',
-    //   },
-    //   timeScale: {
-    //     timeVisible: true,
-    //     secondsVisible: false,
-    //   },
-    //   rightPriceScale: {
-    //     scaleMargins: {
-    //       top: 0.1,
-    //       bottom: 0.1,
-    //     },
-    //   },
-    //   grid: {
-    //     vertLines: {
-    //       color: 'transparent',
-    //     },
-    //     horzLines: {
-    //       color: 'transparent',
-    //     },
-    //   },
-    //   entireTextOnly: false,
-    // })
-
-    // **************** API FOR ALL DATA ****************//
-
-
-
-    // **************** API FOR ALL DATA ****************//
-
-    // **************** API FOR LINE CHART DATA ****************//
     let LineData = []
     let Lineprice = []
     const Linetime = []
@@ -240,51 +206,51 @@ class Index extends Component {
 
 
 
-    var myHeaders = new Headers();
-    myHeaders.append("Accept", "application/json");
-    myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-    await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
-      .then(response => response.json())
-      .then(result => this.setState({ partner: result }))
-      .catch(error => console.log('error', error));
+    // var myHeaders = new Headers();
+    // myHeaders.append("Accept", "application/json");
+    // myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
+    // var requestOptions = {
+    //   method: 'GET',
+    //   headers: myHeaders,
+    //   redirect: 'follow'
+    // };
+    // await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
+    //   .then(response => response.json())
+    //   .then(result => this.setState({ partner: result }))
+    //   .catch(error => console.log('error', error));
     // console.log("partners",this.state.partner.length)
     // **************** API FOR PARTNER DATA ****************//
 
     // **************** API FOR VIDEO DATA ****************//
-    await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/videos", requestOptions)
-      .then(response => response.json())
-      .then(result => this.setState({ video: result }))
-      .catch(error => console.log('error', error));
+    // await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/videos", requestOptions)
+    //   .then(response => response.json())
+    //   .then(result => this.setState({ video: result }))
+    //   .catch(error => console.log('error', error));
     // console.log("video is ", this.state.video);
 
     // **************** API FOR VIDEO DATA ****************//
 
     // **************** API LINE EXTERNAL BLOG DATA ****************//
-    await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/in-house-articles", requestOptions)
-      .then(response => response.json())
-      .then(result => this.setState({ indernalblog: result }))
-      .catch(error => console.log('error', error));
+    // await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/in-house-articles", requestOptions)
+    //   .then(response => response.json())
+    //   .then(result => this.setState({ indernalblog: result }))
+    //   .catch(error => console.log('error', error));
     // console.log("blog",this.state.indernalblog)
     // **************** API LINE EXTERNAL BLOG DATA ****************//
 
     // **************** API LINE INTERNAL BLOG DATA ****************//
-    await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/external-articles", requestOptions)
-      .then(response => response.json())
-      .then(result => this.setState({ bloglength: result }))
-      .catch(error => console.log('error', error));
+    // await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/external-articles", requestOptions)
+    //   .then(response => response.json())
+    //   .then(result => this.setState({ bloglength: result }))
+    //   .catch(error => console.log('error', error));
     // **************** API LINE INTERNAL BLOG DATA ****************//
 
     // **************** API LINEambassador BLOG DATA ****************//
-    await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/ambassadors", requestOptions)
-      .then(response => response.json())
-      .then(result => this.setState({ Ambassador: result }))
-      .catch(error => console.log('error', error));
-    console.log("amemsador", this.state.Ambassador)
+    // await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/ambassadors", requestOptions)
+    //   .then(response => response.json())
+    //   .then(result => this.setState({ Ambassador: result }))
+    //   .catch(error => console.log('error', error));
+    // console.log("amemsador", this.state.Ambassador)
     // **************** API LINE ambassador BLOG DATA ****************//
 
     // fetching price of total
@@ -313,32 +279,48 @@ class Index extends Component {
         xhr.send()
       })
     }
-    window.localStorage.clear()
-    let getstoredevents = window.localStorage.getItem('events')
-    if (getstoredevents == null) {
-      try {
-        window.localStorage.setItem('events', JSON.stringify(''))
-        await TotalEventsCount()
-        let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-        this.setState({
-          item: decodestoredevents.reverse(),
-        })
-      }
-      catch (e) {
-        //
-      }
-    } else {
-      try {
-        await TotalEventsCount()
-        let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-        this.setState({
-          item: decodestoredevents.reverse(),
-        })
-      }
-      catch (e) {
-        //
-      }
+
+
+    try{
+      
+      window.localStorage.setItem('events', JSON.stringify(''))
+      await TotalEventsCount()
+      let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+      this.setState({
+        item: decodestoredevents.reverse(),
+      })
     }
+    catch(e){
+      console.log("Error on home page",e)
+    }
+
+   
+    // window.localStorage.clear()
+    // let getstoredevents = window.localStorage.getItem('events')
+    // if (getstoredevents == null) {
+    //   try {
+    //     window.localStorage.setItem('events', JSON.stringify(''))
+    //     await TotalEventsCount()
+    //     let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+    //     this.setState({
+    //       item: decodestoredevents.reverse(),
+    //     })
+    //   }
+    //   catch (e) {
+        
+    //   }
+    // } else {
+    //   try {
+    //     await TotalEventsCount()
+    //     let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+    //     this.setState({
+    //       item: decodestoredevents.reverse(),
+    //     })
+    //   }
+    //   catch (e) {
+        
+    //   }
+    // }
   }
 
   fetchdata = async () => {
