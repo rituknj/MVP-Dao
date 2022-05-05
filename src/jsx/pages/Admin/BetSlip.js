@@ -26,20 +26,26 @@ export default function BetSlip() {
       setTotalUserBetHistory(userbethty.length)
       userbethty.forEach(async (ele) =>{
         const amountstake = await AmountStackOnEventByaUser(ele)
-        stake = amountstake + stake
+        stake = Number(amountstake) + stake
+        
         setTotalUserBetLost(stake/10**18)
       })
-      setUserTotalWinning(totalwinning) 
+      
+      setUserTotalWinning(totalwinning/10**18) 
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+
       decodestoredevents.forEach(async (element) => {
+
         for(let i = 0; i < userBethistory.length; i++){
-          if(element.id == userBethistory[i]){
+          console.log("history", element.id,userbethty[i])
+          if(Number(element.id) == userbethty[i]){
             let won = await GetUserWonAmountOnEvent(element.id)
             element.won = won
             check.push(element)
 
           }
-        }
+        } 
+
         setUserHistory(check)
       })
     } 
@@ -52,7 +58,6 @@ export default function BetSlip() {
     const getUserBetData = async()=>{
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
       decodestoredevents.forEach(async (element) => {
-        console.log(element)
         let x = Object.create(element)
         let won = await GetUserWonAmountOnEvent(element.id)
         // let userWagerAmount = await AmountStackOnEventByaUser(element)
@@ -63,7 +68,7 @@ export default function BetSlip() {
       })
       setEvents(check)
       var ts = Math.round((new Date()).getTime() / 1000);
-      console.log(ts)
+      
     } 
     await getUserBetData();
   }, [])
@@ -79,8 +84,6 @@ export default function BetSlip() {
       return 0;
     }
   }
-
-  console.log("userhistry",userHistory)
 
   const Boost=async(id)=>{
       await BoostEvent(id)
@@ -119,7 +122,7 @@ export default function BetSlip() {
           >
             POOL SIZE
             <br />
-            <span className="fs-6">${completedCards.poolsize}</span>
+            <span className="fs-6">${Number(completedCards.poolsize/10**18).toFixed(2)}</span>
           </p>
           <div className="d-flex justify-content-between text-secondary" style={{fontSize: "12px"}}>
             <ul className="p-0" style={{listStyle: "none"}}>
@@ -143,7 +146,7 @@ export default function BetSlip() {
   const InactiveEvents = (completedCards, index) => {
     return (
       <>
-    {Math.round((new Date()).getTime() / 1000) > completedCards.endtime?  <div
+    {Math.round((new Date()).getTime() / 1000) > Number(completedCards.endtime) ?  <div
         className="card my-4"
         key={index}
         style={{ backgroundColor: "#1c1c1c" }}
@@ -167,7 +170,7 @@ export default function BetSlip() {
           >
             POOL SIZE
             <br />
-            <span className="fs-6">${completedCards.poolsize}</span>
+            <span className="fs-6">${Number(completedCards.poolsize/10**18).toFixed(2)}</span>
           </p>
           <br />
           <br />

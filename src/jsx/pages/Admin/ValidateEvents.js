@@ -24,7 +24,7 @@ export default function ValidateEvents() {
       const userbethty = await userBethistory()
       userbethty.forEach(async (ele) =>{
         const amountstake = await AmountStackOnEventByaUser(ele)
-        stake = amountstake + stake
+        stake = Number(amountstake) + stake
         setTotalUserBetLost(stake/10**18)
       })
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
@@ -57,9 +57,11 @@ export default function ValidateEvents() {
 
 
   const formatRemainingTime = (time) => {
+    const day = Math.floor(time / (3600 * 24));
+    const hours = Math.floor((time % (3600 * 24)) / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;
-    return `${minutes}:${seconds}`;
+    return `${day}day  ${hours}:${minutes}:${seconds}`;
   };
 
   const renderTime = ({ remainingTime }) => {

@@ -4,7 +4,7 @@ import { MdOutlineArrowForwardIos, MdArrowDropDown } from "react-icons/md";
 import { BiDonateHeart } from "react-icons/bi";
 import {FaTeamspeak} from 'react-icons/fa'
 import { pausebet, Unpausebet, Ispausebet } from "../../../web3/betsMVPService";
-import { donatefund } from './../../../web3/DonateMethos'
+import { donatefund,apporveBUSD, isapproved } from './../../../web3/DonateMethos'
 
 export default function SelfHelp() {
 
@@ -40,7 +40,7 @@ export default function SelfHelp() {
 
   const renderTime = ({ remainingTime }) => {
     if (remainingTime === 0) {
-      return <div className="timer text-danger">Lets bet again</div>
+      return <div className="timer text-danger">00 00:00:00</div>
     }
 
     return (
@@ -72,7 +72,15 @@ export default function SelfHelp() {
     }
   }
   const Donatethem =async()=>{
-    await donatefund(amountDonate);
+    const Isapprove = await isapproved();
+    if(Number(Isapprove)> amountDonate){
+      await donatefund(amountDonate);
+    }
+    else{
+      await apporveBUSD();
+      await donatefund(amountDonate);  
+    }
+    
   }
 
   

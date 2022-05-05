@@ -33,12 +33,12 @@ export class StepOne extends React.Component {
         <h5>Create events on literally anything verifiable</h5>
         <div className="my-3">
           <label for="inputEventTitle" className="form-label">EVENT TITLE</label>
-          <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" onChange={this.handleEvenTitleChanged} value={this.state.eventtitle} autoFocus/>
+          <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" value={window.eventTitle} onChange={this.handleEvenTitleChanged} autoFocus/>
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <label for="inputCategory" className="form-label">CATEGORY</label>
-          <input type="text" className="form-control" id="inputCategory" onChange={this.handleCategoryChanged} value={this.state.category}/>
-        </div>
+          <input type="text" className="form-control" id="inputCategory" value={window.eventTitle} onChange={this.handleCategoryChanged} />
+        </div> */}
         <div className="mb-3">
           <label for="inputSubCategory" className="form-label">SUB CATEGORY</label>
           <select
