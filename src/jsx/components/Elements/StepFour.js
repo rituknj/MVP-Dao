@@ -16,10 +16,11 @@ export class StepFour extends React.Component {
   handleBetAmountChanged(event) {
     window.anmount = event.target.value
   }
+  
   CreateEvent =async()=>{
     const starttime = parseInt((new Date(window.starttime).getTime()).toFixed(0),)
     const endtime = parseInt((new Date(window.endtime).getTime()).toFixed(0),)
-    await createEvent(window.subTitle,"","",window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome);  
+    await createEvent(window.subTitle,window.description,window.url,window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome);  
     console.log(window.subTitle,"","",window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome)
   }
 
@@ -50,8 +51,8 @@ export class StepFour extends React.Component {
             type="number"
             className="form-control"
             id="inputBetAmount"
-            onChange={this.handleBetAmountChanged}
-            value={this.state.betamount}
+            onChange={(e)=>this.handleBetAmountChanged(e)}
+            value={window.anmount}
           />
           <button
             className="btn"

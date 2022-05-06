@@ -205,8 +205,6 @@ class Index extends Component {
     })
 
 
-
-
     // var myHeaders = new Headers();
     // myHeaders.append("Accept", "application/json");
     // myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
@@ -296,32 +294,7 @@ class Index extends Component {
     }
 
 
-    // window.localStorage.clear()
-    // let getstoredevents = window.localStorage.getItem('events')
-    // if (getstoredevents == null) {
-    //   try {
-    //     window.localStorage.setItem('events', JSON.stringify(''))
-    //     await TotalEventsCount()
-    //     let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-    //     this.setState({
-    //       item: decodestoredevents.reverse(),
-    //     })
-    //   }
-    //   catch (e) {
-
-    //   }
-    // } else {
-    //   try {
-    //     await TotalEventsCount()
-    //     let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-    //     this.setState({
-    //       item: decodestoredevents.reverse(),
-    //     })
-    //   }
-    //   catch (e) {
-
-    //   }
-    // }
+    
   }
 
   fetchdata = async () => {
@@ -432,12 +405,13 @@ class Index extends Component {
                     betting on your favorite market.{' '}
                   </p>
                   <div className="text-center text-md-center my-1 my-md-0 topAppBtn">
-                    <NavLink
-                      to="/"
+                    <a
+                      href='https://betdao.netlify.app/re-ui/stake'
+                      target='_blank'
                       className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtnDao"
                     >
                       LAUNCH DAO
-                    </NavLink>
+                    </a>
                     <NavLink
                       to="/app"
                       className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtn"
@@ -459,10 +433,7 @@ class Index extends Component {
           </div>
 
           <div className="container-fluid px-md-5" id="section-analytics">
-            {/* <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p">
-              Market Analytics{' '}
-              <img src={arrowRight} className="ms-3" width="21px" />
-            </p> */}
+           
             <div className="space-100"></div>
             <div
               className="row"
@@ -487,15 +458,7 @@ class Index extends Component {
                   deviceType={this.props.deviceType}
                   itemClass="px-2"
                 >
-                  {/* <div className="card chart-card  overflow-hidden text-center py-3  align-items-stretch col-12">
-                    <div className="container-fluid">
-                      <div
-                        className=""
-                        id="linechart"
-                        style={{ width: '100%' }}
-                      ></div>
-                    </div>
-                  </div> */}
+                 
 
                   <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
                     <h5 className="text-white m-0">Price</h5>
@@ -526,10 +489,7 @@ class Index extends Component {
                     <h4 className="text-white mt-3">250,000,000</h4>
                   </div>
 
-                  {/* <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12">
-                    <h5 className="text-white m-0">Total Supply</h5>
-                    <h4 className="text-white mt-3">250,000,000</h4>
-                  </div> */}
+                
                 </Carousel>
               </div>
             </div>
@@ -557,26 +517,7 @@ class Index extends Component {
           <div className="container-fluid px-md-5" id="section-analytics">
             {/*  */}
           </div>
-          {/* <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
-            <Carousel
-              swipeable={true}
-              draggable={true}
-              arrows={true}
-              showDots={false}
-              responsive={this.state.responsive_video_card}
-              ssr={true} // means to render carousel on server-side.
-              infinite={true}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={['tablet', 'mobile']}
-              deviceType={this.props.deviceType}
-              itemClass="carousel-item-padding-40-px px-4"
-            >
-              {this.videos()}
-            </Carousel>
-          </div> */}
+          
           <div className="space-100"></div>
           <div className="container-fluid px-md-5" id="section-statistics">
             <p className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
@@ -787,7 +728,7 @@ class Index extends Component {
             </Carousel>
           </div>
 
-          <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
+          {/* <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
             <Carousel
               swipeable={true}
               draggable={true}
@@ -826,65 +767,8 @@ class Index extends Component {
               </p>
             </div>
 
-          </div>
-          {/* <div className="container-fluid px-md-5 mt-5" id="section-validate">
-            <div className="space-100"></div>
-            <div className="space-100"></div>
-            <div className="row">
-              <div
-                className="col-lg-7 mt-5 nfts-box"
-                data-aos="zoom-in-down"
-                data-aos-easing="linear"
-              >
-                <h1 className="font-raleway">
-                  GET PAID TO
-                  <br />
-                  <span className="theam-text-color font-raleway">
-                    VALIDATE
-                  </span>{' '}
-                  EVENTS
-                </h1>
-                <p>
-                  BUILD YOUR REPUTATION AS A VALIDATOR AND Earn passive income
-                  WHILE YOU AT IT.
-                </p>
-                
-              </div>
-              <div
-                className="col-lg-4 text-center"
-                data-aos="zoom-in-down"
-                data-aos-easing="linear"
-              >
-                <img src={validateImage} className="img-fluid" />
-              </div>
-              <div className="col-lg-1"></div>
-            </div>
           </div> */}
-          {/* <div className="container-fluid my-2" id="section-bet-on">
-            <div className="space-20"></div>
-            <div className="row">
-              <div
-                className="col-lg-6 p-0 order-1 order-md-0"
-                data-aos="fade-right"
-                data-aos-duration="1500"
-                data-aos-easing="linear"
-              >
-                <img src={mobileImage} width="70%" />
-              </div>
-              <div
-                className="col-lg-6 d-flex justify-content-center align-items-center flex-column order-0 order-md-1"
-                data-aos="zoom-in"
-                data-aos-duration="1500"
-                data-aos-easing="linear"
-              >
-                <h1 className="mt-5">
-                  Bet on <br />
-                  the <span className="theam-text-color">go</span>
-                </h1>
-                <p className="mt-3">Coming soon to your app store</p>
-              </div>
-            </div>
-          </div> */}
+         
           {false ? <div className="container-fluid px-md-5 my-5" id="section-news">
             <div className="space-100"></div>
             <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
@@ -938,32 +822,7 @@ class Index extends Component {
 
           </div> : ''}
 
-          {/* <div className="container-fluid px-md-5 my-5" id="section-news">
-            <div className="space-100"></div>
-            <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
-              IN HOUSE ARTICLES <img src={lineImage} className="ms-3" />
-            </p>
-            <div className="space-50"></div>
-            <Carousel
-              swipeable={true}
-              draggable={false}
-              arrows={true}
-              showDots={false}
-              responsive={this.state.responsive_game_card}
-              ssr={true} // means to render carousel on server-side.
-              autoPlay={true}
-              autoPlaySpeed={1500}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={['tablet', 'mobile']}
-              deviceType={this.props.deviceType}
-              itemClass="carousel-item-padding-40-px px-4"
-            >
-              {this.internalblogs()}
-            </Carousel>
-          </div> */}
+         
 
           {false ? <div className="container-fluid px-md-5 my-5" id="section-partners">
             <div className="space-100"></div>
@@ -1018,89 +877,6 @@ class Index extends Component {
             </div>
 
           </div>
-          {/* <div className="container-fluid px-md-5 my-5" id="section-partners">
-            <div className="space-100"></div>
-            <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
-              <div class="vl me-2"></div> <span><h4 style={{marginTop:'10px'}}>AMBASSADORS</h4></span> 
-            </p>
-            <div className="space-50"></div>
-            <Carousel
-              swipeable={true}
-              draggable={false}
-              arrows={true}
-              showDots={false}
-              responsive={this.state.responsive}
-              ssr={true} // means to render carousel on server-side.
-              infinite={true}
-              autoPlay={true}
-              autoPlaySpeed={1500}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={['tablet', 'mobile']}
-              deviceType={this.props.deviceType}
-              itemClass="d-flex justify-content-center align-items-center flex-column"
-            >
-              {this.amessador()}
-              <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                  style={{textAlign:'center', color:'#ffff'}}
-                >
-                    <img src={menone} width="100" style={{borderRadius:'80px'}} />
-                    <p className='m-0'>Name</p>
-                    <p className='m-0'>Title</p>
-                    <div className='d-flex m-0 justify-content-evenly'>
-                    <FaTwitter/>{" "}
-                    <AiFillLinkedin/>
-                    </div>
-              </div>
-              <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                  style={{textAlign:'center', color:'#ffff'}}
-                >
-                    <img src={women} width="100" style={{borderRadius:'80px'}} />
-                    <p className='m-0'>Name</p>
-                    <p className='m-0'>Title</p>
-                    <div className='d-flex m-0 justify-content-evenly'>
-                    <FaTwitter/>{" "}
-                    <AiFillLinkedin/>
-                    </div>
-              </div>
-              <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                  style={{textAlign:'center', color:'#ffff'}}
-                >
-                    <img src={menone} width="100" style={{borderRadius:'80px'}} />
-                    <p className='m-0'>Name</p>
-                    <p className='m-0'>Title</p>
-                    <div className='d-flex m-0 justify-content-evenly'>
-                    <FaTwitter/>{" "}
-                    <AiFillLinkedin/>
-                    </div>
-              </div>
-              <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                  style={{textAlign:'center', color:'#ffff'}}
-                >
-                    <img src={womentwo} width="100" style={{borderRadius:'80px'}} />
-                    <p className='m-0'>Name</p>
-                    <p className='m-0'>Title</p>
-                    <div className='d-flex m-0 justify-content-evenly'>
-                    <FaTwitter/>{" "}
-                    <AiFillLinkedin/>
-                    </div>
-              </div> 
-            </Carousel>
-          </div> */}
 
           <div className='d-flex'><Footer /></div>
 

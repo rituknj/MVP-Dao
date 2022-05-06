@@ -32,8 +32,11 @@ class AdminHeader extends Component {
                   className="nav-link text-white mt-1"
                   to="/admin"
                 >
-                  Wallet
+                  DASHBOARD
                 </NavLink>
+              </li>
+              <li className="nav-item px-2" style={{cursor: "pointer"}}>
+                  <span  className="nav-link text-white fs-4 cursor-pointer">Wallet</span>
               </li>
             </ul>
             <button className='btn text-light fs-4 d-md-none mt-n2' onClick={()=>this.slidbarcollapsed(true)}><GiHamburgerMenu /></button>

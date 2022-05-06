@@ -1,9 +1,30 @@
-import React, { Component, Fragment } from "react";
+import React, {useEffect, useStatem, Fragment, useState } from "react";
 import logo from '../../../images/logo.png';
 import { NavLink } from "react-router-dom";
-import whitepaper from '../../../images/PDF/Betswamp-Whitepaper-v1.2.pdf';
-class Header extends Component {
-    render() {
+import {initInstance,loginProcess,getAccount} from './../../../web3/web3'
+
+const Header=()=> {
+    const [account, setAccount] = useState()
+
+    useEffect(async()=>{
+        await walletConnect()
+    },[])
+
+   const walletConnect = async()=> {
+        if(account){
+            setAccount(undefined)
+            return true
+        }
+        await initInstance();
+        await loginProcess();
+        const address = await getAccount();
+        setAccount(address)
+    }
+    const slicing = (address)=>{
+        const first = address.slice(0,4);
+        const second = address.slice(38);
+        return first + "..." + second
+    }
         return (
             <Fragment>
                 <nav
@@ -33,10 +54,16 @@ class Header extends Component {
                                         <a className="nav-link text-white mt-1" href="https://betdao.netlify.app/re-ui/stake" target='_blank'>DAO</a>
                                     </li>
                                     <li className="nav-item px-2 px-md-4">
-                                        <NavLink className="nav-link text-white mt-1" to="/">MARKET</NavLink>
+                                        <NavLink className="nav-link text-white mt-1" to="/app">MARKET</NavLink>
                                     </li>
-                                    <li className="nav-item px-2 px-md-4">
-                                        <NavLink className="nav-link text-white mt-1" to="/admin">WALLET</NavLink>
+                                    <li className="nav-item px-2 px-md-4" style={{cursor: "pointer"}}>
+                                        <span  className="nav-link text-white fs-4 cursor-pointer">Wallet</span>
+                                    </li>
+                                    <li className="nav-item px-2 px-md-4" style={{cursor: "pointer"}}>
+                                        <span  className="nav-link text-white fs-4" style={{border:'1px'}} onClick={()=>walletConnect()}>
+                                            {account ? slicing(account) : "Connect Wallet"}
+                                            </span>
+                                        {/* <button className="nav-link text-white fs-4" style={{textDecoration:'none', border:'none', }}>Connect Wallet</button> */}
                                     </li>
                                 </ul>
                             </form>
@@ -45,6 +72,6 @@ class Header extends Component {
                 </nav>
             </Fragment>
         );
-    }
+    
 }
 export default Header;

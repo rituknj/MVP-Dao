@@ -30,6 +30,8 @@ let newevents = 0
                 check.potential_wins = (Number(potentialwinnings) + Number(stakeonevent/10**18)).toFixed(2)
                 check.id = check2[0]
                 check.name = check2[3] 
+                check.description = check2[4]
+                check.url = check2[5]
                 check.validate = check2[12]
                 check.poolsize = check2[6]
                 check.starttime = check2[7]
@@ -85,6 +87,8 @@ export const addingnewevents = async() => {
                 check.potential_wins = (Number(potentialwinnings) + Number(stakeonevent/10**18)).toFixed(2)
                 check.id = check2[0]
                 check.name = check2[3] 
+                check.description = check2[4]
+                check.url = check2[5]
                 check.validate = check2[12]
                 check.poolsize = check2[6]
                 check.starttime = check2[7]

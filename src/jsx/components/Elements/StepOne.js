@@ -9,9 +9,7 @@ export class StepOne extends React.Component {
       category: "",
       subcategory: ""
     };
-    this.handleEvenTitleChanged = this.handleEvenTitleChanged.bind(this);
-    this.handleCategoryChanged = this.handleCategoryChanged.bind(this);
-    this.handleSubCategoryChanged = this.handleSubCategoryChanged.bind(this);
+ 
   }
 
   handleEvenTitleChanged(event) {
@@ -22,23 +20,39 @@ export class StepOne extends React.Component {
     this.setState({ category: event.target.value });
   }
   handleSubCategoryChanged(event) {
-    // this.setState({ subcategory: event.target.value });
+   
     window.subTitle = event.target.value
-    console.log('subtitle',window.subTitle)
+   
+  }
+  handlediscriptionChanged(event) {
+    window.description = event.target.value
+   
+  }
+  handleurlChanged(event) {
+    window.url = event.target.value
   }
 
   render() {
+    console.log(window.eventTitle)
     return (
       <div>
         <h5>Create events on literally anything verifiable</h5>
         <div className="my-3">
           <label for="inputEventTitle" className="form-label">EVENT TITLE</label>
-          <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" value={window.eventTitle} onChange={this.handleEvenTitleChanged} autoFocus/>
+          <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" value={window.eventTitle} onChange={(e)=>this.handleEvenTitleChanged(e)} autoFocus/>
         </div>
         {/* <div className="mb-3">
           <label for="inputCategory" className="form-label">CATEGORY</label>
           <input type="text" className="form-control" id="inputCategory" value={window.eventTitle} onChange={this.handleCategoryChanged} />
         </div> */}
+        <div className="my-3">
+          <label for="inputEventTitle" className="form-label">DESCRIPTION</label>
+          <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" value={window.description} onChange={(e)=>this.handlediscriptionChanged(e)} autoFocus/>
+        </div>
+        <div className="my-3">
+          <label for="inputEventTitle" className="form-label">URL</label>
+          <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" value={window.url} onChange={(e)=>this.handleurlChanged(e)} autoFocus/>
+        </div>
         <div className="mb-3">
           <label for="inputSubCategory" className="form-label">SUB CATEGORY</label>
           <select

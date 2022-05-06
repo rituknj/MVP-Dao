@@ -8,9 +8,6 @@ export class StepTwo extends React.Component {
       prefferedoutcome: "",
       opposingoutcome: ""
     };
-    this.handleOutcomeCountChanged = this.handleOutcomeCountChanged.bind(this);
-    this.handlePreferredOutcomeChanged = this.handlePreferredOutcomeChanged.bind(this);
-    this.handleOpposingOutcomeChanged = this.handleOpposingOutcomeChanged.bind(this);
   }
 
   handleOutcomeCountChanged(event) {
@@ -33,15 +30,15 @@ export class StepTwo extends React.Component {
         <h5>Enter the possible outcomes of the event</h5>
         <div className="my-3">
           <label for="inputOutcomeCount" className="form-label">NUMBER OF OUTCOMES</label>
-          <input type="text" className="form-control" id="inputOutcomeCount" aria-describedby="eventHelp" onChange={this.handleOutcomeCountChanged} value={this.state.outcomecount} autoFocus/>
+          <input type="text" className="form-control" id="inputOutcomeCount" aria-describedby="eventHelp" onChange={(e)=>this.handleOutcomeCountChanged(e)} value={ window.outcome} autoFocus/>
         </div>
         <div className="mb-3">
           <label for="inputPreferredOutcome" className="form-label">PREFERRED OUTCOME</label>
-          <input type="text" className="form-control" id="inputPreferredOutcome" onChange={this.handlePreferredOutcomeChanged} value={this.state.prefferedoutcome}/>
+          <input type="text" className="form-control" id="inputPreferredOutcome" onChange={(e)=>this.handlePreferredOutcomeChanged(e)} value={window.preferredoutcome}/>
         </div>
         <div className="mb-3">
           <label for="inputOpposingOutcome" className="form-label">OPPOSING OUTCOME</label>
-          <input type="text" className="form-control" id="inputOpposingOutcome" onChange={this.handleOpposingOutcomeChanged} value={this.state.opposingoutcome} />
+          <input type="text" className="form-control" id="inputOpposingOutcome" onChange={(e)=>this.handleOpposingOutcomeChanged(e)} value={window.oppossingoutcome} />
         </div>
       </div>
     );

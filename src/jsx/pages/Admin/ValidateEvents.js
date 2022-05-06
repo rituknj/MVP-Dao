@@ -227,7 +227,7 @@ export default function ValidateEvents() {
               <p>{allnonevnets[skip].teamone} VS {allnonevnets[skip].teamtwo}</p>
               <br />
               <h5>LINK</h5>
-              {/* <a href="#">https://verificationdemo.com/event</a> */}
+              <a href={allnonevnets[skip].url}>{allnonevnets[skip].url}</a>
               <br />
               <br />
               <h5>PREFFERED ODD</h5>

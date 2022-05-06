@@ -29,11 +29,11 @@ export class StepThree extends React.Component {
         <h5>Enter the starting and ending date for the event</h5>
         <div className="my-3">
           <label for="inputStartDate" className="form-label">STARTING DATE/TIME</label>
-          <input type="datetime-local" className="form-control" id="inputStartDate" aria-describedby="eventHelp" onChange={this.handleStartDateChanged} value={this.state.startdate} autoFocus/>
+          <input type="datetime-local" className="form-control" id="inputStartDate" aria-describedby="eventHelp" onChange={(e)=>this.handleStartDateChanged(e)} value={this.state.startdate} autoFocus/>
         </div>
         <div className="mb-3">
           <label for="inputEndDate" className="form-label">ENDING DATE/TIME</label>
-          <input type="datetime-local" className="form-control" id="inputEndDate" onChange={this.handleEndDateChanged} value={this.state.enddate}/>
+          <input type="datetime-local" className="form-control" id="inputEndDate" onChange={(e)=>this.handleEndDateChanged(e)} value={this.state.enddate}/>
         </div>
       </div>
     );
