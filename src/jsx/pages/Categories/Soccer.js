@@ -233,7 +233,6 @@ class GameCard extends Component {
       document.getElementById('sidebar').style.transform = 'translateX(-200%)';
       document.getElementById('sidebar').style.position = 'absolute';
     }
- 
   }
   winningamount = (amountstake, poolsize) => {
     let totalstake = poolsize + amountstake

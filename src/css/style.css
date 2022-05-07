@@ -2069,3 +2069,10 @@ footer button {
   background-color: #0F0F0F !important;
   color: #fff;
 }
+.toast:not(.show) {
+  display: block;
+}
+.toast{
+  z-index: 100;
+  position: absolute;
+}
