@@ -9,7 +9,7 @@ import { getBETBalanceBUSD, getBETSV2Balance, getBUSDBalance, approvePoints, isP
 import {initInstance,loginProcess,getAccount} from './../../../web3/web3'
 import {AiFillQuestionCircle} from 'react-icons/ai'
 import Bar from './../../../images/bar.png'
-import {earnvalidationpoints} from './../../../web3/betsMVPService'
+import {earnvalidationpoints,getValidationPoint} from './../../../web3/betsMVPService'
 
 export default function WalletPopup(props) {
 
@@ -18,6 +18,7 @@ export default function WalletPopup(props) {
   const [betv2, setbetsv2] = useState(0)
   const [betprice, setBetPrice] = useState(0)
   const [betstolock, setBettolock] = useState(0)
+  const [validationPoints, setValidationPoints] = useState(0)
 
   useEffect(async()=>{
       await initInstance();
@@ -27,6 +28,8 @@ export default function WalletPopup(props) {
       setbusd(busds)
       const betV2 = await getBETSV2Balance();
       setbetsv2(betV2)
+      const valpoints = await getValidationPoint();
+      setValidationPoints(valpoints)
       API_call();
   },[])
 
@@ -232,11 +235,6 @@ export default function WalletPopup(props) {
       centered
       fullscreen={"md-down"}
     >
-      {/* <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header> */}
       <Modal.Body style={{ backgroundColor: "#0A0A0A" }}>
         <div className="d-flex justify-content-between">
           <span
@@ -286,7 +284,7 @@ export default function WalletPopup(props) {
         </div>
         <div className="text-white ms-4 mt-5">
             <p className="m-0">TOTAL VALIDATION POINTS EARNED</p>
-            <p>8000</p>
+            <p>{validationPoints}</p>
         </div>
         <div className="p-4 text-white w-75 mx-auto">
           <p>AVAILABLE:&nbsp;&nbsp; {betv2} sBETS</p>
@@ -301,9 +299,6 @@ export default function WalletPopup(props) {
 
         <button className="w-100 p-3 font-weight-bold " style={{borderRadius:'10px'}} onClick={()=>LockBets()}>Lock</button>
       </Modal.Body>
-      {/* <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer> */}
     </Modal>
   );
 }

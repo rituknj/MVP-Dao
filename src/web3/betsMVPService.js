@@ -38,27 +38,16 @@ export const getSubCategory = async () => {
 
 export const createEvent = async (sub_category, description, url, name, time, endTime, event1, event2 ) => {
     const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-    // let time = strTimeToInt(Event.time);
-    // let endTime = strTimeToInt(Event.endTime);
-    // console.log("lengh",sub_category, name, time, endTime, event1, event2)
+
     var getData = await betMVPContract.methods.createEvent('0x0', sub_category, name, description, url, time, endTime, event1, event2).send({
         from: await getAccount(),
     });
-    if(getData.status == true){
-        alert('Event created successfully')
-    }
-    else{
-        alert("Failed")
-    }
-    // let data = getData.encodeABI()
-    // return await web3Instance.eth.sendTransaction({to: envprod.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data});
+    return getData;
 }
 
 export const placeBet = async(event_id, occured, amount) => {
-    console.log("details ", event_id, amount, occured)
     var getData
     let maxamount = await isapproved()
-    console.log("details ", maxamount)
     const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     amount = BigInt(amount*10**18)
     
@@ -66,6 +55,7 @@ export const placeBet = async(event_id, occured, amount) => {
         getData = await betMVPContract.methods.placeBet(event_id, amount.value, occured).send({
             from: await getAccount(),
         });
+        return getData
     }
     else{
         let approve = await approveBUSD();
@@ -73,19 +63,10 @@ export const placeBet = async(event_id, occured, amount) => {
             getData = await betMVPContract.methods.placeBet(event_id, amount.value, occured).send({
                 from: await getAccount(),
             });
+            return getData
         }
-        
-
     }
-    console.log('get data is', getData)
-    if(getData.status == true){
-        alert('Bet placed successfully')
-        await TotalEventsCount();
-        
-    }
-    else{
-        alert("Failed")
-    }
+    return getData
 }
 
 export const validateEvent = async (event_id, occured) => {
@@ -99,7 +80,7 @@ export const validateEvent = async (event_id, occured) => {
     }
 }
 export const getValidationPoint = async () => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(Points, envdev.REACT_AAP_POINTS);
     const validationPoint = await betMVPContract.methods.showValidationPoints(await getAccount()).call();
     const  _validationPoint = validationPoint
     return _validationPoint/10**18;

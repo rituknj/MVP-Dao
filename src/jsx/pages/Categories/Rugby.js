@@ -15,7 +15,18 @@ import { GoPrimitiveDot } from 'react-icons/go'
 import { TiStopwatch} from 'react-icons/ti'
 import {MdOutlineArrowForwardIos} from 'react-icons/md'
 import {ImFire} from 'react-icons/im'
+import toast, { Toaster } from 'react-hot-toast';
 
+const tost =()=> toast.success('Success.', {
+  style: {
+    padding: '16px',
+    color: '#000',
+  },
+  iconTheme: {
+    primary: '#0b0b0b',
+    secondary: '#ffffff',
+  },
+});
 
 
 
@@ -96,7 +107,7 @@ class GameCard extends Component {
     for (let i = decodestoredevents.length - 1; i >= 0; i--) {
       check2 = decodestoredevents[i]
 
-      if (check2.subcategory == 'Rugby') {
+      if (check2.subcategory == 'Rubgy') {
         events.push(check2)
         this.setState({
           allevents: events,
@@ -184,7 +195,10 @@ class GameCard extends Component {
 
   Onplacebet =async() => {
     try{
-      await placeBet(this.state.id, this.state.occurance, this.state.stackvalueone)
+     const data =  await placeBet(this.state.id, this.state.occurance, this.state.stackvalueone)
+     if(data.status){
+      tost()
+    }
     }
     catch(e){
       console.log("bet Error",e)
@@ -209,7 +223,6 @@ class GameCard extends Component {
       oneEventAmount: oneamount,
       twoEventAmount: twoamount
     })
-    // console.log('participants', this.state.eventoneparticipant,this.state.eventtwoparticipant,this.state.eventthreeparticipant)
   }
 
 
@@ -252,6 +265,7 @@ class GameCard extends Component {
     return (
       <Fragment>
         <App />
+        <div><Toaster/></div>
         <div className="row gx-0">
           <div className="col-12">
             <div className="match-main-div">
@@ -481,3 +495,4 @@ class GameCard extends Component {
   }
 }
 export default GameCard
+

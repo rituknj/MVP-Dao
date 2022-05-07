@@ -15,7 +15,18 @@ import { GoPrimitiveDot } from 'react-icons/go'
 import { TiStopwatch} from 'react-icons/ti'
 import {MdOutlineArrowForwardIos} from 'react-icons/md'
 import {ImFire} from 'react-icons/im'
+import toast, { Toaster } from 'react-hot-toast';
 
+const tost =()=> toast.success('Success.', {
+  style: {
+    padding: '16px',
+    color: '#000',
+  },
+  iconTheme: {
+    primary: '#0b0b0b',
+    secondary: '#ffffff',
+  },
+});
 
 
 
@@ -184,7 +195,10 @@ class GameCard extends Component {
 
   Onplacebet =async() => {
     try{
-      await placeBet(this.state.id, this.state.occurance, this.state.stackvalueone)
+     const data =  await placeBet(this.state.id, this.state.occurance, this.state.stackvalueone)
+     if(data.status){
+      tost()
+    }
     }
     catch(e){
       console.log("bet Error",e)
@@ -209,7 +223,6 @@ class GameCard extends Component {
       oneEventAmount: oneamount,
       twoEventAmount: twoamount
     })
-    // console.log('participants', this.state.eventoneparticipant,this.state.eventtwoparticipant,this.state.eventthreeparticipant)
   }
 
 
@@ -233,6 +246,7 @@ class GameCard extends Component {
       document.getElementById('sidebar').style.transform = 'translateX(-200%)';
       document.getElementById('sidebar').style.position = 'absolute';
     }
+ 
   }
   winningamount = (amountstake, poolsize) => {
     let totalstake = poolsize + amountstake
@@ -247,10 +261,11 @@ class GameCard extends Component {
 
 
   render() {
-    
+    console.log("cricket",this.state.match,window.match)
     return (
       <Fragment>
         <App />
+        <div><Toaster/></div>
         <div className="row gx-0">
           <div className="col-12">
             <div className="match-main-div">
@@ -480,3 +495,4 @@ class GameCard extends Component {
   }
 }
 export default GameCard
+
