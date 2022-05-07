@@ -2,9 +2,11 @@ import React, {useEffect, useStatem, Fragment, useState } from "react";
 import logo from '../../../images/logo.png';
 import { NavLink } from "react-router-dom";
 import {initInstance,loginProcess,getAccount} from './../../../web3/web3'
+import WalletPopup from "./WalletPopup";
 
 const Header=()=> {
     const [account, setAccount] = useState()
+    const [modalShow, setModalShow] = useState(false)
 
     useEffect(async()=>{
         await walletConnect()
@@ -57,14 +59,14 @@ const Header=()=> {
                                         <NavLink className="nav-link text-white mt-1" to="/app">MARKET</NavLink>
                                     </li>
                                     <li className="nav-item px-2 px-md-4" style={{cursor: "pointer"}}>
-                                        <span  className="nav-link text-white fs-4 cursor-pointer">Wallet</span>
+                                        <span  className="nav-link text-white fs-4 cursor-pointer" 
+                                        onClick={()=>setModalShow(true)}
+                                        >Wallet</span>
                                     </li>
-                                    <li className="nav-item px-2 px-md-4" style={{cursor: "pointer"}}>
-                                        <span  className="nav-link text-white fs-4" style={{border:'1px'}} onClick={()=>walletConnect()}>
-                                            {account ? slicing(account) : "Connect Wallet"}
-                                            </span>
-                                        {/* <button className="nav-link text-white fs-4" style={{textDecoration:'none', border:'none', }}>Connect Wallet</button> */}
-                                    </li>
+                                    <WalletPopup
+                                        show={modalShow}
+                                        onHide={() => setModalShow(false)}
+                                    />
                                 </ul>
                             </form>
                         </div>

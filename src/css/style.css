@@ -1735,7 +1735,7 @@ footer button {
 .main-dropdown{
   position: relative;
   outline: none;
-  z-index: 10000;
+  z-index: 5;
 }
 
 .catorgies {
@@ -2068,4 +2068,9 @@ footer button {
 .heroModal .modal-content{
   background-color: #0F0F0F !important;
   color: #fff;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

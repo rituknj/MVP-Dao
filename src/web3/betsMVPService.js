@@ -6,7 +6,7 @@ import { envdev } from "./environments";
 import BigInt from "big-integer";
 import { approveBUSD, isapproved } from "./betsService";
 import { strTimeToInt, fromWei } from './utils';
-import { get } from "jquery";
+import { Points } from "../Contract/Points";
 
 
 export const getBETMVPContract = async () => {
@@ -154,9 +154,8 @@ export const getEvent = async (eventID) => {
 }
 
 export const earnvalidationpoints = async (amount) => {
-    // console.log("values of big number",amount)
-    const betMVPContract = await getBETMVPContract();
-    const points = await betMVPContract.methods.earnValidationPoints(amount).send({
+    const betMVPContract = await getContract(Points, envdev.REACT_AAP_POINTS);
+    const points = await betMVPContract.methods.earnValidationPoints(amount.toString()).send({
         from: await getAccount(),
     
     });

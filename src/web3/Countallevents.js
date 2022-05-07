@@ -1,4 +1,3 @@
-import { get } from 'jquery'
 import React, { Component } from 'react'
 import { totalEvents, getEvent,getActiveEvents, bettorscountspercent, AmountStackOnEventByaUser,bettorscounts } from './betsMVPService'
 let newevents = 0
@@ -24,14 +23,14 @@ let newevents = 0
               let teamtwoParticipate = await bettorscounts(check2[0],1)
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])
               
-              let totalpoolsize = check2[4] 
+              let totalpoolsize = check2[6] 
               let percentwinnings = (stakeonevent/totalpoolsize)*100
               let potentialwinnings = Number((((totalpoolsize-stakeonevent)/100)*percentwinnings)/10**18).toFixed(2)
                 check.potential_wins = (Number(potentialwinnings) + Number(stakeonevent/10**18)).toFixed(2)
                 check.id = check2[0]
                 check.name = check2[3] 
-                check.description = check2[4]
-                check.url = check2[5]
+                check.descript = check2[4]
+                check.link = check2[5]
                 check.validate = check2[12]
                 check.poolsize = check2[6]
                 check.starttime = check2[7]
@@ -77,7 +76,7 @@ export const addingnewevents = async() => {
               let teamOneParticipate = await bettorscounts(check2[0],0)
               let teamtwoParticipate = await bettorscounts(check2[0],1)
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])
-              let totalpoolsize = check2[4] 
+              let totalpoolsize = check2[6] 
               let percentwinnings = (stakeonevent/totalpoolsize)*100
               let potentialwinnings = Number((((totalpoolsize-stakeonevent)/100)*percentwinnings)/10**18).toFixed(2)
             
@@ -87,8 +86,8 @@ export const addingnewevents = async() => {
                 check.potential_wins = (Number(potentialwinnings) + Number(stakeonevent/10**18)).toFixed(2)
                 check.id = check2[0]
                 check.name = check2[3] 
-                check.description = check2[4]
-                check.url = check2[5]
+                check.descript = check2[4]
+                check.link = check2[5]
                 check.validate = check2[12]
                 check.poolsize = check2[6]
                 check.starttime = check2[7]
@@ -102,8 +101,7 @@ export const addingnewevents = async() => {
                 check.creator = check2[22]
                 check.teamtwoParticipate = teamtwoParticipate
                 check.teamOneParticipate = teamOneParticipate
-                decodestoredevents.push(check)
-                
+                // decodestoredevents.push(check)
                 window.localStorage.setItem('events',JSON.stringify(decodestoredevents))
       }
 }
