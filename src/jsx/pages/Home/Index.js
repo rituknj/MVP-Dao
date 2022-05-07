@@ -29,6 +29,7 @@ import Playstation from "./../../../images/playstation.png"
 import { FaTwitter } from "react-icons/fa"
 import { AiFillLinkedin } from "react-icons/ai"
 import NFTsText from "./../../../images/nfts-side-text.png"
+import { ToastSuccess } from '../../components/Toast'
 
 import {
   allactiveusers,
