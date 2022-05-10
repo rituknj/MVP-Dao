@@ -21,7 +21,7 @@ class Footer extends Component {
                <a href="#" ><img src={icons_discord} className="mx-2" /></a> 
                <a href="https://betswamp.medium.com/" target="_blank"> <img src={bi_medium} className="mx-2" /></a>
                 <a href="https://github.com/Betswamp" target="_blank"> <img src={icons_github} className="mx-2" /></a>
-            <a href="https://t.me/betswamp_official" target='_blank'><img src={cib_telegram} className="mx-2" /></a>
+            <a href="https://t.me/Betswamp_DAO" target='_blank'><img src={cib_telegram} className="mx-2" /></a>
             </div>
         )
     }

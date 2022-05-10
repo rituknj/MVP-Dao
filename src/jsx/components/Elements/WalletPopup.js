@@ -9,7 +9,7 @@ import { getBETBalanceBUSD, getBETSV2Balance, getBUSDBalance, approvePoints, isP
 import {initInstance,loginProcess,getAccount} from './../../../web3/web3'
 import {AiFillQuestionCircle} from 'react-icons/ai'
 import Bar from './../../../images/bar.png'
-import {earnvalidationpoints,getValidationPoint} from './../../../web3/betsMVPService'
+import {earnvalidationpoints,getValidationPoint,totaltokenlocked,revokevalidationpointsearning} from './../../../web3/betsMVPService'
 
 export default function WalletPopup(props) {
 
@@ -19,10 +19,19 @@ export default function WalletPopup(props) {
   const [betprice, setBetPrice] = useState(0)
   const [betstolock, setBettolock] = useState(0)
   const [validationPoints, setValidationPoints] = useState(0)
+  const [lockedAmount, setLockedAmount] = useState(0)
 
   useEffect(async()=>{
       await initInstance();
-      const Bets = await getBETBalanceBUSD()
+      await allCalls();
+      setInterval(async()=>{
+        const valpoints = await getValidationPoint();
+        setValidationPoints(valpoints)
+      },3000)
+  },[])
+
+  const allCalls =async()=>{
+    const Bets = await getBETBalanceBUSD()
       setBETs(Bets)
       const busds = await getBUSDBalance();
       setbusd(busds)
@@ -30,8 +39,10 @@ export default function WalletPopup(props) {
       setbetsv2(betV2)
       const valpoints = await getValidationPoint();
       setValidationPoints(valpoints)
+      const locked = await totaltokenlocked()
+      setLockedAmount(locked/10**18)
       API_call();
-  },[])
+  }
 
   const [account, setAccount] = useState()
 
@@ -68,6 +79,13 @@ export default function WalletPopup(props) {
   }
 
   const LockBets =async()=>{
+    if(Number(lockedAmount)>0){
+     const data =  await revokevalidationpointsearning()
+     if(data.status){
+       await allCalls()
+     }
+     return true
+    }
     const amount = await isPointSapproved();
     if(Number(amount) > betstolock){
       await earnvalidationpoints(betstolock*10**18)
@@ -285,6 +303,8 @@ export default function WalletPopup(props) {
         <div className="text-white ms-4 mt-5">
             <p className="m-0">TOTAL VALIDATION POINTS EARNED</p>
             <p>{validationPoints}</p>
+            <p className="m-0">TOTAL LOCKED AMOUNT</p>
+            <p>{lockedAmount} sBET</p>
         </div>
         <div className="p-4 text-white w-75 mx-auto">
           <p>AVAILABLE:&nbsp;&nbsp; {betv2} sBETS</p>
@@ -297,7 +317,7 @@ export default function WalletPopup(props) {
           <input className="mx-auto d-block w-100 mt-3" style={{outline:'none'}} placeholder='Lock Amount' type='number' value={betstolock} onChange={(e)=>setBettolock(e.target.value)}/>
         </div>
 
-        <button className="w-100 p-3 font-weight-bold " style={{borderRadius:'10px'}} onClick={()=>LockBets()}>Lock</button>
+        <button className="w-100 p-3 font-weight-bold " style={{borderRadius:'10px'}} onClick={()=>LockBets()}>{Number(lockedAmount) <= 0 ? "Lock" : "Unlock"}</button>
       </Modal.Body>
     </Modal>
   );

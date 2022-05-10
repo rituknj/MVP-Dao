@@ -1750,6 +1750,9 @@ footer button {
   transform: translateY(-10px);
   transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
 }
+.sublinks{
+  cursor: pointer;
+}
 
 .main-dropdown:focus .catorgies{
   opacity: 1;
