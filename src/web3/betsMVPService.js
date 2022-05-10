@@ -140,13 +140,6 @@ export const earnvalidationpoints = async (amount) => {
         from: await getAccount(),
     
     });
-    if(points.status == true){
-        alert("Locked successfully")
-    }
-    else{
-        alert("Failed")
-    }
-    console.log('locked amount', points)
     return points;
 }
 
@@ -156,12 +149,6 @@ export const revokevalidationpointsearning = async () => {
         from: await getAccount(),
         
     });
-    if(earnedpoints.status == true){
-        alert("Unlocked successfully")
-    }
-    else{
-        alert("Failed")
-    }
     return earnedpoints;
 }
 
@@ -170,12 +157,6 @@ export const claimpoints = async () => {
     const earnedpoints = await betMVPContract.methods.claimValidationPoint().send({
         from: await getAccount(),   
     });;
-    if(earnedpoints.status == true){
-        alert("Claimed Successfully")
-    }
-    else{
-        alert("Failed")
-    }
     return earnedpoints;
 }
 

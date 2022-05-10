@@ -10,6 +10,18 @@ import {initInstance,loginProcess,getAccount} from './../../../web3/web3'
 import {AiFillQuestionCircle} from 'react-icons/ai'
 import Bar from './../../../images/bar.png'
 import {earnvalidationpoints,getValidationPoint,totaltokenlocked,revokevalidationpointsearning} from './../../../web3/betsMVPService'
+import toast, { Toaster } from 'react-hot-toast';
+
+const tost =()=> toast.success('Success.', {
+  style: {
+    padding: '16px',
+    color: '#000',
+  },
+  iconTheme: {
+    primary: '#0b0b0b',
+    secondary: '#ffffff',
+  },
+});
 
 export default function WalletPopup(props) {
 
@@ -25,8 +37,7 @@ export default function WalletPopup(props) {
       await initInstance();
       await allCalls();
       setInterval(async()=>{
-        const valpoints = await getValidationPoint();
-        setValidationPoints(valpoints)
+        await allCalls();
       },3000)
   },[])
 
@@ -77,22 +88,29 @@ export default function WalletPopup(props) {
       })
 
   }
+  const Unlock=async()=>{
+      const data =  await revokevalidationpointsearning()
+      if(data.status){
+        tost()
+        await allCalls()
+      }
+  }
 
   const LockBets =async()=>{
-    if(Number(lockedAmount)>0){
-     const data =  await revokevalidationpointsearning()
-     if(data.status){
-       await allCalls()
-     }
-     return true
-    }
+    
     const amount = await isPointSapproved();
     if(Number(amount) > betstolock){
-      await earnvalidationpoints(betstolock*10**18)
+      const data = await earnvalidationpoints(betstolock*10**18)
+      if(data.status){
+        tost()
+      }
     }
     else{
       await approvePoints()
-      await earnvalidationpoints(betstolock*10**18)
+      const data = await earnvalidationpoints(betstolock*10**18)
+      if(data.status){
+        tost()
+      }
     }
   }
 
@@ -305,6 +323,7 @@ export default function WalletPopup(props) {
             <p>{validationPoints}</p>
             <p className="m-0">TOTAL LOCKED AMOUNT</p>
             <p>{lockedAmount} sBET</p>
+           {Number(lockedAmount) > 0 ? <button className="w-10 p-3 font-weight-bold " style={{borderRadius:'10px'}} onClick={()=>Unlock()}>Unlock</button> : ''}
         </div>
         <div className="p-4 text-white w-75 mx-auto">
           <p>AVAILABLE:&nbsp;&nbsp; {betv2} sBETS</p>
@@ -317,8 +336,9 @@ export default function WalletPopup(props) {
           <input className="mx-auto d-block w-100 mt-3" style={{outline:'none'}} placeholder='Lock Amount' type='number' value={betstolock} onChange={(e)=>setBettolock(e.target.value)}/>
         </div>
 
-        <button className="w-100 p-3 font-weight-bold " style={{borderRadius:'10px'}} onClick={()=>LockBets()}>{Number(lockedAmount) <= 0 ? "Lock" : "Unlock"}</button>
+        <button className="w-100 p-3 font-weight-bold " style={{borderRadius:'10px'}} onClick={()=>LockBets()}>Lock</button>
       </Modal.Body>
+      <div><Toaster/></div>
     </Modal>
   );
 }
