@@ -24,6 +24,7 @@ class Index extends Component {
     this.state = {
       activeTabTop: false,
       catogries: '',
+      activeTabBottom: 1,
       selectedcat: false,
       payout: 0,
       activeusers: 0,

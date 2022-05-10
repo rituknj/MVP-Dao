@@ -3,7 +3,7 @@ import { totalEvents, getEvent,getActiveEvents, bettorscountspercent, AmountStac
 let newevents = 0
 
  export const TotalEventsCount = async() => {
-          console.log("TotalEventsCount")
+         
           let check
           let check2
           let one
@@ -48,7 +48,7 @@ let newevents = 0
                 check.two = two
                 check.teamtwoParticipate = teamtwoParticipate
                 check.teamOneParticipate = teamOneParticipate
-                console.log("check",check, zero,one,two)
+            
                 getevents.push(check)
                 newevents = getevents
               
@@ -66,7 +66,9 @@ export const addingnewevents = async() => {
   let zero
   let activeEvents = await getActiveEvents();
   let newevent = await totalEvents();
+  
   decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+  
   if(newevent > decodestoredevents.length) {
               check2 = await getEvent(newevent-1)
               check = Object.create(check2)
@@ -101,7 +103,7 @@ export const addingnewevents = async() => {
                 check.creator = check2[22]
                 check.teamtwoParticipate = teamtwoParticipate
                 check.teamOneParticipate = teamOneParticipate
-                // decodestoredevents.push(check)
+                decodestoredevents.push(check)
                 window.localStorage.setItem('events',JSON.stringify(decodestoredevents))
       }
 }

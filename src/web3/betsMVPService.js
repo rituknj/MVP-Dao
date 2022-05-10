@@ -235,6 +235,7 @@ export const bettorscounts = async (id, occured) => {
 export const bettorscountspercent = async (id, occured,bettcont) => {
     const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const bettes = await (betMVPContract.methods.getOccurrenceBetCount(id, occured).call())/bettcont*100
+    console.log("Id is and bet ocunt",bettes,id)
     return bettes
 }
 

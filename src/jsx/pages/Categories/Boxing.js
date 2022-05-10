@@ -261,7 +261,7 @@ class GameCard extends Component {
 
 
   render() {
-    console.log("cricket",this.state.match,window.match)
+   
     return (
       <Fragment>
         <App />

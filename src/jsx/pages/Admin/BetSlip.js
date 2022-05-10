@@ -37,7 +37,7 @@ export default function BetSlip() {
       decodestoredevents.forEach(async (element) => {
 
         for(let i = 0; i < userBethistory.length; i++){
-          console.log("history", element.id,userbethty[i])
+         
           if(Number(element.id) == userbethty[i]){
             let won = await GetUserWonAmountOnEvent(element.id)
             element.won = won

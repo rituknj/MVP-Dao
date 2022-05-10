@@ -2,6 +2,7 @@ import { createEvent } from './../../../web3/betsMVPService'
 import React from 'react'
 import { GoPrimitiveDot } from 'react-icons/go'
 import toast, { Toaster } from 'react-hot-toast';
+import { placeBet, UserEventHistory } from './../../../web3/betsMVPService'
 
 const tost =()=> toast.success('Success.', {
   style: {
@@ -36,6 +37,12 @@ export class StepFour extends React.Component {
     const data = await createEvent(window.subTitle,window.description,window.url,window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome);  
     if(data.status){
       tost()
+      const id = await UserEventHistory()
+      const placebetdata = await placeBet(id[id.length-1],0,window.anmount)
+      console.log("palcebet",placebetdata )
+      if(placebetdata.status){
+        tost()
+      }
     }
   }
 

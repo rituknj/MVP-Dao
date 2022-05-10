@@ -35,7 +35,7 @@ class AdminHeader extends Component {
               <img src={logo} style={{ height: "70px", width: "70px" }} />
             </a>
             <div className="d-flex">
-              {console.log(this.state.modalShow)}
+              
               <ul
                 className="navbar-nav ms-md-auto mb-2 mb-lg-0 flex-row"
                 id="admin-navbar-nav"
