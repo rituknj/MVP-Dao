@@ -322,6 +322,7 @@ export const getvalidatorHistory = async()=>{
     const resutl = await betMVPContract.methods.validatorHistory(await getAccount()).call();
     return resutl;
 }
+
 export const validatorsRewardOnEvnet = async(id)=>{
     const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const resutl = await betMVPContract.methods.getValidatorRewardOnEvent(id,await getAccount()).call();

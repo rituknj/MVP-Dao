@@ -1,9 +1,7 @@
-import { computeHeadingLevel } from "@testing-library/react";
-import { event } from "jquery";
 import React,{useEffect, useState} from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { getTotalValidatorRewardEarned, getvalidatorsRewardOnEvnet,getusertotalwinnings, AmountStackOnEventByaUser, userBethistory,claimrewards,validateEvent } from "../../../web3/betsMVPService";
+import { getTotalValidatorRewardEarned, getvalidatorsRewardOnEvnet,getusertotalwinnings, AmountStackOnEventByaUser, userBethistory,claimrewards,validateEvent, getvalidatorHistory } from "../../../web3/betsMVPService";
 
 export default function ValidateEvents() {
     const [allvalidatevents, setAllValidateEvent] = useState([])
@@ -21,6 +19,7 @@ export default function ValidateEvents() {
       setTotalWon(totalwon/10**18)
       const reward = await getTotalValidatorRewardEarned()
       setValidatorReward(reward)
+      const validatorhstry = await getvalidatorHistory()
       const userbethty = await userBethistory()
       userbethty.forEach(async (ele) =>{
         const amountstake = await AmountStackOnEventByaUser(ele)
@@ -32,7 +31,9 @@ export default function ValidateEvents() {
       const evnets = []
 
       for(let i = 0; i<decodestoredevents.length; i++){
-        if(decodestoredevents[i].validate){
+        console.log("validted events",validatorhstry)
+        console.log("validted events",validatorhstry.includes(Number(decodestoredevents[i].id)) && decodestoredevents[i].validate)
+        if(validatorhstry.includes(decodestoredevents[i].id) && decodestoredevents[i].validate){
           const data = decodestoredevents[i]
           data.reward = await getvalidatorsRewardOnEvnet(data.id)
           evnets.push(data)
@@ -47,7 +48,7 @@ export default function ValidateEvents() {
       // });
       
       decodestoredevents.forEach(element => {
-        if(!element.validate){
+        if(!element.validate && element.endtime < Math.round((new Date()).getTime() / 1000)){
           nonvalidated.push(element)
         }
       });
@@ -175,7 +176,7 @@ export default function ValidateEvents() {
           style={{ borderColor: "#ED2FC3" }}
         >
           <span>TOTAL</span>
-          <h5>AMOUNT LOST</h5>
+          <h5>VALIDATION POINTS</h5>
           <hr className="text-danger" />
           <p>${totaluserbetlost - totalwon}</p>
         </div>
@@ -227,7 +228,7 @@ export default function ValidateEvents() {
               <p>{allnonevnets[skip].teamone} VS {allnonevnets[skip].teamtwo}</p>
               <br />
               <h5>LINK</h5>
-              <a href={allnonevnets[skip].url}>{allnonevnets[skip].url}</a>
+              <a href={allnonevnets[skip].link}>{allnonevnets[skip].link}</a>
               <br />
               <br />
               <h5>PREFFERED ODD</h5>
