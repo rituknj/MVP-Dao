@@ -207,7 +207,7 @@ class Index extends Component {
                 onClick={() => this.selectedcategory()}
                 contentEditable='false'
               >
-                <p>{
+                <p className='mb-0'>{
                   window.location.pathname == '/soccer'
                   ? 'Soccer'
                   : window.location.pathname == '/rugby'
