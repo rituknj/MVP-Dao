@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Down from './../../../images/down.png'
+import Down from "./../../../images/down.png";
 import GameCard from "../../components/Cards/GameCard";
 import AppHeader from "../../components/Elements/AppHeader";
 import { NavLink, Link, useRouteMatch } from "react-router-dom";
@@ -19,47 +19,99 @@ class Index extends Component {
     this.state = {
       activeTabTop: 0,
       activeTabBottom: 1,
-      selectedcat: 'soccor'
+      selectedcat: "soccor",
     };
   }
-  componentDidMount = () => { 
-    
-  };
-
+  componentDidMount = () => {};
 
   handelMatchTab = (tab) => {
     this.setState({
-      activeTabBottom: tab
+      activeTabBottom: tab,
     });
   };
 
   selectedcategory = (cat) => {
-    this.setState({selectedcat:cat})
-    console.log("clicked on",this.state.selectedcat)
+    this.setState({ selectedcat: cat });
+    console.log("clicked on", this.state.selectedcat);
   };
-  
+
   handelGamesTab = (tab) => {
     this.setState({
-      activeTabTop:tab
-    })
-    console.log('this is ', this.state.activeTabTop)
+      activeTabTop: tab,
+    });
+    console.log("this is ", this.state.activeTabTop);
   };
-
-
- 
-
 
   render() {
     return (
       <Fragment>
         <div className="container-fluid px-md-5 p-2 slider top-image">
-            <p className="mt-4 mt-md-4 text-white sporttag">#Sports</p>
-        <div className="catogories-dropdown">
+          <p className="mt-4 mt-md-4 text-white sporttag">#Sports</p>
+          <div class="dropdown categories-dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle border-0 px-4 py-2 fs-5"
+              style={{backgroundColor:"#4D4A4A"}}
+              type="button"
+              id="dropdownMenu2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Categories
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
+              <li>
+                <button class="dropdown-item" type="button">
+                SPORTS
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                WEATHER
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                REALITY TV SHOWS
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                POLITICS
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                AWARDS
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                DEAD POOL
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                GAMES
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                MARKET PREDICTION
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                SPECIAL
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                OTHERS
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
-        </div>
-        
-
-       
       </Fragment>
     );
   }

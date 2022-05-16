@@ -1642,6 +1642,20 @@ footer button {
   background-position: center;
   background-repeat: no-repeat;
   height: 400px;
+  position: relative;
+}
+.categories-dropdown{
+  position: absolute !important;
+  right: 20px;
+  bottom: 20px;
+}
+.categories-dropdown ul li button{
+  color: rgb(202, 202, 202);
+}
+.categories-dropdown ul li:hover button{
+  background-image: none !important;
+  background-color: #272727;
+  color: #fff;
 }
 .btn-video-zm {
   margin:15px;
