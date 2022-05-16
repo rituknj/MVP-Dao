@@ -197,7 +197,7 @@ class Index extends Component {
         </div>
         <div className=" sub-catogries mt-0 p-1 p-md-5 text-white" id="navbarsExample05">
           <div style={{overflow:'visible'}}>
-          <p>Select Subcategory Categories</p>
+          <p>Select Subcategories</p>
             <div className='main-dropdown'
             disabled
             contentEditable='true'

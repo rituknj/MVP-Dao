@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect,useLayoutEffect} from 'react'
 import { StepFour } from '../../components/Elements/StepFour';
 import { StepOne } from '../../components/Elements/StepOne';
 import { StepThree } from '../../components/Elements/StepThree';
@@ -6,6 +6,7 @@ import { StepTwo } from '../../components/Elements/StepTwo';
 import MultiStep from "react-multistep";
 import icon from '../../../images/icon-park-outline_history-query.png'
 import { FiArrowLeft } from 'react-icons/fi'
+import { CreatorReward } from './../../../web3/betsMVPService'
 
 export default function CreateEvent() {
 
@@ -13,18 +14,21 @@ export default function CreateEvent() {
     const [completed, setCompleted] = useState([])
     const [option, setOption] = useState(1)
     const [notComplete, setNotcomplete] = useState([])
-    useEffect(()=>{
+
+
+    useLayoutEffect(()=>{
         const completed =async()=>{
-            try{
-                const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-                setCompleted(decodestoredevents)
-            }
-            catch(e){
-                console.log("Error is ",e)
-            }
-            completed();
+            const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+            decodestoredevents.forEach(async(element) => {
+                const reward = await CreatorReward(element.id)
+                element.creatoraward = reward
+              });
+            setCompleted(decodestoredevents)
         }
+        completed();
     },[])
+
+
     const steps = [
         { name: "Name A", component: <StepOne /> },
         { name: "Email", component: <StepTwo /> },
@@ -96,7 +100,7 @@ export default function CreateEvent() {
             </>
         )
     }
-
+    
     const renderNotCompleted = (completedCards, index) => {
         return (
             <>
@@ -122,6 +126,7 @@ export default function CreateEvent() {
         )
     }
 
+    console.log(completed)
     return (
         <div className='createEvent-main py-3'>
             <div className="container-fluid d-flex justify-content-between">

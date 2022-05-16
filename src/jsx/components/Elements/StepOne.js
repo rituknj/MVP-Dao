@@ -24,6 +24,11 @@ export class StepOne extends React.Component {
     window.subTitle = event.target.value
    
   }
+  handleCategoryChanged(event) {
+   
+    window.cat = event.target.value
+   
+  }
   handlediscriptionChanged(event) {
     window.description = event.target.value
    
@@ -33,7 +38,7 @@ export class StepOne extends React.Component {
   }
 
   render() {
-    console.log(window.eventTitle)
+    
     return (
       <div>
         <h5>Create events on literally anything verifiable</h5>
@@ -52,6 +57,25 @@ export class StepOne extends React.Component {
         <div className="my-3">
           <label for="inputEventTitle" className="form-label">URL</label>
           <input type="url" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" value={window.url} onChange={(e)=>this.handleurlChanged(e)} autoFocus/>
+        </div>
+        <div className="mb-3">
+          <label for="inputSubCategory" className="form-label">CATEGORY</label>
+          <select
+            className="form-select bg-dark border-0 text-light "
+            id="specificSizeSelect"
+            value={window.cat}
+            onChange={(e)=>this.handleCategoryChanged(e)}
+          >
+            <option value="SPORTS">SPORTS</option>
+            <option value="WEATHER">WEATHER</option>
+            <option value="REALITY_TV_SHOWS">REALITY TV SHOWS</option>
+            <option value="POLITICS">POLITICS</option>
+            <option value="AWARDS">AWARDS</option>
+            <option value="DEAD_POOL">DEAD POOL</option>
+            <option value="GAMES">GAMES</option>
+            <option value="MARKET_PREDICTION">MARKET PREDICTION</option>
+            <option value="SPECIAL">SPECIAL</option>
+          </select>
         </div>
         <div className="mb-3">
           <label for="inputSubCategory" className="form-label">SUB CATEGORY</label>

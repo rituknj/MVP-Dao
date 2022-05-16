@@ -42,11 +42,15 @@ class Index extends Component {
     console.log("this is ", this.state.activeTabTop);
   };
 
+  handlechange=(cat)=>{
+    window.maincatogries = cat
+  }
+
   render() {
     return (
       <Fragment>
         <div className="container-fluid px-md-5 p-2 slider top-image">
-          <p className="mt-4 mt-md-4 text-white sporttag">#Sports</p>
+          <p className="mt-4 mt-md-4 text-white sporttag">#{window.maincatogries}</p>
           <div class="dropdown categories-dropdown">
             <button
               class="btn btn-secondary dropdown-toggle border-0 px-4 py-2 fs-5"
@@ -60,52 +64,52 @@ class Index extends Component {
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
               <li>
-                <button class="dropdown-item" type="button">
+                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("SPORTS")} >
                 SPORTS
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button">
+                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("WEATHER")} >
                 WEATHER
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button">
+                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("REALITY TV SHOWS")} >
                 REALITY TV SHOWS
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button">
+                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("POLITICS")} >
                 POLITICS
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button">
+                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("AWARDS")} >
                 AWARDS
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button">
+                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("DEAD POOL")} >
                 DEAD POOL
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button">
+                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("GAMES")} >
                 GAMES
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button">
+                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("MARKET PREDICTION")} >
                 MARKET PREDICTION
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button">
+                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("SPECIAL")} >
                 SPECIAL
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button">
+                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("OTHERS")} >
                 OTHERS
                 </button>
               </li>

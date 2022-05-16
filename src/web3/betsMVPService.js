@@ -86,7 +86,13 @@ export const getValidationPoint = async () => {
     return _validationPoint;
 }
 
-export const UserEventHistory = async () =>{
+export const UserEventHistory = async (id) =>{
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const betsHistory = await betMVPContract.methods.getCreatorRewardOnEvent(await getAccount(), id).call();
+    return betsHistory;
+}
+
+export const CreatorReward = async () =>{
     const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const betsHistory = await betMVPContract.methods.getUserEventHistory(await getAccount()).call();
     return betsHistory;

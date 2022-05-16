@@ -19,7 +19,8 @@ export default function BetSlip() {
     const getUserBetData = async()=>{
       let check = []
       let stake = 0
-      const usereventhty = await UserEventHistory();
+      let usereventhty = []
+      usereventhty = await UserEventHistory();
       setTotalUserEvent(usereventhty.length)
       const totalwinning = await getusertotalwinnings();
       const userbethty = await userBethistory()
