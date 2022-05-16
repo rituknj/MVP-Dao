@@ -232,3 +232,4 @@ export const getContract = async(abi, address) => {
 export const disconnectWallet = () => {
     window.location.replace('/');
 }
+

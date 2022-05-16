@@ -127,16 +127,15 @@ class GameCard extends Component {
     if (isNaN(potentialwins)) {
       potentialwins = 0
     }
-
-    // console.log("potential win", potentialwins)
     await this.countbettors(eventid);
 
-    var ts = Math.round((new Date()).getTime() / 1000);
-    let lefttime = endtime - ts
-    lefttime = parseInt(Math.floor(lefttime / 3600) / 24);
-    if (lefttime < 0) {
-      lefttime = 0
+    var current = Math.round(new Date().getTime()/1000)
+    var seconds =  (endtime/1000)-current 
+    var lefttime = Math.floor(seconds/86400)
+    if(lefttime<0){
+      lefttime = 0;
     }
+   
 
     if (this.state.active === false) {
       this.setState({
@@ -204,9 +203,7 @@ class GameCard extends Component {
       console.log("bet Error",e)
     }
   }
-  getdata = (v) => {
-
-  }
+ 
 
   countbettors = async (id) => {
     let one = await bettorscounts(id, 0)
@@ -256,12 +253,11 @@ class GameCard extends Component {
       potentialwinnings = 0
     }
     return Number(potentialwinnings + amountstake).toFixed(2)
-
   }
 
 
   render() {
-    
+    // console.log("time",Math.round((new Date()).getTime() / 1000))
     return (
       <Fragment>
         <App />
@@ -273,11 +269,11 @@ class GameCard extends Component {
                 <div className="betting-cards" onClick={this.mouseclass}>
 
                   {/* *******************Slider*************** */}
-                  <div className='sidebarNew shadow-lg me-auto gx-3' id="sidebar">
+                  <div className='sidebarNew shadow-lg gx-3' id="sidebar">
                     <div className="container-fluid category-title py-4">
                       <div className='d-flex justify-content-between'>
                         <div id="img-head">
-                          <h4 className='fs-5'><GoPrimitiveDot style={{ color: "green" }} /> {this.state.category}</h4>
+                        <h4 className='fs-5'> {Math.round((new Date()).getTime() / 1000) > this.state.globalendtime ? <img src={redDot} className="red-dot" width="12" /> : <img src={greenDot} className="me-2" width="12" />} {this.state.category}</h4>
                           <span>{this.state.teamone} <span className='text-danger'>vs</span> {this.state.teamtwo}</span>
                         </div>
                         <div id="date"><p>25 Feb &nbsp;&nbsp;&nbsp;<span>2022</span></p></div>
@@ -487,7 +483,7 @@ class GameCard extends Component {
             </div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <h3>V 1.0</h3>
+            <h3>V 2.0</h3>
           </div>
         </div>
       </Fragment>

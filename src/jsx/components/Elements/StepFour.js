@@ -4,7 +4,7 @@ import { GoPrimitiveDot } from 'react-icons/go'
 import toast, { Toaster } from 'react-hot-toast';
 import { placeBet, UserEventHistory } from './../../../web3/betsMVPService'
 
-const tost =()=> toast.success('Success.', {
+const tost =(msg)=> toast.success(msg, {
   style: {
     padding: '16px',
     color: '#000',
@@ -14,6 +14,8 @@ const tost =()=> toast.success('Success.', {
     secondary: '#ffffff',
   },
 });
+
+const tostError =(error)=> toast.error(error);
 
 export class StepFour extends React.Component {
   constructor() {
@@ -27,6 +29,7 @@ export class StepFour extends React.Component {
   }
 
   handleBetAmountChanged(event) {
+
     window.anmount = event.target.value
   }
   
@@ -34,16 +37,48 @@ export class StepFour extends React.Component {
   CreateEvent =async()=>{
     const starttime = parseInt((new Date(window.starttime).getTime()).toFixed(0),)
     const endtime = parseInt((new Date(window.endtime).getTime()).toFixed(0),)
-    const data = await createEvent(window.subTitle,window.description,window.url,window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome);  
-    if(data.status){
-      tost()
-      const id = await UserEventHistory()
-      const placebetdata = await placeBet(id[id.length-1],0,window.anmount)
-      console.log("palcebet",placebetdata )
-      if(placebetdata.status){
-        tost()
+    console.log(window.eventTitle)
+    if(!window.eventTitle || window.eventTitle == ''){
+      tostError("Please Enter Valid Event Title")
+    }
+    else if (!window.description || window.description == ''){
+      tostError("Please Fill Discription")
+      
+    }
+    else if (!window.url || window.url == ''){
+      tostError("Please Enter Valid Url")
+    }
+    else if (window.outcome == 0 || window.outcome > 3 || !window.outcome){
+      tostError("Outcome should be less than 3 and more than 1")
+    }
+
+    else if (!window.preferredoutcome || window.preferredoutcome == ''){
+      tostError("Please Fill Valid Preferred Outcome")
+      
+    }
+    else if (!window.oppossingoutcome || window.oppossingoutcome == ''){
+      tostError("Please Fill Valid Preferred Outcome")
+    }
+
+    else if(starttime > endtime){
+      tostError("StartTime can not be greater than EndTime")
+    }
+    else if (!window.anmount || window.anmount == 0) {
+      tostError("Bet Amount should be greater than 0")
+    }
+    else{
+      const data = await createEvent(window.subTitle,window.description,window.url,window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome);  
+      if(data.status){
+        tost("Event Create Successfully")
+        const id = await UserEventHistory()
+        const placebetdata = await placeBet(id[id.length-1],0,window.anmount)
+        console.log("palcebet",placebetdata )
+        if(placebetdata.status){
+          tost("Creator Bet Successfully")
+        }
       }
     }
+   
   }
 
   render() {
@@ -54,12 +89,12 @@ export class StepFour extends React.Component {
         <div className="container selectBet">
           <p>PREFERRED OUTCOME</p>
           <div id={`betA`}>
-            <p className="fs-6 mb-2">CHEALSEA</p>
+            <p className="fs-6 mb-2">{window.preferredoutcome}</p>
             <p>
               Participants: <span>0</span>
             </p>
             <p>
-              Total amount betted: <span>$0</span>
+              Total amount betted: <span>${window.anmount}</span>
             </p>
             <GoPrimitiveDot
               style={{ position: 'absolute', top: '15px', right: '15px' }}

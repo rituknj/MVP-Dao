@@ -51,7 +51,7 @@ export class StepOne extends React.Component {
         </div>
         <div className="my-3">
           <label for="inputEventTitle" className="form-label">URL</label>
-          <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" value={window.url} onChange={(e)=>this.handleurlChanged(e)} autoFocus/>
+          <input type="url" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" value={window.url} onChange={(e)=>this.handleurlChanged(e)} autoFocus/>
         </div>
         <div className="mb-3">
           <label for="inputSubCategory" className="form-label">SUB CATEGORY</label>

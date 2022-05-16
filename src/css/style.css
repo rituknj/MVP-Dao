@@ -1861,6 +1861,7 @@ footer button {
   background-color: #0F0F0F;
   min-height: 90vh;
   width: 100%;
+  overflow: hidden;
 }
 
 /* CREATE EVENT */
@@ -1944,6 +1945,8 @@ footer button {
 .validate-event-main .row .col{
   border-left: 3px solid;
   width: 275px;
+  background-color: #1c1c1c;
+  color: #fff;
 }
 .validate-event-main .row .col span{
   font-size: 12px;

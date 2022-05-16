@@ -1,7 +1,9 @@
 import React,{useEffect, useState} from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { getTotalValidatorRewardEarned, getvalidatorsRewardOnEvnet,getusertotalwinnings, AmountStackOnEventByaUser, userBethistory,claimrewards,validateEvent, getvalidatorHistory } from "../../../web3/betsMVPService";
+import { getTotalValidatorRewardEarned, getvalidatorsRewardOnEvnet,getusertotalwinnings, AmountStackOnEventByaUser, userBethistory,claimrewards,validateEvent, getvalidatorHistory, getValidationPoint } from "../../../web3/betsMVPService";
+import { getBETSV2Balance } from './../../../web3/betsService'
+
 
 export default function ValidateEvents() {
     const [allvalidatevents, setAllValidateEvent] = useState([])
@@ -11,6 +13,9 @@ export default function ValidateEvents() {
     const [totaluserbetlost, setTotalUserBetLost] = useState(0)
     const [validatorReward, setValidatorReward] = useState(0)
     const [occur, setoccur] = useState(0)
+    const [checkbox, setCheckBox] = useState(false)
+    const [sbets, setSbets] = useState(0)
+    const [uservalidationpoints, setUserValidationPoints] = useState(0)
     
 
     useEffect(async()=>{
@@ -19,6 +24,10 @@ export default function ValidateEvents() {
       setTotalWon(totalwon/10**18)
       const reward = await getTotalValidatorRewardEarned()
       setValidatorReward(reward)
+      const sbets = await getBETSV2Balance();
+      const uservalidpoints = await getValidationPoint()
+      setUserValidationPoints(uservalidpoints)
+      setSbets(sbets)
       const validatorhstry = await getvalidatorHistory()
       const userbethty = await userBethistory()
       userbethty.forEach(async (ele) =>{
@@ -31,8 +40,6 @@ export default function ValidateEvents() {
       const evnets = []
 
       for(let i = 0; i<decodestoredevents.length; i++){
-        console.log("validted events",validatorhstry)
-        console.log("validted events",validatorhstry.includes(Number(decodestoredevents[i].id)) && decodestoredevents[i].validate)
         if(validatorhstry.includes(decodestoredevents[i].id) && decodestoredevents[i].validate){
           const data = decodestoredevents[i]
           data.reward = await getvalidatorsRewardOnEvnet(data.id)
@@ -152,6 +159,7 @@ export default function ValidateEvents() {
     await validateEvent(id, occur)
   }
 
+  
   return (
     <div className="validate-event-main">
       {/* CARD STAT */}
@@ -178,16 +186,16 @@ export default function ValidateEvents() {
           <span>TOTAL</span>
           <h5>VALIDATION POINTS</h5>
           <hr className="text-danger" />
-          <p>${totaluserbetlost - totalwon}</p>
+          <p>${uservalidationpoints}</p>
         </div>
         <div
           className="col p-2 shadow rounded my-3 mx-1"
           style={{ borderColor: "#FF9A02" }}
         >
           <span>TOTAL</span>
-          <h5>AMOUNT WON</h5>
+          <h5>sBETS</h5>
           <hr className="text-success" />
-          <p>${totalwon}</p>
+          <p>{sbets}</p>
         </div>
         {/* <div className="col p-2 shadow rounded my-3 mx-1 border-success">
           <span>PENDING</span>
@@ -245,7 +253,7 @@ export default function ValidateEvents() {
               <label htmlFor="odd3">DRAW</label>
             </div>
             <div className="d-flex">
-              <input type="checkbox" id="acceptTerm" />
+              <input type="checkbox" id="acceptTerm" value={checkbox} onClick={()=>setCheckBox(!checkbox)} />
               &nbsp;&nbsp;
               <label htmlFor="acceptTerm">
                 I verify my selection on this event is accurate and in line with
@@ -254,7 +262,7 @@ export default function ValidateEvents() {
             </div>
             <div className="d-flex justify-content-evenly">
               <button
-                className="btn my-3 p-3 fw-bold justify-content-between d-flex"
+                className={`btn my-3 p-3 fw-bold justify-content-between d-flex ${checkbox ? `` : `disabled`}`}
                 style={{ backgroundColor: "#fff", color: "#000", width: "45%" }}
                 onClick={()=>validateEvenet(allnonevnets[skip].id)}
               >
