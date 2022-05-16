@@ -74,6 +74,7 @@ export default function CreateEvent() {
     const renderCompleted = (completedCards, index) => {
         return (
             <>
+            {}
             {completedCards.validate ? <div className="card my-4" key={index} style={{backgroundColor:"#1c1c1c"}}>
         <div className="card-header text-secondary">
             <span>#{completedCards.subcategory}</span>
