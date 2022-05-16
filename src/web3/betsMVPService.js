@@ -153,7 +153,7 @@ export const revokevalidationpointsearning = async () => {
 }
 
 export const claimpoints = async () => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(Points, envdev.REACT_AAP_POINTS);
     const earnedpoints = await betMVPContract.methods.claimValidationPoint().send({
         from: await getAccount(),   
     });;

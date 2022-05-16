@@ -9,7 +9,7 @@ import { getBETBalanceBUSD, getBETSV2Balance, getBUSDBalance, approvePoints, isP
 import {initInstance,loginProcess,getAccount} from './../../../web3/web3'
 import {AiFillQuestionCircle} from 'react-icons/ai'
 import Bar from './../../../images/bar.png'
-import {earnvalidationpoints,getValidationPoint,totaltokenlocked,revokevalidationpointsearning} from './../../../web3/betsMVPService'
+import {earnvalidationpoints,getValidationPoint,totaltokenlocked,revokevalidationpointsearning,claimpoints,pendingpoint} from './../../../web3/betsMVPService'
 import toast, { Toaster } from 'react-hot-toast';
 
 const tost =()=> toast.success('Success.', {
@@ -32,6 +32,7 @@ export default function WalletPopup(props) {
   const [betstolock, setBettolock] = useState(0)
   const [validationPoints, setValidationPoints] = useState(0)
   const [lockedAmount, setLockedAmount] = useState(0)
+  const [getpendingpoint, setGetPendingPoints] = useState(0)
 
   useEffect(async()=>{
       await initInstance();
@@ -52,6 +53,8 @@ export default function WalletPopup(props) {
       setValidationPoints(valpoints)
       const locked = await totaltokenlocked()
       setLockedAmount(locked/10**18)
+      const pending = await pendingpoint();
+      setGetPendingPoints(pending)
       API_call();
   }
 
@@ -111,6 +114,12 @@ export default function WalletPopup(props) {
       if(data.status){
         tost()
       }
+    }
+  }
+  const ValidationPointsClaim =async()=>{
+    const data = await claimpoints();
+    if(data.status){
+      tost()
     }
   }
 
@@ -281,12 +290,15 @@ export default function WalletPopup(props) {
             {account ? <BsCircleFill color="green" /> : ""} &nbsp;&nbsp;
             {account ? slicing(account) : "Connect Wallet"}
           </span>
+          <a href="https://pancakeswap.finance/swap?outputCurrency=0x749f031FDa3a4904b026f2275A697096492a129d"
+          target='_blank'>
           <button
             className="border-0 rounded-pill px-3"
             style={{ backgroundColor: "#1C1C1C", color: "#BCBCBC" }}
           >
             BUY BETS
           </button>
+          </a>
         </div>
         <div className="text-center my-5 text-light">
           <h4 style={{ color: "#BCBCBC" }}>TOTAL BALANCE</h4>
@@ -320,10 +332,11 @@ export default function WalletPopup(props) {
         </div>
         <div className="text-white ms-4 mt-5">
             <p className="m-0">TOTAL VALIDATION POINTS EARNED</p>
-            <p>{validationPoints}</p>
+            <p>{validationPoints}&nbsp;&nbsp; <span className="text-muted">(Pending {getpendingpoint})</span></p>
+            {Number(lockedAmount) > 0 ? <button className="w-10 p-3 font-weight-bold " style={{borderRadius:'10px'}} onClick={()=>ValidationPointsClaim()}>Claim</button>: ''}
             <p className="m-0">TOTAL LOCKED AMOUNT</p>
             <p>{lockedAmount} sBET</p>
-           {Number(lockedAmount) > 0 ? <button className="w-10 p-3 font-weight-bold " style={{borderRadius:'10px'}} onClick={()=>Unlock()}>Unlock</button> : ''}
+           {Number(lockedAmount) > 0 ? <button className="w-10 p-3 font-weight-bold" style={{borderRadius:'10px'}} onClick={()=>Unlock()}>Unlock</button> : ''}
         </div>
         <div className="p-4 text-white w-75 mx-auto">
           <p>AVAILABLE:&nbsp;&nbsp; {betv2} sBETS</p>
