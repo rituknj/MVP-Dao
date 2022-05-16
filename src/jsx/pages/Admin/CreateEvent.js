@@ -11,6 +11,8 @@ export default function CreateEvent() {
 
     const [historyVisibility, setHistoryVisibility] = useState(false)
     const [completed, setCompleted] = useState([])
+    const [option, setOption] = useState(1)
+    const [notComplete, setNotcomplete] = useState([])
     useEffect(()=>{
         const completed =async()=>{
             try{
@@ -18,7 +20,7 @@ export default function CreateEvent() {
                 setCompleted(decodestoredevents)
             }
             catch(e){
-                //
+                console.log("Error is ",e)
             }
             completed();
         }
@@ -72,6 +74,7 @@ export default function CreateEvent() {
     const renderCompleted = (completedCards, index) => {
         return (
             <>
+            {}
             {completedCards.validate ? <div className="card my-4" key={index} style={{backgroundColor:"#1c1c1c"}}>
         <div className="card-header text-secondary">
             <span>#{completedCards.subcategory}</span>
@@ -94,6 +97,31 @@ export default function CreateEvent() {
         )
     }
 
+    const renderNotCompleted = (completedCards, index) => {
+        return (
+            <>
+            {completedCards.validate ? '' : <div className="card my-4" key={index} style={{backgroundColor:"#1c1c1c"}}>
+        <div className="card-header text-secondary">
+            <span>#{completedCards.subcategory}</span>
+            <h4 className='text-light fs-5'>{completedCards.name}</h4>
+            <div className='justify-content-between d-flex'>
+                <span>Starts: {getdays(completedCards.starttime)}</span>
+                <span>Ends: {getdays(completedCards.endtime)}</span>
+            </div>
+        </div>
+        <div className="card-body bg-dark text-light">
+            <span className="card-text">ODDS</span>
+            <p>{completedCards.teamone}<br />{completedCards.teamtwo}<br/>DRAW</p>
+            <span>POOL SIZE</span>
+            <p>{completedCards.poolsize}</p>
+            <span>CREATOR's REWARD</span>
+            <p>{completedCards.reward}</p>
+        </div>
+    </div>}
+            </>
+        )
+    }
+
     return (
         <div className='createEvent-main py-3'>
             <div className="container-fluid d-flex justify-content-between">
@@ -107,14 +135,16 @@ export default function CreateEvent() {
             {/* HISTORY */}
             <div className="container-fluid completed mt-5" style={historyVisibility === true ? {display:"block"} : {display: "none"}}>
                 <div className="col-md-3">
-                    <select className="form-select bg-dark border-0 text-light py-3" id="specificSizeSelect">
-                        <option selected>COMPLETED</option>
-                        <option value="1">PENDING</option>
+                    <select className="form-select bg-dark border-0 text-light py-3" id="specificSizeSelect" onChange={(e)=>setOption(e.target.value)}>
+                        <option selected value={1}>COMPLETED</option>
+                        <option value={2}>PENDING</option>
                     </select>
                 </div>
-                <div className="container">
+                {option == 1 ?<div className="container">
                     {completed.map((data)=>renderCompleted(data))}
-                </div>
+                </div> : option == 2 ? <div className="container">
+                    {completed.map((data)=>renderNotCompleted(data))}
+                </div>: ''}
             </div>
         </div>
     )

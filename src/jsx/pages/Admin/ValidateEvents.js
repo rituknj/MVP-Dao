@@ -55,7 +55,7 @@ export default function ValidateEvents() {
       // });
       
       decodestoredevents.forEach(element => {
-        if(!element.validate && element.endtime < Math.round((new Date()).getTime() / 1000)){
+        if(!element.validate && element.endtime < Math.round((new Date()).getTime() / 1000) && Math.round((new Date()).getTime() / 1000) < element.validationtime){
           nonvalidated.push(element)
         }
       });

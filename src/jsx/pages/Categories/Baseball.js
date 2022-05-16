@@ -16,6 +16,7 @@ import { TiStopwatch} from 'react-icons/ti'
 import {MdOutlineArrowForwardIos} from 'react-icons/md'
 import {ImFire} from 'react-icons/im'
 import toast, { Toaster } from 'react-hot-toast';
+let decodestoredevents = 0
 
 const tost =()=> toast.success('Success.', {
   style: {
@@ -76,13 +77,12 @@ class GameCard extends Component {
       BUSDbal: bal,
       account: account
     })
-    let active_events = await totalEvents()
+    let active_events = await totalEvents();
     let getstoredevents = window.localStorage.getItem('events')
     if (getstoredevents == null) {
       window.localStorage.setItem('events', JSON.stringify(''))
       await TotalEventsCount();
     }
-    let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
 
     decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
 
