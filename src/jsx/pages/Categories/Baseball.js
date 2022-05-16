@@ -83,8 +83,6 @@ class GameCard extends Component {
       window.localStorage.setItem('events', JSON.stringify(''))
       await TotalEventsCount();
     }
-    decodestoredevents = JSON.parse(window.localStorage.getItem('chammm'))
-    console.log("local strage data ",decodestoredevents)
 
     decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
 

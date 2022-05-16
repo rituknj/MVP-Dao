@@ -231,7 +231,7 @@ export const GetUserWonAmountOnEvent = async (id) => {
     return resutl;
 }
 export const pendingpoint = async () => {
-    const betMVPContract = await getBETMVPContract();
+    const betMVPContract = await getContract(Points, envdev.REACT_AAP_POINTS);
     const resutl = await betMVPContract.methods.getUserPendingPoints(await getAccount()).call();
     return Number(resutl/10**18)
 }
