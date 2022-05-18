@@ -326,13 +326,13 @@ export const userBethistory = async (id, address) => {
 
 export const getvalidatorHistory = async()=>{
     const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-    const resutl = await betMVPContract.methods.validatorHistory(await getAccount()).call();
+    const resutl = await betMVPContract.methods.validatorHistory("0x32b0f339B3d36A6c1852D3cf583d72E39A213194").call();
     return resutl;
 }
 
 export const validatorsRewardOnEvnet = async(id)=>{
     const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-    const resutl = await betMVPContract.methods.getValidatorRewardOnEvent(await getAccount(),id).call();
+    const resutl = await betMVPContract.methods.getValidatorRewardOnEvent("0x32b0f339B3d36A6c1852D3cf583d72E39A213194",id).call();
     return resutl;
 }
 
@@ -345,10 +345,16 @@ export const getvalidatorsRewardOnEvnet = async(id)=>{
 export const getTotalValidatorRewardEarned = async()=>{
     let reward = 0;
     const ids = await getvalidatorHistory();
-    ids.forEach(async(ele)=>{
-        const i = await validatorsRewardOnEvnet(ele)
-        reward = reward + i
-    })
+    for(let i = 0; i < ids.length; i++){
+        const x = await validatorsRewardOnEvnet(ids[i])
+        reward = reward + Number(x)
+        console.log("validation reward and events",ids[i],reward)
+    }
+    // ids.forEach(async(ele)=>{
+    //     const i = await validatorsRewardOnEvnet(ele)
+    //     reward = reward + Number(i)
+    //     console.log("validation reward and events",ele,i,reward)
+    // })
     return reward;
 }
 

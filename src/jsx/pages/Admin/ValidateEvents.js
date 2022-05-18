@@ -23,6 +23,7 @@ export default function ValidateEvents() {
       const totalwon = await getusertotalwinnings();
       setTotalWon(totalwon/10**18)
       const reward = await getTotalValidatorRewardEarned()
+      console.log("reward",reward)
       setValidatorReward(reward)
       const sbets = await getBETSV2Balance();
       const uservalidpoints = await getValidationPoint()
