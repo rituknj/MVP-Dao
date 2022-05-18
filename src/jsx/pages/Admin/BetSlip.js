@@ -2,7 +2,7 @@ import { one, zero } from "big-integer";
 import React,{useEffect,useState} from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import {ImStopwatch, ImFire} from 'react-icons/im'
-import { getusertotalwinnings, UserEventHistory, GetUserWonAmountOnEvent, claimrewards,BoostEvent, userBethistory, AmountStackOnEventByaUser,gettotaluserwageramount } from "../../../web3/betsMVPService";
+import { getusertotalwinnings, UserEventHistory, GetUserWonAmountOnEvent, claimrewards,BoostEvent , userBethistory, AmountStackOnEventByaUser,gettotaluserwageramount } from "../../../web3/betsMVPService";
 
 
 export default function BetSlip() {
