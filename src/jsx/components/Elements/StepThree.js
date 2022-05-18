@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export class StepThree extends React.Component {
   constructor() {
     super();
@@ -24,6 +25,20 @@ export class StepThree extends React.Component {
   }
 
   render() {
+  //   window.outcome2 = undefined
+  //   window.preferredoutcome2 = undefined
+  //   window.oppossingoutcome2 = undefined
+
+  //   window.starttime2 = window.starttime
+  //   window.endtime2 = window.endtime
+
+  //   setInterval(()=>{
+      
+  //     if(window.starttime2 && window.endtime2){
+  //         window.FILL = true
+  //     }
+  // },200)
+
     return (
       <div>
         <h5>Enter the starting and ending date for the event</h5>

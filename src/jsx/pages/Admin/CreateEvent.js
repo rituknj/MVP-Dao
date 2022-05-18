@@ -7,8 +7,11 @@ import MultiStep from "react-multistep";
 import icon from '../../../images/icon-park-outline_history-query.png'
 import { FiArrowLeft } from 'react-icons/fi'
 import { CreatorReward } from './../../../web3/betsMVPService'
+let FILL = false
+
 
 export default function CreateEvent() {
+    
 
     const [historyVisibility, setHistoryVisibility] = useState(false)
     const [completed, setCompleted] = useState([])
@@ -26,7 +29,12 @@ export default function CreateEvent() {
             setCompleted(decodestoredevents)
         }
         completed();
-    },[])
+        window.eventTitle2 = window.eventTitle
+        window.description2 = window.description
+        window.url2 = window.url
+    },[window.url,window.description,window.eventTitle])
+
+    
 
 
     const steps = [
@@ -92,7 +100,7 @@ export default function CreateEvent() {
             <span className="card-text">ODDS</span>
             <p>{completedCards.teamone}<br />{completedCards.teamtwo}<br/>DRAW</p>
             <span>POOL SIZE</span>
-            <p>{completedCards.poolsize}</p>
+            <p>{completedCards.poolsize/10**18}</p>
             <span>CREATOR's REWARD</span>
             <p>{completedCards.reward}</p>
         </div>
@@ -125,8 +133,14 @@ export default function CreateEvent() {
             </>
         )
     }
+   
+    setInterval(()=>{
+        if(window.eventTitle2 && window.description2 && window.url2){
+            window.FILL = true
+        }
+        
+    },200)
 
-    console.log(completed)
     return (
         <div className='createEvent-main py-3'>
             <div className="container-fluid d-flex justify-content-between">
@@ -134,7 +148,7 @@ export default function CreateEvent() {
                 <button onClick={() => setHistoryVisibility(true)} id='history' className='ms-auto'>History &nbsp;<img src={icon} alt="" /></button>
             </div>
             <div className='multistep rounded shadow pt-4 px-3 my-5 mx-auto' style={historyVisibility === false ? {display:"block"} : {display: "none"}}>
-            <MultiStep steps={steps} nextStyle={{backgroundColor:"#fff", color:"#000", width:"100%", margin:"25px auto", display:"block", border:"none", padding:"8px 20px", borderRadius:"5px", fontWeight:"bold"}} prevStyle={{backgroundColor:"#fff", color:"#000", width:"100%", margin:"25px auto", display:"block", border:"none", padding:"8px 20px", borderRadius:"5px", fontWeight:"bold"}}/>
+            <MultiStep steps={steps} showNavigation={true} fill={window.FILL} nextStyle={{backgroundColor:"#fff", color:"#000", width:"100%", margin:"25px auto", display:"block", border:"none", padding:"8px 20px", borderRadius:"5px", fontWeight:"bold"}} prevStyle={{backgroundColor:"#fff", color:"#000", width:"100%", margin:"25px auto", display:"block", border:"none", padding:"8px 20px", borderRadius:"5px", fontWeight:"bold"}}/>
         </div>
 
             {/* HISTORY */}

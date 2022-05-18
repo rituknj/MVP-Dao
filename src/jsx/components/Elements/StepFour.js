@@ -32,6 +32,16 @@ export class StepFour extends React.Component {
 
     window.anmount = event.target.value
   }
+  validURL(str) {
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    return !!pattern.test(str);
+  }
+  
   
   
   CreateEvent =async()=>{
@@ -45,7 +55,7 @@ export class StepFour extends React.Component {
       tostError("Please Fill Discription")
       
     }
-    else if (!window.url || window.url == ''){
+    else if (!this.validURL(window.url)){
       tostError("Please Enter Valid Url")
     }
     else if (window.outcome == 0 || window.outcome > 3 || !window.outcome){
@@ -82,6 +92,7 @@ export class StepFour extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <div><Toaster/></div>

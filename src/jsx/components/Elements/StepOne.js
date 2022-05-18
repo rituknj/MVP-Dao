@@ -36,6 +36,7 @@ export class StepOne extends React.Component {
   handleurlChanged(event) {
     window.url = event.target.value
   }
+  
 
   render() {
     
@@ -44,7 +45,7 @@ export class StepOne extends React.Component {
         <h5>Create events on literally anything verifiable</h5>
         <div className="my-3">
           <label for="inputEventTitle" className="form-label">EVENT TITLE</label>
-          <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" value={window.eventTitle} onChange={(e)=>this.handleEvenTitleChanged(e)} autoFocus/>
+          <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" required value={window.eventTitle} onChange={(e)=>this.handleEvenTitleChanged(e)} autoFocus/>
         </div>
         {/* <div className="mb-3">
           <label for="inputCategory" className="form-label">CATEGORY</label>
@@ -52,11 +53,11 @@ export class StepOne extends React.Component {
         </div> */}
         <div className="my-3">
           <label for="inputEventTitle" className="form-label">DESCRIPTION</label>
-          <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" value={window.description} onChange={(e)=>this.handlediscriptionChanged(e)} autoFocus/>
+          <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" required value={window.description} onChange={(e)=>this.handlediscriptionChanged(e)} autoFocus/>
         </div>
         <div className="my-3">
           <label for="inputEventTitle" className="form-label">URL</label>
-          <input type="url" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" value={window.url} onChange={(e)=>this.handleurlChanged(e)} autoFocus/>
+          <input type="url" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" required value={window.url} onChange={(e)=>this.handleurlChanged(e)} autoFocus/>
         </div>
         <div className="mb-3">
           <label for="inputSubCategory" className="form-label">CATEGORY</label>

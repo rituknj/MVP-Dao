@@ -1,4 +1,5 @@
 import React from "react";
+window.FILL = false
 
 export class StepTwo extends React.Component {
   constructor() {
@@ -24,7 +25,23 @@ export class StepTwo extends React.Component {
     window.oppossingoutcome = event.target.value
   }
 
+
   render() {
+    window.eventTitle2 = undefined
+    window.description2 = undefined
+    window.url2 = undefined
+
+    window.outcome2 = window.outcome
+    window.preferredoutcome2 = window.preferredoutcome
+    window.oppossingoutcome2 = window.oppossingoutcome
+    
+    setInterval(()=>{
+      window.FILL = false
+      if(window.outcome2 && window.preferredoutcome2 && window.oppossingoutcome2){
+          window.FILL = true
+      }
+  },200)
+    
     return (
       <div>
         <h5>Enter the possible outcomes of the event</h5>

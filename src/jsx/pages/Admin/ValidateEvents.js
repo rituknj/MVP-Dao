@@ -46,13 +46,7 @@ export default function ValidateEvents() {
           evnets.push(data)
         }
       }
-      // decodestoredevents.forEach(async(element) => {
-      //   if(element.validate){
-      //     let eent = element
-      //     eent.reward = await getvalidatorsRewardOnEvnet(element.id)
-      //     evnets.push(eent)
-      //   }
-      // });
+     
       
       decodestoredevents.forEach(element => {
         if(!element.validate && element.endtime < Math.round((new Date()).getTime() / 1000) && Math.round((new Date()).getTime() / 1000) < element.validationtime){
@@ -186,7 +180,7 @@ export default function ValidateEvents() {
           <span>TOTAL</span>
           <h5>VALIDATION POINTS</h5>
           <hr className="text-danger" />
-          <p>${uservalidationpoints}</p>
+          <p>{uservalidationpoints}</p>
         </div>
         <div
           className="col p-2 shadow rounded my-3 mx-1"

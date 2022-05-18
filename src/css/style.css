@@ -1736,7 +1736,7 @@ footer button {
 
 .select-catogries {
   background: #4d4a4a;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 5px;
   display: flex;
   text-align: center;
   justify-content: space-between;
