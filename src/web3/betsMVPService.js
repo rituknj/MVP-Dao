@@ -326,13 +326,13 @@ export const userBethistory = async (id, address) => {
 
 export const getvalidatorHistory = async()=>{
     const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-    const resutl = await betMVPContract.methods.validatorHistory("0x32b0f339B3d36A6c1852D3cf583d72E39A213194").call();
+    const resutl = await betMVPContract.methods.validatorHistory(await getAccount()).call();
     return resutl;
 }
 
 export const validatorsRewardOnEvnet = async(id)=>{
     const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-    const resutl = await betMVPContract.methods.getValidatorRewardOnEvent("0x32b0f339B3d36A6c1852D3cf583d72E39A213194",id).call();
+    const resutl = await betMVPContract.methods.getValidatorRewardOnEvent(await getAccount(),id).call();
     return resutl;
 }
 
