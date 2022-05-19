@@ -333,7 +333,7 @@ export default function WalletPopup(props) {
         <div className="text-white ms-4 mt-5">
             <p className="m-0">TOTAL VALIDATION POINTS EARNED</p>
             <p>{validationPoints}&nbsp;&nbsp; <span className="text-muted">(Pending {getpendingpoint})</span></p>
-            {Number(validationPoints) > 0 ? <button className="w-100 p-3 font-weight-bold " style={{borderRadius:'10px'}} onClick={()=>ValidationPointsClaim()}>Claim</button>: ''}
+            {Number(validationPoints) > 0 ? <button className="w-100 p-3 font-weight-bold mb-4" style={{borderRadius:'10px'}} onClick={()=>ValidationPointsClaim()}>Claim</button>: ''}
             <p className="m-0">TOTAL LOCKED AMOUNT</p>
             <p>{lockedAmount} sBET</p>
         </div>
