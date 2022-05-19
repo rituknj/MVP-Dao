@@ -4,7 +4,7 @@ import cardBackground from './../../../images/ground.png'
 import carbon_timer from './../../../images/carbon_timer.png'
 import App from './../../pages/App/Index'
 import {placeBet, getEventOccurrenceBetAmount, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser, cancelevent } from './../../../web3/betsMVPService'
-import { TotalEventsCount, addingnewevents } from './../../../web3/Countallevents'
+import { TotalEventsCount, addingnewevents, updatingeventdata } from './../../../web3/Countallevents'
 import {getBETBalanceBUSD } from './../../../web3/betsService'
 import { initInstance, getAccount } from './../../../web3/web3'
 import redDot from './../../../images/red-dot.png'
@@ -16,6 +16,24 @@ import { TiStopwatch} from 'react-icons/ti'
 import {MdOutlineArrowForwardIos} from 'react-icons/md'
 import {ImFire} from 'react-icons/im'
 import toast, { Toaster } from 'react-hot-toast';
+
+import AppHeader from '../../components/Elements/AdminHeader'
+
+import {
+  allactiveusers,
+  totalpayout,
+  totalbetcreated,
+  getActiveEvents,
+} from './../../../web3/betsMVPService'
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
+import Match from './../../../images/match.png'
+import UNMatch from './../../../images/un-match.png'
+import Down from './../../../images/down.png'
+import Search from './../../../images/search.png'
+import Filter from './../../../images/filter.png'
+import Appheadercat from './../App/Appheadercat'
+import Soccer from './../Categories/Soccer'
 
 const tost =()=> toast.success('Success.', {
   style: {
@@ -37,6 +55,8 @@ class GameCard extends Component {
       allevents: [],
       active: false,
       id: null,
+      activeSubCat:[],
+      subcategorys:[],
       zeroEventAmount: 0,
       oneEventAmount: 0,
       twoEventAmount: 0,
@@ -65,7 +85,36 @@ class GameCard extends Component {
       two: 0,
       globalendtime: 0,
       BUSDbal: 0,
-      match:0
+      match:0,
+      activeTabTop: false,
+      catogries: '',
+      activeTabBottom: 1,
+      selectedcat: false,
+      payout: 0,
+      activeusers: 0,
+      activeevents: 0,
+      totalbetsmade: 0,
+      events: 0,
+      path: '/app',
+      responsive_center: {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 4,
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 4,
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 2,
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 2,
+        },
+      },
     }
   }
   componentDidMount = async () => {
@@ -82,14 +131,11 @@ class GameCard extends Component {
       window.localStorage.setItem('events', JSON.stringify(''))
       await TotalEventsCount();
     }
-    let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-
-    decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-
-
+   
     setInterval(async () => {
       await addingnewevents();
-    }, 2000);
+      this.setState({subcategorys: window.maincatogries})
+    }, 3000);
     setInterval(async () => {
       this.setState({
         match: window.match
@@ -97,25 +143,38 @@ class GameCard extends Component {
     }, 500);
     
     
+    let activeUser = await allactiveusers();
+    let totalpay = await totalpayout();
+    let totalEvent = await totalEvents();
+    let totalbetsmade = await totalbetcreated();
+    let activeevnets = await getActiveEvents();
 
+    this.setState({
+      payout:totalpay,
+      activeusers: activeUser.length,
+      activeevents: activeevnets,
+      totalbetsmade: totalbetsmade,
+      events: totalEvent
+    })
 
+  }
+
+  filterCat = async (sub)=>{
+    let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
     const events = []
-    let check = []
     let check2
-
-
     for (let i = decodestoredevents.length - 1; i >= 0; i--) {
       check2 = decodestoredevents[i]
-
-      if (check2.subcategory == 'Cricket') {
+      console.log(check2.subcategory == sub && Number(check2.Categories) == window.maincatNum, check2.subcategory,sub, Number(check2.Categories), window.maincatNum )
+      if (check2.subcategory == sub && Number(check2.Categories) == window.maincatNum ) {
         events.push(check2)
         this.setState({
           allevents: events,
         })
-        console.log("check3", this.state.allevents)
+       
       }
     }
-
+    this.setState({activeSubCat: sub})
   }
  
 
@@ -198,6 +257,7 @@ class GameCard extends Component {
      const data =  await placeBet(this.state.id, this.state.occurance, this.state.stackvalueone)
      if(data.status){
       tost()
+      updatingeventdata(this.state.id)
     }
     }
     catch(e){
@@ -259,12 +319,172 @@ class GameCard extends Component {
 
   }
 
+  getGameCard = () => {
+    let items = []
+    for (var i = 1; i <= 10; i++) {
+      items.push(
+        <div key={i} className="col-12 col-sm-12 col-md-6 col-lg-4">
+          <Soccer />
+        </div>,
+      )
+    }
+    return items
+  }
+
+  handelMatchTab = (tab) => {
+    this.setState({
+      activeTabBottom: tab,
+    })
+    if(tab){
+      window.match = tab
+    }
+    else{
+      window.match = tab
+    }
+  }
+
+  catorgy = (Cat)=> {
+    this.setState({
+      catogries: Cat
+    })
+  }
+
+  selectedcategory = (cat) => {
+    if (!this.state.selectedcat) {
+      this.setState({ selectedcat: true })
+    } else {
+      this.setState({ selectedcat: false })
+    }
+  }
+
+
 
   render() {
-   
+    console.log("subcategorys", window.maincatogries)
     return (
       <Fragment>
-        <App />
+        {/* <App /> */}
+
+
+
+
+        <AppHeader />
+        <br/>
+        <div>
+          <div className="container-fluid px-md-5 mt-5" id="section-statistics">
+            <div
+              className="row py-5"
+            >
+              <div className="col-lg-12">
+                <Carousel
+                  swipeable={true}
+                  draggable={true}
+                  arrows={false}
+                  showDots={false}
+                  responsive={this.state.responsive_center}
+                  infinite={true}
+                  keyBoardControl={true}
+                  customTransition="all .5"
+                  transitionDuration={500}
+                  containerClass="carousel-container"
+                  removeArrowOnDeviceType={['tablet', 'mobile']}
+                  itemClass="px-2"
+                >
+                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
+                    <h6 className="theam-text-color m-0">Total Payout</h6>
+                    <h6 className="text-white mt-4">
+                      {(this.state.payout / 10 ** 18).toFixed(0)} BUSD
+                    </h6>
+                  </div>
+
+                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
+                    <h6 className="theam-text-color m-0">Total Events</h6>
+                    <h6 className="text-white mt-4">{this.state.events}</h6>
+                  </div>
+
+                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
+                    <h6 className="theam-text-color m-0">Active users</h6>
+                    <h6 className="text-white mt-4">
+                      {this.state.activeusers}
+                    </h6>
+                  </div>
+
+                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
+                    <h6 className="theam-text-color m-0">Total bet Created</h6>
+                    <h6 className="text-white mt-4">
+                      {this.state.totalbetsmade}
+                    </h6>
+                  </div>
+                </Carousel>
+              </div>
+            </div>
+          </div>
+        </div>
+        <Appheadercat />
+        <div className="container-fluid px-md-5">
+          <div className="space-20"></div>
+          <div className="d-flex flex-wrap">
+            <div className="me-md-4 me-2">
+              <button
+                className={`d-flex justify-content-around btn admin-match-button font-weight-bold ${
+                  this.state.activeTabBottom == 1 ? ' active' : ''
+                }`}
+                onClick={() => this.handelMatchTab(1)}
+              >
+                <p>Matched Events</p>{' '}
+                <img className="mt-2" src={Match} width={20} />
+              </button>
+            </div>
+            <div className="">
+              <button
+                className={`d-flex justify-content-around btn admin-match-button font-weight-bold ${
+                  this.state.activeTabBottom == 2 ? ' active' : ''
+                }`}
+                onClick={() => this.handelMatchTab(2)}
+              >
+                <p>Un-Matched Events</p>
+                <img className="mt-1 ml-2" src={UNMatch} width={25} />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className=" sub-catogries mt-0 p-1 p-md-5 text-white" id="navbarsExample05">
+          <div style={{overflow:'visible'}}>
+          <p>Select Subcategories</p>
+            <div className='main-dropdown' disabled >
+            <div class="dropdown subcategory">
+            <button
+              class="btn btn-secondary dropdown-toggle border-0 px-4 py-2 fs-5"
+              style={{backgroundColor:"#4D4A4A"}}
+              type="button"
+              id="dropdownMenu2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {window.maincatogries && window.maincatogries.length > 0 ? "Categories" : "No Categories Found"}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
+             {this.state.subcategorys && this.state.subcategorys.map((data)=> {
+               return <li>
+               <button class="dropdown-item text-white" type="button" onClick={()=>this.filterCat(data)} >
+               {data}
+               </button>
+             </li> 
+               }) }
+            </ul>
+          </div>
+                  
+            </div>
+          </div>
+          <div className="sub-tools">
+            <img src={Search} width={25} height={25} />
+            <img src={Filter} width={25} height={25} />
+          </div>
+        </div>
+
+
+
+
         <div><Toaster/></div>
         <div className="row gx-0">
           <div className="col-12">

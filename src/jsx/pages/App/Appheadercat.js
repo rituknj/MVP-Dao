@@ -1,17 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Down from "./../../../images/down.png";
-import GameCard from "../../components/Cards/GameCard";
-import AppHeader from "../../components/Elements/AppHeader";
-import { NavLink, Link, useRouteMatch } from "react-router-dom";
-//images
-import monotone_soccer from "../../../images/emojione-monotone_soccer-ball.png";
-import park_rugby from "../../../images/icon-park_rugby.png";
-import monotone_tennis from "../../../images/emojione-monotone_tennis.png";
-import monotone_racing from "../../../images/hockey.png";
-import monotone_boxing from "../../../images/emojione-monotone_boxing-glove.png";
-import monotone_basketball from "../../../images/emojione-monotone_basketball.png";
-import cil_baseball from "../../../images/cil_baseball.png";
-import cil_cricket from "../../../images/ic_outline-sports-cricket.png";
+import {getSubCategory} from './../../../web3/betsMVPService'
 
 class Index extends Component {
   constructor(props) {
@@ -42,15 +30,62 @@ class Index extends Component {
     console.log("this is ", this.state.activeTabTop);
   };
 
-  handlechange=(cat)=>{
-    window.maincatogries = cat
+  handlechange = async(cat)=>{
+
+    if(cat == "SPORTS"){
+      window.maincatogries = await getSubCategory(0);
+      window.maincat = "SPORTS"
+      window.maincatNum = 0
+    }
+    else if(cat == "WEATHER"){
+      window.maincatogries = await getSubCategory(1);
+      window.maincat = "WEATHER"
+      window.maincatNum = 1
+    }
+    else if(cat == "REALITY TV SHOWS"){
+      window.maincatogries= await getSubCategory(2);
+      window.maincat = "REALITY TV SHOWS"
+      window.maincatNum = 2
+    }
+    else if(cat == "POLITICS"){
+      window.maincatogries = await getSubCategory(3);
+      window.maincat = "POLITICS"
+      window.maincatNum = 3
+    }
+    else if(cat== "AWARDS"){
+      window.maincatogries = await getSubCategory(4);
+      window.maincat = "AWARDS"
+      window.maincatNum = 4
+    }
+    else if(cat == "DEAD POOL"){
+      window.maincatogries = await getSubCategory(5);
+      window.maincat = "DEAD POOL"
+      window.maincatNum = 5
+    }
+    else if(cat == "GAMES"){
+      window.maincatogries = await getSubCategory(6);
+      window.maincat = "GAMES"
+      window.maincatNum = 6
+    }
+    else if(cat == "MARKET PREDICTION"){
+      window.maincatogries = await getSubCategory(7);
+      window.maincat = "MARKET PREDICTION"
+      window.maincatNum = 7
+    }
+    else if(cat == "SPECIAL"){
+      window.maincatogries = await getSubCategory(8);
+      window.maincat = "SPECIAL"
+      window.maincatNum = 8
+    }
+
+
   }
 
   render() {
     return (
       <Fragment>
         <div className="container-fluid px-md-5 p-2 slider top-image">
-          <p className="mt-4 mt-md-4 text-white sporttag">#{window.maincatogries}</p>
+          <p className="mt-4 mt-md-4 text-white sporttag">#{window.maincat}</p>
           <div class="dropdown categories-dropdown">
             <button
               class="btn btn-secondary dropdown-toggle border-0 px-4 py-2 fs-5"

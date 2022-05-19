@@ -1,7 +1,7 @@
 import React from "react";
 import { getSubCategory } from "../../../web3/betsMVPService";
-window.subTitle = 'Cricket'
 
+window.cat = "SPORTS"
 
 export class StepOne extends React.Component {
   constructor() {
@@ -13,13 +13,14 @@ export class StepOne extends React.Component {
     };
  
   }
-  componentDidMount =async()=>{
+  componentDidMount = async()=> {
     const subcat = await getSubCategory(0);
     this.setState({subcategory: subcat})
   }
 
 
-  fetchSubCatogories = async(event) =>{
+  fetchSubCatogories = async(event) => {
+    console.log(event.target.value)
     window.cat = event.target.value
     if(event.target.value == "SPORTS"){
       const subcat = await getSubCategory(0);
@@ -68,9 +69,8 @@ export class StepOne extends React.Component {
     this.setState({ category: event.target.value });
   }
   handleSubCategoryChanged(event) {
-   
     window.subTitle = event.target.value
-   
+    console.log("event",event.target.value)
   }
   handleCategoryChanged(event) {
    
@@ -132,12 +132,13 @@ export class StepOne extends React.Component {
           <select
             className="form-select bg-dark border-0 text-light "
             id="specificSizeSelect"
-            value={window.subTitle}
+        
             onChange={(e)=>this.handleSubCategoryChanged(e)}
           >
+           {this.state.subcategory.length == 0 ? '' : <option value='Select'>Select</option>}
             {this.state.subcategory.map((data)=>{
              return <option value={`${data}`}>{data}</option>
-            }) }
+            })}
             {/* <option value="Soccer">Soccer</option>
             <option value="Tennis">Tennis</option>
             <option value="Rugby">Rugby</option>

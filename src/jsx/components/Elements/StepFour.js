@@ -78,6 +78,7 @@ export class StepFour extends React.Component {
     }
     else{
       const data = await createEvent(window.subTitle,window.description,window.url,window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome);  
+      console.log("DAta",window.cat,window.subTitle,window.description,window.url,window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome)
       if(data.status){
         tost("Event Create Successfully")
         const id = await UserEventHistory()

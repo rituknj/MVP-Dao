@@ -1644,15 +1644,24 @@ footer button {
   height: 400px;
   position: relative;
 }
+
+.top-image2{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 40px;
+  position: relative;
+}
+
 .categories-dropdown{
   position: absolute !important;
   right: 20px;
   bottom: 20px;
 }
-.categories-dropdown ul li button{
+.categories-dropdown ul li button, .subcategory ul li button{
   color: rgb(202, 202, 202);
 }
-.categories-dropdown ul li:hover button{
+.categories-dropdown ul li:hover button, .subcategory ul li:hover button{
   background-image: none !important;
   background-color: #272727;
   color: #fff;

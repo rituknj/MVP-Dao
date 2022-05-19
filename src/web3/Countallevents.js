@@ -114,38 +114,46 @@ export const updatingeventdata = async(id) => {
   let one
   let two 
   let zero
-  let getevents = []
-  let events = await totalEvents();
   let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
   
   for(let i = 0; i < decodestoredevents.length; i++){
       if(Number(decodestoredevents[i].eventid) == id){
               check2 = await getEvent(i);
               check = Object.create(check2)
-              zero = await bettorscountspercent(check2[0],0,check2[13])
-              one = await bettorscountspercent(check2[0],1,check2[13])
-              two = await bettorscountspercent(check2[0],2,check2[13])
+              zero = await bettorscountspercent(check2[0],0,check2[14])
+              one = await bettorscountspercent(check2[0],1,check2[14])
+              two = await bettorscountspercent(check2[0],2,check2[14])
+              let teamOneParticipate = await bettorscounts(check2[0],0)
+              let teamtwoParticipate = await bettorscounts(check2[0],1)
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])
-              let stake =  (stakeonevent*100)/check2[4]
-              let potentialwinnings = Number(((check2[4]-stakeonevent)*stake)/10**18).toFixed(2)
-              check.zero = zero
-              check.one = one 
-              check.two = two
-              check.potential_wins = potentialwinnings 
-              check.id = check2[0]
-              check.name = check2[3] 
-              check.validate = check2[9]
-              check.poolsize = check2[4]
-              check.starttime = check2[5]
-              check.endtime = check2[6]
-              check.teamone = check2[7]
-              check.teamtwo = check2[8]
-              check.subcategory = check2[2]
-              check.Categories = check2[1]
-              check.BettorsCount = check2[13]
-              check.creator = check2[16]
-              
-             
+              let totalpoolsize = check2[6] 
+              let percentwinnings = (stakeonevent/totalpoolsize)*100
+              let potentialwinnings = Number((((totalpoolsize-stakeonevent)/100)*percentwinnings)/10**18).toFixed(2)
+            
+                check.zero = zero
+                check.one = one 
+                check.two = two
+                check.potential_wins = (Number(potentialwinnings) + Number(stakeonevent/10**18)).toFixed(2)
+                check.id = check2[0]
+                check.name = check2[3] 
+                check.descript = check2[4]
+                check.link = check2[5]
+                check.validate = check2[12]
+                check.poolsize = check2[6]
+                check.starttime = check2[7]
+                check.endtime = check2[8]
+                check.teamone = check2[10]
+                check.teamtwo = check2[11]
+                check.subcategory = check2[2]
+                check.Categories = check2[1]
+                check.BettorsCount = check2[15]
+                check.isboosted = check2[18]
+                check.creator = check2[22]
+                check.teamtwoParticipate = teamtwoParticipate
+                check.teamOneParticipate = teamOneParticipate
+                decodestoredevents[i] = check
+                window.localStorage.setItem('events',JSON.stringify(decodestoredevents))
+              break; 
       }
               
     }
