@@ -30,11 +30,12 @@ export const removeSubCategory = async (sub_category) => {
     return result;
 }
 
-export const getSubCategory = async () => {
-    const betMVPContract = await getBETMVPContract();
-    const subCategories = await betMVPContract.methods.getSubCategory('0x0').call();
+export const getSubCategory = async (id) => {
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const subCategories = await betMVPContract.methods.getSubCategory(id).call();
     return subCategories;
 }
+
 
 export const createEvent = async (sub_category, description, url, name, time, endTime, event1, event2 ) => {
     const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);

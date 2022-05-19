@@ -192,12 +192,7 @@ export default function ValidateEvents() {
           <hr className="text-success" />
           <p>{sbets}</p>
         </div>
-        {/* <div className="col p-2 shadow rounded my-3 mx-1 border-success">
-          <span>PENDING</span>
-          <h5>REWARDS</h5>
-          <hr className="text-success" />
-          <p>$2,000</p>
-        </div> */}
+        
       </div>
 
       {/* TIMER & TERMS */}

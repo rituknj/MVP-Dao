@@ -1,5 +1,7 @@
 import React from "react";
+import { getSubCategory } from "../../../web3/betsMVPService";
 window.subTitle = 'Cricket'
+
 
 export class StepOne extends React.Component {
   constructor() {
@@ -7,9 +9,55 @@ export class StepOne extends React.Component {
     this.state = {
       eventtitle: "",
       category: "",
-      subcategory: ""
+      subcategory: []
     };
  
+  }
+  componentDidMount =async()=>{
+    const subcat = await getSubCategory(0);
+    this.setState({subcategory: subcat})
+  }
+
+
+  fetchSubCatogories = async(event) =>{
+    window.cat = event.target.value
+    if(event.target.value == "SPORTS"){
+      const subcat = await getSubCategory(0);
+      this.setState({subcategory: subcat})
+    }
+    else if(event.target.value == "WEATHER"){
+      const subcat = await getSubCategory(1);
+      this.setState({subcategory: subcat})
+    }
+    else if(event.target.value == "REALITY TV SHOWS"){
+      const subcat = await getSubCategory(2);
+      this.setState({subcategory: subcat})
+    }
+    else if(event.target.value == "POLITICS"){
+      const subcat = await getSubCategory(3);
+      this.setState({subcategory: subcat})
+    }
+    else if(event.target.value == "AWARDS"){
+      const subcat = await getSubCategory(4);
+      this.setState({subcategory: subcat})
+    }
+    else if(event.target.value == "DEAD POOL"){
+      const subcat = await getSubCategory(5);
+      this.setState({subcategory: subcat})
+    }
+    else if(event.target.value == "GAMES"){
+      const subcat = await getSubCategory(6);
+      this.setState({subcategory: subcat})
+    }
+    else if(event.target.value == "MARKET PREDICTION"){
+      const subcat = await getSubCategory(7);
+      this.setState({subcategory: subcat})
+    }
+    else if(event.target.value == "SPECIAL"){
+      const subcat = await getSubCategory(8);
+      this.setState({subcategory: subcat})
+    }
+    
   }
 
   handleEvenTitleChanged(event) {
@@ -39,7 +87,7 @@ export class StepOne extends React.Component {
   
 
   render() {
-    
+//  console.log(this.state.subcategory)
     return (
       <div>
         <h5>Create events on literally anything verifiable</h5>
@@ -65,16 +113,17 @@ export class StepOne extends React.Component {
             className="form-select bg-dark border-0 text-light "
             id="specificSizeSelect"
             value={window.cat}
-            onChange={(e)=>this.handleCategoryChanged(e)}
+            onChange={(e)=>this.fetchSubCatogories(e)}
+
           >
             <option value="SPORTS">SPORTS</option>
-            <option value="WEATHER">WEATHER</option>
-            <option value="REALITY_TV_SHOWS">REALITY TV SHOWS</option>
+            <option value="WEATHER" >WEATHER</option>
+            <option value="REALITY TV SHOWS" >REALITY TV SHOWS</option>
             <option value="POLITICS">POLITICS</option>
             <option value="AWARDS">AWARDS</option>
-            <option value="DEAD_POOL">DEAD POOL</option>
+            <option value="DEAD POOL">DEAD POOL</option>
             <option value="GAMES">GAMES</option>
-            <option value="MARKET_PREDICTION">MARKET PREDICTION</option>
+            <option value="MARKET PREDICTION">MARKET PREDICTION</option>
             <option value="SPECIAL">SPECIAL</option>
           </select>
         </div>
@@ -86,15 +135,17 @@ export class StepOne extends React.Component {
             value={window.subTitle}
             onChange={(e)=>this.handleSubCategoryChanged(e)}
           >
-            <option value="Cricket">Cricket</option>
-            <option value="Soccer">Soccer</option>
+            {this.state.subcategory.map((data)=>{
+             return <option value={`${data}`}>{data}</option>
+            }) }
+            {/* <option value="Soccer">Soccer</option>
             <option value="Tennis">Tennis</option>
             <option value="Rugby">Rugby</option>
             <option value="Football">Football</option>
             <option value="Hockey">Hockey</option>
             <option value="Boxing">Boxing</option>
             <option value="Basketball">Basketball</option>
-            <option value="Baseball">Baseball</option>
+            <option value="Baseball">Baseball</option> */}
           </select>
         </div>
       </div>
