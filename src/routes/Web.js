@@ -26,7 +26,7 @@ class Web extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/app" component={Soccer} />
+            <Route exact path="/app" component={Cricket} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/about" component={About} />
             <Route exact path="/blogs" component={BLogs} />
