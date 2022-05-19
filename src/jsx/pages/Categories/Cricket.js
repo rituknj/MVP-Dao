@@ -168,12 +168,11 @@ class GameCard extends Component {
       console.log(check2.subcategory == sub && Number(check2.Categories) == window.maincatNum, check2.subcategory,sub, Number(check2.Categories), window.maincatNum )
       if (check2.subcategory == sub && Number(check2.Categories) == window.maincatNum ) {
         events.push(check2)
-        this.setState({
-          allevents: events,
-        })
-       
       }
     }
+    this.setState({
+      allevents: events,
+    })
     this.setState({activeSubCat: sub})
   }
  
@@ -461,7 +460,7 @@ class GameCard extends Component {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {window.maincatogries && window.maincatogries.length > 0 ? "Categories" : "No Categories Found"}
+              {window.maincatogries && window.maincatogries.length > 0 ? `Categories ${this.state.activeSubCat}`  : "No Categories Found"}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
              {this.state.subcategorys && this.state.subcategorys.map((data)=> {
