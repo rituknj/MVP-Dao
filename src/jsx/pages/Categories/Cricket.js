@@ -159,7 +159,7 @@ class GameCard extends Component {
 
   }
 
-  filterCat = async (sub)=>{
+  filterCat = async(sub)=>{
     let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
     const events = []
     let check2
@@ -392,7 +392,7 @@ class GameCard extends Component {
                   <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
                     <h6 className="theam-text-color m-0">Total Payout</h6>
                     <h6 className="text-white mt-4">
-                      {(this.state.payout / 10 ** 18).toFixed(0)} BUSD
+                      {(this.state.payout)} BUSD
                     </h6>
                   </div>
 
@@ -460,7 +460,7 @@ class GameCard extends Component {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {window.maincatogries && window.maincatogries.length > 0 ? `Categories ${this.state.activeSubCat}`  : "No Categories Found"}
+              {window.maincatogries && window.maincatogries.length > 0 ? `Subcategories ${this.state.activeSubCat}`  : "No Categories Found"}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
              {this.state.subcategorys && this.state.subcategorys.map((data)=> {
