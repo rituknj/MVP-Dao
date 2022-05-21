@@ -168,7 +168,7 @@ class Index extends Component {
     AOS.init()
     await initInstance()
     await loginProcess()
-    // window.localStorage.clear();
+    window.localStorage.clear();
     let events = await totalEvents();
     // let activeusers = await allactiveusers();//
     // let payout = await totalpayout();
@@ -258,10 +258,7 @@ class Index extends Component {
     // **************** API LINE ambassador BLOG DATA ****************//
 
     // fetching price of total
-    request(
-      'GET',
-      'https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d',
-    )
+    request('GET', 'https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d',)
       .then((r1) => {
         var x1 = JSON.parse(r1.target.responseText)
         let val = Number(x1.data.price).toFixed(13)
@@ -381,7 +378,7 @@ class Index extends Component {
   render() {
     setInterval(()=>{
       window.allEvents = this.state.events
-      window.stordedevents = decodestoredevents.length
+      window.allEvents = decodestoredevents.length
     },200)
     return (
       <Fragment onClick={this.moussecloas}>

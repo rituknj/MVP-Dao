@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-import { Button, Modal } from "react-bootstrap";
+import { CloseButton, Modal } from "react-bootstrap";
 import { BsCircleFill } from "react-icons/bs";
 import { SiBinance } from "react-icons/si";
 import BETS from './../../../images/logo.png'
@@ -11,6 +11,7 @@ import {AiFillQuestionCircle} from 'react-icons/ai'
 import Bar from './../../../images/bar.png'
 import {earnvalidationpoints,getValidationPoint,totaltokenlocked,revokevalidationpointsearning,claimpoints,pendingpoint} from './../../../web3/betsMVPService'
 import toast, { Toaster } from 'react-hot-toast';
+import ModalHeader from "react-bootstrap/esm/ModalHeader";
 
 const tost =()=> toast.success('Success.', {
   style: {
@@ -280,7 +281,8 @@ export default function WalletPopup(props) {
       centered
       fullscreen={"md-down"}
     >
-      <Modal.Body style={{ backgroundColor: "#0A0A0A" }}>
+      <ModalHeader style={{backgroundColor:'#0A0A0A', borderRadius:'0px'}}><span  onClick={props.onHide} style={{}}><CloseButton variant="white"/></span></ModalHeader>
+      <Modal.Body style={{ backgroundColor:"#0A0A0A"}}>
         <div className="d-flex justify-content-between">
           <span
             className="rounded-pill py-1 px-3"
@@ -299,6 +301,7 @@ export default function WalletPopup(props) {
             BUY BETS
           </button>
           </a>
+      
         </div>
         <div className="text-center my-5 text-light">
           <h4 style={{ color: "#BCBCBC" }}>TOTAL BALANCE</h4>
@@ -351,6 +354,7 @@ export default function WalletPopup(props) {
         <button className="w-100 p-3 font-weight-bold " style={{borderRadius:'10px'}} onClick={()=>LockBets()}>Lock</button>
         {Number(lockedAmount) > 0 ? <button className="w-100 p-3 font-weight-bold" style={{borderRadius:'10px'}} onClick={()=>Unlock()}>Unlock</button> : ''}
       </Modal.Body>
+      
       <div><Toaster/></div>
     </Modal>
   );
