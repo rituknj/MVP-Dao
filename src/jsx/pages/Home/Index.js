@@ -28,6 +28,7 @@ import Football from './../../../images/football.png'
 import Playstation from "./../../../images/playstation.png"
 import { FaTwitter } from "react-icons/fa"
 import { AiFillLinkedin } from "react-icons/ai"
+import {   Audio,BallTriangle,Bars,Circles,Grid,Hearts,MutatingDots,Oval,Plane,RevolvingDot,Rings,TailSpin,Triangle,Watch } from  'react-loader-spinner'
 import NFTsText from "./../../../images/nfts-side-text.png"
 import { ToastSuccess } from '../../components/Toast'
 
@@ -49,6 +50,8 @@ import arrowRight from '../../../images/arrow-right.svg'
 import lineImage from '../../../images/line.png'
 import HeroModal from './HeroModal'
 var chart = null
+
+let decodestoredevents = []
 
 const SalesChart = loadable(() =>
   pMinDelay(import('../../components/Chart/SalesChart'), 1000),
@@ -165,45 +168,46 @@ class Index extends Component {
     AOS.init()
     await initInstance()
     await loginProcess()
-    window.localStorage.clear()
-    let activeusers = await allactiveusers()
-    let payout = await totalpayout()
-    let events = await totalEvents()
-    let totalbets = await totalbetcreated()
-    let activeevents = await getActiveEvents()
-    let totalSupply = await gettotalsupply()
-    // totalSupply = fromWei(totalSupply)
+    // window.localStorage.clear();
+    let events = await totalEvents();
+    // let activeusers = await allactiveusers();//
+    // let payout = await totalpayout();
+    
+    // let totalbets = await totalbetcreated();
+    // let activeevents = await getActiveEvents();
+    // let totalSupply = await gettotalsupply();
+    
     this.setState({
-      totalSupply: totalSupply,
-      activeusers: activeusers,
-      payout: payout,
+      totalSupply: 0,
+      activeusers: 0,
+      payout: 0,
       events: events,
-      totalbetsmade: totalbets,
-      activeevents: activeevents,
+      totalbetsmade: 0,
+      activeevents: 0,
     })
     AOS.init()
-    let LineData = []
-    let Lineprice = []
-    const Linetime = []
-    const Line = 'https://api.coingecko.com/api/v3/coins/betswamp/market_chart?vs_currency=usd&days=30*'
-    await axios
-      .get(Line)
-      .then(function (response) {
-        LineData = response.data.prices
-        if (LineData) {
-          Lineprice = LineData.map(d => {
-            return { time: d[0] / 1000, value: d[1] }
-          })
-          // console.log("line data is ", Lineprice)
-          // console.log("Line series data is ", lineData)
-        }
-      })
-      .catch(function (error) {
-        console.log('error is', error)
-      })
-    this.setState({
-      Lineprice: Lineprice,
-    })
+    // let LineData = []
+    // let Lineprice = []
+    
+    // const Line = 'https://api.coingecko.com/api/v3/coins/betswamp/market_chart?vs_currency=usd&days=30*'
+    // await axios
+    //   .get(Line)
+    //   .then(function (response) {
+    //     LineData = response.data.prices
+    //     if (LineData) {
+    //       Lineprice = LineData.map(d => {
+    //         return { time: d[0] / 1000, value: d[1] }
+    //       })
+    //       // console.log("line data is ", Lineprice)
+    //       // console.log("Line series data is ", lineData)
+    //     }
+    //   })
+    //   .catch(function (error) {
+    //     console.log('error is', error)
+    //   })
+    // this.setState({
+    //   Lineprice: Lineprice,
+    // })
 
 
     // var myHeaders = new Headers();
@@ -285,7 +289,7 @@ class Index extends Component {
 
       window.localStorage.setItem('events', JSON.stringify(''))
       await TotalEventsCount()
-      let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+      decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
       this.setState({
         item: decodestoredevents.reverse(),
       })
@@ -298,22 +302,22 @@ class Index extends Component {
     
   }
 
-  fetchdata = async () => {
-    console.log("run")
-    var myHeaders = new Headers();
-    myHeaders.append("Accept", "application/json");
-    myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-    fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
-      .then(response => response.json())
-      .then(result => this.setState({ partner: result }))
-      .catch(error => console.log('error', error));
-    console.log("partners", this.state.partner.logo.length)
-  }
+  // fetchdata = async () => {
+  //   console.log("run")
+  //   var myHeaders = new Headers();
+  //   myHeaders.append("Accept", "application/json");
+  //   myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
+  //   var requestOptions = {
+  //     method: 'GET',
+  //     headers: myHeaders,
+  //     redirect: 'follow'
+  //   };
+  //   fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
+  //     .then(response => response.json())
+  //     .then(result => this.setState({ partner: result }))
+  //     .catch(error => console.log('error', error));
+  //   console.log("partners", this.state.partner.logo.length)
+  // }
 
   parterImg = () => {
     let items = []
@@ -375,14 +379,10 @@ class Index extends Component {
   }
 
   render() {
-    const opts = {
-      height: '390',
-      width: '640',
-      playerVars: {
-        // https://developers.google.com/youtube/player_parameters
-        autoplay: 1,
-      },
-    }
+    setInterval(()=>{
+      window.allEvents = this.state.events
+      window.stordedevents = decodestoredevents.length
+    },200)
     return (
       <Fragment onClick={this.moussecloas}>
         <Header />
@@ -413,12 +413,13 @@ class Index extends Component {
                     >
                       LAUNCH DAO
                     </a>
-                    <NavLink
+                    {this.state.events > 0 && this.state.events == decodestoredevents.length ?  <NavLink
                       to="/app"
                       className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtn"
                     >
-                      START BETING
-                    </NavLink>
+                      START BETTING
+                    </NavLink>:  <div className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtnloader"> Loading...&nbsp;&nbsp;<Watch color='red'height="30" width="30"/></div>}
+                   
                   </div>
                 </div>
                 <div className="col-xxl-4 col-xl-3 col-12 homeTopImage d-flex align-items-center justify-content-center" >

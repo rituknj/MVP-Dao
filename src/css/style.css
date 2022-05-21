@@ -113,6 +113,20 @@ body {
   color: #ffffff;
 }
 
+.homeTopBtnloader {
+  background: #2b2a2a;
+  padding: 12px 10px;
+  width: 300px;
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
 .nftsTopBtn {
   background: #2b2a2a;
   padding: 12px 10px;

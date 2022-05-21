@@ -67,7 +67,7 @@ class Index extends Component {
       totalbetsmade: totalbetsmade,
       events: totalEvent
     })
-    console.log("subcatogries",window.location.pathname)
+  
   }
 
   getGameCard = () => {

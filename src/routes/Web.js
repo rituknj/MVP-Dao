@@ -29,9 +29,9 @@ class Web extends Component {
             <Route exact path="/app" component={Cricket} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/about" component={About} />
-            <Route exact path="/blogs" component={BLogs} />
-            <Route exact path="/news" component={NEWPAGE} />
-            <Route exact path="/soccer" component={Soccer} />
+            {/* <Route exact path="/blogs" component={BLogs} />
+            <Route exact path="/news" component={NEWPAGE} /> */}
+            {/* <Route exact path="/soccer" component={Soccer} />
             <Route exact path="/rugby" component={Rugby} />
             <Route exact path="/tennis" component={Tennis} />
             <Route exact path="/racing" component={Racing} />
@@ -39,7 +39,7 @@ class Web extends Component {
             <Route exact path="/basketball" component={Basketball} />
             <Route exact path="/baseball" component={Baseball} />
             <Route exact path="/cricket" component={Cricket} />
-            <Route exact path="/football" component={Football} />
+            <Route exact path="/football" component={Football} /> */}
           </Switch>
         </BrowserRouter>
       </>

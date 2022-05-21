@@ -3,6 +3,7 @@ import logo from '../../../images/logo.png';
 import { NavLink } from "react-router-dom";
 import {initInstance,loginProcess,getAccount} from './../../../web3/web3'
 import WalletPopup from "./WalletPopup";
+import { Audio,BallTriangle,Bars,Circles,Grid,Hearts,MutatingDots,Oval,Plane,RevolvingDot,Rings,TailSpin,Triangle,Watch } from  'react-loader-spinner'
 
 const Header=()=> {
     const [account, setAccount] = useState()
@@ -55,9 +56,12 @@ const Header=()=> {
                                     <li className="nav-item px-2 px-md-4">
                                         <a className="nav-link text-white mt-1" href="https://betdao.netlify.app/re-ui/stake" target='_blank'>DAO</a>
                                     </li>
-                                    <li className="nav-item px-2 px-md-4">
+                                    {window.allEvents > 0 && window.allEvents == window.allEvents ? <li className="nav-item px-2 px-md-4">
                                         <NavLink className="nav-link text-white mt-1" to="/app">MARKET</NavLink>
-                                    </li>
+                                    </li>:
+                                    <li className="nav-item px-2 px-md-4">
+                                        <div className="nav-link text-white mt-1" to="/app"><Watch width='30' height='30' color='red'/></div>
+                                    </li>}
                                     <li className="nav-item px-2 px-md-4" style={{cursor: "pointer"}}>
                                         <span  className="nav-link text-white fs-4 cursor-pointer" 
                                         onClick={()=>setModalShow(true)}
