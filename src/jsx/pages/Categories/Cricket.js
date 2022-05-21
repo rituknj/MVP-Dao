@@ -2,8 +2,7 @@ import React, { Component, Fragment } from 'react'
 import greenDot from './../../../images/green-dot.png'
 import cardBackground from './../../../images/ground.png'
 import carbon_timer from './../../../images/carbon_timer.png'
-import App from './../../pages/App/Index'
-import {placeBet, getEventOccurrenceBetAmount, totalEvents, bettorscounts, bettorscountspercent, AmountStackOnEventByaUser, cancelevent } from './../../../web3/betsMVPService'
+import {placeBet, getEventOccurrenceBetAmount, totalEvents, bettorscounts, cancelevent } from './../../../web3/betsMVPService'
 import { TotalEventsCount, addingnewevents, updatingeventdata } from './../../../web3/Countallevents'
 import {getBETBalanceBUSD } from './../../../web3/betsService'
 import { initInstance, getAccount } from './../../../web3/web3'
@@ -29,7 +28,6 @@ import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import Match from './../../../images/match.png'
 import UNMatch from './../../../images/un-match.png'
-import Down from './../../../images/down.png'
 import Search from './../../../images/search.png'
 import Filter from './../../../images/filter.png'
 import Appheadercat from './../App/Appheadercat'
@@ -362,12 +360,7 @@ class GameCard extends Component {
     console.log("subcategorys", window.maincatogries)
     return (
       <Fragment>
-        {/* <App /> */}
-
-
-
-
-        <AppHeader />
+       <AppHeader />
         <br/>
         <div>
           <div className="container-fluid px-md-5 mt-5" id="section-statistics">
@@ -699,8 +692,6 @@ class GameCard extends Component {
                       </>
                     ))}
                   </div> :''}
-
-
                 </div>
               </div>
             </div>
