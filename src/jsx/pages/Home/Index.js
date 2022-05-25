@@ -27,7 +27,7 @@ import Saga from "./../../../images/saga.png"
 import Football from './../../../images/football.png'
 import Playstation from "./../../../images/playstation.png"
 import { FaTwitter } from "react-icons/fa"
-import { AiFillLinkedin } from "react-icons/ai"
+import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai"
 import {   Audio,BallTriangle,Bars,Circles,Grid,Hearts,MutatingDots,Oval,Plane,RevolvingDot,Rings,TailSpin,Triangle,Watch } from  'react-loader-spinner'
 import NFTsText from "./../../../images/nfts-side-text.png"
 import { ToastSuccess } from '../../components/Toast'
@@ -406,15 +406,17 @@ class Index extends Component {
                     <a
                       href='https://betdao.netlify.app/re-ui/stake'
                       target='_blank'
-                      className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtnDao"
+                      className="btn-md theam-bg-red mt-2 mt-md-5 homeTopBtnDao"
                     >
                       LAUNCH DAO
+                      <AiOutlineRight style={{position: "absolute", right: "5px"}} className="mt-1  fw-bold"/>
                     </a>
                     {this.state.events > 0 && this.state.events == decodestoredevents.length ?  <NavLink
                       to="/app"
-                      className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtn"
+                      className="btn-md theam-bg-red mt-2 mt-md-5 homeTopBtn"
                     >
                       START BETTING
+                      <AiOutlineRight style={{position: "absolute", right: "5px"}} className="mt-1  fw-bold"/>
                     </NavLink>:  <div className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtnloader"> Loading...&nbsp;&nbsp;<Watch color='red'height="30" width="30"/></div>}
                    
                   </div>

@@ -3,7 +3,7 @@
   font-family: 'Orbitron', sans-serif;
 }
 body {
-  background: #0f0f0f;
+  background: #000;
 }
 .theam-text-color {
   color: #ff0000 !important;
@@ -57,8 +57,8 @@ body {
   display: block;
   padding: 0.5rem 1rem;
   text-decoration: none;
-  font-style: normal;
   font-weight: normal;
+  font-family: Montserrat;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out;
   font-size: 24px;
@@ -105,9 +105,12 @@ body {
   background: #2b2a2a;
   padding: 12px 10px;
   width: 300px;
+  text-align: start;
+  position: relative;
+  text-decoration: none;
   border-radius: 10px;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 900;
   font-size: 18px;
   line-height: 23px;
   color: #ffffff;
@@ -143,9 +146,12 @@ body {
   background: #ffffff;
   padding: 12px 10px;
   width: 300px;
+  text-align: start;
   border-radius: 10px;
   font-style: normal;
-  font-weight: normal;
+  text-decoration: none;
+  position: relative;
+  font-weight: 900;
   font-size: 18px;
   line-height: 23px;
   color: #0f0f0f;
@@ -161,9 +167,14 @@ body {
   margin-top: 30px;
   background-color: #0f0f0f;
   height: 100%;
+  font-family: Montserrat;
+  box-shadow: 10px 10px 4px 0px #00000040;
   width: auto;
-  padding: 40px;
+  padding: 50px;
   border-radius: 9px;
+}
+.react-multi-carousel-item h5, .react-multi-carousel-item h4{
+  font-family: Montserrat !important;
 }
 .about {
   display: flex;
@@ -1597,6 +1608,9 @@ footer button {
   right: 5%;
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.1); /* Black see-through */
+}
+.side-text-nfts *{
+  font-family: Montserrat;
 }
 
 .subscribe {
