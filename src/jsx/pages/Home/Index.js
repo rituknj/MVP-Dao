@@ -26,6 +26,7 @@ import Binance from "./../../../images/binance.png";
 import Saga from "./../../../images/saga.png";
 import Football from "./../../../images/football.png";
 import Playstation from "./../../../images/playstation.png";
+import bgDark from "./../../../images/dark-img.png";
 import { FaTwitter } from "react-icons/fa";
 import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai";
 import {
@@ -739,7 +740,11 @@ class Index extends Component {
             </Carousel>
           </div>
           <div className="space-100"></div>
-          <div className="container-fluid px-md-5 my-5" id="section-partners" style={{backgroundColor:"#0b0b0b", padding:"50px 0"}}>
+          <div
+            className="container-fluid px-md-5 my-5"
+            id="section-partners"
+            style={{ backgroundColor: "#0b0b0b", padding: "50px 0" }}
+          >
             <p className="mt-2 mt-md-4 text-white d-flex">
               <div class="vl me-2"></div>{" "}
               <span>
@@ -822,28 +827,36 @@ class Index extends Component {
               showDots={false}
               responsive={this.state.responsive_game_card}
               ssr={true} // means to render carousel on server-side.
-              infinite={true}
+              infinite={false}
               keyBoardControl={true}
               customTransition="all .5"
               transitionDuration={500}
               containerClass="carousel-container"
-              removeArrowOnDeviceType={['tablet', 'mobile']}
+              removeArrowOnDeviceType={["tablet", "mobile"]}
               deviceType={this.props.deviceType}
               itemClass="carousel-item-padding-40-px px-4"
             >
-             
-                  <GameCardHome
-                    url={'gkjhghjkgjhkgjhgjh'}
-                    poolsize={5656565654454554455445}
-                    subcategories={'gfhgfhgfghf'}
-                    teamone={'kghjgjhghjg'}
-                    teamtwo={'hkjhkjhjkhjkh'}
-                    endtime={'hgjhghjgjhg'}
-                    zero={'hgjjhgjhghjg'}
-                    one={'khjkhkjhkjh'}
-                    two={'hjgjhghjggjhghjg'}
-                  />
-               
+              <div className="latestCards text-light">
+                <div id="head">
+                  <div className="text-end">
+                    <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
+                    <span>ANNOUNCEMENT</span>
+                  </div>
+                  <div id="title">NEWS PUBLICATION TITLE</div>
+                </div>
+                <div id="bottom">
+                  <p>MEDIUM</p>
+                  <div id="misc">
+                    <div className="d-flex justify-content-between">
+                      <span>3 MINS READ</span>
+                      <a href="/">
+                        READ <AiOutlineRight />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
             </Carousel>
             <div className="mt-4 px-4">
               <button className="mt-2 mt-md-4 text-white text-end bg-transparent ms-auto d-block">
@@ -851,7 +864,6 @@ class Index extends Component {
                 <img src={arrowRight} className="ms-3" width="20" />
               </button>
             </div>
-
           </div>
 
           {false ? (
@@ -941,7 +953,10 @@ class Index extends Component {
             ""
           )}
           <div className="space-100"></div>
-          <div className="container-fluid" style={{backgroundColor: "#0b0b0b", padding:"50px 0"}}>
+          <div
+            className="container-fluid"
+            style={{ backgroundColor: "#0b0b0b", padding: "50px 0" }}
+          >
             <div className="container faq-box">
               <div className="subscribe">
                 <div className="outer-box text-white">
@@ -951,9 +966,15 @@ class Index extends Component {
                     <br />
                     LATEST UPDATES
                   </p>
-                  <input className="sub-input py-3 px-4" placeholder="email@domain.com" />
+                  <input
+                    className="sub-input py-3 px-4"
+                    placeholder="email@domain.com"
+                  />
                   <div className="sighup-btn">
-                    <button className="btn btn-md mt-1 mt-md-5 pl-4 pr-4 btn-signup text-light" style={{boxShadow: "10px 10px 4px rgba(0, 0, 0, 0.25)"}}>
+                    <button
+                      className="btn btn-md mt-1 mt-md-5 pl-4 pr-4 btn-signup text-light"
+                      style={{ boxShadow: "10px 10px 4px rgba(0, 0, 0, 0.25)" }}
+                    >
                       SIGN UP
                       <AiOutlineRight
                         style={{ position: "absolute", right: "5px" }}

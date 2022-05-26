@@ -441,7 +441,44 @@ body {
   font-family: 'Montserrat', sans-serif;
   color: #aaaaaa;
 }
-#section-news {
+.latestCards{
+  width: 525px;
+  background-blend-mode: overlay;
+  background-color: rgba(0, 0, 0, 0.808);
+  border-radius: 20px;
+  overflow: hidden;
+  background-position: center;
+  background-image: url("../images/dark-img.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 10px;
+  margin: auto 25px;
+}
+.latestCards #head{
+  padding: 20px 25px;
+  height: 210px;
+}
+.latestCards #title{
+  width: fit-content;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 150px;
+}
+.latestCards #bottom p{
+  background-color: #111111;
+  padding: 10px 25px;
+  margin-bottom: 0;
+}
+.latestCards #misc{
+  background-color: #0B0B0B;
+}
+.latestCards #misc a{
+  color: #fff;
+  padding: 10px 25px;
+  text-decoration: none;
+}
+.latestCards #misc span{
+  padding: 10px 25px;
 }
 .game-news-card h6 {
   font-size: 14px;
