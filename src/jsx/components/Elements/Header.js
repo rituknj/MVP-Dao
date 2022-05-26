@@ -36,7 +36,7 @@ const Header=()=> {
                 >
                     <div className="container-fluid home-header">
                         <NavLink class="navbar-brand px-2 px-md-4" to="/">
-                            <img src={logo} width="95" className="py-1" />
+                            <img src={logo} width="50" className="py-1" />
                         </NavLink>
                         <button
                             className="navbar-toggler"
@@ -63,7 +63,7 @@ const Header=()=> {
                                         <div className="nav-link text-white mt-1" to="/app"><Watch width='30' height='30' color='red'/></div>
                                     </li>}
                                     <li className="nav-item px-2 px-md-4" style={{cursor: "pointer"}}>
-                                        <span  className="nav-link text-white fs-4 cursor-pointer" 
+                                        <span  className="nav-link text-white cursor-pointer" 
                                         onClick={()=>setModalShow(true)}
                                         >Wallet</span>
                                     </li>

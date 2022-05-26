@@ -1,36 +1,51 @@
-import React, { Component, Fragment } from 'react'
-import { NavLink } from 'react-router-dom'
-import Header from '../../components/Elements/Header'
-import Footer from '../../components/Elements/Footer'
-import GameCardHome from './GameCard'
-import NewsCard from '../../components/Cards/NewsCard'
-import PartnerCom from '../../components/Cards/Partner'
-import Videocom from '../../components/Cards/Videos'
-import ExternalBlog from '../../components/Cards/ExternalBlog'
-import Amessador from '../../components/Cards/Amessador'
-import Carousel from 'react-multi-carousel'
-import 'react-multi-carousel/lib/styles.css'
-import loadable from '@loadable/component'
-import pMinDelay from 'p-min-delay'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-import { initInstance, loginProcess } from './../../../web3/web3'
-import { gettotalsupply } from './../../../web3/betsService'
-import NFTs from "./../../../images/nfts.png"
-import menone from "./../../../images/manone.png"
-import women from "./../../../images/womenone.png"
-import womentwo from "./../../../images/womentwo.png"
-import emailImg from './../../../images/email.png';
-import Partners from "./../../../images/unreal.png"
-import Binance from "./../../../images/binance.png"
-import Saga from "./../../../images/saga.png"
-import Football from './../../../images/football.png'
-import Playstation from "./../../../images/playstation.png"
-import { FaTwitter } from "react-icons/fa"
-import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai"
-import {   Audio,BallTriangle,Bars,Circles,Grid,Hearts,MutatingDots,Oval,Plane,RevolvingDot,Rings,TailSpin,Triangle,Watch } from  'react-loader-spinner'
-import NFTsText from "./../../../images/nfts-side-text.png"
-import { ToastSuccess } from '../../components/Toast'
+import React, { Component, Fragment } from "react";
+import { NavLink } from "react-router-dom";
+import Header from "../../components/Elements/Header";
+import Footer from "../../components/Elements/Footer";
+import GameCardHome from "./GameCard";
+import NewsCard from "../../components/Cards/NewsCard";
+import PartnerCom from "../../components/Cards/Partner";
+import Videocom from "../../components/Cards/Videos";
+import ExternalBlog from "../../components/Cards/ExternalBlog";
+import Amessador from "../../components/Cards/Amessador";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import loadable from "@loadable/component";
+import pMinDelay from "p-min-delay";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { initInstance, loginProcess } from "./../../../web3/web3";
+import { gettotalsupply } from "./../../../web3/betsService";
+import NFTs from "./../../../images/nfts.png";
+import menone from "./../../../images/manone.png";
+import women from "./../../../images/womenone.png";
+import womentwo from "./../../../images/womentwo.png";
+import emailImg from "./../../../images/email.png";
+import Partners from "./../../../images/unreal.png";
+import Binance from "./../../../images/binance.png";
+import Saga from "./../../../images/saga.png";
+import Football from "./../../../images/football.png";
+import Playstation from "./../../../images/playstation.png";
+import { FaTwitter } from "react-icons/fa";
+import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai";
+import {
+  Audio,
+  BallTriangle,
+  Bars,
+  Circles,
+  Grid,
+  Hearts,
+  MutatingDots,
+  Oval,
+  Plane,
+  RevolvingDot,
+  Rings,
+  TailSpin,
+  Triangle,
+  Watch,
+} from "react-loader-spinner";
+import NFTsText from "./../../../images/nfts-side-text.png";
+import { ToastSuccess } from "../../components/Toast";
 
 import {
   allactiveusers,
@@ -38,27 +53,27 @@ import {
   totalEvents,
   totalbetcreated,
   getActiveEvents,
-} from '../../../web3/betsMVPService'
-import { TotalEventsCount } from '../../../web3/Countallevents'
-import YouTube from 'react-youtube'
-import axios from 'axios'
-import { createChart } from 'lightweight-charts'
-import { lineData } from './../About/demo';
+} from "../../../web3/betsMVPService";
+import { TotalEventsCount } from "../../../web3/Countallevents";
+import YouTube from "react-youtube";
+import axios from "axios";
+import { createChart } from "lightweight-charts";
+import { lineData } from "./../About/demo";
 
 ////Images
-import arrowRight from '../../../images/arrow-right.svg'
-import lineImage from '../../../images/line.png'
-import HeroModal from './HeroModal'
-var chart = null
+import arrowRight from "../../../images/arrow-right.svg";
+import lineImage from "../../../images/line.png";
+import HeroModal from "./HeroModal";
+var chart = null;
 
-let decodestoredevents = []
+let decodestoredevents = [];
 
 const SalesChart = loadable(() =>
-  pMinDelay(import('../../components/Chart/SalesChart'), 1000),
-)
+  pMinDelay(import("../../components/Chart/SalesChart"), 1000)
+);
 class Index extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       totalSupply: 0,
       price: 0,
@@ -118,8 +133,8 @@ class Index extends Component {
         },
       },
       chartWidth:
-        document.getElementById('linechart') != null
-          ? document.getElementById('linechart').clientWidth
+        document.getElementById("linechart") != null
+          ? document.getElementById("linechart").clientWidth
           : 600,
       chart: null,
       responsive_game_card: {
@@ -160,23 +175,23 @@ class Index extends Component {
           items: 1,
         },
       },
-    }
-    this.videoOnReady = this.videoOnReady.bind(this)
+    };
+    this.videoOnReady = this.videoOnReady.bind(this);
   }
 
   componentDidMount = async () => {
-    AOS.init()
-    await initInstance()
-    await loginProcess()
+    AOS.init();
+    await initInstance();
+    await loginProcess();
     window.localStorage.clear();
     let events = await totalEvents();
     // let activeusers = await allactiveusers();//
     // let payout = await totalpayout();
-    
+
     // let totalbets = await totalbetcreated();
     // let activeevents = await getActiveEvents();
     // let totalSupply = await gettotalsupply();
-    
+
     this.setState({
       totalSupply: 0,
       activeusers: 0,
@@ -184,11 +199,11 @@ class Index extends Component {
       events: events,
       totalbetsmade: 0,
       activeevents: 0,
-    })
-    AOS.init()
+    });
+    AOS.init();
     // let LineData = []
     // let Lineprice = []
-    
+
     // const Line = 'https://api.coingecko.com/api/v3/coins/betswamp/market_chart?vs_currency=usd&days=30*'
     // await axios
     //   .get(Line)
@@ -208,7 +223,6 @@ class Index extends Component {
     // this.setState({
     //   Lineprice: Lineprice,
     // })
-
 
     // var myHeaders = new Headers();
     // myHeaders.append("Accept", "application/json");
@@ -258,46 +272,43 @@ class Index extends Component {
     // **************** API LINE ambassador BLOG DATA ****************//
 
     // fetching price of total
-    request('GET', 'https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d',)
+    request(
+      "GET",
+      "https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d"
+    )
       .then((r1) => {
-        var x1 = JSON.parse(r1.target.responseText)
-        let val = Number(x1.data.price).toFixed(13)
+        var x1 = JSON.parse(r1.target.responseText);
+        let val = Number(x1.data.price).toFixed(13);
         this.setState({
           price: val,
           realprice: x1.data.price,
-        })
+        });
       })
       .catch((err) => {
-        console.log('error is', err)
-      })
+        console.log("error is", err);
+      });
 
     function request(method, url) {
       return new Promise(function (resolve, reject) {
-        var xhr = new XMLHttpRequest()
-        xhr.open(method, url)
-        xhr.onload = resolve
-        xhr.onerror = reject
-        xhr.send()
-      })
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.onload = resolve;
+        xhr.onerror = reject;
+        xhr.send();
+      });
     }
-
 
     try {
-
-      window.localStorage.setItem('events', JSON.stringify(''))
-      await TotalEventsCount()
-      decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-      this.setState({
-        item: decodestoredevents.reverse(),
-      })
+      window.localStorage.setItem("events", JSON.stringify(""));
+      await TotalEventsCount();
+      decodestoredevents = JSON.parse(window.localStorage.getItem("events"));
+      // this.setState({
+      //   item: decodestoredevents.reverse(),
+      // });
+    } catch (e) {
+      console.log("Error on home page", e);
     }
-    catch (e) {
-      console.log("Error on home page", e)
-    }
-
-
-    
-  }
+  };
 
   // fetchdata = async () => {
   //   console.log("run")
@@ -317,74 +328,73 @@ class Index extends Component {
   // }
 
   parterImg = () => {
-    let items = []
+    let items = [];
     for (var i = this.state.partner.length; i > 0; i--) {
-      items.push(<PartnerCom img={this.state.partner[i - 1]} />)
+      items.push(<PartnerCom img={this.state.partner[i - 1]} />);
     }
-    return items
-  }
+    return items;
+  };
 
   amessador = () => {
-    let items = []
+    let items = [];
     for (var i = this.state.Ambassador.length; i > 0; i--) {
-      items.push(<Amessador img={this.state.Ambassador[i - 1]} />)
+      items.push(<Amessador img={this.state.Ambassador[i - 1]} />);
     }
-    return items
-  }
-
+    return items;
+  };
 
   videoOnReady(event) {
     // access to player in all event handlers via event.target
     this.setState({
       playerPlayVideo: event.target.playVideo,
-    })
+    });
   }
   videos = () => {
-    let items = []
+    let items = [];
     for (var i = this.state.video.length; i > 0; i--) {
-      items.push(<Videocom videos={this.state.video[i - 1]} />)
+      items.push(<Videocom videos={this.state.video[i - 1]} />);
     }
-    return items
-  }
+    return items;
+  };
 
   getNewsCard = () => {
-    let items = []
+    let items = [];
     for (var i = this.state.bloglength.length; i > 0; i--) {
-      items.push(<NewsCard news={this.state.bloglength[i - 1]} />)
+      items.push(<NewsCard news={this.state.bloglength[i - 1]} />);
     }
-    return items
-  }
+    return items;
+  };
   internalblogs = () => {
-    let items = []
+    let items = [];
     for (var i = this.state.indernalblog.length; i > 0; i--) {
-      items.push(<ExternalBlog blogs={this.state.indernalblog[i - 1]} />)
+      items.push(<ExternalBlog blogs={this.state.indernalblog[i - 1]} />);
     }
-    return items
-  }
+    return items;
+  };
 
   _onReady(event) {
     // access to player in all event handlers via event.target
-    event.target.pauseVideo()
+    event.target.pauseVideo();
   }
   moussecloas = (event) => {
-    let x = event.screenX
-    let y = event.screenY
+    let x = event.screenX;
+    let y = event.screenY;
 
     if (x > 633) {
     }
-    console.log('position', x, y)
-  }
+    console.log("position", x, y);
+  };
 
   render() {
-    setInterval(()=>{
-      window.allEvents = this.state.events
-      window.allEvents = decodestoredevents.length
-    },200)
+    setInterval(() => {
+      window.allEvents = this.state.events;
+      window.allEvents = decodestoredevents.length;
+    }, 200);
     return (
       <Fragment onClick={this.moussecloas}>
         <Header />
         <div onClick={this.moussecloas}>
-          <div className='topBoxBg'>
+          <div className="topBoxBg">
             <div className="container mb-5 mb-md-0" id="section-home">
               <div className="space-100"></div>
 
@@ -395,46 +405,76 @@ class Index extends Component {
                   data-aos-easing="linear"
                 >
                   <h2 className="text-white text-center text-md-start">
-                    A DAO YOU CAN LITERALY<br />
+                    A DAO YOU CAN LITERALY
+                    <br />
                     <span>BET</span> ON
                   </h2>
                   <p className="mt-5 mt-md-4 text-white text-center text-md-start">
-                    Get the best APY in the market staking on the betswamp DAO and have<br /> fun
-                    betting on your favorite market.{' '}
+                    Get the best APY in the market staking on the betswamp DAO
+                    and have
+                    <br /> fun betting on your favorite market.{" "}
                   </p>
                   <div className="text-center text-md-center my-1 my-md-0 topAppBtn">
                     <a
-                      href='https://betdao.netlify.app/re-ui/stake'
-                      target='_blank'
-                      className="btn-md theam-bg-red mt-2 mt-md-5 homeTopBtnDao"
+                      href="https://betdao.netlify.app/re-ui/stake"
+                      target="_blank"
+                      className="btn-md theam-bg-red homeTopBtnDao"
                     >
                       LAUNCH DAO
-                      <AiOutlineRight style={{position: "absolute", right: "5px"}} className="mt-1  fw-bold"/>
+                      <AiOutlineRight
+                        style={{ position: "absolute", right: "5px" }}
+                        className="mt-1  fw-bold"
+                      />
                     </a>
-                    {this.state.events > 0 && this.state.events == decodestoredevents.length ?  <NavLink
-                      to="/app"
-                      className="btn-md theam-bg-red mt-2 mt-md-5 homeTopBtn"
-                    >
-                      START BETTING
-                      <AiOutlineRight style={{position: "absolute", right: "5px"}} className="mt-1  fw-bold"/>
-                    </NavLink>:  <div className="btn btn-md theam-bg-red mt-2 mt-md-5 homeTopBtnloader"> Loading...&nbsp;&nbsp;<Watch color='red'height="30" width="30"/></div>}
-                   
+                    {this.state.events > 0 &&
+                    this.state.events == decodestoredevents.length ? (
+                      <NavLink
+                        to="/app"
+                        className="btn-md theam-bg-red homeTopBtn"
+                      >
+                        START BETTING
+                        <AiOutlineRight
+                          style={{ position: "absolute", right: "5px" }}
+                          className="mt-1  fw-bold"
+                        />
+                      </NavLink>
+                    ) : (
+                      <div className="btn btn-md theam-bg-red homeTopBtnloader">
+                        {" "}
+                        Loading...&nbsp;&nbsp;
+                        <Watch color="red" height="30" width="30" />
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className="col-xxl-4 col-xl-3 col-12 homeTopImage d-flex align-items-center justify-content-center" >
-                  <span class="btn-video-zm" onClick={() => this.setState({modalShow: true})}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 12.282 14.739">
-                      <path d="M7.369,0l7.369,12.282H0Z" transform="translate(12.282) rotate(90)" fill="#4D0202" />
+                <div className="col-xxl-4 col-xl-3 col-12 homeTopImage d-flex align-items-center justify-content-center">
+                  <span
+                    class="btn-video-zm"
+                    onClick={() => this.setState({ modalShow: true })}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="30"
+                      height="30"
+                      viewBox="0 0 12.282 14.739"
+                    >
+                      <path
+                        d="M7.369,0l7.369,12.282H0Z"
+                        transform="translate(12.282) rotate(90)"
+                        fill="#4D0202"
+                      />
                     </svg>
                   </span>
-                  <HeroModal show={this.state.modalShow} onHide={() => this.setState({modalShow: false})} />
+                  <HeroModal
+                    show={this.state.modalShow}
+                    onHide={() => this.setState({ modalShow: false })}
+                  />
                 </div>
               </div>
             </div>
           </div>
 
           <div className="container-fluid px-md-5" id="section-analytics">
-           
             <div className="space-100"></div>
             <div
               className="row"
@@ -455,12 +495,10 @@ class Index extends Component {
                   customTransition="all .5"
                   transitionDuration={500}
                   containerClass="carousel-container"
-                  removeArrowOnDeviceType={['tablet', 'mobile']}
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
                   deviceType={this.props.deviceType}
                   itemClass="px-2"
                 >
-                 
-
                   <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
                     <h5 className="text-white m-0">Price</h5>
                     <h4 className="text-white mt-3">
@@ -476,11 +514,11 @@ class Index extends Component {
                   <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
                     <h5 className="text-white m-0">Market Cap</h5>
                     <h4 className="text-white mt-3">
-                      ${' '}
+                      ${" "}
                       {(
                         (Number(this.state.price).toFixed(4) * 250000000) /
                         10 ** 6
-                      ).toFixed(2)}{' '}
+                      ).toFixed(2)}{" "}
                       M
                     </h4>
                   </div>
@@ -489,22 +527,38 @@ class Index extends Component {
                     <h5 className="text-white m-0">Total Supply</h5>
                     <h4 className="text-white mt-3">250,000,000</h4>
                   </div>
-
-                
                 </Carousel>
               </div>
             </div>
           </div>
           <div className="space-100"></div>
           <div className="space-100"></div>
-          <div className='container'>
-            <div className='row'>
-              <div className='col-12 col-md-8 text-white'><img src={NFTs} style={{ width: '100%' }} /></div>
-              <div className='col-6 col-md-4 text-white side-text-nfts' style={{ width: '40%', marginTop: '50px' }}>
+          <div className="container">
+            <div className="row">
+              <div className="col-12 col-md-8 text-white">
+                <img src={NFTs} style={{ width: "100%" }} />
+              </div>
+              <div
+                className="col-6 col-md-4 text-white side-text-nfts"
+                style={{ width: "40%", marginTop: "50px" }}
+              >
                 <p className="mt-2 mt-md-4 text-white d-flex">
-                  <div class="vl me-2"></div> <span><p className='m-0'>BETSWAMP</p> <h4>ECOSYSTEM</h4></span>
+                  <div class="vl me-2"></div>{" "}
+                  <span>
+                    <p
+                      className="m-0"
+                      style={{ textShadow: "0px 0px 10px #FFFFFF" }}
+                    >
+                      DECENTRALISED
+                    </p>{" "}
+                    <h4>ECOSYSTEM</h4>
+                  </span>
                 </p>
-                <p >BETSWAMP IS BUILDING A DECENTRALIZED ECOSYSTEM WHERE ALL IT'S UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO WHICH PROVIDES INVESTORS A SECURED PLATFORM THEY CAN VOCOUNT ON.</p>
+                <p>
+                  BETSWAMP IS BUILDING A DECENTRALIZED ECOSYSTEM WHERE ALL IT'S
+                  UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO WHICH
+                  PROVIDES INVESTORS A SECURED PLATFORM THEY CAN VOCOUNT ON.
+                </p>
                 <NavLink
                   to="/app"
                   className="btn btn-md text-white mt-2 mt-md-5 nftsTopBtn"
@@ -512,17 +566,25 @@ class Index extends Component {
                   LEARN MORE
                 </NavLink>
               </div>
-
             </div>
           </div>
           <div className="container-fluid px-md-5" id="section-analytics">
             {/*  */}
           </div>
-          
+
           <div className="space-100"></div>
           <div className="container-fluid px-md-5" id="section-statistics">
             <p className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
-              <div class="vl me-2"></div> <span><p className='m-0'>BETSWAMP</p> <h4 className='m-0'>ECOSYSTEM</h4></span>
+              <div class="vl me-2"></div>{" "}
+              <span>
+                <p
+                  className="m-0"
+                  style={{ textShadow: "0px 0px 10px #FFFFFF" }}
+                >
+                  BETSWAMP
+                </p>{" "}
+                <h4 className="m-0">ECOSYSTEM</h4>
+              </span>
             </p>
             <div
               className="row pb-5"
@@ -543,7 +605,7 @@ class Index extends Component {
                   customTransition="all .5"
                   transitionDuration={500}
                   containerClass="carousel-container"
-                  removeArrowOnDeviceType={['tablet', 'mobile']}
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
                   deviceType={this.props.deviceType}
                   itemClass="px-2"
                 >
@@ -555,7 +617,12 @@ class Index extends Component {
                   </div>
 
                   <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
-                    <h5 className="m-0 text-white text-start"><p className='m-0' style={{ fontSize: '10px' }}>DECENTRALISED</p>P2P BETTING</h5>
+                    <h5 className="m-0 text-white text-start">
+                      <p className="m-0" style={{ fontSize: "10px" }}>
+                        DECENTRALISED
+                      </p>
+                      P2P BETTING
+                    </h5>
                     {/* <h4 className="text-white mt-4">{this.state.events}</h4> */}
                   </div>
 
@@ -580,7 +647,10 @@ class Index extends Component {
 
           <div className="container-fluid px-md-5 my-5" id="section-partners">
             <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
-              <div class="vl me-2"></div> <span><h4 style={{ marginTop: '10px' }}>AMBASSADORS</h4></span>
+              <div class="vl me-2"></div>{" "}
+              <span>
+                <h4 style={{ marginTop: "10px" }}>AMBASSADORS</h4>
+              </span>
             </p>
             <div className="space-50"></div>
             <Carousel
@@ -597,7 +667,7 @@ class Index extends Component {
               customTransition="all .5"
               transitionDuration={500}
               containerClass="carousel-container"
-              removeArrowOnDeviceType={['tablet', 'mobile']}
+              removeArrowOnDeviceType={["tablet", "mobile"]}
               deviceType={this.props.deviceType}
               itemClass="d-flex justify-content-center align-items-center flex-column"
             >
@@ -606,65 +676,81 @@ class Index extends Component {
                 data-aos="zoom-in"
                 data-aos-duration="400"
                 data-aos-easing="linear"
-                style={{ textAlign: 'center', color: '#ffff' }}
+                style={{ textAlign: "center", color: "#ffff" }}
               >
-                <img src={menone} width="100" style={{ borderRadius: '80px' }} />
-                <p className='m-0'>Name</p>
-                <p className='m-0'>Title</p>
-                <div className='d-flex m-0 justify-content-evenly'>
-                  <FaTwitter />{" "}
-                  <AiFillLinkedin />
+                <img
+                  src={menone}
+                  width="100"
+                  style={{ borderRadius: "80px" }}
+                />
+                <p className="m-0">Name</p>
+                <p className="m-0">Title</p>
+                <div className="d-flex m-0 justify-content-evenly">
+                  <FaTwitter /> <AiFillLinkedin />
                 </div>
               </div>
               <div
                 data-aos="zoom-in"
                 data-aos-duration="400"
                 data-aos-easing="linear"
-                style={{ textAlign: 'center', color: '#ffff' }}
+                style={{ textAlign: "center", color: "#ffff" }}
               >
-                <img src={women} width="100" style={{ borderRadius: '80px' }} />
-                <p className='m-0'>Name</p>
-                <p className='m-0'>Title</p>
-                <div className='d-flex m-0 justify-content-evenly'>
-                  <FaTwitter />{" "}
-                  <AiFillLinkedin />
+                <img src={women} width="100" style={{ borderRadius: "80px" }} />
+                <p className="m-0">Name</p>
+                <p className="m-0">Title</p>
+                <div className="d-flex m-0 justify-content-evenly">
+                  <FaTwitter /> <AiFillLinkedin />
                 </div>
               </div>
               <div
                 data-aos="zoom-in"
                 data-aos-duration="400"
                 data-aos-easing="linear"
-                style={{ textAlign: 'center', color: '#ffff' }}
+                style={{ textAlign: "center", color: "#ffff" }}
               >
-                <img src={menone} width="100" style={{ borderRadius: '80px' }} />
-                <p className='m-0'>Name</p>
-                <p className='m-0'>Title</p>
-                <div className='d-flex m-0 justify-content-evenly'>
-                  <FaTwitter />{" "}
-                  <AiFillLinkedin />
+                <img
+                  src={menone}
+                  width="100"
+                  style={{ borderRadius: "80px" }}
+                />
+                <p className="m-0">Name</p>
+                <p className="m-0">Title</p>
+                <div className="d-flex m-0 justify-content-evenly">
+                  <FaTwitter /> <AiFillLinkedin />
                 </div>
               </div>
               <div
                 data-aos="zoom-in"
                 data-aos-duration="400"
                 data-aos-easing="linear"
-                style={{ textAlign: 'center', color: '#ffff' }}
+                style={{ textAlign: "center", color: "#ffff" }}
               >
-                <img src={womentwo} width="100" style={{ borderRadius: '80px' }} />
-                <p className='m-0'>Name</p>
-                <p className='m-0'>Title</p>
-                <div className='d-flex m-0 justify-content-evenly'>
-                  <FaTwitter />{" "}
-                  <AiFillLinkedin />
+                <img
+                  src={womentwo}
+                  width="100"
+                  style={{ borderRadius: "80px" }}
+                />
+                <p className="m-0">Name</p>
+                <p className="m-0">Title</p>
+                <div className="d-flex m-0 justify-content-evenly">
+                  <FaTwitter /> <AiFillLinkedin />
                 </div>
               </div>
-
             </Carousel>
           </div>
           <div className="space-100"></div>
-          <div className="container-fluid px-md-5 my-5" id="section-partners">
+          <div className="container-fluid px-md-5 my-5" id="section-partners" style={{backgroundColor:"#0b0b0b", padding:"50px 0"}}>
             <p className="mt-2 mt-md-4 text-white d-flex">
-              <div class="vl me-2"></div> <span><p className='m-0'>STRATEGIC</p> <h4>PARTNERS</h4></span>
+              <div class="vl me-2"></div>{" "}
+              <span>
+                <p
+                  className="m-0"
+                  style={{ textShadow: "0px 0px 10px #FFFFFF" }}
+                >
+                  STRATEGIC
+                </p>{" "}
+                <h4>PARTNERS</h4>
+              </span>
             </p>
             <div className="space-50"></div>
             <Carousel
@@ -681,7 +767,7 @@ class Index extends Component {
               customTransition="all .5"
               transitionDuration={500}
               containerClass="carousel-container"
-              removeArrowOnDeviceType={['tablet', 'mobile']}
+              removeArrowOnDeviceType={["tablet", "mobile"]}
               deviceType={this.props.deviceType}
               itemClass="d-flex justify-content-center align-items-center flex-column"
             >
@@ -725,11 +811,10 @@ class Index extends Component {
               >
                 <img src={Playstation} style={{ width: "100%" }} />
               </div>
-
             </Carousel>
           </div>
 
-          {/* <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
+          <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
             <Carousel
               swipeable={true}
               draggable={true}
@@ -746,144 +831,158 @@ class Index extends Component {
               deviceType={this.props.deviceType}
               itemClass="carousel-item-padding-40-px px-4"
             >
-              {this.state.activeevents != 0 &&
-                this.state.item.map((item) => (
+             
                   <GameCardHome
-                    url={item.subcategory}
-                    poolsize={item.poolsize}
-                    subcategories={item.subcategory}
-                    teamone={item.teamone}
-                    teamtwo={item.teamtwo}
-                    endtime={item.endtime}
-                    zero={item.zero}
-                    one={item.one}
-                    two={item.two}
+                    url={'gkjhghjkgjhkgjhgjh'}
+                    poolsize={5656565654454554455445}
+                    subcategories={'gfhgfhgfghf'}
+                    teamone={'kghjgjhghjg'}
+                    teamtwo={'hkjhkjhjkhjkh'}
+                    endtime={'hgjhghjgjhg'}
+                    zero={'hgjjhgjhghjg'}
+                    one={'khjkhkjhkjh'}
+                    two={'hjgjhghjggjhghjg'}
                   />
-                ))}
+               
             </Carousel>
             <div className="mt-4 px-4">
-              <p className="mt-2 mt-md-4 text-white text-end">
-                View Events
+              <button className="mt-2 mt-md-4 text-white text-end bg-transparent ms-auto d-block">
+                VIEW MORE
                 <img src={arrowRight} className="ms-3" width="20" />
-              </p>
-            </div>
-
-          </div> */}
-         
-          {false ? <div className="container-fluid px-md-5 my-5" id="section-news">
-            <div className="space-100"></div>
-            <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
-              NEWS <img src={lineImage} className="ms-3" />
-            </p>
-            <div className="space-50"></div>
-            <Carousel
-              swipeable={true}
-              draggable={false}
-              arrows={true}
-              showDots={false}
-              responsive={this.state.responsive_game_card}
-              ssr={true} // means to render carousel on server-side.
-              autoPlay={true}
-              autoPlaySpeed={1500}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={['tablet', 'mobile']}
-              deviceType={this.props.deviceType}
-              itemClass="carousel-item-padding-40-px px-4"
-            >
-              {this.getNewsCard()}
-            </Carousel>
-
-            <div className="space-100"></div>
-
-
-            {/* ***************************In House Articles************************** */}
-
-            <Carousel
-              swipeable={true}
-              draggable={false}
-              arrows={true}
-              showDots={false}
-              responsive={this.state.responsive_game_card}
-              ssr={true} // means to render carousel on server-side.
-              autoPlay={true}
-              autoPlaySpeed={1500}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={['tablet', 'mobile']}
-              deviceType={this.props.deviceType}
-              itemClass="carousel-item-padding-40-px px-4"
-            >
-              {this.internalblogs()}
-            </Carousel>
-
-          </div> : ''}
-
-         
-
-          {false ? <div className="container-fluid px-md-5 my-5" id="section-partners">
-            <div className="space-100"></div>
-            <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1 text-uppercase">
-              partners <img src={lineImage} className="ms-3" />
-            </p>
-            <div className="space-50"></div>
-            <Carousel
-              swipeable={true}
-              draggable={false}
-              arrows={true}
-              showDots={false}
-              responsive={this.state.responsive}
-              ssr={true} // means to render carousel on server-side.
-              infinite={true}
-              autoPlay={true}
-              autoPlaySpeed={1500}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={['tablet', 'mobile']}
-              deviceType={this.props.deviceType}
-              itemClass="d-flex justify-content-center align-items-center flex-column"
-            >
-              {this.parterImg()}
-
-            </Carousel>
-          </div> : ''}
-          <div className="space-100"></div>
-          <div className='container faq-box '>
-            <div className='subscribe'>
-              <div className='outer-box text-white'>
-                <h4 className='font-weight-bold'>GET THE LATEST</h4>
-                <p>SUBSCRIBE  TO GET THE LATEST OF OUR NEWS, AND<br />
-                  LATEST UPDATES</p>
-                <input className='sub-input' placeholder='email@domain.com' />
-                <div className='sighup-btn'>
-                  <button className='btn btn-md text-white mt-1 mt-md-5 pl-4 pr-4 btn-signup'>SIGN UP</button>
-                </div>
-
-              </div>
-            </div>
-            <div className='text-white faqbox'>
-              <div className='question-box'>
-                <h4 className='font-weight-bold'>HAVE A QUESTION?</h4>
-                <p>SEND US A MAIL</p>
-                <div>
-                  <p className="text-white text-email mb-0"><img src={emailImg} width="22" /> admin@betswamp.com</p>
-                </div>
-              </div>
+              </button>
             </div>
 
           </div>
 
-          <div className='d-flex'><Footer /></div>
+          {false ? (
+            <div className="container-fluid px-md-5 my-5" id="section-news">
+              <div className="space-100"></div>
+              <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
+                NEWS <img src={lineImage} className="ms-3" />
+              </p>
+              <div className="space-50"></div>
+              <Carousel
+                swipeable={true}
+                draggable={false}
+                arrows={true}
+                showDots={false}
+                responsive={this.state.responsive_game_card}
+                ssr={true} // means to render carousel on server-side.
+                autoPlay={true}
+                autoPlaySpeed={1500}
+                keyBoardControl={true}
+                customTransition="all .5"
+                transitionDuration={500}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                deviceType={this.props.deviceType}
+                itemClass="carousel-item-padding-40-px px-4"
+              >
+                {this.getNewsCard()}
+              </Carousel>
 
+              <div className="space-100"></div>
+
+              {/* ***************************In House Articles************************** */}
+
+              <Carousel
+                swipeable={true}
+                draggable={false}
+                arrows={true}
+                showDots={false}
+                responsive={this.state.responsive_game_card}
+                ssr={true} // means to render carousel on server-side.
+                autoPlay={true}
+                autoPlaySpeed={1500}
+                keyBoardControl={true}
+                customTransition="all .5"
+                transitionDuration={500}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                deviceType={this.props.deviceType}
+                itemClass="carousel-item-padding-40-px px-4"
+              >
+                {this.internalblogs()}
+              </Carousel>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {false ? (
+            <div className="container-fluid px-md-5 my-5" id="section-partners">
+              <div className="space-100"></div>
+              <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1 text-uppercase">
+                partners <img src={lineImage} className="ms-3" />
+              </p>
+              <div className="space-50"></div>
+              <Carousel
+                swipeable={true}
+                draggable={false}
+                arrows={true}
+                showDots={false}
+                responsive={this.state.responsive}
+                ssr={true} // means to render carousel on server-side.
+                infinite={true}
+                autoPlay={true}
+                autoPlaySpeed={1500}
+                keyBoardControl={true}
+                customTransition="all .5"
+                transitionDuration={500}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                deviceType={this.props.deviceType}
+                itemClass="d-flex justify-content-center align-items-center flex-column"
+              >
+                {this.parterImg()}
+              </Carousel>
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="space-100"></div>
+          <div className="container-fluid" style={{backgroundColor: "#0b0b0b", padding:"50px 0"}}>
+            <div className="container faq-box">
+              <div className="subscribe">
+                <div className="outer-box text-white">
+                  <h4 className="font-weight-bold">GET THE LATEST</h4>
+                  <p>
+                    SUBSCRIBE TO GET THE LATEST OF OUR NEWS, AND
+                    <br />
+                    LATEST UPDATES
+                  </p>
+                  <input className="sub-input py-3 px-4" placeholder="email@domain.com" />
+                  <div className="sighup-btn">
+                    <button className="btn btn-md mt-1 mt-md-5 pl-4 pr-4 btn-signup text-light" style={{boxShadow: "10px 10px 4px rgba(0, 0, 0, 0.25)"}}>
+                      SIGN UP
+                      <AiOutlineRight
+                        style={{ position: "absolute", right: "5px" }}
+                        className="mt-1  fw-bold"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="text-white faqbox">
+                <div className="question-box">
+                  <h4 className="font-weight-bold">HAVE A QUESTION?</h4>
+                  <p>SEND US A MAIL</p>
+                  <div>
+                    <p className="text-white text-email mb-0">
+                      <img src={emailImg} width="22" /> admin@betswamp.com
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="d-flex">
+            <Footer />
+          </div>
         </div>
       </Fragment>
-    )
+    );
   }
 }
-export default Index
+export default Index;

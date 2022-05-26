@@ -30,6 +30,15 @@
   .adminGlobalContainer{
     margin: 15px auto 0px auto;
   }
+  #section-statistics .row{
+    width: 90% !important;
+  }
+  .carousel-container{
+    width: 90% !important;
+  }
+  .subscribe {
+    width: 100% !important;
+  }
 }
 
 @media screen and (max-width: 900px) {
