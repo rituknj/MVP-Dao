@@ -26,9 +26,9 @@ import Binance from "./../../../images/binance.png";
 import Saga from "./../../../images/saga.png";
 import Football from "./../../../images/football.png";
 import Playstation from "./../../../images/playstation.png";
-import bgDark from "./../../../images/dark-img.png";
 import { FaTwitter } from "react-icons/fa";
 import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai";
+import * as THREE from 'three'
 import {
   Audio,
   BallTriangle,
@@ -71,9 +71,9 @@ let decodestoredevents = [];
 
 const SalesChart = loadable(() =>
   pMinDelay(import("../../components/Chart/SalesChart"), 1000)
-);
-class Index extends Component {
-  constructor(props) {
+  );
+  class Index extends Component {
+    constructor(props) {
     super(props);
     this.state = {
       totalSupply: 0,
@@ -575,6 +575,7 @@ class Index extends Component {
 
           <div className="space-100"></div>
           <div className="container-fluid px-md-5" id="section-statistics">
+            <div className="space-50"></div>
             <p className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
               <div class="vl me-2"></div>{" "}
               <span>
@@ -820,6 +821,20 @@ class Index extends Component {
           </div>
 
           <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
+            <div className="space-100"></div>
+            <p className="mt-2 mt-md-5 text-white d-flex">
+              <div class="vl me-2"></div>{" "}
+              <span>
+                <p
+                  className="m-0"
+                  style={{ textShadow: "0px 0px 10px #FFFFFF" }}
+                >
+                  LATEST
+                </p>{" "}
+                <h4>UPDATES</h4>
+              </span>
+            </p>
+            <div className="space-50"></div>
             <Carousel
               swipeable={true}
               draggable={true}
@@ -827,14 +842,16 @@ class Index extends Component {
               showDots={false}
               responsive={this.state.responsive_game_card}
               ssr={true} // means to render carousel on server-side.
-              infinite={false}
+              infinite={true}
+              autoPlay={true}
+              autoPlaySpeed={1500}
               keyBoardControl={true}
               customTransition="all .5"
               transitionDuration={500}
               containerClass="carousel-container"
               removeArrowOnDeviceType={["tablet", "mobile"]}
               deviceType={this.props.deviceType}
-              itemClass="carousel-item-padding-40-px px-4"
+              itemClass="carousel-item-padding-40-px px-4 w-auto"
             >
               <div className="latestCards text-light">
                 <div id="head">
@@ -842,7 +859,7 @@ class Index extends Component {
                     <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
                     <span>ANNOUNCEMENT</span>
                   </div>
-                  <div id="title">NEWS PUBLICATION TITLE</div>
+                  <div id="title">NEWS PUBLICATION TITLE #1</div>
                 </div>
                 <div id="bottom">
                   <p>MEDIUM</p>
@@ -856,7 +873,46 @@ class Index extends Component {
                   </div>
                 </div>
               </div>
-              
+              <div className="latestCards text-light">
+                <div id="head">
+                  <div className="text-end">
+                    <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
+                    <span>ANNOUNCEMENT</span>
+                  </div>
+                  <div id="title">NEWS PUBLICATION TITLE #2</div>
+                </div>
+                <div id="bottom">
+                  <p>MEDIUM</p>
+                  <div id="misc">
+                    <div className="d-flex justify-content-between">
+                      <span>3 MINS READ</span>
+                      <a href="/">
+                        READ <AiOutlineRight />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="latestCards text-light">
+                <div id="head">
+                  <div className="text-end">
+                    <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
+                    <span>ANNOUNCEMENT</span>
+                  </div>
+                  <div id="title">NEWS PUBLICATION TITLE #3</div>
+                </div>
+                <div id="bottom">
+                  <p>MEDIUM</p>
+                  <div id="misc">
+                    <div className="d-flex justify-content-between">
+                      <span>3 MINS READ</span>
+                      <a href="/">
+                        READ <AiOutlineRight />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </Carousel>
             <div className="mt-4 px-4">
               <button className="mt-2 mt-md-4 text-white text-end bg-transparent ms-auto d-block">
