@@ -55,6 +55,9 @@ body {
 .navbar{
   background-color: #0F0F0F !important;
 }
+.modal-fullscreen-md-down .modal-content{
+  width: 70%;
+}
 .home-header .nav-link {
   display: block;
   padding: 0.5rem 1rem;

@@ -182,7 +182,7 @@ export default function WalletPopup(props) {
             </div>
             <p className="card-text d-flex justify-content-between">
               <small className="text-muted">Last updated 3 mins ago</small>
-                <p className="card-text">$ {bets*betprice} </p>
+                <p className="card-text">$ {Number(bets*betprice).toFixed(2)} </p>
             </p>
           </div>
         </div>
@@ -223,7 +223,7 @@ export default function WalletPopup(props) {
             </div>
             <p className="card-text d-flex justify-content-between">
               <small className="text-muted">Last updated 3 mins ago</small>
-                <p className="card-text">$ {betv2*betprice} </p>
+                <p className="card-text">$ {Number(betv2*betprice).toFixed(2)} </p>
             </p>
           </div>
         </div>
@@ -273,6 +273,8 @@ export default function WalletPopup(props) {
   };
 
   const totalprice = Number(busd) + Number(betprice*bets) + Number(betv2*betprice)
+  // document.getElementsByClassName("modal-content").style.width = "max-content"
+
   return (
     <Modal
       {...props}
@@ -281,7 +283,7 @@ export default function WalletPopup(props) {
       centered
       fullscreen={"md-down"}
     >
-      <ModalHeader style={{backgroundColor:'#0A0A0A', borderRadius:'0px'}}><span  onClick={props.onHide} style={{}}><CloseButton variant="white"/></span></ModalHeader>
+      <ModalHeader className="d-md-none" style={{backgroundColor:'#0A0A0A', borderRadius:'0px'}}><span  onClick={props.onHide} style={{}}><CloseButton variant="white"/></span></ModalHeader>
       <Modal.Body style={{ backgroundColor:"#0A0A0A"}}>
         <div className="d-flex justify-content-between">
           <span
@@ -305,7 +307,7 @@ export default function WalletPopup(props) {
         </div>
         <div className="text-center my-5 text-light">
           <h4 style={{ color: "#BCBCBC" }}>TOTAL BALANCE</h4>
-          <h3>${totalprice}</h3>
+          <h3>${Number(totalprice).toFixed(2)}</h3>
         </div>
         <div
           className="container-fluid px-0 pt-3"
@@ -343,10 +345,10 @@ export default function WalletPopup(props) {
         <div className="p-4 text-white w-75 mx-auto">
           <p>AVAILABLE:&nbsp;&nbsp; {betv2} sBETS</p>
           <div className="d-flex justify-content-between">
-            <span className="text-center" style={{cursor:'pointer'}} onClick={()=>setBettolock(bets*0.25)}> 25% <br/> <img src={Bar} style={{width:'100px',cursor:'pointer'}}/></span>
-            <span className="text-center"style={{cursor:'pointer'}} onClick={()=>setBettolock(bets*0.5)}> 50% <br/> <img src={Bar} style={{width:'100px',cursor:'pointer'}}/></span>
-            <span className="text-center"style={{cursor:'pointer'}} onClick={()=>setBettolock(bets*0.75)}> 75% <br/> <img src={Bar} style={{width:'100px',cursor:'pointer'}}/></span>
-            <span className="text-center"style={{cursor:'pointer'}} onClick={()=>setBettolock(bets)}> 100% <br/> <img src={Bar} style={{width:'100px',cursor:'pointer'}}/></span>
+            <span className="text-center" style={{cursor:'pointer'}} onClick={()=>setBettolock(bets*0.25)}> 25% <br/> <img src={Bar} style={{width:'auto',cursor:'pointer'}}/></span>
+            <span className="text-center"style={{cursor:'pointer'}} onClick={()=>setBettolock(bets*0.5)}> 50% <br/> <img src={Bar} style={{width:'auto',cursor:'pointer'}}/></span>
+            <span className="text-center"style={{cursor:'pointer'}} onClick={()=>setBettolock(bets*0.75)}> 75% <br/> <img src={Bar} style={{width:'auto',cursor:'pointer'}}/></span>
+            <span className="text-center"style={{cursor:'pointer'}} onClick={()=>setBettolock(bets)}> 100% <br/> <img src={Bar} style={{width:'auto',cursor:'pointer'}}/></span>
           </div>
           <input className="mx-auto d-block w-100 mt-3" style={{outline:'none'}} placeholder='Lock Amount' type='number' value={betstolock} onChange={(e)=>setBettolock(e.target.value)}/>
         </div>
