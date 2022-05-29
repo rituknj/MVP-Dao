@@ -28,7 +28,7 @@ import Football from "./../../../images/football.png";
 import Playstation from "./../../../images/playstation.png";
 import { FaTwitter } from "react-icons/fa";
 import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai";
-import * as THREE from 'three'
+import * as THREE from "three";
 import {
   Audio,
   BallTriangle,
@@ -71,9 +71,9 @@ let decodestoredevents = [];
 
 const SalesChart = loadable(() =>
   pMinDelay(import("../../components/Chart/SalesChart"), 1000)
-  );
-  class Index extends Component {
-    constructor(props) {
+);
+class Index extends Component {
+  constructor(props) {
     super(props);
     this.state = {
       totalSupply: 0,
@@ -448,24 +448,10 @@ const SalesChart = loadable(() =>
                     )}
                   </div>
                 </div>
-                <div className="col-xxl-4 col-xl-3 col-12 homeTopImage d-flex align-items-center justify-content-center">
-                  <span
-                    class="btn-video-zm"
-                    onClick={() => this.setState({ modalShow: true })}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="30"
-                      height="30"
-                      viewBox="0 0 12.282 14.739"
-                    >
-                      <path
-                        d="M7.369,0l7.369,12.282H0Z"
-                        transform="translate(12.282) rotate(90)"
-                        fill="#4D0202"
-                      />
-                    </svg>
-                  </span>
+                <div className="col-xxl-4 col-xl-3 col-12 homeTopImage d-flex">
+                  <a id="play-video" className="video-play-button " href="#" onClick={() => this.setState({ modalShow: true })}>
+                    <span></span>
+                  </a>
                   <HeroModal
                     show={this.state.modalShow}
                     onHide={() => this.setState({ modalShow: false })}
@@ -475,7 +461,7 @@ const SalesChart = loadable(() =>
             </div>
           </div>
 
-          <div className="container-fluid px-md-5" id="section-analytics">
+          <div className="container-fluid px-md-5 pt-5 pt-lg-0 mt-5 mt-lg-0" id="section-analytics">
             <div className="space-100"></div>
             <div
               className="row"

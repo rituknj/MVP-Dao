@@ -27,6 +27,12 @@
     font-size: 16px;
     line-height: 18px;
   }
+  .topAppBtn{
+    margin-top: 50px !important;
+  }
+  #section-home .homeTopBtnDao{
+    margin-bottom: 25px;
+  }
   .adminGlobalContainer{
     margin: 15px auto 0px auto;
   }
@@ -223,6 +229,12 @@
   .homeTopImage img {
     width: 70%;
   }
+  .modal-dialog {
+    margin: 0 auto !important;
+  }
+  .modal-content{
+    width: 100% !important;
+  }
 }
 
 @media screen and (max-width: 1440px) {
@@ -232,10 +244,28 @@
   .self-help-main .row .col-lg-6{
     max-width: 475px;
   }
+  .video-play-button {
+    left: 75%;
+    transform: translateX(0%) translateY(-50%);
+  }
 }
 @media screen and (max-width: 1280px) {
   .self-help-main .row .col-lg-6{
     max-width: 450px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .homeTopImage{
+    justify-content: center;
+    height: 250px;
+    width: 100%;
+    margin-top: 100px;
+  }
+  .video-play-button {
+    position: relative;
+    top: 0%;
+    left: 0%;
+    transform: translateX(0%) translateY(0%);
   }
 }
 

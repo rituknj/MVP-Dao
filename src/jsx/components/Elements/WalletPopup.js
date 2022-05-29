@@ -281,6 +281,7 @@ export default function WalletPopup(props) {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      className="fade come-from-modal right"
       fullscreen={"md-down"}
     >
       <ModalHeader className="d-md-none" style={{backgroundColor:'#0A0A0A', borderRadius:'0px'}}><span  onClick={props.onHide} style={{}}><CloseButton variant="white"/></span></ModalHeader>

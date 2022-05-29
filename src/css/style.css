@@ -231,8 +231,8 @@ body {
   position: absolute;
   z-index: 10;
   top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  left: 100%;
+  transform: translateX(0%) translateY(-50%);
   box-sizing: content-box;
   display: block;
   width: 32px;
@@ -319,6 +319,9 @@ body {
     transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
     opacity: 0;
   }
+}
+.modal-dialog {
+  margin: 6rem -225px 0 auto !important;
 }
 
 .game-card {
@@ -1746,67 +1749,6 @@ footer button {
   background-image: none !important;
   background-color: #272727;
   color: #fff;
-}
-.btn-video-zm {
-  margin:15px;
-  display: block;
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  cursor: pointer;
-  box-shadow: 0 0 0 rgba(255,81,15, 0.9);
-  animation: pulse 2s infinite;
-  position:relative;
-}
-.btn-video-zm:after {
-  content: '';
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background: #FF0101;
-  border-radius: 100%;
-  transition: all .3s ease;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-.btn-video-zm svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  margin: 0 0 0 2px;
-  z-index: 2;
-}
-.btn-video-zm:hover:after {
-  width: 110px;
-  height: 110px;
-}
-
-@-webkit-keyframes pulse {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(255,81,15, 0.9);
-  }
-  70% {
-      -webkit-box-shadow: 0 0 0 25px rgba(255,81,15, 0);
-  }
-  100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(255,81,15, 0);
-  }
-}
-@keyframes pulse {
-  0% {
-    -moz-box-shadow: 0 0 0 0 rgba(255,81,15, 0.9);
-    box-shadow: 0 0 0 0 rgba(255,81,15, 0.4);
-  }
-  70% {
-      -moz-box-shadow: 0 0 0 15px rgba(255,81,15, 0);
-      box-shadow: 0 0 0 10px rgba(255,81,15, 0);
-  }
-  100% {
-      -moz-box-shadow: 0 0 0 0 rgba(255,81,15, 0);
-      box-shadow: 0 0 0 0 rgba(255,81,15, 0);
-  }
 }
 
 .sporttag{
