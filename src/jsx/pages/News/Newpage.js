@@ -48,7 +48,7 @@ class NEWPAGE extends Component {
                return <div className="car game-card overflow-hidden game-news-card" style={{width:'500px',height:'auto'}}>
                     <div className="row image-card">
                         <div className="col-12 text-white">
-                           {data.image != undefined ? <img src={data.image.thumb} style={{height:'300px', width:'100%'}} /> : ''}
+                           {data.image != undefined ? <img src={data.image.thumb} alt="" style={{height:'300px', width:'100%'}} /> : ''}
                         </div>
                         <div className="col-12 bg-black">
                             <h6 className="px-2 m-0 py-1">
@@ -71,7 +71,7 @@ class NEWPAGE extends Component {
                         <p className="text-start theam-text-color">
                             </p>
                          <Link><a target='_blank' style={{textDecoration:'none'}} >  <p className="text-end">
-                         <Link style={{textDecoration:'none',color:'#ffff',border:'none'}}  to={{pathname: `/blogs`, query:{id:data.id,updated:data.date,image:data.image.full_url,body:data.body,categories:data.category}}}> Read  <img src={arrowRight} className="ms-3" width="20" /></Link> 
+                         <Link style={{textDecoration:'none',color:'#ffff',border:'none'}}  to={{pathname: `/blogs`, query:{id:data.id,updated:data.date,image:data.image.full_url,body:data.body,categories:data.category}}}> Read  <img src={arrowRight} alt="" className="ms-3" width="20" /></Link> 
                             </p></a></Link>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ class NEWPAGE extends Component {
                return <div className="car game-card overflow-hidden game-news-card" style={{width:'500px',height:'auto'}}>
                     <div className="row image-card">
                         <div className="col-12 text-white">
-                           {data.image != undefined ? <img src={data.image.thumb} style={{height:'300px', width:'100%'}} /> : ''}
+                           {data.image != undefined ? <img src={data.image.thumb} alt="" style={{height:'300px', width:'100%'}} /> : ''}
                         </div>
                         <div className="col-12 bg-black">
                             <h6 className="px-2 m-0 py-1">
@@ -103,8 +103,8 @@ class NEWPAGE extends Component {
                         <div className="col-6">
                         <p className="text-start theam-text-color">
                             </p>
-                         <a href={data.link} target='_blank' style={{textDecoration:'none'}} >  <p className="text-end">
-                          Read  <img src={arrowRight} className="ms-3" width="20" />
+                         <a href={data.link} target='_blank' rel="noreferrer" style={{textDecoration:'none'}} >  <p className="text-end">
+                          Read  <img src={arrowRight} alt="" className="ms-3" width="20" />
                             </p></a>
                         </div>
                     </div>

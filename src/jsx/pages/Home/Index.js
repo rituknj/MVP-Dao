@@ -1,4 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, {
+  Component,
+  Fragment,
+  Suspense,
+  useCallback,
+  useMemo,
+  useRef,
+} from "react";
 import { NavLink } from "react-router-dom";
 import Header from "../../components/Elements/Header";
 import Footer from "../../components/Elements/Footer";
@@ -29,6 +36,15 @@ import Playstation from "./../../../images/playstation.png";
 import { FaTwitter } from "react-icons/fa";
 import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai";
 import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import {
+  Canvas,
+  extend,
+  useFrame,
+  useLoader,
+  useThree,
+} from "@react-three/fiber";
+import circleImg from "./../../../images/circle.png";
 import {
   Audio,
   BallTriangle,
@@ -65,6 +81,117 @@ import { lineData } from "./../About/demo";
 import arrowRight from "../../../images/arrow-right.svg";
 import lineImage from "../../../images/line.png";
 import HeroModal from "./HeroModal";
+
+// THREE.JS BG ANIMATION
+// extend({ OrbitControls });
+// function CameraControls() {
+//   const {
+//     camera,
+//     gl: { domElement },
+//   } = useThree();
+
+//   const controlsRef = useRef();
+//   useFrame(() => controlsRef.current.update());
+
+//   return (
+//     <orbitControls
+//       ref={controlsRef}
+//       args={[camera, domElement]}
+//       autoRotate
+//       autoRotateSpeed={-0.2}
+//     />
+//   );
+// }
+
+// function Points() {
+//   const imgTex = useLoader(THREE.TextureLoader, circleImg);
+//   const bufferRef = useRef();
+
+//   let t = 0;
+//   let f = 0.002;
+//   let a = 3;
+//   const graph = useCallback(
+//     (x, z) => {
+//       return Math.sin(f * (x ** 2 + z ** 2 + t)) * a;
+//     },
+//     [t, f, a]
+//   );
+
+//   const count = 100;
+//   const sep = 3;
+//   let positions = useMemo(() => {
+//     let positions = [];
+
+//     for (let xi = 0; xi < count; xi++) {
+//       for (let zi = 0; zi < count; zi++) {
+//         let x = sep * (xi - count / 2);
+//         let z = sep * (zi - count / 2);
+//         let y = graph(x, z);
+//         positions.push(x, y, z);
+//       }
+//     }
+
+//     return new Float32Array(positions);
+//   }, [count, sep, graph]);
+
+//   useFrame(() => {
+//     t += 15;
+
+//     const positions = bufferRef.current.array;
+
+//     let i = 0;
+//     for (let xi = 0; xi < count; xi++) {
+//       for (let zi = 0; zi < count; zi++) {
+//         let x = sep * (xi - count / 2);
+//         let z = sep * (zi - count / 2);
+
+//         positions[i + 1] = graph(x, z);
+//         i += 3;
+//       }
+//     }
+
+//     bufferRef.current.needsUpdate = true;
+//   });
+
+//   return (
+//     <points>
+//       <bufferGeometry attach="geometry">
+//         <bufferAttribute
+//           ref={bufferRef}
+//           attachObject={["attributes", "position"]}
+//           array={positions}
+//           count={positions.length / 3}
+//           itemSize={3}
+//         />
+//       </bufferGeometry>
+
+//       <pointsMaterial
+//         attach="material"
+//         map={imgTex}
+//         color={0xffffff}
+//         size={0.5}
+//         sizeAttenuation
+//         transparent={false}
+//         alphaTest={0.5}
+//         opacity={1.0}
+//       />
+//     </points>
+//   );
+// }
+// function AnimationCanvas() {
+//   return (
+//     <Canvas
+//       colormanagement={"false"}
+//       camera={{ position: [100, 10, 0], fov: 75 }}
+//     >
+//       <Suspense fallback={null}>
+//         <Points />
+//       </Suspense>
+//       <CameraControls />
+//     </Canvas>
+//   );
+// }
+
 var chart = null;
 
 let decodestoredevents = [];
@@ -419,6 +546,7 @@ class Index extends Component {
                     <a
                       href="https://betdao.netlify.app/re-ui/stake"
                       target="_blank"
+                      rel="noreferrer"
                       className="btn-md theam-bg-red homeTopBtnDao"
                     >
                       LAUNCH DAO
@@ -449,7 +577,12 @@ class Index extends Component {
                   </div>
                 </div>
                 <div className="col-xxl-4 col-xl-3 col-12 homeTopImage d-flex">
-                  <a id="play-video" className="video-play-button " href="#" onClick={() => this.setState({ modalShow: true })}>
+                  <a
+                    id="play-video"
+                    className="video-play-button "
+                    href="#"
+                    onClick={() => this.setState({ modalShow: true })}
+                  >
                     <span></span>
                   </a>
                   <HeroModal
@@ -461,7 +594,10 @@ class Index extends Component {
             </div>
           </div>
 
-          <div className="container-fluid px-md-5 pt-5 pt-lg-0 mt-5 mt-lg-0" id="section-analytics">
+          <div
+            className="container-fluid px-md-5 pt-5 pt-lg-0 mt-5 mt-lg-0"
+            id="section-analytics"
+          >
             <div className="space-100"></div>
             <div
               className="row"
@@ -523,14 +659,14 @@ class Index extends Component {
           <div className="container">
             <div className="row">
               <div className="col-12 col-md-8 text-white">
-                <img src={NFTs} style={{ width: "100%" }} />
+                <img src={NFTs} alt="" style={{ width: "100%" }} />
               </div>
               <div
                 className="col-6 col-md-4 text-white side-text-nfts"
                 style={{ width: "40%", marginTop: "50px" }}
               >
-                <p className="mt-2 mt-md-4 text-white d-flex">
-                  <div class="vl me-2"></div>{" "}
+                <div className="mt-2 mt-md-4 text-white d-flex">
+                  <div className="vl me-2"></div>{" "}
                   <span>
                     <p
                       className="m-0"
@@ -540,7 +676,7 @@ class Index extends Component {
                     </p>{" "}
                     <h4>ECOSYSTEM</h4>
                   </span>
-                </p>
+                </div>
                 <p>
                   BETSWAMP IS BUILDING A DECENTRALIZED ECOSYSTEM WHERE ALL IT'S
                   UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO WHICH
@@ -562,8 +698,8 @@ class Index extends Component {
           <div className="space-100"></div>
           <div className="container-fluid px-md-5" id="section-statistics">
             <div className="space-50"></div>
-            <p className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
-              <div class="vl me-2"></div>{" "}
+            <div className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
+              <div className="vl me-2"></div>{" "}
               <span>
                 <p
                   className="m-0"
@@ -573,7 +709,7 @@ class Index extends Component {
                 </p>{" "}
                 <h4 className="m-0">ECOSYSTEM</h4>
               </span>
-            </p>
+            </div>
             <div
               className="row pb-5"
               data-aos="fade-up"
@@ -634,12 +770,12 @@ class Index extends Component {
           <div className="space-50"></div>
 
           <div className="container-fluid px-md-5 my-5" id="section-partners">
-            <p className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
-              <div class="vl me-2"></div>{" "}
+            <div className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
+              <div className="vl me-2"></div>{" "}
               <span>
                 <h4 style={{ marginTop: "10px" }}>AMBASSADORS</h4>
               </span>
-            </p>
+            </div>
             <div className="space-50"></div>
             <Carousel
               swipeable={true}
@@ -668,6 +804,7 @@ class Index extends Component {
               >
                 <img
                   src={menone}
+                  alt=""
                   width="100"
                   style={{ borderRadius: "80px" }}
                 />
@@ -683,7 +820,7 @@ class Index extends Component {
                 data-aos-easing="linear"
                 style={{ textAlign: "center", color: "#ffff" }}
               >
-                <img src={women} width="100" style={{ borderRadius: "80px" }} />
+                <img src={women} width="100" alt="" style={{ borderRadius: "80px" }} />
                 <p className="m-0">Name</p>
                 <p className="m-0">Title</p>
                 <div className="d-flex m-0 justify-content-evenly">
@@ -698,6 +835,7 @@ class Index extends Component {
               >
                 <img
                   src={menone}
+                  alt=""
                   width="100"
                   style={{ borderRadius: "80px" }}
                 />
@@ -715,6 +853,7 @@ class Index extends Component {
               >
                 <img
                   src={womentwo}
+                  alt=""
                   width="100"
                   style={{ borderRadius: "80px" }}
                 />
@@ -732,8 +871,8 @@ class Index extends Component {
             id="section-partners"
             style={{ backgroundColor: "#0b0b0b", padding: "50px 0" }}
           >
-            <p className="mt-2 mt-md-4 text-white d-flex">
-              <div class="vl me-2"></div>{" "}
+            <div className="mt-2 mt-md-4 text-white d-flex">
+              <div className="vl me-2"></div>{" "}
               <span>
                 <p
                   className="m-0"
@@ -743,7 +882,7 @@ class Index extends Component {
                 </p>{" "}
                 <h4>PARTNERS</h4>
               </span>
-            </p>
+            </div>
             <div className="space-50"></div>
             <Carousel
               swipeable={true}
@@ -769,7 +908,7 @@ class Index extends Component {
                 data-aos-duration="400"
                 data-aos-easing="linear"
               >
-                <img src={Partners} style={{ width: "100%" }} />
+                <img src={Partners} alt="" style={{ width: "100%" }} />
               </div>
 
               <div
@@ -777,7 +916,7 @@ class Index extends Component {
                 data-aos-duration="400"
                 data-aos-easing="linear"
               >
-                <img src={Binance} style={{ width: "100%" }} />
+                <img src={Binance} alt="" style={{ width: "100%" }} />
               </div>
 
               <div
@@ -785,7 +924,7 @@ class Index extends Component {
                 data-aos-duration="400"
                 data-aos-easing="linear"
               >
-                <img src={Saga} style={{ width: "100%" }} />
+                <img src={Saga} alt="" style={{ width: "100%" }} />
               </div>
 
               <div
@@ -793,7 +932,7 @@ class Index extends Component {
                 data-aos-duration="400"
                 data-aos-easing="linear"
               >
-                <img src={Football} style={{ width: "100%" }} />
+                <img src={Football} alt="" style={{ width: "100%" }} />
               </div>
 
               <div
@@ -801,15 +940,15 @@ class Index extends Component {
                 data-aos-duration="400"
                 data-aos-easing="linear"
               >
-                <img src={Playstation} style={{ width: "100%" }} />
+                <img src={Playstation} alt="" style={{ width: "100%" }} />
               </div>
             </Carousel>
           </div>
 
           <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
             <div className="space-100"></div>
-            <p className="mt-2 mt-md-5 text-white d-flex">
-              <div class="vl me-2"></div>{" "}
+            <div className="mt-2 mt-md-5 text-white d-flex">
+              <div className="vl me-2"></div>{" "}
               <span>
                 <p
                   className="m-0"
@@ -819,7 +958,7 @@ class Index extends Component {
                 </p>{" "}
                 <h4>UPDATES</h4>
               </span>
-            </p>
+            </div>
             <div className="space-50"></div>
             <Carousel
               swipeable={true}
@@ -903,7 +1042,7 @@ class Index extends Component {
             <div className="mt-4 px-4">
               <button className="mt-2 mt-md-4 text-white text-end bg-transparent ms-auto d-block">
                 VIEW MORE
-                <img src={arrowRight} className="ms-3" width="20" />
+                <img src={arrowRight} alt="" className="ms-3" width="20" />
               </button>
             </div>
           </div>
@@ -912,7 +1051,7 @@ class Index extends Component {
             <div className="container-fluid px-md-5 my-5" id="section-news">
               <div className="space-100"></div>
               <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
-                NEWS <img src={lineImage} className="ms-3" />
+                NEWS <img src={lineImage} alt="" className="ms-3" />
               </p>
               <div className="space-50"></div>
               <Carousel
@@ -967,7 +1106,7 @@ class Index extends Component {
             <div className="container-fluid px-md-5 my-5" id="section-partners">
               <div className="space-100"></div>
               <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1 text-uppercase">
-                partners <img src={lineImage} className="ms-3" />
+                partners <img src={lineImage} alt="" className="ms-3" />
               </p>
               <div className="space-50"></div>
               <Carousel
@@ -1032,7 +1171,7 @@ class Index extends Component {
                   <p>SEND US A MAIL</p>
                   <div>
                     <p className="text-white text-email mb-0">
-                      <img src={emailImg} width="22" /> admin@betswamp.com
+                      <img src={emailImg} alt="" width="22" /> admin@betswamp.com
                     </p>
                   </div>
                 </div>

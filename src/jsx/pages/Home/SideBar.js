@@ -32,7 +32,7 @@ class SideBar extends Component {
                         >
                             <div className="layer"></div>
                             <div className="col-10 text-white top-text mb-3">
-                                <img src={greenDot} className="me-4 mb-1" width="14px" />
+                                <img src={greenDot} alt="" className="me-4 mb-1" width="14px" />
                                 <span>Soccer</span>
                             </div>
                             <div className="col-2 text-white text-end mb-3 close-btn" onClick={() => this.handelSideMenu()}>
@@ -56,6 +56,7 @@ class SideBar extends Component {
                                 <h5 className="text-end mb-0">
                                     <img
                                         src={carbon_timer}
+                                        alt=""
                                         className="me-3"
                                         width="23px"
                                         style={{ verticalAlign: "sub" }}
@@ -71,7 +72,7 @@ class SideBar extends Component {
                                         <h4>Chealsea</h4>
                                     </div>
                                     <div className="col-6 text-end">
-                                        <img src={redDot} className="red-dot" />
+                                        <img src={redDot} alt="" className="red-dot" />
                                     </div>
                                 </div>
                                 <div className="row info">
@@ -124,7 +125,7 @@ class SideBar extends Component {
                                         <h4>Chealsea</h4>
                                     </div>
                                     <div className="col-6 text-end">
-                                        <img src={redDot} className="red-dot" />
+                                        <img src={redDot} alt="" className="red-dot" />
                                     </div>
                                 </div>
                                 <div className="row info">
