@@ -60,7 +60,7 @@ body {
 }
 .anim {
   width: 100%;
-  background-color: #000;
+  background-color: #0F0F0F;
   height: 100vh;
 }
 .home-header .nav-link {
@@ -92,7 +92,6 @@ body {
 }
 
 #section-home h2 {
-  font-style: normal;
   font-weight: 900;
   font-size: 48px;
   line-height: 60px;
@@ -129,21 +128,24 @@ body {
   padding: 25px;
   width: 300px;
   border-radius: 10px;
-  font-style: normal;
-  font-weight: normal;
   font-size: 18px;
   line-height: 23px;
   color: #ffffff;
   display: flex;
   justify-content: center;
 }
-
+.side-text-nfts .nftsTopBtn{
+  background: #2b2a2a;
+  border-radius: 10px;
+  font-size: 18px;
+  text-align: start;
+  padding: 25px;
+}
 .nftsTopBtn {
   background: #2b2a2a;
   padding: 12px 10px;
   width: 300px;
   border-radius: 10px;
-  font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 23px;
@@ -392,6 +394,12 @@ body {
   font-family: sans-serif;
   margin-bottom: 5px;
 }
+/* .appStat{
+  width: 100% !important;
+} */
+.appStat .carousel-container{
+  width: 100%;
+}
 #section-statistics{
   background-color: #0f0f0f;
 }
@@ -559,13 +567,12 @@ footer {
   width: 250px;
   font-family: 'Orbitron', sans-serif;
   font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
   letter-spacing: 0em;
   color: #ffffff;
 }
 .admin-match-button.active {
   border-bottom: 2px solid red;
+  font-weight: 700;
 }
 .admin-match-button:hover {
   color: #ffffff;
@@ -1019,13 +1026,13 @@ footer {
   top: 22px;
 }
 
+#admin-navbar-nav{
+  color: #BCBCBC;
+}
 #admin-navbar-nav a {
-  font-family: 'Orbitron', sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
+  color: #BCBCBC;
+  font-size: 16px;
   line-height: 30px;
-  color: #ffffff;
   cursor: pointer;
 }
 .my-bet-slide {
@@ -1787,6 +1794,16 @@ footer button {
   position: relative;
   outline: none;
   z-index: 5;
+}
+.main-dropdown .btn-secondary, .categories-dropdown .btn-secondary{
+  padding: 25px 20px;
+  text-align: start;
+  min-width: 270px;
+}
+.main-dropdown .dropdown-toggle::after, .categories-dropdown .dropdown-toggle::after{
+  position: absolute;
+  right: 15px;
+  top: 45%;
 }
 
 .catorgies {

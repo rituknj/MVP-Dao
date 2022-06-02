@@ -88,7 +88,7 @@ class Index extends Component {
           <p className="mt-4 mt-md-4 text-white sporttag">#{window.maincat}</p>
           <div class="dropdown categories-dropdown">
             <button
-              class="btn btn-secondary dropdown-toggle border-0 px-4 py-2 fs-5"
+              class="btn btn-secondary dropdown-toggle border-0"
               style={{backgroundColor:"#4D4A4A"}}
               type="button"
               id="dropdownMenu2"

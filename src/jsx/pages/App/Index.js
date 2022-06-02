@@ -137,28 +137,28 @@ class Index extends Component {
                   removeArrowOnDeviceType={['tablet', 'mobile']}
                   itemClass="px-2"
                 >
-                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
-                    <h6 className="theam-text-color m-0">Total Payout</h6>
-                    <h6 className="text-white mt-4">
+                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12 text-white">
+                    <h6 className="m-0">Total Payout</h6>
+                    <h6 className="mt-4">
                       {(this.state.payout / 10 ** 18).toFixed(0)} BUSD
                     </h6>
                   </div>
 
-                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
-                    <h6 className="theam-text-color m-0">Total Events</h6>
-                    <h6 className="text-white mt-4">{this.state.events}</h6>
+                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
+                    <h6 className="m-0">Total Events</h6>
+                    <h6 className="mt-4">{this.state.events}</h6>
                   </div>
 
-                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
-                    <h6 className="theam-text-color m-0">Active users</h6>
-                    <h6 className="text-white mt-4">
+                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
+                    <h6 className="m-0">Active users</h6>
+                    <h6 className="mt-4">
                       {this.state.activeusers}
                     </h6>
                   </div>
 
-                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
-                    <h6 className="theam-text-color m-0">Total bet Created</h6>
-                    <h6 className="text-white mt-4">
+                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
+                    <h6 className="m-0">Total bet Created</h6>
+                    <h6 className="mt-4">
                       {this.state.totalbetsmade}
                     </h6>
                   </div>
@@ -173,7 +173,7 @@ class Index extends Component {
           <div className="d-flex flex-wrap">
             <div className="me-md-4 me-2">
               <button
-                className={`d-flex justify-content-around btn admin-match-button font-weight-bold ${
+                className={`d-flex justify-content-around btn admin-match-button ${
                   this.state.activeTabBottom == 1 ? ' active' : ''
                 }`}
                 onClick={() => this.handelMatchTab(1)}
@@ -184,7 +184,7 @@ class Index extends Component {
             </div>
             <div className="">
               <button
-                className={`d-flex justify-content-around btn admin-match-button font-weight-bold ${
+                className={`d-flex justify-content-around btn admin-match-button ${
                   this.state.activeTabBottom == 2 ? ' active' : ''
                 }`}
                 onClick={() => this.handelMatchTab(2)}
@@ -195,7 +195,7 @@ class Index extends Component {
             </div>
           </div>
         </div>
-        <div className=" sub-catogries mt-0 p-1 p-md-5 text-white" id="navbarsExample05">
+        <div className="sub-catogries mt-0 p-1 p-md-5 text-white" id="navbarsExample05">
           <div style={{overflow:'visible'}}>
           <p>Select Subcategories</p>
             <div className='main-dropdown'
