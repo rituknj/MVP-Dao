@@ -363,11 +363,8 @@ class GameCard extends Component {
        <AppHeader />
         <br/>
         <div>
-          <div className="container-fluid px-md-5 mt-5" id="section-statistics">
-            <div
-              className="row py-5"
-            >
-              <div className="col-lg-12">
+          <div className="container-fluid mt-5 bg-black" id="section-statistics" style={{paddingTop:"50px", paddingBottom:"50px"}}>
+              <div className="col-lg-12 appStat">
                 <Carousel
                   swipeable={true}
                   draggable={true}
@@ -382,33 +379,32 @@ class GameCard extends Component {
                   removeArrowOnDeviceType={['tablet', 'mobile']}
                   itemClass="px-2"
                 >
-                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
-                    <h6 className="theam-text-color m-0">Total Payout</h6>
-                    <h6 className="text-white mt-4">
+                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12 text-light">
+                    <h6 className="m-0">Total Payout</h6>
+                    <h6 className="mt-4 fw-lighter">
                       {(this.state.payout)} BUSD
                     </h6>
                   </div>
 
-                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
-                    <h6 className="theam-text-color m-0">Total Events</h6>
-                    <h6 className="text-white mt-4">{this.state.events}</h6>
+                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12 text-light">
+                    <h6 className="m-0">Total Events</h6>
+                    <h6 className="mt-4 fw-lighter">{this.state.events}</h6>
                   </div>
 
-                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
-                    <h6 className="theam-text-color m-0">Active users</h6>
-                    <h6 className="text-white mt-4">
+                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12 text-light">
+                    <h6 className="m-0">Active users</h6>
+                    <h6 className="mt-4 fw-lighter">
                       {this.state.activeusers}
                     </h6>
                   </div>
 
-                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
-                    <h6 className="theam-text-color m-0">Total bet Created</h6>
-                    <h6 className="text-white mt-4">
+                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12 text-light">
+                    <h6 className="m-0">Total bet Created</h6>
+                    <h6 className="mt-4 fw-lighter">
                       {this.state.totalbetsmade}
                     </h6>
                   </div>
                 </Carousel>
-              </div>
             </div>
           </div>
         </div>
@@ -446,7 +442,7 @@ class GameCard extends Component {
             <div className='main-dropdown' disabled >
             <div class="dropdown subcategory">
             <button
-              class="btn btn-secondary dropdown-toggle border-0 px-4 py-2 fs-5"
+              class="btn btn-secondary dropdown-toggle border-0"
               style={{backgroundColor:"#4D4A4A"}}
               type="button"
               id="dropdownMenu2"

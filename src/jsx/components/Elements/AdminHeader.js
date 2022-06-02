@@ -20,10 +20,10 @@ class AdminHeader extends Component {
     return (
       <div
         style={{
-          backgroundColor: "rgb(11 11 11)",
           position: "fixed",
           zIndex: "5",
           width: "100%",
+          marginBottom: "50px"
         }}
       >
         <nav
@@ -32,7 +32,7 @@ class AdminHeader extends Component {
         >
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
-              <img src={logo} style={{ height: "70px", width: "70px" }} />
+              <img src={logo} style={{ height: "50px", width: "50px" }} />
             </a>
             <div className="d-flex">
               
@@ -42,7 +42,7 @@ class AdminHeader extends Component {
               >
                 <li className="nav-item px-2">
                   <a
-                    className="nav-link text-white mt-1"
+                    className="nav-link text-white"
                     href="https://betdao.netlify.app/re-ui/stake"
                     target="_blank"
                   >
@@ -50,16 +50,16 @@ class AdminHeader extends Component {
                   </a>
                 </li>
                 <li className="nav-item px-2">
-                  <NavLink className="nav-link text-white mt-1" to="/admin">
+                  <NavLink className="nav-link text-white" style={window.location.pathname.includes("/admin") === true ? {fontWeight:"700"}:{fontWeight:"400"}} to="/admin">
                     DASHBOARD
                   </NavLink>
                 </li>
-                <li className="nav-item px-2" style={{ cursor: "pointer" }}>
+                <li className="nav-item px-2 mt-1" style={{ cursor: "pointer" }}>
                   <span
-                    className="nav-link text-white fs-4 cursor-pointer"
+                    className="nav-link text-white cursor-pointer"
                     onClick={() => this.setState({ modalShow: true })}
                   >
-                    Wallet
+                    WALLET
                   </span>
                 </li>
                 <WalletPopup
