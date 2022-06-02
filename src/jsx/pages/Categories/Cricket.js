@@ -15,6 +15,8 @@ import { TiStopwatch} from 'react-icons/ti'
 import {MdOutlineArrowForwardIos} from 'react-icons/md'
 import {ImFire} from 'react-icons/im'
 import toast, { Toaster } from 'react-hot-toast';
+import { Modal, RadioGroup, Radio, ButtonToolbar, Button, Paragraph   } from 'rsuite';
+import 'rsuite/dist/rsuite.min.css'
 
 import AppHeader from '../../components/Elements/AdminHeader'
 
@@ -44,6 +46,14 @@ const tost =()=> toast.success('Success.', {
   },
 });
 
+
+const styles = {
+  radioGroupLabel: {
+    padding: '8px 12px',
+    display: 'inline-block',
+    verticalAlign: 'middle'
+  }
+};
 
 
 class GameCard extends Component {
@@ -93,6 +103,8 @@ class GameCard extends Component {
       activeevents: 0,
       totalbetsmade: 0,
       events: 0,
+      open: false,
+      backdrop: 'static',
       path: '/app',
       responsive_center: {
         superLargeDesktop: {
@@ -156,6 +168,8 @@ class GameCard extends Component {
     })
 
   }
+  handleOpen = () => this.setState({open:true})
+  handleClose = () => this.setState({open:false})
 
   filterCat = async(sub)=>{
     let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
@@ -357,10 +371,19 @@ class GameCard extends Component {
 
 
   render() {
-    console.log("subcategorys", window.maincatogries)
+    
     return (
       <Fragment>
        <AppHeader />
+       <div className="modal-container">
+      <Modal backdrop={this.state.backdrop} keyboard={false} open={this.state.open} onClose={this.handleClose}>
+        <Modal.Body>
+          {/* <Paragraph /> */}
+
+
+        </Modal.Body>
+      </Modal>
+    </div>
         <br/>
         <div>
           <div className="container-fluid px-md-5 mt-5" id="section-statistics">

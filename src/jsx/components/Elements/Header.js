@@ -23,11 +23,12 @@ const Header=()=> {
         const address = await getAccount();
         setAccount(address)
     }
-    const slicing = (address)=>{
+    const slicing = (address)=> {
         const first = address.slice(0,4);
         const second = address.slice(38);
         return first + "..." + second
     }
+    console.log(window.allEvents, window.allEvents, window.allEventstorde )
         return (
             <Fragment>
                 <nav
@@ -56,7 +57,7 @@ const Header=()=> {
                                     <li className="nav-item px-2 px-md-4">
                                         <a className="nav-link text-white mt-1" href="https://betdao.netlify.app/re-ui/stake" target='_blank'>DAO</a>
                                     </li>
-                                    {window.allEvents > 0 && window.allEvents == window.allEvents ? <li className="nav-item px-2 px-md-4">
+                                    {Number(window.allEvents) > 0 && Number(window.allEvents) == Number(window.allEventstorde) ? <li className="nav-item px-2 px-md-4">
                                         <NavLink className="nav-link text-white mt-1" to="/app">MARKET</NavLink>
                                     </li>:
                                     <li className="nav-item px-2 px-md-4">

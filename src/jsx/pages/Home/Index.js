@@ -436,6 +436,11 @@ class Index extends Component {
     } catch (e) {
       console.log("Error on home page", e);
     }
+    setInterval(()=>{
+      window.allEvents = this.state.events
+      window.allEventstorde = decodestoredevents.length
+      console.log("window.allEvents window.allEventstorde",decodestoredevents.length,this.state.events,Number(this.state.events) > 0,Number(this.state.events) == Number(decodestoredevents.length))
+    },200)
   };
 
   // fetchdata = async () => {
@@ -512,12 +517,16 @@ class Index extends Component {
     }
     console.log("position", x, y);
   };
+ 
 
   render() {
-    setInterval(() => {
-      window.allEvents = this.state.events;
-      window.allEvents = decodestoredevents.length;
-    }, 200);
+    
+    // setInterval(()=>{
+    //   window.allEvents = this.state.events
+    //   window.allEventstorde = decodestoredevents.length
+    // },200)
+
+    
     return (
       <Fragment onClick={this.moussecloas}>
         <Header />
@@ -555,8 +564,14 @@ class Index extends Component {
                         className="mt-1  fw-bold"
                       />
                     </a>
-                    {this.state.events > 0 &&
-                    this.state.events == decodestoredevents.length ? (
+                    {Number(this.state.events) > 0 &&
+                    Number(this.state.events) == Number(decodestoredevents.length) ? (
+                      <div className="btn btn-md theam-bg-red homeTopBtnloader">
+                        {" "}
+                        Loading...&nbsp;&nbsp;
+                        <Watch color="red" height="30" width="30" />
+                      </div>
+                    ) : (
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
@@ -567,13 +582,8 @@ class Index extends Component {
                           className="mt-1  fw-bold"
                         />
                       </NavLink>
-                    ) : (
-                      <div className="btn btn-md theam-bg-red homeTopBtnloader">
-                        {" "}
-                        Loading...&nbsp;&nbsp;
-                        <Watch color="red" height="30" width="30" />
-                      </div>
                     )}
+                    
                   </div>
                 </div>
                 <div className="col-xxl-4 col-xl-3 col-12 homeTopImage d-flex">
