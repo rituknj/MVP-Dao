@@ -71,7 +71,7 @@ import AnimationCanvas from "../../components/Elements/WaveAnim";
 
 var chart = null;
 
-let decodestoredevents = [];
+let downloaded = [];
 
 const SalesChart = loadable(() =>
   pMinDelay(import("../../components/Chart/SalesChart"), 1000)
@@ -87,6 +87,7 @@ class Index extends Component {
       isOpen: false,
       payout: 0,
       events: 0,
+      decodestoredevents: [],
       item: [],
       bloglength: [],
       partner: [],
@@ -305,18 +306,19 @@ class Index extends Component {
 
     try {
       window.localStorage.setItem("events", JSON.stringify(""));
+      // console.log("window.allEvents window.allEventstorde",this.state.decodestoredevents.length,this.state.events,Number(this.state.events) > 0 && Number(this.state.events) == Number(downloaded.length))
       await TotalEventsCount();
-      decodestoredevents = JSON.parse(window.localStorage.getItem("events"));
-      // this.setState({
-      //   item: decodestoredevents.reverse(),
-      // });
+      downloaded = JSON.parse(window.localStorage.getItem("events"));
+      this.setState({
+        decodestoredevents: downloaded.reverse(),
+      });
     } catch (e) {
       console.log("Error on home page", e);
     }
     setInterval(()=>{
       window.allEvents = this.state.events
-      window.allEventstorde = decodestoredevents.length
-      console.log("window.allEvents window.allEventstorde",decodestoredevents.length,this.state.events,Number(this.state.events) > 0,Number(this.state.events) == Number(decodestoredevents.length))
+      window.allEventstorde = this.state.decodestoredevents.length
+      
     },200)
   };
 
@@ -400,7 +402,7 @@ class Index extends Component {
     
     // setInterval(()=>{
     //   window.allEvents = this.state.events
-    //   window.allEventstorde = decodestoredevents.length
+    //   window.allEventstorde = this.state.decodestoredevents.length
     // },200)
 
     
@@ -443,13 +445,7 @@ class Index extends Component {
                       />
                     </a>
                     {Number(this.state.events) > 0 &&
-                    Number(this.state.events) == Number(decodestoredevents.length) ? (
-                      <div className="btn btn-md theam-bg-red homeTopBtnloader">
-                        {" "}
-                        Loading...&nbsp;&nbsp;
-                        <Watch color="red" height="30" width="30" />
-                      </div>
-                    ) : (
+                    Number(this.state.events) == Number(this.state.decodestoredevents.length) ? (
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
@@ -460,7 +456,14 @@ class Index extends Component {
                           className="mt-1  fw-bold"
                         />
                       </NavLink>
+                    ) : (
+                      <div className="btn btn-md theam-bg-red homeTopBtnloader">
+                        {" "}
+                        Loading...&nbsp;&nbsp;
+                        <Watch color="red" height="30" width="30" />
+                      </div>
                     )}
+                    
                     
                   </div>
                 </div>

@@ -15,7 +15,7 @@ export default function BetSlip() {
   const [totaluserbetlost, setTotalUserBetLost] = useState(0)
   
 
-  useEffect(async() => {
+  useEffect(() => {
     const getUserBetData = async()=>{
       let check = []
       let stake = 0
@@ -52,10 +52,10 @@ export default function BetSlip() {
       })
     } 
 
-    await getUserBetData();
+    getUserBetData();
   }, [])
   
-  useEffect(async() => {
+  useEffect(() => {
     let check = []
     const getUserBetData = async()=>{
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
@@ -72,7 +72,7 @@ export default function BetSlip() {
       var ts = Math.round((new Date()).getTime() / 1000);
       
     } 
-    await getUserBetData();
+    getUserBetData();
   }, [])
   
   const upcommingDate=(time)=>{

@@ -48,9 +48,9 @@ export default function WalletPopup(props) {
   const [lockedAmount, setLockedAmount] = useState(0);
   const [getpendingpoint, setGetPendingPoints] = useState(0);
 
-  useEffect(async () => {
-    await initInstance();
-    await allCalls();
+  useEffect(() => {
+    initInstance();
+    allCalls();
     setInterval(async () => {
       await allCalls();
     }, 3000);
@@ -74,8 +74,8 @@ export default function WalletPopup(props) {
 
   const [account, setAccount] = useState();
 
-  useEffect(async () => {
-    await walletConnect();
+  useEffect(() => {
+    walletConnect();
   }, []);
 
   const walletConnect = async () => {

@@ -15,8 +15,8 @@ import { TiStopwatch} from 'react-icons/ti'
 import {MdOutlineArrowForwardIos} from 'react-icons/md'
 import {ImFire} from 'react-icons/im'
 import toast, { Toaster } from 'react-hot-toast';
-import { Modal, RadioGroup, Radio, ButtonToolbar, Button, Paragraph   } from 'rsuite';
-import 'rsuite/dist/rsuite.min.css'
+// import { Modal, RadioGroup, Radio, ButtonToolbar, Button, Paragraph   } from 'rsuite';
+
 
 import AppHeader from '../../components/Elements/AdminHeader'
 
@@ -375,15 +375,15 @@ class GameCard extends Component {
     return (
       <Fragment>
        <AppHeader />
-       <div className="modal-container">
+       {/* <div className="modal-container">
       <Modal backdrop={this.state.backdrop} keyboard={false} open={this.state.open} onClose={this.handleClose}>
         <Modal.Body>
-          {/* <Paragraph /> */}
+          
 
 
         </Modal.Body>
       </Modal>
-    </div>
+    </div> */}
         <br/>
         <div>
           <div className="container-fluid mt-5 bg-black" id="section-statistics" style={{paddingTop:"50px", paddingBottom:"50px"}}>

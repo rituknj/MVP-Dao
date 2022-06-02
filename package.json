@@ -37,6 +37,7 @@
     "react-scripts": "^5.0.1",
     "react-toastify": "^8.0.3",
     "react-youtube": "^7.13.1",
+    "rsuite": "^5.14.0",
     "three": "^0.141.0",
     "three-canvas-renderer": "^2.0.0",
     "web-vitals": "^1.0.1",

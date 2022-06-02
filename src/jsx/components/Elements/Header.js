@@ -8,9 +8,11 @@ import { Audio,BallTriangle,Bars,Circles,Grid,Hearts,MutatingDots,Oval,Plane,Rev
 const Header=()=> {
     const [account, setAccount] = useState()
     const [modalShow, setModalShow] = useState(false)
+    const [allevents, setAllevents] = useState(0)
+    const [downloaded, setDownloaded] = useState(0)
 
-    useEffect(async()=>{
-        await walletConnect()
+    useEffect(()=>{
+        walletConnect()
     },[])
 
    const walletConnect = async()=> {
@@ -28,7 +30,10 @@ const Header=()=> {
         const second = address.slice(38);
         return first + "..." + second
     }
-    console.log(window.allEvents, window.allEvents, window.allEventstorde )
+    setInterval(()=>{
+        setDownloaded(Number(window.allEventstorde))
+        setAllevents(Number(window.allEvents))
+    },2000)
         return (
             <Fragment>
                 <nav
@@ -57,12 +62,13 @@ const Header=()=> {
                                     <li className="nav-item px-2 px-md-4">
                                         <a className="nav-link text-white mt-1" href="https://betdao.netlify.app/re-ui/stake" target='_blank'>DAO</a>
                                     </li>
-                                    {Number(window.allEvents) > 0 && Number(window.allEvents) == Number(window.allEventstorde) ? <li className="nav-item px-2 px-md-4">
+                                    {allevents > 0 && allevents == downloaded ? <li className="nav-item px-2 px-md-4">
                                         <NavLink className="nav-link text-white mt-1" to="/app">MARKET</NavLink>
                                     </li>:
                                     <li className="nav-item px-2 px-md-4">
                                         <div className="nav-link text-white mt-1" to="/app"><Watch width='30' height='30' color='red'/></div>
                                     </li>}
+                                    {console.log("window.allEvents",  window.allEvents,window.allEventstorde,Number(window.allEvents) > 0 && Number(window.allEvents) == Number(window.allEventstorde) )}
                                     <li className="nav-item px-2 px-md-4" style={{cursor: "pointer"}}>
                                         <span  className="nav-link text-white cursor-pointer" 
                                         onClick={()=>setModalShow(true)}

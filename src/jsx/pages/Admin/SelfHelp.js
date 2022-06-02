@@ -13,11 +13,14 @@ export default function SelfHelp() {
   const [pausetimeend, setPauseTimeEnd] = useState(0)
   const [amountDonate, setAmountDonate] = useState(0)
 
-  useEffect(async() => {
-    const isbetpaused = await Ispausebet();
-    const endpaushtime = window.localStorage.getItem('duration')
-    setPauseTimeEnd(endpaushtime)
-    setIspaused(isbetpaused)
+  useEffect(() => {
+    const init =async()=>{
+      const isbetpaused = Ispausebet();
+      const endpaushtime = window.localStorage.getItem('duration')
+      setPauseTimeEnd(endpaushtime)
+      setIspaused(isbetpaused)
+    }
+    init();
   }, [])
   
   const formatRemainingTime = (time) => {

@@ -18,8 +18,9 @@ export default function ValidateEvents() {
     const [uservalidationpoints, setUserValidationPoints] = useState(0)
     
 
-    useEffect(async()=>{
-      let stake = 0
+    useEffect(()=>{
+      const init=async()=>{
+        let stake = 0
       const totalwon = await getusertotalwinnings();
       setTotalWon(totalwon/10**18)
       const reward = await getTotalValidatorRewardEarned()
@@ -56,6 +57,9 @@ export default function ValidateEvents() {
       });
       setAllnonevents(nonvalidated)
       setAllValidateEvent(evnets)
+      }
+
+      init();
     },[])
 
 
