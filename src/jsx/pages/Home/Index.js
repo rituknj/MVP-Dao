@@ -191,12 +191,7 @@ class Index extends Component {
     await loginProcess();
     window.localStorage.clear();
     let events = await totalEvents();
-    // let activeusers = await allactiveusers();//
-    // let payout = await totalpayout();
-
-    // let totalbets = await totalbetcreated();
-    // let activeevents = await getActiveEvents();
-    // let totalSupply = await gettotalsupply();
+    
 
     this.setState({
       totalSupply: 0,
