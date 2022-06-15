@@ -49,6 +49,7 @@ import {
 } from "react-loader-spinner";
 import NFTsText from "./../../../images/nfts-side-text.png";
 import { ToastSuccess } from "../../components/Toast";
+import eco1 from "./../../../images/eco1.png"
 
 import {
   allactiveusers,
@@ -586,7 +587,7 @@ class Index extends Component {
           </div>
 
           <div className="space-100"></div>
-          <div className="container-fluid px-md-5" id="section-statistics">
+          <div className="container-fluid px-md-5 overflow-hidden" id="section-statistics">
             <div className="space-50"></div>
             <div className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
               <div className="vl me-2"></div>{" "}
@@ -618,7 +619,7 @@ class Index extends Component {
                   keyBoardControl={true}
                   customTransition="all .5"
                   transitionDuration={500}
-                  containerClass="carousel-container"
+                  containerClass="carousel-container overflow-visible"
                   removeArrowOnDeviceType={["tablet", "mobile"]}
                   deviceType={this.props.deviceType}
                   itemClass="px-2"
@@ -626,18 +627,18 @@ class Index extends Component {
                   <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
                     <h5 className="m-0 text-white text-start">DAO</h5>
                     <h4 className="text-white mt-4">
-                      {/* {(this.state.payout / 10 ** 18).toFixed(0)} BUSD */}
+                      {/* {(this.state.payout / 10 ** 18).toFixed(0)} B USD */}
                     </h4>
+                    <img src={eco1} alt="" />
                   </div>
 
                   <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
-                    <h5 className="m-0 text-white text-start">
-                      <p className="m-0" style={{ fontSize: "10px" }}>
-                        DECENTRALISED
-                      </p>
-                      P2P BETTING
+                    <p style={{fontSize:"10px", color:"#fff", textAlign:"start", margin:"0"}}>DECENTRALISED</p>
+                    <h5 className="m-0 mb-3 text-white text-start">
+                    P2P BETTING
                     </h5>
-                    {/* <h4 className="text-white mt-4">{this.state.events}</h4> */}
+                    {/* <h4 className="text-white mt-4">P2P BETTING</h4> */}
+                    <img src={eco1} alt="" />
                   </div>
 
                   <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
@@ -645,6 +646,7 @@ class Index extends Component {
                     <h4 className="text-white mt-4">
                       {/* {this.state.activeusers} */}
                     </h4>
+                    <img src={eco1} alt="" />
                   </div>
 
                   <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
@@ -652,6 +654,7 @@ class Index extends Component {
                     <h4 className="text-white mt-4">
                       {/* {this.state.totalbetsmade} */}
                     </h4>
+                    <img src={eco1} alt="" />
                   </div>
                 </Carousel>
               </div>
@@ -863,7 +866,7 @@ class Index extends Component {
               keyBoardControl={true}
               customTransition="all .5"
               transitionDuration={500}
-              containerClass="carousel-container"
+              containerClass="carousel-container w-100"
               removeArrowOnDeviceType={["tablet", "mobile"]}
               deviceType={this.props.deviceType}
               itemClass="carousel-item-padding-40-px px-4 w-auto"
