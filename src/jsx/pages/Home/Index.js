@@ -1,7 +1,4 @@
-import React, {
-  Component,
-  Fragment
-} from "react";
+import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import Header from "../../components/Elements/Header";
 import Footer from "../../components/Elements/Footer";
@@ -49,7 +46,10 @@ import {
 } from "react-loader-spinner";
 import NFTsText from "./../../../images/nfts-side-text.png";
 import { ToastSuccess } from "../../components/Toast";
-import eco1 from "./../../../images/eco1.png"
+import eco1 from "./../../../images/eco1.png";
+import eco2 from "./../../../images/eco2.png";
+import eco3 from "./../../../images/eco4.png";
+import eco4 from "./../../../images/eco5.png";
 
 import {
   allactiveusers,
@@ -192,7 +192,6 @@ class Index extends Component {
     await loginProcess();
     window.localStorage.clear();
     let events = await totalEvents();
-    
 
     this.setState({
       totalSupply: 0,
@@ -311,11 +310,10 @@ class Index extends Component {
     } catch (e) {
       console.log("Error on home page", e);
     }
-    setInterval(()=>{
-      window.allEvents = this.state.events
-      window.allEventstorde = this.state.decodestoredevents.length
-      
-    },200)
+    setInterval(() => {
+      window.allEvents = this.state.events;
+      window.allEventstorde = this.state.decodestoredevents.length;
+    }, 200);
   };
 
   // fetchdata = async () => {
@@ -392,16 +390,13 @@ class Index extends Component {
     }
     console.log("position", x, y);
   };
- 
 
   render() {
-    
     // setInterval(()=>{
     //   window.allEvents = this.state.events
     //   window.allEventstorde = this.state.decodestoredevents.length
     // },200)
 
-    
     return (
       <Fragment onClick={this.moussecloas}>
         <Header />
@@ -441,7 +436,8 @@ class Index extends Component {
                       />
                     </a>
                     {Number(this.state.events) > 0 &&
-                    Number(this.state.events) == Number(this.state.decodestoredevents.length) ? (
+                    Number(this.state.events) ==
+                      Number(this.state.decodestoredevents.length) ? (
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
@@ -459,8 +455,6 @@ class Index extends Component {
                         <Watch color="red" height="30" width="30" />
                       </div>
                     )}
-                    
-                    
                   </div>
                 </div>
                 <div className="col-xxl-4 col-xl-3 col-12 homeTopImage d-flex">
@@ -574,10 +568,10 @@ class Index extends Component {
                   className="btn btn-md text-white mt-2 mt-md-5 nftsTopBtn position-relative"
                 >
                   LEARN MORE
-                      <AiOutlineRight
-                        style={{ position: "absolute", right: "5px" }}
-                        className="mt-1  fw-bold"
-                      />
+                  <AiOutlineRight
+                    style={{ position: "absolute", right: "5px" }}
+                    className="mt-1  fw-bold"
+                  />
                 </NavLink>
               </div>
             </div>
@@ -587,7 +581,10 @@ class Index extends Component {
           </div>
 
           <div className="space-100"></div>
-          <div className="container-fluid px-md-5 overflow-hidden" id="section-statistics">
+          <div
+            className="container-fluid px-md-5 overflow-hidden"
+            id="section-statistics"
+          >
             <div className="space-50"></div>
             <div className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
               <div className="vl me-2"></div>{" "}
@@ -615,7 +612,7 @@ class Index extends Component {
                   showDots={false}
                   responsive={this.state.responsive_center}
                   ssr={true} // means to render carousel on server-side.
-                  infinite={true}
+                  infinite={false}
                   keyBoardControl={true}
                   customTransition="all .5"
                   transitionDuration={500}
@@ -633,12 +630,21 @@ class Index extends Component {
                   </div>
 
                   <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
-                    <p style={{fontSize:"10px", color:"#fff", textAlign:"start", margin:"0"}}>DECENTRALISED</p>
+                    <p
+                      style={{
+                        fontSize: "10px",
+                        color: "#fff",
+                        textAlign: "start",
+                        margin: "0",
+                      }}
+                    >
+                      DECENTRALISED
+                    </p>
                     <h5 className="m-0 mb-3 text-white text-start">
-                    P2P BETTING
+                      P2P BETTING
                     </h5>
                     {/* <h4 className="text-white mt-4">P2P BETTING</h4> */}
-                    <img src={eco1} alt="" />
+                    <img src={eco2} alt="" />
                   </div>
 
                   <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
@@ -646,7 +652,7 @@ class Index extends Component {
                     <h4 className="text-white mt-4">
                       {/* {this.state.activeusers} */}
                     </h4>
-                    <img src={eco1} alt="" />
+                    <img src={eco3} alt="" />
                   </div>
 
                   <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
@@ -654,7 +660,7 @@ class Index extends Component {
                     <h4 className="text-white mt-4">
                       {/* {this.state.totalbetsmade} */}
                     </h4>
-                    <img src={eco1} alt="" />
+                    <img src={eco4} alt="" />
                   </div>
                 </Carousel>
               </div>
@@ -704,7 +710,7 @@ class Index extends Component {
                 <p className="m-0">Name</p>
                 <p className="m-0">Title</p>
                 <div className="d-flex m-0 justify-content-evenly">
-                  <FaTwitter /> <AiFillLinkedin />
+                  <a href="#"><FaTwitter color="#fff" /></a> <a href="#"><AiFillLinkedin color="#fff" /></a>
                 </div>
               </div>
               <div
@@ -713,11 +719,16 @@ class Index extends Component {
                 data-aos-easing="linear"
                 style={{ textAlign: "center", color: "#ffff" }}
               >
-                <img src={women} width="100" alt="" style={{ borderRadius: "80px" }} />
+                <img
+                  src={women}
+                  width="100"
+                  alt=""
+                  style={{ borderRadius: "80px" }}
+                />
                 <p className="m-0">Name</p>
                 <p className="m-0">Title</p>
                 <div className="d-flex m-0 justify-content-evenly">
-                  <FaTwitter /> <AiFillLinkedin />
+                  <a href="#"><FaTwitter color="#fff" /></a> <a href="#"><AiFillLinkedin color="#fff" /></a>
                 </div>
               </div>
               <div
@@ -735,7 +746,7 @@ class Index extends Component {
                 <p className="m-0">Name</p>
                 <p className="m-0">Title</p>
                 <div className="d-flex m-0 justify-content-evenly">
-                  <FaTwitter /> <AiFillLinkedin />
+                  <a href="#"><FaTwitter color="#fff" /></a> <a href="#"><AiFillLinkedin color="#fff" /></a>
                 </div>
               </div>
               <div
@@ -753,7 +764,7 @@ class Index extends Component {
                 <p className="m-0">Name</p>
                 <p className="m-0">Title</p>
                 <div className="d-flex m-0 justify-content-evenly">
-                  <FaTwitter /> <AiFillLinkedin />
+                  <a href="#"><FaTwitter color="#fff" /></a> <a href="#"><AiFillLinkedin color="#fff" /></a>
                 </div>
               </div>
             </Carousel>
@@ -1064,7 +1075,8 @@ class Index extends Component {
                   <p>SEND US A MAIL</p>
                   <div>
                     <p className="text-white text-email mb-0">
-                      <img src={emailImg} alt="" width="22" /> admin@betswamp.com
+                      <img src={emailImg} alt="" width="22" />{" "}
+                      admin@betswamp.com
                     </p>
                   </div>
                 </div>
