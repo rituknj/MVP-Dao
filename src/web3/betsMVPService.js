@@ -17,17 +17,17 @@ export const getBETMVPContract = async () => {
 }
 
 export const addSubbCategory = async (sub_category) => {
-    const betMVPContract = await getBETMVPContract();
-    var getData = await betMVPContract.methods.addSubbCategory('0x0', sub_category);
-    let data = getData.encodeABI()
-    let res = await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data})
-    return res
+    // const betMVPContract = await getBETMVPContract();
+    // var getData = await betMVPContract.methods.addSubbCategory('0x0', sub_category);
+    // let data = getData.encodeABI()
+    // let res = await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data})
+    // return res
 }
 
 export const removeSubCategory = async (sub_category) => {
-    const betMVPContract = await getBETMVPContract();
-    const result = await betMVPContract.methods.removeSubCategory('0x0', sub_category).call();
-    return result;
+    // const betMVPContract = await getBETMVPContract();
+    // const result = await betMVPContract.methods.removeSubCategory('0x0', sub_category).call();
+    // return result;
 }
 
 export const getSubCategory = async (id) => {
@@ -113,9 +113,9 @@ export const getActiveEvents = async () => {
 }
 
 export const getValidatedEvents = async () => {
-    const betMVPContract = await getBETMVPContract();
-    const validatedEvents = await betMVPContract.methods.getValidatedEvents().call();
-    return validatedEvents;
+    // const betMVPContract = await getBETMVPContract();
+    // const validatedEvents = await betMVPContract.methods.getValidatedEvents().call();
+    // return validatedEvents;
 }
 
 export const totalEvents = async () => {
@@ -161,11 +161,11 @@ export const revokevalidationpointsearning = async () => {
 }
 
 export const claimpoints = async () => {
-    const betMVPContract = await getBETMVPContract();
-    const earnedpoints = await betMVPContract.methods.claimValidationPoint().send({
-        from: await getAccount(),   
-    });;
-    return earnedpoints;
+    // const betMVPContract = await getBETMVPContract();
+    // const earnedpoints = await betMVPContract.methods.claimValidationPoint().send({
+    //     from: await getAccount(),   
+    // });;
+    // return earnedpoints;
 }
 
 export const totaltokenlocked = async () => {
@@ -202,17 +202,17 @@ export const claimrewards = async (id) => {
 }
 
 export const reclaimwager = async (id) => {
-    const betMVPContract = await getBETMVPContract();
-    const resutl = await betMVPContract.methods.reclaimWager(id).send({
-        from: await getAccount(),      
-    });
-    if(resutl.status == true){
-        alert("Refund Successfully")
-    }
-    else{
-        alert("Failed")
-    }
-    return resutl;
+    // const betMVPContract = await getBETMVPContract();
+    // const resutl = await betMVPContract.methods.reclaimWager(id).send({
+    //     from: await getAccount(),      
+    // });
+    // if(resutl.status == true){
+    //     alert("Refund Successfully")
+    // }
+    // else{
+    //     alert("Failed")
+    // }
+    // return resutl;
 }
 
 export const bettorscounts = async (id, occured) => {
@@ -239,25 +239,25 @@ export const GetUserWonAmountOnEvent = async (id) => {
     return resutl;
 }
 export const pendingpoint = async () => {
-    const betMVPContract = await getBETMVPContract();
-    const resutl = await betMVPContract.methods.getUserPendingPoints(await getAccount()).call();
-    return Number(resutl/10**18)
+    // const betMVPContract = await getBETMVPContract();
+    // const resutl = await betMVPContract.methods.getUserPendingPoints(await getAccount()).call();
+    // return Number(resutl/10**18)
 }
 export const cancelevent = async (id) => {
-    const betMVPContract = await getBETMVPContract();
-    const resutl = await betMVPContract.methods.cancelEvent(id).send({
-        from: await getAccount(),      
-    });
-    if(resutl.status == true){
-        alert("Event Canceled")
-        await TotalEventsCount();
-        window.location.reload(false);
+    // const betMVPContract = await getBETMVPContract();
+    // const resutl = await betMVPContract.methods.cancelEvent(id).send({
+    //     from: await getAccount(),      
+    // });
+    // if(resutl.status == true){
+    //     alert("Event Canceled")
+    //     await TotalEventsCount();
+    //     window.location.reload(false);
 
-    }
-    else{
-        alert("Failed")
-    }
-    return resutl
+    // }
+    // else{
+    //     alert("Failed")
+    // }
+    // return resutl
 }
 
 export const allactiveusers = async () => {

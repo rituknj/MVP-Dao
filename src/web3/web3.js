@@ -71,7 +71,7 @@ export const checkChain = (force = true) => {
         // const stopChainChecker = new Subject();
         const expectedChainId = getMainChainInformation().chainId;
         const providerNetworkOption = getMainChainInformation().providerNetworkOption;
-        if (chainId !== expectedChainId) {
+        if (chainId !== 3) {
             if (force) {
                 await window.ethereum.enable();
                 await window.ethereum.request({

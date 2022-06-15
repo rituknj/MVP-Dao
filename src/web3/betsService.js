@@ -19,8 +19,9 @@ export const getBUSDBalance = async () => {
     const betContract =  await getContract(BETS_ABI, envdev.REACT_APP_BUSD_TOKEN);
     const _balance = await betContract.methods.balanceOf(await getAccount()).call();
     const  balanceofBET = _balance/10**18
-    return (balanceofBET).toFixed(2)
+    return (balanceofBET).toFixed(2);
 }
+
 export const getBETSV2Balance = async () => {
     const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
     const _balance = await betContract.methods.balanceOf(await getAccount()).call();

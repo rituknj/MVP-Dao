@@ -313,6 +313,7 @@ class Index extends Component {
     setInterval(() => {
       window.allEvents = this.state.events;
       window.allEventstorde = this.state.decodestoredevents.length;
+      
     }, 200);
   };
 
@@ -435,7 +436,16 @@ class Index extends Component {
                         className="mt-1  fw-bold"
                       />
                     </a>
-                    {Number(this.state.events) > 0 &&
+                    {Number(this.state.events) == 0 
+                    ? 
+                    <NavLink
+                        to="/app"
+                        className="btn-md theam-bg-red homeTopBtn"
+                      >
+                        START BETTING
+                      </NavLink>
+                    :
+                    Number(this.state.events) > 0 &&
                     Number(this.state.events) ==
                       Number(this.state.decodestoredevents.length) ? (
                       <NavLink
