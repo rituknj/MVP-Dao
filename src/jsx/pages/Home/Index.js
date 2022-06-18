@@ -881,9 +881,9 @@ class Index extends Component {
               showDots={false}
               responsive={this.state.responsive_game_card}
               ssr={true} // means to render carousel on server-side.
-              infinite={true}
-              autoPlay={true}
-              autoPlaySpeed={1500}
+              infinite={false}
+              autoPlay={false}
+              // autoPlaySpeed={5000}
               keyBoardControl={true}
               customTransition="all .5"
               transitionDuration={500}
@@ -939,6 +939,26 @@ class Index extends Component {
                     <span>ANNOUNCEMENT</span>
                   </div>
                   <div id="title">NEWS PUBLICATION TITLE #3</div>
+                </div>
+                <div id="bottom">
+                  <p>MEDIUM</p>
+                  <div id="misc">
+                    <div className="d-flex justify-content-between">
+                      <span>3 MINS READ</span>
+                      <a href="/">
+                        READ <AiOutlineRight />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="latestCards text-light">
+                <div id="head">
+                  <div className="text-end">
+                    <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
+                    <span>ANNOUNCEMENT</span>
+                  </div>
+                  <div id="title">NEWS PUBLICATION TITLE #4</div>
                 </div>
                 <div id="bottom">
                   <p>MEDIUM</p>
