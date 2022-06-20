@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import Client from "../../../Client";
 import Header from "../../components/Elements/Header";
 import Footer from "../../components/Elements/Footer";
-import GameCardHome from "./GameCard";
 import NewsCard from "../../components/Cards/NewsCard";
 import PartnerCom from "../../components/Cards/Partner";
 import Videocom from "../../components/Cards/Videos";
@@ -15,7 +15,6 @@ import pMinDelay from "p-min-delay";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { initInstance, loginProcess } from "./../../../web3/web3";
-import { gettotalsupply } from "./../../../web3/betsService";
 import NFTs from "./../../../images/nfts.png";
 import menone from "./../../../images/manone.png";
 import women from "./../../../images/womenone.png";
@@ -28,24 +27,7 @@ import Football from "./../../../images/football.png";
 import Playstation from "./../../../images/playstation.png";
 import { FaTwitter } from "react-icons/fa";
 import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai";
-import {
-  Audio,
-  BallTriangle,
-  Bars,
-  Circles,
-  Grid,
-  Hearts,
-  MutatingDots,
-  Oval,
-  Plane,
-  RevolvingDot,
-  Rings,
-  TailSpin,
-  Triangle,
-  Watch,
-} from "react-loader-spinner";
-import NFTsText from "./../../../images/nfts-side-text.png";
-import { ToastSuccess } from "../../components/Toast";
+import { Watch } from "react-loader-spinner";
 import eco1 from "./../../../images/eco1.png";
 import eco2 from "./../../../images/eco2.png";
 import eco3 from "./../../../images/eco4.png";
@@ -59,16 +41,11 @@ import {
   getActiveEvents,
 } from "../../../web3/betsMVPService";
 import { TotalEventsCount } from "../../../web3/Countallevents";
-import YouTube from "react-youtube";
-import axios from "axios";
-import { createChart } from "lightweight-charts";
-import { lineData } from "./../About/demo";
 
 ////Images
 import arrowRight from "../../../images/arrow-right.svg";
 import lineImage from "../../../images/line.png";
 import HeroModal from "./HeroModal";
-import AnimationCanvas from "../../components/Elements/WaveAnim";
 
 var chart = null;
 
@@ -83,6 +60,7 @@ class Index extends Component {
     this.state = {
       totalSupply: 0,
       price: 0,
+      ambassadorData: [],
       liquidity: 0,
       activeusers: 0,
       isOpen: false,
@@ -185,8 +163,26 @@ class Index extends Component {
     };
     this.videoOnReady = this.videoOnReady.bind(this);
   }
-
+  
   componentDidMount = async () => {
+    // FETCH DATA FROM SANITY
+    Client.fetch(
+      `*[_type=="ambassador"] {
+          name,
+          title,
+          twitter,
+          linkedin,
+          image{
+              asset -> {
+                  _id,
+                  url
+              },
+              alt
+          }
+      }`
+    )
+      .then((data) => this.setState({ambassadorData: data}))
+      .catch(console.error);
     AOS.init();
     await initInstance();
     await loginProcess();
@@ -202,77 +198,7 @@ class Index extends Component {
       activeevents: 0,
     });
     AOS.init();
-    // let LineData = []
-    // let Lineprice = []
 
-    // const Line = 'https://api.coingecko.com/api/v3/coins/betswamp/market_chart?vs_currency=usd&days=30*'
-    // await axios
-    //   .get(Line)
-    //   .then(function (response) {
-    //     LineData = response.data.prices
-    //     if (LineData) {
-    //       Lineprice = LineData.map(d => {
-    //         return { time: d[0] / 1000, value: d[1] }
-    //       })
-    //       // console.log("line data is ", Lineprice)
-    //       // console.log("Line series data is ", lineData)
-    //     }
-    //   })
-    //   .catch(function (error) {
-    //     console.log('error is', error)
-    //   })
-    // this.setState({
-    //   Lineprice: Lineprice,
-    // })
-
-    // var myHeaders = new Headers();
-    // myHeaders.append("Accept", "application/json");
-    // myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
-    // var requestOptions = {
-    //   method: 'GET',
-    //   headers: myHeaders,
-    //   redirect: 'follow'
-    // };
-    // await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
-    //   .then(response => response.json())
-    //   .then(result => this.setState({ partner: result }))
-    //   .catch(error => console.log('error', error));
-    // console.log("partners",this.state.partner.length)
-    // **************** API FOR PARTNER DATA ****************//
-
-    // **************** API FOR VIDEO DATA ****************//
-    // await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/videos", requestOptions)
-    //   .then(response => response.json())
-    //   .then(result => this.setState({ video: result }))
-    //   .catch(error => console.log('error', error));
-    // console.log("video is ", this.state.video);
-
-    // **************** API FOR VIDEO DATA ****************//
-
-    // **************** API LINE EXTERNAL BLOG DATA ****************//
-    // await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/in-house-articles", requestOptions)
-    //   .then(response => response.json())
-    //   .then(result => this.setState({ indernalblog: result }))
-    //   .catch(error => console.log('error', error));
-    // console.log("blog",this.state.indernalblog)
-    // **************** API LINE EXTERNAL BLOG DATA ****************//
-
-    // **************** API LINE INTERNAL BLOG DATA ****************//
-    // await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/external-articles", requestOptions)
-    //   .then(response => response.json())
-    //   .then(result => this.setState({ bloglength: result }))
-    //   .catch(error => console.log('error', error));
-    // **************** API LINE INTERNAL BLOG DATA ****************//
-
-    // **************** API LINEambassador BLOG DATA ****************//
-    // await fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/ambassadors", requestOptions)
-    //   .then(response => response.json())
-    //   .then(result => this.setState({ Ambassador: result }))
-    //   .catch(error => console.log('error', error));
-    // console.log("amemsador", this.state.Ambassador)
-    // **************** API LINE ambassador BLOG DATA ****************//
-
-    // fetching price of total
     request(
       "GET",
       "https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d"
@@ -313,26 +239,9 @@ class Index extends Component {
     setInterval(() => {
       window.allEvents = this.state.events;
       window.allEventstorde = this.state.decodestoredevents.length;
-      
     }, 200);
-  };
 
-  // fetchdata = async () => {
-  //   console.log("run")
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Accept", "application/json");
-  //   myHeaders.append("Authorization", "Bearer Nv0ftzZGsdUuPsXPYJcAZ1DHEMKs5zqawWFlRRDv");
-  //   var requestOptions = {
-  //     method: 'GET',
-  //     headers: myHeaders,
-  //     redirect: 'follow'
-  //   };
-  //   fetch("https://admin.fomolaunch.app/api/1e124355acb64ffbb39fc774b8d1c30b/partners", requestOptions)
-  //     .then(response => response.json())
-  //     .then(result => this.setState({ partner: result }))
-  //     .catch(error => console.log('error', error));
-  //   console.log("partners", this.state.partner.logo.length)
-  // }
+  };
 
   parterImg = () => {
     let items = [];
@@ -389,8 +298,39 @@ class Index extends Component {
 
     if (x > 633) {
     }
-    console.log("position", x, y);
+    // console.log("position", x, y);
   };
+
+  renderAmb(ambassadorData, index) {
+    return(
+      <div
+                data-aos="zoom-in"
+                data-aos-duration="400"
+                data-aos-easing="linear"
+                style={{ textAlign: "center", color: "#ffff" }}
+                key={index}
+              >
+                {ambassadorData.image && ambassadorData.image.asset && (
+              <img
+              src={ambassadorData.image.asset.url}
+              alt=""
+              width="100"
+              style={{ borderRadius: "80px" }}
+              />
+            )}
+                <p className="m-0">{ambassadorData.name}</p>
+                <p className="m-0">{ambassadorData.title}</p>
+                <div className="d-flex m-0 justify-content-evenly">
+                  <a href="#">
+                    <FaTwitter color="#fff" />
+                  </a>{" "}
+                  <a href="#">
+                    <AiFillLinkedin color="#fff" />
+                  </a>
+                </div>
+              </div>
+    )
+  }
 
   render() {
     // setInterval(()=>{
@@ -436,18 +376,16 @@ class Index extends Component {
                         className="mt-1  fw-bold"
                       />
                     </a>
-                    {Number(this.state.events) == 0 
-                    ? 
-                    <NavLink
+                    {Number(this.state.events) == 0 ? (
+                      <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
                       >
                         START BETTING
                       </NavLink>
-                    :
-                    Number(this.state.events) > 0 &&
-                    Number(this.state.events) ==
-                      Number(this.state.decodestoredevents.length) ? (
+                    ) : Number(this.state.events) > 0 &&
+                      Number(this.state.events) ==
+                        Number(this.state.decodestoredevents.length) ? (
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
@@ -705,78 +643,7 @@ class Index extends Component {
               itemClass="d-flex justify-content-center align-items-center flex-column"
             >
               {/* {this.amessador()} */}
-              <div
-                data-aos="zoom-in"
-                data-aos-duration="400"
-                data-aos-easing="linear"
-                style={{ textAlign: "center", color: "#ffff" }}
-              >
-                <img
-                  src={menone}
-                  alt=""
-                  width="100"
-                  style={{ borderRadius: "80px" }}
-                />
-                <p className="m-0">Name</p>
-                <p className="m-0">Title</p>
-                <div className="d-flex m-0 justify-content-evenly">
-                  <a href="#"><FaTwitter color="#fff" /></a> <a href="#"><AiFillLinkedin color="#fff" /></a>
-                </div>
-              </div>
-              <div
-                data-aos="zoom-in"
-                data-aos-duration="400"
-                data-aos-easing="linear"
-                style={{ textAlign: "center", color: "#ffff" }}
-              >
-                <img
-                  src={women}
-                  width="100"
-                  alt=""
-                  style={{ borderRadius: "80px" }}
-                />
-                <p className="m-0">Name</p>
-                <p className="m-0">Title</p>
-                <div className="d-flex m-0 justify-content-evenly">
-                  <a href="#"><FaTwitter color="#fff" /></a> <a href="#"><AiFillLinkedin color="#fff" /></a>
-                </div>
-              </div>
-              <div
-                data-aos="zoom-in"
-                data-aos-duration="400"
-                data-aos-easing="linear"
-                style={{ textAlign: "center", color: "#ffff" }}
-              >
-                <img
-                  src={menone}
-                  alt=""
-                  width="100"
-                  style={{ borderRadius: "80px" }}
-                />
-                <p className="m-0">Name</p>
-                <p className="m-0">Title</p>
-                <div className="d-flex m-0 justify-content-evenly">
-                  <a href="#"><FaTwitter color="#fff" /></a> <a href="#"><AiFillLinkedin color="#fff" /></a>
-                </div>
-              </div>
-              <div
-                data-aos="zoom-in"
-                data-aos-duration="400"
-                data-aos-easing="linear"
-                style={{ textAlign: "center", color: "#ffff" }}
-              >
-                <img
-                  src={womentwo}
-                  alt=""
-                  width="100"
-                  style={{ borderRadius: "80px" }}
-                />
-                <p className="m-0">Name</p>
-                <p className="m-0">Title</p>
-                <div className="d-flex m-0 justify-content-evenly">
-                  <a href="#"><FaTwitter color="#fff" /></a> <a href="#"><AiFillLinkedin color="#fff" /></a>
-                </div>
-              </div>
+              {this.state.ambassadorData.map(this.renderAmb)}
             </Carousel>
           </div>
           <div className="space-100"></div>
