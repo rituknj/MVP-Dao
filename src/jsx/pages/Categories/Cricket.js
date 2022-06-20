@@ -472,7 +472,7 @@ class GameCard extends Component {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              {window.maincatogries && window.maincatogries.length > 0 ? `Subcategories ${this.state.activeSubCat}`  : "No Categories Found"}
+              {window.maincatogries && window.maincatogries.length > 0 ? `${this.state.activeSubCat}`  : "No Categories Found"}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
              {this.state.subcategorys && this.state.subcategorys.map((data)=> {

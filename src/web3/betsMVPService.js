@@ -1,4 +1,4 @@
-import { getAccount, getContract, web3Instance } from "./web3";
+import { getAccount, getContract, ToWei } from "./web3";
 import {TotalEventsCount, updatingeventdata} from './Countallevents'
 import { BETS_ABI } from './../Contract/BetswampMVP';
 import { MVPBetsV2 } from "../Contract/BetingContractV2";
@@ -50,10 +50,11 @@ export const placeBet = async(event_id, occured, amount) => {
     var getData
     let maxamount = await isapproved()
     const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-    amount = BigInt(amount*10**18)
-    
-    if(amount.value < Number(maxamount)){
-        getData = await betMVPContract.methods.placeBet(event_id, amount.value, occured).send({
+    const a = await ToWei(amount)
+    console.log("maxapprove", maxamount,a,Number(a) < Number(maxamount))
+
+    if(Number(a) < Number(maxamount)){
+        getData = await betMVPContract.methods.placeBet(event_id, a, occured).send({
             from: await getAccount(),
         });
         return getData
@@ -61,7 +62,7 @@ export const placeBet = async(event_id, occured, amount) => {
     else{
         let approve = await approveBUSD();
         if(approve.status == true){
-            getData = await betMVPContract.methods.placeBet(event_id, amount.value, occured).send({
+            getData = await betMVPContract.methods.placeBet(event_id, a, occured).send({
                 from: await getAccount(),
             });
             return getData
@@ -72,7 +73,7 @@ export const placeBet = async(event_id, occured, amount) => {
 
 export const validateEvent = async (event_id, occured) => {
     const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-    // console.log("events", event_id, occured)
+    console.log("validate event", event_id, occured)
     var getData = await betMVPContract.methods.validateEvent(event_id, occured).send({
         from: await getAccount(),
     });
@@ -143,8 +144,9 @@ export const getEvent = async (eventID) => {
 }
 
 export const earnvalidationpoints = async (amount) => {
+    const a = await ToWei(amount)
     const betMVPContract = await getContract(Points, envdev.REACT_AAP_POINTS);
-    const points = await betMVPContract.methods.earnValidationPoints(amount.toString()).send({
+    const points = await betMVPContract.methods.earnValidationPoints(a).send({
         from: await getAccount(),
     
     });
@@ -161,11 +163,11 @@ export const revokevalidationpointsearning = async () => {
 }
 
 export const claimpoints = async () => {
-    // const betMVPContract = await getBETMVPContract();
-    // const earnedpoints = await betMVPContract.methods.claimValidationPoint().send({
-    //     from: await getAccount(),   
-    // });;
-    // return earnedpoints;
+    const betMVPContract = await getContract(Points, envdev.REACT_AAP_POINTS);
+    const earnedpoints = await betMVPContract.methods.claimValidationPoint().send({
+        from: await getAccount(),   
+    });;
+    return earnedpoints;
 }
 
 export const totaltokenlocked = async () => {
@@ -239,9 +241,9 @@ export const GetUserWonAmountOnEvent = async (id) => {
     return resutl;
 }
 export const pendingpoint = async () => {
-    // const betMVPContract = await getBETMVPContract();
-    // const resutl = await betMVPContract.methods.getUserPendingPoints(await getAccount()).call();
-    // return Number(resutl/10**18)
+    const betMVPContract = await getContract(Points, envdev.REACT_AAP_POINTS);
+    const resutl = await betMVPContract.methods.getUserPendingPoints(await getAccount()).call();
+    return Number(resutl)
 }
 export const cancelevent = async (id) => {
     // const betMVPContract = await getBETMVPContract();

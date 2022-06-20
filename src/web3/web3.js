@@ -228,6 +228,16 @@ export const getContract = async(abi, address) => {
     const customeContract = new web3.eth.Contract(abi, address);
     return customeContract;
 }
+export const ToWei = async(amount)=> {
+    try {
+        await initInstance();
+        let web3 = web3Instance;
+        const number = await web3.utils.toWei(amount.toString(), 'ether');
+        return number
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export const disconnectWallet = () => {
     window.location.replace('/');

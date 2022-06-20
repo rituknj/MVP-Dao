@@ -125,7 +125,7 @@ export default function CreateEvent() {
             <span className="card-text">ODDS</span>
             <p>{completedCards.teamone}<br />{completedCards.teamtwo}<br/>DRAW</p>
             <span>POOL SIZE</span>
-            <p>{completedCards.poolsize}</p>
+            <p>{completedCards.poolsize/10**18}</p>
             <span>CREATOR's REWARD</span>
             <p>{completedCards.reward}</p>
         </div>
@@ -159,7 +159,7 @@ export default function CreateEvent() {
                         <option value={2}>PENDING</option>
                     </select>
                 </div>
-                {option == 1 ?<div className="container">
+                {option == 1 ? <div className="container">
                     {completed.map((data)=>renderCompleted(data))}
                 </div> : option == 2 ? <div className="container">
                     {completed.map((data)=>renderNotCompleted(data))}

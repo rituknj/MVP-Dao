@@ -55,6 +55,7 @@ export default function ValidateEvents() {
           nonvalidated.push(element)
         }
       });
+      
       setAllnonevents(nonvalidated)
       setAllValidateEvent(evnets)
       }

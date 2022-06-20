@@ -275,7 +275,7 @@ export default function BetSlip() {
         </div>
         <div className="col p-2 shadow rounded my-3 mx-1 border-danger">
           <span>TOTAL</span>
-          <h5>AMOUNT LOST</h5>
+          <h5>AMOUNT WAGERED</h5>
           <hr className="text-danger" />
           <p>${totaluserbetlost - userTotalWinning}</p>
         </div>

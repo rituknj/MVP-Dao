@@ -69,6 +69,7 @@ export default function WalletPopup(props) {
     setLockedAmount(locked / 10 ** 18);
     const pending = await pendingpoint();
     setGetPendingPoints(pending);
+    console.log("points",valpoints,pending)
     API_call();
   };
 
@@ -88,6 +89,7 @@ export default function WalletPopup(props) {
     const address = await getAccount();
     setAccount(address);
   };
+
   const slicing = (address) => {
     const first = address.slice(0, 4);
     const second = address.slice(38);
@@ -104,6 +106,7 @@ export default function WalletPopup(props) {
         console.log(error);
       });
   };
+
   const Unlock = async () => {
     const data = await revokevalidationpointsearning();
     if (data.status) {
@@ -115,18 +118,19 @@ export default function WalletPopup(props) {
   const LockBets = async () => {
     const amount = await isPointSapproved();
     if (Number(amount) > betstolock) {
-      const data = await earnvalidationpoints(betstolock * 10 ** 18);
+      const data = await earnvalidationpoints(betstolock);
       if (data.status) {
         tost();
       }
     } else {
       await approvePoints();
-      const data = await earnvalidationpoints(betstolock * 10 ** 18);
+      const data = await earnvalidationpoints(betstolock);
       if (data.status) {
         tost();
       }
     }
   };
+
   const ValidationPointsClaim = async () => {
     const data = await claimpoints();
     if (data.status) {
@@ -369,7 +373,7 @@ export default function WalletPopup(props) {
               {validationPoints}&nbsp;&nbsp;{" "}
               <span className="text-muted">(Pending {getpendingpoint})</span>
             </p>
-            {Number(validationPoints) > 0 ? (
+            {Number(getpendingpoint) > 0 ? (
               <button
                 className="w-100 p-3 font-weight-bold mb-4"
                 style={{ borderRadius: "10px" }}
@@ -381,7 +385,7 @@ export default function WalletPopup(props) {
               ""
             )}
             <p className="m-0">TOTAL LOCKED AMOUNT</p>
-            <p>{lockedAmount} sBET</p>
+            <p>{lockedAmount} BET</p>
           </div>
           <div className="p-4 text-white w-75 mx-auto">
             <p>AVAILABLE:&nbsp;&nbsp; {betv2} sBETS</p>

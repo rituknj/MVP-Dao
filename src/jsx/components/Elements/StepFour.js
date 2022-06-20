@@ -77,7 +77,7 @@ export class StepFour extends React.Component {
       tostError("Bet Amount should be greater than 0")
     }
     else{
-      const data = await createEvent(window.subTitle,window.description,window.url,window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome);  
+      const data = await createEvent(window.subTitle,window.description,window.url,window.eventTitle,starttime,endtime,window.preferredoutcome,window.oppossingoutcome);  
       console.log("DAta",window.cat,window.subTitle,window.description,window.url,window.eventTitle,starttime,endtime,window.oppossingoutcome,window.preferredoutcome)
       if(data.status){
         tost("Event Create Successfully")

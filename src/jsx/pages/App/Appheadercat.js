@@ -95,7 +95,7 @@ class Index extends Component {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Categories
+              {window.maincat == "Main Category" ? "CATOGRIES" : window.maincat}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
               <li>
