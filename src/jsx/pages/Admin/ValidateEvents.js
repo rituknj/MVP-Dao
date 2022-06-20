@@ -1,9 +1,20 @@
 import React,{useEffect, useState} from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { getTotalValidatorRewardEarned, getvalidatorsRewardOnEvnet,getusertotalwinnings, AmountStackOnEventByaUser, userBethistory,claimrewards,validateEvent, getvalidatorHistory, getValidationPoint } from "../../../web3/betsMVPService";
+import { getTotalValidatorRewardEarned, getvalidatorsRewardOnEvnet,getusertotalwinnings, AmountStackOnEventByaUser, userBethistory,claimrewards,validateEvent, getvalidatorHistory, getValidationPoint, pendingpoint,claimpoints } from "../../../web3/betsMVPService";
 import { getBETSV2Balance } from './../../../web3/betsService'
-
+import toast, { Toaster } from "react-hot-toast";
+const tost = () =>
+  toast.success("Success.", {
+    style: {
+      padding: "16px",
+      color: "#000",
+    },
+    iconTheme: {
+      primary: "#0b0b0b",
+      secondary: "#ffffff",
+    },
+  });
 
 export default function ValidateEvents() {
     const [allvalidatevents, setAllValidateEvent] = useState([])
@@ -16,6 +27,7 @@ export default function ValidateEvents() {
     const [checkbox, setCheckBox] = useState(false)
     const [sbets, setSbets] = useState(0)
     const [uservalidationpoints, setUserValidationPoints] = useState(0)
+    const [pendingpoints, setPendingPoints] = useState(0)
     
 
     useEffect(()=>{
@@ -30,8 +42,13 @@ export default function ValidateEvents() {
       const uservalidpoints = await getValidationPoint()
       setUserValidationPoints(uservalidpoints)
       setSbets(sbets)
+      setInterval(async()=>{
+        const points = await pendingpoint()
+        setPendingPoints(points)
+      },5000)
       const validatorhstry = await getvalidatorHistory()
       const userbethty = await userBethistory()
+
       userbethty.forEach(async (ele) =>{
         const amountstake = await AmountStackOnEventByaUser(ele)
         stake = Number(amountstake) + stake
@@ -159,6 +176,12 @@ export default function ValidateEvents() {
     await validateEvent(id, occur)
   }
 
+  const claimValidationPonits =async()=>{
+    const data = await claimpoints();
+    if (data.status) {
+      tost();
+    }
+  }
   
   return (
     <div className="validate-event-main">
@@ -198,10 +221,10 @@ export default function ValidateEvents() {
           className="col px-3 py-2 shadow rounded my-3 mx-1 col-g"
         >
           <span>PENDING</span>
-          <h5>REWARDS</h5>
+          <h5>VALIDATION POINTS</h5>
           <hr className="text-success" />
-          <p>{sbets}</p>
-          <button className="btn btn-success ms-auto d-block text-black fw-bold">VIEW</button>
+          <p>{pendingpoints}</p>
+          <button className="btn btn-success ms-auto d-block text-black fw-bold" onClick={()=>claimValidationPonits()} disabled={pendingpoints <= 0 ? 'disabled' : '' }>CLAIM</button>
         </div>
         
       </div>
@@ -292,6 +315,7 @@ export default function ValidateEvents() {
       {/* VALIDATE CARDS */}
       <div className="validCards container-fluid">
       {allvalidatevents.map((data)=>renderFake(data))}
+      <Toaster/>
       </div>
     </div>
   );

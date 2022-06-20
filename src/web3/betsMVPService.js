@@ -39,7 +39,7 @@ export const getSubCategory = async (id) => {
 
 export const createEvent = async (sub_category, description, url, name, time, endTime, event1, event2 ) => {
     const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-
+    console.log(sub_category, description, url, name, time, endTime, event1, event2)
     var getData = await betMVPContract.methods.createEvent('0x0', sub_category, name, description, url, time, endTime, event1, event2).send({
         from: await getAccount(),
     });
@@ -204,17 +204,11 @@ export const claimrewards = async (id) => {
 }
 
 export const reclaimwager = async (id) => {
-    // const betMVPContract = await getBETMVPContract();
-    // const resutl = await betMVPContract.methods.reclaimWager(id).send({
-    //     from: await getAccount(),      
-    // });
-    // if(resutl.status == true){
-    //     alert("Refund Successfully")
-    // }
-    // else{
-    //     alert("Failed")
-    // }
-    // return resutl;
+    const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const resutl = await betMVPContract.methods.reclaimWager(id).send({
+        from: await getAccount(),      
+    });
+    return resutl;
 }
 
 export const bettorscounts = async (id, occured) => {
