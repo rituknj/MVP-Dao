@@ -47,15 +47,15 @@ export const approveBETS = async () => {
 }
 
 export const addBETS = async () => {
-    await window.ethereum.request({
-        method: "wallet_watchAsset",
-        params: {
-            type: "ERC20",
-            options: {
-                address: envdev.REACT_APP_BUSD_TOKEN,
-                symbol: 'BETS',
-                decimals: 8,
-            },
-        },
-    });
+    // await window.ethereum.request({
+    //     method: "wallet_watchAsset",
+    //     params: {
+    //         type: "ERC20",
+    //         options: {
+    //             address: envdev.REACT_APP_BUSD_TOKEN,
+    //             symbol: 'BETS',
+    //             decimals: 8,
+    //         },
+    //     },
+    // });
 }

@@ -488,8 +488,8 @@ class GameCard extends Component {
             </div>
           </div>
           <div className="sub-tools">
-            <img src={Search} width={25} height={25} />
-            <img src={Filter} width={25} height={25} />
+            {/* <img src={Search} width={25} height={25} />
+            <img src={Filter} width={25} height={25} /> */}
           </div>
         </div>
 

@@ -26,7 +26,7 @@ export const loginProcess = async () => {
         console.log('check chain error:', err);
         window.location.replace('/')
     }
-    await login();
+    // await login();
 }
 
 export const getValidProvider = async () => {
@@ -43,20 +43,20 @@ export const getConnectorId = () => {
 }
 
 export const observeMetaMaskEvents = () => {
-    window.ethereum.on('accountsChanged', (accounts) => {
-        console.log('account changed.')
-        window.location.replace('/');
-        return ;
-    });
-    window.ethereum.on('chainChanged', async (accounts) => {
-        console.log('chain changed.')
-        const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-        const expectedChainId = getMainChainInformation().chainId;
-        if (parseInt(chainId, 16) !== expectedChainId) {
-            window.location.replace('/');
-        }
-        return ;
-    });
+    // window.ethereum.on('accountsChanged', (accounts) => {
+    //     console.log('account changed.')
+    //     window.location.replace('/');
+    //     return ;
+    // });
+    // window.ethereum.on('chainChanged', async (accounts) => {
+    //     console.log('chain changed.')
+    //     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    //     const expectedChainId = getMainChainInformation().chainId;
+    //     if (parseInt(chainId, 16) !== expectedChainId) {
+    //         window.location.replace('/');
+    //     }
+    //     return ;
+    // });
     // window.ethereum.on('disconnect', (accounts) => {
     //     console.log('account disconnect.')
     //     alert('disconnect')
@@ -239,7 +239,7 @@ export const ToWei = async(amount)=> {
     }
 }
 
-export const disconnectWallet = () => {
-    window.location.replace('/');
-}
+// export const disconnectWallet = () => {
+//     window.location.replace('/');
+// }
 
