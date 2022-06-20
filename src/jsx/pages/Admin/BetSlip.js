@@ -181,7 +181,7 @@ export default function BetSlip() {
             style={{ fontSize: "12px" }}
           >
             You Won
-            <span className="fs-6"> ${completedCards.won}</span>
+            <span className="fs-6"> ${completedCards.won/10**18}</span>
           </p>
           <div className="d-flex justify-content-between text-secondary" style={{fontSize: "12px"}}>
             <ul className="p-0" style={{listStyle: "none"}}>
@@ -191,9 +191,9 @@ export default function BetSlip() {
             </ul>
             <div>
                 <p><ImStopwatch/>0 DAYS LEFT</p>
-                <ImFire size={20}/>&nbsp;&nbsp;&nbsp;<button onClick={()=>RewardClaim(completedCards.id)} className="btn btn-success ms-auto fw-bold">
+                <ImFire size={20}/>&nbsp;&nbsp;&nbsp;{completedCards.won > 0 ? '' :<button onClick={()=>RewardClaim(completedCards.id)} className="btn btn-success ms-auto fw-bold">
                 Claim
-                </button>&nbsp;&nbsp;&nbsp;
+                </button>}&nbsp;&nbsp;&nbsp;
                 <button onClick={()=>Boost(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
                   BOOST
                 </button>
@@ -277,13 +277,13 @@ export default function BetSlip() {
           <span>TOTAL</span>
           <h5>AMOUNT WAGERED</h5>
           <hr className="text-danger" />
-          <p>${totaluserbetlost - userTotalWinning}</p>
+          <p>${(totaluserbetlost)}</p>
         </div>
         <div className="col px-3 py-2 shadow rounded my-3 mx-1 col-g">
           <span>TOTAL</span>
           <h5>AMOUNT WON</h5>
           <hr className="text-success" />
-          <p>${userTotalWinning}</p>
+          <p>${userTotalWinning/10**18}</p>
         </div>
       </div>
 

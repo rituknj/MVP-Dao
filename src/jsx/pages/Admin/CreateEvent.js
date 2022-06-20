@@ -71,16 +71,8 @@ export default function CreateEvent() {
         },
     ]
 
-    const getdays = (endime) => {
-        var current = Math.round(new Date().getTime()/1000)
-        var seconds =  (endime/1000)-current 
-        var day = Math.floor(seconds/86400)
-        if(day>0){
-          return day;
-        }
-        else{
-          return 0;
-        }
+    const getdays = (time) => {
+        return new Date(time*1000).toLocaleString();
       }
 
     const renderCompleted = (completedCards, index) => {
@@ -102,7 +94,7 @@ export default function CreateEvent() {
             <span>POOL SIZE</span>
             <p>{completedCards.poolsize/10**18}</p>
             <span>CREATOR's REWARD</span>
-            <p>{completedCards.reward}</p>
+            <p>{completedCards.creatoraward/10**18}</p>
         </div>
     </div>:''}
             </>

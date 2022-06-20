@@ -238,9 +238,9 @@ export default function WalletPopup(props) {
             </div>
             <p className="card-text d-flex justify-content-between">
               <small className="text-muted">Last updated 3 mins ago</small>
-              <p className="card-text">
+              {/* <p className="card-text">
                 $ {Number(betv2 * betprice).toFixed(2)}{" "}
-              </p>
+              </p> */}
             </p>
           </div>
         </div>

@@ -300,7 +300,7 @@ class GameCard extends Component {
 
   getdays = (endime) => {
     var current = Math.round(new Date().getTime()/1000)
-    var seconds =  (endime/1000)-current 
+    var seconds =  (endime)-current 
     var day = Math.floor(seconds/86400)
     if(day>0){
       return day;
@@ -405,7 +405,7 @@ class GameCard extends Component {
                   <div className="overflow-hidden text-center py-3 align-items-stretch col-12 text-light">
                     <h6 className="m-0">Total Payout</h6>
                     <h6 className="mt-4 fw-lighter">
-                      {(this.state.payout)} BUSD
+                      {(this.state.payout/10**18)} BUSD
                     </h6>
                   </div>
 
@@ -511,7 +511,7 @@ class GameCard extends Component {
                         <h4 className='fs-5'> {Math.round((new Date()).getTime() / 1000) > this.state.globalendtime ? <img src={redDot} className="red-dot" width="12" /> : <img src={greenDot} className="me-2" width="12" />} {this.state.category}</h4>
                           <span>{this.state.teamone} <span className='text-danger'>vs</span> {this.state.teamtwo}</span>
                         </div>
-                        <div id="date"><p>25 Feb &nbsp;&nbsp;&nbsp;<span>2022</span></p></div>
+                        {/* <div id="date"><p>25 Feb &nbsp;&nbsp;&nbsp;<span>2022</span></p></div> */}
                       </div>
                       <div className='d-flex mt-5 justify-content-between'>
                         <div id="poolSize"><p>Pool Size</p>

@@ -129,6 +129,10 @@ export default function ValidateEvents() {
     },
   ];
 
+  const getdays = (time) => {
+    return new Date(time*1000).toLocaleString();
+  }
+
   const renderFake = (fakeCards, index) => {
     return (
       <div
@@ -139,7 +143,7 @@ export default function ValidateEvents() {
         <div className="card-head p-3">
           <p>{fakeCards.subcategory}</p>
           <h5 className="card-title">{fakeCards.teamone} vs {fakeCards.teamtwo}</h5>
-          <span>{fakeCards.starttime}</span>
+          <span>{getdays(fakeCards.endtime)}</span>
         </div>
         <div className="card-body">
           <div>
@@ -151,9 +155,9 @@ export default function ValidateEvents() {
             </ul>
           </div>
           <p className="mt-3">POOL SIZE</p>
-          <span>{fakeCards.poolsize}</span>
+          <span>{fakeCards.poolsize/10**18}</span>
           <p className="mt-3">REWARDS</p>
-          <span>${fakeCards.reward}</span>
+          <span>${fakeCards.reward/10**18}</span>
           {Number(fakeCards.reward) <= 0 ? <button className="btn" onClick={()=>claimReward(fakeCards.id)}>CLAIM</button>: ''}
         </div>
       </div>
@@ -199,7 +203,7 @@ export default function ValidateEvents() {
           <span>TOTAL</span>
           <h5>REWARDS EARNED</h5>
           <hr className="text-primary" />
-          <p>{validatorReward}</p>
+          <p>{validatorReward/10**18}</p>
         </div>
         <div
           className="col px-3 py-2 shadow rounded my-3 mx-1 col-p"
