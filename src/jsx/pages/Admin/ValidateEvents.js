@@ -165,23 +165,21 @@ export default function ValidateEvents() {
       {/* CARD STAT */}
       <div className="row py-3 px-2 mb-3 justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto">
         <div
-          className="col p-2 shadow rounded my-3 mx-1"
-          style={{ borderColor: "#FF4003" }}
+          className="col px-3 py-2 shadow rounded my-3 mx-1 col-r"
         >
           <span>TOTAL</span>
           <h5>EVENTS VALIDATED</h5>
           <hr style={{ color: "#FF4003" }} />
           <p>{allvalidatevents.length}</p>
         </div>
-        <div className="col p-2 shadow rounded my-3 mx-1 border-primary">
+        <div className="col px-3 py-2 shadow rounded my-3 mx-1 col-b">
           <span>TOTAL</span>
           <h5>REWARDS EARNED</h5>
           <hr className="text-primary" />
           <p>{validatorReward}</p>
         </div>
         <div
-          className="col p-2 shadow rounded my-3 mx-1"
-          style={{ borderColor: "#ED2FC3" }}
+          className="col px-3 py-2 shadow rounded my-3 mx-1 col-p"
         >
           <span>TOTAL</span>
           <h5>VALIDATION POINTS</h5>
@@ -189,13 +187,21 @@ export default function ValidateEvents() {
           <p>{uservalidationpoints}</p>
         </div>
         <div
-          className="col p-2 shadow rounded my-3 mx-1"
-          style={{ borderColor: "#FF9A02" }}
+          className="col px-3 py-2 shadow rounded my-3 mx-1 col-y"
         >
           <span>TOTAL</span>
           <h5>sBETS</h5>
+          <hr className="text-warning" />
+          <p>{sbets}</p>
+        </div>
+        <div
+          className="col px-3 py-2 shadow rounded my-3 mx-1 col-g"
+        >
+          <span>PENDING</span>
+          <h5>REWARDS</h5>
           <hr className="text-success" />
           <p>{sbets}</p>
+          <button className="btn btn-success ms-auto d-block text-black fw-bold">VIEW</button>
         </div>
         
       </div>

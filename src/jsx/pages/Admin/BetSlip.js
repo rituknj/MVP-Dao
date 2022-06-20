@@ -261,25 +261,25 @@ export default function BetSlip() {
     <div className="container-fluid betslip-main">
       {/* CARD STAT */}
       <div className="row py-3 px-2 mb-3 justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto">
-        <div className="col p-2 shadow rounded my-3 mx-1 border-light">
+        <div className="col px-3 py-2 shadow rounded my-3 mx-1 col-w">
           <span>TOTAL</span>
           <h5>BETS MADE</h5>
           <hr className="text-light" />
           <p>{totaluserBetHistory}</p>
         </div>
-        <div className="col p-2 shadow rounded my-3 mx-1 border-primary">
+        <div className="col px-3 py-2 shadow rounded my-3 mx-1 col-b">
           <span>TOTAL</span>
           <h5>EVENT CREATED</h5>
           <hr className="text-primary" />
           <p>{totalEvnetUserHistory}</p>
         </div>
-        <div className="col p-2 shadow rounded my-3 mx-1 border-danger">
+        <div className="col px-3 py-2 shadow rounded my-3 mx-1 col-r">
           <span>TOTAL</span>
           <h5>AMOUNT WAGERED</h5>
           <hr className="text-danger" />
           <p>${totaluserbetlost - userTotalWinning}</p>
         </div>
-        <div className="col p-2 shadow rounded my-3 mx-1 border-success">
+        <div className="col px-3 py-2 shadow rounded my-3 mx-1 col-g">
           <span>TOTAL</span>
           <h5>AMOUNT WON</h5>
           <hr className="text-success" />

@@ -1585,25 +1585,22 @@ footer {
   padding: 15px;
 }
 footer p.theam-text-color {
-  font-style: normal;
-  font-weight: normal;
   font-size: 18px;
   line-height: 23px;
   color: #ff0000;
 }
 footer p.theam-text-color {
-  font-style: normal;
-  font-weight: normal;
   font-size: 18px;
   line-height: 23px;
 }
 footer .footerList li a {
-  font-style: normal;
-  font-weight: normal;
   font-size: 14px;
   line-height: 18px;
   color: #ffffff;
   text-decoration: none;
+}
+footer .footerList{
+  text-align: center;
 }
 footer .footerList li {
   padding-bottom: 2rem;
@@ -1997,8 +1994,67 @@ footer button {
 .betslip-main .row .col{
   min-width: 275px;
   background-color: #1C1C1C;
-  border-left: 3px solid;
   color: #fff;
+}
+.betslip-main .row .col-w::before, .validate-event-main .row .col-w::before{
+  content: '';
+  width: 5px;
+  left: 0;
+  border-radius: 5px;
+  height: 120px;
+  vertical-align: middle;
+  position: absolute;
+  background-color: #fff;
+}
+.betslip-main .row .col-b::before, .validate-event-main .row .col-b::before{
+  content: '';
+  width: 5px;
+  left: 0;
+  border-radius: 5px;
+  height: 120px;
+  vertical-align: middle;
+  position: absolute;
+  background-color: #2F92ED;
+}
+.betslip-main .row .col-r::before, .validate-event-main .row .col-r::before{
+  content: '';
+  width: 5px;
+  left: 0;
+  border-radius: 5px;
+  height: 120px;
+  vertical-align: middle;
+  position: absolute;
+  background-color: #FF0505;
+}
+.betslip-main .row .col-g::before, .validate-event-main .row .col-g::before{
+  content: '';
+  width: 5px;
+  left: 0;
+  border-radius: 5px;
+  height: 120px;
+  vertical-align: middle;
+  position: absolute;
+  background-color: #02FF67;
+}
+.validate-event-main .row .col-p::before{
+  content: '';
+  width: 5px;
+  left: 0;
+  border-radius: 5px;
+  height: 120px;
+  vertical-align: middle;
+  position: absolute;
+  background-color: #ED2FC3;
+}
+.validate-event-main .row .col-y::before{
+  content: '';
+  width: 5px;
+  left: 0;
+  border-radius: 5px;
+  height: 120px;
+  vertical-align: middle;
+  position: absolute;
+  background-color: #FF9A02;
 }
 .betslip-main .row .col span{
   font-size: 12px;
@@ -2025,7 +2081,6 @@ footer button {
   border-bottom-left-radius: 25px;
 }
 .validate-event-main .row .col{
-  border-left: 3px solid;
   width: 275px;
   background-color: #1c1c1c;
   color: #fff;
@@ -2169,4 +2224,14 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .active{
+  border-left: 5px solid #FF4003;
+}
+#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .active svg rect, #AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .active svg path{
+  fill: #FF4003;
+}
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item{
+  padding: 25px 35px 25px 20px;
+  margin: 0 !important;
 }
