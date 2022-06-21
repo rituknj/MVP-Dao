@@ -2287,7 +2287,7 @@ input::-webkit-inner-spin-button {
   bottom: 0;
   left: 0;
   z-index: -1;
-
+}
 .search-bar{
   background: #151515;
   border-radius: 5px;
