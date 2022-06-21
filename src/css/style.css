@@ -1804,7 +1804,7 @@ footer button {
 .main-dropdown{
   position: relative;
   outline: none;
-  z-index: 5;
+  z-index: 3;
 }
 .main-dropdown .btn-secondary, .categories-dropdown .btn-secondary{
   padding: 25px 20px;

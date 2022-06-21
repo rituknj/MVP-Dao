@@ -5972,7 +5972,7 @@ globby@^11.0.4, globby@^11.1.0:
 
 goober@2.1.0:
   version "2.1.0"
-  resolved "https://registry.npmjs.org/goober/-/goober-2.1.0.tgz"
+  resolved "https://registry.yarnpkg.com/goober/-/goober-2.1.0.tgz#12e1550ca07e9ebcf70396c30ccc0eb8b2438698"
   integrity sha512-UdKKZ1boKFaJWlQYlHlp/1jpnrZIkfYWM0zuyQTY7tF9Cs+uHDlQk1kB5vexmZssw4R8iLMjmVUd0wKcaweGfQ==
 
 goober@^2.1.1:
@@ -9575,7 +9575,7 @@ react-multi-carousel@^2.6.5:
 
 react-multistep@^5.3.0:
   version "5.3.0"
-  resolved "https://registry.npmjs.org/react-multistep/-/react-multistep-5.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/react-multistep/-/react-multistep-5.3.0.tgz#61d657bd7c9f17efa7e42cb0841e9fdee2ed06cd"
   integrity sha512-Dfw50Hv7YM7xdJqGSt3Qz57Gv67E7tXrYvVHuukdzxETdrzX9sa2p7LB1vjPGF7b/Qr+EW6LLlQEpMALZ0TMrQ==
   dependencies:
     goober "2.1.0"

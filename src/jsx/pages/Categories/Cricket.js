@@ -354,7 +354,7 @@ class GameCard extends Component {
   }
 
 
-  Onplacebet =async() => {
+  Onplacebet = async() => {
     try{
      const data =  await placeBet(this.state.id, this.state.occurance, this.state.stackvalueone)
      if(data.status){
