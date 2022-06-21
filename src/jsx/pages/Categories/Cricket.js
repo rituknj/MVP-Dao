@@ -65,6 +65,8 @@ class GameCard extends Component {
       id: null,
       activeSubCat:[],
       subcategorys:[],
+      searchItem:'',
+      specificCats:[],
       zeroEventAmount: 0,
       oneEventAmount: 0,
       twoEventAmount: 0,
@@ -187,8 +189,94 @@ class GameCard extends Component {
     }
     this.setState({
       allevents: events,
+      specificCats:events
     })
     this.setState({activeSubCat: sub})
+  }
+
+  SearchCategory = async(data)=>{
+    let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
+    const events = []
+    let check2 
+    for(let i = 0; i < decodestoredevents.length; i++){
+      check2 = decodestoredevents[i]
+      if(check2.teamone.includes(data.toString()) || check2.teamtwo.includes(data.toString()) || check2.descript.includes(data.toString())){
+        events.push(check2)
+      }
+    }
+    this.setState({
+      allevents: events,
+    })
+  }
+
+  Sorting = async(data)=>{
+    // JSON.parse(window.localStorage.getItem('events'))
+    let decodestoredevents = this.state.specificCats
+    const events = []
+    let check1
+    let check2  
+    if(data == 1){
+      for(let i = 0; i < decodestoredevents.length; i++){
+        for(let j = 0; j < decodestoredevents.length-i-1; j++){
+          if(decodestoredevents[j].poolsize > decodestoredevents[j+1].poolsize){
+            var temp = decodestoredevents[j]
+            decodestoredevents[j] = decodestoredevents[j + 1]
+            decodestoredevents[j+1] = temp 
+          }
+        }
+      }
+      this.setState({
+        allevents: decodestoredevents,
+      })
+    }
+
+    else if(data == 2){
+      for(let i = 0; i < decodestoredevents.length; i++){
+        for(let j = 0; j < decodestoredevents.length-i-1; j++){
+          if(decodestoredevents[j].poolsize < decodestoredevents[j+1].poolsize){
+            var temp = decodestoredevents[j]
+            decodestoredevents[j] = decodestoredevents[j + 1]
+            decodestoredevents[j+1] = temp 
+          }
+        }
+      }
+      this.setState({
+        allevents: decodestoredevents,
+      })
+    }
+    else if(data == 3){
+      let decodestoredevent = JSON.parse(window.localStorage.getItem('events'))
+      for(let i = 0; i < decodestoredevent.length; i++){
+        for(let j = 0; j < decodestoredevent.length-i-1; j++){
+          if(decodestoredevent[j].poolsize > decodestoredevent[j+1].poolsize){
+            var temp = decodestoredevent[j]
+            decodestoredevent[j] = decodestoredevent[j + 1]
+            decodestoredevent[j+1] = temp 
+          }
+        }
+      }
+      this.setState({
+        allevents: decodestoredevent,
+        activeSubCat:'ALL'
+      })
+    }
+    else{
+      let decodestoredevent = JSON.parse(window.localStorage.getItem('events'))
+      for(let i = 0; i < decodestoredevent.length; i++){
+        for(let j = 0; j < decodestoredevent.length-i-1; j++){
+          if(decodestoredevent[j].poolsize < decodestoredevent[j+1].poolsize){
+            var temp = decodestoredevent[j]
+            decodestoredevent[j] = decodestoredevent[j + 1]
+            decodestoredevent[j+1] = temp 
+          }
+        }
+      }
+      this.setState({
+        allevents: decodestoredevent,
+        activeSubCat:'ALL'
+      })
+    }
+    
   }
  
 
@@ -266,7 +354,7 @@ class GameCard extends Component {
   }
 
 
-  Onplacebet =async() => {
+  Onplacebet = async() => {
     try{
      const data =  await placeBet(this.state.id, this.state.occurance, this.state.stackvalueone)
      if(data.status){
@@ -279,8 +367,9 @@ class GameCard extends Component {
     }
   }
   getdata = (v) => {
-
   }
+
+  
 
   countbettors = async (id) => {
     let one = await bettorscounts(id, 0)
@@ -491,8 +580,27 @@ class GameCard extends Component {
             </div>
           </div>
           <div className="sub-tools">
-            {/* <img src={Search} width={25} height={25} />
-            <img src={Filter} width={25} height={25} /> */}
+            <div className='search-bar'>
+            <input value={this.state.searchItem} onChange={(e)=>this.setState({searchItem:e.target.value})}/>&nbsp;
+            <img src={Search} width={25} height={25} onClick={()=>this.SearchCategory(this.state.searchItem)}/>
+            </div>
+           <div>
+              <span id="dropdownMenu2" data-bs-toggle="dropdown" type='button' aria-expanded="false" ><img className='mt-2' src={Filter} width={25} height={25} /></span>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
+              <li>
+                <button class="dropdown-item text-white pool" type="button" onClick={()=>this.Sorting(1)}>Pool Low to High</button>
+             </li> 
+             <li>
+                <button class="dropdown-item text-white pool" type="button" onClick={()=>this.Sorting(2)}>Pool High to Low</button>
+             </li> 
+             <li>
+                <button class="dropdown-item text-white pool" type="button" onClick={()=>this.Sorting(3)}>Pool Low to High (ALL)</button>
+             </li> 
+             <li>
+                <button class="dropdown-item text-white pool" type="button" onClick={()=>this.Sorting(4)}>Pool High to Low (ALL)</button>
+             </li> 
+            </ul>
+           </div>
           </div>
         </div>
 

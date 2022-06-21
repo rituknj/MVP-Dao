@@ -1804,7 +1804,7 @@ footer button {
 .main-dropdown{
   position: relative;
   outline: none;
-  z-index: 5;
+  z-index: 3;
 }
 .main-dropdown .btn-secondary, .categories-dropdown .btn-secondary{
   padding: 25px 20px;
@@ -2287,4 +2287,19 @@ input::-webkit-inner-spin-button {
   bottom: 0;
   left: 0;
   z-index: -1;
+
+.search-bar{
+  background: #151515;
+  border-radius: 5px;
+  outline: none;
+  padding: 5px;
+}
+.search-bar input{
+  background: #151515;
+  outline: none;
+  border: none;
+  color: #6d6c6c;
+}
+.pool:hover{
+  background-color: #2a2b2a;
 }

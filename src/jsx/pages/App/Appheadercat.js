@@ -78,8 +78,6 @@ class Index extends Component {
       window.maincat = "SPECIAL"
       window.maincatNum = 8
     }
-
-
   }
 
   render() {

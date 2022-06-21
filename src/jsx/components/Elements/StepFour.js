@@ -3,6 +3,7 @@ import React from 'react'
 import { GoPrimitiveDot } from 'react-icons/go'
 import toast, { Toaster } from 'react-hot-toast';
 import { placeBet, UserEventHistory } from './../../../web3/betsMVPService'
+import { updatingeventdata } from '../../../web3/Countallevents';
 
 const tost =(msg)=> toast.success(msg, {
   style: {
@@ -83,6 +84,7 @@ export class StepFour extends React.Component {
         tost("Event Create Successfully")
         const id = await UserEventHistory()
         const placebetdata = await placeBet(id[id.length-1],0,window.anmount)
+        await updatingeventdata(id[id.length-1]);
         console.log("palcebet",placebetdata )
         if(placebetdata.status){
           tost("Creator Bet Successfully")

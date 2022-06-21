@@ -89,7 +89,7 @@ export class StepOne extends React.Component {
   render() {
 //  console.log(this.state.subcategory)
     return (
-      <div>
+      <div >
         <h5>Create events on literally anything verifiable</h5>
         <br />
         <div className="my-3">
@@ -146,14 +146,6 @@ export class StepOne extends React.Component {
             {this.state.subcategory.map((data)=>{
              return <option value={`${data}`}>{data}</option>
             })}
-            {/* <option value="Soccer">Soccer</option>
-            <option value="Tennis">Tennis</option>
-            <option value="Rugby">Rugby</option>
-            <option value="Football">Football</option>
-            <option value="Hockey">Hockey</option>
-            <option value="Boxing">Boxing</option>
-            <option value="Basketball">Basketball</option>
-            <option value="Baseball">Baseball</option> */}
           </select>
         </div>
       </div>
