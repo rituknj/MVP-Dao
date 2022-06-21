@@ -45,14 +45,17 @@ export class StepTwo extends React.Component {
     return (
       <div>
         <h5>Enter the possible outcomes of the event</h5>
+        <br />
         <div className="my-3">
           <label for="inputOutcomeCount" className="form-label">NUMBER OF OUTCOMES</label>
           <input type="number" className="form-control" id="inputOutcomeCount" aria-describedby="eventHelp" onChange={(e)=>this.handleOutcomeCountChanged(e)} value={window.outcome} autoFocus/>
         </div>
+        <br />
         <div className="mb-3">
           <label for="inputPreferredOutcome" className="form-label">PREFERRED OUTCOME</label>
           <input type="text" className="form-control" id="inputPreferredOutcome" onChange={(e)=>this.handlePreferredOutcomeChanged(e)} value={window.preferredoutcome}/>
         </div>
+        <br />
         <div className="mb-3">
           <label for="inputOpposingOutcome" className="form-label">OPPOSING OUTCOME</label>
           <input type="text" className="form-control" id="inputOpposingOutcome" onChange={(e)=>this.handleOpposingOutcomeChanged(e)} value={window.oppossingoutcome} />

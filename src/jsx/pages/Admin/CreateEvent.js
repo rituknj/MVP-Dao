@@ -151,7 +151,7 @@ export default function CreateEvent() {
                         <option value={2}>PENDING</option>
                     </select>
                 </div>
-                {option == 1 ? <div className="container">
+                {option == 1 ? <div className="container-fluid">
                     {completed.map((data)=>renderCompleted(data))}
                 </div> : option == 2 ? <div className="container">
                     {completed.map((data)=>renderNotCompleted(data))}

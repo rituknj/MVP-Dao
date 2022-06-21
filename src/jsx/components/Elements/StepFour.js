@@ -100,6 +100,7 @@ export class StepFour extends React.Component {
       <div>
         <div><Toaster/></div>
         <h5>Place a Bet on Your Preferred Outcome</h5>
+        <br />
         <div className="container selectBet">
           <p>PREFERRED OUTCOME</p>
           <div id={`betA`}>
@@ -115,6 +116,7 @@ export class StepFour extends React.Component {
             />
           </div>
         </div>
+        <br />
         <div className="my-3">
           <label for="inputBetAmount" className="form-label">
             ENTER AMOUNT TO BET
