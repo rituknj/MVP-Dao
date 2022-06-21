@@ -112,7 +112,7 @@ export default function SelfHelp() {
           <div className="dropdown self-dordwn">
             <button
               className="btn dropdown-toggle border-0 text-start"
-              style={{backgroundColor:"#4D4A4A", width:"100%", padding:"40px 0px", maxWidth:"400px", width:"100%"}}
+              style={{backgroundColor:"#4D4A4A", width:"100%", padding:"30px 0px", maxWidth:"400px", width:"100%"}}
               type="button"
               id="dropdownMenu2"
               data-bs-toggle="dropdown"
@@ -127,47 +127,47 @@ export default function SelfHelp() {
               </li>
               <li>
                 <button className="dropdown-item" type="button">
-                2 WEEK
+                2 WEEKS
                 </button>
               </li>
               <li>
                 <button className="dropdown-item" type="button">
-                3 WEEK
+                3 WEEKS
                 </button>
               </li>
               <li>
                 <button className="dropdown-item" type="button">
-                4 WEEK
+                4 WEEKS
                 </button>
               </li>
               <li>
                 <button className="dropdown-item" type="button">
-                5 WEEK
+                5 WEEKS
                 </button>
               </li>
               <li>
                 <button className="dropdown-item" type="button">
-                6 WEEK
+                6 WEEKS
                 </button>
               </li>
               <li>
                 <button className="dropdown-item" type="button">
-                7 WEEK
+                7 WEEKS
                 </button>
               </li>
               <li>
                 <button className="dropdown-item" type="button">
-                8 WEEK
+                8 WEEKS
                 </button>
               </li>
               <li>
                 <button className="dropdown-item" type="button">
-                9 WEEK
+                9 WEEKS
                 </button>
               </li>
               <li>
                 <button className="dropdown-item" type="button">
-                10 WEEK
+                10 WEEKS
                 </button>
               </li>
             </ul>

@@ -211,7 +211,7 @@ export default function BetSlip() {
     {completedCards.starttime > Math.round((new Date()).getTime() / 1000) ?  <div
         className="card my-4"
         key={index}
-        style={{ backgroundColor: "#1c1c1c" }}
+        style={{ backgroundColor: "#1c1c1c"}}
       >
         <div className="card-body">
           <div
@@ -294,8 +294,8 @@ export default function BetSlip() {
       >
         <div className="col-md-2">
           <select
-            className="form-select bg-dark border-0 text-light"
-            style={{padding:"40px 30px", width:"400px"}}
+            className="form-select border-0 text-light"
+            style={{padding:"30px 20px", width:"400px", backgroundColor:'#2B2A2A', borderRadius:'10px'}}
             id="specificSizeSelect"
             onChange={(e)=>setHistroyEvents(e.target.options.selectedIndex)}
           >
