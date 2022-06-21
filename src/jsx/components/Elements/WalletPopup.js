@@ -97,8 +97,7 @@ export default function WalletPopup(props) {
   };
 
   const API_call = async () => {
-    axios
-      .get("https://api.coingecko.com/api/v3/coins/betswamp")
+    axios.get("https://api.coingecko.com/api/v3/coins/betswamp")
       .then(function (response) {
         setBetPrice(response.data.market_data.current_price.usd);
       })
