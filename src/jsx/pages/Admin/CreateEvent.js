@@ -139,7 +139,7 @@ export default function CreateEvent() {
                 {historyVisibility && <button onClick={() => setHistoryVisibility(false)} id='history'><FiArrowLeft />&nbsp; BACK</button>}
                 <button onClick={() => setHistoryVisibility(true)} id='history' className='ms-auto'>History &nbsp;<img src={icon} alt="" /></button>
             </div>
-            <div className='multistep rounded shadow pt-4 px-3 my-5 mx-auto' style={historyVisibility === false ? {display:"block"} : {display: "none"}}>
+            <div className='multistep my-5 mx-auto' style={historyVisibility === false ? {display:"block"} : {display: "none"}}>
             <MultiStep steps={steps} showNavigation={true} fill={window.FILL} nextStyle={{backgroundColor:"#fff", color:"#000", width:"100%", margin:"25px auto", display:"block", border:"none", padding:"8px 20px", borderRadius:"5px", fontWeight:"bold"}} prevStyle={{backgroundColor:"#fff", color:"#000", width:"100%", margin:"25px auto", display:"block", border:"none", padding:"8px 20px", borderRadius:"5px", fontWeight:"bold"}}/>
         </div>
 

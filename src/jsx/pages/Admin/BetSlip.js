@@ -261,25 +261,25 @@ export default function BetSlip() {
     <div className="container-fluid betslip-main">
       {/* CARD STAT */}
       <div className="row py-3 px-2 mb-3 justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto">
-        <div className="col px-3 py-2 shadow rounded my-3 mx-1 col-w">
+        <div className="col px-3 py-2 my-3 mx-1 col-w">
           <span>TOTAL</span>
           <h5>BETS MADE</h5>
           <hr className="text-light" />
           <p>{totaluserBetHistory}</p>
         </div>
-        <div className="col px-3 py-2 shadow rounded my-3 mx-1 col-b">
+        <div className="col px-3 py-2 my-3 mx-1 col-b">
           <span>TOTAL</span>
           <h5>EVENT CREATED</h5>
           <hr className="text-primary" />
           <p>{totalEvnetUserHistory}</p>
         </div>
-        <div className="col px-3 py-2 shadow rounded my-3 mx-1 col-r">
+        <div className="col px-3 py-2 my-3 mx-1 col-r">
           <span>TOTAL</span>
           <h5>AMOUNT WAGERED</h5>
           <hr className="text-danger" />
           <p>${(totaluserbetlost)}</p>
         </div>
-        <div className="col px-3 py-2 shadow rounded my-3 mx-1 col-g">
+        <div className="col px-3 py-2 my-3 mx-1 col-g">
           <span>TOTAL</span>
           <h5>AMOUNT WON</h5>
           <hr className="text-success" />
@@ -289,12 +289,13 @@ export default function BetSlip() {
 
       {/* BET SLIPS */}
       <div
-        className="row py-3 px-3 px-xxl-5 px-sm-2 mb-3"
-        style={{ borderBottomLeftRadius: "0" }}
+        className="row px-3 px-xxl-5 px-sm-2 mb-3"
+        style={{ borderBottomLeftRadius: "0", paddingTop:"35px" }}
       >
         <div className="col-md-2">
           <select
-            className="form-select bg-dark border-0 text-light py-3"
+            className="form-select bg-dark border-0 text-light"
+            style={{padding:"40px 30px", width:"400px"}}
             id="specificSizeSelect"
             onChange={(e)=>setHistroyEvents(e.target.options.selectedIndex)}
           >

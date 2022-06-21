@@ -1814,7 +1814,7 @@ footer button {
 .main-dropdown .dropdown-toggle::after, .categories-dropdown .dropdown-toggle::after{
   position: absolute;
   right: 15px;
-  top: 45%;
+  top: 65%;
 }
 
 .catorgies {
@@ -1951,7 +1951,9 @@ footer button {
   overflow: hidden;
   color: #AAAAAA;
   font-size: 14px;
-  padding: 25px;
+  padding: 30px 70px;
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
 }
 .createEvent-main .multistep h5{
   color: #fff;
@@ -1993,6 +1995,12 @@ footer button {
 }
 .betslip-main .row .col{
   min-width: 275px;
+  max-width: 340px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  height: 150px;
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
   background-color: #1C1C1C;
   color: #fff;
 }
@@ -2002,8 +2010,8 @@ footer button {
   left: 0;
   border-radius: 5px;
   height: 120px;
-  vertical-align: middle;
   position: absolute;
+  top: 10%;
   background-color: #fff;
 }
 .betslip-main .row .col-b::before, .validate-event-main .row .col-b::before{
@@ -2012,7 +2020,7 @@ footer button {
   left: 0;
   border-radius: 5px;
   height: 120px;
-  vertical-align: middle;
+  top: 10%;
   position: absolute;
   background-color: #2F92ED;
 }
@@ -2022,7 +2030,7 @@ footer button {
   left: 0;
   border-radius: 5px;
   height: 120px;
-  vertical-align: middle;
+  top: 10%;
   position: absolute;
   background-color: #FF0505;
 }
@@ -2032,7 +2040,7 @@ footer button {
   left: 0;
   border-radius: 5px;
   height: 120px;
-  vertical-align: middle;
+  top: 10%;
   position: absolute;
   background-color: #02FF67;
 }
@@ -2042,7 +2050,7 @@ footer button {
   left: 0;
   border-radius: 5px;
   height: 120px;
-  vertical-align: middle;
+  top: 10%;
   position: absolute;
   background-color: #ED2FC3;
 }
@@ -2052,7 +2060,7 @@ footer button {
   left: 0;
   border-radius: 5px;
   height: 120px;
-  vertical-align: middle;
+  top: 10%;
   position: absolute;
   background-color: #FF9A02;
 }
@@ -2065,6 +2073,12 @@ footer button {
 }
 .betslip-main .row .col p{
   font-size: 20px;
+}
+.betslip-main .row .col hr, .validate-event-main .row .col hr{
+  width: 115%;
+  margin-left: -16px;
+  height: 1px;
+  opacity: 1;
 }
 .activeBets .card-body h5{
   font-size: 16px;
@@ -2081,9 +2095,15 @@ footer button {
   border-bottom-left-radius: 25px;
 }
 .validate-event-main .row .col{
-  width: 275px;
+  min-width: 275px;
+  max-width: 340px;
+  width: 100%;
   background-color: #1c1c1c;
+  overflow: hidden;
   color: #fff;
+  border-radius: 10px;
+  height: 150px;
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
 }
 .validate-event-main .row .col span{
   font-size: 12px;
@@ -2168,10 +2188,10 @@ footer button {
   color: #AAAAAA;
 }
 .self-help-main .amount .btn{
-  font-weight: 500;
+  font-weight: 900;
   background-color: #fff;
   margin: 5px;
-  padding: 8px 10px;
+  padding: 30px;
 }
 .self-help-main .amount .btn:hover{
   background-color: #FF4003;
@@ -2186,21 +2206,23 @@ footer button {
 .self-help-main .row .col-lg-6{
   background-color: #1C1C1C;
   border-radius: 10px;
-  box-shadow: 10px 10px #000000;
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
   max-width: 725px;
 }
 .self-help-main .row .col-lg-6 .customAmount{
   background-color: #151515;
-  width: fit-content;
+  width: 100%;
   border: 1px solid #403F3F;
+  font-size: 18px;
   border-radius: 5px;
-  padding: 5px 15px 5px 0px;
+  padding: 20px 15px 20px 0px;
   color: #AAAAAA;
 }
 .self-help-main .row .col-lg-6 .customAmount input{
   background-color: transparent;
   border: none;
   outline: none;
+  width: 80%;
   font-weight: 500;
   color: #FFF;
   padding-left: 15px;
@@ -2234,4 +2256,35 @@ input::-webkit-inner-spin-button {
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item{
   padding: 25px 35px 25px 20px;
   margin: 0 !important;
+}
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover .pro-icon-wrapper .pro-icon{
+  animation: none !important;
+  animation-duration: 0;
+}
+.self-dordwn{
+  max-width: 400px;
+  margin-bottom: 110px;
+}
+.self-dordwn .dropdown-toggle::after{
+  position: absolute;
+  right: 20px;
+  top: 45%;
+}
+.self-dordwn button{
+  color: #fff;
+}
+.self-dordwn:hover button{
+  color: #fff;
+}
+.self-dordwn .dropdown-item:focus, .dropdown-item:hover{
+  background-color: #000;
+}
+.particles{
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
 }

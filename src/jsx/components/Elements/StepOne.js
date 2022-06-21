@@ -91,10 +91,12 @@ export class StepOne extends React.Component {
     return (
       <div>
         <h5>Create events on literally anything verifiable</h5>
+        <br />
         <div className="my-3">
           <label for="inputEventTitle" className="form-label">EVENT TITLE</label>
           <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" required value={window.eventTitle} onChange={(e)=>this.handleEvenTitleChanged(e)} autoFocus/>
         </div>
+        <br />
         {/* <div className="mb-3">
           <label for="inputCategory" className="form-label">CATEGORY</label>
           <input type="text" className="form-control" id="inputCategory" value={window.eventTitle} onChange={this.handleCategoryChanged} />
@@ -103,10 +105,13 @@ export class StepOne extends React.Component {
           <label for="inputEventTitle" className="form-label">DESCRIPTION</label>
           <input type="text" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" required value={window.description} onChange={(e)=>this.handlediscriptionChanged(e)} autoFocus/>
         </div>
+        <br />
         <div className="my-3">
           <label for="inputEventTitle" className="form-label">URL</label>
           <input type="url" className="form-control" id="inputEventTitle" aria-describedby="eventHelp" required value={window.url} onChange={(e)=>this.handleurlChanged(e)} autoFocus/>
         </div>
+        <br />
+        <br />
         <div className="mb-3">
           <label for="inputSubCategory" className="form-label">CATEGORY</label>
           <select
@@ -127,6 +132,8 @@ export class StepOne extends React.Component {
             <option value="SPECIAL">SPECIAL</option>
           </select>
         </div>
+        <br />
+        <br />
         <div className="mb-3">
           <label for="inputSubCategory" className="form-label">SUB CATEGORY</label>
           <select

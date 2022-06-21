@@ -138,7 +138,7 @@ export default function ValidateEvents() {
       <div
         className="card my-4"
         key={index}
-        style={{ backgroundColor: "#1c1c1c" }}
+        style={{ backgroundColor: "#1c1c1c", boxShadow: "10px 10px 4px rgba(0, 0, 0, 0.25)" }}
       >
         <div className="card-head p-3">
           <p>{fakeCards.subcategory}</p>
@@ -192,21 +192,21 @@ export default function ValidateEvents() {
       {/* CARD STAT */}
       <div className="row py-3 px-2 mb-3 justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto">
         <div
-          className="col px-3 py-2 shadow rounded my-3 mx-1 col-r"
+          className="col px-3 py-2 my-3 mx-1 col-r"
         >
           <span>TOTAL</span>
           <h5>EVENTS VALIDATED</h5>
           <hr style={{ color: "#FF4003" }} />
           <p>{allvalidatevents.length}</p>
         </div>
-        <div className="col px-3 py-2 shadow rounded my-3 mx-1 col-b">
+        <div className="col px-3 py-2 my-3 mx-1 col-b">
           <span>TOTAL</span>
           <h5>REWARDS EARNED</h5>
           <hr className="text-primary" />
           <p>{validatorReward/10**18}</p>
         </div>
         <div
-          className="col px-3 py-2 shadow rounded my-3 mx-1 col-p"
+          className="col px-3 py-2 my-3 mx-1 col-p"
         >
           <span>TOTAL</span>
           <h5>VALIDATION POINTS</h5>
@@ -214,39 +214,32 @@ export default function ValidateEvents() {
           <p>{uservalidationpoints}</p>
         </div>
         <div
-          className="col px-3 py-2 shadow rounded my-3 mx-1 col-y"
-        >
-          <span>TOTAL</span>
-          <h5>sBETS</h5>
-          <hr className="text-warning" />
-          <p>{sbets}</p>
-        </div>
-        <div
-          className="col px-3 py-2 shadow rounded my-3 mx-1 col-g"
+          className="col px-3 py-2 my-3 mx-1 col-g"
         >
           <span>PENDING</span>
           <h5>VALIDATION POINTS</h5>
-          <hr className="text-success" />
           <p>{pendingpoints}</p>
-          <button className="btn btn-success ms-auto d-block text-black fw-bold" onClick={()=>claimValidationPonits()} disabled={pendingpoints <= 0 ? 'disabled' : '' }>CLAIM</button>
+          <hr className="text-success mt-n3" />
+          <button className="btn btn-success text-black fw-bold" style={{position: "absolute", bottom:"15px", right:"15px", backgroundColor:"#05FF69"}} onClick={()=>claimValidationPonits()} disabled={pendingpoints <= 0 ? 'disabled' : '' }>CLAIM</button>
         </div>
         
       </div>
-
-      {/* TIMER & TERMS */}
-      {allnonevnets && allnonevnets.length > 0 ?  <div
+      <div
         className="row py-3 px-3 px-xxl-5 px-sm-2 mb-3 terms"
         style={{ borderBottomLeftRadius: "0" }}
       >
+      {/* TIMER & TERMS */}
+      {allnonevnets && allnonevnets.length > 0 ?  
         <div
           className="row mx-auto px-2 py-4"
           style={{
             backgroundColor: "#1C1C1C",
-            width: "90%",
+            width: "99%",
             borderRadius: "10px",
+            boxShadow: "10px 10px 4px rgba(0, 0, 0, 0.25)",
           }}
         >
-          <div className="col-lg-5">
+          <div className="col-lg-5 d-flex align-items-center justify-content-center">
             <CountdownCircleTimer
               isPlaying
               size={300}
@@ -311,15 +304,13 @@ export default function ValidateEvents() {
               </button>
             </div>
           </div>
-
-
-        </div>
-      </div>:''}
+        </div>:''}
 
       {/* VALIDATE CARDS */}
       <div className="validCards container-fluid">
       {allvalidatevents.map((data)=>renderFake(data))}
       <Toaster/>
+      </div>
       </div>
     </div>
   );

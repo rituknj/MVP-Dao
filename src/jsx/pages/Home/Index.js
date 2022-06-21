@@ -41,6 +41,7 @@ import {
   getActiveEvents,
 } from "../../../web3/betsMVPService";
 import { TotalEventsCount } from "../../../web3/Countallevents";
+import Particles from "react-tsparticles";
 
 ////Images
 import arrowRight from "../../../images/arrow-right.svg";
@@ -163,7 +164,7 @@ class Index extends Component {
     };
     this.videoOnReady = this.videoOnReady.bind(this);
   }
-  
+
   componentDidMount = async () => {
     // FETCH DATA FROM SANITY
     Client.fetch(
@@ -181,7 +182,7 @@ class Index extends Component {
           }
       }`
     )
-      .then((data) => this.setState({ambassadorData: data}))
+      .then((data) => this.setState({ ambassadorData: data }))
       .catch(console.error);
     AOS.init();
     await initInstance();
@@ -240,7 +241,6 @@ class Index extends Component {
       window.allEvents = this.state.events;
       window.allEventstorde = this.state.decodestoredevents.length;
     }, 200);
-
   };
 
   parterImg = () => {
@@ -302,34 +302,34 @@ class Index extends Component {
   };
 
   renderAmb(ambassadorData, index) {
-    return(
+    return (
       <div
-                data-aos="zoom-in"
-                data-aos-duration="400"
-                data-aos-easing="linear"
-                style={{ textAlign: "center", color: "#ffff" }}
-                key={index}
-              >
-                {ambassadorData.image && ambassadorData.image.asset && (
-              <img
-              src={ambassadorData.image.asset.url}
-              alt=""
-              width="100"
-              style={{ borderRadius: "80px" }}
-              />
-            )}
-                <p className="m-0">{ambassadorData.name}</p>
-                <p className="m-0">{ambassadorData.title}</p>
-                <div className="d-flex m-0 justify-content-evenly">
-                  <a href="#">
-                    <FaTwitter color="#fff" />
-                  </a>{" "}
-                  <a href="#">
-                    <AiFillLinkedin color="#fff" />
-                  </a>
-                </div>
-              </div>
-    )
+        data-aos="zoom-in"
+        data-aos-duration="400"
+        data-aos-easing="linear"
+        style={{ textAlign: "center", color: "#ffff" }}
+        key={index}
+      >
+        {ambassadorData.image && ambassadorData.image.asset && (
+          <img
+            src={ambassadorData.image.asset.url}
+            alt=""
+            width="100"
+            style={{ borderRadius: "80px" }}
+          />
+        )}
+        <p className="m-0">{ambassadorData.name}</p>
+        <p className="m-0">{ambassadorData.title}</p>
+        <div className="d-flex m-0 justify-content-evenly">
+          <a href="#">
+            <FaTwitter color="#fff" />
+          </a>{" "}
+          <a href="#">
+            <AiFillLinkedin color="#fff" />
+          </a>
+        </div>
+      </div>
+    );
   }
 
   render() {
@@ -341,12 +341,43 @@ class Index extends Component {
     return (
       <Fragment onClick={this.moussecloas}>
         <Header />
-        {/* <AnimationCanvas/> */}
+        <Particles
+        className="particles"
+          params={{
+            fpsLimit: 60,
+            particles: {
+              color: {
+                value: "#6b605a"
+              },
+              number: {
+                density: {
+                  enable: true,
+                  value_area: 1000
+                },
+                value: 100
+              },
+              opacity: {
+                value: 1,
+                random: false,
+                anim: {
+                  enable: false
+                }
+              },
+              shape: {
+                type: "circle"
+              },
+              size: {
+                random: false,
+                value: 5
+              }
+            },
+            retina_detect: true
+          }}
+        />
         <div onClick={this.moussecloas}>
           <div className="topBoxBg">
             <div className="container mb-5 mb-md-0" id="section-home">
               <div className="space-100"></div>
-
               <div className="row">
                 <div
                   className="col-md-8 col-11 hometopBox"

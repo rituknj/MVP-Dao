@@ -96,7 +96,7 @@ export default function SelfHelp() {
             or create bets on betswamp for the selected period but you would be
             able to validate events and use other betswamp features.
           </p>
-          <input
+          {/* <input
             className="my-3 p-3 fw-bold shadow"
             type='datetime-local'
             style={{
@@ -108,10 +108,73 @@ export default function SelfHelp() {
             }}
             onChange={(e)=>setPausingTime(e.target.value)}
             placeholder='SELECT DURATION'
-          />
+          /> */}
+          <div className="dropdown self-dordwn">
+            <button
+              className="btn dropdown-toggle border-0 text-start"
+              style={{backgroundColor:"#4D4A4A", width:"100%", padding:"40px 0px", maxWidth:"400px", width:"100%"}}
+              type="button"
+              id="dropdownMenu2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT DURATION
+            </button>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A", zIndex:"1000"}}>
+              <li>
+                <button className="dropdown-item" type="button">
+                1 WEEK
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" type="button">
+                2 WEEK
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" type="button">
+                3 WEEK
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" type="button">
+                4 WEEK
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" type="button">
+                5 WEEK
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" type="button">
+                6 WEEK
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" type="button">
+                7 WEEK
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" type="button">
+                8 WEEK
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" type="button">
+                9 WEEK
+                </button>
+              </li>
+              <li>
+                <button className="dropdown-item" type="button">
+                10 WEEK
+                </button>
+              </li>
+            </ul>
+          </div>
           <br />
           <button
-            className="btn my-3 p-3 fw-bold justify-content-between d-flex"
+            className="btn my-3 p-4 fw-bold justify-content-between d-flex"
             style={{ backgroundColor: "#fff", color: "#000", width: "45%" }}
             onClick={()=>pause()}
           >
@@ -119,10 +182,10 @@ export default function SelfHelp() {
             <MdOutlineArrowForwardIos className="mt-1" />
           </button>
         </div>
-        <div className="col-lg-4">
+        <div className="col-lg-4 d-flex justify-content-center align-items-center">
           <CountdownCircleTimer
             isPlaying
-            size={250}
+            size={300}
             duration={pausetimeend-Math.round((new Date()).getTime() / 1000)}
             colors={["#006600", "#33cc33", "#ff9900", "#ff0000"]}
             colorsTime={[120, 75, 40, 0]}
@@ -138,7 +201,7 @@ export default function SelfHelp() {
         className="row secondRow py-5 justify-content-around px-2"
         style={{ borderBottomLeftRadius: "0" }}
       >
-        <div className="col-lg-6 py-2 px-4">
+        <div className="col-lg-6 overflow-hidden mb-5 mb-lg-0" style={{padding:"40px 45px"}}>
           <h3>
             <BiDonateHeart /> DONATE
           </h3>
@@ -148,25 +211,27 @@ export default function SelfHelp() {
           <p>
             TOTAL DONATIONS : <span>$500</span>
           </p>
-          <div className="amount">
+          <hr style={{backgroundColor:"#2B2A2A", opacity:"1", width:"120%", marginLeft:"-45px"}} />
             <p>CHOOSE DONATION AMOUNT</p>
+          <div className="amount d-flex justify-content-center justify-content-md-between">
             <button className="btn" onClick={()=>setAmountDonate(5)}>$5</button>
             <button className="btn"  onClick={()=>setAmountDonate(25)}>$25</button>
             <button className="btn" onClick={()=>setAmountDonate(50)}>$50</button>
             <button className="btn" onClick={()=>setAmountDonate(100)}>$100</button>
-            {/* <button className="btn" >OTHER</button> */}
+            <button className="btn" >OTHER</button>
           </div>
           <div className="customAmount mt-3">
-            <span className="rounded border-end p-2 border-secondary">$</span>
+            <span className="rounded border-end p-4 border-secondary" style={{backgroundColor:"#0F0F0F"}}>$</span>
             <input type="number" name="" id="" value={amountDonate} onChange={(e)=>setAmountDonate(e.target.value)} />
             <span>BUSD</span>
           </div>
           <button
-            className="btn my-3 p-3 fw-bold justify-content-between d-flex shadow"
+            className="btn my-3 fw-bold justify-content-between d-flex shadow"
             style={{
               backgroundColor: "#3b3b3b",
               color: "#fff",
-              width: "45%",
+              width: "100%",
+              padding:"25px"
             }}
             onClick={()=>Donatethem()}
           >
@@ -174,15 +239,16 @@ export default function SelfHelp() {
             <MdOutlineArrowForwardIos className="mt-1" />
           </button>
         </div>
-        <div className="col-lg-6 py-2 px-4 d-flex flex-column justify-content-between pb-4">
+        <div className="col-lg-6 d-flex flex-column justify-content-between" style={{padding:"50px"}}>
             <h3><FaTeamspeak/> SPEAK TO SOMEONE</h3>
             <p>Connect to a trained, compasionate listiner online who can  offer you free, confidential advice on gambling addiction. Whether you need advice for yourself or to support a friend or relative, we're here for you.</p>
             <button
-            className="btn mt-auto p-3 fw-bold justify-content-between d-flex shadow"
+            className="btn mt-auto fw-bold justify-content-between d-flex shadow"
             style={{
               backgroundColor: "#3b3b3b",
               color: "#fff",
-              width: "45%",
+              width: "100%",
+              padding:"25px"
             }}
             
           >

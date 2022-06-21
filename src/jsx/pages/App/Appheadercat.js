@@ -87,10 +87,10 @@ class Index extends Component {
       <Fragment>
         <div className="container-fluid px-md-5 p-2 slider top-image">
           <p className="mt-4 mt-md-4 text-white sporttag p-3 font-weight-bold">#{window.maincat}</p>
-          <div class="dropdown categories-dropdown">
+          <div className="dropdown categories-dropdown">
             <p className="text-white" style={{fontSize:'12px'}}>SELECT CATOGORY</p>
             <button
-              class="btn btn-secondary dropdown-toggle border-0"
+              className="btn btn-secondary dropdown-toggle border-0"
               style={{backgroundColor:"#4D4A4A"}}
               type="button"
               id="dropdownMenu2"
@@ -99,54 +99,54 @@ class Index extends Component {
             >
               {window.maincat == "Main Category" ? "CATOGRIES" : window.maincat}
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
               <li>
-                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("SPORTS")} >
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("SPORTS")} >
                 SPORTS
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("WEATHER")} >
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("WEATHER")} >
                 WEATHER
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("REALITY TV SHOWS")} >
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("REALITY TV SHOWS")} >
                 REALITY TV SHOWS
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("POLITICS")} >
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("POLITICS")} >
                 POLITICS
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("AWARDS")} >
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("AWARDS")} >
                 AWARDS
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("DEAD POOL")} >
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("DEAD POOL")} >
                 DEAD POOL
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("GAMES")} >
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("GAMES")} >
                 GAMES
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("MARKET PREDICTION")} >
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("MARKET PREDICTION")} >
                 MARKET PREDICTION
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("SPECIAL")} >
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("SPECIAL")} >
                 SPECIAL
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button" onClick={()=>this.handlechange("OTHERS")} >
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("OTHERS")} >
                 OTHERS
                 </button>
               </li>
