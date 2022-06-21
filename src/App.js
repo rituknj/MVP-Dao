@@ -6,7 +6,8 @@ import './css/responsive.css';
 window.match = 1
 window.collapsed = false
 window.anmount = 0
-window.maincat = "Main Category"
+window.maincat = "SPORTS"
+window.maincatNum = 0
 class App extends Component {
   render() {
     return (

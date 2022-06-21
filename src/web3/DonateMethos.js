@@ -12,23 +12,19 @@ export const donatefund =async(amount)=> {
 }
 
 export const apporveBUSD =async()=>{
-    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
-    console.log('approve run')
-    const result = await betContract.methods.approve(envdev.REACT_AAP_DONATION, 115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
-        from: await getAccount(),
-    });
+    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BUSD_TOKEN);
+    const result = await betContract.methods.approve(envdev.REACT_AAP_DONATION, 115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({from: await getAccount(),});
     if(result.status == true){
         alert('Approved')
     }
     else{
         alert("Failded")
     }
-    console.log("is approved", result)
     return result;
 }
 
 export const isapproved = async () => {
-    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
+    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BUSD_TOKEN);
     const result = await betContract.methods.allowance(await getAccount(),envdev.REACT_AAP_DONATION).call()
     const name = await betContract.methods.name().call()
     console.log("contract",name)

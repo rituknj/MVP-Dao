@@ -69,7 +69,7 @@ export default function WalletPopup(props) {
     setLockedAmount(locked / 10 ** 18);
     const pending = await pendingpoint();
     setGetPendingPoints(pending);
-    console.log("points",valpoints,pending)
+    
     API_call();
   };
 

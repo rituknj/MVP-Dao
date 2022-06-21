@@ -135,6 +135,7 @@ class GameCard extends Component {
       BUSDbal: bal,
       account: account
     })
+    
     let active_events = await totalEvents()
     let getstoredevents = window.localStorage.getItem('events')
     if (getstoredevents == null) {
@@ -146,6 +147,7 @@ class GameCard extends Component {
       await addingnewevents();
       this.setState({subcategorys: window.maincatogries})
     }, 3000);
+
     setInterval(async () => {
       this.setState({
         match: window.match
@@ -179,6 +181,7 @@ class GameCard extends Component {
       check2 = decodestoredevents[i]
       console.log(check2.subcategory == sub && Number(check2.Categories) == window.maincatNum, check2.subcategory,sub, Number(check2.Categories), window.maincatNum )
       if (check2.subcategory == sub && Number(check2.Categories) == window.maincatNum ) {
+        console.log(check2)
         events.push(check2)
       }
     }
@@ -386,7 +389,7 @@ class GameCard extends Component {
     </div> */}
         <br/>
         <div>
-          <div className="container-fluid mt-5 bg-black" id="section-statistics" style={{paddingTop:"50px", paddingBottom:"50px"}}>
+          <div className="container-fluid mt-5 bg-black" id="section-statistics" style={{paddingTop:"41px", paddingBottom:"41px"}}>
               <div className="col-lg-12 appStat">
                 <Carousel
                   swipeable={true}
@@ -437,23 +440,23 @@ class GameCard extends Component {
           <div className="d-flex flex-wrap">
             <div className="me-md-4 me-2">
               <button
-                className={`d-flex justify-content-around btn admin-match-button font-weight-bold ${
+                className={`d-flex justify-content-around btn admin-match-button  ${
                   this.state.activeTabBottom == 1 ? ' active' : ''
                 }`}
                 onClick={() => this.handelMatchTab(1)}
               >
-                <p>Matched Events</p>{' '}
+                <p className={`${this.state.activeTabBottom  != 1 ? "text-secondary " : '' }`}>Matched Events</p>{' '}
                 <img className="mt-2" src={Match} width={20} />
               </button>
             </div>
             <div className="">
               <button
-                className={`d-flex justify-content-around btn admin-match-button font-weight-bold ${
+                className={`d-flex justify-content-around btn admin-match-button ${
                   this.state.activeTabBottom == 2 ? ' active' : ''
                 }`}
                 onClick={() => this.handelMatchTab(2)}
               >
-                <p>Un-Matched Events</p>
+                <p className={`${this.state.activeTabBottom  != 2 ? "text-secondary " : '' }`}>Un-Matched Events</p>
                 <img className="mt-1 ml-2" src={UNMatch} width={25} />
               </button>
             </div>
@@ -461,7 +464,7 @@ class GameCard extends Component {
         </div>
         <div className=" sub-catogries mt-0 p-1 p-md-5 text-white" id="navbarsExample05">
           <div style={{overflow:'visible'}}>
-          <p>Select Subcategories</p>
+          <p className="text-white" style={{fontSize:'12px'}}>SELECT SUB CATOGORY</p>
             <div className='main-dropdown' disabled >
             <div class="dropdown subcategory">
             <button

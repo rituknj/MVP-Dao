@@ -15,7 +15,8 @@ export default function SelfHelp() {
 
   useEffect(() => {
     const init =async()=>{
-      const isbetpaused = Ispausebet();
+      const isbetpaused =await Ispausebet();
+      
       const endpaushtime = window.localStorage.getItem('duration')
       setPauseTimeEnd(endpaushtime)
       setIspaused(isbetpaused)
@@ -24,11 +25,7 @@ export default function SelfHelp() {
   }, [])
   
   const formatRemainingTime = (time) => {
-    // const minutes = Math.floor((time % 3600) / 60);
-    // const seconds = time % 60;
-
-    // return `${minutes}:${seconds}`;
-    console.log(time)
+  
     var d = Math.floor(time / (3600 * 24));
     var h = Math.floor((time % (3600 * 24)) / 3600);
     var m = Math.floor((time % 3600) / 60);
