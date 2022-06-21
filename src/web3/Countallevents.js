@@ -115,14 +115,14 @@ export const updatingeventdata = async(id) => {
   let two 
   let zero
   let decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-  
+
   for(let i = 0; i < decodestoredevents.length; i++){
-      if(Number(decodestoredevents[i].eventid) == id){
+      if(decodestoredevents[i].id == id){
               check2 = await getEvent(i);
               check = Object.create(check2)
-              zero = await bettorscountspercent(check2[0],0,check2[14])
-              one = await bettorscountspercent(check2[0],1,check2[14])
-              two = await bettorscountspercent(check2[0],2,check2[14])
+              zero = await bettorscountspercent(check2[0],0,check2[15])
+              one = await bettorscountspercent(check2[0],1,check2[15])
+              two = await bettorscountspercent(check2[0],2,check2[15])
               let teamOneParticipate = await bettorscounts(check2[0],0)
               let teamtwoParticipate = await bettorscounts(check2[0],1)
               let stakeonevent = await AmountStackOnEventByaUser(check2[0])

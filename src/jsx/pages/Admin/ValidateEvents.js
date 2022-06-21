@@ -4,6 +4,7 @@ import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { getTotalValidatorRewardEarned, getvalidatorsRewardOnEvnet,getusertotalwinnings, AmountStackOnEventByaUser, userBethistory,claimrewards,validateEvent, getvalidatorHistory, getValidationPoint, pendingpoint,claimpoints } from "../../../web3/betsMVPService";
 import { getBETSV2Balance } from './../../../web3/betsService'
 import toast, { Toaster } from "react-hot-toast";
+import { updatingeventdata } from "../../../web3/Countallevents";
 const tost = () =>
   toast.success("Success.", {
     style: {
@@ -178,6 +179,7 @@ export default function ValidateEvents() {
   }
   const validateEvenet=async(id)=>{
     await validateEvent(id, occur)
+    await updatingeventdata(id);
   }
 
   const claimValidationPonits =async()=>{
@@ -318,7 +320,7 @@ export default function ValidateEvents() {
 
       {/* VALIDATE CARDS */}
       <div className="validCards container-fluid">
-      {allvalidatevents.map((data)=>renderFake(data))}
+        {allvalidatevents.map((data)=>renderFake(data))}
       <Toaster/>
       </div>
     </div>
