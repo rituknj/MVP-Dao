@@ -2215,6 +2215,9 @@ footer button {
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
   max-width: 725px;
 }
+.self-speak{
+  padding: 50px;
+}
 .self-help-main .row .col-lg-6 .customAmount{
   background-color: #151515;
   width: 100%;
@@ -2268,7 +2271,7 @@ input::-webkit-inner-spin-button {
   animation-duration: 0;
 }
 .self-dordwn{
-  max-width: 400px;
+  width: 45%;
   margin-bottom: 110px;
 }
 .self-dordwn .dropdown-toggle::after{
@@ -2284,6 +2287,9 @@ input::-webkit-inner-spin-button {
 }
 .self-dordwn .dropdown-item:focus, .dropdown-item:hover{
   background-color: #000;
+}
+.donate{
+  padding: 40px 45px;
 }
 #tsparticles{
   max-height: 100vh !important;
