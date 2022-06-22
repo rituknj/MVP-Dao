@@ -2192,6 +2192,7 @@ footer button {
   background-color: #fff;
   margin: 5px;
   padding: 30px;
+  border-radius: 10px;
 }
 .self-help-main .amount .btn:hover{
   background-color: #FF4003;
@@ -2214,7 +2215,7 @@ footer button {
   width: 100%;
   border: 1px solid #403F3F;
   font-size: 18px;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 20px 15px 20px 0px;
   color: #AAAAAA;
 }

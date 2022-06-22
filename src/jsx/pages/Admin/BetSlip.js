@@ -103,7 +103,7 @@ export default function BetSlip() {
     {completedCards.starttime < Math.round((new Date()).getTime() / 1000) && completedCards.endtime > Math.round((new Date()).getTime() / 1000) ?  <div
         className="card my-4"
         key={index}
-        style={{ backgroundColor: "#1c1c1c" }}
+        style={{ backgroundColor: "#1c1c1c", borderRadius:"10px" }}
       >
         <div className="card-body">
           <div
@@ -151,7 +151,7 @@ export default function BetSlip() {
     {Math.round((new Date()).getTime() / 1000) > Number(completedCards.endtime) ?  <div
         className="card my-4"
         key={index}
-        style={{ backgroundColor: "#1c1c1c" }}
+        style={{ backgroundColor: "#1c1c1c", borderRadius:"10px" }}
       >
         <div className="card-body">
           <div
@@ -211,7 +211,7 @@ export default function BetSlip() {
     {completedCards.starttime > Math.round((new Date()).getTime() / 1000) ?  <div
         className="card my-4"
         key={index}
-        style={{ backgroundColor: "#1c1c1c"}}
+        style={{ backgroundColor: "#1c1c1c", borderRadius:"10px"}}
       >
         <div className="card-body">
           <div
