@@ -117,7 +117,7 @@ export default function SelfHelp() {
   return (
     <div className="self-help-main">
       <div className="outerRow py-5 px-2 mb-3">
-        <div className="row justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto mx-auto p-5" style={{ backgroundColor: "#1C1C1C", width: "90%", borderRadius: "10px", boxShadow: "10px 10px 4px #000" }}>
+        <div className="row justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto mx-auto p-3 p-md-5" style={{ backgroundColor: "#1C1C1C", width: "90%", borderRadius: "10px", boxShadow: "10px 10px 4px #000" }}>
           <div className="col-lg-8">
             <p>
               want to take a break from betting? set a temporary restriction on
@@ -142,14 +142,14 @@ export default function SelfHelp() {
             <div className="dropdown self-dordwn">
               <button
                 className="btn dropdown-toggle border-0 text-start"
-                style={{ backgroundColor: "#4D4A4A", width: "100%", padding: "30px 0px", maxWidth: "400px", width: "100%", borderRadius: "10px" }}
+                style={{ backgroundColor: "#4D4A4A", width: "100%", padding: "30px 0px", width: "100%", borderRadius: "10px" }}
                 type="button"
                 id="dropdownMenu2"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT DURATION
               </button>
-              <ul className="dropdown-menu" aria-labelledby="dropdownMenu2" style={{ backgroundColor: "#4D4A4A", zIndex: "1000" }}>
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenu2" style={{ backgroundColor: "#4D4A4A" }}>
                 <li>
                   <button className="dropdown-item" type="button">
                     1 WEEK
@@ -204,7 +204,7 @@ export default function SelfHelp() {
             </div>
             <br />
             <button
-              className="btn my-3 p-4 fw-bold justify-content-between d-flex"
+              className="btn my-3 p-4 fw-bold justify-content-between d-flex self-pause"
               style={{ backgroundColor: "#fff", color: "#000", width: "45%", borderRadius: "10px" }}
               onClick={() => pause()}
             >
@@ -212,7 +212,7 @@ export default function SelfHelp() {
               <MdOutlineArrowForwardIos className="mt-1" />
             </button>
           </div>
-          <div className="col-lg-4 d-flex justify-content-center align-items-center">
+          <div className="col-lg-4 d-flex justify-content-center align-items-center self-timer">
             <CountdownCircleTimer
               isPlaying
               size={300}
@@ -231,7 +231,7 @@ export default function SelfHelp() {
         className="row secondRow py-5 justify-content-around px-2"
         style={{ borderBottomLeftRadius: "0" }}
       >
-        <div className="col-lg-6 overflow-hidden mb-5 mb-lg-0" style={{ padding: "40px 45px" }}>
+        <div className="col-lg-6 donate overflow-hidden mb-5 mb-xl-0">
           <h3>
             <BiDonateHeart /> DONATE
           </h3>
@@ -271,7 +271,7 @@ export default function SelfHelp() {
             <MdOutlineArrowForwardIos className="mt-1" />
           </button>
         </div>
-        <div className="col-lg-6 d-flex flex-column justify-content-between" style={{ padding: "50px" }}>
+        <div className="col-lg-6 self-speak d-flex flex-column justify-content-between">
           <h3><FaTeamspeak /> SPEAK TO SOMEONE</h3>
           <p>Connect to a trained, compasionate listiner online who can  offer you free, confidential advice on gambling addiction. Whether you need advice for yourself or to support a friend or relative, we're here for you.</p>
           <button
