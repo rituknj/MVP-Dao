@@ -198,7 +198,7 @@ class Index extends Component {
       totalbetsmade: 0,
       activeevents: 0,
     });
-    AOS.init();
+    // AOS.init();
 
     request(
       "GET",
@@ -431,7 +431,7 @@ class Index extends Component {
                       <div className="btn btn-md theam-bg-red homeTopBtnloader">
                         {" "}
                         Loading...&nbsp;&nbsp;
-                        <Watch color="red" height="30" width="30" />
+                        <Watch color="red" height="26" width="26" />
                       </div>
                     )}
                   </div>

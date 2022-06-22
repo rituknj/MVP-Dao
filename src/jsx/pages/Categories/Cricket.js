@@ -584,7 +584,7 @@ class GameCard extends Component {
           <div className="sub-tools">
             <div className='search-bar'>
             <input value={this.state.searchItem} onChange={(e)=>this.setState({searchItem:e.target.value})}/>&nbsp;
-            <img src={Search} width={25} height={25} onClick={()=>this.SearchCategory(this.state.searchItem)}/>
+            <img src={Search} width={22} height={22} onClick={()=>this.SearchCategory(this.state.searchItem)}/>
             </div>
            <div>
               <span id="dropdownMenu2" data-bs-toggle="dropdown" type='button' aria-expanded="false" ><img className='mt-2' src={Filter} width={25} height={25} /></span>
