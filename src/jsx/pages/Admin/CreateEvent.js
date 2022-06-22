@@ -8,6 +8,7 @@ import icon from '../../../images/icon-park-outline_history-query.png'
 import { FiArrowLeft } from 'react-icons/fi'
 import { CreatorReward } from './../../../web3/betsMVPService'
 import { MdOutlineArrowForwardIos } from 'react-icons/md'
+import { NavLink } from 'react-router-dom';
 let FILL = false
 
 
@@ -121,13 +122,14 @@ export default function CreateEvent() {
             <p>{completedCards.poolsize/10**18}</p>
             <span>CREATOR's REWARD</span>
             <p>{completedCards.reward}</p>
-            <button
+            <NavLink
+            to="/app"
             className="btn my-3 p-4 fw-bold justify-content-between d-flex"
             style={{ backgroundColor: "#fff", color: "#000", width: "400px", position:"absolute", bottom:"15px", right:"20px" }}
           >
             PLACE BET
             <MdOutlineArrowForwardIos className="mt-1" />
-          </button>
+          </NavLink>
         </div>
     </div>}
             </>
