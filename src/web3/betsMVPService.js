@@ -234,6 +234,7 @@ export const GetUserWonAmountOnEvent = async (id) => {
     const resutl = await betMVPContract.methods.getUserEventWon(id, await getAccount() ).call();
     return resutl;
 }
+
 export const pendingpoint = async () => {
     const betMVPContract = await getContract(Points, envdev.REACT_AAP_POINTS);
     const resutl = await betMVPContract.methods.getUserPendingPoints(await getAccount()).call();

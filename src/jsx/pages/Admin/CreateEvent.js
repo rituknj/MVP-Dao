@@ -3,7 +3,7 @@ import { StepFour } from '../../components/Elements/StepFour';
 import { StepOne } from '../../components/Elements/StepOne';
 import { StepThree } from '../../components/Elements/StepThree';
 import { StepTwo } from '../../components/Elements/StepTwo';
-import MultiStep from 'react-multistep'
+import MultiStep from 'multistep-by-nikhil'
 import icon from '../../../images/icon-park-outline_history-query.png'
 import { FiArrowLeft } from 'react-icons/fi'
 import { CreatorReward } from './../../../web3/betsMVPService'
