@@ -7,6 +7,7 @@ import MultiStep from 'react-multistep'
 import icon from '../../../images/icon-park-outline_history-query.png'
 import { FiArrowLeft } from 'react-icons/fi'
 import { CreatorReward } from './../../../web3/betsMVPService'
+import { MdOutlineArrowForwardIos } from 'react-icons/md'
 let FILL = false
 
 
@@ -79,7 +80,7 @@ export default function CreateEvent() {
         return (
             <>
             {}
-            {completedCards.validate ? <div className="card my-4" key={index} style={{backgroundColor:"#1c1c1c"}}>
+            {completedCards.validate ? <div className="card my-4" key={index} style={{backgroundColor:"#1c1c1c", borderRadius:"10px" }}>
         <div className="card-header text-secondary">
             <span>#{completedCards.subcategory}</span>
             <h4 className='text-light fs-5'>{completedCards.name}</h4>
@@ -104,7 +105,7 @@ export default function CreateEvent() {
     const renderNotCompleted = (completedCards, index) => {
         return (
             <>
-            {completedCards.validate ? '' : <div className="card my-4" key={index} style={{backgroundColor:"#1c1c1c"}}>
+            {completedCards.validate ? '' : <div className="card my-4" key={index} style={{backgroundColor:"#1c1c1c", borderRadius:"10px",}}>
         <div className="card-header text-secondary">
             <span>#{completedCards.subcategory}</span>
             <h4 className='text-light fs-5'>{completedCards.name}</h4>
@@ -120,6 +121,13 @@ export default function CreateEvent() {
             <p>{completedCards.poolsize/10**18}</p>
             <span>CREATOR's REWARD</span>
             <p>{completedCards.reward}</p>
+            <button
+            className="btn my-3 p-4 fw-bold justify-content-between d-flex"
+            style={{ backgroundColor: "#fff", color: "#000", width: "400px", position:"absolute", bottom:"15px", right:"20px" }}
+          >
+            PLACE BET
+            <MdOutlineArrowForwardIos className="mt-1" />
+          </button>
         </div>
     </div>}
             </>
@@ -153,7 +161,7 @@ export default function CreateEvent() {
                 </div>
                 {option == 1 ? <div className="container-fluid">
                     {completed.map((data)=>renderCompleted(data))}
-                </div> : option == 2 ? <div className="container">
+                </div> : option == 2 ? <div className="container-fluid">
                     {completed.map((data)=>renderNotCompleted(data))}
                 </div>: ''}
             </div>

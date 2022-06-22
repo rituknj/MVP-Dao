@@ -2279,14 +2279,11 @@ input::-webkit-inner-spin-button {
 .self-dordwn .dropdown-item:focus, .dropdown-item:hover{
   background-color: #000;
 }
-.particles{
+#tsparticles{
+  max-height: 100vh !important;
   position: absolute;
-  height: 100vh;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   z-index: -1;
+  overflow: hidden !important;
 }
 .search-bar{
   background: #151515;

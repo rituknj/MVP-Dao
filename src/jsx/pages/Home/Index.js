@@ -28,10 +28,8 @@ import Playstation from "./../../../images/playstation.png";
 import { FaTwitter } from "react-icons/fa";
 import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai";
 import { Watch } from "react-loader-spinner";
-import eco1 from "./../../../images/eco1.png";
-import eco2 from "./../../../images/eco2.png";
-import eco3 from "./../../../images/eco4.png";
-import eco4 from "./../../../images/eco5.png";
+import particlesConfig from "./particles-config";
+import { loadFull } from "tsparticles";
 
 import {
   allactiveusers,
@@ -44,6 +42,10 @@ import { TotalEventsCount } from "../../../web3/Countallevents";
 import Particles from "react-tsparticles";
 
 ////Images
+import eco1 from "./../../../images/eco1.png";
+import eco2 from "./../../../images/eco2.png";
+import eco3 from "./../../../images/eco4.png";
+import eco4 from "./../../../images/eco5.png";
 import arrowRight from "../../../images/arrow-right.svg";
 import lineImage from "../../../images/line.png";
 import HeroModal from "./HeroModal";
@@ -332,6 +334,15 @@ class Index extends Component {
     );
   }
 
+  particlesInit = async (main) => {
+    console.log(main);
+    await loadFull(main);
+  };
+
+  particlesLoaded = (container) => {
+    console.log(container);
+  };
+
   render() {
     // setInterval(()=>{
     //   window.allEvents = this.state.events
@@ -340,42 +351,87 @@ class Index extends Component {
 
     return (
       <Fragment onClick={this.moussecloas}>
-        <Header />
         <Particles
-        className="particles"
-          params={{
+          style={{ zIndex: "-1" }}
+          options={{
+            background: {
+              color: {
+                value: "#000",
+              },
+            },
             fpsLimit: 60,
+            interactivity: {
+              events: {
+                onClick: {
+                  enable: true,
+                  mode: "push",
+                },
+                onHover: {
+                  enable: true,
+                  mode: "repulse",
+                },
+                resize: true,
+              },
+              modes: {
+                push: {
+                  quantity: 4,
+                },
+                repulse: {
+                  distance: 100,
+                  duration: 0.4,
+                },
+              },
+            },
             particles: {
               color: {
-                value: "#6b605a"
+                value: "#FF0101",
+              },
+              links: {
+                color: "#FF0101",
+                distance: 150,
+                enable: true,
+                opacity: 0.5,
+                width: 1,
+              },
+              collisions: {
+                enable: true,
+              },
+              move: {
+                direction: "none",
+                enable: true,
+                outModes: {
+                  default: "bounce",
+                },
+                random: false,
+                speed: 3,
+                straight: false,
               },
               number: {
                 density: {
                   enable: true,
-                  value_area: 1000
+                  area: 800,
                 },
-                value: 100
+                value: 80,
               },
               opacity: {
-                value: 1,
-                random: false,
-                anim: {
-                  enable: false
-                }
+                value: 0.5,
               },
               shape: {
-                type: "circle"
+                type: "square",
               },
               size: {
-                random: false,
-                value: 5
-              }
+                value: { min: 1, max: 5 },
+              },
             },
-            retina_detect: true
+            detectRetina: true,
           }}
+          id="tsparticles"
+          init={this.particlesInit}
+          loaded={this.particlesLoaded}
         />
-        <div onClick={this.moussecloas}>
-          <div className="topBoxBg">
+        <Header />
+        <div onClick={this.moussecloas} style={{ position: "relative" }}>
+        <div className="topBoxBg">
             <div className="container mb-5 mb-md-0" id="section-home">
               <div className="space-100"></div>
               <div className="row">
@@ -453,493 +509,208 @@ class Index extends Component {
               </div>
             </div>
           </div>
-
-          <div
-            className="container-fluid px-md-5 pt-5 pt-lg-0 mt-5 mt-lg-0"
-            id="section-analytics"
-          >
-            <div className="space-100"></div>
+          <div style={{backgroundColor:"#000"}}>
             <div
-              className="row"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-easing="linear"
+              className="container-fluid px-md-5 pt-5 pt-lg-0 mt-5 mt-lg-0"
+              id="section-analytics"
             >
-              <div className="col-lg-12">
-                <Carousel
-                  swipeable={true}
-                  draggable={true}
-                  arrows={false}
-                  showDots={false}
-                  responsive={this.state.responsive_center}
-                  ssr={true} // means to render carousel on server-side.
-                  infinite={true}
-                  keyBoardControl={true}
-                  customTransition="all .5"
-                  transitionDuration={500}
-                  containerClass="carousel-container"
-                  removeArrowOnDeviceType={["tablet", "mobile"]}
-                  deviceType={this.props.deviceType}
-                  itemClass="px-2"
-                >
-                  <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
-                    <h5 className="text-white m-0">Price</h5>
-                    <h4 className="text-white mt-3">
-                      $ {Number(this.state.price).toFixed(4)}
-                    </h4>
-                  </div>
-
-                  <div className=" overflow-hidden text-center py-3 align-items-stretch col-12">
-                    <h5 className="text-white m-0">Holders</h5>
-                    <h4 className="text-white mt-3">731</h4>
-                  </div>
-
-                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
-                    <h5 className="text-white m-0">Market Cap</h5>
-                    <h4 className="text-white mt-3">
-                      ${" "}
-                      {(
-                        (Number(this.state.price).toFixed(4) * 250000000) /
-                        10 ** 6
-                      ).toFixed(2)}{" "}
-                      M
-                    </h4>
-                  </div>
-
-                  <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
-                    <h5 className="text-white m-0">Total Supply</h5>
-                    <h4 className="text-white mt-3">250,000,000</h4>
-                  </div>
-                </Carousel>
-              </div>
-            </div>
-          </div>
-          <div className="space-100"></div>
-          <div className="space-100"></div>
-          <div className="container">
-            <div className="row">
-              <div className="col-12 col-md-8 text-white">
-                <img src={NFTs} alt="" style={{ width: "100%" }} />
-              </div>
-              <div
-                className="col-6 col-md-4 text-white side-text-nfts"
-                style={{ width: "40%", marginTop: "50px" }}
-              >
-                <div className="mt-2 mt-md-4 text-white d-flex">
-                  <div className="vl me-2"></div>{" "}
-                  <span>
-                    <p
-                      className="m-0"
-                      style={{ textShadow: "0px 0px 10px #FFFFFF" }}
-                    >
-                      DECENTRALISED
-                    </p>{" "}
-                    <h4>ECOSYSTEM</h4>
-                  </span>
-                </div>
-                <p>
-                  BETSWAMP IS BUILDING A DECENTRALIZED ECOSYSTEM WHERE ALL IT'S
-                  UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO WHICH
-                  PROVIDES INVESTORS A SECURED PLATFORM THEY CAN VOCOUNT ON.
-                </p>
-                <NavLink
-                  to="/app"
-                  className="btn btn-md text-white mt-2 mt-md-5 nftsTopBtn position-relative"
-                >
-                  LEARN MORE
-                  <AiOutlineRight
-                    style={{ position: "absolute", right: "5px" }}
-                    className="mt-1  fw-bold"
-                  />
-                </NavLink>
-              </div>
-            </div>
-          </div>
-          <div className="container-fluid px-md-5" id="section-analytics">
-            {/*  */}
-          </div>
-
-          <div className="space-100"></div>
-          <div
-            className="container-fluid px-md-5 overflow-hidden"
-            id="section-statistics"
-          >
-            <div className="space-50"></div>
-            <div className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
-              <div className="vl me-2"></div>{" "}
-              <span>
-                <p
-                  className="m-0"
-                  style={{ textShadow: "0px 0px 10px #FFFFFF" }}
-                >
-                  BETSWAMP
-                </p>{" "}
-                <h4 className="m-0">ECOSYSTEM</h4>
-              </span>
-            </div>
-            <div
-              className="row pb-5"
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-easing="linear"
-            >
-              <div className="col-lg-12">
-                <Carousel
-                  swipeable={true}
-                  draggable={true}
-                  arrows={false}
-                  showDots={false}
-                  responsive={this.state.responsive_center}
-                  ssr={true} // means to render carousel on server-side.
-                  infinite={false}
-                  keyBoardControl={true}
-                  customTransition="all .5"
-                  transitionDuration={500}
-                  containerClass="carousel-container overflow-visible"
-                  removeArrowOnDeviceType={["tablet", "mobile"]}
-                  deviceType={this.props.deviceType}
-                  itemClass="px-2"
-                >
-                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
-                    <h5 className="m-0 text-white text-start">DAO</h5>
-                    <h4 className="text-white mt-4">
-                      {/* {(this.state.payout / 10 ** 18).toFixed(0)} B USD */}
-                    </h4>
-                    <img src={eco1} alt="" />
-                  </div>
-
-                  <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
-                    <p
-                      style={{
-                        fontSize: "10px",
-                        color: "#fff",
-                        textAlign: "start",
-                        margin: "0",
-                      }}
-                    >
-                      DECENTRALISED
-                    </p>
-                    <h5 className="m-0 mb-3 text-white text-start">
-                      P2P BETTING
-                    </h5>
-                    {/* <h4 className="text-white mt-4">P2P BETTING</h4> */}
-                    <img src={eco2} alt="" />
-                  </div>
-
-                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
-                    <h5 className="m-0 text-white text-start">BETSVERSE</h5>
-                    <h4 className="text-white mt-4">
-                      {/* {this.state.activeusers} */}
-                    </h4>
-                    <img src={eco3} alt="" />
-                  </div>
-
-                  <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
-                    <h5 className="m-0 text-white text-start">NFT</h5>
-                    <h4 className="text-white mt-4">
-                      {/* {this.state.totalbetsmade} */}
-                    </h4>
-                    <img src={eco4} alt="" />
-                  </div>
-                </Carousel>
-              </div>
-            </div>
-          </div>
-          <div className="space-50"></div>
-
-          <div className="container-fluid px-md-5 my-5" id="section-partners">
-            <div className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
-              <div className="vl me-2"></div>{" "}
-              <span>
-                <h4 style={{ marginTop: "10px" }}>AMBASSADORS</h4>
-              </span>
-            </div>
-            <div className="space-50"></div>
-            <Carousel
-              swipeable={true}
-              draggable={false}
-              arrows={true}
-              showDots={false}
-              responsive={this.state.responsive}
-              ssr={true} // means to render carousel on server-side.
-              infinite={true}
-              autoPlay={true}
-              autoPlaySpeed={1500}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              deviceType={this.props.deviceType}
-              itemClass="d-flex justify-content-center align-items-center flex-column"
-            >
-              {/* {this.amessador()} */}
-              {this.state.ambassadorData.map(this.renderAmb)}
-            </Carousel>
-          </div>
-          <div className="space-100"></div>
-          <div
-            className="container-fluid px-md-5 my-5"
-            id="section-partners"
-            style={{ backgroundColor: "#0b0b0b", padding: "50px 0" }}
-          >
-            <div className="mt-2 mt-md-4 text-white d-flex">
-              <div className="vl me-2"></div>{" "}
-              <span>
-                <p
-                  className="m-0"
-                  style={{ textShadow: "0px 0px 10px #FFFFFF" }}
-                >
-                  STRATEGIC
-                </p>{" "}
-                <h4>PARTNERS</h4>
-              </span>
-            </div>
-            <div className="space-50"></div>
-            <Carousel
-              swipeable={true}
-              draggable={false}
-              arrows={true}
-              showDots={false}
-              responsive={this.state.responsive}
-              ssr={true} // means to render carousel on server-side.
-              infinite={true}
-              autoPlay={true}
-              autoPlaySpeed={1500}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              deviceType={this.props.deviceType}
-              itemClass="d-flex justify-content-center align-items-center flex-column"
-            >
-              {/* {this.amessador()} */}
-              <div
-                data-aos="zoom-in"
-                data-aos-duration="400"
-                data-aos-easing="linear"
-              >
-                <img src={Partners} alt="" style={{ width: "100%" }} />
-              </div>
-
-              <div
-                data-aos="zoom-in"
-                data-aos-duration="400"
-                data-aos-easing="linear"
-              >
-                <img src={Binance} alt="" style={{ width: "100%" }} />
-              </div>
-
-              <div
-                data-aos="zoom-in"
-                data-aos-duration="400"
-                data-aos-easing="linear"
-              >
-                <img src={Saga} alt="" style={{ width: "100%" }} />
-              </div>
-
-              <div
-                data-aos="zoom-in"
-                data-aos-duration="400"
-                data-aos-easing="linear"
-              >
-                <img src={Football} alt="" style={{ width: "100%" }} />
-              </div>
-
-              <div
-                data-aos="zoom-in"
-                data-aos-duration="400"
-                data-aos-easing="linear"
-              >
-                <img src={Playstation} alt="" style={{ width: "100%" }} />
-              </div>
-            </Carousel>
-          </div>
-
-          <div className="container-fluid px-md-5 my-5" id="section-bet-cards">
-            <div className="space-100"></div>
-            <div className="mt-2 mt-md-5 text-white d-flex">
-              <div className="vl me-2"></div>{" "}
-              <span>
-                <p
-                  className="m-0"
-                  style={{ textShadow: "0px 0px 10px #FFFFFF" }}
-                >
-                  LATEST
-                </p>{" "}
-                <h4>UPDATES</h4>
-              </span>
-            </div>
-            <div className="space-50"></div>
-            <Carousel
-              swipeable={true}
-              draggable={true}
-              arrows={true}
-              showDots={false}
-              responsive={this.state.responsive_game_card}
-              ssr={true} // means to render carousel on server-side.
-              infinite={false}
-              autoPlay={false}
-              // autoPlaySpeed={5000}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="carousel-container w-100"
-              removeArrowOnDeviceType={["tablet", "mobile"]}
-              deviceType={this.props.deviceType}
-              itemClass="carousel-item-padding-40-px px-4 w-auto"
-            >
-              <div className="latestCards text-light">
-                <div id="head">
-                  <div className="text-end">
-                    <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
-                    <span>ANNOUNCEMENT</span>
-                  </div>
-                  <div id="title">NEWS PUBLICATION TITLE #1</div>
-                </div>
-                <div id="bottom">
-                  <p>MEDIUM</p>
-                  <div id="misc">
-                    <div className="d-flex justify-content-between">
-                      <span>3 MINS READ</span>
-                      <a href="/">
-                        READ <AiOutlineRight />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="latestCards text-light">
-                <div id="head">
-                  <div className="text-end">
-                    <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
-                    <span>ANNOUNCEMENT</span>
-                  </div>
-                  <div id="title">NEWS PUBLICATION TITLE #2</div>
-                </div>
-                <div id="bottom">
-                  <p>MEDIUM</p>
-                  <div id="misc">
-                    <div className="d-flex justify-content-between">
-                      <span>3 MINS READ</span>
-                      <a href="/">
-                        READ <AiOutlineRight />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="latestCards text-light">
-                <div id="head">
-                  <div className="text-end">
-                    <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
-                    <span>ANNOUNCEMENT</span>
-                  </div>
-                  <div id="title">NEWS PUBLICATION TITLE #3</div>
-                </div>
-                <div id="bottom">
-                  <p>MEDIUM</p>
-                  <div id="misc">
-                    <div className="d-flex justify-content-between">
-                      <span>3 MINS READ</span>
-                      <a href="/">
-                        READ <AiOutlineRight />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="latestCards text-light">
-                <div id="head">
-                  <div className="text-end">
-                    <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
-                    <span>ANNOUNCEMENT</span>
-                  </div>
-                  <div id="title">NEWS PUBLICATION TITLE #4</div>
-                </div>
-                <div id="bottom">
-                  <p>MEDIUM</p>
-                  <div id="misc">
-                    <div className="d-flex justify-content-between">
-                      <span>3 MINS READ</span>
-                      <a href="/">
-                        READ <AiOutlineRight />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Carousel>
-            <div className="mt-4 px-4">
-              <button className="mt-2 mt-md-4 text-white text-end bg-transparent ms-auto d-block">
-                VIEW MORE
-                <img src={arrowRight} alt="" className="ms-3" width="20" />
-              </button>
-            </div>
-          </div>
-
-          {false ? (
-            <div className="container-fluid px-md-5 my-5" id="section-news">
               <div className="space-100"></div>
-              <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
-                NEWS <img src={lineImage} alt="" className="ms-3" />
-              </p>
+              <div
+                className="row"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-easing="linear"
+              >
+                <div className="col-lg-12">
+                  <Carousel
+                    swipeable={true}
+                    draggable={true}
+                    arrows={false}
+                    showDots={false}
+                    responsive={this.state.responsive_center}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    keyBoardControl={true}
+                    customTransition="all .5"
+                    transitionDuration={500}
+                    containerClass="carousel-container"
+                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    deviceType={this.props.deviceType}
+                    itemClass="px-2"
+                  >
+                    <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
+                      <h5 className="text-white m-0">Price</h5>
+                      <h4 className="text-white mt-3">
+                        $ {Number(this.state.price).toFixed(4)}
+                      </h4>
+                    </div>
+
+                    <div className=" overflow-hidden text-center py-3 align-items-stretch col-12">
+                      <h5 className="text-white m-0">Holders</h5>
+                      <h4 className="text-white mt-3">731</h4>
+                    </div>
+
+                    <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
+                      <h5 className="text-white m-0">Market Cap</h5>
+                      <h4 className="text-white mt-3">
+                        ${" "}
+                        {(
+                          (Number(this.state.price).toFixed(4) * 250000000) /
+                          10 ** 6
+                        ).toFixed(2)}{" "}
+                        M
+                      </h4>
+                    </div>
+
+                    <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
+                      <h5 className="text-white m-0">Total Supply</h5>
+                      <h4 className="text-white mt-3">250,000,000</h4>
+                    </div>
+                  </Carousel>
+                </div>
+              </div>
+            </div>
+            <div className="space-100"></div>
+            <div className="space-100"></div>
+            <div className="container">
+              <div className="row">
+                <div className="col-12 col-md-8 text-white">
+                  <img src={NFTs} alt="" style={{ width: "100%" }} />
+                </div>
+                <div
+                  className="col-6 col-md-4 text-white side-text-nfts"
+                  style={{ width: "40%", marginTop: "50px" }}
+                >
+                  <div className="mt-2 mt-md-4 text-white d-flex">
+                    <div className="vl me-2"></div>{" "}
+                    <span>
+                      <p
+                        className="m-0"
+                        style={{ textShadow: "0px 0px 10px #FFFFFF" }}
+                      >
+                        DECENTRALISED
+                      </p>{" "}
+                      <h4>ECOSYSTEM</h4>
+                    </span>
+                  </div>
+                  <p>
+                    BETSWAMP IS BUILDING A DECENTRALIZED ECOSYSTEM WHERE ALL
+                    IT'S UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO
+                    WHICH PROVIDES INVESTORS A SECURED PLATFORM THEY CAN VOCOUNT
+                    ON.
+                  </p>
+                  <NavLink
+                    to="/app"
+                    className="btn btn-md text-white mt-2 mt-md-5 nftsTopBtn position-relative"
+                  >
+                    LEARN MORE
+                    <AiOutlineRight
+                      style={{ position: "absolute", right: "5px" }}
+                      className="mt-1  fw-bold"
+                    />
+                  </NavLink>
+                </div>
+              </div>
+            </div>
+            <div className="container-fluid px-md-5" id="section-analytics">
+              {/*  */}
+            </div>
+
+            <div className="space-100"></div>
+            <div
+              className="container-fluid px-md-5 overflow-hidden"
+              id="section-statistics"
+            >
               <div className="space-50"></div>
-              <Carousel
-                swipeable={true}
-                draggable={false}
-                arrows={true}
-                showDots={false}
-                responsive={this.state.responsive_game_card}
-                ssr={true} // means to render carousel on server-side.
-                autoPlay={true}
-                autoPlaySpeed={1500}
-                keyBoardControl={true}
-                customTransition="all .5"
-                transitionDuration={500}
-                containerClass="carousel-container"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
-                deviceType={this.props.deviceType}
-                itemClass="carousel-item-padding-40-px px-4"
+              <div className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
+                <div className="vl me-2"></div>{" "}
+                <span>
+                  <p
+                    className="m-0"
+                    style={{ textShadow: "0px 0px 10px #FFFFFF" }}
+                  >
+                    BETSWAMP
+                  </p>{" "}
+                  <h4 className="m-0">ECOSYSTEM</h4>
+                </span>
+              </div>
+              <div
+                className="row pb-5"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-easing="linear"
               >
-                {this.getNewsCard()}
-              </Carousel>
+                <div className="col-lg-12">
+                  <Carousel
+                    swipeable={true}
+                    draggable={true}
+                    arrows={false}
+                    showDots={false}
+                    responsive={this.state.responsive_center}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={false}
+                    keyBoardControl={true}
+                    customTransition="all .5"
+                    transitionDuration={500}
+                    containerClass="carousel-container overflow-visible"
+                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    deviceType={this.props.deviceType}
+                    itemClass="px-2"
+                  >
+                    <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
+                      <h5 className="m-0 text-white text-start">DAO</h5>
+                      <h4 className="text-white mt-4">
+                        {/* {(this.state.payout / 10 ** 18).toFixed(0)} B USD */}
+                      </h4>
+                      <img src={eco1} alt="" />
+                    </div>
 
-              <div className="space-100"></div>
+                    <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
+                      <p
+                        style={{
+                          fontSize: "10px",
+                          color: "#fff",
+                          textAlign: "start",
+                          margin: "0",
+                        }}
+                      >
+                        DECENTRALISED
+                      </p>
+                      <h5 className="m-0 mb-3 text-white text-start">
+                        P2P BETTING
+                      </h5>
+                      {/* <h4 className="text-white mt-4">P2P BETTING</h4> */}
+                      <img src={eco2} alt="" />
+                    </div>
 
-              {/* ***************************In House Articles************************** */}
+                    <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
+                      <h5 className="m-0 text-white text-start">BETSVERSE</h5>
+                      <h4 className="text-white mt-4">
+                        {/* {this.state.activeusers} */}
+                      </h4>
+                      <img src={eco3} alt="" />
+                    </div>
 
-              <Carousel
-                swipeable={true}
-                draggable={false}
-                arrows={true}
-                showDots={false}
-                responsive={this.state.responsive_game_card}
-                ssr={true} // means to render carousel on server-side.
-                autoPlay={true}
-                autoPlaySpeed={1500}
-                keyBoardControl={true}
-                customTransition="all .5"
-                transitionDuration={500}
-                containerClass="carousel-container"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
-                deviceType={this.props.deviceType}
-                itemClass="carousel-item-padding-40-px px-4"
-              >
-                {this.internalblogs()}
-              </Carousel>
+                    <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
+                      <h5 className="m-0 text-white text-start">NFT</h5>
+                      <h4 className="text-white mt-4">
+                        {/* {this.state.totalbetsmade} */}
+                      </h4>
+                      <img src={eco4} alt="" />
+                    </div>
+                  </Carousel>
+                </div>
+              </div>
             </div>
-          ) : (
-            ""
-          )}
+            <div className="space-50"></div>
 
-          {false ? (
             <div className="container-fluid px-md-5 my-5" id="section-partners">
-              <div className="space-100"></div>
-              <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1 text-uppercase">
-                partners <img src={lineImage} alt="" className="ms-3" />
-              </p>
+              <div className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
+                <div className="vl me-2"></div>{" "}
+                <span>
+                  <h4 style={{ marginTop: "10px" }}>AMBASSADORS</h4>
+                </span>
+              </div>
               <div className="space-50"></div>
               <Carousel
                 swipeable={true}
@@ -959,61 +730,356 @@ class Index extends Component {
                 deviceType={this.props.deviceType}
                 itemClass="d-flex justify-content-center align-items-center flex-column"
               >
-                {this.parterImg()}
+                {/* {this.amessador()} */}
+                {this.state.ambassadorData.map(this.renderAmb)}
               </Carousel>
             </div>
-          ) : (
-            ""
-          )}
-          <div className="space-100"></div>
-          <div
-            className="container-fluid"
-            style={{ backgroundColor: "#0b0b0b", padding: "50px 0" }}
-          >
-            <div className="container faq-box">
-              <div className="subscribe">
-                <div className="outer-box text-white">
-                  <h4 className="font-weight-bold">GET THE LATEST</h4>
-                  <p>
-                    SUBSCRIBE TO GET THE LATEST OF OUR NEWS, AND
-                    <br />
-                    LATEST UPDATES
-                  </p>
-                  <input
-                    className="sub-input py-3 px-4"
-                    placeholder="email@domain.com"
-                  />
-                  <div className="sighup-btn">
-                    <button
-                      className="btn btn-md mt-1 mt-md-5 pl-4 pr-4 btn-signup text-light"
-                      style={{ boxShadow: "10px 10px 4px rgba(0, 0, 0, 0.25)" }}
-                    >
-                      SIGN UP
-                      <AiOutlineRight
-                        style={{ position: "absolute", right: "5px" }}
-                        className="mt-1  fw-bold"
-                      />
-                    </button>
+            <div className="space-100"></div>
+            <div
+              className="container-fluid px-md-5 my-5"
+              id="section-partners"
+              style={{ backgroundColor: "#0b0b0b", padding: "50px 0" }}
+            >
+              <div className="mt-2 mt-md-4 text-white d-flex">
+                <div className="vl me-2"></div>{" "}
+                <span>
+                  <p
+                    className="m-0"
+                    style={{ textShadow: "0px 0px 10px #FFFFFF" }}
+                  >
+                    STRATEGIC
+                  </p>{" "}
+                  <h4>PARTNERS</h4>
+                </span>
+              </div>
+              <div className="space-50"></div>
+              <Carousel
+                swipeable={true}
+                draggable={false}
+                arrows={true}
+                showDots={false}
+                responsive={this.state.responsive}
+                ssr={true} // means to render carousel on server-side.
+                infinite={true}
+                autoPlay={true}
+                autoPlaySpeed={1500}
+                keyBoardControl={true}
+                customTransition="all .5"
+                transitionDuration={500}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                deviceType={this.props.deviceType}
+                itemClass="d-flex justify-content-center align-items-center flex-column"
+              >
+                {/* {this.amessador()} */}
+                <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                >
+                  <img src={Partners} alt="" style={{ width: "100%" }} />
+                </div>
+
+                <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                >
+                  <img src={Binance} alt="" style={{ width: "100%" }} />
+                </div>
+
+                <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                >
+                  <img src={Saga} alt="" style={{ width: "100%" }} />
+                </div>
+
+                <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                >
+                  <img src={Football} alt="" style={{ width: "100%" }} />
+                </div>
+
+                <div
+                  data-aos="zoom-in"
+                  data-aos-duration="400"
+                  data-aos-easing="linear"
+                >
+                  <img src={Playstation} alt="" style={{ width: "100%" }} />
+                </div>
+              </Carousel>
+            </div>
+
+            <div
+              className="container-fluid px-md-5 my-5"
+              id="section-bet-cards"
+            >
+              <div className="space-100"></div>
+              <div className="mt-2 mt-md-5 text-white d-flex">
+                <div className="vl me-2"></div>{" "}
+                <span>
+                  <p
+                    className="m-0"
+                    style={{ textShadow: "0px 0px 10px #FFFFFF" }}
+                  >
+                    LATEST
+                  </p>{" "}
+                  <h4>UPDATES</h4>
+                </span>
+              </div>
+              <div className="space-50"></div>
+              <Carousel
+                swipeable={true}
+                draggable={true}
+                arrows={true}
+                showDots={false}
+                responsive={this.state.responsive_game_card}
+                ssr={true} // means to render carousel on server-side.
+                infinite={false}
+                autoPlay={false}
+                // autoPlaySpeed={5000}
+                keyBoardControl={true}
+                customTransition="all .5"
+                transitionDuration={500}
+                containerClass="carousel-container w-100"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                deviceType={this.props.deviceType}
+                itemClass="carousel-item-padding-40-px px-4 w-auto"
+              >
+                <div className="latestCards text-light">
+                  <div id="head">
+                    <div className="text-end">
+                      <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
+                      <span>ANNOUNCEMENT</span>
+                    </div>
+                    <div id="title">NEWS PUBLICATION TITLE #1</div>
+                  </div>
+                  <div id="bottom">
+                    <p>MEDIUM</p>
+                    <div id="misc">
+                      <div className="d-flex justify-content-between">
+                        <span>3 MINS READ</span>
+                        <a href="/">
+                          READ <AiOutlineRight />
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <div className="latestCards text-light">
+                  <div id="head">
+                    <div className="text-end">
+                      <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
+                      <span>ANNOUNCEMENT</span>
+                    </div>
+                    <div id="title">NEWS PUBLICATION TITLE #2</div>
+                  </div>
+                  <div id="bottom">
+                    <p>MEDIUM</p>
+                    <div id="misc">
+                      <div className="d-flex justify-content-between">
+                        <span>3 MINS READ</span>
+                        <a href="/">
+                          READ <AiOutlineRight />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="latestCards text-light">
+                  <div id="head">
+                    <div className="text-end">
+                      <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
+                      <span>ANNOUNCEMENT</span>
+                    </div>
+                    <div id="title">NEWS PUBLICATION TITLE #3</div>
+                  </div>
+                  <div id="bottom">
+                    <p>MEDIUM</p>
+                    <div id="misc">
+                      <div className="d-flex justify-content-between">
+                        <span>3 MINS READ</span>
+                        <a href="/">
+                          READ <AiOutlineRight />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="latestCards text-light">
+                  <div id="head">
+                    <div className="text-end">
+                      <span className="fw-bold">25 FEB</span>&nbsp;&nbsp;&nbsp;
+                      <span>ANNOUNCEMENT</span>
+                    </div>
+                    <div id="title">NEWS PUBLICATION TITLE #4</div>
+                  </div>
+                  <div id="bottom">
+                    <p>MEDIUM</p>
+                    <div id="misc">
+                      <div className="d-flex justify-content-between">
+                        <span>3 MINS READ</span>
+                        <a href="/">
+                          READ <AiOutlineRight />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Carousel>
+              <div className="mt-4 px-4">
+                <button className="mt-2 mt-md-4 text-white text-end bg-transparent ms-auto d-block">
+                  VIEW MORE
+                  <img src={arrowRight} alt="" className="ms-3" width="20" />
+                </button>
               </div>
-              <div className="text-white faqbox">
-                <div className="question-box">
-                  <h4 className="font-weight-bold">HAVE A QUESTION?</h4>
-                  <p>SEND US A MAIL</p>
-                  <div>
-                    <p className="text-white text-email mb-0">
-                      <img src={emailImg} alt="" width="22" />{" "}
-                      admin@betswamp.com
+            </div>
+
+            {false ? (
+              <div className="container-fluid px-md-5 my-5" id="section-news">
+                <div className="space-100"></div>
+                <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1">
+                  NEWS <img src={lineImage} alt="" className="ms-3" />
+                </p>
+                <div className="space-50"></div>
+                <Carousel
+                  swipeable={true}
+                  draggable={false}
+                  arrows={true}
+                  showDots={false}
+                  responsive={this.state.responsive_game_card}
+                  ssr={true} // means to render carousel on server-side.
+                  autoPlay={true}
+                  autoPlaySpeed={1500}
+                  keyBoardControl={true}
+                  customTransition="all .5"
+                  transitionDuration={500}
+                  containerClass="carousel-container"
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  deviceType={this.props.deviceType}
+                  itemClass="carousel-item-padding-40-px px-4"
+                >
+                  {this.getNewsCard()}
+                </Carousel>
+
+                <div className="space-100"></div>
+
+                {/* ***************************In House Articles************************** */}
+
+                <Carousel
+                  swipeable={true}
+                  draggable={false}
+                  arrows={true}
+                  showDots={false}
+                  responsive={this.state.responsive_game_card}
+                  ssr={true} // means to render carousel on server-side.
+                  autoPlay={true}
+                  autoPlaySpeed={1500}
+                  keyBoardControl={true}
+                  customTransition="all .5"
+                  transitionDuration={500}
+                  containerClass="carousel-container"
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  deviceType={this.props.deviceType}
+                  itemClass="carousel-item-padding-40-px px-4"
+                >
+                  {this.internalblogs()}
+                </Carousel>
+              </div>
+            ) : (
+              ""
+            )}
+
+            {false ? (
+              <div
+                className="container-fluid px-md-5 my-5"
+                id="section-partners"
+              >
+                <div className="space-100"></div>
+                <p className="mt-2 mt-md-4 text-white px-2 px-md-3 pb-4 div-p-1 text-uppercase">
+                  partners <img src={lineImage} alt="" className="ms-3" />
+                </p>
+                <div className="space-50"></div>
+                <Carousel
+                  swipeable={true}
+                  draggable={false}
+                  arrows={true}
+                  showDots={false}
+                  responsive={this.state.responsive}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  autoPlay={true}
+                  autoPlaySpeed={1500}
+                  keyBoardControl={true}
+                  customTransition="all .5"
+                  transitionDuration={500}
+                  containerClass="carousel-container"
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  deviceType={this.props.deviceType}
+                  itemClass="d-flex justify-content-center align-items-center flex-column"
+                >
+                  {this.parterImg()}
+                </Carousel>
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="space-100"></div>
+            <div
+              className="container-fluid"
+              style={{ backgroundColor: "#0b0b0b", padding: "50px 0" }}
+            >
+              <div className="container faq-box">
+                <div className="subscribe">
+                  <div className="outer-box text-white">
+                    <h4 className="font-weight-bold">GET THE LATEST</h4>
+                    <p>
+                      SUBSCRIBE TO GET THE LATEST OF OUR NEWS, AND
+                      <br />
+                      LATEST UPDATES
                     </p>
+                    <input
+                      className="sub-input py-3 px-4"
+                      placeholder="email@domain.com"
+                    />
+                    <div className="sighup-btn">
+                      <button
+                        className="btn btn-md mt-1 mt-md-5 pl-4 pr-4 btn-signup text-light"
+                        style={{
+                          boxShadow: "10px 10px 4px rgba(0, 0, 0, 0.25)",
+                        }}
+                      >
+                        SIGN UP
+                        <AiOutlineRight
+                          style={{ position: "absolute", right: "5px" }}
+                          className="mt-1  fw-bold"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-white faqbox">
+                  <div className="question-box">
+                    <h4 className="font-weight-bold">HAVE A QUESTION?</h4>
+                    <p>SEND US A MAIL</p>
+                    <div>
+                      <p className="text-white text-email mb-0">
+                        <img src={emailImg} alt="" width="22" />{" "}
+                        admin@betswamp.com
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="d-flex">
-            <Footer />
+            <div className="d-flex">
+              <Footer />
+            </div>
           </div>
         </div>
       </Fragment>
