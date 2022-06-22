@@ -452,7 +452,7 @@ class Index extends Component {
                   </p>
                   <div className="text-center text-md-center my-1 my-md-0 topAppBtn">
                     <a
-                      href="https://betdao.netlify.app/re-ui/stake"
+                      href="https://lucky-duckanoo-f4a914.netlify.app/"
                       target="_blank"
                       rel="noreferrer"
                       className="btn-md theam-bg-red homeTopBtnDao"

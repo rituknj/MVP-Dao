@@ -48,7 +48,7 @@ class AdminHeader extends Component {
                 <li className="nav-item px-2">
                   <a
                     className="nav-link text-white"
-                    href="https://betdao.netlify.app/re-ui/stake"
+                    href="https://lucky-duckanoo-f4a914.netlify.app/"
                     target="_blank"
                   >
                     DAO

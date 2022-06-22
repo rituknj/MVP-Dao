@@ -31,7 +31,7 @@ const AdminSidebar = (props) => {
               <MenuItem icon={<img src={validate} alt=""/>}>VALIDATE EVENTS</MenuItem>
               <MenuItem icon={<img src={self} alt=""/>}>SELF HELP</MenuItem>
               <hr />
-              <MenuItem icon={<img src={whh_coins} alt=""/>}>BETSWAMP DAO</MenuItem>
+              <MenuItem icon={<img src={whh_coins} alt=""/>}><a href="https://lucky-duckanoo-f4a914.netlify.app/" target='_blank'></a>BETSWAMP DAO</MenuItem>
               <hr />
               <MenuItem icon={<img src={file} alt=""/>}>DOCS</MenuItem>
             </Menu>
