@@ -46,6 +46,8 @@ export default function ValidateEvents() {
       setInterval(async()=>{
         const points = await pendingpoint()
         setPendingPoints(points)
+        const uservalidpoints = await getValidationPoint()
+        setUserValidationPoints(uservalidpoints)
       },5000)
       const validatorhstry = await getvalidatorHistory()
       const userbethty = await userBethistory()

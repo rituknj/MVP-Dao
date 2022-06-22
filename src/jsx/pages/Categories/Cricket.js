@@ -39,6 +39,7 @@ const tost =()=> toast.success('Success.', {
   style: {
     padding: '16px',
     color: '#000',
+    marginTop:'75px'
   },
   iconTheme: {
     primary: '#0b0b0b',
@@ -328,6 +329,7 @@ class GameCard extends Component {
 
     document.getElementById('sidebar').style.transform = 'translateX(0%)';
     document.getElementById('sidebar').style.position = 'relative';
+    document.getElementById(eventid).style.display = 'none';
   }
 
   setfalse = () => {
@@ -408,8 +410,8 @@ class GameCard extends Component {
     if (x > 600) {
       document.getElementById('sidebar').style.transform = 'translateX(-200%)';
       document.getElementById('sidebar').style.position = 'absolute';
+      document.getElementById(this.state.id).style.display = 'inline-block'
     }
- 
   }
   winningamount = (amountstake, poolsize) => {
     let totalstake = poolsize + amountstake
@@ -582,7 +584,7 @@ class GameCard extends Component {
           <div className="sub-tools">
             <div className='search-bar'>
             <input value={this.state.searchItem} onChange={(e)=>this.setState({searchItem:e.target.value})}/>&nbsp;
-            <img src={Search} width={25} height={25} onClick={()=>this.SearchCategory(this.state.searchItem)}/>
+            <img src={Search} width={22} height={22} onClick={()=>this.SearchCategory(this.state.searchItem)}/>
             </div>
            <div>
               <span id="dropdownMenu2" data-bs-toggle="dropdown" type='button' aria-expanded="false" ><img className='mt-2' src={Filter} width={25} height={25} /></span>
@@ -692,7 +694,7 @@ class GameCard extends Component {
                <div className='game-cards row'>
                     {this.state.allevents.map((events) => (
                       <>
-                      {Number(events.teamtwoParticipate) > 0 && Number(events.teamOneParticipate) > 0 ? <div className="col">
+                      {Number(events.teamtwoParticipate) > 0 && Number(events.teamOneParticipate) > 0 ? <div className="col" id={`${events.id}`}>
                         <div className="card game-card overflow-hidden"
                           onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins, events.zero, events.one, events.two)
                           }
