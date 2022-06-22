@@ -54,7 +54,7 @@ class Footer extends Component {
                           <br/> 
                           <br/> 
                           <li><a className="text-white" href="#">BETTING PLATFORM</a></li>  
-                          <li><a className="text-white" href="#">DAO</a></li> 
+                          <li><a className="text-white" href="https://lucky-duckanoo-f4a914.netlify.app/" target='_blank'>DAO</a></li> 
                             </ul>
                         </div>
                         <div className="col-md-2 text-center text-md-start">

@@ -11,6 +11,13 @@ export const donatefund =async(amount)=> {
     return data;
 }
 
+export const getBUSDBalance = async () => {
+    const betContract =  await getContract(BETS_ABI, envdev.REACT_APP_BUSD_TOKEN);
+    const _balance = await betContract.methods.balanceOf(await getAccount()).call();
+    const  balanceofBET = _balance/10**18
+    return (balanceofBET).toFixed(2);
+}
+
 export const apporveBUSD =async()=>{
     const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BUSD_TOKEN);
     const result = await betContract.methods.approve(envdev.REACT_AAP_DONATION, 115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({from: await getAccount(),});

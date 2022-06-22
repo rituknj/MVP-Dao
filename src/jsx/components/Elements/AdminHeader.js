@@ -40,6 +40,11 @@ class AdminHeader extends Component {
                 className="navbar-nav ms-md-auto mb-2 mb-lg-0 flex-row"
                 id="admin-navbar-nav"
               >
+                 <li className="nav-item px-2">
+                  <NavLink className="nav-link text-white" style={window.location.pathname.includes("/app") === true ? {fontWeight:"700"}:{fontWeight:"400"}} to="/app">
+                    APP
+                  </NavLink>
+                </li>
                 <li className="nav-item px-2">
                   <a
                     className="nav-link text-white"

@@ -4,7 +4,20 @@ import { MdOutlineArrowForwardIos, MdArrowDropDown } from "react-icons/md";
 import { BiDonateHeart } from "react-icons/bi";
 import { FaTeamspeak } from 'react-icons/fa'
 import { pausebet, Unpausebet, Ispausebet } from "../../../web3/betsMVPService";
-import { donatefund, apporveBUSD, isapproved } from './../../../web3/DonateMethos'
+import { donatefund,apporveBUSD, isapproved, getBUSDBalance } from './../../../web3/DonateMethos'
+import toast, { Toaster } from 'react-hot-toast';
+
+const error =()=> toast.error('Low Balance.', {
+  style: {
+    padding: '16px',
+    color: '#000',
+    marginTop:'75px'
+  },
+  iconTheme: {
+    primary: '#0b0b0b',
+    secondary: '#ffffff',
+  },
+});
 
 export default function SelfHelp() {
 
@@ -12,16 +25,26 @@ export default function SelfHelp() {
   const [ispaused, setIspaused] = useState(false)
   const [pausetimeend, setPauseTimeEnd] = useState(0)
   const [amountDonate, setAmountDonate] = useState(0)
+  const [isuserApprove, setIsuserApprove] = useState(false)
+  const [busduserBalance, setBusdUserBalance] = useState(0)
 
   useEffect(() => {
-    const init = async () => {
-      const isbetpaused = await Ispausebet();
-
+    const init =async()=>{
+      const isbetpaused =await Ispausebet();
       const endpaushtime = window.localStorage.getItem('duration')
+      const Isapprove = await isapproved();
+      console.log("Approve amount",Isapprove)
+      if(Number(Isapprove)> 100){
+        setIsuserApprove(true)
+      }
       setPauseTimeEnd(endpaushtime)
       setIspaused(isbetpaused)
     }
     init();
+    setInterval(async()=>{
+      const busdbal = await getBUSDBalance();
+      setBusdUserBalance(busdbal)
+    },3000)
   }, [])
 
   const formatRemainingTime = (time) => {
@@ -71,16 +94,23 @@ export default function SelfHelp() {
       window.localStorage.setItem('duration', duration)
     }
   }
-  const Donatethem = async () => {
-    const Isapprove = await isapproved();
-    if (Number(Isapprove) > amountDonate) {
-      await donatefund(amountDonate);
+  const Donatethem =async()=>{
+    if(amountDonate <= busduserBalance){
+      error();
     }
-    else {
-      await apporveBUSD();
-      await donatefund(amountDonate);
+    else{
+      const Isapprove = await isapproved();
+      if(Number(Isapprove)> amountDonate){
+        await donatefund(amountDonate);
+      }
+      else{
+        await apporveBUSD();
+        // await donatefund(amountDonate);  
+      }
     }
 
+   
+    
   }
 
 
@@ -225,17 +255,19 @@ export default function SelfHelp() {
             <input type="number" name="" id="" value={amountDonate} onChange={(e) => setAmountDonate(e.target.value)} />
             <span>BUSD</span>
           </div>
+          <p>BUSD BALANCE: {busduserBalance}</p>
           <button
             className="btn my-3 fw-bold justify-content-between d-flex shadow"
             style={{
               backgroundColor: "#3b3b3b",
               color: "#fff",
               width: "100%",
-              padding: "25px"
+              padding: "25px",
+              borderRadius:'10px'
             }}
             onClick={() => Donatethem()}
           >
-            <span>DONATE</span>
+            <span>{isuserApprove ? "DONATE" : "APPROVE"}</span>
             <MdOutlineArrowForwardIos className="mt-1" />
           </button>
         </div>
@@ -257,6 +289,7 @@ export default function SelfHelp() {
             <MdOutlineArrowForwardIos className="mt-1" />
           </button>
         </div>
+        <div><Toaster/></div>
       </div>
     </div>
   );

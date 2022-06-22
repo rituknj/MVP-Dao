@@ -1765,6 +1765,11 @@ footer button {
   right: 20px;
   bottom: 20px;
 }
+
+.subcategory .dropdown-toggle::after{
+  top: 45% !important;
+}
+
 .categories-dropdown ul li button, .subcategory ul li button{
   color: rgb(202, 202, 202);
 }
