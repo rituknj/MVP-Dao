@@ -1945,6 +1945,7 @@ footer button {
   background-color: #0F0F0F;
   min-height: 90vh;
   width: 100%;
+  border-radius: 40px 0px 0px 0px;
   overflow: hidden;
 }
 
