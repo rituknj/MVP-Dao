@@ -194,7 +194,7 @@ export default function ValidateEvents() {
   return (
     <div className="validate-event-main">
       {/* CARD STAT */}
-      <div className="row py-3 px-2 mb-3 justify-content-evenly row-cols-auto flex-wrap">
+      <div className="row py-3 px-4 mb-3 justify-content-evenly row-cols-auto validStats flex-wrap">
         <div
           className="col px-3 mx-4 py-2 my-3 mx-1 col-r"
         >
@@ -229,7 +229,7 @@ export default function ValidateEvents() {
         
       </div>
       <div
-        className="row py-3 px-3 px-xxl-5 px-sm-2 mb-3 terms"
+        className="row py-3 px-5 mb-3 terms"
         style={{ borderBottomLeftRadius: "0" }}
       >
       {/* TIMER & TERMS */}

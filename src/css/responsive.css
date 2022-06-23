@@ -1,4 +1,7 @@
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 390px) {
+  .adminIndex .navbar{
+    padding: 0px !important;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -45,9 +48,16 @@
   .subscribe {
     width: 100% !important;
   }
+  .createEvent-main .multistep{
+    padding: 25px 20px !important;
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 900px) {
+  .createEvent-main .multistep{
+    padding: 30px 50px;
+  }
 }
 @media screen and (max-width: 1024px) {
   .space-100 {
@@ -70,6 +80,9 @@
     font-size: 12px;
 
     font-family: "Montserrat";
+  }
+  .betCards, .validStats{
+    justify-content: space-evenly !important;
   }
   .game-card .team-name {
     font-size: 14px;
@@ -253,6 +266,11 @@
     padding: 25px 30px 40px 30px;
   }
 }
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1870px) {
+  .betCards, .validStats{
+    justify-content: start !important;
+  }
+}
 @media screen and (max-width: 1440px) {
   .betslip-main .row .col {
     min-width: 200px;
@@ -346,6 +364,9 @@
     list-style: none;
     text-align: center;
   }
+  #admin-navbar-nav a, #admin-navbar-nav .nav-item span{
+    font-size: 12px;
+  }
   .collapsing {
     height: 100px;
     overflow: hidden;
@@ -371,7 +392,11 @@
 @media only screen and (max-width: 320px) {
   /* Styles */
 }
-
+@media only screen and (max-width: 365px) {
+  #admin-navbar-nav a, #admin-navbar-nav .nav-item span{
+    font-size: 10px;
+  }
+}
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   /* Styles */

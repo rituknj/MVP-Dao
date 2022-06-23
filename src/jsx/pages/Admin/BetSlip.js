@@ -260,7 +260,7 @@ export default function BetSlip() {
   return (
     <div className="container-fluid betslip-main">
       {/* CARD STAT */}
-      <div className="row py-3 px-2 mb-3  justify-content-evenly row-cols-auto">
+      <div className="row py-3 px-2 mb-3  justify-content-lg-evenly betCards row-cols-auto">
         <div className="col mx-4 px-3 py-2 my-3 mx-1 col-w">
           <span>TOTAL</span>
           <h5>BETS MADE</h5>
@@ -289,7 +289,7 @@ export default function BetSlip() {
 
       {/* BET SLIPS */}
       <div
-        className="row px-3 px-xxl-5 px-sm-2 mb-3"
+        className="row px-4 mb-3"
         style={{ borderBottomLeftRadius: "0", paddingTop:"35px" }}
       >
         <div className="col-md-4">

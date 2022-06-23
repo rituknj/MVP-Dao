@@ -762,7 +762,7 @@ class GameCard extends Component {
                   <div className='game-cards row'>
                     {this.state.allevents.map((events) => (
                       <>
-                     {Number(events.teamtwoParticipate) == 0 || Number(events.teamOneParticipate) == 0 ? <div className="col">
+                     {Number(events.teamtwoParticipate) == 0 || Number(events.teamOneParticipate) == 0 ? <div className="col" id={`${events.id}`}>
                         <div className="card game-card overflow-hidden"
                           onClick={() => this.handelSideMenu(events.id, events.teamone, events.teamtwo, events.endtime, events.poolsize, events.BettorsCount, events.subcategory, events.potential_wins, events.zero, events.one, events.two)
                           }

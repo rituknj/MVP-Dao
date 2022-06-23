@@ -121,8 +121,8 @@ export default function SelfHelp() {
 
   return (
     <div className="self-help-main">
-      <div className="outerRow py-5 px-2 mb-3">
-        <div className="row justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto mx-auto p-3 p-md-5" style={{ backgroundColor: "#1C1C1C", width: "90%", borderRadius: "10px", boxShadow: "10px 10px 4px #000" }}>
+      <div className="outerRow px-5 py-5 px-xl-4 px-xxl-5 mb-3">
+        <div className="row justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto mx-auto p-3 p-md-5" style={{ backgroundColor: "#1C1C1C", borderRadius: "10px", boxShadow: "10px 10px 4px #000" }}>
           <div className="col-lg-8">
             <p>
               want to take a break from betting? set a temporary restriction on
