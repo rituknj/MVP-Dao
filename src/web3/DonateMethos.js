@@ -11,6 +11,12 @@ export const donatefund =async(amount)=> {
     return data;
 }
 
+export const getTotalFund =async(amount)=> {
+    const contract = await getContract(Donation, envdev.REACT_AAP_DONATION);
+    const data = await contract.methods.getTotalDonation().call();
+    return data;
+}
+
 export const getBUSDBalance = async () => {
     const betContract =  await getContract(BETS_ABI, envdev.REACT_APP_BUSD_TOKEN);
     const _balance = await betContract.methods.balanceOf(await getAccount()).call();

@@ -7835,10 +7835,10 @@ multihashes@^0.4.15, multihashes@~0.4.15:
     multibase "^0.7.0"
     varint "^5.0.0"
 
-multistep-by-nikhil@^6.1.8:
-  version "6.1.8"
-  resolved "https://registry.yarnpkg.com/multistep-by-nikhil/-/multistep-by-nikhil-6.1.8.tgz#61cf3069372cdff3c83fa4f48a9a558d3db808e8"
-  integrity sha512-aiC7M+nyTIEtwjatnvKgJHAKOPGtVmEpvOeYxVOkwjMxKTXeZ0507HLTij7vgwJEoAcct06706zVJwjvYoZ3Pg==
+multistep-by-nikhil@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/multistep-by-nikhil/-/multistep-by-nikhil-6.2.1.tgz#4ae62f956467516364dba2947946c38e27b2275a"
+  integrity sha512-lH6FskDIAMHtMqu2mGLqkJCUt/mINpyJC/LIVKkqLXsyGMJe9fbzSQDvRwPJcsloPIOggylSVIEwAGO42HfALg==
   dependencies:
     goober "^2.1.10"
 

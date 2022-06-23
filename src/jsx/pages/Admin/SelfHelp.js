@@ -4,7 +4,7 @@ import { MdOutlineArrowForwardIos, MdArrowDropDown } from "react-icons/md";
 import { BiDonateHeart } from "react-icons/bi";
 import { FaTeamspeak } from 'react-icons/fa'
 import { pausebet, Unpausebet, Ispausebet } from "../../../web3/betsMVPService";
-import { donatefund,apporveBUSD, isapproved, getBUSDBalance } from './../../../web3/DonateMethos'
+import { donatefund,apporveBUSD, isapproved, getBUSDBalance,getTotalFund } from './../../../web3/DonateMethos'
 import toast, { Toaster } from 'react-hot-toast';
 
 const error =()=> toast.error('Low Balance.', {
@@ -27,18 +27,23 @@ export default function SelfHelp() {
   const [amountDonate, setAmountDonate] = useState(0)
   const [isuserApprove, setIsuserApprove] = useState(false)
   const [busduserBalance, setBusdUserBalance] = useState(0)
+  const [totalDonation, setTotalDonation] = useState(0)
 
   useEffect(() => {
     const init =async()=>{
       const isbetpaused =await Ispausebet();
       const endpaushtime = window.localStorage.getItem('duration')
       const Isapprove = await isapproved();
-      console.log("Approve amount",Isapprove)
+      
       if(Number(Isapprove)> 100){
         setIsuserApprove(true)
       }
       setPauseTimeEnd(endpaushtime)
       setIspaused(isbetpaused)
+
+      const totaldonation = await getTotalFund();
+      setTotalDonation(totaldonation/10**18)
+
     }
     init();
     setInterval(async()=>{
@@ -239,7 +244,7 @@ export default function SelfHelp() {
             JOIN US AND BE PART OF THE SOLUTION TO GAMBLING ADDICTION, MAKE A SMALL DONATION TO OUR <span className="text-danger">PARTNERS</span> WORKING HARD TO HELP PEOPLE WITH ADDICTIONS.
           </p>
           <p>
-            TOTAL DONATIONS : <span>$500</span>
+            TOTAL DONATIONS : <span>${totalDonation}</span>
           </p>
           <hr style={{ backgroundColor: "#2B2A2A", opacity: "1", width: "120%", marginLeft: "-45px" }} />
           <p>CHOOSE DONATION AMOUNT</p>
