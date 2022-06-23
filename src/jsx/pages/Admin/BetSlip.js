@@ -260,26 +260,26 @@ export default function BetSlip() {
   return (
     <div className="container-fluid betslip-main">
       {/* CARD STAT */}
-      <div className="row py-3 px-2 mb-3 justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto">
-        <div className="col px-3 py-2 my-3 mx-1 col-w">
+      <div className="row py-3 px-2 mb-3  justify-content-evenly row-cols-auto">
+        <div className="col mx-4 px-3 py-2 my-3 mx-1 col-w">
           <span>TOTAL</span>
           <h5>BETS MADE</h5>
           <hr className="text-light" />
           <p>{totaluserBetHistory}</p>
         </div>
-        <div className="col px-3 py-2 my-3 mx-1 col-b">
+        <div className="col mx-4 px-3 py-2 my-3 mx-1 col-b">
           <span>TOTAL</span>
           <h5>EVENT CREATED</h5>
           <hr className="text-primary" />
           <p>{totalEvnetUserHistory}</p>
         </div>
-        <div className="col px-3 py-2 my-3 mx-1 col-r">
+        <div className="col mx-4 px-3 py-2 my-3 mx-1 col-r">
           <span>TOTAL</span>
           <h5>AMOUNT WAGERED</h5>
           <hr className="text-danger" />
           <p>${(totaluserbetlost)}</p>
         </div>
-        <div className="col px-3 py-2 my-3 mx-1 col-g">
+        <div className="col mx-4 px-3 py-2 my-3 mx-1 col-g">
           <span>TOTAL</span>
           <h5>AMOUNT WON</h5>
           <hr className="text-success" />
@@ -292,10 +292,10 @@ export default function BetSlip() {
         className="row px-3 px-xxl-5 px-sm-2 mb-3"
         style={{ borderBottomLeftRadius: "0", paddingTop:"35px" }}
       >
-        <div className="col-md-2">
+        <div className="col-md-4">
           <select
             className="form-select border-0 text-light"
-            style={{padding:"30px 20px", width:"400px", backgroundColor:'#2B2A2A', borderRadius:'10px'}}
+            style={{padding:"30px 20px", maxWidth:"400px", width:"100%", backgroundColor:'#2B2A2A', borderRadius:'10px'}}
             id="specificSizeSelect"
             onChange={(e)=>setHistroyEvents(e.target.options.selectedIndex)}
           >

@@ -560,7 +560,7 @@ class GameCard extends Component {
             <div class="dropdown subcategory">
             <button
               class="btn btn-secondary dropdown-toggle border-0"
-              style={{backgroundColor:"#4D4A4A"}}
+              style={{backgroundColor:"#4D4A4A", borderRadius:"10px"}}
               type="button"
               id="dropdownMenu2"
               data-bs-toggle="dropdown"

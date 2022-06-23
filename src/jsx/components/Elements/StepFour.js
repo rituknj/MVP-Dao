@@ -101,7 +101,7 @@ export class StepFour extends React.Component {
         <div><Toaster/></div>
         <h5>Place a Bet on Your Preferred Outcome</h5>
         <br />
-        <div className="container selectBet">
+        <div className="container px-0 selectBet">
           <p>PREFERRED OUTCOME</p>
           <div id={`betA`}>
             <p className="fs-6 mb-2">{window.preferredoutcome}</p>

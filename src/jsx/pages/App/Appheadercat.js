@@ -89,7 +89,7 @@ class Index extends Component {
             <p className="text-white" style={{fontSize:'12px'}}>SELECT CATEGORY</p>
             <button
               className="btn btn-secondary dropdown-toggle border-0"
-              style={{backgroundColor:"#4D4A4A"}}
+              style={{backgroundColor:"#4D4A4A", borderRadius:"10px"}}
               type="button"
               id="dropdownMenu2"
               data-bs-toggle="dropdown"
