@@ -86,7 +86,7 @@ class Index extends Component {
         <div className="container-fluid px-md-5 p-2 slider top-image">
           <p className="mt-4 mt-md-4 text-white sporttag p-3 font-weight-bold">#{window.maincat}</p>
           <div className="dropdown categories-dropdown">
-            <p className="text-white" style={{fontSize:'12px'}}>SELECT CATOGORY</p>
+            <p className="text-white" style={{fontSize:'12px'}}>SELECT CATEGORY</p>
             <button
               className="btn btn-secondary dropdown-toggle border-0"
               style={{backgroundColor:"#4D4A4A"}}

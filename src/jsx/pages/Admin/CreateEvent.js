@@ -1,4 +1,4 @@
-import React, {useState, useEffect,useLayoutEffect} from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { StepFour } from '../../components/Elements/StepFour';
 import { StepOne } from '../../components/Elements/StepOne';
 import { StepThree } from '../../components/Elements/StepThree';
@@ -13,7 +13,7 @@ let FILL = false
 
 
 export default function CreateEvent() {
-    
+
 
     const [historyVisibility, setHistoryVisibility] = useState(false)
     const [completed, setCompleted] = useState([])
@@ -21,22 +21,22 @@ export default function CreateEvent() {
     const [notComplete, setNotcomplete] = useState([])
 
 
-    useLayoutEffect(()=>{
-        const completed =async()=>{
+    useLayoutEffect(() => {
+        const completed = async () => {
             const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-            decodestoredevents.forEach(async(element) => {
+            decodestoredevents.forEach(async (element) => {
                 const reward = await CreatorReward(element.id)
                 element.creatoraward = reward
-              });
+            });
             setCompleted(decodestoredevents)
         }
         completed();
         window.eventTitle2 = window.eventTitle
         window.description2 = window.description
         window.url2 = window.url
-    },[window.url,window.description,window.eventTitle])
+    }, [window.url, window.description, window.eventTitle])
 
-    
+
 
 
     const steps = [
@@ -74,74 +74,74 @@ export default function CreateEvent() {
     ]
 
     const getdays = (time) => {
-        return new Date(time*1000).toLocaleString();
-      }
+        return new Date(time * 1000).toLocaleString();
+    }
 
     const renderCompleted = (completedCards, index) => {
         return (
             <>
-            {}
-            {completedCards.validate ? <div className="card my-4" key={index} style={{backgroundColor:"#1c1c1c", borderRadius:"10px" }}>
-        <div className="card-header text-secondary">
-            <span>#{completedCards.subcategory}</span>
-            <h4 className='text-light fs-5'>{completedCards.name}</h4>
-            <div className='justify-content-between d-flex'>
-                <span>Starts: {getdays(completedCards.starttime)}</span>
-                <span>Ends: {getdays(completedCards.endtime)}</span>
-            </div>
-        </div>
-        <div className="card-body bg-dark text-light">
-            <span className="card-text">ODDS</span>
-            <p>{completedCards.teamone}<br />{completedCards.teamtwo}<br/>DRAW</p>
-            <span>POOL SIZE</span>
-            <p>{completedCards.poolsize/10**18}</p>
-            <span>CREATOR's REWARD</span>
-            <p>{completedCards.creatoraward/10**18}</p>
-        </div>
-    </div>:''}
+                { }
+                {completedCards.validate ? <div className="card my-4" key={index} style={{ backgroundColor: "#1c1c1c", borderRadius: "10px" }}>
+                    <div className="card-header text-secondary">
+                        <span>#{completedCards.subcategory}</span>
+                        <h4 className='text-light fs-5'>{completedCards.name}</h4>
+                        <div className='justify-content-between d-flex'>
+                            <span>Starts: {getdays(completedCards.starttime)}</span>
+                            <span>Ends: {getdays(completedCards.endtime)}</span>
+                        </div>
+                    </div>
+                    <div className="card-body bg-dark text-light" style={{ borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px" }}>
+                        <span className="card-text">ODDS</span>
+                        <p>{completedCards.teamone}<br />{completedCards.teamtwo}<br />DRAW</p>
+                        <span>POOL SIZE</span>
+                        <p>{completedCards.poolsize / 10 ** 18}</p>
+                        <span>CREATOR's REWARD</span>
+                        <p>{completedCards.creatoraward / 10 ** 18}</p>
+                    </div>
+                </div> : ''}
             </>
         )
     }
-    
+
     const renderNotCompleted = (completedCards, index) => {
         return (
             <>
-            {completedCards.validate ? '' : <div className="card my-4" key={index} style={{backgroundColor:"#1c1c1c", borderRadius:"10px",}}>
-        <div className="card-header text-secondary">
-            <span>#{completedCards.subcategory}</span>
-            <h4 className='text-light fs-5'>{completedCards.name}</h4>
-            <div className='justify-content-between d-flex'>
-                <span>Starts: {getdays(completedCards.starttime)}</span>
-                <span>Ends: {getdays(completedCards.endtime)}</span>
-            </div>
-        </div>
-        <div className="card-body bg-dark text-light">
-            <span className="card-text">ODDS</span>
-            <p>{completedCards.teamone}<br />{completedCards.teamtwo}<br/>DRAW</p>
-            <span>POOL SIZE</span>
-            <p>{completedCards.poolsize/10**18}</p>
-            <span>CREATOR's REWARD</span>
-            <p>{completedCards.reward}</p>
-            <NavLink
-            to="/app"
-            className="btn my-3 p-4 fw-bold justify-content-between d-flex"
-            style={{ backgroundColor: "#fff", color: "#000", width: "400px", position:"absolute", bottom:"15px", right:"20px" }}
-          >
-            PLACE BET
-            <MdOutlineArrowForwardIos className="mt-1" />
-          </NavLink>
-        </div>
-    </div>}
+                {completedCards.validate ? '' : <div className="card my-4" key={index} style={{ backgroundColor: "#1c1c1c", borderRadius: "10px", }}>
+                    <div className="card-header text-secondary">
+                        <span>#{completedCards.subcategory}</span>
+                        <h4 className='text-light fs-5'>{completedCards.name}</h4>
+                        <div className='justify-content-between d-flex'>
+                            <span>Starts: {getdays(completedCards.starttime)}</span>
+                            <span>Ends: {getdays(completedCards.endtime)}</span>
+                        </div>
+                    </div>
+                    <div className="card-body bg-dark text-light">
+                        <span className="card-text">ODDS</span>
+                        <p>{completedCards.teamone}<br />{completedCards.teamtwo}<br />DRAW</p>
+                        <span>POOL SIZE</span>
+                        <p>{completedCards.poolsize / 10 ** 18}</p>
+                        <span>CREATOR's REWARD</span>
+                        <p>{completedCards.reward}</p>
+                        <NavLink
+                            to="/app"
+                            className="btn my-3 p-4 fw-bold justify-content-between d-flex"
+                            style={{ backgroundColor: "#fff", color: "#000", width: "400px", position: "absolute", bottom: "15px", right: "20px" }}
+                        >
+                            PLACE BET
+                            <MdOutlineArrowForwardIos className="mt-1" />
+                        </NavLink>
+                    </div>
+                </div>}
             </>
         )
     }
-   
-    setInterval(()=>{
-        if(window.eventTitle2 && window.description2 && window.url2){
+
+    setInterval(() => {
+        if (window.eventTitle2 && window.description2 && window.url2) {
             window.FILL = true
         }
-        
-    },200)
+
+    }, 200)
 
     return (
         <div className='createEvent-main py-3'>
@@ -149,23 +149,23 @@ export default function CreateEvent() {
                 {historyVisibility && <button onClick={() => setHistoryVisibility(false)} id='history'><FiArrowLeft />&nbsp; BACK</button>}
                 <button onClick={() => setHistoryVisibility(true)} id='history' className='ms-auto'>History &nbsp;<img src={icon} alt="" /></button>
             </div>
-            <div className='multistep my-5 mx-auto' style={historyVisibility === false ? {display:"block"} : {display: "none"}}>
-            <MultiStep steps={steps} showNavigation={true} fill={true} nextStyle={{backgroundColor:"#fff", color:"#000", width:"100%", margin:"25px auto", display:"block", border:"none", padding:"8px 20px", borderRadius:"5px", fontWeight:"bold"}} prevStyle={{backgroundColor:"#fff", color:"#000", width:"100%", margin:"25px auto", display:"block", border:"none", padding:"8px 20px", borderRadius:"5px", fontWeight:"bold"}}/>
-        </div>
+            <div className='multistep my-5 mx-auto' style={historyVisibility === false ? { display: "block" } : { display: "none" }}>
+                <MultiStep steps={steps} showNavigation={true} fill={true} nextStyle={{ backgroundColor: "#fff", color: "#000", width: "100%", margin: "25px auto", display: "block", border: "none", padding: "8px 20px", borderRadius: "5px", fontWeight: "bold" }} prevStyle={{ backgroundColor: "#fff", color: "#000", width: "100%", margin: "25px auto", display: "block", border: "none", padding: "8px 20px", borderRadius: "5px", fontWeight: "bold" }} />
+            </div>
 
             {/* HISTORY */}
-            <div className="container-fluid completed mt-5" style={historyVisibility === true ? {display:"block"} : {display: "none"}}>
+            <div className="container-fluid completed mt-5" style={historyVisibility === true ? { display: "block" } : { display: "none" }}>
                 <div className="col-md-3">
-                    <select className="form-select bg-dark border-0 text-light py-3" id="specificSizeSelect" onChange={(e)=>setOption(e.target.value)}>
+                    <select className="form-select bg-dark border-0 text-light py-3" id="specificSizeSelect" onChange={(e) => setOption(e.target.value)} style={{borderRadius:"10px"}}>
                         <option selected value={1}>COMPLETED</option>
                         <option value={2}>PENDING</option>
                     </select>
                 </div>
                 {option == 1 ? <div className="container-fluid">
-                    {completed.map((data)=>renderCompleted(data))}
+                    {completed.map((data) => renderCompleted(data))}
                 </div> : option == 2 ? <div className="container-fluid">
-                    {completed.map((data)=>renderNotCompleted(data))}
-                </div>: ''}
+                    {completed.map((data) => renderNotCompleted(data))}
+                </div> : ''}
             </div>
         </div>
     )

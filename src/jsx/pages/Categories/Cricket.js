@@ -555,7 +555,7 @@ class GameCard extends Component {
         </div>
         <div className=" sub-catogries mt-0 p-1 p-md-5 text-white" id="navbarsExample05">
           <div style={{overflow:'visible'}}>
-          <p className="text-white" style={{fontSize:'12px'}}>SELECT SUB CATOGORY</p>
+          <p className="text-white" style={{fontSize:'12px'}}>SELECT SUB CATEGORY</p>
             <div className='main-dropdown' disabled >
             <div class="dropdown subcategory">
             <button
