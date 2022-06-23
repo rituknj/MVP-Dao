@@ -6,7 +6,7 @@ import { StepTwo } from '../../components/Elements/StepTwo';
 import MultiStep from 'multistep-by-nikhil'
 import icon from '../../../images/icon-park-outline_history-query.png'
 import { FiArrowLeft } from 'react-icons/fi'
-import { CreatorReward } from './../../../web3/betsMVPService'
+import { CreatorReward, UserEventHistory } from './../../../web3/betsMVPService'
 import { MdOutlineArrowForwardIos } from 'react-icons/md'
 import { NavLink } from 'react-router-dom';
 let FILL = false
@@ -23,12 +23,18 @@ export default function CreateEvent() {
 
     useLayoutEffect(() => {
         const completed = async () => {
+            const events = []
+            const userEvnet = await UserEventHistory()
+            console.log("User Event",userEvnet)
             const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
             decodestoredevents.forEach(async (element) => {
-                const reward = await CreatorReward(element.id)
-                element.creatoraward = reward
+                if(userEvnet.includes(element.id)){
+                    const reward = await CreatorReward(element.id)
+                    element.creatoraward = reward
+                    events.push(element)
+                }
             });
-            setCompleted(decodestoredevents)
+            setCompleted(events)
         }
         completed();
         window.eventTitle2 = window.eventTitle
