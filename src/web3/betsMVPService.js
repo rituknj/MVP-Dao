@@ -358,13 +358,11 @@ export const getTotalValidatorRewardEarned = async()=>{
 
 export const totalAmountWon =async()=>{
     let wonamount = 0 
-    const userlist = await activeuserslist();
-    const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-    userlist.forEach(address => {
-        decodestoredevents.forEach(async(event )=> {
-            const won = await getUserWonAmount(event.id,address);
-            wonamount = wonamount + won
-        });
-    });
-    return wonamount
+    const eventsid = await userBethistory();
+    for(let i = 0; i < eventsid.length; i++){
+        const won = await GetUserWonAmountOnEvent(eventsid[i]);
+        wonamount = wonamount + Number(won)
+        console.log("total amount won on all evnets",wonamount)
+    }
+    return wonamount;
 }

@@ -2,7 +2,7 @@ import { one, zero } from "big-integer";
 import React,{useEffect,useState} from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import {ImStopwatch, ImFire} from 'react-icons/im'
-import { getusertotalwinnings, UserEventHistory, GetUserWonAmountOnEvent, claimrewards,BoostEvent , userBethistory, AmountStackOnEventByaUser,gettotaluserwageramount } from "../../../web3/betsMVPService";
+import {UserEventHistory, GetUserWonAmountOnEvent, claimrewards,BoostEvent , userBethistory, totalAmountWon,gettotaluserwageramount } from "../../../web3/betsMVPService";
 
 
 export default function BetSlip() {
@@ -22,16 +22,11 @@ export default function BetSlip() {
       let usereventhty = []
       usereventhty = await UserEventHistory();
       setTotalUserEvent(usereventhty.length)
-      const totalwinning = await getusertotalwinnings();
+      const totalwinning = await totalAmountWon();
       const userbethty = await userBethistory()
       setTotalUserBetHistory(userbethty.length)
       stake = await gettotaluserwageramount()
-      // userbethty.forEach(async (ele) =>{
-      //   const amountstake = await AmountStackOnEventByaUser(ele)
-      //   stake = Number(amountstake) + stake
-        
-      //   setTotalUserBetLost(stake/10**18)
-      // })
+      
       setTotalUserBetLost(stake/10**18)
       setUserTotalWinning(totalwinning) 
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
