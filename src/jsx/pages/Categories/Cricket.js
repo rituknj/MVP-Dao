@@ -192,18 +192,7 @@ class GameCard extends Component {
     let check2;
     for (let i = decodestoredevents.length - 1; i >= 0; i--) {
       check2 = decodestoredevents[i];
-      console.log(
-        check2.subcategory == sub &&
-          Number(check2.Categories) == window.maincatNum,
-        check2.subcategory,
-        sub,
-        Number(check2.Categories),
-        window.maincatNum
-      );
-      if (
-        check2.subcategory == sub &&
-        Number(check2.Categories) == window.maincatNum
-      ) {
+   if (check2.subcategory == sub && Number(check2.Categories) == window.maincatNum) {
         console.log(check2);
         events.push(check2);
       }
@@ -1580,7 +1569,7 @@ class GameCard extends Component {
                     <div className="game-cards row">
                       {this.state.allevents.map((events) => (
                         <>
-                          {Number(events.teamtwoParticipate) == 0 && events.isboosted ? (
+                          {(Number(events.teamtwoParticipate) == 0 || Number(events.teamOneParticipate) == 0) && events.isboosted ? (
                             <div className="col" id={`${events.id}`}>
                               <div
                                 className="card game-card overflow-hidden"

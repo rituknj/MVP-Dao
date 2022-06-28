@@ -72,7 +72,7 @@ export default function BetSlip() {
   
   const upcommingDate=(time)=>{
     var current = Math.round(new Date().getTime()/1000)
-    var seconds =  (time/1000)-current 
+    var seconds =  (time)-current 
     var day = Math.floor(seconds/86400)
     if(day>0){
       return day;
