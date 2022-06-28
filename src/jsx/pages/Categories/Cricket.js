@@ -24,7 +24,7 @@ import { GoPrimitiveDot } from "react-icons/go";
 import { TiStopwatch } from "react-icons/ti";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { ImFire } from "react-icons/im";
-import {FaMinus} from 'react-icons/fa'
+import { FaMinus } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 // import { Modal, RadioGroup, Radio, ButtonToolbar, Button, Paragraph   } from 'rsuite';
 
@@ -647,7 +647,7 @@ class GameCard extends Component {
                 src={Search}
                 width={22}
                 height={22}
-                style={{marginTop:"5px"}}
+                style={{ marginTop: "5px" }}
                 onClick={() => this.SearchCategory(this.state.searchItem)}
               />
             </div>
@@ -714,7 +714,7 @@ class GameCard extends Component {
             <div className="match-main-div">
               <div className="theam-bg-dark mt-2 mt-md-5 p-1 p-md-5">
                 <div className="betting-cards" onClick={this.mouseclass}>
-                  {/* *******************Slider*************** */}
+                  {/* Slider */}
                   <div className="sidebarNew shadow-lg gx-3" id="sidebar">
                     <div className="container-fluid category-title py-4">
                       <div className="d-flex justify-content-between">
@@ -773,7 +773,8 @@ class GameCard extends Component {
                             className="text-white mb-1"
                             style={{ fontSize: "10px" }}
                           >
-                            Close &nbsp;<FaMinus size={14}/>
+                            Close &nbsp;
+                            <FaMinus size={14} />
                           </div>
                         </div>
                       </div>
