@@ -25,6 +25,11 @@
   }
   #AdminSidebar{
     z-index: 5;
+    height: 86%;
+  }
+  #AdminSidebar .pro-sidebar{
+    margin-top: -30px;
+    height: 110%;
   }
   #admin-navbar-nav a{
     font-size: 16px;
@@ -38,6 +43,7 @@
   }
   .adminGlobalContainer{
     margin: 15px auto 0px auto;
+    border-radius: 0px !important;
   }
   #section-statistics .row{
     width: 90% !important;
@@ -51,6 +57,13 @@
   .createEvent-main .multistep{
     padding: 25px 20px !important;
     width: 90%;
+  }
+  .sub-catogries{
+    justify-content: center;
+    align-items: center;
+  }
+  .outerRow, .betslip-main .row, .validate-event-main .row{
+    border-radius: 0 !important;
   }
 }
 
@@ -381,8 +394,42 @@
   .self-pause{
     width: 90% !important;
   }
+  .appTopInfo{
+    padding-top: 20px !important;
+    padding-bottom: 0px !important;
+  }
+  .top-image{
+    height: 250px;
+  }
+  .categories-dropdown button{
+    width: 100%;
+  }
+  .categories-dropdown{
+    position: relative !important;
+    right: 0;
+    bottom: 0;
+  }
+  .eventDrpDwn{
+    width: 100%;
+  }
+  .eventDrpDwn button{
+    width: 100%;
+  }
+  .sub-tools{
+    width: 100%;
+  }
+  .sub-tools .search-bar{
+    width: 90%;
+  }
 }
-
+@media only screen and (min-device-width: 355px) and (max-device-width: 376px){
+  .belowPlay{
+    margin-top: 150px;
+  }
+  .self-help-main .amount .btn{
+    font-size: 12px;
+  }
+}
 /* Smartphones (landscape) ----------- */
 @media only screen and (min-width: 321px) {
   /* Styles */
@@ -392,7 +439,7 @@
 @media only screen and (max-width: 320px) {
   /* Styles */
 }
-@media only screen and (max-width: 365px) {
+@media only screen and (max-width: 395px) {
   #admin-navbar-nav a, #admin-navbar-nav .nav-item span{
     font-size: 10px;
   }
@@ -432,8 +479,10 @@
 }
 
 /* iPhone 4 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
-  /* Styles */
+@media only screen and (min-device-width: 350px) and (max-device-width: 400px){
+  .self-help-main .row .col-lg-6 .customAmount{
+    font-size: 12px !important;
+  }
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {

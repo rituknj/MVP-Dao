@@ -89,7 +89,7 @@ class Index extends Component {
                       }
                       onClick={() => this.setState({ showAdminSlider: 2 })}
                     >
-                      Create Event
+                      CREATE EVENT
                     </MenuItem>
                     <MenuItem
                       active={this.state.showAdminSlider == 3 ? true : false}

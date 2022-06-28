@@ -27,7 +27,7 @@ const AdminSidebar = (props) => {
           <SidebarContent>
             <Menu>
               {/* <MenuItem icon={<img src={tickets} style={{color:"#fff"}} alt=""/>}>BET SLIP</MenuItem> */}
-              <MenuItem active={true} icon={<img src={plus} alt=""/>}>Create Event</MenuItem>
+              <MenuItem active={true} icon={<img src={plus} alt=""/>}>CREATE EVENT</MenuItem>
               <MenuItem icon={<img src={validate} alt=""/>}>VALIDATE EVENTS</MenuItem>
               <MenuItem icon={<img src={self} alt=""/>}>SELF HELP</MenuItem>
               <hr />

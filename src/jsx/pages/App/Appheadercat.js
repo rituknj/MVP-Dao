@@ -97,7 +97,7 @@ class Index extends Component {
             >
               {window.maincat == "Main Category" ? "CATOGRIES" : window.maincat}
             </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
+            <ul className="dropdown-menu w-100" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
               <li>
                 <button className="dropdown-item" type="button" onClick={()=>this.handlechange("SPORTS")} >
                 SPORTS

@@ -1658,9 +1658,11 @@ footer button {
 
 .ecosystem {
   background-color: #232323;
-  height: 300px;
+  height: 400px;
+  width: 300px;
   transition: 200ms ease-in-out;
   z-index: 10;
+  overflow: visible !important;
 }
 .ecosystem img{
   filter: grayscale(100%);
@@ -1852,7 +1854,8 @@ footer button {
 }
 .sub-tools{
   display: flex;
-  gap: 30px;
+  gap: 15px;
+  padding-bottom: 30px;
 }
 
 .sub-tools img{
@@ -1870,8 +1873,13 @@ footer button {
   align-items: baseline;
   gap: 20px;
 }
-.game-cards .card{
-  width: 350px;
+.game-cards{
+  justify-content: space-between;
+  --bs-gutter-x: 0 !important
+}
+.game-cards .col{
+  width: 33%;
+  min-width: 350px;
   margin: 15px auto;
 }
 
@@ -2302,7 +2310,7 @@ input::-webkit-inner-spin-button {
   background: #151515;
   border-radius: 5px;
   outline: none;
-  padding: 5px;
+  padding-right: 5px;
 }
 .search-bar input{
   background: #151515;

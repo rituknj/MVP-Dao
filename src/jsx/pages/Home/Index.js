@@ -521,7 +521,7 @@ class Index extends Component {
                 data-aos-duration="1000"
                 data-aos-easing="linear"
               >
-                <div className="col-lg-12">
+                <div className="col-lg-12 belowPlay">
                   <Carousel
                     swipeable={true}
                     draggable={true}
@@ -662,7 +662,7 @@ class Index extends Component {
                       <h4 className="text-white mt-4">
                         {/* {(this.state.payout / 10 ** 18).toFixed(0)} B USD */}
                       </h4>
-                      <img src={eco1} alt="" />
+                      <img src={eco1} alt="" style={{width:"125%", marginLeft:"-40px"}}/>
                     </div>
 
                     <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
@@ -680,7 +680,7 @@ class Index extends Component {
                         P2P BETTING
                       </h5>
                       {/* <h4 className="text-white mt-4">P2P BETTING</h4> */}
-                      <img src={eco2} alt="" />
+                      <img src={eco2} alt="" style={{width:"128%", marginLeft:"-40px"}}/>
                     </div>
 
                     <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
@@ -725,7 +725,7 @@ class Index extends Component {
                 keyBoardControl={true}
                 customTransition="all .5"
                 transitionDuration={500}
-                containerClass="carousel-container"
+                containerClass="carousel-container w-100"
                 removeArrowOnDeviceType={["tablet", "mobile"]}
                 deviceType={this.props.deviceType}
                 itemClass="d-flex justify-content-center align-items-center flex-column"
@@ -766,7 +766,7 @@ class Index extends Component {
                 keyBoardControl={true}
                 customTransition="all .5"
                 transitionDuration={500}
-                containerClass="carousel-container"
+                containerClass="carousel-container w-100"
                 removeArrowOnDeviceType={["tablet", "mobile"]}
                 deviceType={this.props.deviceType}
                 itemClass="d-flex justify-content-center align-items-center flex-column"

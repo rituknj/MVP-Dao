@@ -121,9 +121,9 @@ export default function SelfHelp() {
 
   return (
     <div className="self-help-main">
-      <div className="outerRow px-5 py-5 px-xl-4 px-xxl-5 mb-3">
+      <div className="outerRow px-0 px-sm-4 py-5 px-xl-4 px-xxl-5 mb-3">
         <div className="row justify-content-xl-around justify-content-lg-between justify-content-center row-cols-auto mx-auto p-3 p-md-5" style={{ backgroundColor: "#1C1C1C", borderRadius: "10px", boxShadow: "10px 10px 4px #000" }}>
-          <div className="col-lg-8">
+          <div className="col-lg-8 mb-5">
             <p>
               want to take a break from betting? set a temporary restriction on
               your account using the custom selector below to pause betting on
@@ -154,7 +154,7 @@ export default function SelfHelp() {
                 aria-expanded="false"
               >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT DURATION
               </button>
-              <ul className="dropdown-menu" aria-labelledby="dropdownMenu2" style={{ backgroundColor: "#4D4A4A" }}>
+              <ul className="dropdown-menu w-100" aria-labelledby="dropdownMenu2" style={{ backgroundColor: "#4D4A4A" }}>
                 <li>
                   <button className="dropdown-item" type="button">
                     1 WEEK
@@ -217,7 +217,7 @@ export default function SelfHelp() {
               <MdOutlineArrowForwardIos className="mt-1" />
             </button>
           </div>
-          <div className="col-lg-4 d-flex justify-content-center align-items-center self-timer">
+          <div className="col-lg-4 d-flex justify-content-start justify-content-md-center align-items-center self-timer">
             <CountdownCircleTimer
               isPlaying
               size={300}

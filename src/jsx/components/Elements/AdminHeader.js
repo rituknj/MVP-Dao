@@ -72,12 +72,12 @@ class AdminHeader extends Component {
                   onHide={() => this.setState({ modalShow: false })}
                 />
               </ul>
-              <button
+              {window.location.pathname.includes("admin") && <button
                 className="btn text-light fs-4 d-md-none mt-n2"
                 onClick={() => this.slidbarcollapsed(true)}
               >
                 <GiHamburgerMenu />
-              </button>
+              </button>}
             </div>
           </div>
         </nav>
