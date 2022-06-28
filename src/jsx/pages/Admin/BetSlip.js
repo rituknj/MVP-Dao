@@ -255,26 +255,26 @@ export default function BetSlip() {
   return (
     <div className="container-fluid betslip-main">
       {/* CARD STAT */}
-      <div className="row py-3 px-2 mb-3  justify-content-lg-evenly betCards row-cols-auto">
-        <div className="col mx-4 px-3 py-2 my-3 mx-1 col-w">
+      <div className="row py-3 px-2 mb-3 betCards row-cols-auto">
+        <div className="col px-3 py-2 my-3 col-w">
           <span>TOTAL</span>
           <h5>BETS MADE</h5>
           <hr className="text-light" />
           <p>{totaluserBetHistory}</p>
         </div>
-        <div className="col mx-4 px-3 py-2 my-3 mx-1 col-b">
+        <div className="col px-3 py-2 my-3 col-b">
           <span>TOTAL</span>
           <h5>EVENT CREATED</h5>
           <hr className="text-primary" />
           <p>{totalEvnetUserHistory}</p>
         </div>
-        <div className="col mx-4 px-3 py-2 my-3 mx-1 col-r">
+        <div className="col px-3 py-2 my-3 col-r">
           <span>TOTAL</span>
           <h5>AMOUNT WAGERED</h5>
           <hr className="text-danger" />
           <p>${(totaluserbetlost)}</p>
         </div>
-        <div className="col mx-4 px-3 py-2 my-3 mx-1 col-g">
+        <div className="col px-3 py-2 my-3 col-g">
           <span>TOTAL</span>
           <h5>AMOUNT WON</h5>
           <hr className="text-success" />
@@ -295,7 +295,7 @@ export default function BetSlip() {
             onChange={(e)=>setHistroyEvents(e.target.options.selectedIndex)}
           >
             <option selected >ACTIVE</option>
-            <option >UPCOMING</option>
+            <option >INACTIVE</option>
             <option >HISTORY</option>
           </select>
         </div>

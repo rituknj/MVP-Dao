@@ -16,20 +16,16 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { initInstance, loginProcess } from "./../../../web3/web3";
 import NFTs from "./../../../images/nfts.png";
-import menone from "./../../../images/manone.png";
-import women from "./../../../images/womenone.png";
-import womentwo from "./../../../images/womentwo.png";
 import emailImg from "./../../../images/email.png";
 import Partners from "./../../../images/unreal.png";
 import Binance from "./../../../images/binance.png";
 import Saga from "./../../../images/saga.png";
+import topBG from "./../../../images/topBG.png";
 import Football from "./../../../images/football.png";
 import Playstation from "./../../../images/playstation.png";
 import { FaTwitter } from "react-icons/fa";
 import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai";
 import { Watch } from "react-loader-spinner";
-import particlesConfig from "./particles-config";
-import { loadFull } from "tsparticles";
 
 import {
   allactiveusers,
@@ -39,7 +35,6 @@ import {
   getActiveEvents,
 } from "../../../web3/betsMVPService";
 import { TotalEventsCount } from "../../../web3/Countallevents";
-import Particles from "react-tsparticles";
 
 ////Images
 import eco1 from "./../../../images/eco1.png";
@@ -369,16 +364,6 @@ class Index extends Component {
       </div>
     )
   }
-
-  particlesInit = async (main) => {
-    console.log(main);
-    await loadFull(main);
-  };
-
-  particlesLoaded = (container) => {
-    console.log(container);
-  };
-
   render() {
     // setInterval(()=>{
     //   window.allEvents = this.state.events
@@ -387,84 +372,6 @@ class Index extends Component {
 
     return (
       <Fragment onClick={this.moussecloas}>
-        <Particles
-          style={{ zIndex: "-1" }}
-          options={{
-            background: {
-              color: {
-                value: "#000",
-              },
-            },
-            fpsLimit: 60,
-            interactivity: {
-              events: {
-                onClick: {
-                  enable: true,
-                  mode: "push",
-                },
-                onHover: {
-                  enable: true,
-                  mode: "repulse",
-                },
-                resize: true,
-              },
-              modes: {
-                push: {
-                  quantity: 4,
-                },
-                repulse: {
-                  distance: 100,
-                  duration: 0.4,
-                },
-              },
-            },
-            particles: {
-              color: {
-                value: "#FF0101",
-              },
-              links: {
-                color: "#FF0101",
-                distance: 150,
-                enable: true,
-                opacity: 0.5,
-                width: 1,
-              },
-              collisions: {
-                enable: true,
-              },
-              move: {
-                direction: "none",
-                enable: true,
-                outModes: {
-                  default: "bounce",
-                },
-                random: false,
-                speed: 3,
-                straight: false,
-              },
-              number: {
-                density: {
-                  enable: true,
-                  area: 800,
-                },
-                value: 80,
-              },
-              opacity: {
-                value: 0.5,
-              },
-              shape: {
-                type: "square",
-              },
-              size: {
-                value: { min: 1, max: 5 },
-              },
-            },
-            detectRetina: true,
-          }}
-          id="tsparticles"
-          init={this.particlesInit}
-          loaded={this.particlesLoaded}
-        />
         <Header />
         <div onClick={this.moussecloas} style={{ position: "relative" }}>
           <div className="topBoxBg">
@@ -791,16 +698,16 @@ class Index extends Component {
               <div className="space-50"></div>
               <Carousel
                 swipeable={true}
-                draggable={false}
+                draggable={true}
                 arrows={true}
                 showDots={false}
                 responsive={this.state.responsive}
                 ssr={true} // means to render carousel on server-side.
                 infinite={true}
                 autoPlay={true}
-                autoPlaySpeed={1500}
+                autoPlaySpeed={5000}
                 keyBoardControl={true}
-                customTransition="all .5"
+                customTransition="ease-in-out .5"
                 transitionDuration={500}
                 containerClass="carousel-container w-100"
                 removeArrowOnDeviceType={["tablet", "mobile"]}

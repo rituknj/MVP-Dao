@@ -73,6 +73,11 @@
   }
 }
 @media screen and (max-width: 1024px) {
+  .sidebarNew{
+    min-width: 325px;
+    width: 100%;
+    min-height: fit-content;
+  }
   .space-100 {
     height: 10px;
   }
@@ -93,9 +98,6 @@
     font-size: 12px;
 
     font-family: "Montserrat";
-  }
-  .betCards, .validStats{
-    justify-content: space-evenly !important;
   }
   .game-card .team-name {
     font-size: 14px;
@@ -280,9 +282,9 @@
   }
 }
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1870px) {
-  .betCards, .validStats{
+  /* .betCards, .validStats{
     justify-content: start !important;
-  }
+  } */
 }
 @media screen and (max-width: 1440px) {
   .betslip-main .row .col {
@@ -316,6 +318,13 @@
   }
 }
 @media screen and (max-width: 1200px) {
+  .betslip-main .betCards, .validStats{
+    justify-content: start !important;
+  }
+  .betslip-main .row .col, .validStats .col{
+    margin-left: 25px;
+    margin-right: 25px;
+  }
   .homeTopImage{
     justify-content: center;
     height: 250px;
@@ -418,8 +427,13 @@
   .sub-tools{
     width: 100%;
   }
-  .sub-tools .search-bar{
+  .sub-tools .search-bar {
+    position: relative;
     width: 90%;
+  }
+  .sub-tools .search-bar img{
+    position: absolute;
+    right: 15px;
   }
 }
 @media only screen and (min-device-width: 355px) and (max-device-width: 376px){
@@ -436,8 +450,10 @@
 }
 
 /* Smartphones (portrait) ----------- */
-@media only screen and (max-width: 320px) {
-  /* Styles */
+@media only screen and (max-width: 520px) {
+  .betslip-main .row .col, .validStats .col{
+    width: 90% !important;
+  }
 }
 @media only screen and (max-width: 395px) {
   #admin-navbar-nav a, #admin-navbar-nav .nav-item span{
@@ -485,8 +501,10 @@
   }
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
-  /* Styles */
+@media only screen and (min-device-width: 320px) and (max-device-width: 768px){
+  .betting-cards{
+    flex-direction: column;
+  }
 }
 
 /* iPhone 5 ----------- */

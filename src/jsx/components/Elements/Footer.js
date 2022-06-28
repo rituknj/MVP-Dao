@@ -41,16 +41,16 @@ class Footer extends Component {
                         <div className="col-md-2 text-center text-md-start">
                             {/* <p className="text-white font-weight-bold mb-4">INFO</p> */}
                             <ul className="list-unstyled text-small footerList">
-                          <Link to='/about'   className="text-white font-weight-bold" href="#" style={{textDecoration:"none"}}>About</Link> 
+                          <Link to='/about'   className="text-white font-weight-bold" href="#" style={{textDecoration:"none"}}>ABOUT</Link> 
                           <br/> 
                           <br/> 
-                          <li><a className="text-white" href="#">News</a></li>  
+                          <li><a className="text-white" href="#">NEWS</a></li>  
                             </ul>
                         </div>
                         <div className="col-md-2 text-center text-md-start">
                             {/* <p className="text-white font-weight-bold mb-4">INFO</p> */}
                             <ul className="list-unstyled text-small footerList">
-                          <Link to='/about' className="text-white font-weight-bold" href="#" style={{textDecoration:"none"}}>Apps</Link> 
+                          <Link to='/about' className="text-white font-weight-bold" href="#" style={{textDecoration:"none"}}>APPS</Link> 
                           <br/> 
                           <br/> 
                           <li><a className="text-white" href="#">BETTING PLATFORM</a></li>  

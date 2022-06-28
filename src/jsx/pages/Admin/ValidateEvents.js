@@ -196,21 +196,21 @@ export default function ValidateEvents() {
       {/* CARD STAT */}
       <div className="row py-3 px-4 mb-3 justify-content-evenly row-cols-auto validStats flex-wrap">
         <div
-          className="col px-3 mx-4 py-2 my-3 mx-1 col-r"
+          className="col px-3 py-2 my-3 col-r"
         >
           <span>TOTAL</span>
           <h5>EVENTS VALIDATED</h5>
           <hr style={{ color: "#FF4003" }} />
           <p>{allvalidatevents.length}</p>
         </div>
-        <div className="col px-3 mx-4 py-2 my-3 mx-1 col-b">
+        <div className="col px-3 py-2 my-3 col-b">
           <span>TOTAL</span>
           <h5>REWARDS EARNED</h5>
           <hr className="text-primary" />
           <p>{validatorReward/10**18}</p>
         </div>
         <div
-          className="col px-3 mx-4 py-2 my-3 mx-1 col-p"
+          className="col px-3 py-2 my-3 col-p"
         >
           <span>TOTAL</span>
           <h5>VALIDATION POINTS</h5>
@@ -218,7 +218,7 @@ export default function ValidateEvents() {
           <p>{uservalidationpoints}</p>
         </div>
         <div
-          className="col px-3 mx-4 py-2 my-3 mx-1 col-g"
+          className="col px-3 py-2 my-3 col-g"
         >
           <span>PENDING</span>
           <h5>VALIDATION POINTS</h5>

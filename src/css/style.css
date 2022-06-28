@@ -89,6 +89,9 @@ body {
 
 .topBoxBg {
   height: 90vh;
+  background-image: url("../images/topBG.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #section-home h2 {
@@ -579,7 +582,7 @@ footer {
 }
 
 .match-main-div {
-  background: #151515;
+  background: #1C1C1C;
   border: 1px solid #ffffff0a;
 }
 .social-icons img {
@@ -1879,8 +1882,8 @@ footer button {
 }
 .game-cards .col{
   width: 33%;
-  min-width: 350px;
-  margin: 15px auto;
+  min-width: 325px;
+  margin: 15px 15px;
 }
 
 /* ADMIN INDEX */
@@ -2007,10 +2010,12 @@ footer button {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
 }
+.betslip-main .betCards{
+  justify-content: space-evenly;
+}
 .betslip-main .row .col{
-  min-width: 275px;
-  max-width: 340px;
-  width: 100%;
+  min-width: 235px;
+  width: 22%;
   overflow: hidden;
   border-radius: 10px;
   height: 150px;
@@ -2109,9 +2114,8 @@ footer button {
   border-bottom-left-radius: 25px;
 }
 .validate-event-main .row .col{
-  min-width: 275px;
-  max-width: 340px;
-  width: 100%;
+  min-width: 235px;
+  width: 22%;
   background-color: #1c1c1c;
   overflow: hidden;
   color: #fff;
