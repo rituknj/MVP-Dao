@@ -64,6 +64,7 @@ class Index extends Component {
       totalSupply: 0,
       price: 0,
       ambassadorData: [],
+      partnersData: [],
       liquidity: 0,
       activeusers: 0,
       isOpen: false,
@@ -200,6 +201,25 @@ class Index extends Component {
       totalbetsmade: 0,
       activeevents: 0,
     });
+
+
+    // PARTNERS SECTION
+
+    Client.fetch(
+      `*[_type=="partners"] {
+          image{
+              asset -> {
+                _id,
+                  url
+              },
+             alt
+          }
+      }`
+    )
+      .then((data) => this.setState({ partnersData: data }))
+      .catch(console.error);
+
+
     // AOS.init();
 
     request(
@@ -334,6 +354,22 @@ class Index extends Component {
     );
   }
 
+  renderPartners(partnersData, index) {
+    return (
+      <div
+        data-aos="zoom-in"
+        data-aos-duration="400"
+        data-aos-easing="linear"
+        key={index}
+      >
+
+        {partnersData.image && partnersData.image.asset && (
+          <img src={partnersData.image.asset.url} alt="" style={{ width: "100%" }} />
+        )}
+      </div>
+    )
+  }
+
   particlesInit = async (main) => {
     console.log(main);
     await loadFull(main);
@@ -431,7 +467,7 @@ class Index extends Component {
         />
         <Header />
         <div onClick={this.moussecloas} style={{ position: "relative" }}>
-        <div className="topBoxBg">
+          <div className="topBoxBg">
             <div className="container mb-5 mb-md-0" id="section-home">
               <div className="space-100"></div>
               <div className="row">
@@ -472,7 +508,7 @@ class Index extends Component {
                       </NavLink>
                     ) : Number(this.state.events) > 0 &&
                       Number(this.state.events) ==
-                        Number(this.state.decodestoredevents.length) ? (
+                      Number(this.state.decodestoredevents.length) ? (
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
@@ -509,7 +545,7 @@ class Index extends Component {
               </div>
             </div>
           </div>
-          <div style={{backgroundColor:"#000"}}>
+          <div style={{ backgroundColor: "#000" }}>
             <div
               className="container-fluid px-md-5 pt-5 pt-lg-0 mt-5 mt-lg-0"
               id="section-analytics"
@@ -662,7 +698,7 @@ class Index extends Component {
                       <h4 className="text-white mt-4">
                         {/* {(this.state.payout / 10 ** 18).toFixed(0)} B USD */}
                       </h4>
-                      <img src={eco1} alt="" style={{width:"125%", marginLeft:"-40px"}}/>
+                      <img src={eco1} alt="" style={{ width: "125%", marginLeft: "-40px" }} />
                     </div>
 
                     <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
@@ -680,7 +716,7 @@ class Index extends Component {
                         P2P BETTING
                       </h5>
                       {/* <h4 className="text-white mt-4">P2P BETTING</h4> */}
-                      <img src={eco2} alt="" style={{width:"128%", marginLeft:"-40px"}}/>
+                      <img src={eco2} alt="" style={{ width: "128%", marginLeft: "-40px" }} />
                     </div>
 
                     <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
@@ -772,45 +808,7 @@ class Index extends Component {
                 itemClass="d-flex justify-content-center align-items-center flex-column"
               >
                 {/* {this.amessador()} */}
-                <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                >
-                  <img src={Partners} alt="" style={{ width: "100%" }} />
-                </div>
-
-                <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                >
-                  <img src={Binance} alt="" style={{ width: "100%" }} />
-                </div>
-
-                <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                >
-                  <img src={Saga} alt="" style={{ width: "100%" }} />
-                </div>
-
-                <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                >
-                  <img src={Football} alt="" style={{ width: "100%" }} />
-                </div>
-
-                <div
-                  data-aos="zoom-in"
-                  data-aos-duration="400"
-                  data-aos-easing="linear"
-                >
-                  <img src={Playstation} alt="" style={{ width: "100%" }} />
-                </div>
+                {this.state.partnersData.map(this.renderPartners)}
               </Carousel>
             </div>
 
