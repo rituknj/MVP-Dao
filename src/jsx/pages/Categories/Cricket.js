@@ -119,6 +119,8 @@ class GameCard extends Component {
       backdrop: "static",
       path: "/app",
       isboosted: false,
+      filtershow: false,
+      filteractive:0,
       responsive_center: {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -233,76 +235,88 @@ class GameCard extends Component {
   };
 
   Sorting = async (data) => {
-    // JSON.parse(window.localStorage.getItem('events'))
-    let decodestoredevents = this.state.specificCats;
-    const events = [];
-    let check1;
-    let check2;
-    if (data == 1) {
-      for (let i = 0; i < decodestoredevents.length; i++) {
-        for (let j = 0; j < decodestoredevents.length - i - 1; j++) {
-          if (
-            decodestoredevents[j].poolsize > decodestoredevents[j + 1].poolsize
-          ) {
-            var temp = decodestoredevents[j];
-            decodestoredevents[j] = decodestoredevents[j + 1];
-            decodestoredevents[j + 1] = temp;
-          }
-        }
+   // JSON.parse(window.localStorage.getItem('events'))
+   let decodestoredevents = this.state.specificCats
+   const events = []
+   let check1
+   let check2  
+   if(data == 1){
+    console.log(data)
+     this.setState({
+       allevents: JSON.parse(window.localStorage.getItem('events')),
+       activeSubCat:'ALL',
+       filteractive:1
+     })
+   }
+
+   else if(data == 2){
+    console.log(data)
+    for(let i = 0; i < decodestoredevents.length; i++){
+      if(decodestoredevents[i].isboosted){
+        events.push(decodestoredevents[i])
       }
-      this.setState({
-        allevents: decodestoredevents,
-      });
-    } else if (data == 2) {
-      for (let i = 0; i < decodestoredevents.length; i++) {
-        for (let j = 0; j < decodestoredevents.length - i - 1; j++) {
-          if (
-            decodestoredevents[j].poolsize < decodestoredevents[j + 1].poolsize
-          ) {
-            var temp = decodestoredevents[j];
-            decodestoredevents[j] = decodestoredevents[j + 1];
-            decodestoredevents[j + 1] = temp;
-          }
-        }
-      }
-      this.setState({
-        allevents: decodestoredevents,
-      });
-    } else if (data == 3) {
-      let decodestoredevent = JSON.parse(window.localStorage.getItem("events"));
-      for (let i = 0; i < decodestoredevent.length; i++) {
-        for (let j = 0; j < decodestoredevent.length - i - 1; j++) {
-          if (
-            decodestoredevent[j].poolsize > decodestoredevent[j + 1].poolsize
-          ) {
-            var temp = decodestoredevent[j];
-            decodestoredevent[j] = decodestoredevent[j + 1];
-            decodestoredevent[j + 1] = temp;
-          }
-        }
-      }
-      this.setState({
-        allevents: decodestoredevent,
-        activeSubCat: "ALL",
-      });
-    } else {
-      let decodestoredevent = JSON.parse(window.localStorage.getItem("events"));
-      for (let i = 0; i < decodestoredevent.length; i++) {
-        for (let j = 0; j < decodestoredevent.length - i - 1; j++) {
-          if (
-            decodestoredevent[j].poolsize < decodestoredevent[j + 1].poolsize
-          ) {
-            var temp = decodestoredevent[j];
-            decodestoredevent[j] = decodestoredevent[j + 1];
-            decodestoredevent[j + 1] = temp;
-          }
-        }
-      }
-      this.setState({
-        allevents: decodestoredevent,
-        activeSubCat: "ALL",
-      });
     }
+    this.setState({
+      allevents: events,
+      filteractive:2
+    })
+  }
+
+   else if(data == 3){
+    console.log(data)
+     for(let i = 0; i < decodestoredevents.length; i++){
+       if(decodestoredevents[i].poolsize >= 1000){
+         events.push(decodestoredevents[i])
+       }
+     }
+     this.setState({
+       allevents: events,
+       filteractive:3
+     })
+   }
+
+
+   else if(data == 4){
+    console.log(data)
+     const time = new Date().getTime()/1000
+     for(let i = 0; i < decodestoredevents.length; i++){
+       if(time < decodestoredevents[i].starttime){
+         events.push(decodestoredevents[i])
+       }
+     }
+     this.setState({
+       allevents: events,
+       filteractive:4
+     })
+   }
+
+   else if(data == 5){
+    
+    console.log(data)
+    for(let i = 0; i < decodestoredevents.length; i++){
+      if(Number(decodestoredevents[i].endtime)-Number(decodestoredevents[i].starttime) <= 2592000){
+        events.push(decodestoredevents[i])
+      }
+    }
+    this.setState({
+      allevents: events,
+      filteractive:5
+    })
+  }
+
+   else if(data == 6){
+    console.log(data)
+     for(let i = 0; i < decodestoredevents.length; i++){
+       if(decodestoredevents[i].starttime+2592000  >= decodestoredevents[i].endtime){
+         events.push(decodestoredevents[i])
+       }
+     }
+     this.setState({
+       allevents: events,
+       filteractive:6
+     })
+   }
+   
   };
 
   cancelevent = async (id) => {
@@ -491,6 +505,9 @@ class GameCard extends Component {
       this.setState({ selectedcat: false });
     }
   };
+  filtershow = (tab) =>{
+
+  }
 
   render() {
     return (
@@ -660,79 +677,20 @@ class GameCard extends Component {
                 data-bs-toggle="dropdown"
                 type="button"
                 aria-expanded="false"
+                onClick={()=> this.setState({ filtershow : !this.state.filtershow})}
               >
                 <img className="mt-2" src={Filter} width={25} height={25} />
               </span>
-              <ul
-                class="dropdown-menu"
-                aria-labelledby="dropdownMenu2"
-                style={{ backgroundColor: "#4D4A4A" }}
-              >
-                <li>
-                  <button
-                    class="dropdown-item text-white pool"
-                    type="button"
-                    onClick={() => this.Sorting(1)}
-                  >
-                    ALL
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="dropdown-item text-white pool"
-                    type="button"
-                    onClick={() => this.Sorting(2)}
-                  >
-                    Trending Bets
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="dropdown-item text-white pool"
-                    type="button"
-                    onClick={() => this.Sorting(3)}
-                  >
-                    Boosted Bets
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="dropdown-item text-white pool"
-                    type="button"
-                    onClick={() => this.Sorting(4)}
-                  >
-                    Latest Bets
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="dropdown-item text-white pool"
-                    type="button"
-                    onClick={() => this.Sorting(5)}
-                  >
-                    Long Term Bets
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="dropdown-item text-white pool"
-                    type="button"
-                    onClick={() => this.Sorting(6)}
-                  >
-                    Short Term Bets
-                  </button>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
         <div
         // SET DISPLAY CONDITION HERE
-          className="eventFilters container-fluid py-5"
-          style={{ backgroundColor: "#0F0F0F", borderTop: "1px solid #1C1C1C" }}
+          className="eventFilters container-fluid py-5" id='filterdata'
+          style={{ backgroundColor: "#0F0F0F", borderTop: "1px solid #1C1C1C", display:`${this.state.filtershow ? '' : 'none'}`}}
         >
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" color="red" />
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 1 ? "red" : ""}`}  onClick={() => this.Sorting(1)}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">All Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -740,7 +698,7 @@ class GameCard extends Component {
             </p>
           </div>
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" />
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 2 ? "red" : ""}`}  onClick={() => this.Sorting(2)}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">Boosted Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -748,7 +706,7 @@ class GameCard extends Component {
             </p>
           </div>
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" />
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 3 ? "red" : ""}`}  onClick={() => this.Sorting(3)}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">Trending Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -756,7 +714,7 @@ class GameCard extends Component {
             </p>
           </div>
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" />
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 4 ? "red" : ""}`}  onClick={() => this.Sorting(4)}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">Latest Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -764,7 +722,7 @@ class GameCard extends Component {
             </p>
           </div>
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" />
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 5 ? "red" : ""}`}  onClick={() => this.Sorting(5)}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">Short term Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -772,7 +730,7 @@ class GameCard extends Component {
             </p>
           </div>
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" />
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 6 ? "red" : ""}`}  onClick={() => this.Sorting(6)}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">Long term Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -1005,8 +963,7 @@ class GameCard extends Component {
                     <div className="game-cards row">
                       {this.state.allevents.map((events) => (
                         <>
-                          {Number(events.teamtwoParticipate) > 0 &&
-                          Number(events.teamOneParticipate) > 0 ? (
+                          {Number(events.teamtwoParticipate) > 0 && Number(events.teamOneParticipate) > 0 && events.isboosted ? (
                             <div className="col" id={`${events.id}`}>
                               <div
                                 className="card game-card overflow-hidden"
@@ -1137,8 +1094,7 @@ class GameCard extends Component {
                     <div className="game-cards row">
                       {this.state.allevents.map((events) => (
                         <>
-                          {Number(events.teamtwoParticipate) == 0 ||
-                          Number(events.teamOneParticipate) == 0 ? (
+                          {Number(events.teamtwoParticipate) == 0 && events.isboosted ? (
                             <div className="col" id={`${events.id}`}>
                               <div
                                 className="card game-card overflow-hidden"
@@ -1499,8 +1455,7 @@ class GameCard extends Component {
                     <div className="game-cards row">
                       {this.state.allevents.map((events) => (
                         <>
-                          {Number(events.teamtwoParticipate) > 0 &&
-                          Number(events.teamOneParticipate) > 0 ? (
+                          {Number(events.teamtwoParticipate) > 0 && Number(events.teamOneParticipate) > 0 && events.poolsize >= 1000 ? (
                             <div className="col" id={`${events.id}`}>
                               <div
                                 className="card game-card overflow-hidden"
@@ -1631,8 +1586,8 @@ class GameCard extends Component {
                     <div className="game-cards row">
                       {this.state.allevents.map((events) => (
                         <>
-                          {Number(events.teamtwoParticipate) == 0 ||
-                          Number(events.teamOneParticipate) == 0 ? (
+                          {Number(events.teamtwoParticipate) == 0 
+                          && events.poolsize >= 1000 ? (
                             <div className="col" id={`${events.id}`}>
                               <div
                                 className="card game-card overflow-hidden"
