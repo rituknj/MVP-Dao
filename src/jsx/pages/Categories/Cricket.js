@@ -118,6 +118,7 @@ class GameCard extends Component {
       open: false,
       backdrop: "static",
       path: "/app",
+      isboosted: false,
       responsive_center: {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -319,7 +320,8 @@ class GameCard extends Component {
     potentialwins,
     zero,
     one,
-    two
+    two,
+    boosted
   ) => {
     if (isNaN(potentialwins)) {
       potentialwins = 0;
@@ -359,6 +361,7 @@ class GameCard extends Component {
       poolsize: Number(poolsize / 10 ** 18).toFixed(2),
       participant: bettercount,
       potential_wins: potentialwins,
+      isboosted:boosted
     });
 
     document.getElementById("sidebar").style.transform = "translateX(0%)";
@@ -651,56 +654,27 @@ class GameCard extends Component {
                 onClick={() => this.SearchCategory(this.state.searchItem)}
               />
             </div>
-            <div>
-              <span
-                id="dropdownMenu2"
-                data-bs-toggle="dropdown"
-                type="button"
-                aria-expanded="false"
-              >
-                <img className="mt-2" src={Filter} width={25} height={25} />
-              </span>
-              <ul
-                class="dropdown-menu"
-                aria-labelledby="dropdownMenu2"
-                style={{ backgroundColor: "#4D4A4A" }}
-              >
+              <div>
+                <span id="dropdownMenu2" data-bs-toggle="dropdown" type='button' aria-expanded="false" ><img className='mt-2' src={Filter} width={25} height={25} /></span>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"  style={{backgroundColor:"#4D4A4A"}}>
                 <li>
-                  <button
-                    class="dropdown-item text-white pool"
-                    type="button"
-                    onClick={() => this.Sorting(1)}
-                  >
-                    Pool Low to High
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="dropdown-item text-white pool"
-                    type="button"
-                    onClick={() => this.Sorting(2)}
-                  >
-                    Pool High to Low
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="dropdown-item text-white pool"
-                    type="button"
-                    onClick={() => this.Sorting(3)}
-                  >
-                    Pool Low to High (ALL)
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="dropdown-item text-white pool"
-                    type="button"
-                    onClick={() => this.Sorting(4)}
-                  >
-                    Pool High to Low (ALL)
-                  </button>
-                </li>
+                  <button class="dropdown-item text-white pool" type="button" onClick={()=>this.Sorting(1)}>ALL</button>
+              </li> 
+              <li>
+                  <button class="dropdown-item text-white pool" type="button" onClick={()=>this.Sorting(2)}>Trending Bets</button>
+              </li> 
+              <li>
+                  <button class="dropdown-item text-white pool" type="button" onClick={()=>this.Sorting(3)}>Boosted Bets</button>
+              </li> 
+              <li>
+                  <button class="dropdown-item text-white pool" type="button" onClick={()=>this.Sorting(4)}>Latest Bets</button>
+              </li> 
+              <li>
+                  <button class="dropdown-item text-white pool" type="button" onClick={()=>this.Sorting(5)}>Long Term Bets</button>
+              </li> 
+              <li>
+                  <button class="dropdown-item text-white pool" type="button" onClick={()=>this.Sorting(6)}>Short Term Bets</button>
+              </li> 
               </ul>
             </div>
           </div>
@@ -767,7 +741,7 @@ class GameCard extends Component {
                         </div>
                         <div className="col-4 button-row gap-2">
                           <div>
-                            <img src={FIRE} style={{ width: "10px" }} />
+                          <ImFire fill={this.state.isboosted ? "#FF9A02" : "#8c8c8c"}/>
                           </div>
                           <div
                             className="text-white mb-1"
@@ -936,7 +910,8 @@ class GameCard extends Component {
                                     events.potential_wins,
                                     events.zero,
                                     events.one,
-                                    events.two
+                                    events.two,
+                                    events.isboosted
                                   )
                                 }
                               >
@@ -1016,13 +991,7 @@ class GameCard extends Component {
                                   </div>
                                   <div className="col-4 button-row gap-2">
                                     <div>
-                                      <ImFire
-                                        fill={
-                                          events.isboosted
-                                            ? "#fc9b00"
-                                            : "#04c91e"
-                                        }
-                                      />
+                                    <ImFire fill={this.state.isboosted ? "#FF9A02" : "#8c8c8c"}/>
                                     </div>
                                     <div
                                       className="text-white mb-1"
@@ -1067,7 +1036,8 @@ class GameCard extends Component {
                                     events.potential_wins,
                                     events.zero,
                                     events.one,
-                                    events.two
+                                    events.two,
+                                    events.isboosted
                                   )
                                 }
                               >
@@ -1147,13 +1117,7 @@ class GameCard extends Component {
                                   </div>
                                   <div className="col-4 button-row gap-2">
                                     <div>
-                                      <ImFire
-                                        fill={
-                                          events.isboosted
-                                            ? "#fc9b00"
-                                            : "#04c91e"
-                                        }
-                                      />
+                                    <ImFire fill={this.state.isboosted ? "#FF9A02" : "#8c8c8c"}/>
                                     </div>
                                     <div
                                       className="text-white mb-1"
