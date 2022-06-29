@@ -2,8 +2,21 @@ import { one, zero } from "big-integer";
 import React,{useEffect,useState} from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import {ImStopwatch, ImFire} from 'react-icons/im'
-import {UserEventHistory, GetUserWonAmountOnEvent, claimrewards,BoostEvent , userBethistory, totalAmountWon,gettotaluserwageramount } from "../../../web3/betsMVPService";
+import {UserEventHistory, GetUserWonAmountOnEvent, claimrewards,CreatorReward, BoostEvent , userBethistory, totalAmountWon, gettotaluserwageramount,reclaimwager,AmountStackOnEventByaUser } from "../../../web3/betsMVPService";
+import toast, { Toaster } from "react-hot-toast";
 
+const tost = () =>
+  toast.success("Success.", {
+    style: {
+      padding: "16px",
+      color: "#000",
+      marginTop: "75px",
+    },
+    iconTheme: {
+      primary: "#0b0b0b",
+      secondary: "#ffffff",
+    },
+  });
 
 export default function BetSlip() {
   const [events, setEvents] = useState([])
@@ -32,10 +45,14 @@ export default function BetSlip() {
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
 
       decodestoredevents.forEach(async (element) => {
-        for(let i = 0; i < userBethistory.length; i++){
+        for(let i = 0; i < userbethty.length; i++){
           if(Number(element.id) == userbethty[i]){
             let won = await GetUserWonAmountOnEvent(element.id)
+            let reward = await CreatorReward(element.id)
+            let wager = await AmountStackOnEventByaUser(element.id)
             element.won = won
+            element.creatorReward = reward
+            element.userWager = wager
             check.push(element)
           }
         } 
@@ -78,12 +95,25 @@ export default function BetSlip() {
   }
 
   const Boost=async(id)=>{
-      await BoostEvent(id)
+      const data = await BoostEvent(id)
+      if(data.status){
+        tost()
+      }
+  }
+
+  const ReclainWager =async(id)=>{
+    const data = await reclaimwager(id);
+    if(data.status){
+      tost()
+    }
   }
 
 
   const RewardClaim=async(id)=>{
-    await claimrewards(id);
+    const data = await claimrewards(id);
+    if(data.status){
+      tost()
+    }
   }
 
   
@@ -103,7 +133,7 @@ export default function BetSlip() {
             <span className="text-light">
               <GoPrimitiveDot color="green" size={18} /> ACTIVE
             </span>
-            <span className="text-secondary">#{completedCards.subcategory}</span>
+            <span className="text-secondary">#  {completedCards.Categories == 0 ? "SPORT" : completedCards.Categories == 1 ? "E-SPORT" : "OTHER"}</span>
           </div>
           <h5 className="card-title text-center">
           {completedCards.teamone} <span className="text-danger">vs</span>{completedCards.teamtwo}
@@ -151,7 +181,7 @@ export default function BetSlip() {
             <span className="text-light">
               <GoPrimitiveDot color="red" size={18} /> ENDED
             </span>
-            <span className="text-secondary">#{completedCards.subcategory}</span>
+            <span className="text-secondary">#  {completedCards.Categories == 0 ? "SPORT" : completedCards.Categories == 1 ? "E-SPORT" : "OTHER"}</span>
           </div>
           <h5 className="card-title text-center">
           {completedCards.teamone}<span className="text-danger"> vs </span>{completedCards.teamtwo}
@@ -170,27 +200,89 @@ export default function BetSlip() {
           <div className="d-flex justify-content-between text-secondary" style={{fontSize: "12px"}}>
             
             <ul className="p-0" style={{listStyle: "none"}}>
-                <li>{completedCards.zero}% {completedCards.teamone}</li>
+                {/* <li>{completedCards.zero}% {completedCards.teamone}</li>
                 <li>{completedCards.one}% {completedCards.teamtwo}</li>
-                <li>{completedCards.two}% DRAW</li>
-                {/* <br/>
+                <li>{completedCards.two}% DRAW</li> */}
+                <br/>
                 <li style={{fontSize: "14px",color:'#fff'}}>Winner</li>
-                <li style={{fontSize: "17px",color:'#fff'}}>{completedCards.occured == 0 ? completedCards.teamone : completedCards.occured == 1 ? completedCards.teamtwo : "DRAW"}</li> */}
+                <li style={{fontSize: "17px",color:'#fff'}}>{completedCards.ocrd == "0" ? completedCards.teamone : completedCards.ocrd == "1" ? completedCards.teamtwo : "DRAW"}</li>
             </ul>
             <div>
             <p
               className="text-center text-light my-3"
               style={{ fontSize: "12px" }}
             >
-              You Won<br/>
-              <span className="fs-6"> ${completedCards.won/10**18}</span>
+              <p className="text-center fw-bold">
+            YOU WON ${completedCards.won/10**18}<span className="text-success fw-normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + ${completedCards.creatorReward/10**18} creator's reward</span>
+          </p>
               </p>
+
                 &nbsp;&nbsp;&nbsp;{completedCards.won > 0 ? '' :<button onClick={()=>RewardClaim(completedCards.id)} className="btn btn-success ms-auto fw-bold">
-                Claim
-                </button>}&nbsp;&nbsp;&nbsp;
-                {/* <button onClick={()=>Boost(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
-                  BOOST
-                </button> */}
+                CLAIM
+                </button>}
+            </div>
+          </div>
+        </div>
+      </div>:''}
+      </>
+    );
+  };
+
+  const HistoryEvtsNotValidated = (completedCards, index) => {
+    return (
+      <>
+    {completedCards.validationtime < Math.round((new Date()).getTime() / 1000) && !completedCards.validate ? <div
+        className="card my-4"
+        key={index}
+        style={{ backgroundColor: "#1c1c1c", borderRadius:"10px" }}
+      >
+        <div className="card-body">
+          <div
+            className="d-flex justify-content-between"
+            style={{ fontSize: "12px" }}
+          >
+            <span className="text-light">
+              <GoPrimitiveDot color="red" size={18} /> ENDED
+            </span>
+            <span className="text-secondary">#  {completedCards.Categories == 0 ? "SPORT" : completedCards.Categories == 1 ? "E-SPORT" : "OTHER"}</span>
+          </div>
+          <h5 className="card-title text-center">
+          {completedCards.teamone}<span className="text-danger"> vs </span>{completedCards.teamtwo}
+          </h5>
+          <p
+            className="text-center text-light my-3"
+            style={{ fontSize: "12px" }}
+          >
+            POOL SIZE
+            <br />
+            <span className="fs-6">${Number(completedCards.poolsize/10**18).toFixed(2)}</span>
+          </p>
+          <br />
+          <br />
+         
+          <div className="d-flex justify-content-between text-secondary" style={{fontSize: "12px"}}>
+            
+            <ul className="p-0" style={{listStyle: "none"}}>
+                {/* <li>{completedCards.zero}% {completedCards.teamone}</li>
+                <li>{completedCards.one}% {completedCards.teamtwo}</li>
+                <li>{completedCards.two}% DRAW</li> */}
+                <br/>
+                <li style={{fontSize: "14px",color:'#fff'}}>Winner</li>
+                <li style={{fontSize: "17px",color:'#fff'}}>Not Declared</li>
+            </ul>
+            
+            <div>
+                <p
+                  className="text-center text-light my-3"
+                  style={{ fontSize: "12px" }}
+                >
+                    <p className="text-center fw-bold">
+                  YOUR BET ${completedCards.userWager/10**18}
+                </p>
+              </p>
+                <button onClick={()=>ReclainWager(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
+                  RECLAIM WAGERS
+                </button>
             </div>
           </div>
         </div>
@@ -202,7 +294,7 @@ export default function BetSlip() {
   const InActive = (completedCards, index) => {
     return (
       <>
-    {completedCards.endtime < Math.round((new Date()).getTime() / 1000) && !completedCards.validate ?  <div
+    {completedCards.endtime < Math.round((new Date()).getTime() / 1000) && Math.round((new Date()).getTime() / 1000) < completedCards.validationtime ?  <div
         className="card my-4"
         key={index}
         style={{ backgroundColor: "#1c1c1c", borderRadius:"10px"}}
@@ -215,7 +307,7 @@ export default function BetSlip() {
             <span className="text-light">
               <GoPrimitiveDot color="#009dff" size={18} /> UPCOMING
             </span>
-            <span className="text-secondary">#{completedCards.subcategory}</span>
+            <span className="text-secondary">#  {completedCards.Categories == 0 ? "SPORT" : completedCards.Categories == 1 ? "E-SPORT" : "OTHER"}</span>
           </div>
           <h5 className="card-title text-center">
           {completedCards.teamone} <span className="text-danger">vs</span>{completedCards.teamtwo}
@@ -228,6 +320,7 @@ export default function BetSlip() {
             <br />
             <span className="fs-6">${Number(completedCards.poolsize/10**18).toFixed(2)}</span>
           </p>
+          
           <br />
           <br />
          
@@ -253,6 +346,9 @@ export default function BetSlip() {
 
   return (
     <div className="container-fluid betslip-main">
+       <div>
+          <Toaster />
+        </div>
       {/* CARD STAT */}
       <div className="row py-3 px-2 mb-3 betCards row-cols-auto">
         <div className="col px-3 py-2 my-3 col-w">
@@ -295,7 +391,8 @@ export default function BetSlip() {
           >
             <option selected >ACTIVE</option>
             <option >INACTIVE</option>
-            <option >HISTORY</option>
+            <option >HISTORY(Validated)</option>
+            <option >HISTORY(Not Validated)</option>
           </select>
         </div>
         {historyevents == 0 && events.length > 0 ?  
@@ -307,7 +404,10 @@ export default function BetSlip() {
        </div>: historyevents == 2 && events.length > 0 ?
        <div className="container activeBets">
        {userHistory.map((data)=> HistoryEvts(data))}
-     </div> : ''}
+     </div> : historyevents == 3 && events.length > 0 ?
+     <div className="container activeBets">
+     {userHistory.map((data)=> HistoryEvtsNotValidated(data))}
+   </div>:''}
       </div>
     </div>
   );

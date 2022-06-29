@@ -195,7 +195,7 @@ export const claimrewards = async (id) => {
         
     });
     if(resutl.status == true){
-        alert("Claimed Successfully")
+       
     }
     else{
         alert("Failed")
