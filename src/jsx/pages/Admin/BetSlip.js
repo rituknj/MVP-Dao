@@ -305,7 +305,7 @@ export default function BetSlip() {
             style={{ fontSize: "12px" }}
           >
             <span className="text-light">
-              <GoPrimitiveDot color="#009dff" size={18} /> UPCOMING
+              <GoPrimitiveDot color="#009dff" size={18} /> INACTIVE
             </span>
             <span className="text-secondary">#  {completedCards.Categories == 0 ? "SPORT" : completedCards.Categories == 1 ? "E-SPORT" : "OTHER"}</span>
           </div>

@@ -133,7 +133,7 @@ export default function CreateEvent() {
   const renderNotCompleted = (completedCards, index) => {
     return (
       <>
-        {completedCards.validate ? (
+        {completedCards.endtime < Math.round((new Date()).getTime() / 1000) ? (
           ""
         ) : (
           <div
