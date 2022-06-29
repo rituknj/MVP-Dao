@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import greenDot from "./../../../images/green-dot.png";
 import cardBackground from "./../../../images/ground.png";
 import carbon_timer from "./../../../images/carbon_timer.png";
+import { isMobile } from "react-device-detect";
 import {
   placeBet,
   getEventOccurrenceBetAmount,
@@ -313,6 +314,8 @@ class GameCard extends Component {
     await cancelevent(id);
   };
 
+
+  // ******************* handling sliders for different filters*******************************//
   handelSideMenu = async (
     eventid,
     teamone,
@@ -373,6 +376,189 @@ class GameCard extends Component {
     document.getElementById(eventid).style.display = "none";
   };
 
+  handel_Side_Menu_Booted = async (
+    eventid,
+    teamone,
+    teamtwo,
+    endtime,
+    poolsize,
+    bettercount,
+    category,
+    potentialwins,
+    zero,
+    one,
+    two,
+    boosted
+  ) => {
+    if (isNaN(potentialwins)) {
+      potentialwins = 0;
+    }
+
+    // console.log("potential win", potentialwins)
+    await this.countbettors(eventid);
+
+    var current = Math.round(new Date().getTime() / 1000);
+    var seconds = endtime / 1000 - current;
+    var lefttime = Math.floor(seconds / 86400);
+    if (lefttime < 0) {
+      lefttime = 0;
+    }
+
+    if (this.state.active === false) {
+      this.setState({
+        onbetteam: teamone,
+      });
+    }
+    if (this.state.active === true) {
+      this.setState({
+        onbetteam: teamtwo,
+      });
+    }
+    this.setState({
+      globalendtime: endtime,
+      zero: zero,
+      one: one,
+      two: two,
+      endtime: endtime,
+      category: category,
+      id: eventid,
+      teamone: teamone,
+      teamtwo: teamtwo,
+      currenttime: lefttime,
+      poolsize: Number(poolsize / 10 ** 18).toFixed(2),
+      participant: bettercount,
+      potential_wins: potentialwins,
+      isboosted: boosted,
+    });
+
+    document.getElementById("sidebarb").style.transform = "translateX(0%)";
+    document.getElementById("sidebarb").style.position = "relative";
+    document.getElementById(eventid).style.display = "none";
+  };
+
+  handel_Side_Menu_Trending = async (
+    eventid,
+    teamone,
+    teamtwo,
+    endtime,
+    poolsize,
+    bettercount,
+    category,
+    potentialwins,
+    zero,
+    one,
+    two,
+    boosted
+  ) => {
+    if (isNaN(potentialwins)) {
+      potentialwins = 0;
+    }
+
+    // console.log("potential win", potentialwins)
+    await this.countbettors(eventid);
+
+    var current = Math.round(new Date().getTime() / 1000);
+    var seconds = endtime / 1000 - current;
+    var lefttime = Math.floor(seconds / 86400);
+    if (lefttime < 0) {
+      lefttime = 0;
+    }
+
+    if (this.state.active === false) {
+      this.setState({
+        onbetteam: teamone,
+      });
+    }
+    if (this.state.active === true) {
+      this.setState({
+        onbetteam: teamtwo,
+      });
+    }
+    this.setState({
+      globalendtime: endtime,
+      zero: zero,
+      one: one,
+      two: two,
+      endtime: endtime,
+      category: category,
+      id: eventid,
+      teamone: teamone,
+      teamtwo: teamtwo,
+      currenttime: lefttime,
+      poolsize: Number(poolsize / 10 ** 18).toFixed(2),
+      participant: bettercount,
+      potential_wins: potentialwins,
+      isboosted: boosted,
+    });
+
+    document.getElementById("sidebart").style.transform = "translateX(0%)";
+    document.getElementById("sidebart").style.position = "relative";
+    document.getElementById(eventid).style.display = "none";
+  };
+
+  handel_Side_Menu_Latest = async (
+    eventid,
+    teamone,
+    teamtwo,
+    endtime,
+    poolsize,
+    bettercount,
+    category,
+    potentialwins,
+    zero,
+    one,
+    two,
+    boosted
+  ) => {
+    if (isNaN(potentialwins)) {
+      potentialwins = 0;
+    }
+
+    // console.log("potential win", potentialwins)
+    await this.countbettors(eventid);
+
+    var current = Math.round(new Date().getTime() / 1000);
+    var seconds = endtime / 1000 - current;
+    var lefttime = Math.floor(seconds / 86400);
+    if (lefttime < 0) {
+      lefttime = 0;
+    }
+
+    if (this.state.active === false) {
+      this.setState({
+        onbetteam: teamone,
+      });
+    }
+    if (this.state.active === true) {
+      this.setState({
+        onbetteam: teamtwo,
+      });
+    }
+    this.setState({
+      globalendtime: endtime,
+      zero: zero,
+      one: one,
+      two: two,
+      endtime: endtime,
+      category: category,
+      id: eventid,
+      teamone: teamone,
+      teamtwo: teamtwo,
+      currenttime: lefttime,
+      poolsize: Number(poolsize / 10 ** 18).toFixed(2),
+      participant: bettercount,
+      potential_wins: potentialwins,
+      isboosted: boosted,
+    });
+
+    document.getElementById("sidebarl").style.transform = "translateX(0%)";
+    document.getElementById("sidebarl").style.position = "relative";
+    document.getElementById(eventid).style.display = "none";
+  };
+
+
+
+
   setfalse = () => {
     this.setState({
       occurance: 0,
@@ -431,7 +617,7 @@ class GameCard extends Component {
   getdays = (endime) => {
     var current = Math.round(new Date().getTime() / 1000);
     var seconds = endime - current;
-    var day = Math.floor(seconds / 86400);
+    var day = Math.floor(seconds/ 86400);
     if (day > 0) {
       return day;
     } else {
@@ -439,15 +625,76 @@ class GameCard extends Component {
     }
   };
 
+
+
+
+  //*************************** Handing close slider for filder  ***************************//
   mouseclass = (event) => {
     let x = event.screenX;
     let y = event.screenY;
-    if (x > 600) {
+    if (x > 600 && !isMobile) {
       document.getElementById("sidebar").style.transform = "translateX(-200%)";
       document.getElementById("sidebar").style.position = "absolute";
       document.getElementById(this.state.id).style.display = "inline-block";
     }
   };
+
+  inSilderClone =()=>{
+    document.getElementById("sidebar").style.transform = "translateX(-200%)";
+    document.getElementById("sidebar").style.position = "absolute";
+    document.getElementById(this.state.id).style.display = "inline-block";
+  }
+
+  mouseclass_Boosted = (event) => {
+    let x = event.screenX;
+    let y = event.screenY;
+    if (x > 600 && !isMobile) {
+      document.getElementById("sidebarb").style.transform = "translateX(-200%)";
+      document.getElementById("sidebarb").style.position = "absolute";
+      document.getElementById(this.state.id).style.display = "inline-block";
+    }
+  };
+
+  inSilderClone_Boosted =()=>{
+    document.getElementById("sidebarb").style.transform = "translateX(-200%)";
+    document.getElementById("sidebarb").style.position = "absolute";
+    document.getElementById(this.state.id).style.display = "inline-block";
+  }
+
+  mouseclass_Latest = (event) => {
+    let x = event.screenX;
+    let y = event.screenY;
+    if (x > 600 && !isMobile) {
+      document.getElementById("sidebarl").style.transform = "translateX(-200%)";
+      document.getElementById("sidebarl").style.position = "absolute";
+      document.getElementById(this.state.id).style.display = "inline-block";
+    }
+  };
+
+  inSilderClone_Latest =()=>{
+    document.getElementById("sidebarl").style.transform = "translateX(-200%)";
+    document.getElementById("sidebarl").style.position = "absolute";
+    document.getElementById(this.state.id).style.display = "inline-block";
+  }
+
+  mouseclass_Trending = (event) => {
+    let x = event.screenX;
+    let y = event.screenY;
+    if (x > 600 && !isMobile) {
+      document.getElementById("sidebart").style.transform = "translateX(-200%)";
+      document.getElementById("sidebart").style.position = "absolute";
+      document.getElementById(this.state.id).style.display = "inline-block";
+    }
+  };
+
+  inSilderClone_Trending =()=>{
+    document.getElementById("sidebart").style.transform = "translateX(-200%)";
+    document.getElementById("sidebart").style.position = "absolute";
+    document.getElementById(this.state.id).style.display = "inline-block";
+  }
+
+  
+
   winningamount = (amountstake, poolsize) => {
     let totalstake = poolsize + amountstake;
     let winningspercents = (amountstake / totalstake) * 100;
@@ -804,7 +1051,8 @@ class GameCard extends Component {
                           </div>
                           <div
                             className="text-white mb-1"
-                            style={{ fontSize: "10px" }}
+                            style={{ fontSize: "10px",cursor:'pointer'}}
+                            onClick={()=>this.inSilderClone()}
                           >
                             Close &nbsp;
                             <FaMinus size={14} />
@@ -1228,9 +1476,9 @@ class GameCard extends Component {
                   BOOSTED EVENTS &nbsp;&nbsp;
                   <ImFire size={22} color="orange" />
                 </p>
-                <div className="betting-cards" onClick={this.mouseclass}>
+                <div className="betting-cards" onClick={this.mouseclass_Boosted}>
                   {/* Slider */}
-                  <div className="sidebarNew shadow-lg gx-3" id="sidebar">
+                  <div className="sidebarNew shadow-lg gx-3" id="sidebarb">
                     <div className="container-fluid category-title py-4">
                       <div className="d-flex justify-content-between">
                         <div id="img-head">
@@ -1290,7 +1538,8 @@ class GameCard extends Component {
                           </div>
                           <div
                             className="text-white mb-1"
-                            style={{ fontSize: "10px" }}
+                            style={{ fontSize: "10px",cursor:'pointer'}}
+                            onClick={()=>this.inSilderClone_Boosted()}
                           >
                             Close &nbsp;
                             <FaMinus size={14} />
@@ -1443,7 +1692,7 @@ class GameCard extends Component {
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
-                                  this.handelSideMenu(
+                                  this.handel_Side_Menu_Booted(
                                     events.id,
                                     events.teamone,
                                     events.teamtwo,
@@ -1574,7 +1823,7 @@ class GameCard extends Component {
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
-                                  this.handelSideMenu(
+                                  this.handel_Side_Menu_Booted(
                                     events.id,
                                     events.teamone,
                                     events.teamtwo,
@@ -1722,9 +1971,9 @@ class GameCard extends Component {
                     />
                   </svg>
                 </p>
-                <div className="betting-cards" onClick={this.mouseclass}>
+                <div className="betting-cards" onClick={this.mouseclass_Trending}>
                   {/* Slider */}
-                  <div className="sidebarNew shadow-lg gx-3" id="sidebar">
+                  <div className="sidebarNew shadow-lg gx-3" id="sidebart">
                     <div className="container-fluid category-title py-4">
                       <div className="d-flex justify-content-between">
                         <div id="img-head">
@@ -1784,7 +2033,8 @@ class GameCard extends Component {
                           </div>
                           <div
                             className="text-white mb-1"
-                            style={{ fontSize: "10px" }}
+                            style={{ fontSize: "10px",cursor:'pointer' }}
+                            onClick={()=>this.inSilderClone_Trending()}
                           >
                             Close &nbsp;
                             <FaMinus size={14} />
@@ -1937,7 +2187,7 @@ class GameCard extends Component {
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
-                                  this.handelSideMenu(
+                                  this.handel_Side_Menu_Trending(
                                     events.id,
                                     events.teamone,
                                     events.teamtwo,
@@ -2069,7 +2319,7 @@ class GameCard extends Component {
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
-                                  this.handelSideMenu(
+                                  this.handel_Side_Menu_Trending(
                                     events.id,
                                     events.teamone,
                                     events.teamtwo,
@@ -2215,9 +2465,9 @@ class GameCard extends Component {
                     />
                   </svg>
                 </p>
-                <div className="betting-cards" onClick={this.mouseclass}>
+                <div className="betting-cards" onClick={this.mouseclass_Latest}>
                   {/* Slider */}
-                  <div className="sidebarNew shadow-lg gx-3" id="sidebar">
+                  <div className="sidebarNew shadow-lg gx-3" id="sidebarl">
                     <div className="container-fluid category-title py-4">
                       <div className="d-flex justify-content-between">
                         <div id="img-head">
@@ -2277,7 +2527,8 @@ class GameCard extends Component {
                           </div>
                           <div
                             className="text-white mb-1"
-                            style={{ fontSize: "10px" }}
+                            style={{ fontSize: "10px",cursor:'pointer' }}
+                            onClick={()=>this.inSilderClone_Latest()}
                           >
                             Close &nbsp;
                             <FaMinus size={14} />
@@ -2430,7 +2681,7 @@ class GameCard extends Component {
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
-                                  this.handelSideMenu(
+                                  this.handel_Side_Menu_Latest(
                                     events.id,
                                     events.teamone,
                                     events.teamtwo,
@@ -2561,7 +2812,7 @@ class GameCard extends Component {
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
-                                  this.handelSideMenu(
+                                  this.handel_Side_Menu_Latest(
                                     events.id,
                                     events.teamone,
                                     events.teamtwo,
