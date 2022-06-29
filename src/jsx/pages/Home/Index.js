@@ -400,7 +400,7 @@ class Index extends Component {
                       rel="noreferrer"
                       className="btn-md theam-bg-red homeTopBtnDao"
                     >
-                      LAUNCH DAO
+                      TEST DAO
                       <AiOutlineRight
                         style={{ position: "absolute", right: "5px" }}
                         className="mt-1  fw-bold"
@@ -408,16 +408,16 @@ class Index extends Component {
                     </a>
                     {Number(this.state.events) == 0 ? (
                       <NavLink
-                        to="/comingsoon"
+                        to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
                       >
-                        START BETTING
+                        TEST MARKET
                       </NavLink>
                     ) : Number(this.state.events) > 0 &&
                       Number(this.state.events) ==
                       Number(this.state.decodestoredevents.length) ? (
                       <NavLink
-                        to="/comingsoon"
+                        to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
                       >
                         START BETTING
@@ -531,15 +531,15 @@ class Index extends Component {
                         className="m-0"
                         style={{ textShadow: "0px 0px 10px #FFFFFF" }}
                       >
-                        DECENTRALISED
+                        DECENTRALIZED
                       </p>{" "}
                       <h4>ECOSYSTEM</h4>
                     </span>
                   </div>
                   <p>
                     BETSWAMP IS BUILDING A DECENTRALIZED ECOSYSTEM WHERE ALL
-                    IT'S UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO
-                    WHICH PROVIDES INVESTORS A SECURED PLATFORM THEY CAN VOCOUNT
+                    ITS UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO
+                    WHICH PROVIDES INVESTORS A SECURED PLATFORM THEY CAN COUNT
                     ON.
                   </p>
                   <NavLink
@@ -719,7 +719,7 @@ class Index extends Component {
               </Carousel>
             </div>
 
-            <div
+            {/* <div
               className="container-fluid px-md-5 my-5"
               id="section-bet-cards"
             >
@@ -842,7 +842,7 @@ class Index extends Component {
                   <img src={arrowRight} alt="" className="ms-3" width="20" />
                 </button>
               </div>
-            </div>
+            </div> */}
 
             {false ? (
               <div className="container-fluid px-md-5 my-5" id="section-news">

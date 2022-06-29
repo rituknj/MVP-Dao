@@ -60,7 +60,7 @@ const Header=()=> {
                             <form>
                                 <ul className="navbar-nav">
                                     <li className="nav-item px-2 px-md-4">
-                                        <a className="nav-link text-white mt-1" href="https://betdao.netlify.app/re-ui/stake" target='_blank'>DAO</a>
+                                        <a className="nav-link text-white mt-1" href="https://lucky-duckanoo-f4a914.netlify.app/" target='_blank'> TEST DAO</a>
                                     </li>
                                     {/* {allevents > 0 && allevents == downloaded ? <li className="nav-item px-2 px-md-4">
                                         <NavLink className="nav-link text-white mt-1" to="/app">MARKET</NavLink>
@@ -68,6 +68,9 @@ const Header=()=> {
                                     <li className="nav-item px-2 px-md-4">
                                         <div className="nav-link text-white mt-1" to="/app"><Watch width='30' height='30' color='red'/></div>
                                     </li>} */}
+                                    <li className="nav-item px-2 px-md-4">
+                                        <a className="nav-link text-white mt-1" href="https://bet-swamp.gitbook.io/betswamp-v.2.0/the-odd-problem" target='_blank'> DOCS</a>
+                                    </li>
                                     {console.log("window.allEvents",  window.allEvents,window.allEventstorde,Number(window.allEvents) > 0 && Number(window.allEvents) == Number(window.allEventstorde) )}
                                     <li className="nav-item px-2 px-md-4 navWallet" style={{cursor: "pointer"}}>
                                         <span  className="nav-link text-white cursor-pointer" 
