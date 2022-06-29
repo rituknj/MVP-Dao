@@ -13,6 +13,7 @@ import {
   SidebarContent,
 } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
+import {FaRegMoneyBillAlt} from 'react-icons/fa'
 import whh_coins from "../../../images/whh_coins.svg";
 import tickets from "../../../images/ep_tickets.svg";
 import file from "../../../images/gala_file-doc.svg";
@@ -20,6 +21,7 @@ import validate from "../../../images/VALIDATE.svg";
 import plus from "../../../images/ant-design_plus-circle-outlined.svg";
 import self from "../../../images/twemoji_people-hugging.svg";
 import SelfHelp from "./SelfHelp";
+import { Link } from "react-router-dom";
 
 class Index extends Component {
   constructor(props) {
@@ -180,6 +182,13 @@ class Index extends Component {
                       >
                         BETSWAMP DAO
                       </a>
+                    </MenuItem>
+                    <MenuItem icon={<FaRegMoneyBillAlt size={30}/>}>
+                      <Link
+                        to="/app"
+                      >
+                        MARKET
+                      </Link>
                     </MenuItem>
                     <hr />
                     <MenuItem icon={<img src={file} alt="" />}>DOCS</MenuItem>

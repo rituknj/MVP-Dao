@@ -14,6 +14,7 @@ import { MdOutlineArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { GoPrimitiveDot } from "react-icons/go";
+import {FaQuestionCircle} from 'react-icons/fa'
 let FILL = false;
 
 export default function CreateEvent() {
@@ -265,32 +266,50 @@ export default function CreateEvent() {
           <br />
           <div className="my-3">
             <label for="inputEventTitle" className="form-label">
-              EVENT TITLE
+              EVENT TITLE&nbsp;
+              <span
+                type="button"
+                className="fs-5"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Tooltip on top"
+              >
+                <FaQuestionCircle/>
+              </span>
             </label>
             <div className="d-flex">
-            <input
-              type="text"
-              className="form-control w-50"
-              id="inputEventTitle"
-              aria-describedby="eventHelp"
-              required
-              autoFocus
-            />&nbsp;&nbsp;
-            <span className="mt-2 text-danger">V/S</span>&nbsp;&nbsp;
-            <input
-              type="text"
-              className="form-control w-50"
-              id="inputEventTitle"
-              aria-describedby="eventHelp"
-              required
-              autoFocus
-            />
+              <input
+                type="text"
+                className="form-control w-50"
+                id="inputEventTitle"
+                aria-describedby="eventHelp"
+                required
+                autoFocus
+              />
+              &nbsp;&nbsp;
+              <span className="mt-2 text-danger">V/s</span>&nbsp;&nbsp;
+              <input
+                type="text"
+                className="form-control w-50"
+                id="inputEventTitle"
+                aria-describedby="eventHelp"
+                required
+              />
             </div>
           </div>
           <br />
           <div className="my-3">
             <label for="inputEventTitle" className="form-label">
-              DESCRIPTION
+              DESCRIPTION&nbsp;
+              <span
+                type="button"
+                className="fs-5"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Tooltip on top"
+              >
+                <FaQuestionCircle/>
+              </span>
             </label>
             <input
               type="text"
@@ -303,7 +322,16 @@ export default function CreateEvent() {
           <br />
           <div className="my-3">
             <label for="inputEventTitle" className="form-label">
-              URL
+              SOURCE OF VALIDATION&nbsp;
+              <span
+                type="button"
+                className="fs-5"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Tooltip on top"
+              >
+                <FaQuestionCircle/>
+              </span>
             </label>
             <input
               type="url"
@@ -321,7 +349,16 @@ export default function CreateEvent() {
           <br />
           <div className="my-3">
             <label for="inputOutcomeCount" className="form-label">
-              NUMBER OF OUTCOMES
+              NUMBER OF OUTCOMES&nbsp;
+              <span
+                type="button"
+                className="fs-5"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Tooltip on top"
+              >
+                <FaQuestionCircle/>
+              </span>
             </label>
             <select
               className="form-select bg-dark border-0 text-light "
@@ -334,7 +371,16 @@ export default function CreateEvent() {
           <br />
           <div className="mb-3">
             <label for="inputPreferredOutcome" className="form-label">
-              PREFERRED OUTCOME
+              PREFERRED OUTCOME&nbsp;
+              <span
+                type="button"
+                className="fs-5"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Tooltip on top"
+              >
+                <FaQuestionCircle/>
+              </span>
             </label>
             <select
               className="form-select bg-dark border-0 text-light "

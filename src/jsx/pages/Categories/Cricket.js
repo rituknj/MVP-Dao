@@ -45,6 +45,7 @@ import Search from "./../../../images/search.png";
 import Filter from "./../../../images/filter.png";
 import Appheadercat from "./../App/Appheadercat";
 import Soccer from "./../Categories/Soccer";
+import Footer from "../../components/Elements/Footer";
 
 const tost = () =>
   toast.success("Success.", {
@@ -2945,6 +2946,7 @@ class GameCard extends Component {
             </div>}
 
           </div>
+          <Footer/>
           <div style={{ textAlign: "center" }}>
             <h3>V 2.0</h3>
           </div>

@@ -24,7 +24,7 @@ class AdminHeader extends Component {
           position: "fixed",
           zIndex: "5",
           width: "100%",
-          marginBottom: "50px"
+          marginBottom: "50px",
         }}
       >
         <nav
@@ -36,31 +36,63 @@ class AdminHeader extends Component {
               <img src={logo} style={{ height: "50px", width: "50px" }} />
             </a>
             <div className="d-flex">
-
               <ul
                 className="navbar-nav ms-md-auto mb-2 mb-lg-0 flex-row"
                 id="admin-navbar-nav"
               >
-                {window.location.pathname.includes("/app") === true ? "" : (<li className="nav-item px-2">
-                  <NavLink className="nav-link text-white" style={window.location.pathname.includes("/app") === true ? { fontWeight: "700" } : { fontWeight: "400" }} to="/app">
-                    MARKET
-                  </NavLink>
-                </li>)}
-                <li className="nav-item px-2">
-                  <a
-                    className="nav-link text-white"
-                    href="https://lucky-duckanoo-f4a914.netlify.app/"
-                    target="_blank"
-                  >
-                    DAO
-                  </a>
-                </li>
-                {window.location.pathname.includes('/admin') === true ? "" : (<li className="nav-item px-2">
-                  <NavLink className="nav-link text-white" style={window.location.pathname.includes("/admin") === true ? { fontWeight: "700" } : { fontWeight: "400" }} to="/admin">
-                    DASHBOARD
-                  </NavLink>
-                </li>)}
-                <li className="nav-item px-2 mt-1" style={{ cursor: "pointer" }}>
+                {window.location.pathname.includes("/app") === true ||
+                window.location.pathname.includes("/admin") === true ? (
+                  ""
+                ) : (
+                  <li className="nav-item px-2">
+                    <NavLink
+                      className="nav-link text-white"
+                      style={
+                        window.location.pathname.includes("/app") === true
+                          ? { fontWeight: "700" }
+                          : { fontWeight: "400" }
+                      }
+                      to="/app"
+                    >
+                      MARKET
+                    </NavLink>
+                  </li>
+                )}
+                {window.location.pathname.includes("/admin") === true ? (
+                  ""
+                ) : (
+                  <li className="nav-item px-2">
+                    <a
+                      className="nav-link text-white"
+                      href="https://lucky-duckanoo-f4a914.netlify.app/"
+                      target="_blank"
+                    >
+                      DAO
+                    </a>
+                  </li>
+                )}
+                {window.location.pathname.includes("/admin") === true ||
+                window.location.pathname.includes("/comingsoon") === true ? (
+                  ""
+                ) : (
+                  <li className="nav-item px-2">
+                    <NavLink
+                      className="nav-link text-white"
+                      style={
+                        window.location.pathname.includes("/admin") === true
+                          ? { fontWeight: "700" }
+                          : { fontWeight: "400" }
+                      }
+                      to="/admin"
+                    >
+                      DASHBOARD
+                    </NavLink>
+                  </li>
+                )}
+                <li
+                  className="nav-item px-2 mt-1"
+                  style={{ cursor: "pointer" }}
+                >
                   <span
                     className="nav-link text-white cursor-pointer"
                     onClick={() => this.setState({ modalShow: true })}
@@ -73,12 +105,14 @@ class AdminHeader extends Component {
                   onHide={() => this.setState({ modalShow: false })}
                 />
               </ul>
-              {window.location.pathname.includes("admin") && <button
-                className="btn text-light fs-4 d-md-none mt-n2"
-                onClick={() => this.slidbarcollapsed(true)}
-              >
-                <GiHamburgerMenu />
-              </button>}
+              {window.location.pathname.includes("admin") && (
+                <button
+                  className="btn text-light fs-4 d-md-none mt-n2"
+                  onClick={() => this.slidbarcollapsed(true)}
+                >
+                  <GiHamburgerMenu />
+                </button>
+              )}
             </div>
           </div>
         </nav>

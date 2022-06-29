@@ -18,6 +18,7 @@ import Basketball from './../jsx/pages/Categories/Basketball'
 import Baseball from './../jsx/pages/Categories/Baseball'
 import Cricket from './../jsx/pages/Categories/Cricket'
 import Football from './../jsx/pages/Categories/Football'
+import Comingsoon from '../jsx/components/Elements/Comingsoon'
 
 class Web extends Component {
   render() {
@@ -29,6 +30,7 @@ class Web extends Component {
             <Route exact path="/app" component={Cricket} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/comingsoon" component={Comingsoon} />
             {/* <Route exact path="/blogs" component={BLogs} />
             <Route exact path="/news" component={NEWPAGE} /> */}
             {/* <Route exact path="/soccer" component={Soccer} />

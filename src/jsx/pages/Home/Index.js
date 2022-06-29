@@ -408,7 +408,7 @@ class Index extends Component {
                     </a>
                     {Number(this.state.events) == 0 ? (
                       <NavLink
-                        to="/app"
+                        to="/comingsoon"
                         className="btn-md theam-bg-red homeTopBtn"
                       >
                         START BETTING
@@ -417,7 +417,7 @@ class Index extends Component {
                       Number(this.state.events) ==
                       Number(this.state.decodestoredevents.length) ? (
                       <NavLink
-                        to="/app"
+                        to="/comingsoon"
                         className="btn-md theam-bg-red homeTopBtn"
                       >
                         START BETTING
