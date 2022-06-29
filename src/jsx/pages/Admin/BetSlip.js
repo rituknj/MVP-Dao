@@ -95,19 +95,6 @@ export default function BetSlip() {
     else{
       return "00:00:00:00"
     }
-
-
-    // if(day > 0){
-    //   return hour;
-    // }
-    // else{
-    //   return hour;
-    // }
-    // var current = new Date(time-)
-    // var hour = current.getHours();
-    // var min = current.getMinutes();
-    // var second = current.getSeconds();
-  
   }
 
   const Boost=async(id)=>{
