@@ -123,6 +123,7 @@ class GameCard extends Component {
       isboosted: false,
       filtershow: false,
       filteractive:0,
+      startingtime:0,
       responsive_center: {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -329,7 +330,8 @@ class GameCard extends Component {
     zero,
     one,
     two,
-    boosted
+    boosted,
+    start
   ) => {
     if (isNaN(potentialwins)) {
       potentialwins = 0;
@@ -370,6 +372,7 @@ class GameCard extends Component {
       participant: bettercount,
       potential_wins: potentialwins,
       isboosted: boosted,
+      startingtime:start
     });
 
     document.getElementById("sidebar").style.transform = "translateX(0%)";
@@ -389,7 +392,8 @@ class GameCard extends Component {
     zero,
     one,
     two,
-    boosted
+    boosted,
+    start
   ) => {
     if (isNaN(potentialwins)) {
       potentialwins = 0;
@@ -430,6 +434,7 @@ class GameCard extends Component {
       participant: bettercount,
       potential_wins: potentialwins,
       isboosted: boosted,
+      startingtime:start
     });
 
     document.getElementById("sidebarb").style.transform = "translateX(0%)";
@@ -449,7 +454,8 @@ class GameCard extends Component {
     zero,
     one,
     two,
-    boosted
+    boosted,
+    start
   ) => {
     if (isNaN(potentialwins)) {
       potentialwins = 0;
@@ -490,6 +496,7 @@ class GameCard extends Component {
       participant: bettercount,
       potential_wins: potentialwins,
       isboosted: boosted,
+      startingtime:start
     });
 
     document.getElementById("sidebart").style.transform = "translateX(0%)";
@@ -509,7 +516,8 @@ class GameCard extends Component {
     zero,
     one,
     two,
-    boosted
+    boosted,
+    start
   ) => {
     if (isNaN(potentialwins)) {
       potentialwins = 0;
@@ -550,6 +558,7 @@ class GameCard extends Component {
       participant: bettercount,
       potential_wins: potentialwins,
       isboosted: boosted,
+      startingtime: start
     });
 
     document.getElementById("sidebarl").style.transform = "translateX(0%)";
@@ -615,16 +624,32 @@ class GameCard extends Component {
     });
   };
 
-  getdays = (endime) => {
-    var current = Math.round(new Date().getTime() / 1000);
-    var seconds = endime - current;
-    var day = Math.floor(seconds/ 86400);
-    if (day > 0) {
-      return day;
-    } else {
-      return 0;
+  // getdays = (endime) => {
+  //   var current = Math.round(new Date().getTime() / 1000);
+  //   var seconds = endime - current;
+  //   var day = Math.floor(seconds/ 86400);
+  //   if (day > 0) {
+  //     return day;
+  //   } else {
+  //     return 0;
+  //   }
+  // };
+
+  getdays(time){
+    var current = Math.round(new Date().getTime()/1000);
+    var seconds =  time-current 
+    if(seconds > 0){
+      const days = Math.floor(seconds/86400)
+      const hour = Math.floor(seconds / 3600) % 24;
+      const min = Math.floor(seconds / 60) % 60;
+      const sec = seconds % 60;
+      return days
     }
-  };
+    else{
+      return "0"
+    }
+  }
+
 
 
 
@@ -747,7 +772,7 @@ class GameCard extends Component {
   }
 
   getdaysOnCard(time){
-    return new Date(time * 1000).toLocaleString();
+    return new Date(time * 1000).toDateString();
   }
 
   render() {
@@ -931,7 +956,7 @@ class GameCard extends Component {
           style={{ backgroundColor: "#0F0F0F", borderTop: "1px solid #1C1C1C", display:`${this.state.filtershow ? '' : 'none'}`}}
         >
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 1 ? "red" : ""}`}  onClick={() => this.Sorting(1)}/>
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 1 ? "red" : ""}`}  onClick={() => {this.Sorting(1);this.setState({ filtershow : !this.state.filtershow})}}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">All Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -939,7 +964,7 @@ class GameCard extends Component {
             </p>
           </div>
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 2 ? "red" : ""}`}  onClick={() => this.Sorting(2)}/>
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 2 ? "red" : ""}`}  onClick={() => {this.Sorting(2);this.setState({ filtershow : !this.state.filtershow})}}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">Boosted Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -947,7 +972,7 @@ class GameCard extends Component {
             </p>
           </div>
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 3 ? "red" : ""}`}  onClick={() => this.Sorting(3)}/>
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 3 ? "red" : ""}`}  onClick={() => {this.Sorting(3);this.setState({ filtershow : !this.state.filtershow})}}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">Trending Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -955,7 +980,7 @@ class GameCard extends Component {
             </p>
           </div>
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 4 ? "red" : ""}`}  onClick={() => this.Sorting(4)}/>
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 4 ? "red" : ""}`}  onClick={() => {this.Sorting(4);this.setState({ filtershow : !this.state.filtershow})}}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">Latest Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -963,7 +988,7 @@ class GameCard extends Component {
             </p>
           </div>
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 5 ? "red" : ""}`}  onClick={() => this.Sorting(5)}/>
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 5 ? "red" : ""}`}  onClick={() => {this.Sorting(5);this.setState({ filtershow : !this.state.filtershow})}}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">Short term Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -971,7 +996,7 @@ class GameCard extends Component {
             </p>
           </div>
           <div className="px-sm-5 px-0 mb-4">
-            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 6 ? "red" : ""}`}  onClick={() => this.Sorting(6)}/>
+            <FaSquareFull className="mb-1" color={`${this.state.filteractive == 6 ? "red" : ""}`}  onClick={() => {this.Sorting(6);this.setState({ filtershow : !this.state.filtershow})}}/>
             &nbsp;&nbsp;
             <span className="text-light fw-bold">Long term Bets</span>
             <p style={{ color: "#AAAAAA", marginLeft: "25px" }}>
@@ -1019,7 +1044,7 @@ class GameCard extends Component {
                             {this.state.teamtwo}
                           </span>
                         </div>
-                        {/* <div id="date"><p>25 Feb &nbsp;&nbsp;&nbsp;<span>2022</span></p></div> */}
+                        <div id="date"><p>{this.getdaysOnCard(this.state.startingtime)}</p></div>
                       </div>
                       <div className="d-flex mt-5 justify-content-between">
                         <div id="poolSize">
@@ -1221,7 +1246,8 @@ class GameCard extends Component {
                                     events.zero,
                                     events.one,
                                     events.two,
-                                    events.isboosted
+                                    events.isboosted,
+                                    events.starttime
                                   )
                                 }
                               >
@@ -1352,7 +1378,8 @@ class GameCard extends Component {
                                     events.zero,
                                     events.one,
                                     events.two,
-                                    events.isboosted
+                                    events.isboosted,
+                                    events.starttime
                                   )
                                 }
                               >
@@ -1506,7 +1533,7 @@ class GameCard extends Component {
                             {this.state.teamtwo}
                           </span>
                         </div>
-                        {/* <div id="date"><p>25 Feb &nbsp;&nbsp;&nbsp;<span>2022</span></p></div> */}
+                        <div id="date"><p>{this.getdaysOnCard(this.state.startingtime)}</p></div>
                       </div>
                       <div className="d-flex mt-5 justify-content-between">
                         <div id="poolSize">
@@ -1708,7 +1735,8 @@ class GameCard extends Component {
                                     events.zero,
                                     events.one,
                                     events.two,
-                                    events.isboosted
+                                    events.isboosted,
+                                    events.starttime
                                   )
                                 }
                               >
@@ -1839,7 +1867,8 @@ class GameCard extends Component {
                                     events.zero,
                                     events.one,
                                     events.two,
-                                    events.isboosted
+                                    events.isboosted,
+                                    events.starttime
                                   )
                                 }
                               >
@@ -2001,7 +2030,7 @@ class GameCard extends Component {
                             {this.state.teamtwo}
                           </span>
                         </div>
-                        {/* <div id="date"><p>25 Feb &nbsp;&nbsp;&nbsp;<span>2022</span></p></div> */}
+                        <div id="date"><p>{this.getdaysOnCard(this.state.startingtime)}</p></div>
                       </div>
                       <div className="d-flex mt-5 justify-content-between">
                         <div id="poolSize">
@@ -2203,7 +2232,8 @@ class GameCard extends Component {
                                     events.zero,
                                     events.one,
                                     events.two,
-                                    events.isboosted
+                                    events.isboosted,
+                                    events.starttime
                                   )
                                 }
                               >
@@ -2335,7 +2365,8 @@ class GameCard extends Component {
                                     events.zero,
                                     events.one,
                                     events.two,
-                                    events.isboosted
+                                    events.isboosted,
+                                    events.starttime
                                   )
                                 }
                               >
@@ -2495,7 +2526,7 @@ class GameCard extends Component {
                             {this.state.teamtwo}
                           </span>
                         </div>
-                        {/* <div id="date"><p>25 Feb &nbsp;&nbsp;&nbsp;<span>2022</span></p></div> */}
+                        <div id="date"><p>{this.getdaysOnCard(this.state.startingtime)}</p></div>
                       </div>
                       <div className="d-flex mt-5 justify-content-between">
                         <div id="poolSize">
@@ -2697,7 +2728,8 @@ class GameCard extends Component {
                                     events.zero,
                                     events.one,
                                     events.two,
-                                    events.isboosted
+                                    events.isboosted,
+                                    events.starttime
                                   )
                                 }
                               >
@@ -2828,7 +2860,8 @@ class GameCard extends Component {
                                     events.zero,
                                     events.one,
                                     events.two,
-                                    events.isboosted
+                                    events.isboosted,
+                                    events.starttime
                                   )
                                 }
                               >
