@@ -69,7 +69,7 @@ const Header=()=> {
                                         <div className="nav-link text-white mt-1" to="/app"><Watch width='30' height='30' color='red'/></div>
                                     </li>} */}
                                     <li className="nav-item px-2 px-md-4">
-                                        <a className="nav-link text-white mt-1" href="https://bet-swamp.gitbook.io/betswamp-v.2.0/the-odd-problem" target='_blank'> DOCS</a>
+                                        <a className="nav-link text-white mt-1" href="https://bet-swamp.gitbook.io/betswamp-v.2.0/" target='_blank'> DOCS</a>
                                     </li>
                                     {console.log("window.allEvents",  window.allEvents,window.allEventstorde,Number(window.allEvents) > 0 && Number(window.allEvents) == Number(window.allEventstorde) )}
                                     <li className="nav-item px-2 px-md-4 navWallet" style={{cursor: "pointer"}}>
