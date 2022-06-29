@@ -45,7 +45,7 @@ class AdminHeader extends Component {
                   ""
                 ) : (
                   <li className="nav-item px-2">
-                    <NavLink
+                    {/* <NavLink
                       className="nav-link text-white"
                       style={
                         window.location.pathname.includes("/app") === true
@@ -55,7 +55,7 @@ class AdminHeader extends Component {
                       to="/app"
                     >
                       MARKET
-                    </NavLink>
+                    </NavLink> */}
                   </li>
                 )}
                 {window.location.pathname.includes("/admin") === true ? (

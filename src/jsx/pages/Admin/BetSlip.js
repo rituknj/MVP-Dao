@@ -83,15 +83,20 @@ export default function BetSlip() {
   }, [])
   
   const upcommingDate=(time)=>{
-    var current = Math.round(new Date().getTime()/1000)
-    var seconds =  (time)-current 
-    var day = Math.floor(seconds/86400)
-    if(day>0){
-      return day;
-    }
-    else{
-      return 0;
-    }
+    var current = Math.round(new Date().getTime()/1000);
+    var seconds =  time-current 
+    
+    // if(day > 0){
+    //   return hour;
+    // }
+    // else{
+    //   return hour;
+    // }
+    // var current = new Date(time-)
+    // var hour = current.getHours();
+    // var min = current.getMinutes();
+    // var second = current.getSeconds();
+  
   }
 
   const Boost=async(id)=>{
@@ -153,7 +158,7 @@ export default function BetSlip() {
                 <li>{completedCards.two}% DRAW</li>
             </ul>
             <div>
-                <p><ImStopwatch/> 0 DAYS LEFT</p>
+                <p><ImStopwatch/>{upcommingDate(completedCards.endtime)}</p>
                 <ImFire size={20} fill={completedCards.isboosted ? "#FF9A02" : ""}/>&nbsp;&nbsp;&nbsp;<button onClick={()=>Boost(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
                   BOOST
                 </button>
@@ -331,7 +336,7 @@ export default function BetSlip() {
                 <li>{completedCards.two}% DRAW</li>
             </ul>
             <div>
-                <p><ImStopwatch/> {upcommingDate(completedCards.starttime)} DAYS LEFT</p>
+                <p><ImStopwatch/> 00:00:00</p>
                 {/* <ImFire size={20}/>&nbsp;&nbsp;&nbsp;<button onClick={()=>RewardClaim(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
                 Claim
                 </button> */}

@@ -62,17 +62,17 @@ const Header=()=> {
                                     <li className="nav-item px-2 px-md-4">
                                         <a className="nav-link text-white mt-1" href="https://betdao.netlify.app/re-ui/stake" target='_blank'>DAO</a>
                                     </li>
-                                    {allevents > 0 && allevents == downloaded ? <li className="nav-item px-2 px-md-4">
+                                    {/* {allevents > 0 && allevents == downloaded ? <li className="nav-item px-2 px-md-4">
                                         <NavLink className="nav-link text-white mt-1" to="/app">MARKET</NavLink>
                                     </li>:
                                     <li className="nav-item px-2 px-md-4">
                                         <div className="nav-link text-white mt-1" to="/app"><Watch width='30' height='30' color='red'/></div>
-                                    </li>}
+                                    </li>} */}
                                     {console.log("window.allEvents",  window.allEvents,window.allEventstorde,Number(window.allEvents) > 0 && Number(window.allEvents) == Number(window.allEventstorde) )}
                                     <li className="nav-item px-2 px-md-4" style={{cursor: "pointer"}}>
                                         <span  className="nav-link text-white cursor-pointer" 
                                         onClick={()=>setModalShow(true)}
-                                        >Wallet</span>
+                                        >WALLET</span>
                                     </li>
                                     <WalletPopup
                                         show={modalShow}
