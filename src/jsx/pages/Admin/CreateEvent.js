@@ -267,14 +267,25 @@ export default function CreateEvent() {
             <label for="inputEventTitle" className="form-label">
               EVENT TITLE
             </label>
+            <div className="d-flex">
             <input
               type="text"
-              className="form-control"
+              className="form-control w-50"
+              id="inputEventTitle"
+              aria-describedby="eventHelp"
+              required
+              autoFocus
+            />&nbsp;&nbsp;
+            <span className="mt-2 text-danger">V/S</span>&nbsp;&nbsp;
+            <input
+              type="text"
+              className="form-control w-50"
               id="inputEventTitle"
               aria-describedby="eventHelp"
               required
               autoFocus
             />
+            </div>
           </div>
           <br />
           <div className="my-3">
