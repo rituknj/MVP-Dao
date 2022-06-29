@@ -32,18 +32,15 @@ export default function BetSlip() {
       const decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
 
       decodestoredevents.forEach(async (element) => {
-
         for(let i = 0; i < userBethistory.length; i++){
-         
           if(Number(element.id) == userbethty[i]){
             let won = await GetUserWonAmountOnEvent(element.id)
             element.won = won
             check.push(element)
-
           }
         } 
-
         setUserHistory(check)
+        setEvents(check)
       })
     } 
 
@@ -63,11 +60,9 @@ export default function BetSlip() {
         
         check.push(x)
       })
-      setEvents(check)
-      var ts = Math.round((new Date()).getTime() / 1000);
       
     } 
-    getUserBetData();
+    // getUserBetData();
   }, [])
   
   const upcommingDate=(time)=>{
@@ -129,7 +124,7 @@ export default function BetSlip() {
             </ul>
             <div>
                 <p><ImStopwatch/> 0 DAYS LEFT</p>
-                <ImFire size={20}/>&nbsp;&nbsp;&nbsp;<button onClick={()=>Boost(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
+                <ImFire size={20} fill={completedCards.isboosted ? "#FF9A02" : ""}/>&nbsp;&nbsp;&nbsp;<button onClick={()=>Boost(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
                   BOOST
                 </button>
             </div>
@@ -140,10 +135,10 @@ export default function BetSlip() {
     );
   };
 
-  const InactiveEvents = (completedCards, index) => {
+  const HistoryEvts = (completedCards, index) => {
     return (
       <>
-    {Math.round((new Date()).getTime() / 1000) > Number(completedCards.endtime) ?  <div
+    {completedCards.validate ?  <div
         className="card my-4"
         key={index}
         style={{ backgroundColor: "#1c1c1c", borderRadius:"10px" }}
@@ -171,27 +166,31 @@ export default function BetSlip() {
           </p>
           <br />
           <br />
-          <p
-            className="text-center text-light my-3"
-            style={{ fontSize: "12px" }}
-          >
-            You Won
-            <span className="fs-6"> ${completedCards.won/10**18}</span>
-          </p>
+         
           <div className="d-flex justify-content-between text-secondary" style={{fontSize: "12px"}}>
+            
             <ul className="p-0" style={{listStyle: "none"}}>
                 <li>{completedCards.zero}% {completedCards.teamone}</li>
                 <li>{completedCards.one}% {completedCards.teamtwo}</li>
                 <li>{completedCards.two}% DRAW</li>
+                {/* <br/>
+                <li style={{fontSize: "14px",color:'#fff'}}>Winner</li>
+                <li style={{fontSize: "17px",color:'#fff'}}>{completedCards.occured == 0 ? completedCards.teamone : completedCards.occured == 1 ? completedCards.teamtwo : "DRAW"}</li> */}
             </ul>
             <div>
-                <p><ImStopwatch/>0 DAYS LEFT</p>
-                <ImFire size={20}/>&nbsp;&nbsp;&nbsp;{completedCards.won > 0 ? '' :<button onClick={()=>RewardClaim(completedCards.id)} className="btn btn-success ms-auto fw-bold">
+            <p
+              className="text-center text-light my-3"
+              style={{ fontSize: "12px" }}
+            >
+              You Won<br/>
+              <span className="fs-6"> ${completedCards.won/10**18}</span>
+              </p>
+                &nbsp;&nbsp;&nbsp;{completedCards.won > 0 ? '' :<button onClick={()=>RewardClaim(completedCards.id)} className="btn btn-success ms-auto fw-bold">
                 Claim
                 </button>}&nbsp;&nbsp;&nbsp;
-                <button onClick={()=>Boost(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
+                {/* <button onClick={()=>Boost(completedCards.id)} className="btn btn-warning ms-auto fw-bold">
                   BOOST
-                </button>
+                </button> */}
             </div>
           </div>
         </div>
@@ -200,10 +199,10 @@ export default function BetSlip() {
     );
   };
 
-  const UpComming = (completedCards, index) => {
+  const InActive = (completedCards, index) => {
     return (
       <>
-    {completedCards.starttime > Math.round((new Date()).getTime() / 1000) ?  <div
+    {completedCards.endtime < Math.round((new Date()).getTime() / 1000) && !completedCards.validate ?  <div
         className="card my-4"
         key={index}
         style={{ backgroundColor: "#1c1c1c", borderRadius:"10px"}}
@@ -304,10 +303,10 @@ export default function BetSlip() {
           {events.map((data)=> ActiveEvents(data))}
         </div> : historyevents == 1 && events.length > 0 ? 
          <div className="container activeBets">
-         {events.map((data)=> UpComming(data))}
+         {events.map((data)=> InActive(data))}
        </div>: historyevents == 2 && events.length > 0 ?
        <div className="container activeBets">
-       {userHistory.map((data)=> InactiveEvents(data))}
+       {userHistory.map((data)=> HistoryEvts(data))}
      </div> : ''}
       </div>
     </div>

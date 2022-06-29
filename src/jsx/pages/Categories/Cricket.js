@@ -338,7 +338,7 @@ class GameCard extends Component {
     await this.countbettors(eventid);
 
     var current = Math.round(new Date().getTime() / 1000);
-    var seconds = endtime / 1000 - current;
+    var seconds = endtime - current;
     var lefttime = Math.floor(seconds / 86400);
     if (lefttime < 0) {
       lefttime = 0;
@@ -398,7 +398,7 @@ class GameCard extends Component {
     await this.countbettors(eventid);
 
     var current = Math.round(new Date().getTime() / 1000);
-    var seconds = endtime / 1000 - current;
+    var seconds = endtime - current;
     var lefttime = Math.floor(seconds / 86400);
     if (lefttime < 0) {
       lefttime = 0;
@@ -458,7 +458,7 @@ class GameCard extends Component {
     await this.countbettors(eventid);
 
     var current = Math.round(new Date().getTime() / 1000);
-    var seconds = endtime / 1000 - current;
+    var seconds = endtime  - current;
     var lefttime = Math.floor(seconds / 86400);
     if (lefttime < 0) {
       lefttime = 0;
@@ -518,7 +518,7 @@ class GameCard extends Component {
     await this.countbettors(eventid);
 
     var current = Math.round(new Date().getTime() / 1000);
-    var seconds = endtime / 1000 - current;
+    var seconds = endtime  - current;
     var lefttime = Math.floor(seconds / 86400);
     if (lefttime < 0) {
       lefttime = 0;
@@ -624,7 +624,6 @@ class GameCard extends Component {
       return 0;
     }
   };
-
 
 
 
@@ -744,6 +743,10 @@ class GameCard extends Component {
   };
   filtershow = (tab) =>{
 
+  }
+
+  getdaysOnCard(time){
+    return new Date(time * 1000).toLocaleString();
   }
 
   render() {
@@ -1255,7 +1258,7 @@ class GameCard extends Component {
                                   </div>
                                   <div className="col-12 mt-4">
                                     <p className="theam-text-color m-0">
-                                      {events.subcategory}
+                                    {events.Categories == 0 ? "SPORT" : events.Categories == 1 ? "E-SPORT" : "OTHER"}
                                     </p>
                                     <p className="theam-text-color m-0">
                                       Pool size
@@ -1742,7 +1745,7 @@ class GameCard extends Component {
                                   </div>
                                   <div className="col-12 mt-4">
                                     <p className="theam-text-color m-0">
-                                      {events.subcategory}
+                                      {events.Categories == 0 ? "SPORT" : events.Categories == 1 ? "E-SPORT" : "OTHER"}
                                     </p>
                                     <p className="theam-text-color m-0">
                                       Pool size
@@ -1873,7 +1876,7 @@ class GameCard extends Component {
                                   </div>
                                   <div className="col-12 mt-4">
                                     <p className="theam-text-color m-0">
-                                      {events.subcategory}
+                                    {events.Categories == 0 ? "SPORT" : events.Categories == 1 ? "E-SPORT" : "OTHER"}
                                     </p>
                                     <p className="theam-text-color m-0">
                                       Pool size
@@ -2237,7 +2240,7 @@ class GameCard extends Component {
                                   </div>
                                   <div className="col-12 mt-4">
                                     <p className="theam-text-color m-0">
-                                      {events.subcategory}
+                                    {events.Categories == 0 ? "SPORT" : events.Categories == 1 ? "E-SPORT" : "OTHER"}
                                     </p>
                                     <p className="theam-text-color m-0">
                                       Pool size
@@ -2369,7 +2372,7 @@ class GameCard extends Component {
                                   </div>
                                   <div className="col-12 mt-4">
                                     <p className="theam-text-color m-0">
-                                      {events.subcategory}
+                                    {events.Categories == 0 ? "SPORT" : events.Categories == 1 ? "E-SPORT" : "OTHER"}
                                     </p>
                                     <p className="theam-text-color m-0">
                                       Pool size
@@ -2731,7 +2734,7 @@ class GameCard extends Component {
                                   </div>
                                   <div className="col-12 mt-4">
                                     <p className="theam-text-color m-0">
-                                      {events.subcategory}
+                                    {events.Categories == 0 ? "SPORT" : events.Categories == 1 ? "E-SPORT" : "OTHER"}
                                     </p>
                                     <p className="theam-text-color m-0">
                                       Pool size
@@ -2862,7 +2865,7 @@ class GameCard extends Component {
                                   </div>
                                   <div className="col-12 mt-4">
                                     <p className="theam-text-color m-0">
-                                      {events.subcategory}
+                                    {events.Categories == 0 ? "SPORT" : events.Categories == 1 ? "E-SPORT" : "OTHER"}
                                     </p>
                                     <p className="theam-text-color m-0">
                                       Pool size
