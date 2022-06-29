@@ -4,6 +4,7 @@ import logo from "../../../images/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { computeHeadingLevel } from "@testing-library/react";
 import WalletPopup from "./WalletPopup";
+import { WindowScroller } from "react-virtualized";
 
 class AdminHeader extends Component {
   slidbarcollapsed = (tab) => {
@@ -35,16 +36,16 @@ class AdminHeader extends Component {
               <img src={logo} style={{ height: "50px", width: "50px" }} />
             </a>
             <div className="d-flex">
-              
+
               <ul
                 className="navbar-nav ms-md-auto mb-2 mb-lg-0 flex-row"
                 id="admin-navbar-nav"
               >
-                 <li className="nav-item px-2">
-                  <NavLink className="nav-link text-white" style={window.location.pathname.includes("/app") === true ? {fontWeight:"700"}:{fontWeight:"400"}} to="/app">
-                    APP
+                {window.location.pathname.includes("/app") === true ? "" : (<li className="nav-item px-2">
+                  <NavLink className="nav-link text-white" style={window.location.pathname.includes("/app") === true ? { fontWeight: "700" } : { fontWeight: "400" }} to="/app">
+                    MARKET
                   </NavLink>
-                </li>
+                </li>)}
                 <li className="nav-item px-2">
                   <a
                     className="nav-link text-white"
@@ -54,11 +55,11 @@ class AdminHeader extends Component {
                     DAO
                   </a>
                 </li>
-                <li className="nav-item px-2">
-                  <NavLink className="nav-link text-white" style={window.location.pathname.includes("/admin") === true ? {fontWeight:"700"}:{fontWeight:"400"}} to="/admin">
+                {window.location.pathname.includes('/admin') === true ? "" : (<li className="nav-item px-2">
+                  <NavLink className="nav-link text-white" style={window.location.pathname.includes("/admin") === true ? { fontWeight: "700" } : { fontWeight: "400" }} to="/admin">
                     DASHBOARD
                   </NavLink>
-                </li>
+                </li>)}
                 <li className="nav-item px-2 mt-1" style={{ cursor: "pointer" }}>
                   <span
                     className="nav-link text-white cursor-pointer"
