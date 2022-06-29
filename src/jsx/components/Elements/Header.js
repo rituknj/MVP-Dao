@@ -69,7 +69,7 @@ const Header=()=> {
                                         <div className="nav-link text-white mt-1" to="/app"><Watch width='30' height='30' color='red'/></div>
                                     </li>} */}
                                     {console.log("window.allEvents",  window.allEvents,window.allEventstorde,Number(window.allEvents) > 0 && Number(window.allEvents) == Number(window.allEventstorde) )}
-                                    <li className="nav-item px-2 px-md-4" style={{cursor: "pointer"}}>
+                                    <li className="nav-item px-2 px-md-4 navWallet" style={{cursor: "pointer"}}>
                                         <span  className="nav-link text-white cursor-pointer" 
                                         onClick={()=>setModalShow(true)}
                                         >WALLET</span>

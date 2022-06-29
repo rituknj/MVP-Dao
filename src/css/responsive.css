@@ -65,6 +65,16 @@
   .outerRow, .betslip-main .row, .validate-event-main .row{
     border-radius: 0 !important;
   }
+  .coming-main .col-md-6 h1{
+    font-size: 38px !important;
+  }
+  .show-counter .countdown > p{
+    font-size: 48px !important;
+    margin-top: 25px;
+  }
+  .counterSaperator{
+    font-size: 48px !important;
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -280,6 +290,13 @@
   .self-speak{
     padding: 25px 30px 40px 30px;
   }
+  .coming-main .col-md-6 h1{
+    font-size: 75px;
+  }
+  .show-counter .countdown > p{
+    font-size: 120px;
+    margin-top: 25px;
+  }
 }
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1870px) {
   /* .betCards, .validStats{
@@ -364,6 +381,17 @@
   }
   .self-help-main .row .col-lg-6 .customAmount input{
     width: 60%;
+  }
+  .coming-main .col-md-6 h1{
+    font-size: 48px;
+  }
+  .show-counter .countdown > p{
+    margin-top: -25px;
+    font-size: 75px;
+  }
+  .counterSaperator{
+    font-size: 75px;
+    margin-top: -35px;
   }
 }
 
@@ -454,6 +482,18 @@
   .betslip-main .row .col, .validStats .col{
     width: 90% !important;
   }
+  .coming-main .columnOne{
+    padding-left: 25px !important;
+  }
+  .show-counter .countdown > p{
+    font-size: 32px !important;
+  }
+  .coming-main .col-md-6 h1{
+    font-size: 34px !important;
+  }
+  .show-counter .countdown > span{
+    font-size: 14px;
+  }
 }
 @media only screen and (max-width: 395px) {
   #admin-navbar-nav a, #admin-navbar-nav .nav-item span{
@@ -462,7 +502,26 @@
 }
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  /* Styles */
+  .coming-main{
+    flex-direction: column;
+    justify-content: center;
+  }
+  .coming-main .col-md-6{
+    width: 100%;
+  }
+  .show-counter{
+    width: 100%;
+  }
+  .columnTwo{
+    text-align: center;
+  }
+  .columnTwo img{
+    max-height: 60vh;
+    width: auto;
+  }
+  .coming-main .columnOne{
+    padding-top: 25px;
+  }
 }
 
 /* iPads (landscape) ----------- */
@@ -505,11 +564,6 @@
   .betting-cards{
     flex-direction: column;
   }
-}
-
-/* iPhone 5 ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2) {
-  /* Styles */
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {

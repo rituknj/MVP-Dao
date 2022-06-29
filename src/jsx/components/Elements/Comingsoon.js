@@ -20,7 +20,7 @@ export default function Comingsoon({ targetDate }) {
             DECENTRALISED <span>P2P</span> BETTING
           </h1>
           <br /><br />
-          <p className="text-light mb-md-n5">LAUNCHING IN</p>
+          <p className="text-light mb-xl-n5">LAUNCHING IN</p>
           <div>
             {/* ENTER TIMESTAMP IN EPOCH */}
             <CountdownTimer targetDate={1657126800000} />
@@ -40,7 +40,7 @@ export default function Comingsoon({ targetDate }) {
           <MdOutlineArrowForwardIos className="mt-1" />
         </Link>
         </div>
-        <div className="col-md-6">
+        <div className="col-md-6 columnTwo">
           <img src={coming} alt="" />
         </div>
       </div>
