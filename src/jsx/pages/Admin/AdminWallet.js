@@ -278,14 +278,14 @@ export default function AdminWallet() {
               {account ? slicing(account) : "Connect Wallet"}
           </span>
           <a
-            href="https://pancakeswap.finance/swap?outputCurrency=0x749f031FDa3a4904b026f2275A697096492a129d"
+            href="https://dao.betswamp.com/faucet"
             target="_blank"
           >
             <button
               className="border-0 rounded-pill px-3"
               style={{ backgroundColor: "#1C1C1C", color: "#BCBCBC" }}
             >
-              BUY BETS
+              GET TEST BETS
             </button>
           </a>
         </div>
