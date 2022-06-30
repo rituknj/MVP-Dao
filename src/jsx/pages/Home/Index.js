@@ -1,31 +1,31 @@
-import React, { Component, Fragment, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import Client from "../../../Client";
-import Header from "../../components/Elements/Header";
-import Footer from "../../components/Elements/Footer";
-import NewsCard from "../../components/Cards/NewsCard";
-import PartnerCom from "../../components/Cards/Partner";
-import Videocom from "../../components/Cards/Videos";
-import ExternalBlog from "../../components/Cards/ExternalBlog";
-import Amessador from "../../components/Cards/Amessador";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import loadable from "@loadable/component";
-import pMinDelay from "p-min-delay";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { initInstance, loginProcess } from "./../../../web3/web3";
-import NFTs from "./../../../images/nfts.png";
-import emailImg from "./../../../images/email.png";
-import Partners from "./../../../images/unreal.png";
-import Binance from "./../../../images/binance.png";
-import Saga from "./../../../images/saga.png";
-import topBG from "./../../../images/topBG.png";
-import Football from "./../../../images/football.png";
-import Playstation from "./../../../images/playstation.png";
-import { FaTwitter } from "react-icons/fa";
-import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai";
-import { Watch } from "react-loader-spinner";
+import React, { Component, Fragment, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
+import Client from '../../../Client'
+import Header from '../../components/Elements/Header'
+import Footer from '../../components/Elements/Footer'
+import NewsCard from '../../components/Cards/NewsCard'
+import PartnerCom from '../../components/Cards/Partner'
+import Videocom from '../../components/Cards/Videos'
+import ExternalBlog from '../../components/Cards/ExternalBlog'
+import Amessador from '../../components/Cards/Amessador'
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
+import loadable from '@loadable/component'
+import pMinDelay from 'p-min-delay'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { initInstance, loginProcess } from './../../../web3/web3'
+import NFTs from './../../../images/nfts.png'
+import emailImg from './../../../images/email.png'
+import Partners from './../../../images/unreal.png'
+import Binance from './../../../images/binance.png'
+import Saga from './../../../images/saga.png'
+import topBG from './../../../images/topBG.png'
+import Football from './../../../images/football.png'
+import Playstation from './../../../images/playstation.png'
+import { FaTwitter } from 'react-icons/fa'
+import { AiFillLinkedin, AiOutlineRight } from 'react-icons/ai'
+import { Watch } from 'react-loader-spinner'
 
 import {
   allactiveusers,
@@ -33,28 +33,29 @@ import {
   totalEvents,
   totalbetcreated,
   getActiveEvents,
-} from "../../../web3/betsMVPService";
-import { TotalEventsCount } from "../../../web3/Countallevents";
+} from '../../../web3/betsMVPService'
+import { TotalEventsCount } from '../../../web3/Countallevents'
 
 ////Images
-import eco1 from "./../../../images/eco1.png";
-import eco2 from "./../../../images/eco2.png";
-import eco3 from "./../../../images/eco4.png";
-import eco4 from "./../../../images/eco5.png";
-import arrowRight from "../../../images/arrow-right.svg";
-import lineImage from "../../../images/line.png";
-import HeroModal from "./HeroModal";
+import eco1 from './../../../images/eco1.png'
+import eco2 from './../../../images/eco2.png'
+import eco3 from './../../../images/eco4.png'
+import eco4 from './../../../images/eco5.png'
+import arrowRight from '../../../images/arrow-right.svg'
+import lineImage from '../../../images/line.png'
+import HeroModal from './HeroModal'
+import Emailsub from './Emailsub'
 
-var chart = null;
+var chart = null
 
-let downloaded = [];
+let downloaded = []
 
 const SalesChart = loadable(() =>
-  pMinDelay(import("../../components/Chart/SalesChart"), 1000)
-);
+  pMinDelay(import('../../components/Chart/SalesChart'), 1000),
+)
 class Index extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       totalSupply: 0,
       price: 0,
@@ -117,8 +118,8 @@ class Index extends Component {
         },
       },
       chartWidth:
-        document.getElementById("linechart") != null
-          ? document.getElementById("linechart").clientWidth
+        document.getElementById('linechart') != null
+          ? document.getElementById('linechart').clientWidth
           : 600,
       chart: null,
       responsive_game_card: {
@@ -159,8 +160,8 @@ class Index extends Component {
           items: 1,
         },
       },
-    };
-    this.videoOnReady = this.videoOnReady.bind(this);
+    }
+    this.videoOnReady = this.videoOnReady.bind(this)
   }
 
   componentDidMount = async () => {
@@ -178,15 +179,15 @@ class Index extends Component {
               },
               alt
           }
-      }`
+      }`,
     )
       .then((data) => this.setState({ ambassadorData: data }))
-      .catch(console.error);
-    AOS.init();
-    await initInstance();
-    await loginProcess();
-    window.localStorage.clear();
-    let events = await totalEvents();
+      .catch(console.error)
+    AOS.init()
+    await initInstance()
+    await loginProcess()
+    window.localStorage.clear()
+    let events = await totalEvents()
 
     this.setState({
       totalSupply: 0,
@@ -195,8 +196,7 @@ class Index extends Component {
       events: events,
       totalbetsmade: 0,
       activeevents: 0,
-    });
-
+    })
 
     // PARTNERS SECTION
 
@@ -210,114 +210,114 @@ class Index extends Component {
               },
              alt
           }
-      }`
+      }`,
     )
       .then((data) => this.setState({ partnersData: data }))
-      .catch(console.error);
-
+      .catch(console.error)
 
     // AOS.init();
 
     request(
-      "GET",
-      "https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d"
+      'GET',
+      'https://api.pancakeswap.info/api/v2/tokens/0x749f031FDa3a4904b026f2275A697096492a129d',
     )
       .then((r1) => {
-        var x1 = JSON.parse(r1.target.responseText);
-        let val = Number(x1.data.price).toFixed(13);
+        var x1 = JSON.parse(r1.target.responseText)
+        let val = Number(x1.data.price).toFixed(13)
         this.setState({
           price: val,
           realprice: x1.data.price,
-        });
+        })
       })
       .catch((err) => {
-        console.log("error is", err);
-      });
+        console.log('error is', err)
+      })
 
     function request(method, url) {
       return new Promise(function (resolve, reject) {
-        var xhr = new XMLHttpRequest();
-        xhr.open(method, url);
-        xhr.onload = resolve;
-        xhr.onerror = reject;
-        xhr.send();
-      });
+        var xhr = new XMLHttpRequest()
+        xhr.open(method, url)
+        xhr.onload = resolve
+        xhr.onerror = reject
+        xhr.send()
+      })
     }
 
     try {
-      window.localStorage.setItem("events", JSON.stringify("[]"));
+      window.localStorage.setItem('events', JSON.stringify('[]'))
+      // window.localStorage.setItem('events', JSON.stringify(''))
       // console.log("window.allEvents window.allEventstorde",this.state.decodestoredevents.length,this.state.events,Number(this.state.events) > 0 && Number(this.state.events) == Number(downloaded.length))
-      await TotalEventsCount();
-      downloaded = JSON.parse(window.localStorage.getItem("events"));
+      await TotalEventsCount()
+      downloaded = JSON.parse(window.localStorage.getItem('events'))
       this.setState({
         decodestoredevents: downloaded.reverse(),
-      });
+      })
     } catch (e) {
-      console.log("Error on home page", e);
+      console.log('Error on home page', e)
     }
     setInterval(() => {
-      window.allEvents = this.state.events;
-      window.allEventstorde = this.state.decodestoredevents.length;
-    }, 200);
-  };
+      window.allEvents = this.state.events
+      window.allEventstorde = this.state.decodestoredevents.length
+    }, 200)
+  }
 
   parterImg = () => {
-    let items = [];
+    let items = []
     for (var i = this.state.partner.length; i > 0; i--) {
-      items.push(<PartnerCom img={this.state.partner[i - 1]} />);
+      items.push(<PartnerCom img={this.state.partner[i - 1]} />)
     }
-    return items;
-  };
+    return items
+  }
 
   amessador = () => {
-    let items = [];
+    let items = []
     for (var i = this.state.Ambassador.length; i > 0; i--) {
-      items.push(<Amessador img={this.state.Ambassador[i - 1]} />);
+      items.push(<Amessador img={this.state.Ambassador[i - 1]} />)
     }
-    return items;
-  };
+    return items
+  }
 
   videoOnReady(event) {
     // access to player in all event handlers via event.target
     this.setState({
       playerPlayVideo: event.target.playVideo,
-    });
+    })
   }
   videos = () => {
-    let items = [];
+    let items = []
     for (var i = this.state.video.length; i > 0; i--) {
-      items.push(<Videocom videos={this.state.video[i - 1]} />);
+      items.push(<Videocom videos={this.state.video[i - 1]} />)
     }
-    return items;
-  };
+    return items
+  }
 
   getNewsCard = () => {
-    let items = [];
+    let items = []
     for (var i = this.state.bloglength.length; i > 0; i--) {
-      items.push(<NewsCard news={this.state.bloglength[i - 1]} />);
+      items.push(<NewsCard news={this.state.bloglength[i - 1]} />)
     }
-    return items;
-  };
+    return items
+  }
   internalblogs = () => {
-    let items = [];
+    let items = []
     for (var i = this.state.indernalblog.length; i > 0; i--) {
-      items.push(<ExternalBlog blogs={this.state.indernalblog[i - 1]} />);
+      items.push(<ExternalBlog blogs={this.state.indernalblog[i - 1]} />)
     }
-    return items;
-  };
+    return items
+  }
 
   _onReady(event) {
     // access to player in all event handlers via event.target
-    event.target.pauseVideo();
+    event.target.pauseVideo()
   }
   moussecloas = (event) => {
-    let x = event.screenX;
-    let y = event.screenY;
+    let x = event.screenX
+    let y = event.screenY
 
     if (x > 633) {
     }
     // console.log("position", x, y);
-  };
+  }
 
   renderAmb(ambassadorData, index) {
     return (
@@ -325,7 +325,7 @@ class Index extends Component {
         data-aos="zoom-in"
         data-aos-duration="400"
         data-aos-easing="linear"
-        style={{ textAlign: "center", color: "#ffff" }}
+        style={{ textAlign: 'center', color: '#ffff' }}
         key={index}
       >
         {ambassadorData.image && ambassadorData.image.asset && (
@@ -333,7 +333,7 @@ class Index extends Component {
             src={ambassadorData.image.asset.url}
             alt=""
             width="100"
-            style={{ borderRadius: "80px" }}
+            style={{ borderRadius: '80px' }}
           />
         )}
         <p className="m-0">{ambassadorData.name}</p>
@@ -344,9 +344,9 @@ class Index extends Component {
           </a>
         </div>
       </div>
-    );
+    )
   }
-  
+
   renderPartners(partnersData, index) {
     return (
       <div
@@ -355,13 +355,19 @@ class Index extends Component {
         data-aos-easing="linear"
         key={index}
       >
-
         {partnersData.image && partnersData.image.asset && (
-          <a href={partnersData.name} target="_blank" rel="noreferrer"><img src={partnersData.image.asset.url} alt="" style={{ width: "100%" }} /></a>
+          <a href={partnersData.name} target="_blank" rel="noreferrer">
+            <img
+              src={partnersData.image.asset.url}
+              alt=""
+              style={{ width: '100%' }}
+            />
+          </a>
         )}
       </div>
     )
   }
+
   render() {
     // setInterval(()=>{
     //   window.allEvents = this.state.events
@@ -371,7 +377,7 @@ class Index extends Component {
     return (
       <Fragment onClick={this.moussecloas}>
         <Header />
-        <div onClick={this.moussecloas} style={{ position: "relative" }}>
+        <div onClick={this.moussecloas} style={{ position: 'relative' }}>
           <div className="topBoxBg">
             <div className="container mb-5 mb-md-0" id="section-home">
               <div className="space-100"></div>
@@ -389,7 +395,7 @@ class Index extends Component {
                   <p className="mt-5 mt-md-4 text-white text-center text-md-start">
                     Get the best APY in the market staking on the betswamp DAO
                     and have
-                    <br /> fun betting on your favorite market.{" "}
+                    <br /> fun betting on your favorite market.{' '}
                   </p>
                   <div className="text-center text-md-center my-1 my-md-0 topAppBtn">
                     <a
@@ -400,7 +406,7 @@ class Index extends Component {
                     >
                       TEST DAO
                       <AiOutlineRight
-                        style={{ position: "absolute", right: "5px" }}
+                        style={{ position: 'absolute', right: '5px' }}
                         className="mt-1  fw-bold"
                       />
                     </a>
@@ -411,26 +417,26 @@ class Index extends Component {
                       >
                         TEST MARKET
                         <AiOutlineRight
-                        style={{ position: "absolute", right: "5px" }}
-                        className="mt-1  fw-bold"
-                      />
+                          style={{ position: 'absolute', right: '5px' }}
+                          className="mt-1  fw-bold"
+                        />
                       </NavLink>
                     ) : Number(this.state.events) > 0 &&
                       Number(this.state.events) ==
-                      Number(this.state.decodestoredevents.length) ? (
+                        Number(this.state.decodestoredevents.length) ? (
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
                       >
                         TEST BETTING
-                      <AiOutlineRight
-                        style={{ position: "absolute", right: "5px" }}
-                        className="mt-1  fw-bold"
-                      />
+                        <AiOutlineRight
+                          style={{ position: 'absolute', right: '5px' }}
+                          className="mt-1  fw-bold"
+                        />
                       </NavLink>
                     ) : (
                       <div className="btn btn-md theam-bg-red homeTopBtnloader">
-                        {" "}
+                        {' '}
                         Loading...&nbsp;&nbsp;
                         <Watch color="red" height="26" width="26" />
                       </div>
@@ -454,7 +460,7 @@ class Index extends Component {
               </div>
             </div>
           </div>
-          <div style={{ backgroundColor: "#000" }}>
+          <div style={{ backgroundColor: '#000' }}>
             <div
               className="container-fluid px-md-5 pt-5 pt-lg-0 mt-5 mt-lg-0"
               id="section-analytics"
@@ -479,15 +485,13 @@ class Index extends Component {
                     customTransition="all .5"
                     transitionDuration={500}
                     containerClass="carousel-container"
-                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    removeArrowOnDeviceType={['tablet', 'mobile']}
                     deviceType={this.props.deviceType}
                     itemClass="px-2"
                   >
                     <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
                       <h5 className="text-white m-0">Price</h5>
-                      <h4 className="text-white mt-3">
-                        0
-                      </h4>
+                      <h4 className="text-white mt-3">0</h4>
                       {/* <h4 className="text-white mt-3">
                         $ {Number(this.state.price).toFixed(4)}
                       </h4> */}
@@ -524,29 +528,28 @@ class Index extends Component {
             <div className="container">
               <div className="row">
                 <div className="col-12 col-md-8 text-white">
-                  <img src={NFTs} alt="" style={{ width: "100%" }} />
+                  <img src={NFTs} alt="" style={{ width: '100%' }} />
                 </div>
                 <div
                   className="col-6 col-md-4 text-white side-text-nfts"
-                  style={{ width: "40%", marginTop: "50px" }}
+                  style={{ width: '40%', marginTop: '50px' }}
                 >
                   <div className="mt-2 mt-md-4 text-white d-flex">
-                    <div className="vl me-2"></div>{" "}
+                    <div className="vl me-2"></div>{' '}
                     <span>
                       <p
                         className="m-0"
-                        style={{ textShadow: "0px 0px 10px #FFFFFF" }}
+                        style={{ textShadow: '0px 0px 10px #FFFFFF' }}
                       >
                         DECENTRALIZED
-                      </p>{" "}
+                      </p>{' '}
                       <h4>ECOSYSTEM</h4>
                     </span>
                   </div>
                   <p>
-                    BETSWAMP IS BUILDING A DECENTRALIZED ECOSYSTEM WHERE ALL
-                    ITS UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO
-                    WHICH PROVIDES INVESTORS A SECURED PLATFORM THEY CAN COUNT
-                    ON.
+                    BETSWAMP IS BUILDING A DECENTRALIZED ECOSYSTEM WHERE ALL ITS
+                    UTILITES ARE POWERED BY A ROBUST AND SUSTAINABLE DAO WHICH
+                    PROVIDES INVESTORS A SECURED PLATFORM THEY CAN COUNT ON.
                   </p>
                   <NavLink
                     to="/app"
@@ -554,7 +557,7 @@ class Index extends Component {
                   >
                     LEARN MORE
                     <AiOutlineRight
-                      style={{ position: "absolute", right: "5px" }}
+                      style={{ position: 'absolute', right: '5px' }}
                       className="mt-1  fw-bold"
                     />
                   </NavLink>
@@ -571,15 +574,15 @@ class Index extends Component {
               id="section-statistics"
             >
               <div className="space-50"></div>
-              <div className="mt-3 mt-md-5 text-white px-2 px-md-0 py-4 div-p d-flex">
-                <div className="vl me-2"></div>{" "}
+              <div className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
+                <div className="vl me-2"></div>{' '}
                 <span>
                   <p
                     className="m-0"
-                    style={{ textShadow: "0px 0px 10px #FFFFFF" }}
+                    style={{ textShadow: '0px 0px 10px #FFFFFF' }}
                   >
                     BETSWAMP
-                  </p>{" "}
+                  </p>{' '}
                   <h4 className="m-0">ECOSYSTEM</h4>
                 </span>
               </div>
@@ -602,7 +605,7 @@ class Index extends Component {
                     customTransition="all .5"
                     transitionDuration={500}
                     containerClass="carousel-container overflow-visible"
-                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    removeArrowOnDeviceType={['tablet', 'mobile']}
                     deviceType={this.props.deviceType}
                     itemClass="px-2"
                   >
@@ -611,16 +614,20 @@ class Index extends Component {
                       <h4 className="text-white mt-4">
                         {/* {(this.state.payout / 10 ** 18).toFixed(0)} B USD */}
                       </h4>
-                      <img src={eco1} alt="" style={{ width: "125%", marginLeft: "-40px" }} />
+                      <img
+                        src={eco1}
+                        alt=""
+                        style={{ width: '125%', marginLeft: '-40px' }}
+                      />
                     </div>
 
                     <div className="card chart-card overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
                       <p
                         style={{
-                          fontSize: "10px",
-                          color: "#fff",
-                          textAlign: "start",
-                          margin: "0",
+                          fontSize: '10px',
+                          color: '#fff',
+                          textAlign: 'start',
+                          margin: '0',
                         }}
                       >
                         DECENTRALISED
@@ -629,7 +636,11 @@ class Index extends Component {
                         P2P BETTING
                       </h5>
                       {/* <h4 className="text-white mt-4">P2P BETTING</h4> */}
-                      <img src={eco2} alt="" style={{ width: "128%", marginLeft: "-40px" }} />
+                      <img
+                        src={eco2}
+                        alt=""
+                        style={{ width: '128%', marginLeft: '-40px' }}
+                      />
                     </div>
 
                     <div className="card chart-card  overflow-hidden text-center py-3 align-items-stretch col-12 ecosystem">
@@ -654,10 +665,10 @@ class Index extends Component {
             <div className="space-50"></div>
 
             <div className="container-fluid px-md-5 my-5" id="section-partners">
-              <div className="mt-2 mt-md-4 text-white px-2 px-md-0 pb-4 div-p d-flex">
-                <div className="vl me-2"></div>{" "}
+              <div className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
+                <div className="vl me-2"></div>{' '}
                 <span>
-                  <h4 style={{ marginTop: "10px" }}>AMBASSADORS</h4>
+                  <h4 style={{ marginTop: '10px' }}>AMBASSADORS</h4>
                 </span>
               </div>
               <div className="space-50"></div>
@@ -675,7 +686,7 @@ class Index extends Component {
                 customTransition="all .5"
                 transitionDuration={500}
                 containerClass="carousel-container w-100"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
+                removeArrowOnDeviceType={['tablet', 'mobile']}
                 deviceType={this.props.deviceType}
                 itemClass="d-flex justify-content-center align-items-center flex-column"
               >
@@ -687,17 +698,17 @@ class Index extends Component {
             <div
               className="container-fluid px-md-5 my-5"
               id="section-partners"
-              style={{ backgroundColor: "#0b0b0b", padding: "50px 0" }}
+              style={{ backgroundColor: '#0b0b0b', padding: '50px 0' }}
             >
               <div className="mt-2 mt-md-4 text-white d-flex">
-                <div className="vl me-2"></div>{" "}
+                <div className="vl me-2"></div>{' '}
                 <span>
                   <p
                     className="m-0"
-                    style={{ textShadow: "0px 0px 10px #FFFFFF" }}
+                    style={{ textShadow: '0px 0px 10px #FFFFFF' }}
                   >
                     STRATEGIC
-                  </p>{" "}
+                  </p>{' '}
                   <h4>PARTNERS</h4>
                 </span>
               </div>
@@ -716,7 +727,7 @@ class Index extends Component {
                 customTransition="ease-in-out .5"
                 transitionDuration={500}
                 containerClass="carousel-container w-100"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
+                removeArrowOnDeviceType={['tablet', 'mobile']}
                 deviceType={this.props.deviceType}
                 itemClass="d-flex justify-content-center align-items-center flex-column"
               >
@@ -870,7 +881,7 @@ class Index extends Component {
                   customTransition="all .5"
                   transitionDuration={500}
                   containerClass="carousel-container"
-                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  removeArrowOnDeviceType={['tablet', 'mobile']}
                   deviceType={this.props.deviceType}
                   itemClass="carousel-item-padding-40-px px-4"
                 >
@@ -894,7 +905,7 @@ class Index extends Component {
                   customTransition="all .5"
                   transitionDuration={500}
                   containerClass="carousel-container"
-                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  removeArrowOnDeviceType={['tablet', 'mobile']}
                   deviceType={this.props.deviceType}
                   itemClass="carousel-item-padding-40-px px-4"
                 >
@@ -902,7 +913,7 @@ class Index extends Component {
                 </Carousel>
               </div>
             ) : (
-              ""
+              ''
             )}
 
             {false ? (
@@ -929,7 +940,7 @@ class Index extends Component {
                   customTransition="all .5"
                   transitionDuration={500}
                   containerClass="carousel-container"
-                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  removeArrowOnDeviceType={['tablet', 'mobile']}
                   deviceType={this.props.deviceType}
                   itemClass="d-flex justify-content-center align-items-center flex-column"
                 >
@@ -937,12 +948,12 @@ class Index extends Component {
                 </Carousel>
               </div>
             ) : (
-              ""
+              ''
             )}
             <div className="space-100"></div>
-            <div
+            {/* <div
               className="container-fluid"
-              style={{ backgroundColor: "#0b0b0b", padding: "50px 0" }}
+              style={{ backgroundColor: '#0b0b0b', padding: '50px 0' }}
             >
               <div className="container faq-box">
                 <div className="subscribe">
@@ -957,20 +968,22 @@ class Index extends Component {
                       className="sub-input py-3 px-4"
                       placeholder="email@domain.com"
                     />
-                    <div className="sighup-btn">
-                      <button
-                        className="btn btn-md mt-1 mt-md-5 pl-4 pr-4 btn-signup text-light"
-                        style={{
-                          boxShadow: "10px 10px 4px rgba(0, 0, 0, 0.25)",
-                        }}
-                      >
-                        SIGN UP
-                        <AiOutlineRight
-                          style={{ position: "absolute", right: "5px" }}
-                          className="mt-1  fw-bold"
-                        />
-                      </button>
-                    </div>
+                    <form>
+                      <div className="sighup-btn">
+                        <button
+                          className="btn btn-md mt-1 mt-md-5 pl-4 pr-4 btn-signup text-light"
+                          style={{
+                            boxShadow: '10px 10px 4px rgba(0, 0, 0, 0.25)',
+                          }}
+                        >
+                          SIGN UP
+                          <AiOutlineRight
+                            style={{ position: 'absolute', right: '5px' }}
+                            className="mt-1  fw-bold"
+                          />
+                        </button>
+                      </div>
+                    </form>
                   </div>
                 </div>
                 <div className="text-white faqbox">
@@ -979,14 +992,15 @@ class Index extends Component {
                     <p>SEND US A MAIL</p>
                     <div>
                       <p className="text-white text-email mb-0">
-                        <img src={emailImg} alt="" width="22" />{" "}
+                        <img src={emailImg} alt="" width="22" />{' '}
                         admin@betswamp.com
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
+            <Emailsub />
 
             <div className="d-flex">
               <Footer />
@@ -994,7 +1008,7 @@ class Index extends Component {
           </div>
         </div>
       </Fragment>
-    );
+    )
   }
 }
-export default Index;
+export default Index
