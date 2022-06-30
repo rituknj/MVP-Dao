@@ -215,16 +215,13 @@ class GameCard extends Component {
     let check2;
     for (let i = 0; i < decodestoredevents.length; i++) {
       check2 = decodestoredevents[i];
-      if (
-        check2.teamone.includes(data.toString()) ||
-        check2.teamtwo.includes(data.toString()) ||
-        check2.descript.includes(data.toString())
-      ) {
+      if (check2.teamone.includes(data.toString()) || check2.teamtwo.includes(data.toString()) || check2.descript.includes(data.toString())) {
         events.push(check2);
       }
     }
     this.setState({
       allevents: events,
+     
     });
   };
 
@@ -1012,7 +1009,7 @@ class GameCard extends Component {
 
   {/* **********************Events Mapping start from here************************* */}
 
-      { this.state.filteractive == 1 ? 
+      { this.state.filteractive >= 1 && this.state.filteractive <= 6 ? 
         <div
           className="theam-bg-dark p-1 p-md-5"
             style={{ backgroundColor: "#1C1C1C" }}
