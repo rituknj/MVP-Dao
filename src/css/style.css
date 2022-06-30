@@ -2187,14 +2187,14 @@ footer button {
 .self-help-main .row .col-lg-8 p{
   color: #AAAAAA;
 }
-.self-help-main .amount .btn{
+.amount .btn{
   font-weight: 900;
   background-color: #fff;
   margin: 5px;
   padding: 30px;
   border-radius: 10px;
 }
-.self-help-main .amount .btn:hover{
+.amount .btn:hover{
   background-color: #FF4003;
   color: #fff;
 }
@@ -2320,8 +2320,11 @@ input::-webkit-inner-spin-button {
   border-radius: 50%;
   padding: 10px 15px;
 }
-.multistep .form-control:focus, .multistep .form-select:focus {
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+.multistep .form-control:focus, .multistep .form-select:focus, .admin-wallet-main input[type=number]:focus{
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6) !important;
+}
+.admin-wallet-main input[type=number]:focus{
+  outline: none;
 }
 .coming-main{
   background-image: url("../images/loading.png");

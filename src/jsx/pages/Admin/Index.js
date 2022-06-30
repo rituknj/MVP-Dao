@@ -13,7 +13,7 @@ import {
   SidebarContent,
 } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import {FaRegMoneyBillAlt} from 'react-icons/fa'
+import { FaRegMoneyBillAlt } from "react-icons/fa";
 import whh_coins from "../../../images/whh_coins.svg";
 import tickets from "../../../images/ep_tickets.svg";
 import file from "../../../images/gala_file-doc.svg";
@@ -22,6 +22,7 @@ import plus from "../../../images/ant-design_plus-circle-outlined.svg";
 import self from "../../../images/twemoji_people-hugging.svg";
 import SelfHelp from "./SelfHelp";
 import { Link } from "react-router-dom";
+import AdminWallet from "./AdminWallet";
 
 class Index extends Component {
   constructor(props) {
@@ -173,6 +174,26 @@ class Index extends Component {
                     >
                       SELF HELP
                     </MenuItem>
+                    <MenuItem
+                      active={this.state.showAdminSlider == 5 ? true : false}
+                      icon={
+                        <svg
+                          width="30"
+                          height="25"
+                          viewBox="0 0 31 30"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M0 3.33333V24.5833C0 26.0199 0.570683 27.3977 1.5865 28.4135C2.60233 29.4293 3.98008 30 5.41667 30H25.4167C26.8533 30 28.231 29.4293 29.2468 28.4135C30.2627 27.3977 30.8333 26.0199 30.8333 24.5833V10.4167C30.8333 9.1973 30.422 8.01358 29.6659 7.05694C28.9097 6.10031 27.8531 5.42668 26.6667 5.145V3.75C26.6667 3.25754 26.5697 2.76991 26.3812 2.31494C26.1928 1.85997 25.9165 1.44657 25.5683 1.09835C25.2201 0.75013 24.8067 0.473907 24.3517 0.285452C23.8968 0.0969967 23.4091 0 22.9167 0H3.75C2.8276 2.78677e-05 1.93758 0.340012 1.25007 0.954953C0.562567 1.56989 0.125822 2.41665 0.0233332 3.33333H0ZM3.75 5C3.41848 5 3.10054 4.8683 2.86612 4.63388C2.6317 4.39946 2.5 4.08152 2.5 3.75C2.5 3.41848 2.6317 3.10054 2.86612 2.86612C3.10054 2.6317 3.41848 2.5 3.75 2.5H22.9167C23.2482 2.5 23.5661 2.6317 23.8006 2.86612C24.035 3.10054 24.1667 3.41848 24.1667 3.75V5H3.75ZM22.0833 16.6667H25.4167C25.7482 16.6667 26.0661 16.7984 26.3006 17.0328C26.535 17.2672 26.6667 17.5851 26.6667 17.9167C26.6667 18.2482 26.535 18.5661 26.3006 18.8005C26.0661 19.035 25.7482 19.1667 25.4167 19.1667H22.0833C21.7518 19.1667 21.4339 19.035 21.1994 18.8005C20.965 18.5661 20.8333 18.2482 20.8333 17.9167C20.8333 17.5851 20.965 17.2672 21.1994 17.0328C21.4339 16.7984 21.7518 16.6667 22.0833 16.6667Z"
+                            fill="#BCBCBC"
+                          />
+                        </svg>
+                      }
+                      onClick={() => this.setState({ showAdminSlider: 5 })}
+                    >
+                      WALLET
+                    </MenuItem>
                     <hr />
                     <MenuItem icon={<img src={whh_coins} alt="" />}>
                       <a
@@ -183,12 +204,8 @@ class Index extends Component {
                         BETSWAMP DAO
                       </a>
                     </MenuItem>
-                    <MenuItem icon={<FaRegMoneyBillAlt size={30}/>}>
-                      <Link
-                        to="/app"
-                      >
-                        MARKET
-                      </Link>
+                    <MenuItem icon={<FaRegMoneyBillAlt size={30} />}>
+                      <Link to="/app">MARKET</Link>
                     </MenuItem>
                     <hr />
                     <MenuItem icon={<img src={file} alt="" />}>DOCS</MenuItem>
@@ -213,6 +230,8 @@ class Index extends Component {
               <ValidateEvents />
             ) : this.state.showAdminSlider == 4 ? (
               <SelfHelp />
+            ) : this.state.showAdminSlider == 5 ? (
+              <AdminWallet />
             ) : (
               ""
             )}
