@@ -261,7 +261,7 @@ export default function AdminWallet() {
   return (
     <div className="admin-wallet-main bg-black">
       <div
-        className="outerRow px-0 px-sm-4 pb-3 px-xl-4 px-xxl-5 mb-3"
+        className="outerRow px-2 px-sm-5 pb-3 px-xxl-4 mb-3"
         style={{ backgroundColor: "#0F0F0F", paddingTop: "35px" }}
       >
         <div className="d-flex justify-content-between">
@@ -318,7 +318,7 @@ export default function AdminWallet() {
       </div>
 
       <div
-        className="d-flex mt-5 ps-5"
+        className="d-flex mt-5 ps-sm-5 ps-2"
         style={{
           backgroundColor: "#0F0F0F",
           borderRadius: "40px 0px 0px 0px",

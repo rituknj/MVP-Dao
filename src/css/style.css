@@ -1662,7 +1662,8 @@ footer button {
 
 .ecosystem {
   background-color: #232323;
-  height: 400px;
+  max-height: 400px;
+  height: 100%;
   width: 300px;
   transition: 200ms ease-in-out;
   z-index: 10;
@@ -2320,10 +2321,10 @@ input::-webkit-inner-spin-button {
   border-radius: 50%;
   padding: 10px 15px;
 }
-.multistep .form-control:focus, .multistep .form-select:focus, .admin-wallet-main input[type=number]:focus{
+.multistep .form-control:focus, .multistep .form-select:focus, .admin-wallet-main input[type=number]:focus, .sub-input:focus{
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6) !important;
 }
-.admin-wallet-main input[type=number]:focus{
+.admin-wallet-main input[type=number]:focus, .sub-input:focus{
   outline: none;
 }
 .coming-main{

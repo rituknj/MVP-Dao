@@ -468,7 +468,7 @@
   .belowPlay{
     margin-top: 150px;
   }
-  .self-help-main .amount .btn{
+  .self-help-main .amount .btn, .admin-wallet-main .amount .btn{
     font-size: 12px;
   }
 }
@@ -493,6 +493,9 @@
   }
   .show-counter .countdown > span{
     font-size: 14px;
+  }
+  .admin-wallet-main .amount .btn{
+    padding: 20px;
   }
 }
 @media only screen and (max-width: 395px) {
