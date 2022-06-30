@@ -197,7 +197,7 @@ class Index extends Component {
                     <hr />
                     <MenuItem icon={<img src={whh_coins} alt="" />}>
                       <a
-                        href="https://lucky-duckanoo-f4a914.netlify.app/"
+                        href="https://dao.betswamp.com"
                         target="_blank"
                         rel="noreferrer"
                       >

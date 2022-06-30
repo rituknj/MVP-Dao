@@ -56,8 +56,7 @@ class AdminHeader extends Component {
                 className="navbar-nav ms-md-auto mb-2 mb-lg-0 flex-row"
                 id="admin-navbar-nav"
               >
-                {window.location.pathname.includes("/app") === true ||
-                window.location.pathname.includes("/admin") === true ? (
+                {window.location.pathname.includes("/app") === true ? (
                   ""
                 ) : (
                   <li className="nav-item px-2">
@@ -68,9 +67,9 @@ class AdminHeader extends Component {
                           ? { fontWeight: "700" }
                           : { fontWeight: "400" }
                       }
-                      to="/app"
+                      to={{pathname: "https://dao.betswamp.com/faucet"}} target="_blank"
                     >
-                      MARKET
+                      FAUCET
                     </NavLink>
                   </li>
                 )}
