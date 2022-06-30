@@ -164,6 +164,7 @@ class GameCard extends Component {
     setInterval(async () => {
       await addingnewevents();
       this.setState({ subcategorys: window.maincatogries });
+      // console.log("window.maincatogries",window.maincatogries)
     }, 3000);
 
     setInterval(async () => {
@@ -637,7 +638,7 @@ class GameCard extends Component {
 
   getdays(time){
     var current = Math.round(new Date().getTime()/1000);
-    var seconds =  time-current 
+    var seconds =  (time)-current 
     if(seconds > 0){
       const days = Math.floor(seconds/86400)
       const hour = Math.floor(seconds / 3600) % 24;

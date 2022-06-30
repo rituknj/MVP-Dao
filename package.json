@@ -41,6 +41,7 @@
     "react-tsparticles": "^2.1.0",
     "react-youtube": "^7.13.1",
     "rsuite": "^5.14.0",
+    "styled-components": "^5.3.5",
     "three": "^0.141.0",
     "tsparticles": "^2.1.0",
     "tsparticles-engine": "^2.1.0",

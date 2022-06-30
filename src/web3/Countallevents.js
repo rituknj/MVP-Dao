@@ -69,7 +69,7 @@ export const addingnewevents = async() => {
   let newevent = await totalEvents();
   
   decodestoredevents = JSON.parse(window.localStorage.getItem('events'))
-  
+  console.log("decodestoredevents",decodestoredevents)
   if(newevent > decodestoredevents.length) {
               check2 = await getEvent(newevent-1)
               check = Object.create(check2)

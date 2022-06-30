@@ -244,7 +244,7 @@ class Index extends Component {
     }
 
     try {
-      window.localStorage.setItem("events", JSON.stringify(""));
+      window.localStorage.setItem("events", JSON.stringify("[]"));
       // console.log("window.allEvents window.allEventstorde",this.state.decodestoredevents.length,this.state.events,Number(this.state.events) > 0 && Number(this.state.events) == Number(downloaded.length))
       await TotalEventsCount();
       downloaded = JSON.parse(window.localStorage.getItem("events"));
