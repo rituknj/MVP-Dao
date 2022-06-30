@@ -1,17 +1,135 @@
-import React, { useState } from "react";
-import { Toaster } from "react-hot-toast";
+import React, { useState, useEffect } from "react";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { BsCircleFill } from "react-icons/bs";
 import BETS from "./../../../images/logo.png";
 import { SiBinance } from "react-icons/si";
 import { FaQuestionCircle } from "react-icons/fa";
 import { AiFillQuestionCircle } from "react-icons/ai";
+import axios from "axios";
+import {
+  earnvalidationpoints,
+  getValidationPoint,
+  totaltokenlocked,
+  revokevalidationpointsearning,
+  claimpoints,
+  pendingpoint,
+} from "./../../../web3/betsMVPService";
+import {
+  getBETBalanceBUSD,
+  getBETSV2Balance,
+  getBUSDBalance,
+  approvePoints,
+  isPointSapproved,
+} from "../../../web3/betsService";
+import { initInstance, loginProcess, getAccount } from "./../../../web3/web3";
+import toast, { Toaster } from "react-hot-toast";
+
+const tost = () =>
+  toast.success("Success.", {
+    style: {
+      padding: "16px",
+      color: "#000",
+    },
+    iconTheme: {
+      primary: "#0b0b0b",
+      secondary: "#ffffff",
+    },
+  });
 
 export default function AdminWallet() {
   const [bets, setBETs] = useState(0);
   const [busd, setbusd] = useState(0);
   const [betv2, setbetsv2] = useState(0);
   const [betprice, setBetPrice] = useState(0);
+  const [betstolock, setBettolock] = useState(0);
+  const [validationPoints, setValidationPoints] = useState(0);
+  const [lockedAmount, setLockedAmount] = useState(0);
+  const [getpendingpoint, setGetPendingPoints] = useState(0);
+  const [account, setAccount] = useState();
+
+  useEffect(() => {
+    initInstance();
+    walletConnect();
+    allCalls();
+    setInterval(async () => {
+      await allCalls();
+    }, 3000);
+  }, []);
+
+  const allCalls = async () => {
+    const Bets = await getBETBalanceBUSD();
+    setBETs(Bets);
+    const busds = await getBUSDBalance();
+    setbusd(busds);
+    const betV2 = await getBETSV2Balance();
+    setbetsv2(betV2);
+    const valpoints = await getValidationPoint();
+    setValidationPoints(valpoints);
+    const locked = await totaltokenlocked();
+    setLockedAmount(locked / 10 ** 18);
+    const pending = await pendingpoint();
+    setGetPendingPoints(pending);
+    API_call();
+  };
+
+  const API_call = async () => {
+    axios.get("https://api.coingecko.com/api/v3/coins/betswamp")
+      .then(function (response) {
+        setBetPrice(response.data.market_data.current_price.usd);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const Unlock = async () => {
+    const data = await revokevalidationpointsearning();
+    if (data.status) {
+      tost();
+      await allCalls();
+    }
+  };
+
+  const LockBets = async () => {
+    const amount = await isPointSapproved();
+    if (Number(amount) > betstolock) {
+      const data = await earnvalidationpoints(betstolock);
+      if (data.status) {
+        tost();
+      }
+    } else {
+      await approvePoints();
+      const data = await earnvalidationpoints(betstolock);
+      if (data.status) {
+        tost();
+      }
+    }
+  };
+  const ValidationPointsClaim = async () => {
+    const data = await claimpoints();
+    if (data.status) {
+      tost();
+    }
+  };
+
+
+  const walletConnect = async () => {
+    // if (account) {
+    //   setAccount(undefined);
+    //   return true;
+    // }
+    await initInstance();
+    await loginProcess();
+    const address = await getAccount();
+    setAccount(address);
+  };
+
+  const slicing = (address) => {
+    const first = address.slice(0, 4);
+    const second = address.slice(38);
+    return first + "..." + second;
+  };
+  const totalprice = Number(busd) + Number(betprice * bets) + Number(betv2 * betprice);
 
   const BETS_V2 = (demoArr, index) => {
     return (
@@ -47,7 +165,7 @@ export default function AdminWallet() {
             <p className="card-text d-flex justify-content-between">
               <small className="text-muted">Last updated 3 mins ago</small>
               <p className="card-text">
-                $ {Number(bets * betprice).toFixed(2)}{" "}
+              $ {Number(bets * betprice).toFixed(2)}{" "}
               </p>
             </p>
           </div>
@@ -154,9 +272,10 @@ export default function AdminWallet() {
               color: "#BCBCBC",
               cursor: "pointer",
             }}
+            onClick={() => walletConnect()}
           >
-            <BsCircleFill color="green" />
-            &nbsp;&nbsp; Connect Wallet
+            {account ? <BsCircleFill color="green" /> : ""} &nbsp;&nbsp;
+              {account ? slicing(account) : "Connect Wallet"}
           </span>
           <a
             href="https://pancakeswap.finance/swap?outputCurrency=0x749f031FDa3a4904b026f2275A697096492a129d"
@@ -175,7 +294,7 @@ export default function AdminWallet() {
           <p style={{ color: "#BCBCBC", fontSize: "12px", marginBottom: "0" }}>
             ESTIMATED BALANCE
           </p>
-          <h5>$600,000,000</h5>
+          <h5>${Number(totalprice).toFixed(2)}</h5>
         </div>
 
         <hr
@@ -212,6 +331,7 @@ export default function AdminWallet() {
               style={{ color: "#BCBCBC", fontSize: "12px", marginBottom: "0" }}
             >
               TOTAL VALIDATION POINTS EARNED&nbsp;&nbsp;
+              
               <span
                 type="button"
                 className="fs-5"
@@ -222,9 +342,10 @@ export default function AdminWallet() {
                 <FaQuestionCircle />
               </span>
             </p>
-            <h5>800,000</h5>
+            <h5>{validationPoints}&nbsp;&nbsp;{" "}
+              <span className="text-muted">(Pending {getpendingpoint})</span></h5>
           </div>
-          <button
+         {Number(getpendingpoint) > 0 ? <button
             className="btn mt-4 mb-5 fw-bold justify-content-between d-flex shadow"
             style={{
               backgroundColor: "#3b3b3b",
@@ -234,27 +355,28 @@ export default function AdminWallet() {
               borderRadius: "10px",
               maxWidth: "650px",
             }}
+            onClick={() => ValidationPointsClaim()}
           >
             <span>CLAIM</span>
             <MdOutlineArrowForwardIos className="mt-1" />
-          </button>
+          </button>:''}
 
           <div className="text-light mt-4">
             <p
               style={{ color: "#BCBCBC", fontSize: "12px", marginBottom: "0" }}
             >
-              AVAILABLE sBETS
+              TOTAL LOCKED AMOUNT
             </p>
-            <h5>600</h5>
+            <h5>{lockedAmount} BET</h5>
           </div>
           <div
             className="amount d-flex justify-content-center justify-content-md-between my-4"
             style={{ maxWidth: "650px" }}
           >
-            <button className="btn">25%</button>
-            <button className="btn">50%</button>
-            <button className="btn">75%</button>
-            <button className="btn">100%</button>
+            <button className="btn"  onClick={() => setBettolock(bets * 0.25)}>25%</button>
+            <button className="btn"  onClick={() => setBettolock(bets * 0.5)}>50%</button>
+            <button className="btn"  onClick={() => setBettolock(bets * 0.75)}>75%</button>
+            <button className="btn"  onClick={() => setBettolock(bets)}>100%</button>
           </div>
           <input
             type="number"
@@ -269,6 +391,8 @@ export default function AdminWallet() {
               color:"#fff",
               maxWidth:"650px"
             }}
+            value={betstolock}
+            onChange={(e) => setBettolock(e.target.value)}
           />
           <button
             className="btn fw-bold justify-content-between d-flex shadow"
@@ -281,12 +405,30 @@ export default function AdminWallet() {
               maxWidth: "650px",
               marginTop:"60px",
             }}
+            onClick={()=>LockBets()}
           >
             <span>LOCK</span>
             <MdOutlineArrowForwardIos className="mt-1" />
           </button>
+          {Number(lockedAmount) > 0 ?<button
+            className="btn fw-bold justify-content-between d-flex shadow"
+            style={{
+              backgroundColor: "#fff",
+              color: "#000",
+              width: "100%",
+              padding: "25px",
+              borderRadius: "10px",
+              maxWidth: "650px",
+              marginTop:"60px",
+            }}
+            onClick={()=>Unlock()}
+          >
+            <span>UNLOCK</span>
+            <MdOutlineArrowForwardIos className="mt-1" />
+          </button>:''}
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }
