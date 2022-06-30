@@ -4,6 +4,7 @@ import { GoPrimitiveDot } from "react-icons/go";
 import {ImStopwatch, ImFire} from 'react-icons/im'
 import {UserEventHistory, GetUserWonAmountOnEvent, claimrewards,CreatorReward, BoostEvent , userBethistory, totalAmountWon, gettotaluserwageramount,reclaimwager,AmountStackOnEventByaUser } from "../../../web3/betsMVPService";
 import toast, { Toaster } from "react-hot-toast";
+import { updatingeventdata } from "../../../web3/Countallevents";
 
 const tost = () =>
   toast.success("Success.", {
@@ -100,6 +101,7 @@ export default function BetSlip() {
   const Boost=async(id)=>{
       const data = await BoostEvent(id)
       if(data.status){
+        await updatingeventdata(id);
         tost()
       }
   }
@@ -123,7 +125,7 @@ export default function BetSlip() {
   const ActiveEvents = (completedCards, index) => {
     return (
       <>
-    {completedCards.starttime < Math.round((new Date()).getTime() / 1000) && completedCards.endtime > Math.round((new Date()).getTime() / 1000) ?  <div
+    {completedCards.endtime > Math.round((new Date()).getTime() / 1000) ?  <div
         className="card my-4"
         key={index}
         style={{ backgroundColor: "#1c1c1c", borderRadius:"10px" }}

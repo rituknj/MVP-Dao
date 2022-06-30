@@ -342,7 +342,7 @@ export default function CreateEvent() {
                 className="fs-5"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
-                title="Tooltip on top"
+                title="Discription will be updated soon"
                 
               >
                 <FaQuestionCircle/>
@@ -383,7 +383,7 @@ export default function CreateEvent() {
                 className="fs-5"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
-                title="Tooltip on top"
+                title="Discription will be updated soon"
               >
                 <FaQuestionCircle/>
               </span>
@@ -407,7 +407,7 @@ export default function CreateEvent() {
                 className="fs-5"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
-                title="Tooltip on top"
+                title="Discription will be updated soon"
               >
                 <FaQuestionCircle/>
               </span>
@@ -435,7 +435,7 @@ export default function CreateEvent() {
                 className="fs-5"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
-                title="Tooltip on top"
+                title="Discription will be updated soon"
               >
                 <FaQuestionCircle/>
               </span>
@@ -458,7 +458,7 @@ export default function CreateEvent() {
                 className="fs-5"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
-                title="Tooltip on top"
+                title="Discription will be updated soon"
               >
                 <FaQuestionCircle/>
               </span>

@@ -139,7 +139,6 @@ export class StepOne extends React.Component {
           <select
             className="form-select bg-dark border-0 text-light "
             id="specificSizeSelect"
-        
             onChange={(e)=>this.handleSubCategoryChanged(e)}
           >
            {this.state.subcategory.length == 0 ? '' : <option value='Select'>Select</option>}

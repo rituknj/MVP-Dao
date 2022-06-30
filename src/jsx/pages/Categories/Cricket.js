@@ -783,9 +783,7 @@ class GameCard extends Component {
         {/* <div className="modal-container">
       <Modal backdrop={this.state.backdrop} keyboard={false} open={this.state.open} onClose={this.handleClose}>
         <Modal.Body>
-          
-
-
+        
         </Modal.Body>
       </Modal>
     </div> */}

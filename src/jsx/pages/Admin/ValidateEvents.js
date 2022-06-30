@@ -209,11 +209,18 @@ export default function ValidateEvents() {
   };
 
   const claimReward = async (id) => {
-    await claimrewards(id);
+    const data = await claimrewards(id);
+    if (data.status) {
+      tost();
+    }
   };
+
   const validateEvenet = async (id) => {
-    await validateEvent(id, occur);
-    await updatingeventdata(id);
+    const data = await validateEvent(id, occur);
+    if (data.status) {
+      await updatingeventdata(id);
+      tost();
+    }
   };
 
   const claimValidationPonits = async () => {
