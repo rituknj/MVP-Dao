@@ -298,7 +298,7 @@ class GameCard extends Component {
    else if(data == 6){
     console.log(data)
      for(let i = 0; i < decodestoredevents.length; i++){
-       if(decodestoredevents[i].starttime+2592000  >= decodestoredevents[i].endtime){
+       if((decodestoredevents[i].endtime)-(decodestoredevents[i].starttime) >= 2592000){
          events.push(decodestoredevents[i])
        }
      }
