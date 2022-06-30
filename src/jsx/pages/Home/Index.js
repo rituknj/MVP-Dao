@@ -412,6 +412,10 @@ class Index extends Component {
                         className="btn-md theam-bg-red homeTopBtn"
                       >
                         TEST MARKET
+                        <AiOutlineRight
+                        style={{ position: "absolute", right: "5px" }}
+                        className="mt-1  fw-bold"
+                      />
                       </NavLink>
                     ) : Number(this.state.events) > 0 &&
                       Number(this.state.events) ==
@@ -420,11 +424,11 @@ class Index extends Component {
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
                       >
-                        START BETTING
-                        <AiOutlineRight
-                          style={{ position: "absolute", right: "5px" }}
-                          className="mt-1  fw-bold"
-                        />
+                        TEST BETTING
+                      <AiOutlineRight
+                        style={{ position: "absolute", right: "5px" }}
+                        className="mt-1  fw-bold"
+                      />
                       </NavLink>
                     ) : (
                       <div className="btn btn-md theam-bg-red homeTopBtnloader">
@@ -484,30 +488,34 @@ class Index extends Component {
                     <div className="overflow-hidden text-center py-3  align-items-stretch col-12">
                       <h5 className="text-white m-0">Price</h5>
                       <h4 className="text-white mt-3">
-                        $ {Number(this.state.price).toFixed(4)}
+                        0
                       </h4>
+                      {/* <h4 className="text-white mt-3">
+                        $ {Number(this.state.price).toFixed(4)}
+                      </h4> */}
                     </div>
 
                     <div className=" overflow-hidden text-center py-3 align-items-stretch col-12">
                       <h5 className="text-white m-0">Holders</h5>
-                      <h4 className="text-white mt-3">731</h4>
+                      <h4 className="text-white mt-3">0</h4>
                     </div>
 
                     <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
                       <h5 className="text-white m-0">Market Cap</h5>
-                      <h4 className="text-white mt-3">
+                      <h4 className="text-white mt-3">0</h4>
+                      {/* <h4 className="text-white mt-3">
                         ${" "}
                         {(
                           (Number(this.state.price).toFixed(4) * 250000000) /
                           10 ** 6
                         ).toFixed(2)}{" "}
                         M
-                      </h4>
+                      </h4> */}
                     </div>
 
                     <div className="overflow-hidden text-center py-3 align-items-stretch col-12">
                       <h5 className="text-white m-0">Total Supply</h5>
-                      <h4 className="text-white mt-3">250,000,000</h4>
+                      <h4 className="text-white mt-3">0</h4>
                     </div>
                   </Carousel>
                 </div>

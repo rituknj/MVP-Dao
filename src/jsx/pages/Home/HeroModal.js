@@ -11,7 +11,7 @@ export default function HeroModal(props) {
         centered
       >
         <Modal.Body className='bg-dark rounded p-0'>
-            <iframe src="https://youtube.com/embed/KWLdJQR_4pA" style={{height:"100%", width:"100%", minHeight:"400px"}} frameborder="0"></iframe>
+            <iframe src="https://www.youtube.com/embed/u2KHX3pAjXw" style={{height:"100%", width:"100%", minHeight:"400px"}} frameborder="0"></iframe>
         </Modal.Body>
       </Modal>
     </div>

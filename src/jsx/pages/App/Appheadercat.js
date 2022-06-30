@@ -38,46 +38,46 @@ class Index extends Component {
       window.maincat = "SPORTS"
       window.maincatNum = 0
     }
-    else if(cat == "WEATHER"){
+    else if(cat == "E-SPORTS"){
       window.maincatogries = await getSubCategory(1);
-      window.maincat = "WEATHER"
+      window.maincat = "E-SPORTS"
       window.maincatNum = 1
     }
-    else if(cat == "REALITY TV SHOWS"){
+    else if(cat == "OTHERS"){
       window.maincatogries= await getSubCategory(2);
-      window.maincat = "REALITY TV SHOWS"
+      window.maincat = "OTHERS"
       window.maincatNum = 2
     }
-    else if(cat == "POLITICS"){
-      window.maincatogries = await getSubCategory(3);
-      window.maincat = "POLITICS"
-      window.maincatNum = 3
-    }
-    else if(cat== "AWARDS"){
-      window.maincatogries = await getSubCategory(4);
-      window.maincat = "AWARDS"
-      window.maincatNum = 4
-    }
-    else if(cat == "DEAD POOL"){
-      window.maincatogries = await getSubCategory(5);
-      window.maincat = "DEAD POOL"
-      window.maincatNum = 5
-    }
-    else if(cat == "GAMES"){
-      window.maincatogries = await getSubCategory(6);
-      window.maincat = "GAMES"
-      window.maincatNum = 6
-    }
-    else if(cat == "MARKET PREDICTION"){
-      window.maincatogries = await getSubCategory(7);
-      window.maincat = "MARKET PREDICTION"
-      window.maincatNum = 7
-    }
-    else if(cat == "SPECIAL"){
-      window.maincatogries = await getSubCategory(8);
-      window.maincat = "SPECIAL"
-      window.maincatNum = 8
-    }
+    // else if(cat == "POLITICS"){
+    //   window.maincatogries = await getSubCategory(3);
+    //   window.maincat = "POLITICS"
+    //   window.maincatNum = 3
+    // }
+    // else if(cat== "AWARDS"){
+    //   window.maincatogries = await getSubCategory(4);
+    //   window.maincat = "AWARDS"
+    //   window.maincatNum = 4
+    // }
+    // else if(cat == "DEAD POOL"){
+    //   window.maincatogries = await getSubCategory(5);
+    //   window.maincat = "DEAD POOL"
+    //   window.maincatNum = 5
+    // }
+    // else if(cat == "GAMES"){
+    //   window.maincatogries = await getSubCategory(6);
+    //   window.maincat = "GAMES"
+    //   window.maincatNum = 6
+    // }
+    // else if(cat == "MARKET PREDICTION"){
+    //   window.maincatogries = await getSubCategory(7);
+    //   window.maincat = "MARKET PREDICTION"
+    //   window.maincatNum = 7
+    // }
+    // else if(cat == "SPECIAL"){
+    //   window.maincatogries = await getSubCategory(8);
+    //   window.maincat = "SPECIAL"
+    //   window.maincatNum = 8
+    // }
   }
 
   render() {
@@ -104,16 +104,16 @@ class Index extends Component {
                 </button>
               </li>
               <li>
-                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("WEATHER")} >
-                WEATHER
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("E-SPORTS")} >
+                E-SPORTS
                 </button>
               </li>
               <li>
-                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("REALITY TV SHOWS")} >
-                REALITY TV SHOWS
+                <button className="dropdown-item" type="button" onClick={()=>this.handlechange("OTHERS")} >
+                OTHERS
                 </button>
               </li>
-              <li>
+              {/* <li>
                 <button className="dropdown-item" type="button" onClick={()=>this.handlechange("POLITICS")} >
                 POLITICS
                 </button>
@@ -146,8 +146,8 @@ class Index extends Component {
               <li>
                 <button className="dropdown-item" type="button" onClick={()=>this.handlechange("OTHERS")} >
                 OTHERS
-                </button>
-              </li>
+                </button> 
+              </li>*/}
             </ul>
           </div>
         </div>
