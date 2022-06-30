@@ -202,6 +202,7 @@ class Index extends Component {
 
     Client.fetch(
       `*[_type=="partners"] {
+        name,
           image{
               asset -> {
                 _id,
@@ -338,17 +339,14 @@ class Index extends Component {
         <p className="m-0">{ambassadorData.name}</p>
         <p className="m-0">{ambassadorData.title}</p>
         <div className="d-flex m-0 justify-content-evenly">
-          <a href="#">
+          <a href={ambassadorData.twitter} target="_blank" rel="noreferrer">
             <FaTwitter color="#fff" />
-          </a>{" "}
-          <a href="#">
-            <AiFillLinkedin color="#fff" />
           </a>
         </div>
       </div>
     );
   }
-
+  
   renderPartners(partnersData, index) {
     return (
       <div
@@ -359,7 +357,7 @@ class Index extends Component {
       >
 
         {partnersData.image && partnersData.image.asset && (
-          <img src={partnersData.image.asset.url} alt="" style={{ width: "100%" }} />
+          <a href={partnersData.name} target="_blank" rel="noreferrer"><img src={partnersData.image.asset.url} alt="" style={{ width: "100%" }} /></a>
         )}
       </div>
     )
@@ -573,7 +571,7 @@ class Index extends Component {
               id="section-statistics"
             >
               <div className="space-50"></div>
-              <div className="mt-3 mt-md-5 text-white px-2 px-md-4 py-4 div-p d-flex">
+              <div className="mt-3 mt-md-5 text-white px-2 px-md-0 py-4 div-p d-flex">
                 <div className="vl me-2"></div>{" "}
                 <span>
                   <p
@@ -656,7 +654,7 @@ class Index extends Component {
             <div className="space-50"></div>
 
             <div className="container-fluid px-md-5 my-5" id="section-partners">
-              <div className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
+              <div className="mt-2 mt-md-4 text-white px-2 px-md-0 pb-4 div-p d-flex">
                 <div className="vl me-2"></div>{" "}
                 <span>
                   <h4 style={{ marginTop: "10px" }}>AMBASSADORS</h4>
