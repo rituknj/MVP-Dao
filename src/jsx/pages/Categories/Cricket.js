@@ -15,7 +15,7 @@ import {
   addingnewevents,
   updatingeventdata,
 } from "./../../../web3/Countallevents";
-import { getBETBalanceBUSD } from "./../../../web3/betsService";
+import { getBETBalanceBUSD, getBUSDBalance } from "./../../../web3/betsService";
 import { initInstance, getAccount } from "./../../../web3/web3";
 import redDot from "./../../../images/red-dot.png";
 import FIRE from "./../../../images/fire.png";
@@ -147,7 +147,7 @@ class GameCard extends Component {
   }
   componentDidMount = async () => {
     await initInstance();
-    let bal = await getBETBalanceBUSD();
+    let bal = await getBUSDBalance();
     let account = await getAccount();
     this.setState({
       BUSDbal: bal,
@@ -1089,7 +1089,7 @@ class GameCard extends Component {
                         <p style={{ fontSize: "12px", marginBottom: "0" }}>
                           Available Balance
                         </p>
-                        <span>{this.state.BUSDbal}</span>
+                        <span>{this.state.BUSDbal} BUSD</span>
                       </div>
                       <hr />
                       <div className="container selectBet">
@@ -1578,7 +1578,7 @@ class GameCard extends Component {
                         <p style={{ fontSize: "12px", marginBottom: "0" }}>
                           Available Balance
                         </p>
-                        <span>{this.state.BUSDbal}</span>
+                        <span>{this.state.BUSDbal} BUSD</span>
                       </div>
                       <hr />
                       <div className="container selectBet">
@@ -2075,7 +2075,7 @@ class GameCard extends Component {
                         <p style={{ fontSize: "12px", marginBottom: "0" }}>
                           Available Balance
                         </p>
-                        <span>{this.state.BUSDbal}</span>
+                        <span>{this.state.BUSDbal} BUSD</span>
                       </div>
                       <hr />
                       <div className="container selectBet">
@@ -2571,7 +2571,7 @@ class GameCard extends Component {
                         <p style={{ fontSize: "12px", marginBottom: "0" }}>
                           Available Balance
                         </p>
-                        <span>{this.state.BUSDbal}</span>
+                        <span>{this.state.BUSDbal} BUSD</span>
                       </div>
                       <hr />
                       <div className="container selectBet">

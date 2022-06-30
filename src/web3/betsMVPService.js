@@ -1,4 +1,4 @@
-import { getAccount, getContract, ToWei } from "./web3";
+import { getAccount, getContract, Toshannon, ToWei } from "./web3";
 import {TotalEventsCount, updatingeventdata} from './Countallevents'
 import { BETS_ABI } from './../Contract/BetswampMVP';
 import { MVPBetsV2 } from "../Contract/BetingContractV2";
@@ -144,7 +144,8 @@ export const getEvent = async (eventID) => {
 }
 
 export const earnvalidationpoints = async (amount) => {
-    const a = await ToWei(amount)
+    const a = await Toshannon(amount)
+    console.log(a)
     const betMVPContract = await getContract(Points, envdev.REACT_AAP_POINTS);
     const points = await betMVPContract.methods.earnValidationPoints(a).send({
         from: await getAccount(),

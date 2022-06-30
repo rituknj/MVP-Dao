@@ -66,7 +66,7 @@ export default function AdminWallet() {
     const valpoints = await getValidationPoint();
     setValidationPoints(valpoints);
     const locked = await totaltokenlocked();
-    setLockedAmount(locked / 10 ** 18);
+    setLockedAmount(locked / 10 ** 9);
     const pending = await pendingpoint();
     setGetPendingPoints(pending);
     API_call();

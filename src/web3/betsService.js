@@ -12,7 +12,8 @@ export const getBETContract = async () => {
 export const getBETBalanceBUSD = async () => {
     const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
     const _balance = await betContract.methods.balanceOf(await getAccount()).call();
-    const  balanceofBET = _balance/10**18
+    const  balanceofBET = _balance/10**9
+    console.log("balanceofBET",balanceofBET)
     return (balanceofBET).toFixed(2)
 }
 export const getBUSDBalance = async () => {
@@ -23,9 +24,10 @@ export const getBUSDBalance = async () => {
 }
 
 export const getBETSV2Balance = async () => {
-    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
+    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_SBETS);
     const _balance = await betContract.methods.balanceOf(await getAccount()).call();
-    const  balanceofBET = _balance/10**18
+    const  balanceofBET = _balance/10**9
+    console.log("balanceofBETs",balanceofBET)
     return (balanceofBET).toFixed(2)
 }
 
@@ -36,8 +38,8 @@ export const gettotalsupply = async () => {
 }
 
 export const isapproved = async () => {
-    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
-    const result = await betContract.methods.allowance( await getAccount(),envdev.REACT_APP_BET_BETSWAMP_V2).call()
+    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BUSD_TOKEN);
+    const result = await betContract.methods.allowance( await getAccount(), envdev.REACT_APP_BET_BETSWAMP_V2).call()
     const name = await betContract.methods.name().call()
     console.log("contract",name)
     return result;
@@ -45,7 +47,7 @@ export const isapproved = async () => {
 
 
 export const approveBUSD = async () => {
-    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
+    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BUSD_TOKEN);
     console.log('approve run')
     const result = await betContract.methods.approve(envdev.REACT_APP_BET_BETSWAMP_V2, 115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
         from: await getAccount(),
@@ -75,7 +77,7 @@ export const addBETS = async () => {
 }
 
 export const approvePoints = async () => {
-    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_SBETS);
+    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
     console.log('approve run')
     const result = await betContract.methods.approve(envdev.REACT_AAP_POINTS, 115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
         from: await getAccount(),
@@ -91,7 +93,7 @@ export const approvePoints = async () => {
 }
 
 export const isPointSapproved = async () => {
-    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_SBETS);
+    const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BETSWAP_TOKEN);
     const result = await betContract.methods.allowance(await getAccount(),envdev.REACT_AAP_POINTS).call()
     const name = await betContract.methods.name().call()
     console.log("contract",name)
