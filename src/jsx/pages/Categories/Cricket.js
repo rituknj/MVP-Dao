@@ -440,7 +440,7 @@ class GameCard extends Component {
 
     document.getElementById("sidebarb").style.transform = "translateX(0%)";
     document.getElementById("sidebarb").style.position = "relative";
-    document.getElementById(eventid).style.display = "none";
+    document.getElementById(eventid+"b").style.display = "none";
   };
 
   handel_Side_Menu_Trending = async (
@@ -502,7 +502,7 @@ class GameCard extends Component {
 
     document.getElementById("sidebart").style.transform = "translateX(0%)";
     document.getElementById("sidebart").style.position = "relative";
-    document.getElementById(eventid).style.display = "none";
+    document.getElementById(eventid+"t").style.display = "none";
   };
 
   handel_Side_Menu_Latest = async (
@@ -564,7 +564,7 @@ class GameCard extends Component {
 
     document.getElementById("sidebarl").style.transform = "translateX(0%)";
     document.getElementById("sidebarl").style.position = "relative";
-    document.getElementById(eventid).style.display = "none";
+    document.getElementById(eventid+"l").style.display = "none";
   };
 
 
@@ -677,14 +677,14 @@ class GameCard extends Component {
     if (x > 600 && !isMobile) {
       document.getElementById("sidebarb").style.transform = "translateX(-200%)";
       document.getElementById("sidebarb").style.position = "absolute";
-      document.getElementById(this.state.id).style.display = "inline-block";
+      document.getElementById(this.state.id+"b").style.display = "inline-block";
     }
   };
 
   inSilderClone_Boosted =()=>{
     document.getElementById("sidebarb").style.transform = "translateX(-200%)";
     document.getElementById("sidebarb").style.position = "absolute";
-    document.getElementById(this.state.id).style.display = "inline-block";
+    document.getElementById(this.state.id+"b").style.display = "inline-block";
   }
 
   mouseclass_Latest = (event) => {
@@ -693,14 +693,14 @@ class GameCard extends Component {
     if (x > 600 && !isMobile) {
       document.getElementById("sidebarl").style.transform = "translateX(-200%)";
       document.getElementById("sidebarl").style.position = "absolute";
-      document.getElementById(this.state.id).style.display = "inline-block";
+      document.getElementById(this.state.id+"l").style.display = "inline-block";
     }
   };
 
   inSilderClone_Latest =()=>{
     document.getElementById("sidebarl").style.transform = "translateX(-200%)";
     document.getElementById("sidebarl").style.position = "absolute";
-    document.getElementById(this.state.id).style.display = "inline-block";
+    document.getElementById(this.state.id+"l").style.display = "inline-block";
   }
 
   mouseclass_Trending = (event) => {
@@ -709,14 +709,14 @@ class GameCard extends Component {
     if (x > 600 && !isMobile) {
       document.getElementById("sidebart").style.transform = "translateX(-200%)";
       document.getElementById("sidebart").style.position = "absolute";
-      document.getElementById(this.state.id).style.display = "inline-block";
+      document.getElementById(this.state.id+"t").style.display = "inline-block";
     }
   };
 
   inSilderClone_Trending =()=>{
     document.getElementById("sidebart").style.transform = "translateX(-200%)";
     document.getElementById("sidebart").style.position = "absolute";
-    document.getElementById(this.state.id).style.display = "inline-block";
+    document.getElementById(this.state.id+"t").style.display = "inline-block";
   }
 
   
@@ -1718,7 +1718,7 @@ class GameCard extends Component {
                       {this.state.allevents.map((events) => (
                         <>
                           {Number(events.teamtwoParticipate) > 0 && Number(events.teamOneParticipate) > 0 && events.isboosted ? (
-                            <div className="col" id={`${events.id}`}>
+                            <div className="col" id={`${events.id}b`}>
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
@@ -1850,7 +1850,7 @@ class GameCard extends Component {
                       {this.state.allevents.map((events) => (
                         <>
                           {(Number(events.teamtwoParticipate) == 0 || Number(events.teamOneParticipate) == 0) && events.isboosted ? (
-                            <div className="col" id={`${events.id}`}>
+                            <div className="col" id={`${events.id}b`}>
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
@@ -2215,7 +2215,7 @@ class GameCard extends Component {
                       {this.state.allevents.map((events) => (
                         <>
                           {Number(events.teamtwoParticipate) > 0 && Number(events.teamOneParticipate) > 0 && Number(events.poolsize)/10**18 >= 1000 ? (
-                            <div className="col" id={`${events.id}`}>
+                            <div className="col" id={`${events.id}t`}>
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
@@ -2348,7 +2348,7 @@ class GameCard extends Component {
                         <>
                           {Number(events.teamtwoParticipate) == 0 
                           && Number(events.poolsize)/10**18  >= 1000 ? (
-                            <div className="col" id={`${events.id}`}>
+                            <div className="col" id={`${events.id}t`}>
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
@@ -2711,7 +2711,7 @@ class GameCard extends Component {
                       {this.state.allevents.map((events) => (
                         <>
                           {Number(events.teamtwoParticipate) > 0 &&Number(events.teamOneParticipate) > 0 && new Date().getTime()/1000 < events.starttime ? (
-                            <div className="col" id={`${events.id}`}>
+                            <div className="col" id={`${events.id}l`}>
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
@@ -2843,7 +2843,7 @@ class GameCard extends Component {
                       {this.state.allevents.map((events) => (
                         <>
                           {Number(events.teamtwoParticipate) == 0 && new Date().getTime()/1000 < events.starttime ? (
-                            <div className="col" id={`${events.id}`}>
+                            <div className="col" id={`${events.id}l`}>
                               <div
                                 className="card game-card overflow-hidden"
                                 onClick={() =>
