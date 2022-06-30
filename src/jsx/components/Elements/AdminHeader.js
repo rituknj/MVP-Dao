@@ -106,15 +106,15 @@ class AdminHeader extends Component {
                   </li>
                 )}
                 <li
-                  className="nav-item px-2 mt-0 mt-lg-1"
+                  className="nav-item px-2"
                   style={{ cursor: "pointer" }}
                 >
-                  <span
+                  <a href="#"
                     className="nav-link text-white cursor-pointer"
                     onClick={() => this.walletConnect()}
                   >
                     {this.state.account ? "CONNECTED" : "CONNECT"}
-                  </span>
+                  </a>
                 </li>
                 {/* <WalletPopup
                   show={this.state.modalShow}
