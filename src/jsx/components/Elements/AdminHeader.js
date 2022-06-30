@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import logo from "../../../images/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { computeHeadingLevel } from "@testing-library/react";
-import WalletPopup from "./WalletPopup";
-import { WindowScroller } from "react-virtualized";
+
+import { getAccount, initInstance, loginProcess } from "../../../web3/web3";
 
 class AdminHeader extends Component {
   slidbarcollapsed = (tab) => {
@@ -14,8 +14,24 @@ class AdminHeader extends Component {
     super(props);
     this.state = {
       modalShow: false,
+      account:undefined
     };
   }
+
+  componentDidMount =async()=>{
+    await this.walletConnect();
+  }
+
+  walletConnect = async()=> {
+    // if(account){
+    //     setAccount(undefined)
+    //     return true
+    // }
+    await initInstance();
+    await loginProcess();
+    const address = await getAccount();
+    this.setState({account:address})
+}
 
   render() {
     return (
@@ -90,20 +106,20 @@ class AdminHeader extends Component {
                   </li>
                 )}
                 <li
-                  className="nav-item px-2 mt-1"
+                  className="nav-item px-2 mt-0 mt-lg-1"
                   style={{ cursor: "pointer" }}
                 >
                   <span
                     className="nav-link text-white cursor-pointer"
-                    onClick={() => this.setState({ modalShow: true })}
+                    onClick={() => this.walletConnect()}
                   >
-                    WALLET
+                    {this.state.account ? "CONNECTED" : "CONNECT"}
                   </span>
                 </li>
-                <WalletPopup
+                {/* <WalletPopup
                   show={this.state.modalShow}
                   onHide={() => this.setState({ modalShow: false })}
-                />
+                /> */}
               </ul>
               {window.location.pathname.includes("admin") && (
                 <button

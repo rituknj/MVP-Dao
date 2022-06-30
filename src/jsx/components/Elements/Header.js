@@ -2,8 +2,8 @@ import React, {useEffect, useStatem, Fragment, useState } from "react";
 import logo from '../../../images/logo.png';
 import { NavLink } from "react-router-dom";
 import {initInstance,loginProcess,getAccount} from './../../../web3/web3'
-import WalletPopup from "./WalletPopup";
-import { Audio,BallTriangle,Bars,Circles,Grid,Hearts,MutatingDots,Oval,Plane,RevolvingDot,Rings,TailSpin,Triangle,Watch } from  'react-loader-spinner'
+
+
 
 const Header=()=> {
     const [account, setAccount] = useState()
@@ -16,24 +16,26 @@ const Header=()=> {
     },[])
 
    const walletConnect = async()=> {
-        if(account){
-            setAccount(undefined)
-            return true
-        }
+        // if(account){
+        //     setAccount(undefined)
+        //     return true
+        // }
         await initInstance();
         await loginProcess();
         const address = await getAccount();
         setAccount(address)
     }
+
     const slicing = (address)=> {
         const first = address.slice(0,4);
         const second = address.slice(38);
         return first + "..." + second
     }
-    setInterval(()=>{
-        setDownloaded(Number(window.allEventstorde))
-        setAllevents(Number(window.allEvents))
-    },2000)
+
+    // setInterval(()=>{
+    //     setDownloaded(Number(window.allEventstorde))
+    //     setAllevents(Number(window.allEvents))
+    // },2000)
         return (
             <Fragment>
                 <nav
@@ -71,16 +73,11 @@ const Header=()=> {
                                     <li className="nav-item px-2 px-md-4">
                                         <a className="nav-link text-white mt-1" href="https://bet-swamp.gitbook.io/betswamp-v.2.0/" target='_blank'> DOCS</a>
                                     </li>
-                                    {console.log("window.allEvents",  window.allEvents,window.allEventstorde,Number(window.allEvents) > 0 && Number(window.allEvents) == Number(window.allEventstorde) )}
                                     <li className="nav-item px-2 px-md-4 navWallet" style={{cursor: "pointer"}}>
                                         <span  className="nav-link text-white cursor-pointer" 
-                                        onClick={()=>setModalShow(true)}
-                                        >WALLET</span>
+                                        onClick={()=>walletConnect()}
+                                        >{account ? "CONNECTED" : "CONNECT"}</span>
                                     </li>
-                                    <WalletPopup
-                                        show={modalShow}
-                                        onHide={() => setModalShow(false)}
-                                    />
                                 </ul>
                             </form>
                         </div>
