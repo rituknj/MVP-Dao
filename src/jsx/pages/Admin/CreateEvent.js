@@ -502,6 +502,7 @@ export default function CreateEvent() {
               autoFocus
               value={starttime}
               onChange={(e)=>setStartTime(e.target.value)}
+              style={{colorScheme:"dark"}}
             />
           </div>
           <br />
@@ -515,6 +516,7 @@ export default function CreateEvent() {
               id="inputEndDate"
               value={endtime}
               onChange={(e)=>setEndTime(e.target.value)}
+              style={{colorScheme:"dark"}}
             />
           </div>
         </div> : <div className="stepFour">
