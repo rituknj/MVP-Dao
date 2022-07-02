@@ -185,6 +185,36 @@ class Index extends Component {
     )
       .then((data) => this.setState({ ambassadorData: data }))
       .catch(console.error);
+
+    // PARTNERS SECTION
+    Client.fetch(
+      `*[_type=="partners"] {
+            name,
+            image{
+                asset -> {
+                  _id,
+                    url
+                },
+               alt
+            }
+        }`
+    )
+      .then((data) => this.setState({ partnersData: data }))
+      .catch(console.error);
+
+    // FETCHING POSTS FROM SANITY
+    Client.fetch(
+      `*[_type=="post"] {
+              title,
+              source,
+              url,
+              publishedAt,
+              length,
+          }`
+    )
+      .then((data) => this.setState({ postsData: data }))
+      .catch(console.error);
+
     AOS.init();
     await initInstance();
     await loginProcess();
@@ -199,22 +229,6 @@ class Index extends Component {
       totalbetsmade: 0,
       activeevents: 0,
     });
-
-    // PARTNERS SECTION
-    Client.fetch(
-      `*[_type=="partners"] {
-          name,
-          image{
-              asset -> {
-                _id,
-                  url
-              },
-             alt
-          }
-      }`
-    )
-      .then((data) => this.setState({ partnersData: data }))
-      .catch(console.error);
 
     // AOS.init();
 
@@ -260,19 +274,6 @@ class Index extends Component {
       window.allEvents = this.state.events;
       window.allEventstorde = this.state.decodestoredevents.length;
     }, 200);
-
-    // FETCHING POSTS FROM SANITY
-    Client.fetch(
-      `*[_type=="post"] {
-          title,
-          source,
-          url,
-          publishedAt,
-          length,
-      }`
-    )
-      .then((data) => this.setState({ postsData: data }))
-      .catch(console.error);
   };
 
   parterImg = () => {
@@ -386,7 +387,10 @@ class Index extends Component {
       <div className="latestCards text-light" key={index}>
         <div id="head">
           <div className="text-end">
-            <span className="fw-bold">{dateFormat(postsData.publishedAt, "mmmm dS, yyyy")}</span>&nbsp;&nbsp;&nbsp;
+            <span className="fw-bold">
+              {dateFormat(postsData.publishedAt, "mmmm dS, yyyy")}
+            </span>
+            &nbsp;&nbsp;&nbsp;
             {/* <span>ANNOUNCEMENT</span> */}
           </div>
           <div id="title">{postsData.title}</div>
@@ -436,7 +440,7 @@ class Index extends Component {
                     <br /> fun betting on your favorite market.{" "}
                   </p>
                   <div className="text-center text-md-center my-1 my-md-0 topAppBtn">
-                    <a
+                    {/* <a
                       href="https://dao.betswamp.com"
                       target="_blank"
                       rel="noreferrer"
@@ -447,7 +451,7 @@ class Index extends Component {
                         style={{ position: "absolute", right: "5px" }}
                         className="mt-1  fw-bold"
                       />
-                    </a>
+                    </a> */}
                     {Number(this.state.events) == 0 ? (
                       <NavLink
                         to="/app"
@@ -703,7 +707,7 @@ class Index extends Component {
             <div className="space-50"></div>
 
             <div className="container-fluid px-md-5 my-5" id="section-partners">
-              <div className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
+              <div className="mt-2 mt-md-4 text-white px-0 px-md-4 pb-4 div-p d-flex">
                 <div className="vl me-2"></div>{" "}
                 <span>
                   <h4 style={{ marginTop: "10px" }}>AMBASSADORS</h4>
@@ -717,9 +721,9 @@ class Index extends Component {
                 showDots={false}
                 responsive={this.state.responsive}
                 ssr={true} // means to render carousel on server-side.
-                infinite={true}
+                infinite={false}
                 autoPlay={true}
-                autoPlaySpeed={1500}
+                autoPlaySpeed={2500}
                 keyBoardControl={true}
                 customTransition="all .5"
                 transitionDuration={500}
@@ -738,7 +742,7 @@ class Index extends Component {
               id="section-partners"
               style={{ backgroundColor: "#0b0b0b", padding: "50px 0" }}
             >
-              <div className="mt-2 mt-md-4 text-white d-flex">
+              <div className="mt-2 mt-md-4 text-white px-2 px-md-4 pb-4 div-p d-flex">
                 <div className="vl me-2"></div>{" "}
                 <span>
                   <p
@@ -805,12 +809,11 @@ class Index extends Component {
                 keyBoardControl={true}
                 customTransition="all .5"
                 transitionDuration={500}
-                containerClass="carousel-container w-100"
+                containerClass="carousel-container w-100 postSlider"
                 removeArrowOnDeviceType={["tablet", "mobile"]}
                 deviceType={this.props.deviceType}
                 itemClass="carousel-item-padding-40-px px-4 w-auto"
               >
-                
                 {this.state.postsData.map(this.renderPosts)}
               </Carousel>
             </div>

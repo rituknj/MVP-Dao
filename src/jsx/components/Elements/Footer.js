@@ -53,8 +53,7 @@ class Footer extends Component {
                           <Link to='/about' className="text-white font-weight-bold" href="#" style={{textDecoration:"none"}}>APPS</Link> 
                           <br/> 
                           <br/> 
-                          <li><a className="text-white" href="#">BETTING PLATFORM</a></li>  
-                          <li><a className="text-white" href="https://lucky-duckanoo-f4a914.netlify.app/" target='_blank'>DAO</a></li> 
+                          <li><a className="text-white" href="#">BETTING PLATFORM</a></li>
                             </ul>
                         </div>
                         <div className="col-md-2 text-center text-md-start">

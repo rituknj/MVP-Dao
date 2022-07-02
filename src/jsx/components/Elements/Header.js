@@ -61,9 +61,9 @@ const Header=()=> {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
                             <form>
                                 <ul className="navbar-nav">
-                                    <li className="nav-item px-2 px-md-4">
+                                    {/* <li className="nav-item px-2 px-md-4">
                                         <a className="nav-link text-white mt-1" href="https://dao.betswamp.com" target='_blank'> TEST DAO</a>
-                                    </li>
+                                    </li> */}
                                     {/* {allevents > 0 && allevents == downloaded ? <li className="nav-item px-2 px-md-4">
                                         <NavLink className="nav-link text-white mt-1" to="/app">MARKET</NavLink>
                                     </li>:

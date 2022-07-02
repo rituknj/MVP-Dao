@@ -75,6 +75,9 @@
   .counterSaperator{
     font-size: 48px !important;
   }
+  .latestCards{
+    width: 80vw;
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -298,16 +301,17 @@
     margin-top: 25px;
   }
 }
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1870px) {
-  /* .betCards, .validStats{
-    justify-content: start !important;
-  } */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1281px) {
+  .latestCards{
+    width: 360px !important;
+  }
+  .postSlider .react-multi-carousel-track li:nth-child(1){
+    padding-left: 0px !important; 
+  }
 }
 @media screen and (max-width: 1440px) {
   .betslip-main .row .col {
     min-width: 200px;
-  }
-  .self-help-main .row .col-lg-6{
   }
   .video-play-button {
     left: 75%;
@@ -417,6 +421,10 @@
   #admin-navbar-nav a, #admin-navbar-nav .nav-item span{
     font-size: 12px;
   }
+  .side-text-nfts{
+    margin-left: 15px;
+    margin-bottom: 50px;
+  }
   .collapsing {
     height: 100px;
     overflow: hidden;
@@ -463,6 +471,15 @@
     position: absolute;
     right: 15px;
   }
+  .faq-box {
+    width: auto !important;
+  }
+  .latestCards #title{
+    margin-top: 135px !important;
+  }
+  .postSlider .react-multi-carousel-track li{
+    padding-left: 0px !important;
+  }
 }
 @media only screen and (min-device-width: 355px) and (max-device-width: 376px){
   .belowPlay{
@@ -470,6 +487,9 @@
   }
   .self-help-main .amount .btn, .admin-wallet-main .amount .btn{
     font-size: 12px;
+  }
+  .latestCards{
+    width: 280px !important;
   }
 }
 /* Smartphones (landscape) ----------- */

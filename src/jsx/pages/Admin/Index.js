@@ -23,6 +23,7 @@ import self from "../../../images/twemoji_people-hugging.svg";
 import SelfHelp from "./SelfHelp";
 import { Link } from "react-router-dom";
 import AdminWallet from "./AdminWallet";
+import { isMobile } from "react-device-detect";
 
 class Index extends Component {
   constructor(props) {
@@ -32,13 +33,19 @@ class Index extends Component {
       showAdminSlider: 1,
     };
   }
-
+  clicked(){
+    if (isMobile) {
+      window.collapsed = true
+    } else {
+      window.collapsed = false
+    }
+  }
   componentDidMount = async () => {
     setInterval(() => {
       this.setState({ menuCollapse: window.collapsed });
     }, 100);
   };
-
+  
   render() {
     return (
       <div className="adminIndex">
@@ -52,7 +59,7 @@ class Index extends Component {
                   <Menu>
                     <MenuItem
                       active={this.state.showAdminSlider == 1 ? true : false}
-                      onClick={() => this.setState({ showAdminSlider: 1 })}
+                      onClick={() => {this.setState({ showAdminSlider: 1 }); this.clicked()}}
                       icon={
                         <svg
                           width="35"
@@ -90,7 +97,7 @@ class Index extends Component {
                           />
                         </svg>
                       }
-                      onClick={() => this.setState({ showAdminSlider: 2 })}
+                      onClick={() => {this.setState({ showAdminSlider: 2 }); this.clicked()}}
                     >
                       CREATE EVENT
                     </MenuItem>
@@ -123,7 +130,7 @@ class Index extends Component {
                           />
                         </svg>
                       }
-                      onClick={() => this.setState({ showAdminSlider: 3 })}
+                      onClick={() => {this.setState({ showAdminSlider: 3 }); this.clicked()}}
                     >
                       VALIDATE EVENTS
                     </MenuItem>
@@ -170,7 +177,7 @@ class Index extends Component {
                           </defs>
                         </svg>
                       }
-                      onClick={() => this.setState({ showAdminSlider: 4 })}
+                      onClick={() => {this.setState({ showAdminSlider: 4 }); this.clicked()}}
                     >
                       SELF HELP
                     </MenuItem>
@@ -190,24 +197,15 @@ class Index extends Component {
                           />
                         </svg>
                       }
-                      onClick={() => this.setState({ showAdminSlider: 5 })}
+                      onClick={() => {this.setState({ showAdminSlider: 5 }); this.clicked()}}
                     >
                       WALLET
                     </MenuItem>
-                    <hr />
-                    <MenuItem icon={<img src={whh_coins} alt="" />}>
-                      <a
-                        href="https://dao.betswamp.com"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        BETSWAMP DAO
-                      </a>
-                    </MenuItem>
+                    <hr className="mb-0" />
                     <MenuItem icon={<FaRegMoneyBillAlt size={30} />}>
                       <Link to="/app">MARKET</Link>
                     </MenuItem>
-                    <hr />
+                    <hr className="mt-0" />
                     <MenuItem icon={<img src={file} alt="" />}>DOCS</MenuItem>
                   </Menu>
                 </SidebarContent>

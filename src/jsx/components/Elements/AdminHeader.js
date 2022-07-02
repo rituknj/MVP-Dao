@@ -56,36 +56,6 @@ class AdminHeader extends Component {
                 className="navbar-nav ms-md-auto mb-2 mb-lg-0 flex-row"
                 id="admin-navbar-nav"
               >
-                {window.location.pathname.includes("/app") === true ? (
-                  ""
-                ) : (
-                  <li className="nav-item px-2">
-                    <NavLink
-                      className="nav-link text-white"
-                      style={
-                        window.location.pathname.includes("/app") === true
-                          ? { fontWeight: "700" }
-                          : { fontWeight: "400" }
-                      }
-                      to={{pathname: "https://dao.betswamp.com/faucet"}} target="_blank"
-                    >
-                      FAUCET
-                    </NavLink>
-                  </li>
-                )}
-                {window.location.pathname.includes("/admin") === true ? (
-                  ""
-                ) : (
-                  <li className="nav-item px-2">
-                    <a
-                      className="nav-link text-white"
-                      href="https://lucky-duckanoo-f4a914.netlify.app/"
-                      target="_blank"
-                    >
-                      DAO
-                    </a>
-                  </li>
-                )}
                 {window.location.pathname.includes("/admin") === true ||
                 window.location.pathname.includes("/comingsoon") === true ? (
                   ""

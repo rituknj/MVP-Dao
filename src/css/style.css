@@ -1740,16 +1740,6 @@ footer button {
   justify-content: space-around;
 }
 
-@media screen and (max-width: 766px) {
-  .side-text-nfts {
-    position: absolute;
-    right: 30%;
-    max-width: 800px;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.1);
-  }
-}
-
 .top-image {
   background-image: url('./../images/ground-bg.png');
   background-size: cover;

@@ -271,12 +271,25 @@ export default function AdminWallet() {
               backgroundColor: "#1C1C1C",
               color: "#BCBCBC",
               cursor: "pointer",
+              height:"fit-content"
             }}
             onClick={() => walletConnect()}
           >
             {account ? <BsCircleFill color="green" /> : ""} &nbsp;&nbsp;
               {account ? slicing(account) : "Connect Wallet"}
           </span>
+          <div className="d-md-inline-block d-flex flex-md-row flex-column">
+            <a
+            href="https://dao.betswamp.com/faucet"
+            target="_blank"
+          >
+            <button
+              className="border-0 rounded-pill px-3 mb-2 mb-md-0 me-md-2 me-0"
+              style={{ backgroundColor: "#1C1C1C", color: "#BCBCBC" }}
+            >
+              GET TEST BUSD
+            </button>
+          </a>
           <a
             href="https://dao.betswamp.com/faucet"
             target="_blank"
@@ -288,6 +301,7 @@ export default function AdminWallet() {
               GET TEST BETS
             </button>
           </a>
+          </div>
         </div>
 
         <div className="mt-5 text-light">
