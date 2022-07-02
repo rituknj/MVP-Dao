@@ -13,6 +13,8 @@ import {
   revokevalidationpointsearning,
   claimpoints,
   pendingpoint,
+  claimTestBets,
+  claimTestBusd
 } from "./../../../web3/betsMVPService";
 import {
   getBETBalanceBUSD,
@@ -51,6 +53,7 @@ export default function AdminWallet() {
     initInstance();
     walletConnect();
     allCalls();
+    
     setInterval(async () => {
       await allCalls();
     }, 3000);
@@ -107,6 +110,19 @@ export default function AdminWallet() {
   };
   const ValidationPointsClaim = async () => {
     const data = await claimpoints();
+    if (data.status) {
+      tost();
+    }
+  };
+
+  const faucetTestbets = async () => {
+    const data = await claimTestBets();
+    if (data.status) {
+      tost();
+    }
+  };
+  const faucetTestbusd = async () => {
+    const data = await claimTestBusd();
     if (data.status) {
       tost();
     }
@@ -279,24 +295,20 @@ export default function AdminWallet() {
               {account ? slicing(account) : "Connect Wallet"}
           </span>
           <div className="d-md-inline-block d-flex flex-md-row flex-column">
-            <a
-            href="https://dao.betswamp.com/faucet"
-            target="_blank"
-          >
+            <a>
             <button
               className="border-0 rounded-pill px-3 mb-2 mb-md-0 me-md-2 me-0"
               style={{ backgroundColor: "#1C1C1C", color: "#BCBCBC" }}
+              onClick={()=>faucetTestbusd()}
             >
               GET TEST BUSD
             </button>
           </a>
-          <a
-            href="https://dao.betswamp.com/faucet"
-            target="_blank"
-          >
+          <a>
             <button
               className="border-0 rounded-pill px-3"
               style={{ backgroundColor: "#1C1C1C", color: "#BCBCBC" }}
+              onClick={()=>faucetTestbets()}
             >
               GET TEST BETS
             </button>
@@ -326,7 +338,7 @@ export default function AdminWallet() {
         >
           {/* {demoArr.map(renderArr)} */}
           <BETS_V2 />
-          <DAO_sBETS />
+          {/* <DAO_sBETS /> */}
           <BUSD />
         </div>
       </div>

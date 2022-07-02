@@ -7,6 +7,7 @@ import BigInt from "big-integer";
 import { approveBUSD, isapproved } from "./betsService";
 import { strTimeToInt, fromWei } from './utils';
 import { Points } from "../Contract/Points";
+import { BUSD_Faucet, BETS_Faucet } from "../Contract/Faucet";
 
 
 export const getBETMVPContract = async () => {
@@ -367,3 +368,15 @@ export const totalAmountWon =async()=>{
     }
     return wonamount;
 }
+
+export const claimTestBets =async()=>{
+    const betMVPContract = await getContract( BETS_Faucet, envdev.REACT_APP_BET_FAUCET);
+    const data = betMVPContract.methods.dispenseBets("1000000000000000").send({from: await getAccount()})
+    return data;
+} 
+
+export const claimTestBusd =async()=>{
+    const betMVPContract = await getContract( BETS_Faucet, envdev.REACT_APP_BUSD_FAUCET);
+    const data = betMVPContract.methods.dispenseBets("1000000000000000000000").send({from: await getAccount()})
+    return data;
+} 
