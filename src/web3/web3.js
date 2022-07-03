@@ -20,7 +20,7 @@ export const initInstance = async () => {
 export const loginProcess = async () => {
     await window.ethereum.enable();
     try {
-        await checkChain();
+        // await checkChain();
     }
     catch (err) {
         console.log('check chain error:', err);
@@ -248,6 +248,10 @@ export const Toshannon = async(amount)=> {
     } catch (error) {
         console.log(error)
     }
+}
+export const ChainID = async()=>{
+    await initInstance();
+    return await web3Instance.eth.getChainId();
 }
 
 // export const disconnectWallet = () => {

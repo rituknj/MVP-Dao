@@ -46,6 +46,7 @@ import arrowRight from "../../../images/arrow-right.svg";
 import lineImage from "../../../images/line.png";
 import HeroModal from "./HeroModal";
 import Emailsub from "./Emailsub";
+import { envdev } from "./../../../web3/environments";
 
 var chart = null;
 
@@ -81,6 +82,7 @@ class Index extends Component {
       totalbetsmade: 0,
       indernalblog: [],
       modalShow: false,
+      EthereumBrowser:false,
       responsive: {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -215,6 +217,20 @@ class Index extends Component {
       .then((data) => this.setState({ postsData: data }))
       .catch(console.error);
 
+    
+    if(!window.ethereum){
+      alert("Non Ethereum browser detected, please install Metamask");
+      this.setState({
+        EthereumBrowser:true
+      })
+      
+    }
+    if(parseInt(window.ethereum.chainId) != envdev.REACT_APP_CHAIN){
+      this.setState({
+        EthereumBrowser:true
+      })
+    }
+
     AOS.init();
     await initInstance();
     await loginProcess();
@@ -325,14 +341,7 @@ class Index extends Component {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
   }
-  moussecloas = (event) => {
-    let x = event.screenX;
-    let y = event.screenY;
-
-    if (x > 633) {
-    }
-    // console.log("position", x, y);
-  };
+ 
 
   renderAmb(ambassadorData, index) {
     return (
@@ -409,6 +418,9 @@ class Index extends Component {
       </div>
     );
   }
+  handleClick = (e) => {
+    if(this.state.EthereumBrowser) e.preventDefault()
+  }
 
   render() {
     // setInterval(()=>{
@@ -417,9 +429,9 @@ class Index extends Component {
     // },200)
 
     return (
-      <Fragment onClick={this.moussecloas}>
+      <Fragment >
         <Header />
-        <div onClick={this.moussecloas} style={{ position: "relative" }}>
+        <div style={{ position: "relative" }}>
           <div className="topBoxBg">
             <div className="container mb-5 mb-md-0" id="section-home">
               <div className="space-100"></div>
@@ -456,6 +468,7 @@ class Index extends Component {
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
+                        onClick={this.handleClick}
                       >
                         TEST MARKET
                         <AiOutlineRight
@@ -469,6 +482,7 @@ class Index extends Component {
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
+                        onClick={this.handleClick}
                       >
                         TEST BETTING
                         <AiOutlineRight
