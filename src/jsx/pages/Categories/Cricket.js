@@ -930,7 +930,7 @@ class GameCard extends Component {
                 width={22}
                 height={22}
                 style={{ marginTop: "5px" }}
-                onClick={() => this.SearchCategory(this.state.searchItem)}
+                onClick={() => {this.SearchCategory(this.state.searchItem);this.setState({filteractive:7})}}
               />
             </div>
             <div>
@@ -946,6 +946,7 @@ class GameCard extends Component {
             </div>
           </div>
         </div>
+        
         <div
         // SET DISPLAY CONDITION HERE
           className="eventFilters container-fluid py-5" id='filterdata'
@@ -1009,7 +1010,7 @@ class GameCard extends Component {
 
   {/* **********************Events Mapping start from here************************* */}
 
-      { this.state.filteractive >= 1 && this.state.filteractive <= 6 ? 
+      { this.state.filteractive >= 1 && this.state.filteractive <= 7 ? 
         <div
           className="theam-bg-dark p-1 p-md-5"
             style={{ backgroundColor: "#1C1C1C" }}

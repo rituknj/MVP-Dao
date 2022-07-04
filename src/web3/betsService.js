@@ -48,7 +48,7 @@ export const isapproved = async () => {
 
 export const approveBUSD = async () => {
     const betContract = await getContract(BETS_ABI, envdev.REACT_APP_BUSD_TOKEN);
-    console.log('approve run')
+    console.log('approve run');
     const result = await betContract.methods.approve(envdev.REACT_APP_BET_BETSWAMP_V2, 115792089237316195423570985008687907853269984665640564039457584007913129639935n).send({
         from: await getAccount(),
     });

@@ -371,7 +371,7 @@ export const totalAmountWon =async()=>{
 
 export const claimTestBets =async()=>{
     const betMVPContract = await getContract( BETS_Faucet, envdev.REACT_APP_BET_FAUCET);
-    const data = betMVPContract.methods.dispenseBets("1000000000000000").send({from: await getAccount()})
+    const data = betMVPContract.methods.dispenseBets("10000000000000").send({from: await getAccount()})
     return data;
 } 
 
