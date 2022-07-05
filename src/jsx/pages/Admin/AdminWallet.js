@@ -23,6 +23,7 @@ import {
   approvePoints,
   isPointSapproved,
 } from "../../../web3/betsService";
+import { GetUserName, SetYourUserName } from "../../../web3/ContextMethods";
 import { initInstance, loginProcess, getAccount } from "./../../../web3/web3";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -38,6 +39,17 @@ const tost = () =>
     },
   });
 
+const error = (msg) =>
+  toast.error(msg, {
+    style: {
+      padding: "16px",
+      color: "#000",
+    },
+    iconTheme: {
+      primary: "#0b0b0b",
+      secondary: "#ffffff",
+    },
+  });
 export default function AdminWallet() {
   const [bets, setBETs] = useState(0);
   const [busd, setbusd] = useState(0);
@@ -48,17 +60,27 @@ export default function AdminWallet() {
   const [lockedAmount, setLockedAmount] = useState(0);
   const [getpendingpoint, setGetPendingPoints] = useState(0);
   const [account, setAccount] = useState();
+  const [name, setUserName] = useState('')
+  const [isuser, setIsuser] = useState('')
 
   useEffect(() => {
+   const inti = async()=>{
     initInstance();
     walletConnect();
     allCalls();
-    
+    const currentusername = await GetUserName();
+    setIsuser(currentusername)
+    if(currentusername == ""){
+      error("You have not set your username, please set username")
+    }
+   }
+
+    inti(); 
     setInterval(async () => {
       await allCalls();
     }, 3000);
   }, []);
-
+  console.log("username",isuser)
   const allCalls = async () => {
     const Bets = await getBETBalanceBUSD();
     setBETs(Bets);
@@ -108,6 +130,7 @@ export default function AdminWallet() {
       }
     }
   };
+
   const ValidationPointsClaim = async () => {
     const data = await claimpoints();
     if (data.status) {
@@ -121,6 +144,7 @@ export default function AdminWallet() {
       tost();
     }
   };
+
   const faucetTestbusd = async () => {
     const data = await claimTestBusd();
     if (data.status) {
@@ -128,6 +152,12 @@ export default function AdminWallet() {
     }
   };
 
+  const setName = async(strname)=>{
+    const data = await SetYourUserName(strname);
+    if (data.status) {
+      tost();
+    }
+  }
 
   const walletConnect = async () => {
     // if (account) {
@@ -190,49 +220,7 @@ export default function AdminWallet() {
     );
   };
 
-  const DAO_sBETS = (demoArr, index) => {
-    return (
-      <div
-        className="card mb-3 text-light"
-        style={{
-          backgroundColor: "#1C1C1C",
-          width: "100%",
-          border: "none",
-          borderBottom: "1px solid #000",
-        }}
-        key={index}
-      >
-        <div className="card-body d-flex ">
-          <span
-            style={{
-              backgroundColor: "#0F0F0F",
-              height: "fit-content",
-              width: "fit-content",
-              borderRadius: "50px 50px",
-            }}
-            className="p-2"
-          >
-            <img src={BETS} height={38} />
-          </span>
-          <div className="w-100 " style={{ marginLeft: "20px" }}>
-            <div className="d-flex justify-content-between w-100">
-              <h5 className="card-title">DAO sBETS</h5>
-              <div>
-                <p className="card-text">{betv2} sBETS</p>
-              </div>
-            </div>
-            <p className="card-text d-flex justify-content-between">
-              <small className="text-muted">Last updated 3 mins ago</small>
-              {/* <p className="card-text">
-                    $ {Number(betv2 * betprice).toFixed(2)}{" "}
-                  </p> */}
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
+  
   const BUSD = (demoArr, index) => {
     return (
       <div
@@ -338,10 +326,58 @@ export default function AdminWallet() {
         >
           {/* {demoArr.map(renderArr)} */}
           <BETS_V2 />
-          {/* <DAO_sBETS /> */}
           <BUSD />
-        </div>
-      </div>
+           {isuser == "" ?  <div
+              className="card mb-3 text-light"
+              style={{
+                backgroundColor: "#1C1C1C",
+                width: "100%",
+                border: "none",
+                borderBottom: "1px solid #000",
+              }}
+           >
+            <div className="card-body d-flex ">
+              <div className="w-100 " style={{ marginLeft: "20px" }}>
+                <div className="d-flex justify-content-between w-100">
+                <input type="text" className="px-2 py-3"
+                  style={{
+                    background: "#151515",
+                    borderRadius: "10px",
+                    fontSize:"14px",
+                    outline:"none",
+                    border:"1px solid #403F3F",
+                    width:"100%",
+                    color:"#fff",
+                    maxWidth:"650px"
+                  }}
+                  value={name}
+                  onChange={(e)=> setUserName(e.target.value)}
+                  />
+                  <div>
+                  <button
+                className="btn fw-bold justify-content-between d-flex shadow"
+                style={{
+                  backgroundColor: "#fff",
+                  color: "#000",
+                  width: "100%",
+                  padding: "2px",
+                  borderRadius: "10px",
+                  maxWidth: "650px",
+                  padding:'5px 10px',
+                  marginTop:"6px",
+                }}
+                onClick={()=>setName(name)}
+              >
+                <span>SET USERNAEM</span>
+            
+              </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>:''}
+            </div>
+          </div>
 
       <div
         className="d-flex mt-5 ps-sm-5 ps-2"

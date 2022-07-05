@@ -44,6 +44,7 @@ let newevents = 0
                 check.creator = check2[22]
                 check.validationtime = check2[9]
                 check.isboosted = check2[18]
+                check.link = check2[23]
                 check.zero = zero
                 check.one = one 
                 check.two = two
@@ -152,6 +153,7 @@ export const updatingeventdata = async(id) => {
                 check.BettorsCount = check2[15]
                 check.isboosted = check2[18]
                 check.creator = check2[22]
+                check.link = check2[23]
                 check.teamtwoParticipate = teamtwoParticipate
                 check.teamOneParticipate = teamOneParticipate
                 decodestoredevents[i] = check

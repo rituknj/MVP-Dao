@@ -17,12 +17,12 @@ export const getBETMVPContract = async () => {
     return betMVPContract;
 }
 
-export const addSubbCategory = async (sub_category) => {
-    // const betMVPContract = await getBETMVPContract();
-    // var getData = await betMVPContract.methods.addSubbCategory('0x0', sub_category);
-    // let data = getData.encodeABI()
-    // let res = await web3Instance.eth.sendTransaction({to: envdev.REACT_APP_BETSWAMP_MVP_CONTRACT, from: await getAccount(), data: data})
-    // return res
+export const addRefLink = async (id,ref) => {
+    const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
+    const data = await betMVPContract.methods.setRefLink(await getAccount,id,ref).send({
+        from: await getAccount(),
+    });
+    return data;
 }
 
 export const removeSubCategory = async (sub_category) => {

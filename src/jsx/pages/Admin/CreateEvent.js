@@ -13,6 +13,7 @@ import {
   getSubCategory,
   placeBet,
   UserEventHistory,
+  addRefLink
 } from "./../../../web3/betsMVPService";
 import { MdOutlineArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 import { NavLink } from "react-router-dom";
@@ -51,7 +52,8 @@ export default function CreateEvent() {
   const [betamount, setBetAmount] = useState(0);
   const [outcomes, setoutCome] = useState(2);
   const [preferredoutcome, setPreferredoutcome] = useState();
-  const [oppossingoutcome, setOppossingoutcome] = useState()
+  const [oppossingoutcome, setOppossingoutcome] = useState();
+  const [ref, setRef] = useState('')
 
   useLayoutEffect(() => {
     const completed = async () => {
@@ -255,10 +257,13 @@ export default function CreateEvent() {
       if(data.status){
         tost("Event Create Successfully")
         const id = await UserEventHistory()
-        const placebetdata = await placeBet(id[id.length-1],0,betamount)
-        await updatingeventdata(id[id.length-1]);
-        if(placebetdata.status){
-          tost("Creator Bet Successfully")
+        const link = await addRefLink(id[id.length-1],ref)
+        if(link.status){
+          const placebetdata = await placeBet(id[id.length-1],0,betamount)
+          await updatingeventdata(id[id.length-1]);
+          if(placebetdata.status){
+            tost("Creator Bet Successfully")
+          }
         }
       }
     }
@@ -546,6 +551,15 @@ export default function CreateEvent() {
               ENTER AMOUNT TO BET
             </label>
             <input type="number" className="form-control mb-5" id="inputBetAmount" value={betamount} onChange={(e)=>setBetAmount(e.target.value)}/>
+            <label for="inputBetAmount" className="form-label">
+              ENTER REFERRAL LINK
+            </label>
+            <input type="text"
+              className="form-control"
+              id="inputOpposingOutcome"
+              value={ref}
+              onChange={(e)=>setRef(e.target.value)}
+            />
             <button
               className="btn my-3 px-3 py-3 fw-bold justify-content-between d-flex self-pause"
               style={{

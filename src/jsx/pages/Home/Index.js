@@ -47,14 +47,29 @@ import lineImage from "../../../images/line.png";
 import HeroModal from "./HeroModal";
 import Emailsub from "./Emailsub";
 import { envdev } from "./../../../web3/environments";
-
+import toast, { Toaster } from "react-hot-toast";
+import { GetUserName } from "../../../web3/ContextMethods";
 var chart = null;
+
 
 let downloaded = [];
 
 const SalesChart = loadable(() =>
   pMinDelay(import("../../components/Chart/SalesChart"), 1000)
 );
+
+const error = (msg) =>
+  toast.error(msg, {
+    style: {
+      padding: "16px",
+      color: "#000",
+    },
+    iconTheme: {
+      primary: "#0b0b0b",
+      secondary: "#ffffff",
+    },
+  });
+
 class Index extends Component {
   constructor(props) {
     super(props);
@@ -234,6 +249,10 @@ class Index extends Component {
     AOS.init();
     await initInstance();
     await loginProcess();
+    const currentusername = await GetUserName();
+    if(currentusername == ""){
+      error("Username is not set, please set your username in Wallet")
+    }
     window.localStorage.clear();
     let events = await totalEvents();
 
@@ -245,7 +264,8 @@ class Index extends Component {
       totalbetsmade: 0,
       activeevents: 0,
     });
-
+    
+   
     // AOS.init();
 
     request(
@@ -922,6 +942,7 @@ class Index extends Component {
               ""
             )}
             <div className="space-100"></div>
+            <Toaster />
             {/* <div
               className="container-fluid"
               style={{ backgroundColor: '#0b0b0b', padding: '50px 0' }}

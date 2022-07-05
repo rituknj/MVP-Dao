@@ -12,3 +12,15 @@ export const Pauseplatform = async()=>{
     const pause = await context.methods.pausePlatform(true).send({from: await getAccount()})
     return pause;
 }
+
+export const SetYourUserName =async(strname)=>{
+    const context = await ContextContract()
+    const pause = await context.methods.setUsername(strname).send({from: await getAccount()})
+    return pause;
+}
+
+export const GetUserName = async()=>{
+    const context = await ContextContract()
+    const pause = await context.methods.getUsername(await getAccount()).call();
+    return pause;
+}
