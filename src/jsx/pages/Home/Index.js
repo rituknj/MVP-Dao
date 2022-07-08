@@ -488,7 +488,6 @@ class Index extends Component {
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
-                        onClick={this.handleClick}
                       >
                         TEST MARKET
                         <AiOutlineRight
@@ -502,7 +501,7 @@ class Index extends Component {
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
-                        onClick={this.handleClick}
+                        
                       >
                         TEST BETTING
                         <AiOutlineRight
