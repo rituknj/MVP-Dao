@@ -367,7 +367,7 @@ export default function AdminWallet() {
                 }}
                 onClick={()=>setName(name)}
               >
-                <span>SET USERNAEM</span>
+                <span>SET USERNAME</span>
             
               </button>
                   </div>

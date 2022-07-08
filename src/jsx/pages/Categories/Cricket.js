@@ -1477,7 +1477,7 @@ class GameCard extends Component {
                                       className="text-white mb-1"
                                       style={{ fontSize: "10px" }}
                                     >
-                                      OPENss
+                                      OPEN
                                     </div>
                                     <div>
                                       <img
