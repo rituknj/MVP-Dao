@@ -24,7 +24,7 @@ import {
   isPointSapproved,
 } from "../../../web3/betsService";
 import { GetUserName, SetYourUserName } from "../../../web3/ContextMethods";
-import { initInstance, loginProcess, getAccount } from "./../../../web3/web3";
+import { initInstance, getAccount } from "./../../../web3/web3";
 import toast, { Toaster } from "react-hot-toast";
 
 const tost = () =>
@@ -165,7 +165,6 @@ export default function AdminWallet() {
     //   return true;
     // }
     await initInstance();
-    await loginProcess();
     const address = await getAccount();
     setAccount(address);
   };

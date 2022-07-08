@@ -4,7 +4,7 @@ import logo from "../../../images/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { computeHeadingLevel } from "@testing-library/react";
 
-import { getAccount, initInstance, loginProcess } from "../../../web3/web3";
+import { getAccount, initInstance } from "../../../web3/web3";
 
 class AdminHeader extends Component {
   slidbarcollapsed = (tab) => {
@@ -28,7 +28,6 @@ class AdminHeader extends Component {
     //     return true
     // }
     await initInstance();
-    await loginProcess();
     const address = await getAccount();
     this.setState({account:address})
 }

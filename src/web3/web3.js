@@ -20,7 +20,7 @@ export const initInstance = async () => {
 export const loginProcess = async () => {
     await window.ethereum.enable();
     try {
-        // await checkChain();
+        await checkChain();
     }
     catch (err) {
         console.log('check chain error:', err);
@@ -71,26 +71,26 @@ export const checkChain = (force = true) => {
         // const stopChainChecker = new Subject();
         const expectedChainId = getMainChainInformation().chainId;
         const providerNetworkOption = getMainChainInformation().providerNetworkOption;
-        if (chainId !== 3) {
+        if (chainId != 3) {
             if (force) {
                 await window.ethereum.enable();
-                await window.ethereum.request({
-                    method: 'wallet_addEthereumChain',
-                    params: [{ 
-                        chainId: providerNetworkOption.chainId, // A 0x-prefixed hexadecimal string
-                        chainName: providerNetworkOption.chainName,
-                        nativeCurrency: {
-                            name: providerNetworkOption.nativeCurrency.name,
-                            symbol: providerNetworkOption.nativeCurrency.symbol,// 2-6 characters long
-                            decimals: 18,
-                        },
-                        rpcUrls: providerNetworkOption.rpcUrls,
-                        blockExplorerUrls: providerNetworkOption.blockExplorerUrls,
-                     }]
-                })
+                // await window.ethereum.request({
+                //     method: 'wallet_addEthereumChain',
+                //     params: [{ 
+                //         chainId: providerNetworkOption.chainId, // A 0x-prefixed hexadecimal string
+                //         chainName: providerNetworkOption.chainName,
+                //         nativeCurrency: {
+                //             name: providerNetworkOption.nativeCurrency.name,
+                //             symbol: providerNetworkOption.nativeCurrency.symbol,// 2-6 characters long
+                //             decimals: 18,
+                //         },
+                //         rpcUrls: providerNetworkOption.rpcUrls,
+                //         blockExplorerUrls: providerNetworkOption.blockExplorerUrls,
+                //      }]
+                // })
                 window.ethereum.request({
                     method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: getMainChainInformation().providerNetworkOption.chainId }]
+                    params: [{ chainId: "0x3" }]
                 }).then(() => {
                     resolve(true);
                 }).catch((err) => {

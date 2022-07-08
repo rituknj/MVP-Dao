@@ -1,7 +1,7 @@
 import React, {useEffect, useStatem, Fragment, useState } from "react";
 import logo from '../../../images/logo.png';
 import { NavLink } from "react-router-dom";
-import {initInstance,loginProcess,getAccount} from './../../../web3/web3'
+import {initInstance,getAccount} from './../../../web3/web3'
 
 
 
@@ -21,7 +21,6 @@ const Header=()=> {
         //     return true
         // }
         await initInstance();
-        await loginProcess();
         const address = await getAccount();
         setAccount(address)
     }

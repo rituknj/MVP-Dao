@@ -24,6 +24,7 @@ import OPEN from "./../../../images/open.png";
 import { GoPrimitiveDot } from "react-icons/go";
 import { TiStopwatch } from "react-icons/ti";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { BsFillShareFill } from "react-icons/bs"
 import { ImFire } from "react-icons/im";
 import { FaMinus, FaSquareFull } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
@@ -1323,7 +1324,11 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
+                                      <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                      <BsFillShareFill fill="#8c8c8c" />
+                                    </div>
                                     <div>
+                                      
                                       <ImFire
                                         fill={
                                           this.state.isboosted
@@ -1455,6 +1460,9 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
+                                    <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                      <BsFillShareFill fill="#8c8c8c" />
+                                    </div>
                                     <div>
                                       <ImFire
                                         fill={
@@ -1464,11 +1472,12 @@ class GameCard extends Component {
                                         }
                                       />
                                     </div>
+                                    
                                     <div
                                       className="text-white mb-1"
                                       style={{ fontSize: "10px" }}
                                     >
-                                      OPEN
+                                      OPENss
                                     </div>
                                     <div>
                                       <img
@@ -1812,6 +1821,9 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
+                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                      <BsFillShareFill fill="#8c8c8c" />
+                                    </div>
                                     <div>
                                       <ImFire
                                         fill={
@@ -1944,6 +1956,9 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
+                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                      <BsFillShareFill fill="#8c8c8c" />
+                                    </div>
                                     <div>
                                       <ImFire
                                         fill={
@@ -2309,6 +2324,9 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
+                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                      <BsFillShareFill fill="#8c8c8c" />
+                                    </div>
                                     <div>
                                       <ImFire
                                         fill={
@@ -2442,6 +2460,9 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
+                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                      <BsFillShareFill fill="#8c8c8c" />
+                                    </div>
                                     <div>
                                       <ImFire
                                         fill={
@@ -2805,6 +2826,9 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
+                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                      <BsFillShareFill fill="#8c8c8c" />
+                                    </div>
                                     <div>
                                       <ImFire
                                         fill={
@@ -2937,6 +2961,9 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
+                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                      <BsFillShareFill fill="#8c8c8c" />
+                                    </div>
                                     <div>
                                       <ImFire
                                         fill={

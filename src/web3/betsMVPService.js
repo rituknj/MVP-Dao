@@ -19,7 +19,7 @@ export const getBETMVPContract = async () => {
 
 export const addRefLink = async (id,ref) => {
     const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-    const data = await betMVPContract.methods.setRefLink(await getAccount,id,ref).send({
+    const data = await betMVPContract.methods.setRefLink(await getAccount(),id,ref).send({
         from: await getAccount(),
     });
     return data;

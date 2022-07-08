@@ -252,9 +252,9 @@ export default function CreateEvent() {
     }
 
     else{ 
-      const data = await createEvent(window.maincategoriesnum,subCat,describe,url,team1+" "+team2,star,end,preferredoutcome,oppossingoutcome);  
+      // const data = await createEvent(window.maincategoriesnum,subCat,describe,url,team1+" "+team2,star,end,preferredoutcome,oppossingoutcome);  
       
-      if(data.status){
+      if(true){
         tost("Event Create Successfully")
         const id = await UserEventHistory()
         const link = await addRefLink(id[id.length-1],ref)
