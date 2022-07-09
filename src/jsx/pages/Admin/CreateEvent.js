@@ -1,10 +1,4 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { StepFour } from "../../components/Elements/StepFour";
-import { StepOne } from "../../components/Elements/StepOne";
-import { StepThree } from "../../components/Elements/StepThree";
-import { StepTwo } from "../../components/Elements/StepTwo";
-import MultiStep from "multistep-by-nikhil";
-import styled from "styled-components";
 import icon from "../../../images/icon-park-outline_history-query.png";
 import { FiArrowLeft } from "react-icons/fi";
 import {
@@ -21,6 +15,7 @@ import { GoPrimitiveDot } from "react-icons/go";
 import {FaQuestionCircle} from 'react-icons/fa'
 import { updatingeventdata } from "../../../web3/Countallevents";
 import toast, { Toaster } from 'react-hot-toast';
+import { GetUserName } from "./../../../web3/ContextMethods"
 let FILL = false;
 window.cat = "SPORTS"
 const tost =(msg)=> toast.success(msg, {
@@ -51,6 +46,7 @@ export default function CreateEvent() {
   const [endtime, setEndTime] = useState();
   const [betamount, setBetAmount] = useState(0);
   const [outcomes, setoutCome] = useState(2);
+  const [username, setUserName]  = useState('')
   const [preferredoutcome, setPreferredoutcome] = useState();
   const [oppossingoutcome, setOppossingoutcome] = useState();
   const [ref, setRef] = useState('')
@@ -60,6 +56,8 @@ export default function CreateEvent() {
       const events = [];
       const userEvnet = await UserEventHistory();
       console.log("User Event", userEvnet);
+      const user = await GetUserName();
+      setUserName(user)
       const subcat = await getSubCategory(0);
       window.maincategoriesnum = 0
       setsubcategory(subcat)
@@ -252,12 +250,12 @@ export default function CreateEvent() {
     }
 
     else{ 
-      // const data = await createEvent(window.maincategoriesnum,subCat,describe,url,team1+" "+team2,star,end,preferredoutcome,oppossingoutcome);  
+      const data = await createEvent(window.maincategoriesnum,subCat,describe,url,team1+" "+team2,star,end,preferredoutcome,oppossingoutcome);  
       
-      if(true){
+      if(data.status){
         tost("Event Create Successfully")
         const id = await UserEventHistory()
-        const link = await addRefLink(id[id.length-1],ref)
+        const link = await addRefLink(id[id.length-1],`${username}/${id[id.length-1]}`)
         if(link.status){
           const placebetdata = await placeBet(id[id.length-1],0,betamount)
           await updatingeventdata(id[id.length-1]);
@@ -551,15 +549,7 @@ export default function CreateEvent() {
               ENTER AMOUNT TO BET
             </label>
             <input type="number" className="form-control mb-5" id="inputBetAmount" value={betamount} onChange={(e)=>setBetAmount(e.target.value)}/>
-            <label for="inputBetAmount" className="form-label">
-              ENTER REFERRAL LINK
-            </label>
-            <input type="text"
-              className="form-control"
-              id="inputOpposingOutcome"
-              value={ref}
-              onChange={(e)=>setRef(e.target.value)}
-            />
+
             <button
               className="btn my-3 px-3 py-3 fw-bold justify-content-between d-flex self-pause"
               style={{

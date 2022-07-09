@@ -218,16 +218,25 @@ export const clearInstance = () => {
 }
 
 export const getAccount = async () => {
+   try {
     const account = await web3Instance.eth.getAccounts();
     return account[0];
+   } catch (error) {
+    
+   }
 }
 
 export const getContract = async(abi, address) => {
+   try {
     await initInstance();
     let web3 = web3Instance;
     const customeContract = new web3.eth.Contract(abi, address);
     return customeContract;
+   } catch (error) {
+    
+   }
 }
+
 export const ToWei = async(amount)=> {
     try {
         await initInstance();
@@ -250,8 +259,12 @@ export const Toshannon = async(amount)=> {
     }
 }
 export const ChainID = async()=>{
+    try {
     await initInstance();
     return await web3Instance.eth.getChainId();
+    } catch (error) {
+        
+    }
 }
 
 // export const disconnectWallet = () => {

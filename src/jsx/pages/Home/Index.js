@@ -14,27 +14,14 @@ import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { initInstance, loginProcess } from "./../../../web3/web3";
+import { initInstance, loginProcess, ChainID, getAccount } from "./../../../web3/web3";
 import NFTs from "./../../../images/nfts.png";
-import emailImg from "./../../../images/email.png";
-import Partners from "./../../../images/unreal.png";
-import Binance from "./../../../images/binance.png";
-import Saga from "./../../../images/saga.png";
-import topBG from "./../../../images/topBG.png";
-import Football from "./../../../images/football.png";
-import Playstation from "./../../../images/playstation.png";
 import { FaTwitter } from "react-icons/fa";
 import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai";
 import { Watch } from "react-loader-spinner";
 import dateFormat, { masks } from "dateformat";
 
-import {
-  allactiveusers,
-  totalpayout,
-  totalEvents,
-  totalbetcreated,
-  getActiveEvents,
-} from "../../../web3/betsMVPService";
+import {totalEvents,} from "../../../web3/betsMVPService";
 import { TotalEventsCount } from "../../../web3/Countallevents";
 
 ////Images
@@ -63,12 +50,14 @@ const error = (msg) =>
     style: {
       padding: "16px",
       color: "#000",
+      
     },
     iconTheme: {
       primary: "#0b0b0b",
       secondary: "#ffffff",
     },
   });
+
 
 class Index extends Component {
   constructor(props) {
@@ -232,27 +221,16 @@ class Index extends Component {
       .then((data) => this.setState({ postsData: data }))
       .catch(console.error);
 
-    
-    if(!window.ethereum){
-      alert("Non Ethereum browser detected, please install Metamask");
-      this.setState({
-        EthereumBrowser:true
-      })
-      
-    }
-    if(parseInt(window.ethereum.chainId) != envdev.REACT_APP_CHAIN){
-      this.setState({
-        EthereumBrowser:true
-      })
-    }
+   
 
     AOS.init();
+
     await initInstance();
     await loginProcess();
-    const currentusername = await GetUserName();
-    if(currentusername == ""){
-      error("Username is not set, please set your username in Wallet")
-    }
+
+    // const currentusername = await GetUserName();
+    
+
     window.localStorage.clear();
     let events = await totalEvents();
 
@@ -438,15 +416,30 @@ class Index extends Component {
       </div>
     );
   }
+
+  walletConnect = async()=> {
+    await loginProcess();
+    await initInstance();
+    const address = await getAccount();
+    window.login = address
+}
   handleClick = (e) => {
-    if(this.state.EthereumBrowser) e.preventDefault()
+    if(!window.ethereum){
+      e.preventDefault();
+      error("Install Metamask first")
+    }
+    else if(!window.login)
+    e.preventDefault();
+    this.walletConnect()
   }
+  
 
   render() {
     // setInterval(()=>{
     //   window.allEvents = this.state.events
     //   window.allEventstorde = this.state.decodestoredevents.length
     // },200)
+   
 
     return (
       <Fragment >
@@ -488,8 +481,9 @@ class Index extends Component {
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
+                        onClick={this.handleClick}
                       >
-                        TEST MARKET
+                        TEST BETTING
                         <AiOutlineRight
                           style={{ position: "absolute", right: "5px" }}
                           className="mt-1  fw-bold"
@@ -501,7 +495,7 @@ class Index extends Component {
                       <NavLink
                         to="/app"
                         className="btn-md theam-bg-red homeTopBtn"
-                        
+                        onClick={this.handleClick}
                       >
                         TEST BETTING
                         <AiOutlineRight

@@ -15,6 +15,7 @@ import {
   addingnewevents,
   updatingeventdata,
 } from "./../../../web3/Countallevents";
+import { GetUserName, SetYourUserName } from "./../../../web3/ContextMethods";
 import { getBETBalanceBUSD, getBUSDBalance } from "./../../../web3/betsService";
 import { initInstance, getAccount } from "./../../../web3/web3";
 import redDot from "./../../../images/red-dot.png";
@@ -47,9 +48,23 @@ import Filter from "./../../../images/filter.png";
 import Appheadercat from "./../App/Appheadercat";
 import Soccer from "./../Categories/Soccer";
 import Footer from "../../components/Elements/Footer";
+import { Button, Modal } from "react-bootstrap";
 
 const tost = () =>
   toast.success("Success.", {
+    style: {
+      padding: "16px",
+      color: "#000",
+      marginTop: "75px",
+    },
+    iconTheme: {
+      primary: "#0b0b0b",
+      secondary: "#ffffff",
+    },
+  });
+
+const tostCpoy = () =>
+  toast.success("Copied.", {
     style: {
       padding: "16px",
       color: "#000",
@@ -125,6 +140,8 @@ class GameCard extends Component {
       filtershow: false,
       filteractive:0,
       startingtime:0,
+      show:false,
+      strname:'',
       responsive_center: {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -155,7 +172,11 @@ class GameCard extends Component {
       account: account,
     });
 
-    let active_events = await totalEvents();
+    const currentusername = await GetUserName();
+    if(currentusername == ""){
+      this.setState({show:true})
+    }
+   
     let getstoredevents = window.localStorage.getItem("events");
     if (getstoredevents == null) {
       window.localStorage.setItem("events", JSON.stringify(""));
@@ -774,17 +795,55 @@ class GameCard extends Component {
     return new Date(time * 1000).toDateString();
   }
 
+  handleClose = () => this.setState({show:false});
+  handleShow = () => this.setState({show:true});
+  setName = async(strname)=>{
+    const data = await SetYourUserName(strname);
+    if (data.status) {
+      tost();
+      this.handleClose()
+    }
+  }
+
+
+
   render() {
     return (
       <Fragment>
         <AppHeader />
-        {/* <div className="modal-container">
-      <Modal backdrop={this.state.backdrop} keyboard={false} open={this.state.open} onClose={this.handleClose}>
+        <Modal
+          show={this.state.show}
+          onHide={this.handleClose}
+          backdrop="static"
+          keyboard={false}
+      >
+        <Modal.Header>
+          <Modal.Title>SET USERNAME</Modal.Title>
+        </Modal.Header>
         <Modal.Body>
-        
+          You don't have a username yet, please set a username before betting.
+          <input type="text" className="" placeholder="Usern@me"
+              style={{
+              background: "#151515",
+              borderRadius: "5px",
+              padding:"5px",
+              fontSize:"14px",
+              outline:"none",
+              border:"1px solid #403F3F",
+              width:"100%",
+              color:"#fff",
+              maxWidth:"650px"
+              }}
+              value={this.state.strname}
+              onChange={(e)=> this.setState({strname:e.target.value})}
+          />
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={()=>this.setName(this.state.strname)}>
+            SET
+          </Button>
+        </Modal.Footer>
       </Modal>
-    </div> */}
         <br />
         <div>
           <div
@@ -1231,23 +1290,7 @@ class GameCard extends Component {
                             <div className="col" id={`${events.id}`}>
                               <div
                                 className="card game-card overflow-hidden"
-                                onClick={() =>
-                                  this.handelSideMenu(
-                                    events.id,
-                                    events.teamone,
-                                    events.teamtwo,
-                                    events.endtime,
-                                    events.poolsize,
-                                    events.BettorsCount,
-                                    events.subcategory,
-                                    events.potential_wins,
-                                    events.zero,
-                                    events.one,
-                                    events.two,
-                                    events.isboosted,
-                                    events.starttime
-                                  )
-                                }
+                                
                               >
                                 <div
                                   className="row p-3 image-card"
@@ -1324,7 +1367,7 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
-                                      <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                      <div onClick={() =>{navigator.clipboard.writeText(`${events.link}`);tostCpoy()}}>
                                       <BsFillShareFill fill="#8c8c8c" />
                                     </div>
                                     <div>
@@ -1340,6 +1383,23 @@ class GameCard extends Component {
                                     <div
                                       className="text-white mb-1"
                                       style={{ fontSize: "10px" }}
+                                      onClick={() =>
+                                        this.handelSideMenu(
+                                          events.id,
+                                          events.teamone,
+                                          events.teamtwo,
+                                          events.endtime,
+                                          events.poolsize,
+                                          events.BettorsCount,
+                                          events.subcategory,
+                                          events.potential_wins,
+                                          events.zero,
+                                          events.one,
+                                          events.two,
+                                          events.isboosted,
+                                          events.starttime
+                                        )
+                                      }
                                     >
                                       OPEN
                                     </div>
@@ -1367,23 +1427,6 @@ class GameCard extends Component {
                             <div className="col" id={`${events.id}`}>
                               <div
                                 className="card game-card overflow-hidden"
-                                onClick={() =>
-                                  this.handelSideMenu(
-                                    events.id,
-                                    events.teamone,
-                                    events.teamtwo,
-                                    events.endtime,
-                                    events.poolsize,
-                                    events.BettorsCount,
-                                    events.subcategory,
-                                    events.potential_wins,
-                                    events.zero,
-                                    events.one,
-                                    events.two,
-                                    events.isboosted,
-                                    events.starttime
-                                  )
-                                }
                               >
                                 <div
                                   className="row p-3 image-card"
@@ -1460,7 +1503,7 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
-                                    <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                  <div onClick={() =>{navigator.clipboard.writeText(`${events.link}`);tostCpoy()}}>
                                       <BsFillShareFill fill="#8c8c8c" />
                                     </div>
                                     <div>
@@ -1475,7 +1518,24 @@ class GameCard extends Component {
                                     
                                     <div
                                       className="text-white mb-1"
-                                      style={{ fontSize: "10px" }}
+                                      style={{ fontSize: "10px",cursor:'pointer'}}
+                                      onClick={() =>
+                                        this.handelSideMenu(
+                                          events.id,
+                                          events.teamone,
+                                          events.teamtwo,
+                                          events.endtime,
+                                          events.poolsize,
+                                          events.BettorsCount,
+                                          events.subcategory,
+                                          events.potential_wins,
+                                          events.zero,
+                                          events.one,
+                                          events.two,
+                                          events.isboosted,
+                                          events.starttime
+                                        )
+                                      }
                                     >
                                       OPEN
                                     </div>
@@ -1728,23 +1788,7 @@ class GameCard extends Component {
                             <div className="col" id={`${events.id}b`}>
                               <div
                                 className="card game-card overflow-hidden"
-                                onClick={() =>
-                                  this.handel_Side_Menu_Booted(
-                                    events.id,
-                                    events.teamone,
-                                    events.teamtwo,
-                                    events.endtime,
-                                    events.poolsize,
-                                    events.BettorsCount,
-                                    events.subcategory,
-                                    events.potential_wins,
-                                    events.zero,
-                                    events.one,
-                                    events.two,
-                                    events.isboosted,
-                                    events.starttime
-                                  )
-                                }
+                               
                               >
                                 <div
                                   className="row p-3 image-card"
@@ -1821,7 +1865,7 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
-                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                  <div onClick={() =>{navigator.clipboard.writeText(`${events.link}`);tostCpoy()}}>
                                       <BsFillShareFill fill="#8c8c8c" />
                                     </div>
                                     <div>
@@ -1836,6 +1880,23 @@ class GameCard extends Component {
                                     <div
                                       className="text-white mb-1"
                                       style={{ fontSize: "10px" }}
+                                      onClick={() =>
+                                        this.handel_Side_Menu_Booted(
+                                          events.id,
+                                          events.teamone,
+                                          events.teamtwo,
+                                          events.endtime,
+                                          events.poolsize,
+                                          events.BettorsCount,
+                                          events.subcategory,
+                                          events.potential_wins,
+                                          events.zero,
+                                          events.one,
+                                          events.two,
+                                          events.isboosted,
+                                          events.starttime
+                                        )
+                                      }
                                     >
                                       OPEN
                                     </div>
@@ -1863,23 +1924,7 @@ class GameCard extends Component {
                             <div className="col" id={`${events.id}b`}>
                               <div
                                 className="card game-card overflow-hidden"
-                                onClick={() =>
-                                  this.handel_Side_Menu_Booted(
-                                    events.id,
-                                    events.teamone,
-                                    events.teamtwo,
-                                    events.endtime,
-                                    events.poolsize,
-                                    events.BettorsCount,
-                                    events.subcategory,
-                                    events.potential_wins,
-                                    events.zero,
-                                    events.one,
-                                    events.two,
-                                    events.isboosted,
-                                    events.starttime
-                                  )
-                                }
+                                
                               >
                                 <div
                                   className="row p-3 image-card"
@@ -1956,7 +2001,7 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
-                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                  <div onClick={() =>{navigator.clipboard.writeText(`${events.link}`);tostCpoy()}}>
                                       <BsFillShareFill fill="#8c8c8c" />
                                     </div>
                                     <div>
@@ -1971,6 +2016,23 @@ class GameCard extends Component {
                                     <div
                                       className="text-white mb-1"
                                       style={{ fontSize: "10px" }}
+                                      onClick={() =>
+                                        this.handel_Side_Menu_Booted(
+                                          events.id,
+                                          events.teamone,
+                                          events.teamtwo,
+                                          events.endtime,
+                                          events.poolsize,
+                                          events.BettorsCount,
+                                          events.subcategory,
+                                          events.potential_wins,
+                                          events.zero,
+                                          events.one,
+                                          events.two,
+                                          events.isboosted,
+                                          events.starttime
+                                        )
+                                      }
                                     >
                                       OPEN
                                     </div>
@@ -2231,23 +2293,7 @@ class GameCard extends Component {
                             <div className="col" id={`${events.id}t`}>
                               <div
                                 className="card game-card overflow-hidden"
-                                onClick={() =>
-                                  this.handel_Side_Menu_Trending(
-                                    events.id,
-                                    events.teamone,
-                                    events.teamtwo,
-                                    events.endtime,
-                                    events.poolsize,
-                                    events.BettorsCount,
-                                    events.subcategory,
-                                    events.potential_wins,
-                                    events.zero,
-                                    events.one,
-                                    events.two,
-                                    events.isboosted,
-                                    events.starttime
-                                  )
-                                }
+                                
                               >
                                 <div
                                   className="row p-3 image-card"
@@ -2324,7 +2370,7 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
-                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                  <div onClick={() =>{navigator.clipboard.writeText(`${events.link}`);tostCpoy()}}>
                                       <BsFillShareFill fill="#8c8c8c" />
                                     </div>
                                     <div>
@@ -2339,6 +2385,23 @@ class GameCard extends Component {
                                     <div
                                       className="text-white mb-1"
                                       style={{ fontSize: "10px" }}
+                                      onClick={() =>
+                                        this.handel_Side_Menu_Trending(
+                                          events.id,
+                                          events.teamone,
+                                          events.teamtwo,
+                                          events.endtime,
+                                          events.poolsize,
+                                          events.BettorsCount,
+                                          events.subcategory,
+                                          events.potential_wins,
+                                          events.zero,
+                                          events.one,
+                                          events.two,
+                                          events.isboosted,
+                                          events.starttime
+                                        )
+                                      }
                                     >
                                       OPEN
                                     </div>
@@ -2367,23 +2430,7 @@ class GameCard extends Component {
                             <div className="col" id={`${events.id}t`}>
                               <div
                                 className="card game-card overflow-hidden"
-                                onClick={() =>
-                                  this.handel_Side_Menu_Trending(
-                                    events.id,
-                                    events.teamone,
-                                    events.teamtwo,
-                                    events.endtime,
-                                    events.poolsize,
-                                    events.BettorsCount,
-                                    events.subcategory,
-                                    events.potential_wins,
-                                    events.zero,
-                                    events.one,
-                                    events.two,
-                                    events.isboosted,
-                                    events.starttime
-                                  )
-                                }
+                                
                               >
                                 <div
                                   className="row p-3 image-card"
@@ -2460,7 +2507,7 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
-                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                  <div onClick={() =>{navigator.clipboard.writeText(`${events.link}`);tostCpoy()}}>
                                       <BsFillShareFill fill="#8c8c8c" />
                                     </div>
                                     <div>
@@ -2475,6 +2522,23 @@ class GameCard extends Component {
                                     <div
                                       className="text-white mb-1"
                                       style={{ fontSize: "10px" }}
+                                      onClick={() =>
+                                        this.handel_Side_Menu_Trending(
+                                          events.id,
+                                          events.teamone,
+                                          events.teamtwo,
+                                          events.endtime,
+                                          events.poolsize,
+                                          events.BettorsCount,
+                                          events.subcategory,
+                                          events.potential_wins,
+                                          events.zero,
+                                          events.one,
+                                          events.two,
+                                          events.isboosted,
+                                          events.starttime
+                                        )
+                                      }
                                     >
                                       OPEN
                                     </div>
@@ -2733,23 +2797,7 @@ class GameCard extends Component {
                             <div className="col" id={`${events.id}l`}>
                               <div
                                 className="card game-card overflow-hidden"
-                                onClick={() =>
-                                  this.handel_Side_Menu_Latest(
-                                    events.id,
-                                    events.teamone,
-                                    events.teamtwo,
-                                    events.endtime,
-                                    events.poolsize,
-                                    events.BettorsCount,
-                                    events.subcategory,
-                                    events.potential_wins,
-                                    events.zero,
-                                    events.one,
-                                    events.two,
-                                    events.isboosted,
-                                    events.starttime
-                                  )
-                                }
+                                
                               >
                                 <div
                                   className="row p-3 image-card"
@@ -2826,7 +2874,7 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
-                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                  <div onClick={() =>{navigator.clipboard.writeText(`${events.link}`);tostCpoy()}}>
                                       <BsFillShareFill fill="#8c8c8c" />
                                     </div>
                                     <div>
@@ -2841,6 +2889,23 @@ class GameCard extends Component {
                                     <div
                                       className="text-white mb-1"
                                       style={{ fontSize: "10px" }}
+                                      onClick={() =>
+                                        this.handel_Side_Menu_Latest(
+                                          events.id,
+                                          events.teamone,
+                                          events.teamtwo,
+                                          events.endtime,
+                                          events.poolsize,
+                                          events.BettorsCount,
+                                          events.subcategory,
+                                          events.potential_wins,
+                                          events.zero,
+                                          events.one,
+                                          events.two,
+                                          events.isboosted,
+                                          events.starttime
+                                        )
+                                      }
                                     >
                                       OPEN
                                     </div>
@@ -2868,23 +2933,7 @@ class GameCard extends Component {
                             <div className="col" id={`${events.id}l`}>
                               <div
                                 className="card game-card overflow-hidden"
-                                onClick={() =>
-                                  this.handel_Side_Menu_Latest(
-                                    events.id,
-                                    events.teamone,
-                                    events.teamtwo,
-                                    events.endtime,
-                                    events.poolsize,
-                                    events.BettorsCount,
-                                    events.subcategory,
-                                    events.potential_wins,
-                                    events.zero,
-                                    events.one,
-                                    events.two,
-                                    events.isboosted,
-                                    events.starttime
-                                  )
-                                }
+                                
                               >
                                 <div
                                   className="row p-3 image-card"
@@ -2961,7 +3010,7 @@ class GameCard extends Component {
                                     </ul>
                                   </div>
                                   <div className="col-4 button-row gap-2">
-                                  <div onClick={() =>navigator.clipboard.writeText(`${events.link}/${events.id}`)}>
+                                  <div onClick={() =>{navigator.clipboard.writeText(`${events.link}`);tostCpoy()}}>
                                       <BsFillShareFill fill="#8c8c8c" />
                                     </div>
                                     <div>
@@ -2976,6 +3025,23 @@ class GameCard extends Component {
                                     <div
                                       className="text-white mb-1"
                                       style={{ fontSize: "10px" }}
+                                      onClick={() =>
+                                        this.handel_Side_Menu_Latest(
+                                          events.id,
+                                          events.teamone,
+                                          events.teamtwo,
+                                          events.endtime,
+                                          events.poolsize,
+                                          events.BettorsCount,
+                                          events.subcategory,
+                                          events.potential_wins,
+                                          events.zero,
+                                          events.one,
+                                          events.two,
+                                          events.isboosted,
+                                          events.starttime
+                                        )
+                                      }
                                     >
                                       OPEN
                                     </div>

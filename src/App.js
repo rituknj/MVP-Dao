@@ -4,8 +4,7 @@ import './css/bootstrap.min.css';
 import './css/style.css';
 import './css/responsive.css';
 import {isMobile} from 'react-device-detect'
-import { envdev } from "./web3/environments";
-import { ChainID } from "./web3/web3";
+import toast, { Toaster } from "react-hot-toast";
 
 window.match = 1
 window.anmount = 0
@@ -18,26 +17,42 @@ window.maincatNum = 0
     window.collapsed = false
   }
 
+  const error = (msg) =>
+  toast.error(msg, {
+    style: {
+      padding: "16px",
+      color: "#000",
+      marginTop:"75px"
+    },
+    iconTheme: {
+      primary: "#0b0b0b",
+      secondary: "#ffffff",
+    },
+  });
 class App extends Component {
 
   componentDidMount =async()=>{
-    const id = await ChainID();
-    if( id === envdev.REACT_APP_CHAIN){
-      console.log("id != envdev.REACT_APP_CHAIN",id,envdev.REACT_APP_CHAIN)
-    }
-    else{
-      console.log("id != envdev.REACT_APP_CHAIN",id,envdev.REACT_APP_CHAIN)
-      alert("Wrong Network, can not load data.");
+    try {
+      if(!window.ethereum){
+        alert("Non Ethererum browser detected, please install Metamask first");
+      }
+    } catch (error) {
+      
     }
   }
 
   render() {
-    window.ethereum.on('chainChanged', async (accounts) => {
-      window.location.reload();
-      });
+    try {
+      // window.ethereum.on('chainChanged', async (accounts) => {
+      //   window.location.reload();
+      //   });
+    } catch (error) {
+      
+    }
       
     return (
       <Fragment>
+        <Toaster/>
         <Web />
       </Fragment>
     );

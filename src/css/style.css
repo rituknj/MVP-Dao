@@ -340,7 +340,6 @@ body {
   transition: all 0.5s ease-in-out;
   position: relative;
   border: 1px solid #000000;
-  cursor: pointer;
   border-radius: 0.75rem;
   box-shadow: 0px 12px 33px 0px rgb(62 73 84 / 8%);
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);

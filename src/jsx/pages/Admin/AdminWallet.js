@@ -4,7 +4,6 @@ import { BsCircleFill } from "react-icons/bs";
 import BETS from "./../../../images/logo.png";
 import { SiBinance } from "react-icons/si";
 import { FaQuestionCircle } from "react-icons/fa";
-import { AiFillQuestionCircle } from "react-icons/ai";
 import axios from "axios";
 import {
   earnvalidationpoints,
@@ -23,7 +22,6 @@ import {
   approvePoints,
   isPointSapproved,
 } from "../../../web3/betsService";
-import { GetUserName, SetYourUserName } from "../../../web3/ContextMethods";
 import { initInstance, getAccount } from "./../../../web3/web3";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -68,11 +66,6 @@ export default function AdminWallet() {
     initInstance();
     walletConnect();
     allCalls();
-    const currentusername = await GetUserName();
-    setIsuser(currentusername)
-    if(currentusername == ""){
-      error("You have not set your username, please set username")
-    }
    }
 
     inti(); 
@@ -152,12 +145,6 @@ export default function AdminWallet() {
     }
   };
 
-  const setName = async(strname)=>{
-    const data = await SetYourUserName(strname);
-    if (data.status) {
-      tost();
-    }
-  }
 
   const walletConnect = async () => {
     // if (account) {
@@ -326,55 +313,6 @@ export default function AdminWallet() {
           {/* {demoArr.map(renderArr)} */}
           <BETS_V2 />
           <BUSD />
-           {isuser == "" ?  <div
-              className="card mb-3 text-light"
-              style={{
-                backgroundColor: "#1C1C1C",
-                width: "100%",
-                border: "none",
-                borderBottom: "1px solid #000",
-              }}
-           >
-            <div className="card-body d-flex ">
-              <div className="w-100 " style={{ marginLeft: "20px" }}>
-                <div className="d-flex justify-content-between w-100">
-                <input type="text" className="px-2 py-3"
-                  style={{
-                    background: "#151515",
-                    borderRadius: "10px",
-                    fontSize:"14px",
-                    outline:"none",
-                    border:"1px solid #403F3F",
-                    width:"100%",
-                    color:"#fff",
-                    maxWidth:"650px"
-                  }}
-                  value={name}
-                  onChange={(e)=> setUserName(e.target.value)}
-                  />
-                  <div>
-                  <button
-                className="btn fw-bold justify-content-between d-flex shadow"
-                style={{
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  width: "100%",
-                  padding: "2px",
-                  borderRadius: "10px",
-                  maxWidth: "650px",
-                  padding:'5px 10px',
-                  marginTop:"6px",
-                }}
-                onClick={()=>setName(name)}
-              >
-                <span>SET USERNAME</span>
-            
-              </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>:''}
             </div>
           </div>
 

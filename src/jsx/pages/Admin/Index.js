@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import AdminHeader from "../../components/Elements/AdminHeader";
 import "aos/dist/aos.css";
-import AdminSidebar from "../../components/Elements/AdminSidebar";
 import CreateEvent from "./CreateEvent";
 import BetSlip from "./BetSlip";
 import ValidateEvents from "./ValidateEvents";
@@ -17,9 +16,6 @@ import { FaRegMoneyBillAlt } from "react-icons/fa";
 import whh_coins from "../../../images/whh_coins.svg";
 import tickets from "../../../images/ep_tickets.svg";
 import file from "../../../images/gala_file-doc.svg";
-import validate from "../../../images/VALIDATE.svg";
-import plus from "../../../images/ant-design_plus-circle-outlined.svg";
-import self from "../../../images/twemoji_people-hugging.svg";
 import SelfHelp from "./SelfHelp";
 import { Link } from "react-router-dom";
 import AdminWallet from "./AdminWallet";

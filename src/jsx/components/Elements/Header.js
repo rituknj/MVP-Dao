@@ -1,7 +1,7 @@
 import React, {useEffect, useStatem, Fragment, useState } from "react";
 import logo from '../../../images/logo.png';
 import { NavLink } from "react-router-dom";
-import {initInstance,getAccount} from './../../../web3/web3'
+import {initInstance,getAccount, loginProcess} from './../../../web3/web3'
 
 
 
@@ -12,16 +12,27 @@ const Header=()=> {
     const [downloaded, setDownloaded] = useState(0)
 
     useEffect(()=>{
-        walletConnect()
+        walletConnect();
+        setInterval(async()=>{
+           try {
+            await getAddress()
+           } catch (error) {
+            
+           }
+        },3000)
     },[])
 
    const walletConnect = async()=> {
-        // if(account){
-        //     setAccount(undefined)
-        //     return true
-        // }
+        await loginProcess();
         await initInstance();
         const address = await getAccount();
+        window.login = address
+        setAccount(address)
+    }
+
+    const getAddress =async()=>{
+        const address = await getAccount();
+        window.login = address
         setAccount(address)
     }
 
