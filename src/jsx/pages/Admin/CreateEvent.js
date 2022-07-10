@@ -507,6 +507,7 @@ export default function CreateEvent() {
               onChange={(e)=>setStartTime(e.target.value)}
               style={{colorScheme:"dark"}}
             />
+             <p style={{fontSize:'10px',color:"#a5a5a5"}}>Click on calendar icon to select the data</p>
           </div>
           <br />
           <div className="mb-5">
@@ -521,6 +522,7 @@ export default function CreateEvent() {
               onChange={(e)=>setEndTime(e.target.value)}
               style={{colorScheme:"dark"}}
             />
+            <p style={{fontSize:'10px',color:"#a5a5a5"}}>Click on calendar icon to select the data</p>
           </div>
         </div> : <div className="stepFour">
           <div>
