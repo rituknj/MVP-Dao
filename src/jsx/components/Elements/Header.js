@@ -86,7 +86,7 @@ const Header=()=> {
                                     <li className="nav-item px-2 px-md-4 navWallet" style={{cursor: "pointer"}}>
                                         <span  className="nav-link text-white cursor-pointer" 
                                         onClick={()=>walletConnect()}
-                                        >{account ? "CONNECTED" : "CONNECT"}</span>
+                                        >{account ? slicing(account) : "CONNECT"}</span>
                                     </li>
                                 </ul>
                             </form>

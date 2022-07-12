@@ -21,6 +21,11 @@ class AdminHeader extends Component {
   componentDidMount =async()=>{
     await this.walletConnect();
   }
+  slicing = (address)=> {
+    const first = address.slice(0,4);
+    const second = address.slice(38);
+    return first + "..." + second
+}
 
   walletConnect = async()=> {
     // if(account){
@@ -81,7 +86,7 @@ class AdminHeader extends Component {
                     className="nav-link text-white cursor-pointer"
                     onClick={() => this.walletConnect()}
                   >
-                    {this.state.account ? "CONNECTED" : "CONNECT"}
+                    {this.state.account ? this.slicing(this.state.account) : "CONNECT"}
                   </a>
                 </li>
                 {/* <WalletPopup
