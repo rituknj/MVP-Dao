@@ -65,60 +65,17 @@ export const observeMetaMaskEvents = () => {
     // });
 }
 
-export const checkChain = (force = true) => {
-    return new Promise(async (resolve, reject) => {
-        const chainId = await web3Instance.eth.getChainId();
-        // const stopChainChecker = new Subject();
-        const expectedChainId = getMainChainInformation().chainId;
-        const providerNetworkOption = getMainChainInformation().providerNetworkOption;
-        if (chainId != 3) {
-            if (force) {
-                await window.ethereum.enable();
-                // await window.ethereum.request({
-                //     method: 'wallet_addEthereumChain',
-                //     params: [{ 
-                //         chainId: providerNetworkOption.chainId, // A 0x-prefixed hexadecimal string
-                //         chainName: providerNetworkOption.chainName,
-                //         nativeCurrency: {
-                //             name: providerNetworkOption.nativeCurrency.name,
-                //             symbol: providerNetworkOption.nativeCurrency.symbol,// 2-6 characters long
-                //             decimals: 18,
-                //         },
-                //         rpcUrls: providerNetworkOption.rpcUrls,
-                //         blockExplorerUrls: providerNetworkOption.blockExplorerUrls,
-                //      }]
-                // })
-                window.ethereum.request({
-                    method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: "0x3" }]
-                }).then(() => {
-                    resolve(true);
-                }).catch((err) => {
-                    console.log('wallet_switchEthereumChain', err)
-                    reject(false);
-                })
-                // timer(0, 1000).pipe(
-                //     takeUntil(stopChainChecker),
-                //     tap(async () => {
-                //         const chainId = await web3Instance.eth.getChainId();
-                //         if (chainId === expectedChainId) {
-                //             stopChainChecker.next();
-                //             stopChainChecker.complete();
-                //             resolve(true);
-                //         } else {
-                //             stopChainChecker.next();
-                //             stopChainChecker.complete();
-                //             resolve(false);
-                //         }
-                //     })
-                // ).subscribe();
-            } else {
-                resolve(false);
-            }
-        } else {
-            resolve(true);
-        }
-    });
+export const checkChain = async(force = true) => {
+    const chainId = await web3Instance.eth.getChainId();
+    if (chainId != 3) {
+        if (force) {
+            await window.ethereum.enable();
+            window.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: "0x3" }]
+            })
+        } 
+ }
 }
 
 export const getMainChainInformation = () => {

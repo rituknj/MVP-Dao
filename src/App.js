@@ -43,9 +43,9 @@ class App extends Component {
 
   render() {
     try {
-      // window.ethereum.on('chainChanged', async (accounts) => {
-      //   window.location.reload();
-      //   });
+      window.ethereum.on('chainChanged', async (accounts) => {
+        window.location.reload();
+        });
     } catch (error) {
       
     }
