@@ -5,6 +5,7 @@ import {ImStopwatch, ImFire} from 'react-icons/im'
 import {UserEventHistory, GetUserWonAmountOnEvent, claimrewards,CreatorReward, BoostEvent , userBethistory, totalAmountWon, gettotaluserwageramount,reclaimwager,AmountStackOnEventByaUser } from "../../../web3/betsMVPService";
 import toast, { Toaster } from "react-hot-toast";
 import { updatingeventdata } from "../../../web3/Countallevents";
+import Username from "./Username";
 
 const tost = () =>
   toast.success("Success.", {
@@ -355,7 +356,9 @@ export default function BetSlip() {
           <Toaster />
         </div>
       {/* CARD STAT */}
-      <div className="row py-3 px-2 mb-3 betCards row-cols-auto">
+      
+      <div className="row py-3 px-2 mb-3 betCards row-cols-auto position-relative">
+      {/* <Username/> */}
         <div className="col px-3 py-2 my-3 col-w">
           <span>TOTAL</span>
           <h5>BETS MADE</h5>

@@ -20,6 +20,7 @@ import SelfHelp from "./SelfHelp";
 import { Link } from "react-router-dom";
 import AdminWallet from "./AdminWallet";
 import { isMobile } from "react-device-detect";
+import Username from "./Username";
 
 class Index extends Component {
   constructor(props) {
@@ -216,6 +217,7 @@ class Index extends Component {
 
           {/* COMPONENTS TO BE SHOWN BESIDE SIDEBAR */}
           <div className="adminGlobalContainer">
+            <Username/>
             {this.state.showAdminSlider == 2 ? (
               <CreateEvent />
             ) : this.state.showAdminSlider == 1 ? (

@@ -16,6 +16,7 @@ import {FaQuestionCircle} from 'react-icons/fa'
 import { updatingeventdata } from "../../../web3/Countallevents";
 import toast, { Toaster } from 'react-hot-toast';
 import { GetUserName } from "./../../../web3/ContextMethods"
+import Username from "./Username";
 let FILL = false;
 window.cat = "SPORTS"
 const tost =(msg)=> toast.success(msg, {

@@ -9,16 +9,19 @@ export let web3Modal = null;
 export let provider = null;
 
 export const initInstance = async () => {
-    if (web3Instance) {
-        return web3Instance;
-    } else {
-        provider = await getValidProvider();
-        web3Instance = new Web3(provider);
+    if(window.ethereum){
+        if (web3Instance) {
+            return web3Instance;
+        } else {
+            provider = await getValidProvider();
+            web3Instance = new Web3(provider);
+        }
     }
 }
 
 export const loginProcess = async () => {
-    await window.ethereum.enable();
+    if(window.ethereum){
+        await window.ethereum.enable();
     try {
         await checkChain();
     }
@@ -27,6 +30,8 @@ export const loginProcess = async () => {
         window.location.replace('/')
     }
     // await login();
+    }
+    
 }
 
 export const getValidProvider = async () => {
