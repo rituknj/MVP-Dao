@@ -18,7 +18,7 @@ export default function Username() {
   }, []);
 
   return (
-    <div className="text-light bg-black ps-xxl-5 px-xl-4">
+    <div className="text-light bg-black ps-xxl-5 px-xl-4 pb-2">
         Welcome {user}
     </div>
   );
