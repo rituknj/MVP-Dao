@@ -10,7 +10,7 @@ a.navItem {
   margin-top: 20px;
   background: #1c1c1c;
   border-radius: 20px 20px 0px 0px;
-  width: 450px;
+  width: 350px;
   height: 850px;
 }
 
@@ -75,7 +75,7 @@ a.item {
   border-color: transparent !important;
 }
 .event-area {
-  margin-left: -60px;
+  margin-left: -20px;
 }
 
 /* EVENTS (SPORTS DETAILS) */
@@ -96,7 +96,32 @@ h6.sports-trending {
 img.img-vector {
   margin-left: 5px;
 }
-
+img.match-img {
+  display: block;
+  margin-left: auto;
+  margin-right: 50px;
+  margin-top: 20px;
+  width: 100px;
+}
+.pool-size {
+  margin-top: 12px;
+}
+span.size {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 900;
+  color: #adadad;
+  font-size: 12px;
+  line-height: 15px;
+}
+.amount {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 30px;
+  color: #fff;
+  line-height: 39px;
+}
 .card.betting-card {
   background-color: #0c0c0c !important;
   border-radius: 20px;
