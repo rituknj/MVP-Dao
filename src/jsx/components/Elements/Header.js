@@ -1,6 +1,6 @@
 import React, {useEffect, useStatem, Fragment, useState } from "react";
 import logo from '../../../images/logo.png';
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {initInstance,getAccount, loginProcess} from './../../../web3/web3'
 
 
@@ -82,6 +82,9 @@ const Header=()=> {
                                     </li>} */}
                                     <li className="nav-item px-2 px-md-4">
                                         <a className="nav-link text-white mt-1" href="https://bet-swamp.gitbook.io/betswamp-v.2.0/" target='_blank'> DOCS</a>
+                                    </li>
+                                    <li className="nav-item px-2 px-md-4">
+                                        <Link className="nav-link text-white mt-1" to="/betting-app" target="_blank">Betting App</Link>
                                     </li>
                                     <li className="nav-item px-2 px-md-4 navWallet" style={{cursor: "pointer"}}>
                                         <span  className="nav-link text-white cursor-pointer" 

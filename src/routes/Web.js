@@ -1,24 +1,25 @@
-import React, { Component } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import React, { Component } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 //Element
-import SideBar from '../jsx/pages/Home/SideBar'
+import SideBar from "../jsx/pages/Home/SideBar";
 //Pages
-import Home from '../jsx/pages/Home/Index'
-import App from '../jsx/pages/App/Index'
-import BLogs from '../jsx/pages/Blogs/BLogs'
-import Admin from '../jsx/pages/Admin/Index'
-import About from '../jsx/pages/About/Index'
-import NEWPAGE from './../jsx/pages/News/Newpage'
-import Tennis from './../jsx/pages/Categories/Tennis'
-import Soccer from './../jsx/pages/Categories/Soccer'
-import Rugby from './../jsx/pages/Categories/Rugby'
-import Racing from './../jsx/pages/Categories/Racing'
-import Boxing from './../jsx/pages/Categories/Boxing'
-import Basketball from './../jsx/pages/Categories/Basketball'
-import Baseball from './../jsx/pages/Categories/Baseball'
-import Cricket from './../jsx/pages/Categories/Cricket'
-import Football from './../jsx/pages/Categories/Football'
-import Comingsoon from '../jsx/components/Elements/Comingsoon'
+import Home from "../jsx/pages/Home/Index";
+import App from "../jsx/pages/App/Index";
+import BLogs from "../jsx/pages/Blogs/BLogs";
+import Admin from "../jsx/pages/Admin/Index";
+import About from "../jsx/pages/About/Index";
+import NEWPAGE from "./../jsx/pages/News/Newpage";
+import Tennis from "./../jsx/pages/Categories/Tennis";
+import Soccer from "./../jsx/pages/Categories/Soccer";
+import Rugby from "./../jsx/pages/Categories/Rugby";
+import Racing from "./../jsx/pages/Categories/Racing";
+import Boxing from "./../jsx/pages/Categories/Boxing";
+import Basketball from "./../jsx/pages/Categories/Basketball";
+import Baseball from "./../jsx/pages/Categories/Baseball";
+import Cricket from "./../jsx/pages/Categories/Cricket";
+import Football from "./../jsx/pages/Categories/Football";
+import Comingsoon from "../jsx/components/Elements/Comingsoon";
+import BettingNavApp from "../jsx/pages/Categories/BettingNavApp";
 
 class Web extends Component {
   render() {
@@ -31,6 +32,7 @@ class Web extends Component {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/about" component={About} />
             <Route exact path="/comingsoon" component={Comingsoon} />
+            <Route exact path="/betting-app" component={BettingNavApp} />
             {/* <Route exact path="/blogs" component={BLogs} />
             <Route exact path="/news" component={NEWPAGE} /> */}
             {/* <Route exact path="/soccer" component={Soccer} />
@@ -45,7 +47,7 @@ class Web extends Component {
           </Switch>
         </BrowserRouter>
       </>
-    )
+    );
   }
 }
-export default Web
+export default Web;

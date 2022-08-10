@@ -1,0 +1,93 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+img.safu-img {
+  width: 250px;
+  margin: 50px 30px 20px;
+}
+img.game-img {
+  width: 250px;
+  display: block;
+  margin-right: auto;
+}
+.slider-container {
+  margin-top: 20px;
+  width: 95%;
+  background: #48ff7b;
+  border-radius: 20px;
+}
+button.enter-button {
+  width: 170px;
+  height: 60px;
+  font-weight: 700;
+  margin-left: 30px;
+  display: block;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  border: none;
+}
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 20px;
+  padding: 0;
+  cursor: pointer !important;
+}
+.slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  cursor: pointer !;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+.slick-dots li button:before {
+  font-family: "slick";
+  font-size: 6px;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 5px;
+  border-radius: 25px;
+  background-color: #48ff7b;
+  content: "";
+  text-align: center;
+  opacity: 1;
+  margin-top: 20px;
+}
+
+button.slick-arrow.slick-prev {
+  display: none !important;
+}
+button.slick-arrow.slick-next {
+  display: none !important;
+}
+
+@media screen and(max-width:912px) {
+  .slider-container {
+    width: 100%;
+  }
+  img.safu-img {
+    width: 250px;
+    margin: 50px 30px 20px;
+  }
+  img.game-img {
+    width: 250px;
+    display: block;
+    margin: auto;
+  }
+}
+@media screen and(max-width:480px) {
+  .slider-container {
+    width: 100%;
+  }
+}
