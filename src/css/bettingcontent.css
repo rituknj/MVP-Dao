@@ -10,7 +10,7 @@ a.navItem {
   margin-top: 20px;
   background: #1c1c1c;
   border-radius: 20px 20px 0px 0px;
-  width: 350px;
+  width: 100%;
   height: 850px;
 }
 
@@ -93,6 +93,11 @@ h6.sports-trending {
   display: flex;
   align-items: center;
 }
+.matched {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
 img.img-vector {
   margin-left: 5px;
 }
@@ -102,6 +107,7 @@ img.match-img {
   margin-right: 50px;
   margin-top: 20px;
   width: 100px;
+  cursor: text;
 }
 .pool-size {
   margin-top: 12px;
@@ -111,16 +117,17 @@ span.size {
   font-style: normal;
   font-weight: 900;
   color: #adadad;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 15px;
 }
 .amount {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 900;
-  font-size: 30px;
+  font-size: 28px;
   color: #fff;
   line-height: 39px;
+  margin-left: -25px;
 }
 .card.betting-card {
   background-color: #0c0c0c !important;
@@ -144,42 +151,61 @@ span.size {
   font-size: 12px;
   line-height: 15px;
 }
-
-@media screen and (max-width: 480px) {
-  .bet-slip-area {
-    margin-top: 20px;
-    background: #1c1c1c;
-    border-radius: 20px 20px 0px 0px;
-    width: 390px;
-    height: 850px;
-  }
+.other-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+}
+.time-day-content {
+  display: grid;
+  margin-left: 30px;
+  color: #ffff;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+}
+img.image-content {
+  margin-left: 30px;
+}
+.other-area {
+  display: flex;
+  align-items: baseline;
+  justify-content: right;
+  margin-top: -40px;
+}
+.remaing-other-content {
+  display: flex;
+  align-items: center;
+}
+p.teams {
+  text-align: center;
+  border-radius: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffff;
+  background: #1c1c1c;
+  display: block;
+  padding: 10px 40px;
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+.percent {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #48ff7b;
 }
 
-@media screen and (max-width: 412px) {
-  .bet-slip-area {
-    margin-top: 20px;
-    background: #1c1c1c;
-    border-radius: 20px 20px 0px 0px;
-    width: 340px;
-    height: 850px;
-  }
-}
-
-@media screen and (max-width: 1280px) {
-  .bet-slip-area {
-    margin-top: 20px;
-    background: #1c1c1c;
-    border-radius: 20px 20px 0px 0px;
-    width: 300px;
-    height: 850px;
-  }
-}
-@media screen and (max-width: 1024px) {
-  .bet-slip-area {
-    margin-top: 20px;
-    background: #1c1c1c;
-    border-radius: 20px 20px 0px 0px;
-    width: 250px;
-    height: 850px;
+@media screen and (max-width: 912px) {
+  .other-area {
+    display: grid;
   }
 }
