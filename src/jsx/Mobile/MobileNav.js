@@ -1,8 +1,7 @@
-import React from "react";
-import logo from "../../../images/bettingnewlogo.png";
-import BettingAppContent from "./BettingAppContent";
+import React from 'react'
+import logo from "../../images/bettingnewlogo.png";
 
-export default function BettingNavApp() {
+export default function MobileNav() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,16 +41,15 @@ export default function BettingNavApp() {
                   WALLET
                 </a>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link navItem text-light mx-5" href="/betting-app">
+              <li className="nav-item">
+                <a className="nav-link navItem text-light mx-5" href="/mobile-view">
                   Mobile
                 </a>
-              </li> */}
+              </li>
             </ul>
           </div>
         </div>
       </nav>
-      <BettingAppContent />
     </div>
-  );
+  )
 }

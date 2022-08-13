@@ -13,7 +13,7 @@ export default function HeaderSlider() {
           dots={true}
           slidesToShow={1}
           slidesToScroll={1}
-          autoplay={true}
+          autoplay={false}
           autoplaySpeed={3100}
         >
           <div className="slider-content">
