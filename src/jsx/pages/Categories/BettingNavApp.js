@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../../images/bettingnewlogo.png";
 import BettingAppContent from "./BettingAppContent";
+import BettingFooter from "./BettingFooter";
 
 export default function BettingNavApp() {
   return (
@@ -52,6 +53,7 @@ export default function BettingNavApp() {
         </div>
       </nav>
       <BettingAppContent />
+      <BettingFooter />
     </div>
   );
 }

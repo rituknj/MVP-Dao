@@ -11,7 +11,7 @@ a.navItem {
   background: #1c1c1c;
   border-radius: 20px 20px 0px 0px;
   width: 100%;
-  height: 100%;
+  height: 98%;
 }
 
 .bet-slip-content {
@@ -231,6 +231,135 @@ hr.hr {
   justify-content: space-between;
 }
 
+/* INSTRUCTION */
+
+h5.heading-instruction {
+  position: absolute;
+  top: 40%;
+  left: 20px;
+  font-family: "Montserrat";
+  color: #fff;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 29px;
+}
+img.image-instruction {
+  width: 80%;
+  padding: 5px 7px;
+  display: block;
+  margin-left: auto;
+}
+.read-instruction {
+  background-color: #111111;
+  border-radius: 0px 0px 20px 20px;
+}
+span.read-btton {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  padding: 20px 20px;
+  color: #48ff7b;
+}
+.read-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+img.read-arrow-img {
+  padding: 20px 20px;
+}
+
+/* FOR CHATS */
+.chat-text-background {
+  background: #0c0c0c;
+  border-radius: 10px;
+}
+.chats-area {
+  background: #111111;
+  border-radius: 20px 20px 0px 0px;
+  padding: 10px 10px;
+}
+h5.chats-heading {
+  color: #ffff;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+.chats-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h6.username-heading {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 10px 10px;
+  color: #fff;
+}
+p.lorem-text {
+  color: #aaaaaa;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  width: 100%;
+  padding: 10px 10px;
+  line-height: 13px;
+}
+
+/* FOOTER */
+
+.footer-area {
+  margin-top: 70px;
+}
+h4.audit-kyc {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #bcbcbc;
+  margin: 20px 0px;
+}
+h6.item {
+  text-align:center;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 22px;
+  color: #fff;
+}
+li.list-items {
+  list-style: none;
+}
+p.li {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 17px;
+  text-align: center;
+  color: #bcbcbc;
+}
+span.copy-right {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #bcbcbc;
+}
+
 @media screen and (max-width: 1280px) {
   .remaing-section {
     margin-left: -15px;
@@ -262,6 +391,16 @@ hr.hr {
   .images-container {
     margin-bottom: 0%;
   }
+  .instruction-area {
+    margin-top: 50px;
+  }
+
+  .read-instruction {
+    background-color: #111111;
+    border-radius: 0px 0px 20px 20px;
+    margin-top: -22px;
+  }
+
   p.team {
     color: #fff;
     font-family: "Montserrat";
@@ -298,6 +437,9 @@ hr.hr {
   .images-container {
     margin-bottom: 10px;
   }
+  .chats-area {
+    margin: 10px 10px;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -311,5 +453,11 @@ hr.hr {
   }
   .images-container {
     margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 412px) {
+  .chats-area {
+    margin: 10px 10px;
   }
 }

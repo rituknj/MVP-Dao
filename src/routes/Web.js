@@ -39,6 +39,12 @@ class Web extends Component {
             ) : (
               <Route exact path="/betting-app" component={MobileHeader} />
             )}
+
+            {!isMobile ? (
+              <Route exact path="/betting-app" component={BettingNavApp} />
+            ) : (
+              <Route exact path="/betting-app" component={MobileHeader} />
+            )}
             {/* <Route exact path="/blogs" component={BLogs} />
             <Route exact path="/news" component={NEWPAGE} /> */}
             {/* <Route exact path="/soccer" component={Soccer} />

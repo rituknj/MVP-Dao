@@ -7,6 +7,9 @@ import EventsArea from "../pages/Categories/EventsArea";
 import MobileNav from "./MobileNav";
 import MobileArea from "./MobileArea";
 import MoblieContent from "./MoblieContent";
+import MobileChatInst from "./MobileChatInst";
+import MobileChat from "./MobileChat";
+import BettingFooter from "../pages/Categories/BettingFooter";
 
 export default function MobileHeader() {
   return (
@@ -20,7 +23,7 @@ export default function MobileHeader() {
                 dots={true}
                 slidesToShow={1}
                 slidesToScroll={1}
-                autoplay={false}
+                autoplay={true}
                 autoplaySpeed={3100}
               >
                 <div className="slider-content">
@@ -86,8 +89,11 @@ export default function MobileHeader() {
           </div>
         </div>
       </div>
+      <MobileChatInst />
+      <MobileChat />
       <MoblieContent />
       <MobileArea />
+      <BettingFooter />
     </div>
   );
 }
