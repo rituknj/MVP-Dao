@@ -3,6 +3,8 @@ import vector from "../../../images/Vector.png";
 import Vector from "../../../images/Vector (2).png";
 import timer from "../../../images/carbon_timer.png";
 import connection from "../../../images/connection.png";
+import disconnect from "../../../images/clarity_disconnect-line.png";
+import arrow from "../../../images/arrow.png";
 
 export default function SportsDetails() {
   return (
@@ -68,8 +70,8 @@ export default function SportsDetails() {
               <div className="card-header area">
                 <h6 className="title">TITLE</h6>
                 <div className="pool-amount">
-                  <h6 className="title2">MATCHED</h6>
-                  <img src={connection} alt="" className="mt-0 mx-2" />
+                  <h6 className="title2">UNMATCHED</h6>
+                  <img src={disconnect} alt="" className="mt-0 mx-2" />
                   <div className="pa">
                     <p className="pool-size">POOL SIZE</p>
                     <span className="amount">$3,600</span>
@@ -112,6 +114,13 @@ export default function SportsDetails() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div className="view-more-area">
+            <hr className="hr" />
+              <div className="view-more">
+                <p className="view-other-cards">VIEW MORE</p>
+                <img src={arrow} alt="" className="arrow-img" />
               </div>
             </div>
           </div>

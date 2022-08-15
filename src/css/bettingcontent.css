@@ -11,7 +11,7 @@ a.navItem {
   background: #1c1c1c;
   border-radius: 20px 20px 0px 0px;
   width: 100%;
-  height: 850px;
+  height: 100%;
 }
 
 .bet-slip-content {
@@ -208,6 +208,27 @@ p.percent {
 .result-content {
   display: flex;
   align-items: center;
+}
+
+/* VIEW MORE */
+.view-more-area {
+  margin-top: 50px;
+}
+p.view-other-cards {
+  color: #fff;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 16px;
+}
+hr.hr {
+  color: #1c1c1c;
+}
+.view-more {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 1280px) {

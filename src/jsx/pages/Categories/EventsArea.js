@@ -1,6 +1,6 @@
 import React from "react";
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 import SportsDetails from "./SportsDetails";
 
 export default function EventsArea() {
@@ -17,7 +17,7 @@ export default function EventsArea() {
                   className="mb-3"
                 >
                   <Tab eventKey="sports" title="SPORTS">
-                    <SportsDetails/>
+                    <SportsDetails />
                   </Tab>
                   <Tab eventKey="e-sports" title="E-SPORTS">
                     E-SPORTS
@@ -29,10 +29,14 @@ export default function EventsArea() {
               </div>
             </div>
           </div>
-          <div className="col-lg-3">
+          <div className="col-lg-3 col-md-12">
             <div className="instruction-area">
               <div className="instruction">
-                
+                <div className="card">
+                  <div className="card-body">
+                    This is some text within a card body.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
