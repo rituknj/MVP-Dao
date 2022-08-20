@@ -22,6 +22,8 @@ import Comingsoon from "../jsx/components/Elements/Comingsoon";
 import BettingNavApp from "../jsx/pages/Categories/BettingNavApp";
 import MobileHeader from "../jsx/Mobile/MobileHeader";
 import { BrowserView, MobileView, isMobile } from "react-device-detect";
+import Accumulate from "../jsx/pages/Categories/Accumulate";
+import Single from "../jsx/pages/Categories/Single";
 
 class Web extends Component {
   render() {
@@ -34,7 +36,7 @@ class Web extends Component {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/about" component={About} />
             <Route exact path="/comingsoon" component={Comingsoon} />
-            {!isMobile ? (
+            {/* {!isMobile ? (
               <Route exact path="/betting-app" component={BettingNavApp} />
             ) : (
               <Route exact path="/betting-app" component={MobileHeader} />
@@ -45,6 +47,7 @@ class Web extends Component {
             ) : (
               <Route exact path="/betting-app" component={MobileHeader} />
             )}
+            <Route exact path ="/accumulate" component={Single}/> */}
             {/* <Route exact path="/blogs" component={BLogs} />
             <Route exact path="/news" component={NEWPAGE} /> */}
             {/* <Route exact path="/soccer" component={Soccer} />

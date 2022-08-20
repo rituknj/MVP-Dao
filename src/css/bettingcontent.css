@@ -1,3 +1,5 @@
+@import "~mdb-ui-kit/css/mdb.min.css";
+
 a.navItem {
   font-family: "Montserrat";
   font-style: normal;
@@ -24,17 +26,23 @@ a.navItem {
   line-height: 20px;
   border-radius: 20px 20px 0px 0px;
 }
-li.navLink {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
-  padding: 10px 0px;
+
+button#controlled-tab-example-tab-profile:hover {
+  background: none;
+}
+button#controlled-tab-example-tab-home {
+  background: none;
+}
+button#uncontrolled-tab-example-tab-sports {
+  background: none;
+}
+button#uncontrolled-tab-example-tab-everything\ else {
+  background: none;
+}
+button#uncontrolled-tab-example-tab-e-sports {
+  background: none;
 }
 
-a.item {
-  color: #777777;
-}
 /* EVENT */
 
 .event-content {
@@ -93,6 +101,7 @@ h6.sports-heading {
   background: #111111;
   padding: 20px 20px;
   border-radius: 20px;
+  cursor: pointer;
 }
 .card.background {
   background: #0c0c0c;
@@ -208,6 +217,106 @@ p.percent {
 .result-content {
   display: flex;
   align-items: center;
+}
+
+/* BETS SINGAL & ACCUMULATE */
+
+.card-header.bets-background {
+  background: #111111;
+  border-radius: 10px 10px 0px 0px;
+}
+.close-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.amount-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h4.heading-bet {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: uppercase;
+  padding-top: 15px;
+  color: #ffff;
+}
+h5.card-title.heading {
+  color: #fff;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+p.card-text.particpants {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  color: #aaaaaa;
+}
+p.number {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #fff;
+}
+input.input-amount {
+  background: #1c1c1c;
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  padding: 10px 10px;
+  color: #fff;
+}
+.iaw {
+  display: block;
+}
+p.winnigs {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #aaaaaa;
+}
+p.wining-amount {
+  text-align: left;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  padding-left: -20px;
+}
+img.cross-img {
+  cursor: pointer;
+}
+span.vs {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: uppercase;
+  color: #ffff;
+}
+.card.section {
+  border-radius: 10px 10px 10px 10px;
+  border: none;
+}
+.card-body.bet-body-background {
+  background: #0c0c0c;
+  border: none;
+  border-radius: 0px 0px 7px 7px;
 }
 
 /* VIEW MORE */
@@ -331,7 +440,7 @@ h4.audit-kyc {
   margin: 20px 0px;
 }
 h6.item {
-  text-align:center;
+  text-align: center;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 700;
@@ -367,6 +476,30 @@ span.copy-right {
   span.day {
     font-size: 8px;
   }
+  .amount-card {
+    display: grid;
+  }
+
+  p.winnigs {
+    font-family: "Montserrat";
+    font-style: normal;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #aaaaaa;
+  }
+  p.wining-amount {
+    text-align: center;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #fff;
+    padding-left: -20px;
+  }
 }
 @media screen and (max-width: 1024px) {
   .remaing-section {
@@ -380,6 +513,14 @@ span.copy-right {
   .result-content {
     display: flex;
     justify-content: center;
+  }
+  input.input-amount {
+    background: #1c1c1c;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    padding: 10px 10px;
+    color: #fff;
+    width: 90%;
   }
 }
 
