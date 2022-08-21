@@ -22,6 +22,7 @@ import { Link } from "react-router-dom";
 export default function BettingAppContent() {
   const [key, setKey] = useState("home");
   const [activeCount, setActiveCount] = useState(1);
+  const [close, setClose] = useState(true);
   return (
     <div>
       <div className="container-fluid">
@@ -39,43 +40,52 @@ export default function BettingAppContent() {
               >
                 <Tab eventKey="home" title="SINGLE">
                   <div className="single-area-content px-2">
-                    <div className="card section">
-                      <div className="card-header bets-background">
-                        <div className="close-card">
-                          <h4 className="heading-bet">
-                            {" "}
-                            TEAM A <span className="vs">VS </span> TEAM B
-                          </h4>
-                          <img src={cross} alt="" className="cross-img" />
+                    {close ? (
+                      <div className="card section">
+                        <div className="card-header bets-background">
+                          <div className="close-card">
+                            <h4 className="heading-bet">
+                              {" "}
+                              TEAM A <span className="vs">VS </span> TEAM B
+                            </h4>
+                            <img
+                              src={cross}
+                              alt=""
+                              className="cross-img"
+                              onClick={() => setClose(!close)}
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div className="card-body bet-body-background">
-                        <h5 className="card-title heading">DRAW</h5>
-                        <div className="close-card">
-                          <p className="card-text particpants">
-                            PARTICIPANTS :
-                          </p>
-                          <p className="number">5</p>
-                        </div>
-                        <div className="close-card">
-                          <p className="card-text particpants">
-                            TOTAL AMOUNT STAKED :
-                          </p>
-                          <p className="number">$2000</p>
-                        </div>
-                        <div className="amount-card">
-                          <input
-                            type="text"
-                            placeholder="ENTER AMOUNT"
-                            className="input-amount"
-                          />
-                          <div className="iaw">
-                            <p className="winnigs">Potential WINNINGS</p>
-                            <p className="wining-amount">$0.00</p>
+                        <div className="card-body bet-body-background">
+                          <h5 className="card-title heading">DRAW</h5>
+                          <div className="close-card">
+                            <p className="card-text particpants">
+                              PARTICIPANTS :
+                            </p>
+                            <p className="number">5</p>
+                          </div>
+                          <div className="close-card">
+                            <p className="card-text particpants">
+                              TOTAL AMOUNT STAKED :
+                            </p>
+                            <p className="number">$2000</p>
+                          </div>
+                          <div className="amount-card">
+                            <input
+                              type="text"
+                              placeholder="ENTER AMOUNT"
+                              className="input-amount"
+                            />
+                            <div className="iaw">
+                              <p className="winnigs">Potential WINNINGS</p>
+                              <p className="wining-amount">$0.00</p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </Tab>
                 <Tab eventKey="profile" title="ACCUMULATE">
