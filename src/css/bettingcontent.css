@@ -26,6 +26,27 @@ a.navItem {
   line-height: 20px;
   border-radius: 20px 20px 0px 0px;
 }
+.placebet {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background: #111111;
+}
+
+button.bet-btton {
+  background-color: #fff;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 21px;
+  color: #161616;
+  width: 100%;
+  border: none;
+  padding: 20px 10px;
+  border-radius:10px ;
+}
 
 button#controlled-tab-example-tab-profile:hover {
   background: none;

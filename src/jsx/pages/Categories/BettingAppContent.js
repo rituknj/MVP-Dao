@@ -8,6 +8,7 @@ import Slider from "react-slick";
 import image from "../../../images/image 4.png";
 import image2 from "../../../images/image 23.png";
 import arrow from "../../../images/extendicon.png";
+import arrow2 from "../../../images/arrow2.png";
 import vector from "../../../images/Vector.png";
 import Vector from "../../../images/Vector (2).png";
 import timer from "../../../images/carbon_timer.png";
@@ -21,14 +22,19 @@ import { Link } from "react-router-dom";
 
 export default function BettingAppContent() {
   const [key, setKey] = useState("home");
-  const [activeCount, setActiveCount] = useState(1);
-  const [close, setClose] = useState(true);
+  const [close, setClose] = useState(1);
+  const [input, setInput] = useState(false);
+
+  const ShowInput = () => {
+    console.log("showing");
+    setInput(!input);
+  };
   return (
     <div>
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-3">
-            <div className="bet-slip-area">
+            <div className="bet-slip-area position-relative">
               <div className="bet-slip-content text-light">
                 <span className="bet-slip-heading">BET SLIP</span>
               </div>
@@ -36,11 +42,12 @@ export default function BettingAppContent() {
                 id="controlled-tab-example"
                 activeKey={key}
                 onSelect={(k) => setKey(k)}
+                onClick={() => ShowInput()}
                 className="mb-3 bg-transparent bets-tab"
               >
                 <Tab eventKey="home" title="SINGLE">
                   <div className="single-area-content px-2">
-                    {close ? (
+                    {close === 1 ? (
                       <div className="card section">
                         <div className="card-header bets-background">
                           <div className="close-card">
@@ -89,12 +96,89 @@ export default function BettingAppContent() {
                   </div>
                 </Tab>
                 <Tab eventKey="profile" title="ACCUMULATE">
-                  <Accumulate />
+                  <div className="single-area-content px-2">
+                    <div className="card section">
+                      <div className="card-header bets-background">
+                        <div className="close-card">
+                          <h4 className="heading-bet">
+                            {" "}
+                            TEAM A <span className="vs">VS </span> TEAM B
+                          </h4>
+                          <img src={cross} alt="" className="cross-img" />
+                        </div>
+                      </div>
+                      <div className="card-body bet-body-background">
+                        <h5 className="card-title heading">DRAW</h5>
+                        <div className="close-card">
+                          <p className="card-text particpants">
+                            PARTICIPANTS :
+                          </p>
+                          <p className="number">5</p>
+                        </div>
+                        <div className="close-card">
+                          <p className="card-text particpants">
+                            TOTAL AMOUNT STAKED :
+                          </p>
+                          <p className="number">$2000</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="single-area-content px-2 my-3">
+                    <div className="card section">
+                      <div className="card-header bets-background">
+                        <div className="close-card">
+                          <h4 className="heading-bet">
+                            {" "}
+                            TEAM A <span className="vs">VS </span> TEAM B
+                          </h4>
+                          <img src={cross} alt="" className="cross-img" />
+                        </div>
+                      </div>
+                      <div className="card-body bet-body-background">
+                        <h5 className="card-title heading">DRAW</h5>
+                        <div className="close-card">
+                          <p className="card-text particpants">
+                            PARTICIPANTS :
+                          </p>
+                          <p className="number">5</p>
+                        </div>
+                        <div className="close-card">
+                          <p className="card-text particpants">
+                            TOTAL AMOUNT STAKED :
+                          </p>
+                          <p className="number">$2000</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </Tab>
               </Tabs>
 
               <div className="nav-area">
                 <div className="nav-content"></div>
+              </div>
+              <div className="placeBet">
+                <div className="placebet">
+                  {input ? (
+                    <div className="amount-card">
+                      <input
+                        type="text"
+                        placeholder="ENTER AMOUNT"
+                        className="input-amount"
+                      />
+                      <div className="iaw">
+                        <p className="winnigs">Potential WINNINGS</p>
+                        <p className="wining-amount">$0.00</p>
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  <button className="bet-btton d-flex align-items-center justify-content-between">
+                    PLACE BET <img src={arrow2} alt="" className="pi" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
