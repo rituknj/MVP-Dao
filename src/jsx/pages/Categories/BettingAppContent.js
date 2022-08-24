@@ -29,6 +29,12 @@ export default function BettingAppContent() {
     console.log("showing");
     setInput(input);
   };
+  const Close = () => {
+    document.getElementById("bettingcard").style.display = "none";
+  };
+  const displaycard = () => {
+    document.getElementById("bettingcard").style.display = "block";
+  };
   return (
     <div>
       <div className="container-fluid">
@@ -50,7 +56,7 @@ export default function BettingAppContent() {
                 {/* SINGLE */}
                 <Tab eventKey="home" title="SINGLE">
                   <div className="single-area-content px-2">
-                    {!emptyimg ? (
+                    {/* {!emptyimg ? (
                       ""
                     ) : (
                       <div className="empty-image">
@@ -60,52 +66,50 @@ export default function BettingAppContent() {
                           <p className="ei-text2">PLACE A BET TO GET STARTED</p>
                         </div>
                       </div>
-                    )}
-                    {activeCard === 1 ? (
-                      ""
-                    ) : (
-                      <div className="card section">
-                        <div className="card-header bets-background">
-                          <div className="close-card">
-                            <h4 className="heading-bet">
-                              {" "}
-                              TEAM A <span className="vs">VS </span> TEAM B
-                            </h4>
-                            <img
-                              src={cross}
-                              alt=""
-                              className="cross-img"
-                            />
-                          </div>
+                    )} */}
+
+                    <div className="card section" id="bettingcard">
+                      <div className="card-header bets-background">
+                        <div className="close-card">
+                          <h4 className="heading-bet">
+                            {" "}
+                            TEAM A <span className="vs">VS </span> TEAM B
+                          </h4>
+                          <img
+                            src={cross}
+                            alt=""
+                            className="cross-img"
+                            onClick={() => Close()}
+                          />
                         </div>
-                        <div className="card-body bet-body-background">
-                          <h5 className="card-title heading">DRAW</h5>
-                          <div className="close-card">
-                            <p className="card-text particpants">
-                              PARTICIPANTS :
-                            </p>
-                            <p className="number">5</p>
-                          </div>
-                          <div className="close-card">
-                            <p className="card-text particpants">
-                              TOTAL AMOUNT STAKED :
-                            </p>
-                            <p className="number">$2000</p>
-                          </div>
-                          <div className="amount-card">
-                            <input
-                              type="text"
-                              placeholder="ENTER AMOUNT"
-                              className="input-amount"
-                            />
-                            <div className="iaw">
-                              <p className="winnigs">Potential WINNINGS</p>
-                              <p className="wining-amount">$0.00</p>
-                            </div>
+                      </div>
+                      <div className="card-body bet-body-background">
+                        <h5 className="card-title heading">DRAW</h5>
+                        <div className="close-card">
+                          <p className="card-text particpants">
+                            PARTICIPANTS :
+                          </p>
+                          <p className="number">5</p>
+                        </div>
+                        <div className="close-card">
+                          <p className="card-text particpants">
+                            TOTAL AMOUNT STAKED :
+                          </p>
+                          <p className="number">$2000</p>
+                        </div>
+                        <div className="amount-card">
+                          <input
+                            type="text"
+                            placeholder="ENTER AMOUNT"
+                            className="input-amount"
+                          />
+                          <div className="iaw">
+                            <p className="winnigs">Potential WINNINGS</p>
+                            <p className="wining-amount">$0.00</p>
                           </div>
                         </div>
                       </div>
-                    )}
+                    </div>
                   </div>
                 </Tab>
                 {/* ACCUMULATE */}
@@ -292,14 +296,15 @@ export default function BettingAppContent() {
                                 <img src={vector} alt="" className="mx-2" />
                               </div>
                               <div className="card-border">
-                              <div className="empty-details">
-                                <p className="ed">no event available  at the moment</p>
-                              </div>
-                                {/* <div
+                                <div className="empty-details">
+                                  <p className="ed">
+                                    no event available at the moment
+                                  </p>
+                                </div>
+                                <div
                                   className="card background my-3"
                                   onClick={() => {
-                                    setActiveCard(!activeCard);
-                                    setEmptyImg(false);
+                                    displaycard();
                                   }}
                                 >
                                   <div className="card-header area">
@@ -432,7 +437,7 @@ export default function BettingAppContent() {
                                       </div>
                                     </div>
                                   </div>
-                                </div> */}
+                                </div>
                                 <div className="view-more-area">
                                   <hr className="hr" />
                                   <div className="view-more">
