@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "../../../css/bettingcontent.css";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import Accumulate from "./Accumulate";
-import Single from "./Single";
 import Slider from "react-slick";
 import image from "../../../images/image 4.png";
 import image2 from "../../../images/image 23.png";
@@ -16,18 +14,20 @@ import ellipse from "../../../images/Ellipse 9.png";
 import connection from "../../../images/connection.png";
 import disconnect from "../../../images/clarity_disconnect-line.png";
 import safu from "../../../images/safU Bets.png";
+import emptyImg from "../../../images/emptyimg.png";
 import cross from "../../../images/cross.png";
 import "../../../css/headerslider.css";
-import { Link } from "react-router-dom";
 
 export default function BettingAppContent() {
   const [key, setKey] = useState("home");
-  const [close, setClose] = useState(1);
-  const [input, setInput] = useState(false);
+  const [input, setInput] = useState(2);
+  const [activeCard, setActiveCard] = useState(1);
+  const [emptyimg, setEmptyImg] = useState(true);
+  const [accumulate, setAccumulate] = useState(1);
 
   const ShowInput = () => {
     console.log("showing");
-    setInput(!input);
+    setInput(input);
   };
   return (
     <div>
@@ -42,12 +42,28 @@ export default function BettingAppContent() {
                 id="controlled-tab-example"
                 activeKey={key}
                 onSelect={(k) => setKey(k)}
-                onClick={() => ShowInput()}
+                onClick={() => {
+                  ShowInput();
+                }}
                 className="mb-3 bg-transparent bets-tab"
               >
+                {/* SINGLE */}
                 <Tab eventKey="home" title="SINGLE">
                   <div className="single-area-content px-2">
-                    {close === 1 ? (
+                    {!emptyimg ? (
+                      ""
+                    ) : (
+                      <div className="empty-image">
+                        <img src={emptyImg} alt="" className="empty-img" />
+                        <div className="emptyimg-text">
+                          <p className="ei-text">BET SLIP EMPTY</p>
+                          <p className="ei-text2">PLACE A BET TO GET STARTED</p>
+                        </div>
+                      </div>
+                    )}
+                    {activeCard === 1 ? (
+                      ""
+                    ) : (
                       <div className="card section">
                         <div className="card-header bets-background">
                           <div className="close-card">
@@ -59,7 +75,6 @@ export default function BettingAppContent() {
                               src={cross}
                               alt=""
                               className="cross-img"
-                              onClick={() => setClose(!close)}
                             />
                           </div>
                         </div>
@@ -90,13 +105,19 @@ export default function BettingAppContent() {
                           </div>
                         </div>
                       </div>
-                    ) : (
-                      ""
                     )}
                   </div>
                 </Tab>
+                {/* ACCUMULATE */}
                 <Tab eventKey="profile" title="ACCUMULATE">
-                  <div className="single-area-content px-2">
+                  <div className="empty-image">
+                    <img src={emptyImg} alt="" className="empty-img" />
+                    <div className="emptyimg-text">
+                      <p className="ei-text">BET SLIP EMPTY</p>
+                      <p className="ei-text2">PLACE A BET TO GET STARTED</p>
+                    </div>
+                  </div>
+                  {/* <div className="single-area-content px-2">
                     <div className="card section">
                       <div className="card-header bets-background">
                         <div className="close-card">
@@ -151,7 +172,7 @@ export default function BettingAppContent() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </Tab>
               </Tabs>
 
@@ -160,7 +181,9 @@ export default function BettingAppContent() {
               </div>
               <div className="placeBet">
                 <div className="placebet">
-                  {input ? (
+                  {!input === 2 && input === 1 ? (
+                    ""
+                  ) : (
                     <div className="amount-card">
                       <input
                         type="text"
@@ -172,10 +195,8 @@ export default function BettingAppContent() {
                         <p className="wining-amount">$0.00</p>
                       </div>
                     </div>
-                  ) : (
-                    ""
                   )}
-                  <button className="bet-btton d-flex align-items-center justify-content-between">
+                  <button className="bet-btton d-flex align-items-center justify-content-between my-3">
                     PLACE BET <img src={arrow2} alt="" className="pi" />
                   </button>
                 </div>
@@ -271,7 +292,16 @@ export default function BettingAppContent() {
                                 <img src={vector} alt="" className="mx-2" />
                               </div>
                               <div className="card-border">
-                                <div className="card background my-3">
+                              <div className="empty-details">
+                                <p className="ed">no event available  at the moment</p>
+                              </div>
+                                {/* <div
+                                  className="card background my-3"
+                                  onClick={() => {
+                                    setActiveCard(!activeCard);
+                                    setEmptyImg(false);
+                                  }}
+                                >
                                   <div className="card-header area">
                                     <h6 className="title">TITLE</h6>
                                     <div className="pool-amount">
@@ -402,7 +432,7 @@ export default function BettingAppContent() {
                                       </div>
                                     </div>
                                   </div>
-                                </div>
+                                </div> */}
                                 <div className="view-more-area">
                                   <hr className="hr" />
                                   <div className="view-more">

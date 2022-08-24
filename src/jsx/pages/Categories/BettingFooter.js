@@ -11,12 +11,15 @@ import fb from "../../../images/fb.png";
 import tweet from "../../../images/tweet.png";
 import insta from "../../../images/insta.png";
 import sl from "../../../images/sl.png";
+import footerbg from "../../../images/footerBg.png";
 import telegram from "../../../images/telegram.png";
 
 export default function BettingFooter() {
   return (
     <div>
-      <div className="container">
+      <div className="container position-relative">
+        <img src={footerbg} alt="" className="img-footer" />
+
         <div className="row">
           <div className="col-lg-6 col-md-12">
             <div className="footer-area">

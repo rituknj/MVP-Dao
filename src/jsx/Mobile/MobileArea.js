@@ -9,7 +9,7 @@ export default function MobileArea() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
-            <div className="event-area">
+            {/* <div className="event-area">
               <div className="event-content">
                 <Tabs
                   defaultActiveKey="sports"
@@ -27,7 +27,7 @@ export default function MobileArea() {
                   </Tab>
                 </Tabs>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

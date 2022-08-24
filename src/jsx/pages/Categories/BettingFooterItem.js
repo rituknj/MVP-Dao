@@ -91,7 +91,7 @@ export default function BettingFooterItem() {
           <div className="footer-items">
             <h6 className="item">CONTACT</h6>
             <ul className="footer-list-items">
-              <li className="list-items d-flex align-items-center">
+              <li className="list-items d-flex align-items-center justify-content-center">
                 <img src={mail} alt="" />{" "}
                 <p className="li my-1 mx-1">admin@betswamp.com</p>
               </li>
