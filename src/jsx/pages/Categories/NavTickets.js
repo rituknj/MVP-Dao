@@ -1,9 +1,8 @@
 import React from "react";
 import logo from "../../../images/bettingnewlogo.png";
-import BettingAppContent from "./BettingAppContent";
-import BettingFooter from "./BettingFooter";
+import Tickets from "./Tickets";
 
-export default function BettingNavApp() {
+export default function NavTickets() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -34,15 +33,6 @@ export default function BettingNavApp() {
                 </a>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link active navItem text-light mx-5"
-                  aria-current="page"
-                  href="/create-event"
-                >
-                  Create Event
-                </a>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link navItem text-light mx-5" href="/">
                   DASHBOARD
                 </a>
@@ -52,17 +42,11 @@ export default function BettingNavApp() {
                   WALLET
                 </a>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link navItem text-light mx-5" href="/betting-app">
-                  Mobile
-                </a>
-              </li> */}
             </ul>
           </div>
         </div>
       </nav>
-      <BettingAppContent />
-      <BettingFooter />
+      <Tickets />
     </div>
   );
 }

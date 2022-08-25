@@ -24,6 +24,8 @@ import MobileHeader from "../jsx/Mobile/MobileHeader";
 import { BrowserView, MobileView, isMobile } from "react-device-detect";
 import Accumulate from "../jsx/pages/Categories/Accumulate";
 import Single from "../jsx/pages/Categories/Single";
+import NavTickets from "../jsx/pages/Categories/NavTickets";
+import CreateEvent from "../jsx/pages/Admin/CreateEvent";
 
 class Web extends Component {
   render() {
@@ -35,7 +37,9 @@ class Web extends Component {
             <Route exact path="/app" component={Cricket} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/create-event" component={CreateEvent}/>
             <Route exact path="/comingsoon" component={Comingsoon} />
+            <Route exact path="/tickets" component={NavTickets}/>
             {!isMobile ? (
               <Route exact path="/betting-app" component={BettingNavApp} />
             ) : (

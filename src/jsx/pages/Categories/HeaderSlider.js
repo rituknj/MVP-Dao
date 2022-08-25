@@ -76,7 +76,7 @@ export default function HeaderSlider() {
           </div>
         </Slider>
       </div>
-      <EventsArea />
+      {/* <EventsArea /> */}
     </div>
   );
 }

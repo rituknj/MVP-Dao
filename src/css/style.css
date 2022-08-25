@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
 * {
-  font-family: Montserrat,'Orbitron', sans-serif;
+  font-family: Montserrat, "Orbitron", sans-serif;
 }
 body {
   background: #000;
@@ -24,7 +24,7 @@ body {
   background: rgba(35, 35, 35, 0.3);
 }
 .theam-font {
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 .space-10 {
   height: 10px;
@@ -47,20 +47,20 @@ body {
   width: 100%;
 }
 .font-raleway {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 .font-montserrat {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
-.navbar{
-  background-color: #0F0F0F !important;
+.navbar {
+  background-color: #0f0f0f !important;
 }
-.modal-fullscreen-md-down .modal-content{
+.modal-fullscreen-md-down .modal-content {
   width: 70%;
 }
 .anim {
   width: 100%;
-  background-color: #0F0F0F;
+  background-color: #0f0f0f;
   height: 100vh;
 }
 .home-header .nav-link {
@@ -104,14 +104,15 @@ body {
   color: #ff0000;
 }
 #section-home p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
   color: #ffffff;
 }
-#section-home .homeTopBtn, .btn-signup {
+#section-home .homeTopBtn,
+.btn-signup {
   background: #2b2a2a;
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
   padding: 25px !important;
@@ -138,7 +139,7 @@ body {
   display: flex;
   justify-content: center;
 }
-.side-text-nfts .nftsTopBtn{
+.side-text-nfts .nftsTopBtn {
   background: #2b2a2a;
   border-radius: 10px;
   font-size: 18px;
@@ -169,7 +170,7 @@ body {
   font-size: 18px;
   line-height: 23px;
   color: #0f0f0f;
-} 
+}
 
 .topAppBtn {
   display: flex;
@@ -188,9 +189,10 @@ body {
   padding: 50px;
   border-radius: 9px;
 }
-.react-multi-carousel-item h5, .react-multi-carousel-item h4{
+.react-multi-carousel-item h5,
+.react-multi-carousel-item h4 {
   font-family: Montserrat !important;
-  text-shadow: 0px 0px 10px #FFFFFF;
+  text-shadow: 0px 0px 10px #ffffff;
 }
 .about {
   display: flex;
@@ -205,7 +207,7 @@ body {
   color: #ffffff;
 }
 .div-p-1 {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -269,7 +271,7 @@ body {
 }
 
 .video-play-button:before {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 0;
   left: 50%;
@@ -284,7 +286,7 @@ body {
 }
 
 .video-play-button:after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 1;
   left: 50%;
@@ -384,12 +386,14 @@ body {
 .row > * {
   z-index: 2;
 }
-.game-card ul, .category-body ul {
+.game-card ul,
+.category-body ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.game-card ul li, .category-body ul li {
+.game-card ul li,
+.category-body ul li {
   font-style: normal;
   font-weight: normal;
   font-size: 12.2px;
@@ -400,17 +404,17 @@ body {
 /* .appStat{
   width: 100% !important;
 } */
-.appStat .carousel-container{
+.appStat .carousel-container {
   width: 100%;
 }
-#section-statistics{
+#section-statistics {
   background-color: #0f0f0f;
 }
-#section-statistics .row{
+#section-statistics .row {
   width: 80%;
   margin: auto;
 }
-.carousel-container{
+.carousel-container {
   width: 80%;
   margin: auto;
 }
@@ -425,7 +429,8 @@ body {
   font-size: 12.5px;
   line-height: 0;
 }
-.game-card .button-row, .category-body .button-row {
+.game-card .button-row,
+.category-body .button-row {
   display: flex;
   justify-content: end;
   align-items: end;
@@ -443,7 +448,7 @@ body {
   font-weight: normal;
   font-size: 1rem;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #aaaaaa;
 }
 #section-bet-on h1 {
@@ -457,10 +462,10 @@ body {
   font-style: normal;
   font-weight: normal;
   font-size: 1rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #aaaaaa;
 }
-.latestCards{
+.latestCards {
   width: 525px;
   background-blend-mode: overlay;
   background-color: rgba(0, 0, 0, 0.808);
@@ -472,30 +477,30 @@ body {
   background-repeat: no-repeat;
   font-size: 10px;
 }
-.latestCards #head{
+.latestCards #head {
   padding: 20px 25px;
   height: 210px;
 }
-.latestCards #title{
+.latestCards #title {
   width: fit-content;
   font-size: 12px;
   font-weight: bold;
   margin-top: 150px;
 }
-.latestCards #bottom p{
+.latestCards #bottom p {
   background-color: #111111;
   padding: 10px 25px;
   margin-bottom: 0;
 }
-.latestCards #misc{
-  background-color: #0B0B0B;
+.latestCards #misc {
+  background-color: #0b0b0b;
 }
-.latestCards #misc a{
+.latestCards #misc a {
   color: #fff;
   padding: 10px 25px;
   text-decoration: none;
 }
-.latestCards #misc span{
+.latestCards #misc span {
   padding: 10px 25px;
 }
 .game-news-card h6 {
@@ -531,7 +536,7 @@ footer {
 
 .tab-view-card {
   border-radius: 10px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 100;
@@ -541,7 +546,7 @@ footer {
 }
 
 .tab-view-card.active::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 10px;
   height: 10px;
@@ -568,7 +573,7 @@ footer {
   border: none;
   height: 60px;
   width: 250px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 18px;
   letter-spacing: 0em;
   color: #ffffff;
@@ -582,7 +587,7 @@ footer {
 }
 
 .match-main-div {
-  background: #1C1C1C;
+  background: #1c1c1c;
   border: 1px solid #ffffff0a;
 }
 .social-icons img {
@@ -606,7 +611,7 @@ footer {
   overflow-y: hidden;
 }
 .admin-form label {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -645,7 +650,7 @@ footer {
   border-radius: 10px;
 }
 .admin-form p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -659,7 +664,7 @@ footer {
 }
 .admin-card-view P {
   color: #ffffff;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -672,7 +677,7 @@ footer {
   background: #ff0101;
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -680,7 +685,7 @@ footer {
   color: #000000;
 }
 .admin-card-view .title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -688,7 +693,7 @@ footer {
   color: #aaaaaa;
 }
 .admin-card-view .date {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -705,7 +710,7 @@ footer {
   width: 520px;
 }
 .toggle-card h4 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -719,14 +724,14 @@ footer {
   background: #ff0101;
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
   color: #000000;
 }
-.toggle-card .form-check-input[type='radio'] {
+.toggle-card .form-check-input[type="radio"] {
   border-radius: 50%;
   background: #232323;
   box-shadow: inset 0px 4px 4px #000000;
@@ -736,7 +741,7 @@ footer {
   border-color: #ff0000;
   box-shadow: none !important;
 }
-.toggle-card .form-check-input[type='checkbox'] {
+.toggle-card .form-check-input[type="checkbox"] {
   border-radius: 0.25em;
   background: #232323;
   box-shadow: inset 0px 4px 4px #000000;
@@ -801,7 +806,7 @@ footer {
   line-height: 29px;
   text-transform: uppercase;
   color: #0f0f0f;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .sidebar .data-list {
   width: 493px;
@@ -819,7 +824,7 @@ footer {
 .sidebar .data-list::-webkit-scrollbar {
   width: 5px;
 }
-.sidebarNew{
+.sidebarNew {
   height: auto;
   min-height: 90vh;
   min-width: 500px;
@@ -832,7 +837,7 @@ footer {
   position: absolute;
   transition-duration: 0.5s;
 }
-.category-title{
+.category-title {
   background-image: url(../images/dark-img.png);
   background-size: cover;
   background-blend-mode: color-burn;
@@ -841,45 +846,45 @@ footer {
   background-color: #000000cb;
   background-repeat: no-repeat;
 }
-#img-head span{
+#img-head span {
   font-size: 14px;
 }
-#poolSize p, #timeLeft{
+#poolSize p,
+#timeLeft {
   font-size: 11px;
   margin-bottom: 0;
 }
-#betA{
+#betA {
   border: 1px solid rgb(53, 53, 53);
-  background-color: #0B0B0B;
+  background-color: #0b0b0b;
   width: 100%;
   border-radius: 5px;
   padding: 15px;
   position: relative;
   margin: auto;
 }
-.selectBet p{
+.selectBet p {
   font-size: 12px;
   line-height: 22px;
   margin-bottom: 0;
   color: #aaaaaa;
 }
-.selectBet span{
+.selectBet span {
   color: #fff;
 }
-.selectBet .active{
+.selectBet .active {
   border: 1px solid #fff !important;
-
 }
-.returnBet{
+.returnBet {
   font-size: 12px;
   color: #aaaaaa;
 }
-.returnBet input{
+.returnBet input {
   background-color: transparent;
   border: none;
   outline: none !important;
 }
-.returnBet #return{
+.returnBet #return {
   margin-top: auto;
 }
 /* Track */
@@ -916,7 +921,7 @@ footer {
   line-height: 22px;
 }
 .data-list .image-card h3 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -949,7 +954,7 @@ footer {
 }
 
 .odds-card h4 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -969,7 +974,7 @@ footer {
   border-bottom: 2px solid #232323;
 }
 .odds-card .info p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -994,7 +999,7 @@ footer {
   border-radius: 20px;
 }
 .odds-card .info .percent {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
@@ -1006,7 +1011,7 @@ footer {
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #aaaaaa;
 }
 .odds-card .form input {
@@ -1019,7 +1024,7 @@ footer {
   color: #ffffff;
 }
 .odds-card .form .max-btn {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -1029,11 +1034,11 @@ footer {
   top: 22px;
 }
 
-#admin-navbar-nav{
-  color: #BCBCBC;
+#admin-navbar-nav {
+  color: #bcbcbc;
 }
 #admin-navbar-nav a {
-  color: #BCBCBC;
+  color: #bcbcbc;
   font-size: 16px;
   line-height: 30px;
   cursor: pointer;
@@ -1109,7 +1114,7 @@ footer {
   color: #ffffff;
 }
 .nav-tabs-data .bet-card-custom p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -1131,7 +1136,7 @@ footer {
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #aaaaaa;
 }
 .history-list h4 {
@@ -1139,7 +1144,7 @@ footer {
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #ffffff;
 }
 .rotate-element {
@@ -1196,21 +1201,21 @@ footer {
   font-size: 18px;
   line-height: 22px;
   color: #aaaaaa;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 .wallet-card h4 {
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
   line-height: 29px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #ffffff;
 }
 .wallet-card h4 img {
   vertical-align: middle;
 }
 .wallet-card h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -1222,7 +1227,7 @@ footer {
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #ffffff;
 }
 .point-list hr {
@@ -1230,7 +1235,7 @@ footer {
   margin: 0;
 }
 .point-list-data p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -1245,7 +1250,7 @@ footer {
   color: #ffffff;
 }
 .point-list-form p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -1280,7 +1285,7 @@ footer {
   font-weight: bold;
   font-size: 18px;
   line-height: 22px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   color: #232323;
 }
@@ -1337,7 +1342,7 @@ footer {
   border-color: #ff0000;
   box-shadow: none !important;
 }
-#about-section-3 .form-check-input[type='radio'] {
+#about-section-3 .form-check-input[type="radio"] {
   border-radius: 50%;
   background: #232323;
   box-shadow: inset 0px 4px 4px #000000;
@@ -1387,10 +1392,10 @@ footer {
   color: #ffffff;
 }
 #accordionFaq .accordion-button::after {
-  background-image: url('../images/carbon_add-alt.png') !important;
+  background-image: url("../images/carbon_add-alt.png") !important;
 }
 #accordionFaq .accordion-button:not(.collapsed)::after {
-  background-image: url('../images/carbon_subtract-alt.png') !important;
+  background-image: url("../images/carbon_subtract-alt.png") !important;
 }
 #accordionFaq .accordion-button {
   background: #0f0f0f;
@@ -1602,7 +1607,7 @@ footer .footerList li a {
   color: #ffffff;
   text-decoration: none;
 }
-footer .footerList{
+footer .footerList {
   text-align: center;
 }
 footer .footerList li {
@@ -1668,15 +1673,15 @@ footer button {
   z-index: 10;
   overflow: visible !important;
 }
-.ecosystem img{
+.ecosystem img {
   filter: grayscale(100%);
   transition: 200ms ease-in-out;
 }
-.ecosystem:hover{
+.ecosystem:hover {
   transform: translateY(-50px);
   transition: 200ms ease-in-out;
 }
-.ecosystem:hover img{
+.ecosystem:hover img {
   filter: grayscale(0%);
   transition: 200ms ease-in-out;
 }
@@ -1692,7 +1697,7 @@ footer button {
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.1); /* Black see-through */
 }
-.side-text-nfts *{
+.side-text-nfts * {
   font-family: Montserrat;
 }
 
@@ -1740,7 +1745,7 @@ footer button {
 }
 
 .top-image {
-  background-image: url('./../images/ground-bg.png');
+  background-image: url("./../images/ground-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1748,7 +1753,7 @@ footer button {
   position: relative;
 }
 
-.top-image2{
+.top-image2 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1756,26 +1761,28 @@ footer button {
   position: relative;
 }
 
-.categories-dropdown{
+.categories-dropdown {
   position: absolute !important;
   right: 20px;
   bottom: 20px;
 }
 
-.subcategory .dropdown-toggle::after{
+.subcategory .dropdown-toggle::after {
   top: 45% !important;
 }
 
-.categories-dropdown ul li button, .subcategory ul li button{
+.categories-dropdown ul li button,
+.subcategory ul li button {
   color: rgb(202, 202, 202);
 }
-.categories-dropdown ul li:hover button, .subcategory ul li:hover button{
+.categories-dropdown ul li:hover button,
+.subcategory ul li:hover button {
   background-image: none !important;
   background-color: #272727;
   color: #fff;
 }
 
-.sporttag{
+.sporttag {
   background-color: #000000;
   width: fit-content;
   padding: 0px 10px;
@@ -1784,7 +1791,7 @@ footer button {
 .catogories-dropdown {
   display: grid;
   justify-content: end;
-  align-items:flex-end;
+  align-items: flex-end;
   height: 80%;
   color: white;
   vertical-align: middle;
@@ -1802,17 +1809,19 @@ footer button {
   cursor: pointer;
 }
 
-.main-dropdown{
+.main-dropdown {
   position: relative;
   outline: none;
   z-index: 3;
 }
-.main-dropdown .btn-secondary, .categories-dropdown .btn-secondary{
+.main-dropdown .btn-secondary,
+.categories-dropdown .btn-secondary {
   padding: 25px 20px;
   text-align: start;
   min-width: 270px;
 }
-.main-dropdown .dropdown-toggle::after, .categories-dropdown .dropdown-toggle::after{
+.main-dropdown .dropdown-toggle::after,
+.categories-dropdown .dropdown-toggle::after {
   position: absolute;
   right: 15px;
   top: 65%;
@@ -1830,62 +1839,62 @@ footer button {
   transform: translateY(-10px);
   transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
 }
-.sublinks{
+.sublinks {
   cursor: pointer;
 }
 
-.main-dropdown:focus .catorgies{
+.main-dropdown:focus .catorgies {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
 }
 
-.sub-catogries{
+.sub-catogries {
   background-color: #0b0b0b;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
-.sub-tools{
+.sub-tools {
   display: flex;
   gap: 15px;
   padding-bottom: 30px;
 }
 
-.sub-tools img{
+.sub-tools img {
   cursor: pointer;
 }
-.sublinks{
+.sublinks {
   padding: 5px;
 }
-.top-details{
+.top-details {
   color: #00ffa3;
 }
 
-.betting-cards{
+.betting-cards {
   display: flex;
   align-items: baseline;
   gap: 20px;
 }
-.game-cards{
+.game-cards {
   justify-content: space-between;
-  --bs-gutter-x: 0 !important
+  --bs-gutter-x: 0 !important;
 }
-.game-cards .col{
+.game-cards .col {
   width: 33%;
   min-width: 325px;
   margin: 15px 15px;
 }
 
 /* ADMIN INDEX */
-.adminIndex{
+.adminIndex {
   background-color: #000;
 }
 
 /* ADMIN SIDEBAR */
 #AdminSidebar {
   position: fixed;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   width: fit-content;
 }
 #AdminSidebar .pro-sidebar {
@@ -1900,32 +1909,44 @@ footer button {
   box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
 }
 #AdminSidebar .pro-sidebar-inner .pro-sidebar-layout {
-  background-color: #0F0F0F;
+  background-color: #0f0f0f;
   min-height: calc(100vh - 100px);
 }
 #AdminSidebar .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
-  color: #BCBCBC;
+  color: #bcbcbc;
   font-size: 14px;
   margin: 10px 0px;
 }
-#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper img {
+#AdminSidebar
+  .pro-sidebar-inner
+  .pro-sidebar-layout
+  ul
+  .pro-inner-item
+  .pro-icon-wrapper
+  img {
   height: 28px;
 }
-#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper .pro-item-content {
-  color: #BCBCBC;
+#AdminSidebar
+  .pro-sidebar-inner
+  .pro-sidebar-layout
+  ul
+  .pro-inner-item
+  .pro-icon-wrapper
+  .pro-item-content {
+  color: #bcbcbc;
 }
 #AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .active {
-  background-color: #0A0A0A;
+  background-color: #0a0a0a;
   font-weight: 500 !important;
 }
-#AdminSidebar .pro-sidebar-footer{
+#AdminSidebar .pro-sidebar-footer {
   border: none;
   text-align: center;
 }
 
-.adminGlobalContainer{
+.adminGlobalContainer {
   margin: 15px auto 0px 300px;
-  background-color: #0F0F0F;
+  background-color: #0f0f0f;
   min-height: 90vh;
   width: 100%;
   border-radius: 40px 0px 0px 0px;
@@ -1933,70 +1954,81 @@ footer button {
 }
 
 /* CREATE EVENT */
-.createEvent-main .multistep{
-  width: fit-content;
-  background-color: #1C1C1C;
+.createEvent-main .multistep {
+  width: 687px;
+  background-color: #1c1c1c;
   height: fit-content;
   overflow: hidden;
-  color: #AAAAAA;
+  color: #aaaaaa;
   font-size: 14px;
   padding: 30px 70px;
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 }
-.createEvent-main .multistep h5{
+h5.createevent {
+  text-align: center;
+  color: #fff;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 22px;
+}
+.createEvent-main .multistep h5 {
   color: #fff;
   font-size: 16px;
   text-align: center;
   margin: 20px auto;
 }
-.createEvent-main .multistep input{
+.createEvent-main .multistep input {
   background-color: #151515;
   border: none;
   color: #fff;
   font-size: 14px;
 }
-.createEvent-main #history{
+.createEvent-main #history {
   background-color: transparent;
   color: #fff;
   border: none;
   outline: none;
 }
-.createEvent-main .card{
+.createEvent-main .card {
   font-size: 14px;
 }
-.createEvent-main .card-body span{
+.createEvent-main .card-body span {
   color: #fff;
 }
-.createEvent-main .card-body p{
-  color: #AAAAAA;
+.createEvent-main .card-body p {
+  color: #aaaaaa;
   font-size: 12px;
 }
 
 /* BETSLIP */
-.betslip-main{
+.betslip-main {
   background-color: #000;
 }
-.betslip-main .row{
-  background-color: #0F0F0F;
+.betslip-main .row {
+  background-color: #0f0f0f;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
 }
-.betslip-main .betCards{
+.betslip-main .betCards {
   justify-content: space-evenly;
 }
-.betslip-main .row .col{
+.betslip-main .row .col {
   min-width: 235px;
   width: 22%;
   overflow: hidden;
   border-radius: 10px;
   height: 150px;
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   color: #fff;
 }
-.betslip-main .row .col-w::before, .validate-event-main .row .col-w::before{
-  content: '';
+.betslip-main .row .col-w::before,
+.validate-event-main .row .col-w::before {
+  content: "";
   width: 5px;
   left: 0;
   border-radius: 5px;
@@ -2005,87 +2037,91 @@ footer button {
   top: 10%;
   background-color: #fff;
 }
-.betslip-main .row .col-b::before, .validate-event-main .row .col-b::before{
-  content: '';
+.betslip-main .row .col-b::before,
+.validate-event-main .row .col-b::before {
+  content: "";
   width: 5px;
   left: 0;
   border-radius: 5px;
   height: 120px;
   top: 10%;
   position: absolute;
-  background-color: #2F92ED;
+  background-color: #2f92ed;
 }
-.betslip-main .row .col-r::before, .validate-event-main .row .col-r::before{
-  content: '';
+.betslip-main .row .col-r::before,
+.validate-event-main .row .col-r::before {
+  content: "";
   width: 5px;
   left: 0;
   border-radius: 5px;
   height: 120px;
   top: 10%;
   position: absolute;
-  background-color: #FF0505;
+  background-color: #ff0505;
 }
-.betslip-main .row .col-g::before, .validate-event-main .row .col-g::before{
-  content: '';
+.betslip-main .row .col-g::before,
+.validate-event-main .row .col-g::before {
+  content: "";
   width: 5px;
   left: 0;
   border-radius: 5px;
   height: 120px;
   top: 10%;
   position: absolute;
-  background-color: #02FF67;
+  background-color: #02ff67;
 }
-.validate-event-main .row .col-p::before{
-  content: '';
+.validate-event-main .row .col-p::before {
+  content: "";
   width: 5px;
   left: 0;
   border-radius: 5px;
   height: 120px;
   top: 10%;
   position: absolute;
-  background-color: #ED2FC3;
+  background-color: #ed2fc3;
 }
-.validate-event-main .row .col-y::before{
-  content: '';
+.validate-event-main .row .col-y::before {
+  content: "";
   width: 5px;
   left: 0;
   border-radius: 5px;
   height: 120px;
   top: 10%;
   position: absolute;
-  background-color: #FF9A02;
+  background-color: #ff9a02;
 }
-.betslip-main .row .col span{
+.betslip-main .row .col span {
   font-size: 12px;
-  color: #BCBCBC;
+  color: #bcbcbc;
 }
-.betslip-main .row .col h5{
+.betslip-main .row .col h5 {
   font-size: 16px;
 }
-.betslip-main .row .col p{
+.betslip-main .row .col p {
   font-size: 20px;
 }
-.betslip-main .row .col hr, .validate-event-main .row .col hr{
+.betslip-main .row .col hr,
+.validate-event-main .row .col hr {
   width: 115%;
   margin-left: -16px;
   height: 1px;
   opacity: 1;
 }
-.activeBets .card-body h5{
+.activeBets .card-body h5 {
   font-size: 16px;
   color: #fff;
 }
 
 /* VALIDATE EVENTS */
-.validate-event-main{
+.validate-event-main {
   background-color: #000;
 }
 .validate-event-main .row {
-  background-color: #0F0F0F;
+  background-color: #0f0f0f;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
 }
-.validate-event-main .row .col{
+.validate-event-main .row .col {
   min-width: 235px;
   width: 22%;
   background-color: #1c1c1c;
@@ -2095,23 +2131,25 @@ footer button {
   height: 150px;
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
 }
-.validate-event-main .row .col span{
+.validate-event-main .row .col span {
   font-size: 12px;
-  color: #BCBCBC;
+  color: #bcbcbc;
 }
-.validate-event-main .row .col h5{
+.validate-event-main .row .col h5 {
   font-size: 16px;
 }
-.validate-event-main .row .col p{
+.validate-event-main .row .col p {
   font-size: 20px;
   color: #fff;
 }
-.validate-event-main .terms .col-lg-6 p, .validate-event-main .terms .col-lg-6 a, .validate-event-main .terms .col-lg-6 label{
+.validate-event-main .terms .col-lg-6 p,
+.validate-event-main .terms .col-lg-6 a,
+.validate-event-main .terms .col-lg-6 label {
   font-size: 12px;
-  color: #BCBCBC;
+  color: #bcbcbc;
   margin: 0;
 }
-.validate-event-main .terms .col-lg-6{
+.validate-event-main .terms .col-lg-6 {
   background: url(../images/logo.png);
   background-repeat: no-repeat;
   background-size: 270px;
@@ -2119,42 +2157,43 @@ footer button {
   background-position: center right;
   background-color: #040404d7;
 }
-.validate-event-main .terms .col-lg-6 h5{
+.validate-event-main .terms .col-lg-6 h5 {
   font-size: 16px;
   margin-bottom: 0px;
   color: #fff;
 }
-.validCards .card-head{
-  background-color: #1C1C1C;
+.validCards .card-head {
+  background-color: #1c1c1c;
 }
-.validCards .card-head h5{
+.validCards .card-head h5 {
   color: #fff;
   font-size: 16px;
   font-weight: 700;
 }
-.validCards .card-head p{
+.validCards .card-head p {
   font-size: 12px;
-  color: #BCBCBC;
+  color: #bcbcbc;
   font-weight: 900;
 }
-.validCards .card-head span{
+.validCards .card-head span {
   font-size: 10px;
   color: #fff;
 }
-.validCards .card-body{
+.validCards .card-body {
   background-color: #303030;
 }
-.validCards .card-body p{
+.validCards .card-body p {
   color: #fff;
   margin-bottom: 0;
 }
-.validCards .card-body ul, .validCards .card-body span{
+.validCards .card-body ul,
+.validCards .card-body span {
   list-style: none;
   font-size: 12px;
-  color: #AAAAAA;
+  color: #aaaaaa;
 }
-.validCards .card-body .btn{
-  background-color: #05FF69;
+.validCards .card-body .btn {
+  background-color: #05ff69;
   color: #000;
   font-weight: 900;
   border-radius: 10px;
@@ -2165,73 +2204,74 @@ footer button {
 }
 
 /* SELF HELP */
-.self-help-main{
+.self-help-main {
   background-color: #000;
 }
-.self-help-main .outerRow, .self-help-main .secondRow {
-  background-color: #0F0F0F;
+.self-help-main .outerRow,
+.self-help-main .secondRow {
+  background-color: #0f0f0f;
   --bs-gutter-x: 0 !important;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
 }
-.self-help-main .row .col-lg-8 p{
-  color: #AAAAAA;
+.self-help-main .row .col-lg-8 p {
+  color: #aaaaaa;
 }
-.amount .btn{
+.amount .btn {
   font-weight: 900;
   background-color: #fff;
   margin: 5px;
   padding: 30px;
   border-radius: 10px;
 }
-.amount .btn:hover{
-  background-color: #FF4003;
+.amount .btn:hover {
+  background-color: #ff4003;
   color: #fff;
 }
-.self-help-main .row .col-lg-6 h3{
+.self-help-main .row .col-lg-6 h3 {
   color: #fff;
 }
-.self-help-main .row .col-lg-6 p{
-  color: #AAAAAA;
+.self-help-main .row .col-lg-6 p {
+  color: #aaaaaa;
 }
-.self-help-main .row .col-lg-6{
-  background-color: #1C1C1C;
+.self-help-main .row .col-lg-6 {
+  background-color: #1c1c1c;
   border-radius: 10px;
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
   max-width: 725px;
 }
-.self-speak{
+.self-speak {
   padding: 50px;
 }
-.self-help-main .row .col-lg-6 .customAmount{
+.self-help-main .row .col-lg-6 .customAmount {
   background-color: #151515;
   width: 100%;
-  border: 1px solid #403F3F;
+  border: 1px solid #403f3f;
   font-size: 18px;
   border-radius: 10px;
   padding: 20px 15px 20px 0px;
-  color: #AAAAAA;
+  color: #aaaaaa;
 }
-.self-help-main .row .col-lg-6 .customAmount input{
+.self-help-main .row .col-lg-6 .customAmount input {
   background-color: transparent;
   border: none;
   outline: none;
   width: 80%;
   font-weight: 500;
-  color: #FFF;
+  color: #fff;
   padding-left: 15px;
 }
-.react-multi-carousel-track{
+.react-multi-carousel-track {
   margin: auto;
 }
-.heroModal .modal-content{
-  background-color: #0F0F0F !important;
+.heroModal .modal-content {
+  background-color: #0f0f0f !important;
   color: #fff;
 }
 .toast:not(.show) {
   display: block;
 }
-.toast{
+.toast {
   z-index: 100;
   position: absolute;
 }
@@ -2241,82 +2281,93 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .active{
-  border-left: 5px solid #FF4003;
+#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .active {
+  border-left: 5px solid #ff4003;
 }
-#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .active svg rect, #AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .active svg path{
-  fill: #FF4003;
+#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .active svg rect,
+#AdminSidebar .pro-sidebar-inner .pro-sidebar-layout .active svg path {
+  fill: #ff4003;
 }
-.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item{
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
   padding: 25px 35px 25px 20px;
   margin: 0 !important;
 }
-.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item:hover .pro-icon-wrapper .pro-icon{
+.pro-sidebar
+  .pro-menu
+  .pro-menu-item
+  > .pro-inner-item:hover
+  .pro-icon-wrapper
+  .pro-icon {
   animation: none !important;
   animation-duration: 0;
 }
-.self-dordwn{
+.self-dordwn {
   width: 45%;
   margin-bottom: 110px;
 }
-.self-dordwn .dropdown-toggle::after{
+.self-dordwn .dropdown-toggle::after {
   position: absolute;
   right: 20px;
   top: 45%;
 }
-.self-dordwn button{
+.self-dordwn button {
   color: #fff;
 }
-.self-dordwn:hover button{
+.self-dordwn:hover button {
   color: #fff;
 }
-.self-dordwn .dropdown-item:focus, .dropdown-item:hover{
+.self-dordwn .dropdown-item:focus,
+.dropdown-item:hover {
   background-color: #000;
 }
-.donate{
+.donate {
   padding: 40px 45px;
 }
-#tsparticles{
+#tsparticles {
   max-height: 100vh !important;
   position: absolute;
   z-index: -1;
   overflow: hidden !important;
 }
-.search-bar{
+.search-bar {
   background: #151515;
   border-radius: 5px;
   outline: none;
   padding-right: 5px;
 }
-.search-bar input{
+.search-bar input {
   background: #151515;
   outline: none;
   border: none;
   color: #6d6c6c;
 }
-.pool:hover{
+.pool:hover {
   background-color: #2a2b2a;
 }
-.formSteps{
+.formSteps {
   margin-top: 15px;
   padding: 15px 0px;
   justify-content: space-between;
 }
-.formSteps .col{
+.formSteps .col {
   max-width: 75px;
 }
-.formSteps .col span{
+.formSteps .col span {
   border: 1px solid #fff;
   border-radius: 50%;
   padding: 10px 15px;
 }
-.multistep .form-control:focus, .multistep .form-select:focus, .admin-wallet-main input[type=number]:focus, .sub-input:focus{
+.multistep .form-control:focus,
+.multistep .form-select:focus,
+.admin-wallet-main input[type="number"]:focus,
+.sub-input:focus {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6) !important;
 }
-.admin-wallet-main input[type=number]:focus, .sub-input:focus{
+.admin-wallet-main input[type="number"]:focus,
+.sub-input:focus {
   outline: none;
 }
-.coming-main{
+.coming-main {
   background-image: url("../images/loading.png");
   background-size: 60vw;
   background-position: center;
@@ -2328,16 +2379,16 @@ input::-webkit-inner-spin-button {
   background-blend-mode: multiply;
   padding-top: 100px;
 }
-.coming-main .columnOne{
+.coming-main .columnOne {
   padding-left: 75px;
   padding-top: 100px;
 }
-.coming-main .col-md-6 h1{
+.coming-main .col-md-6 h1 {
   color: #fff;
   font-size: 100px;
   font-weight: 900;
 }
-.coming-main .col-md-6 h1 span{
+.coming-main .col-md-6 h1 span {
   color: #ff0000;
 }
 .expired-notice {
@@ -2362,7 +2413,7 @@ input::-webkit-inner-spin-button {
   border-radius: 0.25rem;
   color: #fff;
 }
-.counterSaperator{
+.counterSaperator {
   font-size: 100px;
 }
 .show-counter .countdown {
@@ -2385,9 +2436,9 @@ input::-webkit-inner-spin-button {
   text-transform: uppercase;
   font-size: 20px;
 }
-.columnTwo img{
+.columnTwo img {
   width: 100%;
 }
-.navWallet{
+.navWallet {
   margin-top: 3px;
 }

@@ -1870,6 +1870,9 @@ progress {
 .form-control[type="file"] {
   overflow: hidden;
 }
+label.form-label {
+  color: #AAAAAA;
+}
 .form-control[type="file"]:not(:disabled):not([readonly]) {
   cursor: pointer;
 }
@@ -6543,7 +6546,7 @@ fieldset:disabled .btn {
   width: 25% !important;
 }
 .w-50 {
-  width: 50% !important;
+  width: 100% !important;
 }
 .w-75 {
   width: 75% !important;
