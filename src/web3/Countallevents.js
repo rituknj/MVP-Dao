@@ -130,7 +130,6 @@ export const updatingeventdata = async(id) => {
               let totalpoolsize = check2[6] 
               let percentwinnings = (stakeonevent/totalpoolsize)*100
               let potentialwinnings = Number((((totalpoolsize-stakeonevent)/100)*percentwinnings)/10**18).toFixed(2)
-            
                 check.zero = zero
                 check.one = one 
                 check.two = two

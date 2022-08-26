@@ -8,7 +8,8 @@ import { approveBUSD, isapproved } from "./betsService";
 import { strTimeToInt, fromWei } from './utils';
 import { Points } from "../Contract/Points";
 import { BUSD_Faucet, BETS_Faucet } from "../Contract/Faucet";
-
+import axios from "axios";
+const apiURL = 'http://localhost:8080/kws/v5/events'
 
 export const getBETMVPContract = async () => {
     const betMVPContract = getContract(
@@ -380,3 +381,8 @@ export const claimTestBusd =async()=>{
     const data = betMVPContract.methods.dispenseBets("1000000000000000000000").send({from: await getAccount()})
     return data;
 } 
+
+export const getEvnetsfromDataBase =async()=>{
+    const data = await axios.get(apiURL).then((res)=>{ return res.data});
+    return data
+}
