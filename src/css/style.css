@@ -1987,11 +1987,13 @@ h5.createevent {
   color: #fff;
   font-size: 14px;
 }
-.createEvent-main #history {
-  background-color: transparent;
-  color: #fff;
+.createEvent-main .multistep input {
+  background-color: #151515;
   border: none;
-  outline: none;
+  padding: 37px 10px;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 10px;
 }
 .createEvent-main .card {
   font-size: 14px;

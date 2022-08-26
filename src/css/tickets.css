@@ -10,6 +10,9 @@
   cursor: pointer;
   display: flex;
 }
+.ative-percent.sportz {
+  border-left: 1px solid red;
+}
 
 .ative-content {
   display: flex;

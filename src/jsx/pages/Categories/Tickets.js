@@ -22,51 +22,42 @@ export default function Tickets() {
               >
                 <Tab eventKey="sports" title="ACTIVE BETS">
                   <div className="active-bets-area">
-                    <div className="row">
-                      <div className="col-lg-10">
-                        <div className="card ative-cards">
-                          <div className="card-body">
-                            <div className="ative-content">
-                              <h6 className="title">TITLE</h6>
-                              <div className="ative-pool">
-                                <span className="ap">POOL SIZE</span>
-                                <span className="amount">$3,600</span>
-                              </div>
+                    <div className="card ative-cards">
+                      <div className="card-body">
+                        <div className="ative-content">
+                          <h6 className="title">TITLE</h6>
+                          <div className="ative-pool">
+                            <span className="ap">POOL SIZE</span>
+                            <span className="amount">$3,600</span>
+                          </div>
+                        </div>
+                        <div className="ative-teams">
+                          <div className="teams">
+                            <p className="team mt-5">TEAM A</p>
+                            <p className="team2 mt-4">TEAM B</p>
+                          </div>
+                          <div className="ative-contents">
+                            <div className="timings d-grid mx-2">
+                              <span className="day">14:00</span>
+                              <span className="day">SPET 31</span>
                             </div>
-                            <div className="ative-teams">
-                              <div className="teams">
-                                <p className="team mt-5">TEAM A</p>
-                                <p className="team2 mt-4">TEAM B</p>
+                            <img src={timer} alt="" className="mx-3" />
+                            <div className="boost-progressbar">
+                              <div className="progress">
+                                <div
+                                  className="progress-bar"
+                                  role="progressbar"
+                                  aria-label="Example with label"
+                                  style={{ width: "25%" }}
+                                  aria-valuenow="25"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                ></div>
                               </div>
-                              <div className="ative-contents">
-                                <div className="timings d-grid mx-2">
-                                  <span className="day">14:00</span>
-                                  <span className="day">SPET 31</span>
-                                </div>
-                                <img src={timer} alt="" className="mx-3" />
-                                <div className="boost-progressbar">
-                                  <div className="progress">
-                                    <div
-                                      className="progress-bar"
-                                      role="progressbar"
-                                      aria-label="Example with label"
-                                      style={{ width: "25%" }}
-                                      aria-valuenow="25"
-                                      aria-valuemin="0"
-                                      aria-valuemax="100"
-                                    ></div>
-                                  </div>
-                                  <button className="boost-button">
-                                    BOOST
-                                  </button>
-                                </div>
-                              </div>
+                              <button className="boost-button">BOOST</button>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="ative-percent">
-                        
                       </div>
                     </div>
                   </div>

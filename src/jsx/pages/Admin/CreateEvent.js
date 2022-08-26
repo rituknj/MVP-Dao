@@ -17,6 +17,8 @@ import { updatingeventdata } from "../../../web3/Countallevents";
 import toast, { Toaster } from "react-hot-toast";
 import { GetUserName } from "./../../../web3/ContextMethods";
 import Username from "./Username";
+import BettingNavApp from "../Categories/BettingNavApp";
+import logo from "../../../images/bettingnewlogo.png";
 let FILL = false;
 window.cat = "SPORTS";
 const tost = (msg) =>
@@ -46,7 +48,7 @@ export default function CreateEvent() {
   const [url, setUrl] = useState();
   const [starttime, setStartTime] = useState();
   const [endtime, setEndTime] = useState();
-  const [betamount, setBetAmount] = useState(0);
+  const [betamount, setBetAmount] = useState();
   const [outcomes, setoutCome] = useState(2);
   const [username, setUserName] = useState("");
   const [preferredoutcome, setPreferredoutcome] = useState();
@@ -276,16 +278,75 @@ export default function CreateEvent() {
   };
 
   return (
-    <div className="createEvent-main py-3">
-        <h5 className="createevent"> Create events on anything verifiable</h5>
-      <div className="container-fluid d-flex justify-content-between">
-        {historyVisibility && (
-          <button onClick={() => setHistoryVisibility(false)} id="history">
-            <FiArrowLeft />
-            &nbsp; BACK
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="/">
+            <img src={logo} alt="" />
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
           </button>
-        )}
-        {/* <button
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <a
+                  className="nav-link active navItem text-light mx-5"
+                  aria-current="page"
+                  href="/"
+                >
+                  DAO
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link active navItem text-light mx-5"
+                  aria-current="page"
+                  href="/create-event"
+                >
+                  Create Event
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link navItem text-light mx-5" href="/">
+                  DASHBOARD
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link navItem text-light mx-5" href="/">
+                  WALLET
+                </a>
+              </li>
+              {/* <li className="nav-item">
+                <a className="nav-link navItem text-light mx-5" href="/betting-app">
+                  Mobile
+                </a>
+              </li> */}
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div className="createEvent-main py-3">
+        <h5 className="createevent mt-5">
+          {" "}
+          Create events on anything verifiable
+        </h5>
+        <div className="container-fluid d-flex justify-content-between">
+          {historyVisibility && (
+            <button onClick={() => setHistoryVisibility(false)} id="history">
+              <FiArrowLeft />
+              &nbsp; BACK
+            </button>
+          )}
+          {/* <button
           onClick={() => setHistoryVisibility(true)}
           id="history"
           className="ms-auto"
@@ -293,49 +354,49 @@ export default function CreateEvent() {
           History &nbsp;
           <img src={icon} alt="" />
         </button> */}
-      </div>
-      {!historyVisibility ? (
-        <div className="multistep my-5 mx-auto text-light">
-          {/* CIRCULAR STEPS ON TOP */}
-          <div className="row formSteps py-4">
-            <div className="col">
-              <span
-                style={{
-                  border: `${
-                    formsteps >= 0 ? "2px solid #48FF7B" : "2px solid #fff"
-                  }`,
-                  color: `${formsteps >= 0 ? "#48FF7B" : "#fff"}`,
-                  fontWeight: "900",
-                }}
-              >
-                1
-              </span>
-            </div>
-            <div className="col">
-              <span
-                style={{
-                  border: `${
-                    formsteps >= 1 ? "2px solid #48FF7B" : "2px solid #fff"
-                  }`,
-                  color: `${formsteps >= 1 ? "#48FF7B" : "#fff"}`,
-                }}
-              >
-                2
-              </span>
-            </div>
-            <div className="col">
-              <span
-                style={{
-                  border: `${
-                    formsteps >= 2 ? "2px solid #48FF7B" : "2px solid #fff"
-                  }`,
-                  color: `${formsteps >= 2 ? "#48FF7B" : "#fff"}`,
-                }}
-              >
-                3
-              </span>
-            </div>
-            <div className="col">
+        </div>
+        {!historyVisibility ? (
+          <div className="multistep my-5 mx-auto text-light">
+            {/* CIRCULAR STEPS ON TOP */}
+            <div className="row formSteps py-4">
+              <div className="col">
+                <span
+                  style={{
+                    border: `${
+                      formsteps >= 0 ? "2px solid #48FF7B" : "2px solid #fff"
+                    }`,
+                    color: `${formsteps >= 0 ? "#48FF7B" : "#fff"}`,
+                    fontWeight: "900",
+                  }}
+                >
+                  1
+                </span>
+              </div>
+              <div className="col">
+                <span
+                  style={{
+                    border: `${
+                      formsteps >= 1 ? "2px solid #48FF7B" : "2px solid #fff"
+                    }`,
+                    color: `${formsteps >= 1 ? "#48FF7B" : "#fff"}`,
+                  }}
+                >
+                  2
+                </span>
+              </div>
+              <div className="col">
+                <span
+                  style={{
+                    border: `${
+                      formsteps >= 2 ? "2px solid #48FF7B" : "2px solid #fff"
+                    }`,
+                    color: `${formsteps >= 2 ? "#48FF7B" : "#fff"}`,
+                  }}
+                >
+                  3
+                </span>
+              </div>
+              {/* <div className="col">
               <span
                 style={{
                   border: `${
@@ -346,41 +407,41 @@ export default function CreateEvent() {
               >
                 4
               </span>
+            </div> */}
             </div>
-          </div>
 
-          {/* FORM STEP 1 */}
-          {formsteps == 0 ? (
-            <div className="stepOne my-5">
-              {/* <h5>Create events on literally anything verifiable</h5> */}
-              <br />
-              <div className="my-3">
-                <label for="inputEventTitle" className="form-label">
-                  EVENT TITLE&nbsp;
-                  <span
-                    type="button"
-                    className="fs-5"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Discription will be updated soon"
-                  >
-                    {/* <FaQuestionCircle /> */}
-                  </span>
-                </label>
-                <div className="d-flex">
-                  <input
-                    type="text"
-                    className="form-control w-50"
-                    id="inputEventTitle"
-                    aria-describedby="eventHelp"
-                    placeholder="team one"
-                    required
-                    autoFocus
-                    value={team1}
-                    onChange={(e) => setTeam1(e.target.value)}
-                  />
-                  &nbsp;&nbsp;
-                  {/* <span className="mt-2 text-danger">V/s</span>&nbsp;&nbsp;
+            {/* FORM STEP 1 */}
+            {formsteps == 0 ? (
+              <div className="stepOne my-5">
+                {/* <h5>Create events on literally anything verifiable</h5> */}
+                <br />
+                <div className="my-3">
+                  <label for="inputEventTitle" className="form-label">
+                    EVENT TITLE&nbsp;
+                    <span
+                      type="button"
+                      className="fs-5"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Discription will be updated soon"
+                    >
+                      {/* <FaQuestionCircle /> */}
+                    </span>
+                  </label>
+                  <div className="d-flex">
+                    <input
+                      type="text"
+                      className="form-control w-50"
+                      id="inputEventTitle"
+                      aria-describedby="eventHelp"
+                      placeholder="eg:  UEFA 2022"
+                      required
+                      autoFocus
+                      value={team1}
+                      onChange={(e) => setTeam1(e.target.value)}
+                    />
+                    &nbsp;&nbsp;
+                    {/* <span className="mt-2 text-danger">V/s</span>&nbsp;&nbsp;
                   <input
                     type="text"
                     className="form-control w-50"
@@ -391,14 +452,14 @@ export default function CreateEvent() {
                     value={team2}
                     onChange={(e) => setTeam2(e.target.value)}
                   /> */}
+                  </div>
                 </div>
-              </div>
-              <div className="mb-3">
+                {/* <div className="mb-3">
                 <label for="inputSubCategory" className="form-label">
                   CATEGORY
                 </label>
                 <select
-                  className="form-select bg-dark border-0 text-light "
+                  className="form-select bg-dark border-0"
                   id="specificSizeSelect"
                   value={window.cat}
                   required
@@ -408,121 +469,133 @@ export default function CreateEvent() {
                   <option value="E-SPORTS">E-SPORTS</option>
                   <option value="OTHERS">OTHERS</option>
                 </select>
-              </div>
-              <br />
-              <br />
-              <div className="mb-3">
-                <label for="inputSubCategory" className="form-label">
-                  SUB CATEGORY
-                </label>
-                <select
-                  className="form-select bg-dark border-0 text-light "
-                  id="specificSizeSelect"
-                  required
-                  onChange={(e) => sub(e)}
-                >
-                  {subCategories.length > 0 ? (
-                    <option value="Select">Select</option>
-                  ) : (
-                    ""
-                  )}
-                  {subCategories.map((cat) => (
-                    <option value={`${cat}`}>{cat}</option>
-                  ))}
-                </select>
-              </div>
-              <br />
+              </div> */}
+                <br />
+                <br />
+                <div className="mb-3">
+                  <label for="inputSubCategory" className="form-label">
+                    SUB CATEGORY
+                  </label>
+                  <select
+                    className="form-select bg-dark border-0"
+                    id="specificSizeSelect"
+                    required
+                    onChange={(e) => sub(e)}
+                  >
+                    {subCategories.length > 0 ? (
+                      <option value="Select">Select</option>
+                    ) : (
+                      ""
+                    )}
+                    {subCategories.map((cat) => (
+                      <option value={`${cat}`}>{cat}</option>
+                    ))}
+                  </select>
+                </div>
+                <br />
 
-              <br />
-              <div className="my-3">
-                <label for="inputEventTitle" className="form-label">
-                  DESCRIPTION&nbsp;
-                  <span
-                    type="button"
-                    className="fs-5"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Discription will be updated soon"
-                  >
-                    <FaQuestionCircle />
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputEventTitle"
-                  aria-describedby="eventHelp"
-                  required
-                  value={describe}
-                  onChange={(e) => setDescribe(e.target.value)}
-                />
+                <br />
+                <div className="my-3">
+                  <label for="inputEventTitle" className="form-label">
+                    COMPETING TEAM A OR PLAYER A&nbsp;
+                    <span
+                      type="button"
+                      className="fs-5"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Discription will be updated soon"
+                    >
+                      {/* <FaQuestionCircle /> */}
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="eg:  Argentina"
+                    className="form-control"
+                    id="inputEventTitle"
+                    aria-describedby="eventHelp"
+                    required
+                    value={describe}
+                    onChange={(e) => setDescribe(e.target.value)}
+                  />
+                </div>
+                <br />
+                <div className="my-3">
+                  <label for="inputEventTitle" className="form-label">
+                    COMPETING TEAM B OR PLAYER B&nbsp;
+                    <span
+                      type="button"
+                      className="fs-5"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Discription will be updated soon"
+                    >
+                      {/* <FaQuestionCircle /> */}
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="eg:  Brazil"
+                    className="form-control"
+                    id="inputEventTitle"
+                    aria-describedby="eventHelp"
+                    required
+                    value={describe}
+                    onChange={(e) => setDescribe(e.target.value)}
+                  />
+                </div>
               </div>
-              <br />
-              <div className="my-3">
-                <label for="inputEventTitle" className="form-label">
-                  SOURCE OF VALIDATION&nbsp;
-                  <span
-                    type="button"
-                    className="fs-5"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Discription will be updated soon"
+            ) : formsteps == 1 ? (
+              <div className="stepTwo">
+                <h5>Enter the possible outcomes of the event</h5>
+                <br />
+                <div className="my-3">
+                  <label for="inputOutcomeCount" className="form-label">
+                    NUMBER OF POSSIBLE OUTCOMES&nbsp;
+                    <span
+                      type="button"
+                      className="fs-5"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Discription will be updated soon"
+                    >
+                      {/* <FaQuestionCircle /> */}
+                    </span>
+                  </label>
+                  <select
+                    className="form-select bg-dark border-0 text-light "
+                    id="specificSizeSelect"
+                    onChange={(e) => setoutCome(e.target.value)}
                   >
-                    <FaQuestionCircle />
-                  </span>
-                </label>
-                <input
-                  type="url"
-                  className="form-control"
-                  id="inputEventTitle"
-                  aria-describedby="eventHelp"
-                  required
-                  value={url}
-                  onChange={(e) => setUrl(e.target.value)}
-                />
-              </div>
-            </div>
-          ) : formsteps == 1 ? (
-            <div className="stepTwo">
-              <h5>Enter the possible outcomes of the event</h5>
-              <br />
-              <div className="my-3">
-                <label for="inputOutcomeCount" className="form-label">
-                  NUMBER OF OUTCOMES&nbsp;
-                  <span
-                    type="button"
-                    className="fs-5"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Discription will be updated soon"
-                  >
-                    <FaQuestionCircle />
-                  </span>
-                </label>
-                <select
-                  className="form-select bg-dark border-0 text-light "
-                  id="specificSizeSelect"
-                  onChange={(e) => setoutCome(e.target.value)}
-                >
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>
-              <br />
-              <div className="mb-3">
-                <label for="inputPreferredOutcome" className="form-label">
-                  PREFERRED OUTCOME&nbsp;
-                  <span
-                    type="button"
-                    className="fs-5"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title="Discription will be updated soon"
-                  >
-                    <FaQuestionCircle />
-                  </span>
-                </label>
-                <select
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                </div>
+                <br />
+                <div className="mb-3">
+                  <label for="inputPreferredOutcome" className="form-label">
+                    PREFERRED OUTCOME&nbsp;
+                    <span
+                      type="button"
+                      className="fs-5"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Discription will be updated soon"
+                    >
+                      {/* <FaQuestionCircle /> */}
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="eg:  Argentina"
+                    className="form-control"
+                    id="inputEventTitle"
+                    aria-describedby="eventHelp"
+                    required
+                    value={describe}
+                    onChange={(e) => setDescribe(e.target.value)}
+                  />
+                  {/* <select
                   className="form-select bg-dark border-0 text-light "
                   id="specificSizeSelect"
                   onChange={(e) => setPreferredoutcome(e.target.value)}
@@ -530,10 +603,43 @@ export default function CreateEvent() {
                   <option selected>SELECT</option>
                   <option value={team1}>{team1}</option>
                   <option value={team2}>{team2}</option>
-                </select>
-              </div>
-              <br />
-              <div className="mb-5">
+                </select> */}
+                </div>
+                <br />
+                <div className="mb-3">
+                  <label for="inputPreferredOutcome" className="form-label">
+                    SOURCE OF VALIDATION&nbsp;
+                    <span
+                      type="button"
+                      className="fs-5"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Discription will be updated soon"
+                    >
+                      {/* <FaQuestionCircle /> */}
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="ie:  a link that can be used to verify the outcome of the event"
+                    className="form-control"
+                    id="inputEventTitle"
+                    aria-describedby="eventHelp"
+                    required
+                    value={describe}
+                    onChange={(e) => setDescribe(e.target.value)}
+                  />
+                  {/* <select
+                  className="form-select bg-dark border-0 text-light "
+                  id="specificSizeSelect"
+                  onChange={(e) => setPreferredoutcome(e.target.value)}
+                >
+                  <option selected>SELECT</option>
+                  <option value={team1}>{team1}</option>
+                  <option value={team2}>{team2}</option>
+                </select> */}
+                </div>
+                {/* <div className="mb-5">
                 <label for="inputOpposingOutcome" className="form-label">
                   OPPOSING OUTCOME
                 </label>
@@ -543,172 +649,188 @@ export default function CreateEvent() {
                   id="inputOpposingOutcome"
                   value={preferredoutcome == team1 ? team2 : team1}
                 />
+              </div> */}
               </div>
-            </div>
-          ) : formsteps == 2 ? (
-            <div className="stepThree">
-              <h5>Enter the starting and ending date for the event</h5>
-              <br />
-              <div className="my-3">
-                <label for="inputStartDate" className="form-label">
-                  STARTING DATE/TIME
-                </label>
-                <input
-                  type="datetime-local"
-                  className="form-control"
-                  id="inputStartDate"
-                  aria-describedby="eventHelp"
-                  autoFocus
-                  value={starttime}
-                  onChange={(e) => setStartTime(e.target.value)}
-                  style={{ colorScheme: "dark" }}
-                />
-                <p style={{ fontSize: "10px", color: "#a5a5a5" }}>
-                  Click on calendar icon to select the data
-                </p>
-              </div>
-              <br />
-              <div className="mb-5">
-                <label for="inputEndDate" className="form-label">
-                  ENDING DATE/TIME
-                </label>
-                <input
-                  type="datetime-local"
-                  className="form-control"
-                  id="inputEndDate"
-                  value={endtime}
-                  onChange={(e) => setEndTime(e.target.value)}
-                  style={{ colorScheme: "dark" }}
-                />
-                <p style={{ fontSize: "10px", color: "#a5a5a5" }}>
-                  Click on calendar icon to select the data
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="stepFour">
-              <div>
-                <Toaster />
-              </div>
-              <h5>Place a Bet on Your Preferred Outcome</h5>
-              <br />
-              <div className="container px-0 selectBet">
-                <p>PREFERRED OUTCOME</p>
-                <div id={`betA`}>
-                  <p className="fs-6 mb-2">{window.preferredoutcome}</p>
-                  <p>
-                    Participants: <span>0</span>
-                  </p>
-                  <p>
-                    Total amount betted: <span>${betamount}</span>
-                  </p>
-                  <GoPrimitiveDot
-                    style={{ position: "absolute", top: "15px", right: "15px" }}
+            ) : formsteps == 2 ? (
+              <div className="stepThree">
+                {/* <h5>Enter the starting and ending date for the event</h5> */}
+                <br />
+                <div className="my-3">
+                  <label for="inputStartDate" className="form-label">
+                    STARTING DATE/TIME
+                  </label>
+                  <input
+                    type="datetime-local"
+                    className="form-control"
+                    id="inputStartDate"
+                    aria-describedby="eventHelp"
+                    autoFocus
+                    value={starttime}
+                    onChange={(e) => setStartTime(e.target.value)}
+                    style={{ colorScheme: "dark" }}
                   />
+                  {/* <p style={{ fontSize: "10px", color: "#a5a5a5" }}>
+                  Click on calendar icon to select the data
+                </p> */}
+                </div>
+                <br />
+                <div className="mb-5">
+                  <label for="inputEndDate" className="form-label">
+                    ENDING DATE/TIME
+                  </label>
+                  <input
+                    type="datetime-local"
+                    className="form-control"
+                    id="inputEndDate"
+                    value={endtime}
+                    onChange={(e) => setEndTime(e.target.value)}
+                    style={{ colorScheme: "dark" }}
+                  />
+                  {/* <p style={{ fontSize: "10px", color: "#a5a5a5" }}>
+                  Click on calendar icon to select the data
+                </p> */}
                 </div>
               </div>
-              <br />
-              <div className="my-3">
-                <label for="inputBetAmount" className="form-label">
-                  ENTER AMOUNT TO BET
-                </label>
-                <input
-                  type="number"
-                  className="form-control mb-5"
-                  id="inputBetAmount"
-                  value={betamount}
-                  onChange={(e) => setBetAmount(e.target.value)}
-                />
-
-                <button
-                  className="btn my-3 px-3 py-3 fw-bold justify-content-between d-flex self-pause"
-                  style={{
-                    backgroundColor: "#fff",
-                    color: "#000",
-                    width: "100%",
-                    borderRadius: "10px",
-                  }}
-                  onClick={() => CreateEvent()}
+            ) : (
+              <div className="stepFour">
+                <div>
+                  <Toaster />
+                </div>
+                <h4 className="text-left" style={{ color: "#AAAAAA", fontSize:"16px" }}>
+                  PLACE A BET ON YOUR PREFERRED OUTCOME
+                </h4>
+                <h5
+                  className="text-left fw-bolder"
+                  style={{ fontFamily: "Montserrat" }}
                 >
-                  <span>CREATE EVENT</span>
-                  <MdOutlineArrowForwardIos className="mt-1" />
-                </button>
+                  TEAM A
+                </h5>
+                <br />
+                {/* <div className="container px-0 selectBet">
+                  <p>PREFERRED OUTCOME</p>
+                  <div id={`betA`}>
+                    <p className="fs-6 mb-2">{window.preferredoutcome}</p>
+                    <p>
+                      Participants: <span>0</span>
+                    </p>
+                    <p>
+                      Total amount betted: <span>${betamount}</span>
+                    </p>
+                    <GoPrimitiveDot
+                      style={{
+                        position: "absolute",
+                        top: "15px",
+                        right: "15px",
+                      }}
+                    />
+                  </div>
+                </div> */}
+                <br />
+                <div className="my-3">
+                  <label for="inputBetAmount" className="form-label">
+                    ENTER AMOUNT TO BET
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control mb-5"
+                    id="inputBetAmount"
+                    placeholder="USDC"
+                    value={betamount}
+                    onChange={(e) => setBetAmount(e.target.value)}
+                  />
+
+                  <button
+                    className="btn px-3 py-3 fw-bold justify-content-between d-flex self-pause"
+                    style={{
+                      backgroundColor: "#fff",
+                      color: "#000",
+                      width: "100%",
+                      marginTop: "100px",
+                      borderRadius: "10px",
+                    }}
+                    onClick={() => CreateEvent()}
+                  >
+                    <span>CREATE EVENT</span>
+                    <MdOutlineArrowForwardIos className="mt-1" />
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* FORM NAVIGATION */}
+            {/* FORM NAVIGATION */}
 
-          {formsteps >= 3 ? (
-            <button
-              className="btn my-3 px-3 py-3 fw-bold justify-content-between d-flex self-pause"
-              style={{
-                backgroundColor: "#fff",
-                color: "#000",
-                width: "100%",
-                borderRadius: "10px",
-              }}
-              onClick={() => setFormset(0)}
-            >
-              <MdArrowBackIos className="mt-1" />
-              <span>RECHECK</span>
-            </button>
-          ) : (
-            ""
-          )}
-          {formsteps < 3 ? (
-            <button
-              className="btn my-3 px-3 py-3 fw-bold justify-content-between d-flex self-pause"
-              style={{
-                backgroundColor: "#fff",
-                color: "#000",
-                width: "100%",
-                borderRadius: "10px",
-              }}
-              onClick={() => steps(1)}
-            >
-              <span>NEXT</span>
-              <MdOutlineArrowForwardIos className="mt-1" />
-            </button>
-          ) : (
-            ""
-          )}
-        </div>
-      ) : (
-        <div
-          className="container-fluid completed mt-5"
-          style={
-            historyVisibility === true
-              ? { display: "block" }
-              : { display: "none" }
-          }
-        >
-          <div className="col-md-3">
-            <select
-              className="form-select bg-dark border-0 text-light py-3"
-              id="specificSizeSelect"
-              onChange={(e) => setOption(e.target.value)}
-              style={{ borderRadius: "10px" }}
-            >
-              <option selected value={1}>
-                COMPLETED
-              </option>
-              <option value={2}>PENDING</option>
-            </select>
+            {formsteps >= 3 ? (
+              <button
+                className="btn my-3 px-3 py-3 fw-bold justify-content-between d-flex self-pause"
+                style={{
+                  backgroundColor: "#fff",
+                  color: "#000",
+                  width: "100%",
+                  borderRadius: "10px",
+                }}
+                onClick={() => setFormset(0)}
+              >
+                <MdArrowBackIos className="mt-1" />
+                <span>RECHECK</span>
+              </button>
+            ) : (
+              ""
+            )}
+            {formsteps < 3 ? (
+              <button
+                className="btn px-3 py-4 fw-bold justify-content-between d-flex self-pause"
+                style={{
+                  backgroundColor: "#fff",
+                  color: "#000",
+                  width: "100%",
+                  marginTop: "100px",
+                  borderRadius: "10px",
+                }}
+                onClick={() => steps(1)}
+              >
+                <span>NEXT</span>
+                <MdOutlineArrowForwardIos className="mt-1" />
+              </button>
+            ) : (
+              ""
+            )}
           </div>
-          {option == 1 ? (
-            <div className="container-fluid">
-              {completed.map((data) => renderCompleted(data))}
+        ) : (
+          <div
+            className="container-fluid completed mt-5"
+            style={
+              historyVisibility === true
+                ? { display: "block" }
+                : { display: "none" }
+            }
+          >
+            <div className="col-md-3">
+              <select
+                className="form-select bg-dark border-0 text-light py-3"
+                id="specificSizeSelect"
+                onChange={(e) => setOption(e.target.value)}
+                style={{ borderRadius: "10px" }}
+              >
+                <option selected value={1}>
+                  COMPLETED
+                </option>
+                <option value={2}>PENDING</option>
+              </select>
             </div>
-          ) : option == 2 ? (
-            <div className="container-fluid">
-              {completed.map((data) => renderNotCompleted(data))}
-            </div>
-          ) : (
-            ""
-          )}
-        </div>
-      )}
-    </div>
+            {option == 1 ? (
+              <div className="container-fluid">
+                {completed.map((data) => renderCompleted(data))}
+              </div>
+            ) : option == 2 ? (
+              <div className="container-fluid">
+                {completed.map((data) => renderNotCompleted(data))}
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
