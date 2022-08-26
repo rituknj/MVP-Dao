@@ -40,7 +40,7 @@ export const getSubCategory = async (id) => {
 
 export const createEvent = async (num,sub_category, description, url, name, time, endTime, event1, event2 ) => {
     const betMVPContract = await getContract(MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
-    console.log(num, sub_category, name, description, url, time, endTime, event1, event2)
+    console.log(num, sub_category, name, description, url, time, endTime, event1, event2);
     var getData = await betMVPContract.methods.createEvent(num, sub_category, name, description, url, time, endTime, event1, event2).send({
         from: await getAccount(),
     });

@@ -8,12 +8,12 @@ import {
   placeBet,
   UserEventHistory,
   addRefLink,
+  getEvent,
 } from "./../../../web3/betsMVPService";
 import { MdOutlineArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-import { GoPrimitiveDot } from "react-icons/go";
-import { FaQuestionCircle } from "react-icons/fa";
-import { updatingeventdata } from "../../../web3/Countallevents";
+import axios from "axios";
+import { CreateEventOnDataBase, UpdateEventOnDataBase } from "../../../web3/Countallevents";
 import toast, { Toaster } from "react-hot-toast";
 import { GetUserName } from "./../../../web3/ContextMethods";
 import Username from "./Username";
@@ -34,6 +34,7 @@ const tost = (msg) =>
   });
 
 const tostError = (error) => toast.error(error);
+const apiURL = 'http://localhost:8080/kws/v5/events'
 
 export default function CreateEvent() {
   const [historyVisibility, setHistoryVisibility] = useState(false);
@@ -44,7 +45,7 @@ export default function CreateEvent() {
   const [subCat, setSubCat] = useState();
   const [team1, setTeam1] = useState();
   const [team2, setTeam2] = useState();
-  const [describe, setDescribe] = useState();
+  const [describe, setDescribe] = useState('');
   const [url, setUrl] = useState();
   const [starttime, setStartTime] = useState();
   const [endtime, setEndTime] = useState();
@@ -53,6 +54,7 @@ export default function CreateEvent() {
   const [username, setUserName] = useState("");
   const [preferredoutcome, setPreferredoutcome] = useState();
   const [oppossingoutcome, setOppossingoutcome] = useState();
+  const [eventTital, setEventTital] = useState('')
   const [ref, setRef] = useState("");
 
   useLayoutEffect(() => {
@@ -94,6 +96,12 @@ export default function CreateEvent() {
   const steps = (tab) => {
     setFormset(formsteps + tab);
   };
+
+  const sendEvents = async(data)=>{
+   await axios.post(apiURL,{evnet:data}).then((res)=>{
+      console.log(res)
+    }).catch(console.error)
+  }
 
   const renderCompleted = (completedCards, index) => {
     return (
@@ -219,6 +227,7 @@ export default function CreateEvent() {
     console.log(e.target.value);
     setSubCat(e.target.value);
   };
+
   const validURL = (str) => {
     var pattern = new RegExp(
       "^(https?:\\/\\/)?" + // protocol
@@ -235,11 +244,8 @@ export default function CreateEvent() {
   const CreateEvent = async () => {
     const star = parseInt((new Date(starttime).getTime() / 1000).toFixed(0));
     const end = parseInt((new Date(endtime).getTime() / 1000).toFixed(0));
-
     if (!team1 || team1 == "") {
       tostError("Please Enter Valid Event Title");
-    } else if (!describe || describe == "") {
-      tostError("Please Fill Discription");
     } else if (!validURL(url)) {
       tostError("Please Enter Valid Url");
     } else if (star > end) {
@@ -247,28 +253,19 @@ export default function CreateEvent() {
     } else if (!betamount || betamount == 0) {
       tostError("Bet Amount should be greater than 0");
     } else {
-      const data = await createEvent(
-        window.maincategoriesnum,
-        subCat,
-        describe,
-        url,
-        team1 + " " + team2,
-        star,
-        end,
-        preferredoutcome,
-        oppossingoutcome
-      );
-
+      const data = await createEvent(window.maincategoriesnum,subCat,describe,url,eventTital, star,end,preferredoutcome,oppossingoutcome);
       if (data.status) {
         tost("Event Create Successfully");
         const id = await UserEventHistory();
+        // const userevent = await getEvent();
+        await CreateEventOnDataBase(id[id.length - 1]);
         const link = await addRefLink(
           id[id.length - 1],
           `${username}/${id[id.length - 1]}`
         );
         if (link.status) {
           const placebetdata = await placeBet(id[id.length - 1], 0, betamount);
-          await updatingeventdata(id[id.length - 1]);
+          await UpdateEventOnDataBase(id[id.length - 1]);
           if (placebetdata.status) {
             tost("Creator Bet Successfully");
           }
@@ -437,8 +434,8 @@ export default function CreateEvent() {
                       placeholder="eg:  UEFA 2022"
                       required
                       autoFocus
-                      value={team1}
-                      onChange={(e) => setTeam1(e.target.value)}
+                      value={eventTital}
+                      onChange={(e) => setEventTital(e.target.value)}
                     />
                     &nbsp;&nbsp;
                     {/* <span className="mt-2 text-danger">V/s</span>&nbsp;&nbsp;
@@ -454,7 +451,7 @@ export default function CreateEvent() {
                   /> */}
                   </div>
                 </div>
-                {/* <div className="mb-3">
+                <div className="mb-3">
                 <label for="inputSubCategory" className="form-label">
                   CATEGORY
                 </label>
@@ -469,7 +466,7 @@ export default function CreateEvent() {
                   <option value="E-SPORTS">E-SPORTS</option>
                   <option value="OTHERS">OTHERS</option>
                 </select>
-              </div> */}
+              </div>
                 <br />
                 <br />
                 <div className="mb-3">
@@ -493,7 +490,6 @@ export default function CreateEvent() {
                   </select>
                 </div>
                 <br />
-
                 <br />
                 <div className="my-3">
                   <label for="inputEventTitle" className="form-label">
@@ -515,8 +511,8 @@ export default function CreateEvent() {
                     id="inputEventTitle"
                     aria-describedby="eventHelp"
                     required
-                    value={describe}
-                    onChange={(e) => setDescribe(e.target.value)}
+                    value={team1}
+                    onChange={(e) => setTeam1(e.target.value)}
                   />
                 </div>
                 <br />
@@ -540,8 +536,8 @@ export default function CreateEvent() {
                     id="inputEventTitle"
                     aria-describedby="eventHelp"
                     required
-                    value={describe}
-                    onChange={(e) => setDescribe(e.target.value)}
+                    value={team2}
+                    onChange={(e) => setTeam2(e.target.value)}
                   />
                 </div>
               </div>
@@ -585,7 +581,7 @@ export default function CreateEvent() {
                       {/* <FaQuestionCircle /> */}
                     </span>
                   </label>
-                  <input
+                  {/* <input
                     type="text"
                     placeholder="eg:  Argentina"
                     className="form-control"
@@ -594,8 +590,8 @@ export default function CreateEvent() {
                     required
                     value={describe}
                     onChange={(e) => setDescribe(e.target.value)}
-                  />
-                  {/* <select
+                  /> */}
+                  <select
                   className="form-select bg-dark border-0 text-light "
                   id="specificSizeSelect"
                   onChange={(e) => setPreferredoutcome(e.target.value)}
@@ -603,7 +599,7 @@ export default function CreateEvent() {
                   <option selected>SELECT</option>
                   <option value={team1}>{team1}</option>
                   <option value={team2}>{team2}</option>
-                </select> */}
+                </select>
                 </div>
                 <br />
                 <div className="mb-3">
@@ -626,8 +622,8 @@ export default function CreateEvent() {
                     id="inputEventTitle"
                     aria-describedby="eventHelp"
                     required
-                    value={describe}
-                    onChange={(e) => setDescribe(e.target.value)}
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
                   />
                   {/* <select
                   className="form-select bg-dark border-0 text-light "
