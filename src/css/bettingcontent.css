@@ -709,7 +709,7 @@ span.copy-right {
   }
   button.enter-button {
     display: block;
-    margin:  20px auto !important;
+    margin: 20px auto !important;
   }
 }
 @media screen and (max-width: 540px) {

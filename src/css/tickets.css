@@ -69,4 +69,70 @@ span.ap {
   background-color: #ff9a02 !important;
   transition: width 0.6s ease;
 }
-
+.card.claim-reward {
+  background: #151515;
+  border-radius: 20px;
+}
+.statics-content {
+  margin-top: 70px;
+  margin-bottom: 20px;
+}
+h4.stats {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #fff;
+}
+.card.stats-bg {
+  background: #111111;
+  border-radius: 10px;
+}
+h6.card-title.total {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #bcbcbc;
+  margin-left: 10px;
+}
+.card-subtitle.stats-content {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  margin-left: 40px;
+  line-height: 20px;
+  color: #fff;
+}
+p.card-text.sc {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  margin-top: 30px;
+  line-height: 49px;
+  color: #fff;
+}
+/* .percents {
+  background: #111111;
+  border-radius: 0px 20px 20px 0px;
+  margin-top: -98px;
+  margin-right: -16px;
+  height: 164px;
+}
+span.pp {
+  color: #aaaaaa;
+  padding-top: 10px;
+  margin-left: 16px;
+}
+span.pp-team {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 900;
+  color: #aaaaaa;
+  padding: 20px;
+  padding: 20px;
+} */

@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../../images/bettingnewlogo.png";
+import BettingFooter from "./BettingFooter";
 import Tickets from "./Tickets";
 
 export default function NavTickets() {
@@ -47,6 +48,7 @@ export default function NavTickets() {
         </div>
       </nav>
       <Tickets />
+      <BettingFooter/>
     </div>
   );
 }
