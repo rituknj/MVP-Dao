@@ -9,7 +9,7 @@ import group2 from "../../../images/Group 290.png";
 import group3 from "../../../images/Group 291.png";
 import image2 from "../../../images/image 26.png";
 import "../../../css/tickets.css";
-
+import "../../../css/Betswamp.css"
 export default function Tickets() {
   return (
     <div>
@@ -32,6 +32,7 @@ export default function Tickets() {
                       style={{
                         backgroundColor: "#111111",
                         position: "relative",
+                        margin:"0px 0px"
                       }}
                     >
                       <div className="row">
@@ -458,16 +459,28 @@ export default function Tickets() {
                   </div>
                 </Tab>
                 <Tab eventKey="e-sports" title="HISTORY">
-                  <div className="card ative-cards">
+                <div
+                      className="first-card"
+                      style={{
+                        backgroundColor: "#111111",
+                        position: "relative",
+                        margin:"2rem"
+                      }}
+                    >
+                  <div className="row">
+                    <div className="col-lg-9 col-md-9 col-sm-9 col-12">
+                  <div className="card ative-cards" style={{padding:"2rem"}}>
                     <div className="ative-content">
+                      
                       <h6 className="title">TITLE</h6>
                       <div
                         className="ative-pool"
-                        style={{ marginLeft: "220px", marginTop: "10px" }}
+                        style={{ marginLeft: "25%", marginTop: "10px" }}
                       >
                         <span className="ap">POOL SIZE</span>
                         <span className="amount">$3,600</span>
                       </div>
+                      
                       <div className="ative-pool">
                         <span className="ap">BONUS</span>
                         <span className="amount" style={{ color: "#FF4874" }}>
@@ -487,6 +500,78 @@ export default function Tickets() {
                         </span>
                       </div>
                     </div>
+                    <div className="ative-content" style={{marginTop:"1rem"}}>
+                    <div
+                        className="ative-pool"
+                        style={{  marginTop: "10px" }}
+                      >
+                    <span className="ap">TEAM A</span><br></br>
+                    
+                        <span className="ap">TEAM B</span>
+                        </div>
+                      <div
+                        className="ative-pool"
+                        style={{ marginLeft: "60%", marginTop: "10px" }}
+                      >
+                        <span className="ap">WINNER</span>
+                        <span className="teamb" style={{color:"white"}}>DRAW</span>
+                      </div>
+                      
+                      <div className="ative-pool">
+                      <button
+                        type="button"
+                        class="btn buttonTeamb"
+                        style={{
+                          backgroundColor: "#48FF7B",
+                          color: "#0A0A0A",
+                          fontSize: "0.5rem",
+                          fontWeight:"bold"
+                        }}
+                      >
+                        CLAIM
+                      </button>
+                      
+                      </div>
+                      </div>
+                     
+                  </div>
+                  
+                  
+                  </div>
+                  <div className="col-lg-3 col-md-3 col-sm-3 col-12">
+                  <div
+                        className="percents"
+                        style={{
+                          // width:"16%",
+                          // position: " absolute",
+                          // right: "2rem",
+                          fontSize: "0.7rem",
+                          color: "#AAAAAA",
+                          padding: "1rem",
+                          fontWeight: "800",
+                          backgroundColor:"#111111",
+                          fontFamily: "Montserrat",
+                          lineHeight: "1rem",
+                          marginTop: "1rem",
+                        }}
+                      >
+                        <p>
+                          <span className="pp">30% </span>
+                          <span className="pp-team">TEAM A</span>
+                        </p>
+                        <br></br>
+                        <p>
+                          <span className="pp">65% </span>
+                          <span className="pp-team">DRAW</span>
+                        </p>
+                        <br></br>
+                        <p>
+                          <span className="pp">5% </span>
+                          <span className="pp-team">TEAM B</span>
+                        </p>
+                      </div>
+                  </div>
+                  </div>
                   </div>
                   {/* <div className="card ative-cards">
                     <div className="card-header">Featured</div>

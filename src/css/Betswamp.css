@@ -5,6 +5,17 @@
 body{
     font-size: 62.5%;
 }
+@media screen and (max-width:90rem) {
+    body{
+        font-size: 55%;
+    }
+}
+@media screen and (max-width:80rem) {
+    body{
+        font-size: 55%;
+    }
+}
+
 @media screen and (max-width:70rem) {
     body{
         font-size: 55%;
