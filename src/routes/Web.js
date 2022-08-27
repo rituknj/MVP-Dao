@@ -26,7 +26,7 @@ import Accumulate from "../jsx/pages/Categories/Accumulate";
 import Single from "../jsx/pages/Categories/Single";
 import NavTickets from "../jsx/pages/Categories/NavTickets";
 import CreateEvent from "../jsx/pages/Admin/CreateEvent";
-
+import Validate from "../jsx/pages/Categories/Validate";
 class Web extends Component {
   render() {
     return (
@@ -52,6 +52,7 @@ class Web extends Component {
               <Route exact path="/betting-app" component={MobileHeader} />
             )}
             <Route exact path ="/accumulate" component={Single}/>
+            <Route exact path="/Validate" component={Validate}/>
             {/* <Route exact path="/blogs" component={BLogs} />
             <Route exact path="/news" component={NEWPAGE} /> */}
             {/* <Route exact path="/soccer" component={Soccer} />

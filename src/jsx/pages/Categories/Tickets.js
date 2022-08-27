@@ -27,8 +27,139 @@ export default function Tickets() {
               >
                 <Tab eventKey="sports" title="ACTIVE BETS">
                   <div className="active-bets-area">
-                    <div className="card ative-cards">
-                      <div className="card-body cb">
+                    <div
+                      className="card ative-cards"
+                      style={{
+                        backgroundColor: "#111111",
+                        position: "relative",
+                      }}
+                    >
+                      <div className="row">
+                        <div className="col-md-9 col-sm-9 col-12">
+                          <div
+                            className="card-body cb"
+                            style={{
+                              // width: "78%",
+                              backgroundColor: "#0C0C0C",
+                              borderRadius: "2rem 0rem 0rem 2rem",
+                            }}
+                          >
+                            <div className="ative-content">
+                              <h6 className="title">TITLE</h6>
+                              <div className="ative-pool">
+                                <span className="ap">POOL SIZE</span>
+                                <span className="amount">$3,600</span>
+                              </div>
+                            </div>
+                            <div className="ative-teams">
+                              <div className="teams">
+                                <p className="team mt-5">TEAM A</p>
+                                <p className="team2 mt-4">TEAM B</p>
+                              </div>
+                              <div className="ative-contents">
+                                <div className="timings d-grid mx-2">
+                                  <span className="day">14:00</span>
+                                  <span className="day">SPET 31</span>
+                                </div>
+                                <img src={timer} alt="" className="mx-3" />
+                                <div className="ative-percent d-flex">
+                                  <div className="boost-progressbar">
+                                    <div className="progress">
+                                      <div
+                                        className="progress-bar"
+                                        role="progressbar"
+                                        aria-label="Example with label"
+                                        style={{ width: "25%" }}
+                                        aria-valuenow="25"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"
+                                      ></div>
+                                    </div>
+                                    <button className="boost-button">
+                                      BOOST
+                                    </button>
+                                  </div>
+                                  {/* <div
+                                className="percents"
+                                style={{
+                                  width: "7rem",
+                                  position: " absolute",
+                                  right: "2rem",
+                                  fontSize: "0.7rem",
+                                  color: "white",
+                                  padding: "1rem",
+                                }}
+                              >
+                                <p>
+                                  <span className="pp">30%</span>
+                                  <span className="pp-team">TEAM A</span>
+                                </p>
+                                <p>
+                                  <span className="pp">30%</span>
+                                  <span className="pp-team">TEAM A</span>
+                                </p>
+                                <p>
+                                  <span className="pp">30%</span>
+                                  <span className="pp-team">TEAM A</span>
+                                </p>
+                              </div> */}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-md-3 col-sm-3 col-12">
+                          <div
+                            className="percents"
+                            style={{
+                              // width:"16%",
+                              // position: " absolute",
+                              // right: "2rem",
+                              fontSize: "0.7rem",
+                              color: "#AAAAAA",
+                              padding: "1rem",
+                              fontWeight: "800",
+                              // backgroundColor:"#111111",
+                              fontFamily: "Montserrat",
+                              lineHeight: "1rem",
+                              marginTop: "1rem",
+                            }}
+                          >
+                            <p>
+                              <span className="pp">30% </span>
+                              <span className="pp-team">TEAM A</span>
+                            </p>
+                            <br></br>
+                            <p>
+                              <span className="pp">65% </span>
+                              <span className="pp-team">DRAW</span>
+                            </p>
+                            <br></br>
+                            <p>
+                              <span className="pp">5% </span>
+                              <span className="pp-team">TEAM B</span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="card ative-cards"
+                      style={{
+                        backgroundColor: "#111111",
+                        position: "relative",
+                      }}
+                    >
+                    <div className="row">
+                    <div className="col-md-9 col-sm-9 col-12">
+                      <div
+                        className="card-body cb"
+                        style={{
+                          // width: "78%",
+                          backgroundColor: "#0C0C0C",
+                          borderRadius: "2rem 0rem 0rem 2rem",
+                        }}
+                      >
                         <div className="ative-content">
                           <h6 className="title">TITLE</h6>
                           <div className="ative-pool">
@@ -80,9 +211,59 @@ export default function Tickets() {
                           </div>
                         </div>
                       </div>
+                      </div>
+                      <div className="col-md-3 col-sm-3 col-12">
+                      <div
+                        className="percents"
+                        style={{
+                          // width:"16%",
+                          // position: " absolute",
+                          // right: "2rem",
+                          fontSize: "0.7rem",
+                          color: "#AAAAAA",
+                          padding: "1rem",
+                          fontWeight: "800",
+                          // backgroundColor:"#111111",
+                          fontFamily: "Montserrat",
+                          lineHeight: "1rem",
+                          marginTop: "1rem",
+                        }}
+                      >
+                        <p>
+                          <span className="pp">30% </span>
+                          <span className="pp-team">TEAM A</span>
+                        </p>
+                        <br></br>
+                        <p>
+                          <span className="pp">65% </span>
+                          <span className="pp-team">DRAW</span>
+                        </p>
+                        <br></br>
+                        <p>
+                          <span className="pp">5% </span>
+                          <span className="pp-team">TEAM B</span>
+                        </p>
+                      </div>
+                      </div>
+                      </div>
                     </div>
-                    <div className="card ative-cards">
-                      <div className="card-body cb">
+                    <div
+                      className="card ative-cards"
+                      style={{
+                        backgroundColor: "#111111",
+                        position: "relative",
+                      }}
+                    >
+                    <div className="row">
+                    <div className="col-md-9 col-sm-9 col-12">
+                      <div
+                        className="card-body cb"
+                        style={{
+                          // width: "78%",
+                          backgroundColor: "#0C0C0C",
+                          borderRadius: "2rem 0rem 0rem 2rem",
+                        }}
+                      >
                         <div className="ative-content">
                           <h6 className="title">TITLE</h6>
                           <div className="ative-pool">
@@ -134,9 +315,59 @@ export default function Tickets() {
                           </div>
                         </div>
                       </div>
+                      </div>
+                      <div className="col-md-3 col-sm-3 col-12">
+                      <div
+                        className="percents"
+                        style={{
+                          // width:"16%",
+                          // position: " absolute",
+                          // right: "2rem",
+                          fontSize: "0.7rem",
+                          color: "#AAAAAA",
+                          padding: "1rem",
+                          fontWeight: "800",
+                          // backgroundColor:"#111111",
+                          fontFamily: "Montserrat",
+                          lineHeight: "1rem",
+                          marginTop: "1rem",
+                        }}
+                      >
+                        <p>
+                          <span className="pp">30% </span>
+                          <span className="pp-team">TEAM A</span>
+                        </p>
+                        <br></br>
+                        <p>
+                          <span className="pp">65% </span>
+                          <span className="pp-team">DRAW</span>
+                        </p>
+                        <br></br>
+                        <p>
+                          <span className="pp">5% </span>
+                          <span className="pp-team">TEAM B</span>
+                        </p>
+                      </div>
+                      </div>
+                      </div>
                     </div>
-                    <div className="card ative-cards">
-                      <div className="card-body cb">
+                    <div
+                      className="card ative-cards"
+                      style={{
+                        backgroundColor: "#111111",
+                        position: "relative",
+                      }}
+                    >
+                    <div className="row">
+                    <div className="col-md-9 col-sm-9 col-12">
+                      <div
+                        className="card-body cb"
+                        style={{
+                          // width: "78%",
+                          backgroundColor: "#0C0C0C",
+                          borderRadius: "2rem 0rem 0rem 2rem",
+                        }}
+                      >
                         <div className="ative-content">
                           <h6 className="title">TITLE</h6>
                           <div className="ative-pool">
@@ -188,59 +419,40 @@ export default function Tickets() {
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="card ative-cards">
-                      <div className="card-body cb">
-                        <div className="ative-content">
-                          <h6 className="title">TITLE</h6>
-                          <div className="ative-pool">
-                            <span className="ap">POOL SIZE</span>
-                            <span className="amount">$3,600</span>
-                          </div>
-                        </div>
-                        <div className="ative-teams">
-                          <div className="teams">
-                            <p className="team mt-5">TEAM A</p>
-                            <p className="team2 mt-4">TEAM B</p>
-                          </div>
-                          <div className="ative-contents">
-                            <div className="timings d-grid mx-2">
-                              <span className="day">14:00</span>
-                              <span className="day">SPET 31</span>
-                            </div>
-                            <img src={timer} alt="" className="mx-3" />
-                            <div className="ative-percent d-flex">
-                              <div className="boost-progressbar">
-                                <div className="progress">
-                                  <div
-                                    className="progress-bar"
-                                    role="progressbar"
-                                    aria-label="Example with label"
-                                    style={{ width: "25%" }}
-                                    aria-valuenow="25"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                                  ></div>
-                                </div>
-                                <button className="boost-button">BOOST</button>
-                              </div>
-                              {/* <div className="percents">
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                              </div> */}
-                            </div>
-                          </div>
-                        </div>
+                      </div>
+                      <div className="col-md-3 col-sm-3 col-12">
+                      <div
+                        className="percents"
+                        style={{
+                          // width:"16%",
+                          // position: " absolute",
+                          // right: "2rem",
+                          fontSize: "0.7rem",
+                          color: "#AAAAAA",
+                          padding: "1rem",
+                          fontWeight: "800",
+                          // backgroundColor:"#111111",
+                          fontFamily: "Montserrat",
+                          lineHeight: "1rem",
+                          marginTop: "1rem",
+                        }}
+                      >
+                        <p>
+                          <span className="pp">30% </span>
+                          <span className="pp-team">TEAM A</span>
+                        </p>
+                        <br></br>
+                        <p>
+                          <span className="pp">65% </span>
+                          <span className="pp-team">DRAW</span>
+                        </p>
+                        <br></br>
+                        <p>
+                          <span className="pp">5% </span>
+                          <span className="pp-team">TEAM B</span>
+                        </p>
+                      </div>
+                      </div>
                       </div>
                     </div>
                   </div>
@@ -316,7 +528,7 @@ export default function Tickets() {
                 <div className="instruction-area position-relative">
                   <div className="betting-instruction">
                     <h5 className="heading-instruction">
-                      HOW TO CLAIM REWARDS
+                      HOW TO CLAIM BET REWARDS
                     </h5>
                     <img src={image2} alt="" className="image-instruction" />
                   </div>
