@@ -603,15 +603,15 @@ export default function Tickets() {
                             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
                               <div className="ative-pool">
                                 <button
-                                  type="button"
-                                  class="btn buttonTeamb"
                                   style={{
+                                    width: "95%",
+                                    fontSize: "1rem",
                                     backgroundColor: "#48FF7B",
-                                    color: "#0A0A0A",
-                                    fontSize: "0.5rem",
-                                    fontWeight: "bold",
-                                    marginLeft: "1rem",
-                                    fontSize: "0.5rem",
+                                    borderRadius: "10px",
+                                    border: "none",
+                                    color: "black",
+                                    padding: "1rem 1rem",
+                                    fontWeight: "800",
                                   }}
                                 >
                                   CLAIM
@@ -795,15 +795,15 @@ export default function Tickets() {
                             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
                               <div className="ative-pool">
                                 <button
-                                  type="button"
-                                  class="btn buttonTeamb"
                                   style={{
+                                    width: "95%",
+                                    fontSize: "1rem",
                                     backgroundColor: "#48FF7B",
-                                    color: "#0A0A0A",
-                                    fontSize: "0.5rem",
-                                    fontWeight: "bold",
-                                    marginLeft: "1rem",
-                                    fontSize: "0.5rem",
+                                    borderRadius: "10px",
+                                    border: "none",
+                                    color: "black",
+                                    padding: "1rem 1rem",
+                                    fontWeight: "800",
                                   }}
                                 >
                                   CLAIM
@@ -987,7 +987,7 @@ export default function Tickets() {
 
                             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
                               <div className="ative-pool">
-                                <button
+                                {/* <button
                                   type="button"
                                   class="btn buttonTeamb"
                                   style={{
@@ -1000,7 +1000,7 @@ export default function Tickets() {
                                   }}
                                 >
                                   CLAIM
-                                </button>
+                                </button> */}
                               </div>
                             </div>
                           </div>
@@ -1180,7 +1180,7 @@ export default function Tickets() {
 
                             <div className="col-lg-3 col-md-3 col-sm-12 col-12">
                               <div className="ative-pool">
-                                <button
+                                {/* <button
                                   type="button"
                                   class="btn buttonTeamb"
                                   style={{
@@ -1193,7 +1193,7 @@ export default function Tickets() {
                                   }}
                                 >
                                   CLAIM
-                                </button>
+                                </button> */}
                               </div>
                             </div>
                           </div>
