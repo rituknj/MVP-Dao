@@ -10,6 +10,9 @@ import image2 from "../../../images/image 26.png";
 import group from "../../../images/Group 289.png";
 import group2 from "../../../images/Group 290.png";
 import group3 from "../../../images/Group 291.png";
+import Image300 from "../../../images/Vector-100.png";
+import Image301 from "../../../images/Vector-102.png";
+import { nodeName } from "rsuite/esm/DOMHelper";
 function Validate() {
   return (
     <div>
@@ -64,37 +67,88 @@ function Validate() {
                     <div>
                       <p>TEAM A VS TEABM B </p>
                       <br></br>
-                      <p style={{ fontWeight: "800" }}>LINK</p>
+                      <p style={{ fontWeight: "800" }}>
+                        <span>LINK</span>
+                        <span>
+                          <img
+                            src={Image300}
+                            alt=""
+                            style={{ width: "1rem", marginLeft: "1rem" }}
+                          />
+                        </span>
+                      </p>
                       <p style={{ color: "green" }}>
-                        HTTPS://VERIFICATIONDEMO.COM/EVENT
+                        <span>HTTPS://VERIFICATIONDEMO.COM/EVENT</span>
+                        <span>
+                          <img
+                            src={Image301}
+                            alt=""
+                            style={{ width: "1rem", marginLeft: "1rem" }}
+                          />
+                        </span>
                       </p>
                       <br></br>
                       <p style={{ fontWeight: "800" }}>FINAL OUTCOME</p>
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        style={{ fontSize: "0.7rem" }}
-                      >
-                        TEAM A
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        style={{ fontSize: "0.7rem" }}
-                      >
-                        DRAW
-                      </button>
-                      <button
-                        type="button"
-                        class="btn buttonTeamb"
-                        style={{
-                          backgroundColor: "#48FF7B",
-                          color: "#0A0A0A",
-                          fontSize: "0.7rem",
-                        }}
-                      >
-                        TEAM B
-                      </button>
+                      <div className="row">
+                        <div
+                          className="col-lg-4 col-md-4 col-sm-12 col-12"
+                          style={{
+                            marginTop: "1rem",
+                            textAlign: "center",
+                          }}
+                        >
+                          <button
+                            style={{
+                              width: "75%",
+                              fontSize: "0.7rem",
+                              backgroundColor: "#1C1C1C",
+                              borderRadius: "10px",
+                              border: "none",
+                              color: "#FFFFFF",
+                              padding: "1rem 2rem",
+                            }}
+                          >
+                            TEAM A
+                          </button>
+                        </div>
+                        <div
+                          className="col-lg-4 col-md-4 col-sm-12 col-12"
+                          style={{ marginTop: "1rem", textAlign: "center" }}
+                        >
+                          <button
+                            style={{
+                              width: "75%",
+                              fontSize: "0.7rem",
+                              backgroundColor: "#1C1C1C",
+                              borderRadius: "10px",
+                              border: "none",
+                              color: "#FFFFFF",
+                              padding: "1rem 2rem",
+                            }}
+                          >
+                            DRAW
+                          </button>
+                        </div>
+                        <div
+                          className="col-lg-4 col-md-4 col-sm-12 col-12"
+                          style={{ marginTop: "1rem", textAlign: "center" }}
+                        >
+                          <button
+                            style={{
+                              width: "75%",
+                              fontSize: "0.7rem",
+                              backgroundColor: "#48FF7B",
+                              borderRadius: "10px",
+                              border: "none",
+                              color: "#0A0A0A",
+                              padding: "1rem 2rem",
+                              fontWeight: "800",
+                            }}
+                          >
+                            TEAM B
+                          </button>
+                        </div>
+                      </div>
                       <p className="verify">
                         <input
                           class="form-check-input"
@@ -141,22 +195,22 @@ function Validate() {
               </div>
             </div>
             <div className="col-md-4 Section-B">
-            <div>
-              <div className="event-content">
-                <div className="instruction-area position-relative">
-                  <div className="betting-instruction">
-                    <h5 className="heading-instruction">
-                      HOW TO VALIDATE AN EVENT
-                    </h5>
-                    <img src={image2} alt="" className="image-instruction" />
+              <div>
+                <div className="event-content">
+                  <div className="instruction-area position-relative">
+                    <div className="betting-instruction">
+                      <h5 className="heading-instruction">
+                        HOW TO VALIDATE AN EVENT
+                      </h5>
+                      <img src={image2} alt="" className="image-instruction" />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="read-instruction">
-                <div className="read-area">
-                  <span className="read-btton">READ</span>
-                  <img src={arrow} alt="" className="read-arrow-img" />
-                </div>
+                <div className="read-instruction">
+                  <div className="read-area">
+                    <span className="read-btton">READ</span>
+                    <img src={arrow} alt="" className="read-arrow-img" />
+                  </div>
                 </div>
                 <div className="statics-content">
                   <h4 className="stats">STATISTICS</h4>
@@ -196,7 +250,7 @@ function Validate() {
                   </div>
                 </div>
               </div>
-            </div>  
+            </div>
           </div>
         </div>
       </div>
