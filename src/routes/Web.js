@@ -27,6 +27,7 @@ import Single from "../jsx/pages/Categories/Single";
 import NavTickets from "../jsx/pages/Categories/NavTickets";
 import CreateEvent from "../jsx/pages/Admin/CreateEvent";
 import Validate from "../jsx/pages/Categories/Validate";
+import Wallet from "../jsx/pages/Categories/Wallet";
 class Web extends Component {
   render() {
     return (
@@ -53,6 +54,8 @@ class Web extends Component {
             )}
             <Route exact path ="/accumulate" component={Single}/>
             <Route exact path="/Validate" component={Validate}/>
+            <Route exact path="/Wallet" component={Wallet}/>
+
             {/* <Route exact path="/blogs" component={BLogs} />
             <Route exact path="/news" component={NEWPAGE} /> */}
             {/* <Route exact path="/soccer" component={Soccer} />

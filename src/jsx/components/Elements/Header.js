@@ -95,6 +95,9 @@ const Header=()=> {
                                     <li className="nav-item px-2 px-md-4">
                                         <Link className="nav-link text-white mt-1" to="/Validate" target="_blank">Validate</Link>
                                     </li>
+                                    <li className="nav-item px-2 px-md-4">
+                                        <Link className="nav-link text-white mt-1" to="/Wallet" target="_blank">Wallet</Link>
+                                    </li>
                                     <li className="nav-item px-2 px-md-4 navWallet" style={{cursor: "pointer"}}>
                                         <span  className="nav-link text-white cursor-pointer" 
                                         onClick={()=>walletConnect()}

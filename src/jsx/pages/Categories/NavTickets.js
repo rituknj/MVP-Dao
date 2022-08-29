@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../../images/bettingnewlogo.png";
 import BettingFooter from "./BettingFooter";
 import Tickets from "./Tickets";
+import Wallet from "./Wallet";
 
 export default function NavTickets() {
   return (
@@ -49,6 +50,7 @@ export default function NavTickets() {
       </nav>
       <Tickets />
       <BettingFooter/>
+      
     </div>
   );
 }
