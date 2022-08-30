@@ -140,7 +140,7 @@ function Wallet() {
                             color: "#0A0A0A",
                             fontSize: "0.5rem",
                             fontWeight: "800",
-                            marginLeft: "1rem",
+                            margin: "1rem",
                             float: "right",
                           }}
                         >
@@ -180,20 +180,34 @@ function Wallet() {
                         <span>$2000</span>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-5 col-5">
-                        <button
-                          type="button"
-                          class="btn buttonTeamb"
-                          style={{
-                            backgroundColor: "#4FFFCA",
-                            color: "#0C0C0C",
-                            fontSize: "0.5rem",
-                            fontWeight: "800",
-                            marginLeft: "1rem",
-                            float: "right",
-                          }}
-                        >
-                          LOCK
-                        </button>
+                        <div className="row">
+                          <div className="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <input
+                              type="text"
+                              placeholder="ENTER AMOUNT"
+                              className="input-amount"
+                              style={{ margin: "1rem", float: "right" }}
+                            />
+                          </div>
+                          <div className="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <button
+                              style={{
+                                width: "75%",
+                                fontSize: "0.7rem",
+                                backgroundColor: "#4FFFCA",
+                                borderRadius: "10px",
+                                border: "none",
+                                color: "#0A0A0A",
+                                padding: "1rem 2rem",
+                                fontWeight: "800",
+                                float: "right",
+                                margin: "1rem",
+                              }}
+                            >
+                              LOCK
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
@@ -209,28 +223,42 @@ function Wallet() {
                       <div className="col-lg-1 col-md-1 col-sm-2 col-2">
                         <img src={Image100} alt="" />
                       </div>
-                      <div className="col-lg-8 col-md-8 col-sm-7 col-2">
+                      <div className="col-lg-5 col-md-5 col-sm-5 col-5">
                         <span>ANOTHER TOKEN</span>
                         <br></br>
                         <span>2000 ANT</span>
                         <br></br>
                         <span>$2000</span>
                       </div>
-                      <div className="col-lg-3 col-md-3 col-sm-3 col-8">
-                        <button
-                          type="button"
-                          class="btn buttonTeamb"
-                          style={{
-                            backgroundColor: "#4FFFCA",
-                            color: "#0C0C0C",
-                            fontSize: "0.5rem",
-                            fontWeight: "800",
-                            marginLeft: "1rem",
-                            float: "right",
-                          }}
-                        >
-                          LOCK
-                        </button>
+                      <div className="col-lg-6 col-md-6 col-sm-5 col-5">
+                        <div className="row">
+                          <div className="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <input
+                              type="text"
+                              placeholder="ENTER AMOUNT"
+                              className="input-amount"
+                              style={{ margin: "1rem", float: "right" }}
+                            />
+                          </div>
+                          <div className="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <button
+                              style={{
+                                width: "75%",
+                                fontSize: "0.7rem",
+                                backgroundColor: "#4FFFCA",
+                                borderRadius: "10px",
+                                border: "none",
+                                color: "#0A0A0A",
+                                padding: "1rem 2rem",
+                                fontWeight: "800",
+                                float: "right",
+                                margin: "1rem",
+                              }}
+                            >
+                              LOCK
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
