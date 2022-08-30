@@ -5,7 +5,7 @@ export default function BettingFooterItem() {
   return (
     <div>
       <div className="row my-5">
-        <div className="col-lg-2 col-md-3">
+        <div className="col-lg-2 col-md-3  col-6">
           <div className="footer-items">
             <h6 className="item">ABOUT</h6>
             <ul className="footer-list-items">
@@ -24,7 +24,7 @@ export default function BettingFooterItem() {
             </ul>
           </div>
         </div>
-        <div className="col-lg-2 col-md-3">
+        <div className="col-lg-2 col-md-3  col-6">
           <div className="footer-items">
             <h6 className="item">APPS</h6>
             <ul className="footer-list-items">
@@ -37,7 +37,7 @@ export default function BettingFooterItem() {
             </ul>
           </div>
         </div>
-        <div className="col-lg-2 col-md-3">
+        <div className="col-lg-2 col-md-3 col-6">
           <div className="footer-items">
             <h6 className="item">DAO</h6>
             <ul className="footer-list-items">
@@ -53,7 +53,7 @@ export default function BettingFooterItem() {
             </ul>
           </div>
         </div>
-        <div className="col-lg-2 col-md-3">
+        <div className="col-lg-2 col-md-3 col-6">
           <div className="footer-items">
             <h6 className="item">LEARN</h6>
             <ul className="footer-list-items">

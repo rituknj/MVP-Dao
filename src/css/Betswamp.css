@@ -109,3 +109,22 @@ line-height: 15px;
 color: #AAAAAA;
 margin-top: 3rem;
   }
+
+  
+  @media screen and (max-width:700px) {
+    .footer-desktop{
+        display: none;
+    }
+}
+
+
+  
+ 
+  @media screen and (min-width:701px) {
+ .footer-mobile{
+    display: none;
+ }
+  }
+.social-link-2{
+    float: right;
+}
