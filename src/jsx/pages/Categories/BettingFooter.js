@@ -68,7 +68,7 @@ export default function BettingFooter() {
         </div>
         <BettingFooterItem />
         <div className="row">
-          <div className="col-lg-12">
+          <div className="col-lg-12 col-md-6 col-sm-6">
             <div className="footer-social-link-items text-center">
               <div className="social mb-3">
                 <a href="/" target="_blank" className="mx-3">

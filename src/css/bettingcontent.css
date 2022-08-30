@@ -756,6 +756,9 @@ span.copy-right {
   a.mx-3 {
     margin-top: 20px;
   }
+  button#controlled-tab-example-tab-profile {
+    padding: 22px 20px;
+  }
 }
 
 @media screen and (max-width: 412px) {
@@ -771,5 +774,8 @@ span.copy-right {
     padding: 22px 10px;
     font-size: 14px;
     border-top-right-radius: 0.25rem;
+  }
+  button#controlled-tab-example-tab-profile {
+    padding: 22px 20px;
   }
 }
