@@ -5,12 +5,69 @@ import Image100 from "../../../images/usdc-coin-icon-1.png";
 import Image200 from "../../../images/IMAGE111.png";
 import Image101 from "../../../images/image-27.png";
 import arrow from "../../../images/extendicon.png";
+import logo from "../../../images/bettingnewlogo.png";
 import Image201 from "../../../images/image-28.png";
 import Image202 from "../../../images/USD-Coin-Logo-PNG-Images-1.png";
 import Image203 from "../../../images/Ellipse-24.png";
+import BettingFooter from "./BettingFooter";
 function Wallet() {
   return (
     <>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="/">
+            <img src={logo} alt="" />
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <a
+                  className="nav-link active navItem text-light mx-5"
+                  aria-current="page"
+                  href="/"
+                >
+                  DAO
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link active navItem text-light mx-5"
+                  aria-current="page"
+                  href="/create-event"
+                >
+                  Create Event
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link navItem text-light mx-5" href="/">
+                  DASHBOARD
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link navItem text-light mx-5" href="/">
+                  WALLET
+                </a>
+              </li>
+              {/* <li className="nav-item">
+                <a className="nav-link navItem text-light mx-5" href="/betting-app">
+                  Mobile
+                </a>
+              </li> */}
+            </ul>
+          </div>
+        </div>
+      </nav>
       <div
         className="container"
         style={{
@@ -289,6 +346,7 @@ function Wallet() {
             </div>
           </div>
         </div>
+        <BettingFooter />
       </div>
     </>
   );
