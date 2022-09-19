@@ -166,26 +166,38 @@ export default function EventsDetails() {
                           </div>
                         </div>
                       </div>
+                    </div>  
+                    <div className="row" style={{ margin: "3rem" }}>
+                      <div className="col-lg-3 col-md-3 col-sm-6 col-6">
+                        {" "}
+                        <span>
+                          <input
+                            type="text"
+                            placeholder="ENTER AMOUNT"
+                            className="input-amount"
+                            style={{}}
+                          />
+                        </span>{" "}
+                      </div>{" "}
+                      <div className="col-lg-9 col-md-9 col-sm-6 col-6">
+                        <span style={{ color: "#AAAAAA", fontSize: "1rem" }}>
+                          Potential WINNINGS
+                        </span>
+                        <br></br>
+                        <span style={{ color: "#AAAAAA", fontSize: "0.7rem" }}>
+                          $0.00
+                        </span>
+                      </div>
                     </div>
-                    <div className="row" style={{margin:"1rem"}}>
-                      <div className="col-lg-3 col-md-3 col-sm-3 col-3">
-                     
-                          {" "}
-                          <span>
-                            <input
-                              type="text"
-                              placeholder="ENTER AMOUNT"
-                              className="input-amount"
-                              style={{}}
-                            />
-                          
-                          </span> </div> <div className="col-lg-9 col-md-9 col-sm-9 col-9">
-                          <span style={{color:"#AAAAAA",fontSize:"1.4rem"}}>Potential WINNINGS</span><br></br>
-                          <span style={{color:"#AAAAAA",fontSize:"1.4rem"}}>$0.00</span></div>
-                        </div>
-                        
-                      
-               
+                    <div>
+                      {" "}
+                      <button
+                        className="bet-btton d-flex align-items-center justify-content-between my-3"
+                        style={{ width: "25rem", marginLeft: "3rem"}}
+                      >
+                        PLACE BET <img src={arrow2} alt="" className="pi" />
+                      </button>
+                    </div>
                   </div>
                 </Tab>
                 {/* <Tab eventKey="e-sports" title="E-SPORTS">
