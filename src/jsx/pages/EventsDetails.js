@@ -165,15 +165,27 @@ export default function EventsDetails() {
                             </div>
                           </div>
                         </div>
-                        <div className="view-more-area">
-                          <hr className="hr" />
-                          <div className="view-more">
-                            <p className="view-other-cards">VIEW MORE</p>
-                            <img src={arrow} alt="" className="arrow-img" />
-                          </div>
-                        </div>
                       </div>
                     </div>
+                    <div className="row" style={{margin:"1rem"}}>
+                      <div className="col-lg-3 col-md-3 col-sm-3 col-3">
+                     
+                          {" "}
+                          <span>
+                            <input
+                              type="text"
+                              placeholder="ENTER AMOUNT"
+                              className="input-amount"
+                              style={{}}
+                            />
+                          
+                          </span> </div> <div className="col-lg-9 col-md-9 col-sm-9 col-9">
+                          <span style={{color:"#AAAAAA",fontSize:"1.4rem"}}>Potential WINNINGS</span><br></br>
+                          <span style={{color:"#AAAAAA",fontSize:"1.4rem"}}>$0.00</span></div>
+                        </div>
+                        
+                      
+               
                   </div>
                 </Tab>
                 {/* <Tab eventKey="e-sports" title="E-SPORTS">
