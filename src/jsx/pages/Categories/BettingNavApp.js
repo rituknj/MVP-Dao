@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../../images/bettingnewlogo.png";
 import BettingAppContent from "./BettingAppContent";
 import BettingFooter from "./BettingFooter";
@@ -8,9 +9,9 @@ export default function BettingNavApp() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" href="/">
             <img src={logo} alt="" />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"

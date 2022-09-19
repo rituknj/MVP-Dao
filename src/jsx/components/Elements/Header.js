@@ -109,6 +109,11 @@ const Header = () => {
                     Wallet
                   </Link>
                 </li>
+                <li className="nav-item px-2 px-md-4">
+                  <Link className="nav-link text-white mt-1" to="/event-detail">
+                    Event Detail
+                  </Link>
+                </li>
                 <li
                   className="nav-item px-2 px-md-4 navWallet"
                   style={{ cursor: "pointer" }}

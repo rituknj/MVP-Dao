@@ -28,6 +28,7 @@ import NavTickets from "../jsx/pages/Categories/NavTickets";
 import CreateEvent from "../jsx/pages/Admin/CreateEvent";
 import Validate from "../jsx/pages/Categories/Validate";
 import Wallet from "../jsx/pages/Categories/Wallet";
+import EventsDetails from "../jsx/pages/EventsDetails";
 class Web extends Component {
   render() {
     return (
@@ -38,9 +39,9 @@ class Web extends Component {
             <Route exact path="/app" component={Cricket} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/about" component={About} />
-            <Route exact path="/create-event" component={CreateEvent}/>
+            <Route exact path="/create-event" component={CreateEvent} />
             <Route exact path="/comingsoon" component={Comingsoon} />
-            <Route exact path="/tickets" component={NavTickets}/>
+            <Route exact path="/tickets" component={NavTickets} />
             {!isMobile ? (
               <Route exact path="/betting-app" component={BettingNavApp} />
             ) : (
@@ -52,9 +53,10 @@ class Web extends Component {
             ) : (
               <Route exact path="/betting-app" component={MobileHeader} />
             )}
-            <Route exact path ="/accumulate" component={Single}/>
-            <Route exact path="/Validate" component={Validate}/>
-            <Route exact path="/Wallet" component={Wallet}/>
+            <Route exact path="/accumulate" component={Single} />
+            <Route exact path="/Validate" component={Validate} />
+            <Route exact path="/Wallet" component={Wallet} />
+            <Route exact path="/event-detail" component={EventsDetails} />
 
             {/* <Route exact path="/blogs" component={BLogs} />
             <Route exact path="/news" component={NEWPAGE} /> */}

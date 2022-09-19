@@ -19,41 +19,44 @@ import cross from "../../../images/cross.png";
 import "../../../css/headerslider.css";
 import { ImFire } from "react-icons/im";
 import { CreateEventOnDataBase } from "./../../../web3/Countallevents";
-import { placeBet, getEventOccurrenceBetAmount,totalEvents, getEvnetsfromDataBase} from "./../../../web3/betsMVPService";
+import {
+  placeBet,
+  getEventOccurrenceBetAmount,
+  totalEvents,
+  getEvnetsfromDataBase,
+} from "./../../../web3/betsMVPService";
 
 export default function BettingAppContent() {
   const [key, setKey] = useState("home");
   const [input, setInput] = useState(2);
   const [emptyimg, setEmptyImg] = useState(true);
-  const [events, setEvents] = useState()
+  const [events, setEvents] = useState();
 
-  useEffect(()=>{
-    const init =async()=>{
-     const data = await getEvnetsfromDataBase();
-     setEvents(data)
-     console.log(data)
-    }
+  useEffect(() => {
+    const init = async () => {
+      const data = await getEvnetsfromDataBase();
+      setEvents(data);
+      console.log(data);
+    };
     init();
-    setInterval(()=>{
+    setInterval(() => {
       init();
-    },4000)
-  },[])
-
+    }, 4000);
+  }, []);
 
   const ShowInput = () => {
     console.log("showing");
     setInput(input);
   };
 
-  const gettime =(time)=>{
-    const date = new Date(time*1000).toLocaleTimeString()
-    return date
-  }
-  const getData =(time)=>{
-    const data = new Date(time*1000).toLocaleDateString()
+  const gettime = (time) => {
+    const date = new Date(time * 1000).toLocaleTimeString();
+    return date;
+  };
+  const getData = (time) => {
+    const data = new Date(time * 1000).toLocaleDateString();
     return data;
-  }
-
+  };
 
   const Close = () => {
     document.getElementById("bettingcard").style.display = "none";
@@ -61,8 +64,6 @@ export default function BettingAppContent() {
   const displaycard = () => {
     document.getElementById("bettingcard").style.display = "block";
   };
-
-
 
   return (
     <div>
@@ -337,78 +338,112 @@ export default function BettingAppContent() {
                                   </p>
                                 </div>
 
-                               {events && events.map((res)=>{
-                                return  <div
-                                className="card background my-3"
-                                onClick={() => {
-                                  displaycard();
-                                  setEmptyImg(false);
-                                }}
-                              >
-                                <div className="card-header area">
-                                  <h6 className="title">{res.evnet.name}</h6>
-                                  <div className="pool-amount">
-                                    <h6 className="title2">MATCHED</h6>
-                                    <img
-                                      src={connection}
-                                      alt=""
-                                      className="mt-0 mx-2"
-                                    />
-                                    <div className="pa">
-                                      <p className="pool-size">POOL SIZE</p>
-                                      <span className="amount">${Number(res.evnet.poolsize/10**18).toFixed(2)}</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="card-body background">
-                                  <div className="row">
-                                    <div className="col-lg-3">
-                                      <div className="teams">
-                                        <p className="team">{res.evnet.teamone}</p>
-                                        <p className="team2">{res.evnet.teamtwo}</p>
-                                      </div>
-                                    </div>
-                                    <div className="col-lg-9">
-                                      <div className="remaing-section">
-                                        <div className="images-container">
-                                          <img src={Vector} alt="" />
-                                          <ImFire className="mx-3" size={27} fill={res.evnet.isboosted ? "#bfbf18" : "#b2b2b2"}/>
-                                          <div className="timings d-grid mx-2">
-                                            <span className="day">{gettime(res.evnet.starttime)}</span>
-                                            <span className="day">
-                                            {getData(res.evnet.starttime)}
-                                            </span>
-                                          </div>
-                                          <img src={timer} alt="" />
-                                        </div>
-                                        <div className="result-content">
-                                          <div className="matches text-center mx-1">
-                                            <h6 className="matches-name">
-                                            {res.evnet.teamone}
-                                            </h6>
-                                            <p className="percent">{res.evnet.zero}%</p>
-                                          </div>
-                                          <div className="matches text-center mx-1">
-                                            <h6 className="matches-name">
-                                              DRAW
-                                            </h6>
-                                            <p className="percent">{res.evnet.one}%</p>
-                                          </div>
-                                          <div className="matches text-center">
-                                            <h6 className="matches-name">
-                                            {res.evnet.teamtwo}
-                                            </h6>
-                                            <p className="percent">{res.evnet.two}%</p>
+                                {events &&
+                                  events.map((res) => {
+                                    return (
+                                      <div
+                                        className="card background my-3"
+                                        onClick={() => {
+                                          displaycard();
+                                          setEmptyImg(false);
+                                        }}
+                                      >
+                                        <div className="card-header area">
+                                          <h6 className="title">
+                                            {res.evnet.name}
+                                          </h6>
+                                          <div className="pool-amount">
+                                            <h6 className="title2">MATCHED</h6>
+                                            <img
+                                              src={connection}
+                                              alt=""
+                                              className="mt-0 mx-2"
+                                            />
+                                            <div className="pa">
+                                              <p className="pool-size">
+                                                POOL SIZE
+                                              </p>
+                                              <span className="amount">
+                                                $
+                                                {Number(
+                                                  res.evnet.poolsize / 10 ** 18
+                                                ).toFixed(2)}
+                                              </span>
+                                            </div>
                                           </div>
                                         </div>
+                                        <div className="card-body background">
+                                          <div className="row">
+                                            <div className="col-lg-3">
+                                              <div className="teams">
+                                                <p className="team">
+                                                  {res.evnet.teamone}
+                                                </p>
+                                                <p className="team2">
+                                                  {res.evnet.teamtwo}
+                                                </p>
+                                              </div>
+                                            </div>
+                                            <div className="col-lg-9">
+                                              <div className="remaing-section">
+                                                <div className="images-container">
+                                                  <img src={Vector} alt="" />
+                                                  <ImFire
+                                                    className="mx-3"
+                                                    size={27}
+                                                    fill={
+                                                      res.evnet.isboosted
+                                                        ? "#bfbf18"
+                                                        : "#b2b2b2"
+                                                    }
+                                                  />
+                                                  <div className="timings d-grid mx-2">
+                                                    <span className="day">
+                                                      {gettime(
+                                                        res.evnet.starttime
+                                                      )}
+                                                    </span>
+                                                    <span className="day">
+                                                      {getData(
+                                                        res.evnet.starttime
+                                                      )}
+                                                    </span>
+                                                  </div>
+                                                  <img src={timer} alt="" />
+                                                </div>
+                                                <div className="result-content">
+                                                  <div className="matches text-center mx-1">
+                                                    <h6 className="matches-name">
+                                                      {res.evnet.teamone}
+                                                    </h6>
+                                                    <p className="percent">
+                                                      {res.evnet.zero}%
+                                                    </p>
+                                                  </div>
+                                                  <div className="matches text-center mx-1">
+                                                    <h6 className="matches-name">
+                                                      DRAW
+                                                    </h6>
+                                                    <p className="percent">
+                                                      {res.evnet.one}%
+                                                    </p>
+                                                  </div>
+                                                  <div className="matches text-center">
+                                                    <h6 className="matches-name">
+                                                      {res.evnet.teamtwo}
+                                                    </h6>
+                                                    <p className="percent">
+                                                      {res.evnet.two}%
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
                                       </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                               })}
-
-
+                                    );
+                                  })}
 
                                 {/* <div className="card background">
                                   <div className="card-header area">
