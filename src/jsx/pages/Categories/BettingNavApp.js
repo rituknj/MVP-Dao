@@ -40,7 +40,7 @@ export default function BettingNavApp() {
                   aria-current="page"
                   href="/create-event"
                 >
-                  Create Event
+                  CREATE EVENTS
                 </a>
               </li>
               <li className="nav-item">

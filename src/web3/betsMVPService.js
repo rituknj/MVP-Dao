@@ -53,9 +53,9 @@ export const placeBet = async(event_id, occured, amount) => {
     let maxamount = await isapproved()
     const betMVPContract = await getContract( MVPBetsV2, envdev.REACT_APP_BET_BETSWAMP_V2);
     const a = await ToWei(amount)
-    console.log("maxapprove", maxamount,a,Number(a) < Number(maxamount))
+    console.log("maxapprove", maxamount,a,occured, event_id)
 
-    if(Number(a) < Number(maxamount)){
+    if(0 < Number(maxamount)){
         getData = await betMVPContract.methods.placeBet(event_id, a, occured).send({
             from: await getAccount(),
         });

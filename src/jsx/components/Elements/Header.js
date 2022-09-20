@@ -35,7 +35,7 @@ const Header = () => {
   const slicing = (address) => {
     const first = address.slice(0, 4);
     const second = address.slice(38);
-    return first + "..." + second;
+    return first.toUpperCase() + "..." + second.toUpperCase();
   };
 
   // setInterval(()=>{
@@ -91,27 +91,22 @@ const Header = () => {
                                     </li> */}
                 <li className="nav-item px-2 px-md-4">
                   <Link className="nav-link text-white mt-1" to="/tickets">
-                    Tickets
+                    TICKETS
                   </Link>
                 </li>
                 <li className="nav-item px-2 px-md-4">
                   <Link className="nav-link text-white mt-1" to="/betting-app">
-                    Betting App
+                    BETTING APP
                   </Link>
                 </li>
                 <li className="nav-item px-2 px-md-4">
                   <Link className="nav-link text-white mt-1" to="/Validate">
-                    Validate
+                    VALIDATE
                   </Link>
                 </li>
                 <li className="nav-item px-2 px-md-4">
                   <Link className="nav-link text-white mt-1" to="/Wallet">
-                    Wallet
-                  </Link>
-                </li>
-                <li className="nav-item px-2 px-md-4">
-                  <Link className="nav-link text-white mt-1" to="/event-detail">
-                    Event Detail
+                    WALLET
                   </Link>
                 </li>
                 <li

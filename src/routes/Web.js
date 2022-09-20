@@ -29,7 +29,15 @@ import CreateEvent from "../jsx/pages/Admin/CreateEvent";
 import Validate from "../jsx/pages/Categories/Validate";
 import Wallet from "../jsx/pages/Categories/Wallet";
 import EventsDetails from "../jsx/pages/EventsDetails";
+
+const url = "http://localhost:8080"
+
 class Web extends Component {
+  details =()=>{
+    return <div>
+      <EventsDetails url={url}/>
+    </div>
+  }
   render() {
     return (
       <>
@@ -56,7 +64,7 @@ class Web extends Component {
             <Route exact path="/accumulate" component={Single} />
             <Route exact path="/Validate" component={Validate} />
             <Route exact path="/Wallet" component={Wallet} />
-            <Route exact path="/event-detail" component={EventsDetails} />
+            <Route exact path="/event-detail/:_id" component={this.details} />
 
             {/* <Route exact path="/blogs" component={BLogs} />
             <Route exact path="/news" component={NEWPAGE} /> */}

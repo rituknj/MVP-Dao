@@ -18,7 +18,11 @@ import emptyImg from "../../../images/emptyimg.png";
 import cross from "../../../images/cross.png";
 import "../../../css/headerslider.css";
 import { ImFire } from "react-icons/im";
-import { CreateEventOnDataBase } from "./../../../web3/Countallevents";
+import {
+  CreateEventOnDataBase,
+  UpdateEventOnDataBase,
+} from "./../../../web3/Countallevents";
+import toast, { Toaster } from "react-hot-toast";
 import {
   placeBet,
   getEventOccurrenceBetAmount,
@@ -26,11 +30,23 @@ import {
   getEvnetsfromDataBase,
 } from "./../../../web3/betsMVPService";
 
+const notify = (msg) => toast.success(msg);
+
+const refurl = "http://localhost:3000";
+
 export default function BettingAppContent() {
   const [key, setKey] = useState("home");
   const [input, setInput] = useState(2);
   const [emptyimg, setEmptyImg] = useState(true);
-  const [events, setEvents] = useState();
+  const [events, setEvents] = useState([]);
+  const [teamone, setTeamone] = useState(0);
+  const [teamtwo, setTeamtwo] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [totalstake, setTotalstake] = useState(0);
+  const [id, setID] = useState();
+  const [occure, setOccure] = useState();
+  const [teamonestake, setTeamonestake] = useState();
+  const [teamtwostake, setTeamtwostake] = useState();
 
   useEffect(() => {
     const init = async () => {
@@ -64,9 +80,22 @@ export default function BettingAppContent() {
   const displaycard = () => {
     document.getElementById("bettingcard").style.display = "block";
   };
+  const copytext = (text) => {
+    navigator.clipboard.writeText(text);
+    notify("Copied");
+  };
+
+  const onBet = async () => {
+    const placebetdata = await placeBet(id, occure, amount);
+    if (placebetdata.status) {
+      await UpdateEventOnDataBase(id);
+      notify("Bet placed successfully");
+    }
+  };
 
   return (
     <div>
+      <Toaster />
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-3">
@@ -103,7 +132,7 @@ export default function BettingAppContent() {
                         <div className="close-card">
                           <h4 className="heading-bet">
                             {" "}
-                            TEAM A <span className="vs">VS </span> TEAM B
+                            {teamone} <span className="vs">VS </span> {teamtwo}
                           </h4>
                           <img
                             src={cross}
@@ -117,38 +146,62 @@ export default function BettingAppContent() {
                         </div>
                       </div>
                       <div className="card-body bet-body-background">
-                        <h5 className="card-title heading">DRAW</h5>
-                        <div className="close-card">
-                          <p className="card-text particpants">
-                            PARTICIPANTS :
-                          </p>
-                          <p className="number">5</p>
+                        <div
+                          className={`teambox ${
+                            occure == 0 ? "activeteam" : ""
+                          }`}
+                          onClick={() => {
+                            setOccure(0);
+                          }}
+                        >
+                          <h5 className="card-title heading">{teamone}</h5>
+                          <div className="close-card">
+                            <p className="card-text particpants">
+                              PARTICIPANTS :
+                            </p>
+                            <p className="number">{teamonestake}</p>
+                          </div>
                         </div>
+
+                        <div
+                          className={`teambox ${
+                            occure == 1 ? "activeteam" : ""
+                          }`}
+                          onClick={() => {
+                            setOccure(1);
+                          }}
+                        >
+                          <h5 className="card-title heading">{teamtwo}</h5>
+                          <div className="close-card">
+                            <p className="card-text particpants">
+                              PARTICIPANTS :
+                            </p>
+                            <p className="number">{teamtwostake}</p>
+                          </div>
+                        </div>
+
                         <div className="close-card">
                           <p className="card-text particpants">
                             TOTAL AMOUNT STAKED :
                           </p>
-                          <p className="number">$2000</p>
+                          <p className="number">${totalstake}</p>
                         </div>
                         <div className="amount-card">
                           <input
                             type="text"
                             placeholder="ENTER AMOUNT"
                             className="input-amount"
+                            onChange={(e) => setAmount(e.target.value)}
                           />
                           <div className="iaw">
                             <p className="winnigs">Potential WINNINGS</p>
                             <p className="wining-amount">$0.00</p>
                           </div>
                         </div>
+                        <button className="bet-btton d-flex align-items-center justify-content-between my-3" onClick={()=>onBet()}>
+                          PLACE BET <img src={arrow2} alt="" className="pi" />
+                        </button>
                       </div>
-                    </div>
-                  </div>
-                  <div className="placeBet">
-                    <div className="placebet">
-                      <button className="bet-btton d-flex align-items-center justify-content-between my-3">
-                        PLACE BET <img src={arrow2} alt="" className="pi" />
-                      </button>
                     </div>
                   </div>
                 </Tab>
@@ -346,6 +399,19 @@ export default function BettingAppContent() {
                                         onClick={() => {
                                           displaycard();
                                           setEmptyImg(false);
+                                          setTeamtwo(res.evnet.teamtwo);
+                                          setTeamone(res.evnet.teamone);
+                                          setTeamonestake(
+                                            res.evnet.teamOneParticipate
+                                          );
+                                          setTeamtwostake(
+                                            res.evnet.teamtwoParticipate
+                                          );
+                                          setTotalstake(
+                                            res.evnet.poolsize / 10 ** 18
+                                          );
+                                          setID(res.evnet.id)
+                                          setOccure();
                                         }}
                                       >
                                         <div className="card-header area">
@@ -387,7 +453,15 @@ export default function BettingAppContent() {
                                             <div className="col-lg-9">
                                               <div className="remaing-section">
                                                 <div className="images-container">
-                                                  <img src={Vector} alt="" />
+                                                  <img
+                                                    src={Vector}
+                                                    alt=""
+                                                    onClick={() =>
+                                                      copytext(
+                                                        `${refurl}/event-detail/${res._id}`
+                                                      )
+                                                    }
+                                                  />
                                                   <ImFire
                                                     className="mx-3"
                                                     size={27}
@@ -425,7 +499,7 @@ export default function BettingAppContent() {
                                                       DRAW
                                                     </h6>
                                                     <p className="percent">
-                                                      {res.evnet.one}%
+                                                      {res.evnet.two}%
                                                     </p>
                                                   </div>
                                                   <div className="matches text-center">
@@ -433,7 +507,7 @@ export default function BettingAppContent() {
                                                       {res.evnet.teamtwo}
                                                     </h6>
                                                     <p className="percent">
-                                                      {res.evnet.two}%
+                                                      {res.evnet.one}%
                                                     </p>
                                                   </div>
                                                 </div>
