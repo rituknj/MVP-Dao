@@ -9,7 +9,7 @@ import { strTimeToInt, fromWei } from './utils';
 import { Points } from "../Contract/Points";
 import { BUSD_Faucet, BETS_Faucet } from "../Contract/Faucet";
 import axios from "axios";
-const apiURL = 'http://localhost:8080/kws/v5/events'
+const apiURL = 'https://safu.in.ngrok.io/kws/v5/events'
 
 export const getBETMVPContract = async () => {
     const betMVPContract = getContract(

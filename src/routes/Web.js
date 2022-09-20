@@ -30,7 +30,7 @@ import Validate from "../jsx/pages/Categories/Validate";
 import Wallet from "../jsx/pages/Categories/Wallet";
 import EventsDetails from "../jsx/pages/EventsDetails";
 
-const url = "http://localhost:8080"
+const url = "https://safu.in.ngrok.io"
 
 class Web extends Component {
   details =()=>{

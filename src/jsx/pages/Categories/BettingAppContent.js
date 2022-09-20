@@ -32,7 +32,7 @@ import {
 
 const notify = (msg) => toast.success(msg);
 
-const refurl = "http://localhost:3000";
+const refurl = "https://safu-betting.netlify.app";
 
 export default function BettingAppContent() {
   const [key, setKey] = useState("home");
