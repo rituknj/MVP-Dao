@@ -555,6 +555,9 @@ progress {
   margin-bottom: 0.5rem;
   line-height: 1;
 }
+.row.fca {
+  margin-top: -4rem;
+}
 .figure-caption {
   font-size: 0.875em;
   color: #6c757d;

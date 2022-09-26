@@ -88,71 +88,73 @@ class Footer extends Component {
               </a>
             </div> */}
           </div>
-          <div className="row ">
-            <div className="col-lg-6 col-md-12">
-              <div className="footer-area">
-                <div className="footer-content">
-                  <div className="footer-social-link footer-desktop">
-                    {/* <a href="/" target="_blank" className="mx-2">
-                      {" "}
-                      <img src={cryptokid} alt="" className="social-link" />
-                    </a>
-                    <a href="/" target="_blank" className="mx-2">
-                      {" "}
-                      <img src={metfx} alt="" className="social-link" />
-                    </a> */}
-                    <a href="/" target="_blank" className="mx-2">
-                      {" "}
-                      <img src={bet} alt="" className="social-link" />
-                    </a>
-                    <a href="/" target="_blank" className="mx-2">
-                      {" "}
-                      <img src={eighteen} alt="" className="social-link" />
-                    </a>
-                  </div>
-                  <div className="footer-audit-link"></div>
+          <div className="fca">
+            <div className="row fca">
+              <div className="col-lg-6 col-md-12">
+                <div className="footer-area">
+                  <div className="footer-content">
+                    <div className="footer-social-link footer-desktop">
+                      <a href="/" target="_blank" className="mx-2">
+                        {" "}
+                        <img src={bet} alt="" className="social-link" />
+                      </a>
+                      <a href="/" target="_blank" className="mx-2">
+                        {" "}
+                        <img src={eighteen} alt="" className="social-link" />
+                      </a>
+                      <a href="/" target="_blank" className="mx-2">
+                        {" "}
+                        <img src={cryptokid} alt="" className="social-link" />
+                      </a>
+                      <a href="/" target="_blank" className="mx-2">
+                        {" "}
+                        <img src={metfx} alt="" className="social-link" />
+                      </a>
+                    </div>
+                    <div className="footer-audit-link"></div>
 
-                  {/* ............................................................................................................................................ */}
+                    {/* ............................................................................................................................................ */}
 
-                  <div className="footer-area  footer-mobile">
-                    <div className="footer-content">
-                      <div className="footer-social-link">
-                        <div className="row" style={{ marginBottom: "2rem" }}>
-                          <div className="col-lg-3 col-md-3 col-sm-6 col-6">
-                            <a href="/" target="_blank" className="mx-2">
-                              {" "}
-                              <img
-                                src={cryptokid}
-                                alt=""
-                                className="social-link"
-                              />
-                            </a>
-                          </div>
-                          <div className="col-lg-3 col-md-3 col-sm-6 col-6">
-                            <a href="/" target="_blank" className="mx-2">
-                              {" "}
-                              <img
-                                src={metfx}
-                                alt=""
-                                className="social-link social-link-2"
-                              />
-                            </a>
-                          </div>
-                          <div className="col-lg-3 col-md-3 col-sm-6 col-6">
-                            <a href="/" target="_blank" className="mx-2">
-                              {" "}
-                              <img src={bet} alt="" className="social-link" />
-                            </a>
-                          </div>
-                          <div className="col-lg-3 col-md-3 col-sm-6 col-6">
-                            <a href="/" target="_blank" className="mx-2">
-                              {" "}
-                              <img
-                                src={eighteen}
-                                alt=""
-                                className="social-link social-link-2"
-                              />
-                            </a>
+                    <div className="footer-area  footer-mobile">
+                      <div className="footer-content">
+                        <div className="footer-social-link">
+                          <div className="row" style={{ marginBottom: "2rem" }}>
+                            <div className="col-lg-3 col-md-3 col-sm-6 col-6">
+                              <a href="/" target="_blank" className="mx-2">
+                                {" "}
+                                <img
+                                  src={cryptokid}
+                                  alt=""
+                                  className="social-link"
+                                />
+                              </a>
+                            </div>
+                            <div className="col-lg-3 col-md-3 col-sm-6 col-6">
+                              <a href="/" target="_blank" className="mx-2">
+                                {" "}
+                                <img
+                                  src={metfx}
+                                  alt=""
+                                  className="social-link social-link-2"
+                                />
+                              </a>
+                            </div>
+                            <div className="col-lg-3 col-md-3 col-sm-6 col-6">
+                              <a href="/" target="_blank" className="mx-2">
+                                {" "}
+                                <img src={bet} alt="" className="social-link" />
+                              </a>
+                            </div>
+                            <div className="col-lg-3 col-md-3 col-sm-6 col-6">
+                              <a href="/" target="_blank" className="mx-2">
+                                {" "}
+                                <img
+                                  src={eighteen}
+                                  alt=""
+                                  className="social-link social-link-2"
+                                />
+                              </a>
+                            </div>
                           </div>
                         </div>
                       </div>
