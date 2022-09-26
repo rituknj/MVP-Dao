@@ -24,7 +24,9 @@ import insta from "../../../images/insta.png";
 import sl from "../../../images/sl.png";
 import footerbg from "../../../images/footerBg.png";
 import telegram from "../../../images/telegram.png";
-
+import kesavi from "../../../images/kasavi-solutions.png";
+import spy from "../../../images/spywolf.png";
+import coin from "../../../images/coinscope.png";
 class Footer extends Component {
   //   socialIcons = () => {
   //     return (
@@ -60,10 +62,12 @@ class Footer extends Component {
   render() {
     return (
       <Fragment>
-        <div className="container position-relative">
+        <div className="container-fluid position-relative">
           <img src={footerbg} alt="" className="img-footer" />
 
-          <div className="row">
+          {/* .......................................................................................... */}
+
+          {/*     <div className="row">
             <div className="col-lg-4 col-md-4 col-4">
               <div className="footer-area">
                 <div className="footer-content">
@@ -73,7 +77,7 @@ class Footer extends Component {
                 </div>
               </div>
             </div>
-            {/* <div className="col-4" style={{ marginTop: "3.5rem" }}>
+            <div className="col-4" style={{ marginTop: "3.5rem" }}>
               {" "}
               <a href="/" target="_blank" className="mx-2">
                 {" "}
@@ -86,9 +90,9 @@ class Footer extends Component {
                 <img src={image2} alt="" className="audit-link" />
                 <h4 className="audit-kyc">AUDIT AND KYC BY</h4>
               </a>
-            </div> */}
-          </div>
-          <div className="fca">
+            </div> 
+          </div> */}
+          {/*   <div className="fca">
             <div className="row fca">
               <div className="col-lg-6 col-md-12">
                 <div className="footer-area">
@@ -113,7 +117,7 @@ class Footer extends Component {
                     </div>
                     <div className="footer-audit-link"></div>
 
-                    {/* ............................................................................................................................................ */}
+                
 
                     <div className="footer-area  footer-mobile">
                       <div className="footer-content">
@@ -163,7 +167,118 @@ class Footer extends Component {
                 </div>
               </div>
             </div>
+          </div> */}
+          {/* ........................................................................................ */}
+
+          <div className="row">
+            <div className="col-lg-4 col-md-4 col-sm-4 col-12 footer12">
+              <span className="footer134">
+                <img src={footerLogo} alt="" />
+              </span>
+              <br />
+              <div className="row">
+                <div className="col-lg-5 col-md-5 col-sm-12 col-12">
+                  <span className="footer134">
+                    <img
+                      src={bet}
+                      alt=""
+                      style={{ display: "block", margin: "0.5rem auto" }}
+                    />
+                  </span>
+                </div>
+                <div className="col-lg-7 col-md-7 col-sm-12 col-12">
+                  <span className="footer134">
+                    <img
+                      src={eighteen}
+                      alt=""
+                      style={{ display: "block", margin: "0.5rem auto" }}
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-4 col-sm-4 col-12">
+              {" "}
+              <span className="footer134">
+                <span className="footer134" style={{ color: "white" , display: "block", margin: "0.5rem auto",textAlign:"center"}}>
+                  partners
+                </span>
+              </span>
+              <br />
+              <div className="row">
+                <div className="col-lg-2 col-md-2 col-sm-12 col-12">
+                  <span className="footer134" style={{}}>
+                    <img
+                      src={cryptokid}
+                      alt=""
+                      style={{ display: "block", margin: "0.5rem auto" }}
+                    />
+                  </span>
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+                  <span className="footer134" style={{ marginRight: "1rem" }}>
+                    <img
+                      src={metfx}
+                      alt=""
+                      style={{ display: "block", margin: "0.5rem auto" }}
+                    />
+                  </span>
+                </div>
+                <div className="col-lg-2 col-md-2 col-sm-12 col-12">
+                  <span className="footer134">
+                    <img
+                      src={kesavi}
+                      alt=""
+                      style={{
+                        display: "block",
+                        margin: "0.5rem auto",
+                        width: "5rem",
+                      }}
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-4 col-sm-4 col-12">
+              {" "}
+              <span>
+                <span
+                  className="footer134"
+                  style={{ color: "white", display: "block",
+                  margin: "0.5rem auto",
+                  width: "5rem", }}
+                >
+                  audit and kyc by
+                </span>
+              </span>
+              <br />
+              <div className="row">
+                <div className="col-lg-8 col-md-8 col-sm-12 col-12"></div>
+                <div className="col-lg-2 col-md-2 col-sm-12 col-12">
+                  <span>
+                    <img
+                      src={spy}
+                      alt=""
+                      className="footer134"
+                      style={{ display: "block", margin: "0.5rem auto" }}
+                    />
+                  </span>
+                </div>
+                <div className="col-lg-2 col-md-2 col-sm-12 col-12">
+                  <span>
+                    <img
+                      src={coin}
+                      alt=""
+                      className="footer134"
+                      style={{ display: "block", margin: "0.5rem auto" }}
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
+
+          {/* ................................................................................. */}
 
           <BettingFooterItem />
           <div className="row">
