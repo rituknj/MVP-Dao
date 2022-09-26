@@ -263,32 +263,32 @@ class Footer extends Component {
             <div className="col-lg-12 col-md-6 col-sm-6 ">
               <div className="footer-social-link-items text-center">
                 <div className="social mb-3">
-                  <div className="row">
-                    <div className="col-2">
-                      <a href="/" target="_blank" className="mx-1">
+                  <div className="  ">
+                    <span>
+                      <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
                         <img src={fb} alt="" />
                       </a>
-                    </div>
-                    <div className="col-2">
-                      <a href="/" target="_blank" className="mx-1">
+                    </span>
+                    <span>
+                      <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
                         <img src={tweet} alt="" />
                       </a>
-                    </div>
-                    <div className="col-2">
-                      <a href="/" target="_blank" className="mx-1">
+                    </span>
+                    <span>
+                      <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
                         <img src={insta} alt="" />
                       </a>
-                    </div>
-                    <div className="col-2">
-                      <a href="/" target="_blank" className="mx-1">
+                    </span>
+                    <span>
+                      <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
                         <img src={sl} alt="" />
                       </a>
-                    </div>
-                    <div className="col-2">
-                      <a href="/" target="_blank" className="mx-1">
+                    </span>
+                    <span>
+                      <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
                         <img src={telegram} alt="" />
                       </a>
-                    </div>
+                    </span>
                   </div>
                 </div>
                 <span className="copy-right">© 2021 Betswamp.com</span>
