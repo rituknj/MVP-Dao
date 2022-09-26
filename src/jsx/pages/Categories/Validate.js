@@ -7,15 +7,96 @@ import arrow2 from "../../../images/arrow2.png";
 import arrow3 from "../../../images/arrow.png";
 import arrow from "../../../images/extendicon.png";
 import image2 from "../../../images/image 26.png";
-import group from "../../../images/Group 289.png";
-import group2 from "../../../images/Group 290.png";
-import group3 from "../../../images/Group 291.png";
+import group from "../../../images/Ellipse 43 (1).png";
+import logo from "../../../images/bettingnewlogo.png";
+import group2 from "../../../images/Ellipse 43.png";
+import group3 from "../../../images/Ellipse 44.png";
 import Image300 from "../../../images/Vector-100.png";
 import Image301 from "../../../images/Vector-102.png";
 import { nodeName } from "rsuite/esm/DOMHelper";
+import { Link } from "react-router-dom";
+import Footer from "../../components/Elements/Footer";
 function Validate() {
   return (
     <div>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container-fluid">
+          <Link className="navbar-brand" href="/">
+            <img src={logo} alt="" />
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link
+                  className="nav-link active navItem text-light mx-3"
+                  aria-current="page"
+                  to="/"
+                >
+                  HOME
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active navItem text-light mx-3"
+                  aria-current="page"
+                  to="/"
+                >
+                  DOCS
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active navItem text-light mx-3"
+                  aria-current="page"
+                  to="/betting-app"
+                >
+                  BETS
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/create-event"
+                >
+                  CERATE
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/tickets"
+                >
+                  TICKET
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/Validate"
+                >
+                  VALIDATE
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link navItem text-light mx-3" to="/Wallet">
+                  WALLET
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
       <div className="container mb-3">
         <HeaderSlider />
       </div>
@@ -218,7 +299,7 @@ function Validate() {
                 <div className="card stats-bg">
                   <div className="card-body">
                     <div className="group d-flex align-items-center">
-                      <img src={group3} alt="" />{" "}
+                      <img src={group3} alt="" className="lights" />{" "}
                       <h6 className="card-title total">TOTAL</h6>
                     </div>
                     <h5 className="card-subtitle stats-content">BETS MADE</h5>
@@ -228,7 +309,7 @@ function Validate() {
                 <div className="card stats-bg my-4">
                   <div className="card-body">
                     <div className="group d-flex align-items-center">
-                      <img src={group2} alt="" />{" "}
+                      <img src={group2} alt="" className="lights2" />{" "}
                       <h6 className="card-title total">TOTAL</h6>
                     </div>
                     <h5 className="card-subtitle stats-content">
@@ -240,7 +321,7 @@ function Validate() {
                 <div className="card stats-bg">
                   <div className="card-body">
                     <div className="group d-flex align-items-center">
-                      <img src={group} alt="" />{" "}
+                      <img src={group} alt="" className="lights3" />{" "}
                       <h6 className="card-title total">TOTAL</h6>
                     </div>
                     <h5 className="card-subtitle stats-content">
@@ -254,6 +335,7 @@ function Validate() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

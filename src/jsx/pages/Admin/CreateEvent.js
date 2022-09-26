@@ -11,14 +11,18 @@ import {
   getEvent,
 } from "./../../../web3/betsMVPService";
 import { MdOutlineArrowForwardIos, MdArrowBackIos } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
-import { CreateEventOnDataBase, UpdateEventOnDataBase } from "../../../web3/Countallevents";
+import {
+  CreateEventOnDataBase,
+  UpdateEventOnDataBase,
+} from "../../../web3/Countallevents";
 import toast, { Toaster } from "react-hot-toast";
 import { GetUserName } from "./../../../web3/ContextMethods";
 import Username from "./Username";
 import BettingNavApp from "../Categories/BettingNavApp";
 import logo from "../../../images/bettingnewlogo.png";
+import Footer from "../../components/Elements/Footer";
 let FILL = false;
 window.cat = "SPORTS";
 const tost = (msg) =>
@@ -34,7 +38,7 @@ const tost = (msg) =>
   });
 
 const tostError = (error) => toast.error(error);
-const apiURL = 'http://localhost:8080/kws/v5/events'
+const apiURL = "http://localhost:8080/kws/v5/events";
 
 export default function CreateEvent() {
   const [historyVisibility, setHistoryVisibility] = useState(false);
@@ -45,7 +49,7 @@ export default function CreateEvent() {
   const [subCat, setSubCat] = useState();
   const [team1, setTeam1] = useState();
   const [team2, setTeam2] = useState();
-  const [describe, setDescribe] = useState('');
+  const [describe, setDescribe] = useState("");
   const [url, setUrl] = useState();
   const [starttime, setStartTime] = useState();
   const [endtime, setEndTime] = useState();
@@ -54,7 +58,7 @@ export default function CreateEvent() {
   const [username, setUserName] = useState("");
   const [preferredoutcome, setPreferredoutcome] = useState();
   const [oppossingoutcome, setOppossingoutcome] = useState();
-  const [eventTital, setEventTital] = useState('')
+  const [eventTital, setEventTital] = useState("");
   const [ref, setRef] = useState("");
 
   useLayoutEffect(() => {
@@ -97,11 +101,14 @@ export default function CreateEvent() {
     setFormset(formsteps + tab);
   };
 
-  const sendEvents = async(data)=>{
-   await axios.post(apiURL,{evnet:data}).then((res)=>{
-      console.log(res)
-    }).catch(console.error)
-  }
+  const sendEvents = async (data) => {
+    await axios
+      .post(apiURL, { evnet: data })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(console.error);
+  };
 
   const renderCompleted = (completedCards, index) => {
     return (
@@ -253,7 +260,17 @@ export default function CreateEvent() {
     } else if (!betamount || betamount == 0) {
       tostError("Bet Amount should be greater than 0");
     } else {
-      const data = await createEvent(window.maincategoriesnum,subCat,describe,url,eventTital, star,end,preferredoutcome,oppossingoutcome);
+      const data = await createEvent(
+        window.maincategoriesnum,
+        subCat,
+        describe,
+        url,
+        eventTital,
+        star,
+        end,
+        preferredoutcome,
+        oppossingoutcome
+      );
       if (data.status) {
         tost("Event Create Successfully");
         const id = await UserEventHistory();
@@ -278,9 +295,9 @@ export default function CreateEvent() {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" href="/">
             <img src={logo} alt="" />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -295,38 +312,61 @@ export default function CreateEvent() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a
-                  className="nav-link active navItem text-light mx-5"
+                <Link
+                  className="nav-link active navItem text-light mx-3"
                   aria-current="page"
-                  href="/"
+                  to="/"
                 >
-                  DAO
-                </a>
+                  HOME
+                </Link>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link active navItem text-light mx-5"
+                <Link
+                  className="nav-link active navItem text-light mx-3"
                   aria-current="page"
-                  href="/create-event"
+                  to="/"
                 >
-                  Create Event
-                </a>
+                  DOCS
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link navItem text-light mx-5" href="/">
-                  DASHBOARD
-                </a>
+                <Link
+                  className="nav-link active navItem text-light mx-3"
+                  aria-current="page"
+                  to="/betting-app"
+                >
+                  BETS
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link navItem text-light mx-5" href="/">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/create-event"
+                >
+                  CERATE
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/tickets"
+                >
+                  TICKET
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/Validate"
+                >
+                  VALIDATE
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link navItem text-light mx-3" to="/Wallet">
                   WALLET
-                </a>
+                </Link>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link navItem text-light mx-5" href="/betting-app">
-                  Mobile
-                </a>
-              </li> */}
             </ul>
           </div>
         </div>
@@ -452,21 +492,21 @@ export default function CreateEvent() {
                   </div>
                 </div>
                 <div className="mb-3">
-                <label for="inputSubCategory" className="form-label">
-                  CATEGORY
-                </label>
-                <select
-                  className="form-select bg-dark border-0"
-                  id="specificSizeSelect"
-                  value={window.cat}
-                  required
-                  onChange={(e) => fetchSubCatogories(e)}
-                >
-                  <option value="SPORTS">SPORTS</option>
-                  <option value="E-SPORTS">E-SPORTS</option>
-                  <option value="OTHERS">OTHERS</option>
-                </select>
-              </div>
+                  <label for="inputSubCategory" className="form-label">
+                    CATEGORY
+                  </label>
+                  <select
+                    className="form-select bg-dark border-0"
+                    id="specificSizeSelect"
+                    value={window.cat}
+                    required
+                    onChange={(e) => fetchSubCatogories(e)}
+                  >
+                    <option value="SPORTS">SPORTS</option>
+                    <option value="E-SPORTS">E-SPORTS</option>
+                    <option value="OTHERS">OTHERS</option>
+                  </select>
+                </div>
                 <br />
                 <br />
                 <div className="mb-3">
@@ -592,14 +632,14 @@ export default function CreateEvent() {
                     onChange={(e) => setDescribe(e.target.value)}
                   /> */}
                   <select
-                  className="form-select bg-dark border-0 text-light "
-                  id="specificSizeSelect"
-                  onChange={(e) => setPreferredoutcome(e.target.value)}
-                >
-                  <option selected>SELECT</option>
-                  <option value={team1}>{team1}</option>
-                  <option value={team2}>{team2}</option>
-                </select>
+                    className="form-select bg-dark border-0 text-light "
+                    id="specificSizeSelect"
+                    onChange={(e) => setPreferredoutcome(e.target.value)}
+                  >
+                    <option selected>SELECT</option>
+                    <option value={team1}>{team1}</option>
+                    <option value={team2}>{team2}</option>
+                  </select>
                 </div>
                 <br />
                 <div className="mb-3">
@@ -692,7 +732,10 @@ export default function CreateEvent() {
                 <div>
                   <Toaster />
                 </div>
-                <h4 className="text-left" style={{ color: "#AAAAAA", fontSize:"16px" }}>
+                <h4
+                  className="text-left"
+                  style={{ color: "#AAAAAA", fontSize: "16px" }}
+                >
                   PLACE A BET ON YOUR PREFERRED OUTCOME
                 </h4>
                 <h5
@@ -827,6 +870,7 @@ export default function CreateEvent() {
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 }

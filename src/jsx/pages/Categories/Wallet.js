@@ -10,14 +10,16 @@ import Image201 from "../../../images/image-28.png";
 import Image202 from "../../../images/USD-Coin-Logo-PNG-Images-1.png";
 import Image203 from "../../../images/Ellipse-24.png";
 import BettingFooter from "./BettingFooter";
+import { Link } from "react-router-dom";
+import Footer from "../../components/Elements/Footer";
 function Wallet() {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" href="/">
             <img src={logo} alt="" />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -32,38 +34,61 @@ function Wallet() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a
-                  className="nav-link active navItem text-light mx-5"
+                <Link
+                  className="nav-link active navItem text-light mx-3"
                   aria-current="page"
-                  href="/"
+                  to="/"
                 >
-                  DAO
-                </a>
+                  HOME
+                </Link>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link active navItem text-light mx-5"
+                <Link
+                  className="nav-link active navItem text-light mx-3"
                   aria-current="page"
-                  href="/create-event"
+                  to="/"
                 >
-                  Create Event
-                </a>
+                  DOCS
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link navItem text-light mx-5" href="/">
-                  DASHBOARD
-                </a>
+                <Link
+                  className="nav-link active navItem text-light mx-3"
+                  aria-current="page"
+                  to="/betting-app"
+                >
+                  BETS
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link navItem text-light mx-5" href="/">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/create-event"
+                >
+                  CERATE
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/tickets"
+                >
+                  TICKET
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/Validate"
+                >
+                  VALIDATE
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link navItem text-light mx-3" to="/Wallet">
                   WALLET
-                </a>
+                </Link>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link navItem text-light mx-5" href="/betting-app">
-                  Mobile
-                </a>
-              </li> */}
             </ul>
           </div>
         </div>
@@ -374,7 +399,7 @@ function Wallet() {
             </div>
           </div>
         </div>
-        <BettingFooter />
+        <Footer />
       </div>
     </>
   );

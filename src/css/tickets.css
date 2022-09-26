@@ -13,6 +13,21 @@
 .ative-percent.sportz {
   border-left: 1px solid red;
 }
+img.lights {
+  border: 1px solid #47ff7b;
+  border-radius: 50px;
+  padding: 5px;
+}
+img.lights2 {
+  border: 1px solid #3fc4ff;
+  border-radius: 50px;
+  padding: 5px;
+}
+img.lights3 {
+  border: 1px solid #ffc806;
+  border-radius: 50px;
+  padding: 5px;
+}
 
 .ative-content {
   display: flex;

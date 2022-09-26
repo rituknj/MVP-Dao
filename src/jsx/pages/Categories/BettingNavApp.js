@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../images/bettingnewlogo.png";
+import Footer from "../../components/Elements/Footer";
 import BettingAppContent from "./BettingAppContent";
 import BettingFooter from "./BettingFooter";
 
@@ -26,44 +27,67 @@ export default function BettingNavApp() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a
-                  className="nav-link active navItem text-light mx-5"
+                <Link
+                  className="nav-link active navItem text-light mx-3"
                   aria-current="page"
-                  href="/"
+                  to="/"
                 >
-                  DAO
-                </a>
+                  HOME
+                </Link>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link active navItem text-light mx-5"
+                <Link
+                  className="nav-link active navItem text-light mx-3"
                   aria-current="page"
-                  href="/create-event"
+                  to="/"
                 >
-                  CREATE EVENTS
-                </a>
+                  DOCS
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link navItem text-light mx-5" href="/">
-                  DASHBOARD
-                </a>
+                <Link
+                  className="nav-link active navItem text-light mx-3"
+                  aria-current="page"
+                  to="/betting-app"
+                >
+                  BETS
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link navItem text-light mx-5" href="/">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/create-event"
+                >
+                  CERATE
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/tickets"
+                >
+                  TICKET
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/Validate"
+                >
+                  VALIDATE
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link navItem text-light mx-3" to="/Wallet">
                   WALLET
-                </a>
+                </Link>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link navItem text-light mx-5" href="/betting-app">
-                  Mobile
-                </a>
-              </li> */}
             </ul>
           </div>
         </div>
       </nav>
       <BettingAppContent />
-      <BettingFooter />
+      <Footer />
     </div>
   );
 }

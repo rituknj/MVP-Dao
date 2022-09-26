@@ -4,9 +4,9 @@ import timer from "../../../images/carbon_timer.png";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import arrow from "../../../images/extendicon.png";
-import group from "../../../images/Group 289.png";
-import group2 from "../../../images/Group 290.png";
-import group3 from "../../../images/Group 291.png";
+import group from "../../../images/Ellipse 43 (1).png";
+import group2 from "../../../images/Ellipse 43.png";
+import group3 from "../../../images/Ellipse 44.png";
 import image2 from "../../../images/image 26.png";
 import "../../../css/tickets.css";
 import "../../../css/Betswamp.css";
@@ -1291,39 +1291,39 @@ export default function Tickets() {
                 <h4 className="stats">STATISTICS</h4>
               </div>
               <div className="card stats-bg">
-                <div className="card-body">
-                  <div className="group d-flex align-items-center">
-                    <img src={group3} alt="" />{" "}
-                    <h6 className="card-title total">TOTAL</h6>
+                  <div className="card-body">
+                    <div className="group d-flex align-items-center">
+                      <img src={group3} alt="" className="lights" />{" "}
+                      <h6 className="card-title total">TOTAL</h6>
+                    </div>
+                    <h5 className="card-subtitle stats-content">BETS MADE</h5>
+                    <p className="card-text sc">500</p>
                   </div>
-                  <h5 className="card-subtitle stats-content">BETS MADE</h5>
-                  <p className="card-text sc">500</p>
                 </div>
-              </div>
-              <div className="card stats-bg my-4">
-                <div className="card-body">
-                  <div className="group d-flex align-items-center">
-                    <img src={group2} alt="" />{" "}
-                    <h6 className="card-title total">TOTAL</h6>
+                <div className="card stats-bg my-4">
+                  <div className="card-body">
+                    <div className="group d-flex align-items-center">
+                      <img src={group2} alt="" className="lights2" />{" "}
+                      <h6 className="card-title total">TOTAL</h6>
+                    </div>
+                    <h5 className="card-subtitle stats-content">
+                      EVENTS CREATED
+                    </h5>
+                    <p className="card-text sc">500</p>
                   </div>
-                  <h5 className="card-subtitle stats-content">
-                    EVENTS CREATED
-                  </h5>
-                  <p className="card-text sc">500</p>
                 </div>
-              </div>
-              <div className="card stats-bg">
-                <div className="card-body">
-                  <div className="group d-flex align-items-center">
-                    <img src={group} alt="" />{" "}
-                    <h6 className="card-title total">TOTAL</h6>
+                <div className="card stats-bg">
+                  <div className="card-body">
+                    <div className="group d-flex align-items-center">
+                      <img src={group} alt="" className="lights3" />{" "}
+                      <h6 className="card-title total">TOTAL</h6>
+                    </div>
+                    <h5 className="card-subtitle stats-content">
+                      AMOUNT WAGERED
+                    </h5>
+                    <p className="card-text sc">500</p>
                   </div>
-                  <h5 className="card-subtitle stats-content">
-                    AMOUNT WAGERED
-                  </h5>
-                  <p className="card-text sc">500</p>
                 </div>
-              </div>
             </div>
           </div>
         </div>
