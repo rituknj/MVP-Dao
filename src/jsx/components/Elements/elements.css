@@ -48,3 +48,11 @@
     display: block;
   }
   
+  @media screen and (max-width:700px) {
+    .footer2134{
+      display: block !important;
+      margin:1rem auto !important;
+      text-align: center;
+    }
+
+  }

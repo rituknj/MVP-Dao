@@ -27,6 +27,7 @@ import telegram from "../../../images/telegram.png";
 import kesavi from "../../../images/kasavi-solutions.png";
 import spy from "../../../images/spywolf.png";
 import coin from "../../../images/coinscope.png";
+import "./elements.css";
 class Footer extends Component {
   //   socialIcons = () => {
   //     return (
@@ -172,8 +173,8 @@ class Footer extends Component {
 
           <div className="row">
             <div className="col-lg-4 col-md-4 col-sm-4 col-12 footer12">
-              <span className="footer134">
-                <img src={footerLogo} alt="" />
+              <span className="footer2134">
+                <img src={footerLogo} alt=""  className="footer2134" />
               </span>
               <br />
               <div className="row">
@@ -182,7 +183,7 @@ class Footer extends Component {
                     <img
                       src={bet}
                       alt=""
-                      style={{ display: "block", margin: "0.5rem auto" }}
+                      className="footer2134"
                     />
                   </span>
                 </div>
@@ -191,7 +192,7 @@ class Footer extends Component {
                     <img
                       src={eighteen}
                       alt=""
-                      style={{ display: "block", margin: "0.5rem auto" }}
+                      className="footer2134"
                     />
                   </span>
                 </div>
@@ -200,10 +201,12 @@ class Footer extends Component {
             <div className="col-lg-4 col-md-4 col-sm-4 col-12">
               {" "}
               <span className="footer134">
-                <span className="footer134" style={{ color: "white" , display: "block", margin: "0.5rem auto",textAlign:"center"}}>
+                <span className="footer2134" style={{ color: "white", margin: "0.5rem auto"}}>
                   partners
                 </span>
+                
               </span>
+              <br/>
               <br />
               <div className="row">
                 <div className="col-lg-2 col-md-2 col-sm-12 col-12">
@@ -211,7 +214,7 @@ class Footer extends Component {
                     <img
                       src={cryptokid}
                       alt=""
-                      style={{ display: "block", margin: "0.5rem auto" }}
+                      className="footer2134"
                     />
                   </span>
                 </div>
@@ -220,7 +223,7 @@ class Footer extends Component {
                     <img
                       src={metfx}
                       alt=""
-                      style={{ display: "block", margin: "0.5rem auto" }}
+                      className="footer2134"
                     />
                   </span>
                 </div>
@@ -229,10 +232,11 @@ class Footer extends Component {
                     <img
                       src={kesavi}
                       alt=""
+                      className="footer2134"
                       style={{
-                        display: "block",
-                        margin: "0.5rem auto",
-                        width: "5rem",
+                       
+                        
+                        width: "9rem",
                       }}
                     />
                   </span>
@@ -240,17 +244,21 @@ class Footer extends Component {
               </div>
             </div>
             <div className="col-lg-4 col-md-4 col-sm-4 col-12">
-              {" "}
+              {" "}<div className="row">
+                <div className="col-lg-8 col-md-8 col-sm-12 col-12"></div>
+                <div className="col-lg-4 col-md-4 col-sm-12 col-12">
               <span>
                 <span
-                  className="footer134"
-                  style={{ color: "white", display: "block",
-                  margin: "0.5rem auto",
-                  width: "5rem", }}
+                  className="footer2134"
+                  style={{ color: "white",
+                 
+               }}
                 >
                   audit and kyc by
                 </span>
               </span>
+              </div>
+              </div>
               <br />
               <div className="row">
                 <div className="col-lg-8 col-md-8 col-sm-12 col-12"></div>
@@ -259,8 +267,8 @@ class Footer extends Component {
                     <img
                       src={spy}
                       alt=""
-                      className="footer134"
-                      style={{ display: "block", margin: "0.5rem auto" }}
+                      className="footer2134"
+                      
                     />
                   </span>
                 </div>
@@ -269,8 +277,8 @@ class Footer extends Component {
                     <img
                       src={coin}
                       alt=""
-                      className="footer134"
-                      style={{ display: "block", margin: "0.5rem auto" }}
+                      className="footer2134"
+                      
                     />
                   </span>
                 </div>
