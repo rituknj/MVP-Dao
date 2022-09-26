@@ -1,5 +1,5 @@
 import React, { useEffect, useStatem, Fragment, useState } from "react";
-import logo from "../../../images/logo.png";
+import logo from "../../../images/bettingnewlogo.png";
 import { Link, NavLink } from "react-router-dom";
 import { initInstance, getAccount, loginProcess } from "./../../../web3/web3";
 
@@ -44,7 +44,85 @@ const Header = () => {
   // },2000)
   return (
     <Fragment>
-      <nav
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container-fluid">
+          <Link className="navbar-brand" href="/">
+            <img src={logo} alt="" />
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link
+                  className="nav-link active navItem text-light mx-3"
+                  aria-current="page"
+                  to="/"
+                >
+                  HOME
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active navItem text-light mx-3"
+                  aria-current="page"
+                  to="/"
+                >
+                  DOCS
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active navItem text-light mx-3"
+                  aria-current="page"
+                  to="/betting-app"
+                >
+                  BETS
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/create-event"
+                >
+                  CERATE
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/tickets"
+                >
+                  TICKET
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link navItem text-light mx-3"
+                  to="/Validate"
+                >
+                  VALIDATE
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link navItem text-light mx-3" to="/Wallet">
+                  WALLET
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      {/* <nav
         className="navbar navbar-expand-lg navbar-dark bg-dark bg-transparent"
         aria-label="Fifth navbar example"
       >
@@ -67,15 +145,15 @@ const Header = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
             <form>
               <ul className="navbar-nav">
-                {/* <li className="nav-item px-2 px-md-4">
+                <li className="nav-item px-2 px-md-4">
                                         <a className="nav-link text-white mt-1" href="https://dao.betswamp.com" target='_blank'> TEST DAO</a>
-                                    </li> */}
-                {/* {allevents > 0 && allevents == downloaded ? <li className="nav-item px-2 px-md-4">
+                                    </li>
+                {allevents > 0 && allevents == downloaded ? <li className="nav-item px-2 px-md-4">
                                         <NavLink className="nav-link text-white mt-1" to="/app">MARKET</NavLink>
                                     </li>:
                                     <li className="nav-item px-2 px-md-4">
                                         <div className="nav-link text-white mt-1" to="/app"><Watch width='30' height='30' color='red'/></div>
-                                    </li>} */}
+                                    </li>}
                 <li className="nav-item px-2 px-md-4">
                   <a
                     className="nav-link text-white mt-1"
@@ -86,9 +164,9 @@ const Header = () => {
                     DOCS
                   </a>
                 </li>
-                {/* <li className="nav-item px-2 px-md-4">
+                <li className="nav-item px-2 px-md-4">
                                         <Link className="nav-link text-white mt-1" to="/betting-app" target="_blank">Betting App</Link>
-                                    </li> */}
+                                    </li>
                 <li className="nav-item px-2 px-md-4">
                   <Link className="nav-link text-white mt-1" to="/tickets">
                     TICKETS
@@ -124,7 +202,7 @@ const Header = () => {
             </form>
           </div>
         </div>
-      </nav>
+      </nav> */}
     </Fragment>
   );
 };

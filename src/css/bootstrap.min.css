@@ -1871,7 +1871,7 @@ progress {
   overflow: hidden;
 }
 label.form-label {
-  color: #AAAAAA;
+  color: #aaaaaa;
 }
 .form-control[type="file"]:not(:disabled):not([readonly]) {
   cursor: pointer;
@@ -2408,7 +2408,7 @@ textarea.form-control-lg {
   z-index: 3;
 }
 select#specificSizeSelect {
-    color: #5E5E5E;
+  color: #5e5e5e;
 }
 .input-group-text {
   display: flex;
@@ -4263,7 +4263,8 @@ fieldset:disabled .btn {
 }
 .navbar-dark .navbar-nav .nav-link:focus,
 .navbar-dark .navbar-nav .nav-link:hover {
-  color: rgba(255, 255, 255, 0.75);
+  transition-duration: 0.6s !important;
+  color: rgb(71, 255, 123) !important;
 }
 .navbar-dark .navbar-nav .nav-link.disabled {
   color: rgba(255, 255, 255, 0.25);
