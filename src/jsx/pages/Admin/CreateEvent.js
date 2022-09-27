@@ -343,7 +343,7 @@ export default function CreateEvent() {
                   className="nav-link navItem text-light mx-3"
                   to="/create-event"
                 >
-                  CERATE
+                  CREATE
                 </Link>
               </li>
               <li className="nav-item">

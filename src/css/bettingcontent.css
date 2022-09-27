@@ -401,6 +401,7 @@ button#controlled-tab-example-tab-profile.active {
   background: #111111 !important;
   border-radius: 25px !important;
   border-bottom: none !important;
+  padding: 1.5rem;
 }
 .card-body.bet-body-background {
   background: #0c0c0c;
@@ -781,4 +782,9 @@ span.copy-right {
   button#controlled-tab-example-tab-profile {
     padding: 22px 20px;
   }
+}
+#chat-text{
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+  padding-left: 2rem !important;
 }

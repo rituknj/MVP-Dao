@@ -206,7 +206,7 @@ export default function BettingAppContent() {
                   </div>
                 </Tab>
                 {/* ACCUMULATE */}
-                <Tab eventKey="profile" title="ACCUMULATE">
+                <Tab eventKey="profile" title="ACCUMULATE" style={{padding:'0.5rem '}}>
                   <div className="empty-image">
                     <img src={emptyImg} alt="" className="empty-img" />
                     <div className="emptyimg-text">

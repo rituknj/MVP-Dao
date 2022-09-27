@@ -178,12 +178,12 @@ class Footer extends Component {
               </span>
               <br />
               <div className="row">
-                <div className="col-lg-5 col-md-5 col-sm-12 col-12">
+                <div className="col-lg-5 col-md-8 col-sm-12 col-12">
                   <span className="footer134">
                     <img src={bet} alt="" className="footer2134" />
                   </span>
                 </div>
-                <div className="col-lg-7 col-md-7 col-sm-12 col-12">
+                <div className="col-lg-7 col-md-4 col-sm-12 col-12">
                   <span className="footer134">
                     <img src={eighteen} alt="" className="footer2134" />
                   </span>
@@ -203,17 +203,17 @@ class Footer extends Component {
               <br />
               <br />
               <div className="row">
-                <div className="col-lg-2 col-md-2 col-sm-12 col-12">
+                <div className="col-lg-2 col-md-6 col-sm-12 col-12">
                   <span className="footer134" style={{}}>
                     <img src={cryptokid} alt="" className="footer2134" />
                   </span>
                 </div>
-                <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+                <div className="col-lg-5 col-md-6 col-sm-12 col-12">
                   <span className="footer134" style={{ marginRight: "1rem" }}>
                     <img src={metfx} alt="" className="footer2134" />
                   </span>
                 </div>
-                <div className="col-lg-2 col-md-2 col-sm-12 col-12">
+                <div className="col-lg-5 col-md-6 col-sm-12 col-12">
                   <span className="footer134">
                     <img
                       src={kesavi}
@@ -230,8 +230,8 @@ class Footer extends Component {
             <div className="col-lg-4 col-md-4 col-sm-4 col-12">
               {" "}
               <div className="row">
-                <div className="col-lg-8 col-md-8 col-sm-12 col-12"></div>
-                <div className="col-lg-4 col-md-4 col-sm-12 col-12">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12"></div>
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                   <span>
                     <span className="footer2134" style={{ color: "white" }}>
                       audit and kyc by
@@ -241,13 +241,13 @@ class Footer extends Component {
               </div>
               <br />
               <div className="row">
-                <div className="col-lg-8 col-md-8 col-sm-12 col-12"></div>
-                <div className="col-lg-2 col-md-2 col-sm-12 col-12">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-12"></div>
+                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
                   <span>
                     <img src={spy} alt="" className="footer2134" />
                   </span>
                 </div>
-                <div className="col-lg-2 col-md-2 col-sm-12 col-12">
+                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
                   <span>
                     <img src={coin} alt="" className="footer2134" />
                   </span>
@@ -266,27 +266,27 @@ class Footer extends Component {
                   <div className="  ">
                     <span>
                       <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
-                        <img src={fb} alt="" />
+                        <img src={fb} alt="" className="img23" />
                       </a>
                     </span>
                     <span>
                       <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
-                        <img src={tweet} alt="" />
+                        <img src={tweet} alt="" className="img23" />
                       </a>
                     </span>
                     <span>
                       <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
-                        <img src={insta} alt="" />
+                        <img src={insta} alt="" className="img23" />
                       </a>
                     </span>
                     <span>
                       <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
-                        <img src={sl} alt="" />
+                        <img src={sl} alt="" className="img23" />
                       </a>
                     </span>
                     <span>
                       <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
-                        <img src={telegram} alt="" />
+                        <img src={telegram} alt="" className="img23" />
                       </a>
                     </span>
                   </div>

@@ -69,7 +69,7 @@ function Validate() {
                   className="nav-link navItem text-light mx-3"
                   to="/create-event"
                 >
-                  CERATE
+                  CREATE
                 </Link>
               </li>
               <li className="nav-item">
@@ -146,7 +146,7 @@ function Validate() {
                       <h6 className="title">EVENT</h6>
                     </div>
                     <div>
-                      <p>TEAM A VS TEABM B </p>
+                      <p>TEAM A VS TEAM B </p>
                       <br></br>
                       <p style={{ fontWeight: "800" }}>
                         <span>LINK</span>
@@ -236,11 +236,11 @@ function Validate() {
                           type="checkbox"
                           id="gridCheck"
                           style={{
-                            backgroundColor: "#232323",
+                            backgroundColor: "rgb(159 159 159)",
                             boxShadow: "inset 0px 4px 4px #000000",
                           }}
                         />
-                        i verify my selection on this event is accurate and in
+                        I verify my selection on this event is accurate and in
                         line with the actual outcome of the event
                       </p>
                       <span
