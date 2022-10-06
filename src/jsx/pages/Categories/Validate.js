@@ -16,28 +16,43 @@ import Image301 from "../../../images/Vector-102.png";
 import { nodeName } from "rsuite/esm/DOMHelper";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Elements/Footer";
-import { gettotaluserwageramount, userBethistory, UserEventHistory, notvalidatedevents } from "../../../web3/betsMVPService";
+import toast, { Toaster } from "react-hot-toast";
+import { gettotaluserwageramount, userBethistory, UserEventHistory, notvalidatedevents, validatedevents, validateEvent } from "../../../web3/betsMVPService";
+import { UpdateEventOnDataBase } from "../../../web3/Countallevents";
+
+const tost = () =>
+  toast.success("Success.", {
+    style: {
+      padding: "16px",
+      color: "#000",
+    },
+    iconTheme: {
+      primary: "#0b0b0b",
+      secondary: "#ffffff",
+    },
+  });
 
 function Validate() {
   const [totalamount, setTotalamount] = useState(0)
   const [totalEvnetUserHistory, setTotalUserEvent] = useState(0)
   const [totaluserBetHistory, setTotalUserBetHistory] = useState(0)
-  const [nonvalidate, setNonvalidate] = useState([]);
+  const [nonvalidate, setNonvalidate] = useState();
   const [link, setLink] = useState('')
   const [endtime, setEndtime] = useState(0)
   const [teamone, setTeamone] = useState('')
-  const [teamtwo, setTeamtwo] = useState('')
+  const [checked, setChecked] = useState(true)
   const [eventid, setEventID] = useState(0);
   const [i, setI] = useState(0)
+  const [occur, setoccur] = useState(0);
+  const [validated, setValidated] = useState([])
 
   useEffect(()=>{
     const init = async()=>{
       const non = await notvalidatedevents();
+      const valid = await validatedevents()
+      setValidated(valid)
+      console.log("Events", non)
       setNonvalidate(non)
-      setLink(non[0].link)
-      setEndtime(non[0].endtime)
-      setTeamone(non[0].teamone)
-      setTeamtwo(non[0].teamtwo)
       setEventID(non[0].ID)
       const stake = await gettotaluserwageramount()
       setTotalamount(stake/10**18)
@@ -49,17 +64,53 @@ function Validate() {
     init();
   },[])
 
-const skipevent =async()=>{
-  
-  setLink(nonvalidate[i].link)
-  setEndtime(nonvalidate[i].endtime)
-  setTeamone(nonvalidate[i].teamone)
-  setTeamtwo(nonvalidate[i].teamtwo)
-  setEventID(nonvalidate[i].ID)
+  useEffect(()=>{
+    const init = async()=>{
+      const non = await notvalidatedevents();
+      setEventID(non[i].ID)
+    }
+    init();
+  },[i])
+
+
+
+const skipevent =()=>{
+  if(i == nonvalidate.length-1){
+    setI(0)
+  }
+  else{
+    setI(i + 1)
+  }
 }
+
+const validateEvenets = async (id) => {
+  const data = await validateEvent(id, occur);
+  if (data.status) {
+    await UpdateEventOnDataBase(id);
+    tost();
+  }
+};
+
+
+const countdown = (tab) => {
+  var now = new Date().getTime();
+  const time = tab * 1000;
+  var distance = time - now;
+
+  if(distance < 0){
+    return "0D 0H 0M 0S"
+  }
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  return days + "D " + hours + "H " + minutes + "M ";
+};
  
 
-
+console.log()
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -154,13 +205,13 @@ const skipevent =async()=>{
                       <h6 className="title">TIMER</h6>
                       <div className="ative-pool">
                         <span className="ap">EVENTS VALIDATED</span>
-                        <span className="amount">10</span>
+                        <span className="amount">{validated.length}</span>
                       </div>
                     </div>
                     <div className="ative-teams">
                       <div className="teams">
                         <img src={timer} alt="" className="mx-3" />
-                        <span className="team mt-5"> 2 MINS</span>
+                        <span className="team mt-5">{nonvalidate && countdown(nonvalidate[i].endtime)}</span>
                       </div>
                     </div>
                     <div className="bar">
@@ -189,7 +240,7 @@ const skipevent =async()=>{
                       <h6 className="title">EVENT</h6>
                     </div>
                     <div>
-                      <p>{teamone} VS {teamtwo} </p>
+                      <p>{nonvalidate && nonvalidate[i].teamone} VS { nonvalidate && nonvalidate[i].teamtwo} </p>
                       <br></br>
                       <p style={{ fontWeight: "800" }}>
                         <span>LINK</span>
@@ -202,7 +253,7 @@ const skipevent =async()=>{
                         </span>
                       </p>
                       <p style={{ color: "green" }}>
-                        <span>{link}</span>
+                        <span>{nonvalidate && nonvalidate[i].link}</span>
                         <span>
                           <img
                             src={Image301}
@@ -225,14 +276,15 @@ const skipevent =async()=>{
                             style={{
                               width: "75%",
                               fontSize: "0.7rem",
-                              backgroundColor: "#1C1C1C",
+                              backgroundColor: `${occur == 0 ? "#48FF7B": "#1C1C1C"}`,
                               borderRadius: "10px",
                               border: "none",
-                              color: "#FFFFFF",
+                              color: `${occur == 0 ? "#0A0A0A": "#fff"}`,
                               padding: "1rem 2rem",
                             }}
+                            onClick={()=>setoccur(0)}
                           >
-                            TEAM A
+                            {nonvalidate && nonvalidate[i].teamone}
                           </button>
                         </div>
                         <div
@@ -243,14 +295,15 @@ const skipevent =async()=>{
                             style={{
                               width: "75%",
                               fontSize: "0.7rem",
-                              backgroundColor: "#1C1C1C",
+                              backgroundColor: `${occur == 1 ? "#48FF7B": "#1C1C1C"}`,
                               borderRadius: "10px",
                               border: "none",
-                              color: "#FFFFFF",
+                              color: `${occur == 1 ? "#0A0A0A": "#fff"}`,
                               padding: "1rem 2rem",
                             }}
+                            onClick={()=>setoccur(1)}
                           >
-                            DRAW
+                            {nonvalidate && nonvalidate[i].teamtwo}
                           </button>
                         </div>
                         <div
@@ -261,15 +314,16 @@ const skipevent =async()=>{
                             style={{
                               width: "75%",
                               fontSize: "0.7rem",
-                              backgroundColor: "#48FF7B",
+                              backgroundColor: `${occur == 2 ? "#48FF7B": "#1C1C1C"}`,
                               borderRadius: "10px",
                               border: "none",
-                              color: "#0A0A0A",
+                              color: `${occur == 2 ? "#0A0A0A": "#fff"}`,
                               padding: "1rem 2rem",
                               fontWeight: "800",
                             }}
+                            onClick={()=>setoccur(2)}
                           >
-                            TEAM B
+                            DRAW
                           </button>
                         </div>
                       </div>
@@ -278,6 +332,7 @@ const skipevent =async()=>{
                           class="form-check-input"
                           type="checkbox"
                           id="gridCheck"
+                          onClick={()=>setChecked(!checked)}
                           style={{
                             backgroundColor: "rgb(159 159 159)",
                             boxShadow: "inset 0px 4px 4px #000000",
@@ -293,8 +348,12 @@ const skipevent =async()=>{
                         <button
                           className="bet-btton d-flex align-items-center justify-content-between my-3"
                           style={{ width: "25rem", marginRight: "3rem" }}
+                          onClick={()=>validateEvenets()}
+                          disabled={checked}
+                         
                         >
                           VALIDATE <img src={arrow2} alt="" className="pi" />
+                        
                         </button>
                         <button
                           className="bet-btton d-flex align-items-center justify-content-between my-3"
@@ -303,7 +362,7 @@ const skipevent =async()=>{
                             backgroundColor: "#2B2A2A",
                             color: "#FFFFFF",
                           }}
-                          onClick={()=>skipevent(0)}
+                          onClick={()=>{skipevent() }}
                         >
                           SKIP{" "}
                           <img
@@ -380,6 +439,7 @@ const skipevent =async()=>{
         </div>
       </div>
       <Footer />
+      <Toaster/>
     </div>
   );
 }

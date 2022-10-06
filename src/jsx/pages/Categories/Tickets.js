@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeaderSlider from "./HeaderSlider";
 import timer from "../../../images/carbon_timer.png";
 import Tab from "react-bootstrap/Tab";
@@ -10,7 +10,81 @@ import group3 from "../../../images/Ellipse 44.png";
 import image2 from "../../../images/image 26.png";
 import "../../../css/tickets.css";
 import "../../../css/Betswamp.css";
+import toast, { Toaster } from "react-hot-toast";
+import { getEvnetsfromDataBase, BoostEvent, userBethistory, gettotaluserwageramount, CreatorReward } from "../../../web3/betsMVPService";
+import { UpdateEventOnDataBase } from "../../../web3/Countallevents";
+
+const tost = () =>
+  toast.success("Success.", {
+    style: {
+      padding: "16px",
+      color: "#000",
+    },
+    iconTheme: {
+      primary: "#0b0b0b",
+      secondary: "#ffffff",
+    },
+  });
+
 export default function Tickets() {
+
+  const [events, setEvents] = useState([]);
+  const [totaluserBetHistory, setTotalUserBetHistory] = useState(0)
+  const [totalamount, setTotalamount] = useState(0)
+
+  useEffect(() => {
+    const init = async () => {
+      // const data = await getEvnetsfromDataBase();
+      // setEvents(data);
+   
+      const userbethty = await userBethistory()
+      setTotalUserBetHistory(userbethty.length)
+      const stake = await gettotaluserwageramount()
+      setTotalamount(stake/10**18)
+      
+    };
+    init();
+    setInterval(() => {
+      init();
+    }, 4000);
+  }, []);
+
+  useEffect(()=>{
+   const init =async()=>{
+    const data = await getEvnetsfromDataBase();
+    const events = []
+    for(let i = 0; i < data.length; i++){
+      const event = data[i] 
+      // const reward = await CreatorReward(data[i].ID)
+      // event.rewardofcreator = reward
+      // console.log(reward)
+      events.push(event)
+      // console.log(event)
+    }
+    setEvents(events);
+   }
+   init();
+  },[])
+
+  const gettime = (time) => {
+    const date = new Date(time * 1000).toLocaleTimeString();
+    return date;
+  };
+  const getData = (time) => {
+    const data = new Date(time * 1000).toLocaleDateString();
+    return data;
+  };
+
+ 
+  const eventBoosting = async(id)=>{
+    const data = await BoostEvent(id);
+    if(data.status){
+      toast()
+      await UpdateEventOnDataBase(id)
+    }
+  }
+
+  // console.log(events)
   return (
     <div>
       <div className="container mb-3">
@@ -25,9 +99,11 @@ export default function Tickets() {
                 id="uncontrolled-tab-example"
                 className="mb-3"
               >
-                <Tab eventKey="sports" title="ACTIVE BETS">
-                  <div className="active-bets-area">
-                    <div
+              <Tab eventKey="sports" title="ACTIVE BETS">
+              <div className="active-bets-area">
+                {events && events.map((res)=>{
+                  return  <>
+                 {res.endtime > (new Date().getTime()/1000) ? <div
                       className="card ative-cards"
                       style={{
                         backgroundColor: "#111111",
@@ -46,21 +122,21 @@ export default function Tickets() {
                             }}
                           >
                             <div className="ative-content">
-                              <h6 className="title">TITLE</h6>
+                              <h6 className="title">{res.Name}</h6>
                               <div className="ative-pool">
                                 <span className="ap">POOL SIZE</span>
-                                <span className="amount">$3,600</span>
+                                <span className="amount">${res.poolsize/10**18}</span>
                               </div>
                             </div>
                             <div className="ative-teams">
                               <div className="teams">
-                                <p className="team mt-5">TEAM A</p>
-                                <p className="team2 mt-4">TEAM B</p>
+                                <p className="team mt-5">{res.teamone}</p>
+                                <p className="team2 mt-4">{res.teamtwo}</p>
                               </div>
                               <div className="ative-contents">
                                 <div className="timings d-grid mx-2">
-                                  <span className="day">14:00</span>
-                                  <span className="day">SPET 31</span>
+                                  <span className="day">{gettime(res.endtime)}</span>
+                                  <span className="day">{getData(res.endtime)}</span>
                                 </div>
                                 <img src={timer} alt="" className="mx-3" />
                                 <div className="ative-percent d-flex">
@@ -76,34 +152,11 @@ export default function Tickets() {
                                         aria-valuemax="100"
                                       ></div>
                                     </div>
-                                    <button className="boost-button">
+                                    <button className="boost-button" onClick={()=>eventBoosting(res.ID)}>
                                       BOOST
                                     </button>
                                   </div>
-                                  {/* <div
-                                className="percents"
-                                style={{
-                                  width: "7rem",
-                                  position: " absolute",
-                                  right: "2rem",
-                                  fontSize: "0.7rem",
-                                  color: "white",
-                                  padding: "1rem",
-                                }}
-                              >
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                              </div> */}
+                                 
                                 </div>
                               </div>
                             </div>
@@ -127,355 +180,42 @@ export default function Tickets() {
                             }}
                           >
                             <p>
-                              <span className="pp">30% </span>
-                              <span className="pp-team">TEAM A</span>
+                              <span className="pp">{res.zero}% </span>
+                              <span className="pp-team">{res.teamone}</span>
                             </p>
                             <br></br>
                             <p>
-                              <span className="pp">65% </span>
+                              <span className="pp">{res.one}% </span>
                               <span className="pp-team">DRAW</span>
                             </p>
                             <br></br>
                             <p>
-                              <span className="pp">5% </span>
-                              <span className="pp-team">TEAM B</span>
+                              <span className="pp">{res.two}% </span>
+                              <span className="pp-team">{res.teamtwo}</span>
                             </p>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div
-                      className="card ative-cards"
-                      style={{
-                        backgroundColor: "#111111",
-                        position: "relative",
-                        margin: "1rem",
-                      }}
-                    >
-                      <div className="row">
-                        <div className="col-md-9 col-sm-9 col-12">
-                          <div
-                            className="card-body cb"
-                            style={{
-                              // width: "78%",
-                              backgroundColor: "#0C0C0C",
-                              borderRadius: "2rem 0rem 0rem 2rem",
-                            }}
-                          >
-                            <div className="ative-content">
-                              <h6 className="title">TITLE</h6>
-                              <div className="ative-pool">
-                                <span className="ap">POOL SIZE</span>
-                                <span className="amount">$3,600</span>
-                              </div>
-                            </div>
-                            <div className="ative-teams">
-                              <div className="teams">
-                                <p className="team mt-5">TEAM A</p>
-                                <p className="team2 mt-4">TEAM B</p>
-                              </div>
-                              <div className="ative-contents">
-                                <div className="timings d-grid mx-2">
-                                  <span className="day">14:00</span>
-                                  <span className="day">SPET 31</span>
-                                </div>
-                                <img src={timer} alt="" className="mx-3" />
-                                <div className="ative-percent d-flex">
-                                  <div className="boost-progressbar">
-                                    <div className="progress">
-                                      <div
-                                        className="progress-bar"
-                                        role="progressbar"
-                                        aria-label="Example with label"
-                                        style={{ width: "25%" }}
-                                        aria-valuenow="25"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"
-                                      ></div>
-                                    </div>
-                                    <button className="boost-button">
-                                      BOOST
-                                    </button>
-                                  </div>
-                                  {/* <div className="percents">
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                              </div> */}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-md-3 col-sm-3 col-12">
-                          <div
-                            className="percents"
-                            style={{
-                              // width:"16%",
-                              // position: " absolute",
-                              // right: "2rem",
-                              fontSize: "0.7rem",
-                              color: "#AAAAAA",
-                              padding: "1rem",
-                              fontWeight: "800",
-                              // backgroundColor:"#111111",
-                              fontFamily: "Montserrat",
-                              lineHeight: "1rem",
-                              marginTop: "1rem",
-                            }}
-                          >
-                            <p>
-                              <span className="pp">30% </span>
-                              <span className="pp-team">TEAM A</span>
-                            </p>
-                            <br></br>
-                            <p>
-                              <span className="pp">65% </span>
-                              <span className="pp-team">DRAW</span>
-                            </p>
-                            <br></br>
-                            <p>
-                              <span className="pp">5% </span>
-                              <span className="pp-team">TEAM B</span>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card ative-cards"
-                      style={{
-                        backgroundColor: "#111111",
-                        position: "relative",
-                      }}
-                    >
-                      <div className="row">
-                        <div className="col-md-9 col-sm-9 col-12">
-                          <div
-                            className="card-body cb"
-                            style={{
-                              // width: "78%",
-                              backgroundColor: "#0C0C0C",
-                              borderRadius: "2rem 0rem 0rem 2rem",
-                            }}
-                          >
-                            <div className="ative-content">
-                              <h6 className="title">TITLE</h6>
-                              <div className="ative-pool">
-                                <span className="ap">POOL SIZE</span>
-                                <span className="amount">$3,600</span>
-                              </div>
-                            </div>
-                            <div className="ative-teams">
-                              <div className="teams">
-                                <p className="team mt-5">TEAM A</p>
-                                <p className="team2 mt-4">TEAM B</p>
-                              </div>
-                              <div className="ative-contents">
-                                <div className="timings d-grid mx-2">
-                                  <span className="day">14:00</span>
-                                  <span className="day">SPET 31</span>
-                                </div>
-                                <img src={timer} alt="" className="mx-3" />
-                                <div className="ative-percent d-flex">
-                                  <div className="boost-progressbar">
-                                    <div className="progress">
-                                      <div
-                                        className="progress-bar"
-                                        role="progressbar"
-                                        aria-label="Example with label"
-                                        style={{ width: "25%" }}
-                                        aria-valuenow="25"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"
-                                      ></div>
-                                    </div>
-                                    <button className="boost-button">
-                                      BOOST
-                                    </button>
-                                  </div>
-                                  {/* <div className="percents">
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                              </div> */}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-md-3 col-sm-3 col-12">
-                          <div
-                            className="percents"
-                            style={{
-                              // width:"16%",
-                              // position: " absolute",
-                              // right: "2rem",
-                              fontSize: "0.7rem",
-                              color: "#AAAAAA",
-                              padding: "1rem",
-                              fontWeight: "800",
-                              // backgroundColor:"#111111",
-                              fontFamily: "Montserrat",
-                              lineHeight: "1rem",
-                              marginTop: "1rem",
-                            }}
-                          >
-                            <p>
-                              <span className="pp">30% </span>
-                              <span className="pp-team">TEAM A</span>
-                            </p>
-                            <br></br>
-                            <p>
-                              <span className="pp">65% </span>
-                              <span className="pp-team">DRAW</span>
-                            </p>
-                            <br></br>
-                            <p>
-                              <span className="pp">5% </span>
-                              <span className="pp-team">TEAM B</span>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="card ative-cards"
-                      style={{
-                        backgroundColor: "#111111",
-                        position: "relative",
-                      }}
-                    >
-                      <div className="row">
-                        <div className="col-md-9 col-sm-9 col-12">
-                          <div
-                            className="card-body cb"
-                            style={{
-                              // width: "78%",
-                              backgroundColor: "#0C0C0C",
-                              borderRadius: "2rem 0rem 0rem 2rem",
-                            }}
-                          >
-                            <div className="ative-content">
-                              <h6 className="title">TITLE</h6>
-                              <div className="ative-pool">
-                                <span className="ap">POOL SIZE</span>
-                                <span className="amount">$3,600</span>
-                              </div>
-                            </div>
-                            <div className="ative-teams">
-                              <div className="teams">
-                                <p className="team mt-5">TEAM A</p>
-                                <p className="team2 mt-4">TEAM B</p>
-                              </div>
-                              <div className="ative-contents">
-                                <div className="timings d-grid mx-2">
-                                  <span className="day">14:00</span>
-                                  <span className="day">SPET 31</span>
-                                </div>
-                                <img src={timer} alt="" className="mx-3" />
-                                <div className="ative-percent d-flex">
-                                  <div className="boost-progressbar">
-                                    <div className="progress">
-                                      <div
-                                        className="progress-bar"
-                                        role="progressbar"
-                                        aria-label="Example with label"
-                                        style={{ width: "25%" }}
-                                        aria-valuenow="25"
-                                        aria-valuemin="0"
-                                        aria-valuemax="100"
-                                      ></div>
-                                    </div>
-                                    <button className="boost-button">
-                                      BOOST
-                                    </button>
-                                  </div>
-                                  {/* <div className="percents">
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                                <p>
-                                  <span className="pp">30%</span>
-                                  <span className="pp-team">TEAM A</span>
-                                </p>
-                              </div> */}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="col-md-3 col-sm-3 col-12">
-                          <div
-                            className="percents"
-                            style={{
-                              // width:"16%",
-                              // position: " absolute",
-                              // right: "2rem",
-                              fontSize: "0.7rem",
-                              color: "#AAAAAA",
-                              padding: "1rem",
-                              fontWeight: "800",
-                              // backgroundColor:"#111111",
-                              fontFamily: "Montserrat",
-                              lineHeight: "1rem",
-                              marginTop: "1rem",
-                            }}
-                          >
-                            <p>
-                              <span className="pp">30% </span>
-                              <span className="pp-team">TEAM A</span>
-                            </p>
-                            <br></br>
-                            <p>
-                              <span className="pp">65% </span>
-                              <span className="pp-team">DRAW</span>
-                            </p>
-                            <br></br>
-                            <p>
-                              <span className="pp">5% </span>
-                              <span className="pp-team">TEAM B</span>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    </div>: ''}
+                    </>
+                })}
+                </div>
                 </Tab>
                 <Tab eventKey="e-sports" title="HISTORY">
-                  <div
-                    className="first-card"
-                    style={{
-                      backgroundColor: "#111111",
-                      position: "relative",
-                      margin: "2rem",
-                      borderRadius: "2rem",
-                    }}
-                  >
-                    <div className="row">
+                 
+                    {events && events.map((res)=>{
+                      return  <>
+                      {console.log(res.endtime < new Date().getTime())}
+                      {res.endtime < new Date().getTime()/1000 ? <div
+                      className="first-card"
+                      style={{
+                        backgroundColor: "#111111",
+                        position: "relative",
+                        margin: "2rem",
+                        borderRadius: "2rem",
+                      }}
+                    >
+                      <div className="row ">
                       <div className="col-lg-9 col-md-9 col-sm-9 col-12">
                         <div
                           className="card ative-cards"
@@ -487,7 +227,7 @@ export default function Tickets() {
                         >
                           <div className="row">
                             <div className="col-lg-2 col-md-2 col-sm-12 col-12">
-                              <h6 className="title">TITLE</h6>
+                              <h6 className="title">{res.Name}</h6>
                             </div>
                             <div
                               className="col-lg-10 col-md-10 col-sm-12 col-12"
@@ -504,7 +244,7 @@ export default function Tickets() {
                                       <span className="ap">POOL SIZE</span>
                                     </div>
                                     <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="amount">$3,600</span>
+                                      <span className="amount">${res.poolsize/10**18}</span>
                                     </div>
                                   </div>
                                 </div>
@@ -567,7 +307,7 @@ export default function Tickets() {
                             <div className="col-lg-9 col-md-9 col-sm-12 col-12">
                               <div className="row">
                                 <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span>TEAM A</span>
+                                  <span>{res.teamone}</span>
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-sm-6 col-6">
                                   <span
@@ -585,7 +325,7 @@ export default function Tickets() {
                                 style={{ marginTop: "1rem" }}
                               >
                                 <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span>TEAM B</span>
+                                  <span>{res.teamtwo}</span>
                                 </div>
                                 <div className="col-lg-6 col-md-6 col-sm-6 col-6">
                                   <span
@@ -620,6 +360,9 @@ export default function Tickets() {
                             </div>
                           </div>
                         </div>
+
+
+
                       </div>
                       <div className="col-lg-3 col-md-3 col-sm-3 col-12">
                         <div
@@ -639,632 +382,25 @@ export default function Tickets() {
                           }}
                         >
                           <p>
-                            <span className="pp">30% </span>
-                            <span className="pp-team">TEAM A</span>
+                            <span className="pp">{res.zero}% </span>
+                            <span className="pp-team">{res.one}</span>
                           </p>
                           <br></br>
                           <p>
-                            <span className="pp">65% </span>
+                            <span className="pp">{res.two}% </span>
                             <span className="pp-team">DRAW</span>
                           </p>
                           <br></br>
                           <p>
-                            <span className="pp">5% </span>
-                            <span className="pp-team">TEAM B</span>
+                            <span className="pp">{res.one}% </span>
+                            <span className="pp-team">{res.teamtwo}</span>
                           </p>
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  {/* ........................................................................................... */}
-                  <div
-                    className="first-card"
-                    style={{
-                      backgroundColor: "#111111",
-                      position: "relative",
-                      margin: "2rem",
-                      borderRadius: "2rem",
-                    }}
-                  >
-                    <div className="row">
-                      <div className="col-lg-9 col-md-9 col-sm-9 col-12">
-                        <div
-                          className="card ative-cards"
-                          style={{
-                            padding: "2rem",
-                            margin: "0px 0px",
-                            borderRadius: "2rem 0rem 0rem 2rem",
-                          }}
-                        >
-                          <div className="row">
-                            <div className="col-lg-2 col-md-2 col-sm-12 col-12">
-                              <h6 className="title">TITLE</h6>
-                            </div>
-                            <div
-                              className="col-lg-10 col-md-10 col-sm-12 col-12"
-                              style={{ display: "block", alignItem: "right" }}
-                            >
-                              <div
-                                className="row"
-
-                                // style={{ fontSize: "0.2rem" }}
-                              >
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="ap">POOL SIZE</span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="amount">$3,600</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="ap">BONUS</span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span
-                                        className="amount"
-                                        style={{ color: "#FF4874" }}
-                                      >
-                                        $30
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span
-                                        className="ap"
-                                        style={{ fontSize: "0.4rem" }}
-                                      >
-                                        CREATOR'S REWARD
-                                      </span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="amount">$600</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="ap">WON</span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span
-                                        className="amount"
-                                        style={{ color: "#48FF7B" }}
-                                      >
-                                        $3,600
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            className="row"
-                            style={{
-                              color: "#FFFFFF",
-                              marginTop: "2rem",
-                              fontSize: "0.6rem",
-                            }}
-                          >
-                            <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-                              <div className="row">
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span>TEAM A</span>
-                                </div>
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span
-                                    style={{
-                                      display: "block",
-                                      textAlign: "right",
-                                    }}
-                                  >
-                                    WINNER
-                                  </span>
-                                </div>
-                              </div>
-                              <div
-                                className="row"
-                                style={{ marginTop: "1rem" }}
-                              >
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span>TEAM B</span>
-                                </div>
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span
-                                    style={{
-                                      display: "block",
-                                      textAlign: "right",
-                                    }}
-                                  >
-                                    DRAW
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                              <div className="ative-pool">
-                                <button
-                                  style={{
-                                    width: "95%",
-                                    fontSize: "1rem",
-                                    backgroundColor: "#48FF7B",
-                                    borderRadius: "10px",
-                                    border: "none",
-                                    color: "black",
-                                    padding: "1rem 1rem",
-                                    fontWeight: "800",
-                                  }}
-                                >
-                                  CLAIM
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-3 col-md-3 col-sm-3 col-12">
-                        <div
-                          className="percents"
-                          style={{
-                            // width:"16%",
-                            // position: " absolute",
-                            // right: "2rem",
-                            fontSize: "0.7rem",
-                            color: "#AAAAAA",
-                            padding: "1rem",
-                            fontWeight: "800",
-                            backgroundColor: "#111111",
-                            fontFamily: "Montserrat",
-                            lineHeight: "1rem",
-                            marginTop: "1rem",
-                          }}
-                        >
-                          <p>
-                            <span className="pp">30% </span>
-                            <span className="pp-team">TEAM A</span>
-                          </p>
-                          <br></br>
-                          <p>
-                            <span className="pp">65% </span>
-                            <span className="pp-team">DRAW</span>
-                          </p>
-                          <br></br>
-                          <p>
-                            <span className="pp">5% </span>
-                            <span className="pp-team">TEAM B</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* ..................................................................................... */}
-
-                  <div
-                    className="first-card"
-                    style={{
-                      backgroundColor: "#111111",
-                      position: "relative",
-                      margin: "2rem",
-                      borderRadius: "2rem",
-                    }}
-                  >
-                    <div className="row">
-                      <div className="col-lg-9 col-md-9 col-sm-9 col-12">
-                        <div
-                          className="card ative-cards"
-                          style={{
-                            padding: "2rem",
-                            margin: "0px 0px",
-                            borderRadius: "2rem 0rem 0rem 2rem",
-                          }}
-                        >
-                          <div className="row">
-                            <div className="col-lg-2 col-md-2 col-sm-12 col-12">
-                              <h6 className="title">TITLE</h6>
-                            </div>
-                            <div
-                              className="col-lg-10 col-md-10 col-sm-12 col-12"
-                              style={{ display: "block", alignItem: "right" }}
-                            >
-                              <div
-                                className="row"
-
-                                // style={{ fontSize: "0.2rem" }}
-                              >
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="ap">POOL SIZE</span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="amount">$3,600</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="ap">BONUS</span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span
-                                        className="amount"
-                                        style={{ color: "#FF4874" }}
-                                      >
-                                        $30
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span
-                                        className="ap"
-                                        style={{ fontSize: "0.4rem" }}
-                                      >
-                                        CREATOR'S REWARD
-                                      </span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="amount">$600</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="ap">WON</span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span
-                                        className="amount"
-                                        style={{ color: "#48FF7B" }}
-                                      >
-                                        $3,600
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            className="row"
-                            style={{
-                              color: "#FFFFFF",
-                              marginTop: "2rem",
-                              fontSize: "0.6rem",
-                            }}
-                          >
-                            <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-                              <div className="row">
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span>TEAM A</span>
-                                </div>
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span
-                                    style={{
-                                      display: "block",
-                                      textAlign: "right",
-                                    }}
-                                  >
-                                    WINNER
-                                  </span>
-                                </div>
-                              </div>
-                              <div
-                                className="row"
-                                style={{ marginTop: "1rem" }}
-                              >
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span>TEAM B</span>
-                                </div>
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span
-                                    style={{
-                                      display: "block",
-                                      textAlign: "right",
-                                    }}
-                                  >
-                                    DRAW
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                              <div className="ative-pool">
-                                {/* <button
-                                  type="button"
-                                  class="btn buttonTeamb"
-                                  style={{
-                                    backgroundColor: "#48FF7B",
-                                    color: "#0A0A0A",
-                                    fontSize: "0.5rem",
-                                    fontWeight: "bold",
-                                    marginLeft: "1rem",
-                                    fontSize: "0.5rem",
-                                  }}
-                                >
-                                  CLAIM
-                                </button> */}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-3 col-md-3 col-sm-3 col-12">
-                        <div
-                          className="percents"
-                          style={{
-                            // width:"16%",
-                            // position: " absolute",
-                            // right: "2rem",
-                            fontSize: "0.7rem",
-                            color: "#AAAAAA",
-                            padding: "1rem",
-                            fontWeight: "800",
-                            backgroundColor: "#111111",
-                            fontFamily: "Montserrat",
-                            lineHeight: "1rem",
-                            marginTop: "1rem",
-                          }}
-                        >
-                          <p>
-                            <span className="pp">30% </span>
-                            <span className="pp-team">TEAM A</span>
-                          </p>
-                          <br></br>
-                          <p>
-                            <span className="pp">65% </span>
-                            <span className="pp-team">DRAW</span>
-                          </p>
-                          <br></br>
-                          <p>
-                            <span className="pp">5% </span>
-                            <span className="pp-team">TEAM B</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* ...................................................................................... */}
-
-                  <div
-                    className="first-card"
-                    style={{
-                      backgroundColor: "#111111",
-                      position: "relative",
-                      margin: "2rem",
-                      borderRadius: "2rem",
-                    }}
-                  >
-                    <div className="row">
-                      <div className="col-lg-9 col-md-9 col-sm-9 col-12">
-                        <div
-                          className="card ative-cards"
-                          style={{
-                            padding: "2rem",
-                            margin: "0px 0px",
-                            borderRadius: "2rem 0rem 0rem 2rem",
-                          }}
-                        >
-                          <div className="row">
-                            <div className="col-lg-2 col-md-2 col-sm-12 col-12">
-                              <h6 className="title">TITLE</h6>
-                            </div>
-                            <div
-                              className="col-lg-10 col-md-10 col-sm-12 col-12"
-                              style={{ display: "block", alignItem: "right" }}
-                            >
-                              <div
-                                className="row"
-
-                                // style={{ fontSize: "0.2rem" }}
-                              >
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="ap">POOL SIZE</span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="amount">$3,600</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="ap">BONUS</span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span
-                                        className="amount"
-                                        style={{ color: "#FF4874" }}
-                                      >
-                                        $30
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span
-                                        className="ap"
-                                        style={{ fontSize: "0.4rem" }}
-                                      >
-                                        CREATOR'S REWARD
-                                      </span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="amount">$600</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                                  <div className="row">
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span className="ap">WON</span>
-                                    </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-6 col-6">
-                                      <span
-                                        className="amount"
-                                        style={{ color: "#48FF7B" }}
-                                      >
-                                        $3,600
-                                      </span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            className="row"
-                            style={{
-                              color: "#FFFFFF",
-                              marginTop: "2rem",
-                              fontSize: "0.6rem",
-                            }}
-                          >
-                            <div className="col-lg-9 col-md-9 col-sm-12 col-12">
-                              <div className="row">
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span>TEAM A</span>
-                                </div>
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span
-                                    style={{
-                                      display: "block",
-                                      textAlign: "right",
-                                    }}
-                                  >
-                                    WINNER
-                                  </span>
-                                </div>
-                              </div>
-                              <div
-                                className="row"
-                                style={{ marginTop: "1rem" }}
-                              >
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span>TEAM B</span>
-                                </div>
-                                <div className="col-lg-6 col-md-6 col-sm-6 col-6">
-                                  <span
-                                    style={{
-                                      display: "block",
-                                      textAlign: "right",
-                                    }}
-                                  >
-                                    DRAW
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="col-lg-3 col-md-3 col-sm-12 col-12">
-                              <div className="ative-pool">
-                                {/* <button
-                                  type="button"
-                                  class="btn buttonTeamb"
-                                  style={{
-                                    backgroundColor: "#48FF7B",
-                                    color: "#0A0A0A",
-                                    fontSize: "0.5rem",
-                                    fontWeight: "bold",
-                                    marginLeft: "1rem",
-                                    fontSize: "0.5rem",
-                                  }}
-                                >
-                                  CLAIM
-                                </button> */}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-3 col-md-3 col-sm-3 col-12">
-                        <div
-                          className="percents"
-                          style={{
-                            // width:"16%",
-                            // position: " absolute",
-                            // right: "2rem",
-                            fontSize: "0.7rem",
-                            color: "#AAAAAA",
-                            padding: "1rem",
-                            fontWeight: "800",
-                            backgroundColor: "#111111",
-                            fontFamily: "Montserrat",
-                            lineHeight: "1rem",
-                            marginTop: "1rem",
-                          }}
-                        >
-                          <p>
-                            <span className="pp">30% </span>
-                            <span className="pp-team">TEAM A</span>
-                          </p>
-                          <br></br>
-                          <p>
-                            <span className="pp">65% </span>
-                            <span className="pp-team">DRAW</span>
-                          </p>
-                          <br></br>
-                          <p>
-                            <span className="pp">5% </span>
-                            <span className="pp-team">TEAM B</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* <div className="card ative-cards">
-                    <div className="card-header">Featured</div>
-                    <div className="card-body">
-                      <h5 className="card-title">Special title treatment</h5>
-                      <p className="card-text">
-                        With supporting text below as a natural lead-in to
-                        additional content.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="card ative-cards">
-                    <div className="card-header">Featured</div>
-                    <div className="card-body">
-                      <h5 className="card-title">Special title treatment</h5>
-                      <p className="card-text">
-                        With supporting text below as a natural lead-in to
-                        additional content.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="card ative-cards">
-                    <div className="card-header">Featured</div>
-                    <div className="card-body">
-                      <h5 className="card-title">Special title treatment</h5>
-                      <p className="card-text">
-                        With supporting text below as a natural lead-in to
-                        additional content.
-                      </p>
-                    </div>
-                  </div> */}
+                    </div>: ''}
+                    </>
+                    })}
                 </Tab>
               </Tabs>
             </div>
@@ -1297,7 +433,7 @@ export default function Tickets() {
                       <h6 className="card-title total">TOTAL</h6>
                     </div>
                     <h5 className="card-subtitle stats-content">BETS MADE</h5>
-                    <p className="card-text sc">500</p>
+                    <p className="card-text sc">{totaluserBetHistory}</p>
                   </div>
                 </div>
                 <div className="card stats-bg my-4">
@@ -1309,7 +445,7 @@ export default function Tickets() {
                     <h5 className="card-subtitle stats-content">
                       EVENTS CREATED
                     </h5>
-                    <p className="card-text sc">500</p>
+                    <p className="card-text sc">{events.length}</p>
                   </div>
                 </div>
                 <div className="card stats-bg">
@@ -1321,13 +457,14 @@ export default function Tickets() {
                     <h5 className="card-subtitle stats-content">
                       AMOUNT WAGERED
                     </h5>
-                    <p className="card-text sc">500</p>
+                    <p className="card-text sc">{totalamount}</p>
                   </div>
                 </div>
             </div>
           </div>
         </div>
       </div>
+      <Toaster/>
     </div>
   );
 }

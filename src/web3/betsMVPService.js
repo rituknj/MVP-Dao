@@ -10,7 +10,7 @@ import { Points } from "../Contract/Points";
 import { BUSD_Faucet, BETS_Faucet } from "../Contract/Faucet";
 import axios from "axios";
 
-const apiURL = "http://localhost:8080/kws/v5/events";
+const apiURL = "http://localhost:8080/kws/v5";
 
 export const getBETMVPContract = async () => {
   const betMVPContract = getContract(
@@ -132,9 +132,7 @@ export const validateEvent = async (event_id, occured) => {
     .send({
       from: await getAccount(),
     });
-  if (getData.status == true) {
-    alert("Validated successfully");
-  }
+    return getData;
 };
 
 export const getValidationPoint = async () => {
@@ -576,7 +574,7 @@ export const claimTestBusd = async () => {
 };
 
 export const getEvnetsfromDataBase = async () => {
-  const data = await axios.get(apiURL).then((res) => {
+  const data = await axios.get(`${apiURL}/events`).then((res) => {
     return res.data;
   });
   return data;
@@ -592,9 +590,21 @@ export const getEvnetsEsport = async () => {
   return data;
 };
 export const notvalidatedevents = async()=> {
-    const data = await axios.get(`http://localhost:8080/kws/v5/nonvalidated`)
+    const data = await axios.get(`${apiURL}/nonvalidated`)
     .then((res) => {
       return res.data;
+    }).catch((e)=>{
+      console.log(e)
     });
   return data;
+};
+
+export const validatedevents = async()=> {
+  const data = await axios.get(`${apiURL}/validated`)
+  .then((res) => {
+    return res.data;
+  }).catch((e)=>{
+    console.log(e)
+  });
+return data;
 };
