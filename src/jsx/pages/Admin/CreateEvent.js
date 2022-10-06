@@ -249,6 +249,7 @@ export default function CreateEvent() {
   };
 
   const CreateEvent = async () => {
+    // await CreateEventOnDataBase(20);
     const star = parseInt((new Date(starttime).getTime() / 1000).toFixed(0));
     const end = parseInt((new Date(endtime).getTime() / 1000).toFixed(0));
     if (!team1 || team1 == "") {

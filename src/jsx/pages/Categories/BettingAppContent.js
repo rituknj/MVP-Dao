@@ -28,7 +28,9 @@ import {
   getEventOccurrenceBetAmount,
   totalEvents,
   getEvnetsfromDataBase,
+  getEvnetsEsport,
 } from "./../../../web3/betsMVPService";
+import axios from "axios";
 
 const notify = (msg) => toast.success(msg);
 
@@ -47,11 +49,14 @@ export default function BettingAppContent() {
   const [occure, setOccure] = useState();
   const [teamonestake, setTeamonestake] = useState();
   const [teamtwostake, setTeamtwostake] = useState();
+  const [esportevent, setEsport] = useState(0)
 
   useEffect(() => {
     const init = async () => {
       const data = await getEvnetsfromDataBase();
       setEvents(data);
+      const esport = await getEvnetsEsport();
+      setEsport(esport)
       console.log(data);
     };
     init();
@@ -86,12 +91,15 @@ export default function BettingAppContent() {
   };
 
   const onBet = async () => {
+    console.log(id, occure, amount)
     const placebetdata = await placeBet(id, occure, amount);
     if (placebetdata.status) {
       await UpdateEventOnDataBase(id);
       notify("Bet placed successfully");
     }
   };
+
+
 
   return (
     <div>
@@ -399,24 +407,24 @@ export default function BettingAppContent() {
                                         onClick={() => {
                                           displaycard();
                                           setEmptyImg(false);
-                                          setTeamtwo(res.evnet.teamtwo);
-                                          setTeamone(res.evnet.teamone);
+                                          setTeamtwo(res.teamtwo);
+                                          setTeamone(res.teamone);
                                           setTeamonestake(
-                                            res.evnet.teamOneParticipate
+                                            res.teamOneParticipate
                                           );
                                           setTeamtwostake(
-                                            res.evnet.teamtwoParticipate
+                                            res.teamtwoParticipate
                                           );
                                           setTotalstake(
-                                            res.evnet.poolsize / 10 ** 18
+                                            res.poolsize / 10 ** 18
                                           );
-                                          setID(res.evnet.id)
+                                          setID(res.ID)
                                           setOccure();
                                         }}
                                       >
                                         <div className="card-header area">
                                           <h6 className="title">
-                                            {res.evnet.name}
+                                            {res.name}
                                           </h6>
                                           <div className="pool-amount">
                                             <h6 className="title2">MATCHED</h6>
@@ -432,7 +440,7 @@ export default function BettingAppContent() {
                                               <span className="amount">
                                                 $
                                                 {Number(
-                                                  res.evnet.poolsize / 10 ** 18
+                                                  res.poolsize / 10 ** 18
                                                 ).toFixed(2)}
                                               </span>
                                             </div>
@@ -443,10 +451,10 @@ export default function BettingAppContent() {
                                             <div className="col-lg-3">
                                               <div className="teams">
                                                 <p className="team">
-                                                  {res.evnet.teamone}
+                                                  {res.teamone}
                                                 </p>
                                                 <p className="team2">
-                                                  {res.evnet.teamtwo}
+                                                  {res.teamtwo}
                                                 </p>
                                               </div>
                                             </div>
@@ -466,7 +474,7 @@ export default function BettingAppContent() {
                                                     className="mx-3"
                                                     size={27}
                                                     fill={
-                                                      res.evnet.isboosted
+                                                      res.isboosted
                                                         ? "#bfbf18"
                                                         : "#b2b2b2"
                                                     }
@@ -474,12 +482,12 @@ export default function BettingAppContent() {
                                                   <div className="timings d-grid mx-2">
                                                     <span className="day">
                                                       {gettime(
-                                                        res.evnet.starttime
+                                                        res.starttime
                                                       )}
                                                     </span>
                                                     <span className="day">
                                                       {getData(
-                                                        res.evnet.starttime
+                                                        res.starttime
                                                       )}
                                                     </span>
                                                   </div>
@@ -488,10 +496,10 @@ export default function BettingAppContent() {
                                                 <div className="result-content">
                                                   <div className="matches text-center mx-1">
                                                     <h6 className="matches-name">
-                                                      {res.evnet.teamone}
+                                                      {res.teamone}
                                                     </h6>
                                                     <p className="percent">
-                                                      {res.evnet.zero}%
+                                                      {res.zero}%
                                                     </p>
                                                   </div>
                                                   <div className="matches text-center mx-1">
@@ -499,15 +507,15 @@ export default function BettingAppContent() {
                                                       DRAW
                                                     </h6>
                                                     <p className="percent">
-                                                      {res.evnet.two}%
+                                                      {res.two}%
                                                     </p>
                                                   </div>
                                                   <div className="matches text-center">
                                                     <h6 className="matches-name">
-                                                      {res.evnet.teamtwo}
+                                                      {res.teamtwo}
                                                     </h6>
                                                     <p className="percent">
-                                                      {res.evnet.one}%
+                                                      {res.one}%
                                                     </p>
                                                   </div>
                                                 </div>

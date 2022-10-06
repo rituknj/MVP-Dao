@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeaderSlider from "./HeaderSlider";
 import timer from "../../../images/carbon_timer.png";
 import "../../../css/Betswamp.css";
@@ -16,7 +16,50 @@ import Image301 from "../../../images/Vector-102.png";
 import { nodeName } from "rsuite/esm/DOMHelper";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Elements/Footer";
+import { gettotaluserwageramount, userBethistory, UserEventHistory, notvalidatedevents } from "../../../web3/betsMVPService";
+
 function Validate() {
+  const [totalamount, setTotalamount] = useState(0)
+  const [totalEvnetUserHistory, setTotalUserEvent] = useState(0)
+  const [totaluserBetHistory, setTotalUserBetHistory] = useState(0)
+  const [nonvalidate, setNonvalidate] = useState([]);
+  const [link, setLink] = useState('')
+  const [endtime, setEndtime] = useState(0)
+  const [teamone, setTeamone] = useState('')
+  const [teamtwo, setTeamtwo] = useState('')
+  const [eventid, setEventID] = useState(0);
+  const [i, setI] = useState(0)
+
+  useEffect(()=>{
+    const init = async()=>{
+      const non = await notvalidatedevents();
+      setNonvalidate(non)
+      setLink(non[0].link)
+      setEndtime(non[0].endtime)
+      setTeamone(non[0].teamone)
+      setTeamtwo(non[0].teamtwo)
+      setEventID(non[0].ID)
+      const stake = await gettotaluserwageramount()
+      setTotalamount(stake/10**18)
+      const usereventhty = await UserEventHistory();
+      setTotalUserEvent(usereventhty.length)
+      const userbethty = await userBethistory()
+      setTotalUserBetHistory(userbethty.length)
+    }
+    init();
+  },[])
+
+const skipevent =async()=>{
+  
+  setLink(nonvalidate[i].link)
+  setEndtime(nonvalidate[i].endtime)
+  setTeamone(nonvalidate[i].teamone)
+  setTeamtwo(nonvalidate[i].teamtwo)
+  setEventID(nonvalidate[i].ID)
+}
+ 
+
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -146,7 +189,7 @@ function Validate() {
                       <h6 className="title">EVENT</h6>
                     </div>
                     <div>
-                      <p>TEAM A VS TEAM B </p>
+                      <p>{teamone} VS {teamtwo} </p>
                       <br></br>
                       <p style={{ fontWeight: "800" }}>
                         <span>LINK</span>
@@ -159,7 +202,7 @@ function Validate() {
                         </span>
                       </p>
                       <p style={{ color: "green" }}>
-                        <span>HTTPS://VERIFICATIONDEMO.COM/EVENT</span>
+                        <span>{link}</span>
                         <span>
                           <img
                             src={Image301}
@@ -260,6 +303,7 @@ function Validate() {
                             backgroundColor: "#2B2A2A",
                             color: "#FFFFFF",
                           }}
+                          onClick={()=>skipevent(0)}
                         >
                           SKIP{" "}
                           <img
@@ -303,7 +347,7 @@ function Validate() {
                       <h6 className="card-title total">TOTAL</h6>
                     </div>
                     <h5 className="card-subtitle stats-content">BETS MADE</h5>
-                    <p className="card-text sc">500</p>
+                    <p className="card-text sc">{totaluserBetHistory}</p>
                   </div>
                 </div>
                 <div className="card stats-bg my-4">
@@ -315,7 +359,7 @@ function Validate() {
                     <h5 className="card-subtitle stats-content">
                       EVENTS CREATED
                     </h5>
-                    <p className="card-text sc">500</p>
+                    <p className="card-text sc">{totalEvnetUserHistory}</p>
                   </div>
                 </div>
                 <div className="card stats-bg">
@@ -327,7 +371,7 @@ function Validate() {
                     <h5 className="card-subtitle stats-content">
                       AMOUNT WAGERED
                     </h5>
-                    <p className="card-text sc">500</p>
+                    <p className="card-text sc">${totalamount}</p>
                   </div>
                 </div>
               </div>
