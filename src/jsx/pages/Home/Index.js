@@ -14,14 +14,19 @@ import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { initInstance, loginProcess, ChainID, getAccount } from "./../../../web3/web3";
+import {
+  initInstance,
+  loginProcess,
+  ChainID,
+  getAccount,
+} from "./../../../web3/web3";
 import NFTs from "./../../../images/nfts.png";
 import { FaTwitter } from "react-icons/fa";
 import { AiFillLinkedin, AiOutlineRight } from "react-icons/ai";
 import { Watch } from "react-loader-spinner";
 import dateFormat, { masks } from "dateformat";
 
-import {totalEvents,} from "../../../web3/betsMVPService";
+import { totalEvents } from "../../../web3/betsMVPService";
 import { TotalEventsCount } from "../../../web3/Countallevents";
 
 ////Images
@@ -38,7 +43,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { GetUserName } from "../../../web3/ContextMethods";
 var chart = null;
 
-
 let downloaded = [];
 
 const SalesChart = loadable(() =>
@@ -50,14 +54,12 @@ const error = (msg) =>
     style: {
       padding: "16px",
       color: "#000",
-      
     },
     iconTheme: {
       primary: "#0b0b0b",
       secondary: "#ffffff",
     },
   });
-
 
 class Index extends Component {
   constructor(props) {
@@ -86,7 +88,7 @@ class Index extends Component {
       totalbetsmade: 0,
       indernalblog: [],
       modalShow: false,
-      EthereumBrowser:false,
+      EthereumBrowser: false,
       responsive: {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -221,15 +223,12 @@ class Index extends Component {
       .then((data) => this.setState({ postsData: data }))
       .catch(console.error);
 
-   
-
     AOS.init();
 
     await initInstance();
     await loginProcess();
 
     // const currentusername = await GetUserName();
-    
 
     window.localStorage.clear();
     let events = await totalEvents();
@@ -242,8 +241,7 @@ class Index extends Component {
       totalbetsmade: 0,
       activeevents: 0,
     });
-    
-   
+
     // AOS.init();
 
     request(
@@ -339,7 +337,6 @@ class Index extends Component {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
   }
- 
 
   renderAmb(ambassadorData, index) {
     return (
@@ -417,32 +414,28 @@ class Index extends Component {
     );
   }
 
-  walletConnect = async()=> {
+  walletConnect = async () => {
     await loginProcess();
     await initInstance();
     const address = await getAccount();
-    window.login = address
-}
+    window.login = address;
+  };
   handleClick = (e) => {
-    if(!window.ethereum){
+    if (!window.ethereum) {
       e.preventDefault();
-      error("Install Metamask first")
-    }
-    else if(!window.login)
-    e.preventDefault();
-    this.walletConnect()
-  }
-  
+      error("Install Metamask first");
+    } else if (!window.login) e.preventDefault();
+    this.walletConnect();
+  };
 
   render() {
     // setInterval(()=>{
     //   window.allEvents = this.state.events
     //   window.allEventstorde = this.state.decodestoredevents.length
     // },200)
-   
 
     return (
-      <Fragment >
+      <Fragment>
         <Header />
         <div style={{ position: "relative" }}>
           <div className="topBoxBg">

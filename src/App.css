@@ -36,4 +36,6 @@
     transform: rotate(360deg);
   }
 }
-
+.container{
+  background-image: url(./src/images/mesh1.svg);
+}

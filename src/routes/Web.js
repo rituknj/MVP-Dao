@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 //Element
 import SideBar from "../jsx/pages/Home/SideBar";
 //Pages
-import Home from "../jsx/pages/Home/Index";
+import Home from "../jsx/pages/Home/main";
 import App from "../jsx/pages/App/Index";
 import BLogs from "../jsx/pages/Blogs/BLogs";
 import Admin from "../jsx/pages/Admin/Index";
@@ -31,14 +31,16 @@ import Wallet from "../jsx/pages/Categories/Wallet";
 import EventsDetails from "../jsx/pages/EventsDetails";
 
 // const url = "https://safu.in.ngrok.io"
-const url = "http://localhost:8080"
+const url = "http://localhost:8080";
 
 class Web extends Component {
-  details =()=>{
-    return <div>
-      <EventsDetails url={url}/>
-    </div>
-  }
+  details = () => {
+    return (
+      <div>
+        <EventsDetails url={url} />
+      </div>
+    );
+  };
   render() {
     return (
       <>
