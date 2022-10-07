@@ -124,9 +124,18 @@ const countdown = (tab) => {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
   return days + "D " + hours + "H " + minutes + "M ";
 };
- 
+const timepercent = (endE, validend)=>{
+  let passedtime = new Date().getTime()/1000 - endE
+  if(passedtime < 0){
+    passedtime = 0
+  }
+  let differce = validend - endE;
+  const percent = (passedtime/differce)*100
 
-console.log()
+  console.log("Time percent", percent)
+}
+ 
+// timepercent()
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
