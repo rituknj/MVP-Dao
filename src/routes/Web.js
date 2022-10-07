@@ -66,6 +66,7 @@ class Web extends Component {
             )}
             <Route exact path="/accumulate" component={Single} />
             <Route exact path="/Validate" component={Validate} />
+            {/* <Route exact path="/Validate" component={Validate} /> */}
             <Route exact path="/Wallet" component={Wallet} />
             <Route exact path="/event-detail/:_id" component={this.details} />
 

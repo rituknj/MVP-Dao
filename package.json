@@ -28,6 +28,7 @@
     "react-bootstrap-tabs": "^2.0.0",
     "react-chartist": "^0.14.4",
     "react-chartjs-2": "^4.0.0",
+    "react-countdown": "^2.3.2",
     "react-countdown-circle-timer": "^3.0.9",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.1.0",

@@ -1673,10 +1673,10 @@ footer button {
   z-index: 10;
   overflow: visible !important;
 }
-.ecosystem img {
+/* .ecosystem img {
   filter: grayscale(100%);
   transition: 200ms ease-in-out;
-}
+} */
 .ecosystem:hover {
   transform: translateY(-50px);
   transition: 200ms ease-in-out;

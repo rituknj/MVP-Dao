@@ -414,16 +414,152 @@ export default function main() {
       </div>
       {/* ECOSYSTEM */}
 
-      <div className="container">
-        <secction className="ecosystem layout_pg">
-          <div className="content">
-            <h1 className="text-center my-5 py-5 headingnew2">
-              <span>ECOSYSTEM</span> <br />
-            </h1>
-          </div>
+      {/* COMPARISON */}
 
-        
-        </secction>
+      <div className="container">
+        <h1 className="headingnew2 text-center my-3">HOW WE COMPARE</h1>
+        <div className="row">
+          <div className="col-lg-6 col-md-12">
+            <div className="safubetsleft my-5">
+              <div className="d-flex align-items-center justify-content-between">
+                <h4 className="sbs">SAFUBETS</h4>
+                <img src="https://safu.betswamp.com/asset/g_1.png" alt="" />
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-6 col-md-12">
+            <div className="safubetsright my-5">
+              <div className="d-flex align-items-center justify-content-between">
+                <h4 className="sbs">TRADITIONAL SPORTSBOOK</h4>
+                <img src="https://safu.betswamp.com/asset/r_i.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ROADMAP */}
+
+      <div className="container">
+        <h1 className="headingnew2 text-center my-3">ROADMAP</h1>
+
+        <div className="row">
+          <div className="card mb-3 roadmapcard">
+            <div className="card-body roadmapbody">
+              <div className="d-flex align-items-center justify-content-between">
+                <div className="d-flex align-items-center">
+                  <img src="https://safu.betswamp.com/asset/g_1.png" alt="" />
+                  <h4 className="phase1 mt-2">PHASE 1</h4>
+                </div>
+                <div className="rightpercentarea">
+                  <h4 className="sevenfive">75%</h4>
+                  <p>completed</p>
+                </div>
+              </div>
+              <div className="progress road">
+                <div
+                  className="progress-bar roadmap"
+                  role="progressbar"
+                  aria-label="Basic example"
+                  style={{ width: "75%" }}
+                  aria-valuenow="75"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+            <div className="card-body roadmapbody">
+              <ul>
+                <li className="liststyle">
+                  lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  dolores, impedit.
+                </li>
+                <li className="liststyle">
+                  lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  dolores, impedit.
+                </li>
+                <li className="liststyle">
+                  lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  dolores, impedit.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="card mb-3 roadmapcard">
+            <div className="card-body roadmapbody">
+              <div className="d-flex align-items-center justify-content-between">
+                <div className="d-flex align-items-center">
+                  <img src="https://safu.betswamp.com/asset/g_1.png" alt="" />
+                  <h4 className="phase1 mt-2">PHASE 2</h4>
+                </div>
+                <div className="rightpercentarea">
+                  <h4 className="sevenfive">0%</h4>
+                  <p>completed</p>
+                </div>
+              </div>
+              <div className="progress road">
+                <div
+                  className="progress-bar roadmap"
+                  role="progressbar"
+                  aria-label="Basic example"
+                  style={{ width: "0%" }}
+                  aria-valuenow="0"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+            <div className="card-body roadmapbody">
+              <ul>
+                <li className="liststyle">
+                  lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  dolores, impedit.
+                </li>
+                <li className="liststyle">
+                  lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  dolores, impedit.
+                </li>
+                <li className="liststyle">
+                  lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  dolores, impedit.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* BETS TOKEN */}
+      <div className="container my-5">
+        <div className="row my-5">
+          <div className="col-lg-6 col-md-12">
+            <div className="rightimagearea">
+              <img
+                src="https://safu.betswamp.com/asset/chips.svg"
+                alt=""
+                className="betstoken"
+              />
+            </div>
+          </div>
+          <div className="col-lg-6 col-md-12">
+            <div className="newmaincontent">
+              <h1 className="headingnew">
+                <span className="betspan">BETS</span> TOKEN
+              </h1>
+              <div className="decentralized">
+                <p>
+                  lorem ipsum dolor sit amet consectetur adipisicing elit. nihil
+                  nemo, a cupiditate aspernatur explicabo optio aliquid animi id
+                  numquam voluptate?
+                </p>
+              </div>
+            </div>
+
+            <button className="mt-xl-5 mt-5 bbnow">
+              JOIN WHITELIST
+              <BsArrowRightShort size={22} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

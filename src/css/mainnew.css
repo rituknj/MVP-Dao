@@ -253,6 +253,92 @@ h5.card-title.number {
   text-shadow: 0px 0px 10px #ffffff;
 }
 
+.ecosystem .cards_b .card_container .img {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: auto !important;
+  padding: 20px;
+  background-color: #0b0b0b;
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+
+.safubetsleft {
+  background: #111111;
+  height: 500px;
+  box-shadow: -6px 6px 0px #393939;
+  border-radius: 20px 0px 0px 20px;
+}
+.safubetsright {
+  background: #111111;
+  height: 500px;
+  border-radius: 0px 20px 20px 0px;
+  box-shadow: 6px 6px 0px #393939;
+}
+h4.sbs {
+  font-family: "Montserrat";
+  font-style: normal;
+  margin: 40px;
+  font-weight: 500;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.card.mb-3.roadmapcard {
+  background: #111111;
+  border-radius: 10px;
+}
+.card-body.roadmapbody {
+  background-color: #0b0b0b;
+  margin: 20px 0px;
+}
+li.liststyle {
+  list-style: decimal;
+}
+h4.phase1 {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 900;
+  text-indent: 5px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+h4.sevenfive {
+  font-family: "Montserrat";
+  font-style: normal;
+  text-align: end;
+  font-weight: 900;
+  text-indent: 5px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+.progress.road {
+  display: flex;
+  height: 10px;
+  overflow: hidden;
+  font-size: 0.75rem;
+  background-color: #272727 !important;
+  border-radius: 0.25rem;
+}
+.progress-bar.roadmap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #47ff7b !important;
+  transition: width 0.6s ease;
+}
+img.betstoken {
+  max-width: 350px;
+  display: block;
+  margin: 140px auto;
+}
+
 @media screen and (max-width: 480px) {
   img.svgimg {
     max-width: 350px;
