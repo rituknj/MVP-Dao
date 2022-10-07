@@ -579,19 +579,32 @@ export const getEvnetsfromDataBase = async () => {
   });
   return data;
 };
+
+export const getSPORTfromDataBase = async () => {
+  const data = await axios.get(`${apiURL}/events`,{
+    cat:"1",
+  }
+  ).then((res) => {
+    return res.data;
+  });
+  return data;
+};
+
+
 export const getEvnetsEsport = async () => {
   const data = await axios
     .get(`${apiURL}/esport`, {
-      cat: "",
+      cat: "1",
     })
     .then((res) => {
       return res.data;
     });
   return data;
 };
+
+
 export const notvalidatedevents = async()=> {
-    const data = await axios.get(`${apiURL}/nonvalidated`)
-    .then((res) => {
+    const data = await axios.get(`${apiURL}/nonvalidated`).then((res) => {
       return res.data;
     }).catch((e)=>{
       console.log(e)

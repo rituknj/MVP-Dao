@@ -32,6 +32,18 @@ const tost = () =>
     },
   });
 
+const alert = (msg) =>
+  toast.error(msg, {
+    style: {
+      padding: "16px",
+      color: "#000",
+    },
+    iconTheme: {
+      primary: "#0b0b0b",
+      secondary: "#ffffff",
+    },
+  });
+
 function Validate() {
   const [totalamount, setTotalamount] = useState(0)
   const [totalEvnetUserHistory, setTotalUserEvent] = useState(0)
@@ -84,6 +96,10 @@ const skipevent =()=>{
 }
 
 const validateEvenets = async (id) => {
+  if(checked){
+    alert("Please verify the check box");
+    return true
+  }
   const data = await validateEvent(id, occur);
   if (data.status) {
     await UpdateEventOnDataBase(id);
@@ -349,7 +365,7 @@ console.log()
                           className="bet-btton d-flex align-items-center justify-content-between my-3"
                           style={{ width: "25rem", marginRight: "3rem" }}
                           onClick={()=>validateEvenets()}
-                          disabled={checked}
+                    
                          
                         >
                           VALIDATE <img src={arrow2} alt="" className="pi" />

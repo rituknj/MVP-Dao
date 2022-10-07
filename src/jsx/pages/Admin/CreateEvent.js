@@ -25,6 +25,7 @@ import logo from "../../../images/bettingnewlogo.png";
 import Footer from "../../components/Elements/Footer";
 let FILL = false;
 window.cat = "SPORTS";
+
 const tost = (msg) =>
   toast.success(msg, {
     style: {
@@ -37,8 +38,18 @@ const tost = (msg) =>
     },
   });
 
-const tostError = (error) => toast.error(error);
-const apiURL = "http://localhost:8080/kws/v5/events";
+  const tostError =(msg) =>
+    toast.error(msg, {
+      style: {
+        padding: "16px",
+        color: "#000",
+      },
+      iconTheme: {
+        primary: "#0b0b0b",
+        secondary: "#ffffff",
+      },
+  });
+
 
 export default function CreateEvent() {
   const [historyVisibility, setHistoryVisibility] = useState(false);
@@ -58,8 +69,9 @@ export default function CreateEvent() {
   const [username, setUserName] = useState("");
   const [preferredoutcome, setPreferredoutcome] = useState();
   const [oppossingoutcome, setOppossingoutcome] = useState();
-  const [eventTital, setEventTital] = useState("");
+  const [eventTital, setEventTital] = useState();
   const [ref, setRef] = useState("");
+  const [maincat, setMaincat] = useState("SPORT")
 
   useLayoutEffect(() => {
     const completed = async () => {
@@ -98,17 +110,50 @@ export default function CreateEvent() {
   };
 
   const steps = (tab) => {
+    if(formsteps == 0){
+      if(!eventTital){
+        tostError("Invalid event title")
+        return true
+      }
+      if(!team1){
+        tostError("Invalid team name")
+        return true
+      }
+      if(!team2){
+        tostError("Invalid team name")
+        return true
+      }
+    }
+    else if(formsteps == 1){
+      if(!validURL(url)){
+        tostError("Invalid URL")
+        return true
+      }
+    }
+    else if(formsteps == 3){
+      if(!starttime){
+        tostError("Invalid start time")
+        return true
+      }
+      if(!endtime){
+        tostError("Invalid end time")
+        return true
+      }
+      // if(endtime < starttime){
+      //   tostError("End time must be greater then start time")
+      //   return true
+      // }
+
+    }
+    else if(formsteps == 4){
+      if(!starttime){
+        tostError("Invalid start time")
+        return true
+      }
+    }
     setFormset(formsteps + tab);
   };
 
-  const sendEvents = async (data) => {
-    await axios
-      .post(apiURL, { evnet: data })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch(console.error);
-  };
 
   const renderCompleted = (completedCards, index) => {
     return (
@@ -212,21 +257,28 @@ export default function CreateEvent() {
   const fetchSubCatogories = async (event) => {
     console.log("value", event.target.value);
     window.cat = event.target.value;
+
     if (event.target.value == "SPORTS") {
+      window.cat = "SPORTS"
+      setMaincat("SPORTS")
       const subcat = await getSubCategory(0);
       window.maincategoriesnum = 0;
-      console.log("subcat", subcat);
       setsubcategory(subcat);
+
     } else if (event.target.value == "E-SPORTS") {
+      window.cat = "E-SPORTS"
+      setMaincat("E-SPORTS")
       const subcat = await getSubCategory(1);
       window.maincategoriesnum = 1;
-      console.log("subcat", subcat);
       setsubcategory(subcat);
+
     } else if (event.target.value == "OTHERS") {
+      window.cat = "OTHERS"
+      setMaincat("OTHERS")
       const subcat = await getSubCategory(2);
       window.maincategoriesnum = 3;
-      console.log("subcat", subcat);
       setsubcategory(subcat);
+
     }
   };
 
@@ -499,7 +551,7 @@ export default function CreateEvent() {
                   <select
                     className="form-select bg-dark border-0"
                     id="specificSizeSelect"
-                    value={window.cat}
+                    value={maincat}
                     required
                     onChange={(e) => fetchSubCatogories(e)}
                   >
@@ -731,7 +783,7 @@ export default function CreateEvent() {
             ) : (
               <div className="stepFour">
                 <div>
-                  <Toaster />
+                
                 </div>
                 <h4
                   className="text-left"
@@ -872,6 +924,7 @@ export default function CreateEvent() {
         )}
       </div>
       <Footer />
+      <Toaster />
     </>
   );
 }

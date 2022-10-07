@@ -2447,16 +2447,15 @@ input::-webkit-inner-spin-button {
 
 
 .teambox{
-  border: 1px solid rgb(180, 180, 180);
+  /* border: 1px solid rgb(180, 180, 180); */
   padding: 10px;
   border-radius: 10px;
   margin: 5px;
 }
 
 .activeteam{
-  border: 1px solid rgb(29, 53, 47);
+  border: 1px solid rgb(180, 180, 180);
   padding: 10px;
   border-radius: 10px;
   margin: 5px;
-  box-shadow: 5px 5px 4px 3px #112018;
 }

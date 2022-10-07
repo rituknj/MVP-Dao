@@ -27,12 +27,23 @@ import {
   placeBet,
   getEventOccurrenceBetAmount,
   totalEvents,
-  getEvnetsfromDataBase,
+  getSPORTfromDataBase,
   getEvnetsEsport,
 } from "./../../../web3/betsMVPService";
 import axios from "axios";
 
 const notify = (msg) => toast.success(msg);
+const alert = (msg) =>
+  toast.error(msg, {
+    style: {
+      padding: "16px",
+      color: "#000",
+    },
+    iconTheme: {
+      primary: "#0b0b0b",
+      secondary: "#ffffff",
+    },
+  });
 
 const refurl = "https://safu-betting.netlify.app";
 
@@ -46,18 +57,18 @@ export default function BettingAppContent() {
   const [amount, setAmount] = useState(0);
   const [totalstake, setTotalstake] = useState(0);
   const [id, setID] = useState();
-  const [occure, setOccure] = useState();
+  const [occure, setOccure] = useState(0);
   const [teamonestake, setTeamonestake] = useState();
   const [teamtwostake, setTeamtwostake] = useState();
-  const [esportevent, setEsport] = useState(0)
+  const [esportevent, setEsport] = useState(0);
 
   useEffect(() => {
     const init = async () => {
-      const data = await getEvnetsfromDataBase();
+      const data = await getSPORTfromDataBase();
       setEvents(data);
       const esport = await getEvnetsEsport();
-      setEsport(esport)
-      console.log(data);
+      setEsport(esport);
+      console.log(esport);
     };
     init();
     setInterval(() => {
@@ -91,15 +102,17 @@ export default function BettingAppContent() {
   };
 
   const onBet = async () => {
-    console.log(id, occure, amount)
+    console.log(id, occure, amount);
+    if(amount == undefined || amount == 0){
+      alert("Invalid bet amount")
+      return true
+    }
     const placebetdata = await placeBet(id, occure, amount);
     if (placebetdata.status) {
       await UpdateEventOnDataBase(id);
       notify("Bet placed successfully");
     }
   };
-
-
 
   return (
     <div>
@@ -206,7 +219,10 @@ export default function BettingAppContent() {
                             <p className="wining-amount">$0.00</p>
                           </div>
                         </div>
-                        <button className="bet-btton d-flex align-items-center justify-content-between my-3" onClick={()=>onBet()}>
+                        <button
+                          className="bet-btton d-flex align-items-center justify-content-between my-3"
+                          onClick={() => onBet()}
+                        >
                           PLACE BET <img src={arrow2} alt="" className="pi" />
                         </button>
                       </div>
@@ -214,7 +230,11 @@ export default function BettingAppContent() {
                   </div>
                 </Tab>
                 {/* ACCUMULATE */}
-                <Tab eventKey="profile" title="ACCUMULATE" style={{padding:'0.5rem '}}>
+                <Tab
+                  eventKey="profile"
+                  title="ACCUMULATE"
+                  style={{ padding: "0.5rem " }}
+                >
                   <div className="empty-image">
                     <img src={emptyImg} alt="" className="empty-img" />
                     <div className="emptyimg-text">
@@ -418,14 +438,12 @@ export default function BettingAppContent() {
                                           setTotalstake(
                                             res.poolsize / 10 ** 18
                                           );
-                                          setID(res.ID)
-                                          setOccure();
+                                          setID(res.ID);
+                                          setOccure(0);
                                         }}
                                       >
                                         <div className="card-header area">
-                                          <h6 className="title">
-                                            {res.name}
-                                          </h6>
+                                          <h6 className="title">{res.name}</h6>
                                           <div className="pool-amount">
                                             <h6 className="title2">MATCHED</h6>
                                             <img
@@ -481,14 +499,10 @@ export default function BettingAppContent() {
                                                   />
                                                   <div className="timings d-grid mx-2">
                                                     <span className="day">
-                                                      {gettime(
-                                                        res.starttime
-                                                      )}
+                                                      {gettime(res.starttime)}
                                                     </span>
                                                     <span className="day">
-                                                      {getData(
-                                                        res.starttime
-                                                      )}
+                                                      {getData(res.starttime)}
                                                     </span>
                                                   </div>
                                                   <img src={timer} alt="" />
@@ -611,11 +625,313 @@ export default function BettingAppContent() {
                           </div>
                         </Tab>
                         <Tab eventKey="e-sports" title="E-SPORTS">
-                          E-SPORTS
+                          <div className="container-fluid">
+                            <div className="sports-heading">
+                              <div className="sh d-flex align-items-center">
+                                <h6 className="sports-heading">TRENDING</h6>
+                                <img src={vector} alt="" className="mx-2" />
+                              </div>
+                              <div className="card-border">
+                                <div className="empty-details">
+                                  <p className="ed">
+                                    no event available at the moment
+                                  </p>
+                                </div>
+
+                                {esportevent &&
+                                  esportevent.map((res) => {
+                                    return (
+                                      <div
+                                        className="card background my-3"
+                                        onClick={() => {
+                                          displaycard();
+                                          setEmptyImg(false);
+                                          setTeamtwo(res.teamtwo);
+                                          setTeamone(res.teamone);
+                                          setTeamonestake(
+                                            res.teamOneParticipate
+                                          );
+                                          setTeamtwostake(
+                                            res.teamtwoParticipate
+                                          );
+                                          setTotalstake(
+                                            res.poolsize / 10 ** 18
+                                          );
+                                          setID(res.ID);
+                                          setOccure(0);
+                                        }}
+                                      >
+                                        <div className="card-header area">
+                                          <h6 className="title">{res.name}</h6>
+                                          <div className="pool-amount">
+                                            <h6 className="title2">MATCHED</h6>
+                                            <img
+                                              src={connection}
+                                              alt=""
+                                              className="mt-0 mx-2"
+                                            />
+                                            <div className="pa">
+                                              <p className="pool-size">
+                                                POOL SIZE
+                                              </p>
+                                              <span className="amount">
+                                                $
+                                                {Number(
+                                                  res.poolsize / 10 ** 18
+                                                ).toFixed(2)}
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="card-body background">
+                                          <div className="row">
+                                            <div className="col-lg-3">
+                                              <div className="teams">
+                                                <p className="team">
+                                                  {res.teamone}
+                                                </p>
+                                                <p className="team2">
+                                                  {res.teamtwo}
+                                                </p>
+                                              </div>
+                                            </div>
+                                            <div className="col-lg-9">
+                                              <div className="remaing-section">
+                                                <div className="images-container">
+                                                  <img
+                                                    src={Vector}
+                                                    alt=""
+                                                    onClick={() =>
+                                                      copytext(
+                                                        `${refurl}/event-detail/${res._id}`
+                                                      )
+                                                    }
+                                                  />
+                                                  <ImFire
+                                                    className="mx-3"
+                                                    size={27}
+                                                    fill={
+                                                      res.isboosted
+                                                        ? "#bfbf18"
+                                                        : "#b2b2b2"
+                                                    }
+                                                  />
+                                                  <div className="timings d-grid mx-2">
+                                                    <span className="day">
+                                                      {gettime(res.starttime)}
+                                                    </span>
+                                                    <span className="day">
+                                                      {getData(res.starttime)}
+                                                    </span>
+                                                  </div>
+                                                  <img src={timer} alt="" />
+                                                </div>
+                                                <div className="result-content">
+                                                  <div className="matches text-center mx-1">
+                                                    <h6 className="matches-name">
+                                                      {res.teamone}
+                                                    </h6>
+                                                    <p className="percent">
+                                                      {res.zero}%
+                                                    </p>
+                                                  </div>
+                                                  <div className="matches text-center mx-1">
+                                                    <h6 className="matches-name">
+                                                      DRAW
+                                                    </h6>
+                                                    <p className="percent">
+                                                      {res.two}%
+                                                    </p>
+                                                  </div>
+                                                  <div className="matches text-center">
+                                                    <h6 className="matches-name">
+                                                      {res.teamtwo}
+                                                    </h6>
+                                                    <p className="percent">
+                                                      {res.one}%
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
+
+                                <div className="view-more-area">
+                                  <hr className="hr" />
+                                  <div className="view-more">
+                                    <p className="view-other-cards">
+                                      VIEW MORE
+                                    </p>
+                                    <img
+                                      src={arrow}
+                                      alt=""
+                                      className="arrow-img"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </Tab>
+                     
                         <Tab eventKey="everything else" title="EVERYTHING ELSE">
-                          EVERYTHING ELSE
+                          <div className="container-fluid">
+                            <div className="sports-heading">
+                              <div className="sh d-flex align-items-center">
+                                <h6 className="sports-heading">TRENDING</h6>
+                                <img src={vector} alt="" className="mx-2" />
+                              </div>
+                              <div className="card-border">
+                                <div className="empty-details">
+                                  <p className="ed">
+                                    no event available at the moment
+                                  </p>
+                                </div>
+
+                                {events &&
+                                  events.map((res) => {
+                                    return (
+                                      <div
+                                        className="card background my-3"
+                                        onClick={() => {
+                                          displaycard();
+                                          setEmptyImg(false);
+                                          setTeamtwo(res.teamtwo);
+                                          setTeamone(res.teamone);
+                                          setTeamonestake(
+                                            res.teamOneParticipate
+                                          );
+                                          setTeamtwostake(
+                                            res.teamtwoParticipate
+                                          );
+                                          setTotalstake(
+                                            res.poolsize / 10 ** 18
+                                          );
+                                          setID(res.ID);
+                                          setOccure(0);
+                                        }}
+                                      >
+                                        <div className="card-header area">
+                                          <h6 className="title">{res.name}</h6>
+                                          <div className="pool-amount">
+                                            <h6 className="title2">MATCHED</h6>
+                                            <img
+                                              src={connection}
+                                              alt=""
+                                              className="mt-0 mx-2"
+                                            />
+                                            <div className="pa">
+                                              <p className="pool-size">
+                                                POOL SIZE
+                                              </p>
+                                              <span className="amount">
+                                                $
+                                                {Number(
+                                                  res.poolsize / 10 ** 18
+                                                ).toFixed(2)}
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="card-body background">
+                                          <div className="row">
+                                            <div className="col-lg-3">
+                                              <div className="teams">
+                                                <p className="team">
+                                                  {res.teamone}
+                                                </p>
+                                                <p className="team2">
+                                                  {res.teamtwo}
+                                                </p>
+                                              </div>
+                                            </div>
+                                            <div className="col-lg-9">
+                                              <div className="remaing-section">
+                                                <div className="images-container">
+                                                  <img
+                                                    src={Vector}
+                                                    alt=""
+                                                    onClick={() =>
+                                                      copytext(
+                                                        `${refurl}/event-detail/${res._id}`
+                                                      )
+                                                    }
+                                                  />
+                                                  <ImFire
+                                                    className="mx-3"
+                                                    size={27}
+                                                    fill={
+                                                      res.isboosted
+                                                        ? "#bfbf18"
+                                                        : "#b2b2b2"
+                                                    }
+                                                  />
+                                                  <div className="timings d-grid mx-2">
+                                                    <span className="day">
+                                                      {gettime(res.starttime)}
+                                                    </span>
+                                                    <span className="day">
+                                                      {getData(res.starttime)}
+                                                    </span>
+                                                  </div>
+                                                  <img src={timer} alt="" />
+                                                </div>
+                                                <div className="result-content">
+                                                  <div className="matches text-center mx-1">
+                                                    <h6 className="matches-name">
+                                                      {res.teamone}
+                                                    </h6>
+                                                    <p className="percent">
+                                                      {res.zero}%
+                                                    </p>
+                                                  </div>
+                                                  <div className="matches text-center mx-1">
+                                                    <h6 className="matches-name">
+                                                      DRAW
+                                                    </h6>
+                                                    <p className="percent">
+                                                      {res.two}%
+                                                    </p>
+                                                  </div>
+                                                  <div className="matches text-center">
+                                                    <h6 className="matches-name">
+                                                      {res.teamtwo}
+                                                    </h6>
+                                                    <p className="percent">
+                                                      {res.one}%
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
+
+                                <div className="view-more-area">
+                                  <hr className="hr" />
+                                  <div className="view-more">
+                                    <p className="view-other-cards">
+                                      VIEW MORE
+                                    </p>
+                                    <img
+                                      src={arrow}
+                                      alt=""
+                                      className="arrow-img"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </Tab>
+                      
                       </Tabs>
                     </div>
                   </div>
