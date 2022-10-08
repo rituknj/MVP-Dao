@@ -210,7 +210,7 @@ class Footer extends Component {
                 </div>
                 <div className="col-lg-5 col-md-6 col-sm-12 col-12">
                   <span className="footer134" style={{ marginRight: "1rem" }}>
-                    <img src={metfx} alt="" className="footer2134" />
+                    <img src={metfx} alt="" className="footer2134 metfx" />
                   </span>
                 </div>
                 <div className="col-lg-5 col-md-6 col-sm-12 col-12">

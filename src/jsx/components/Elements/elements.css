@@ -47,10 +47,10 @@
   .dropdown:hover .dropdown-content {
     display: block;
   }
-  .footer2134{
+  /* .footer2134{
     margin:1rem !important;
     
-  }
+  } */
 
   @media screen and (max-width:500px) {
     .img23{
@@ -74,3 +74,10 @@
       width: 5rem;
     }
   } */
+
+
+  @media screen and (min-width:1000px) {
+    .metfx{
+      margin:1rem !important;
+    }
+  }
