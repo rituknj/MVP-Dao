@@ -338,6 +338,105 @@ img.betstoken {
   display: block;
   margin: 140px auto;
 }
+img.btlogo {
+  max-width: 30px;
+  margin-top: 10px;
+}
+.bettokenslink {
+  background-color: #070707;
+  margin-left: 20px;
+  max-width: 470px;
+  padding: 10px 10px;
+}
+h2.github {
+  margin-left: 0.5em;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #bcbcbc;
+  text-transform: lowercase;
+}
+.d-flex.align-items-center.githubicon {
+  margin-bottom: 30px !important;
+}
+
+.latestupdatebackground {
+  margin: 0 auto !important;
+  padding: 2% !important;
+  overflow: hidden !important;
+  background-image: url("../images/mesh.svg");
+  background-repeat: no-repeat !important;
+  background-position-x: 20vw !important;
+  background-position-y: -20vw !important;
+  background-attachment: scroll !important;
+  scroll-behavior: smooth !important;
+  background-size: cover;
+  border-radius: 50px;
+}
+p.updates {
+  color: #b8b8b8;
+  font-size: 14px;
+  margin-left: -30px;
+}
+
+input.d-block.m-auto.latestinput {
+  border: none;
+  outline: none;
+  margin-bottom: 5rem;
+  background: #151515;
+  border-radius: 10px;
+  color: #fff;
+  width: 100%;
+  height: 60px;
+  margin-left: -30px !important;
+  padding-left: 1em !important;
+}
+
+.latestupdatearea {
+  margin: 0 auto;
+  padding: 5%;
+  background: rgba(32, 32, 32, 0.9);
+  box-shadow: 10px 10px 4px rgb(0 0 0 / 25%);
+  border-radius: 20px;
+  max-width: 450px;
+}
+
+h1.headingnew3 {
+  margin-top: -30px;
+  margin-left: -30px;
+  font-family: "Montserrat";
+  color: #48ff7b;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 2rem;
+  word-spacing: 5px;
+}
+
+button.buttonsign {
+  outline: none !important;
+  border: none !important;
+  padding: 1em !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  width: 100% !important;
+  margin-top: 100px;
+  margin-left: -30px !important;
+  border-radius: 10px;
+  background: #2b2a2a;
+  box-shadow: 10px 10px 4px rgb(0 0 0 / 25%);
+  border-radius: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 21px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
 
 @media screen and (max-width: 480px) {
   img.svgimg {
@@ -375,6 +474,57 @@ img.betstoken {
     font-size: 0.8rem;
     color: #000000;
     transition: all 500ms ease-in-out;
+  }
+  h1.headingnew3 {
+    margin-top: 0px;
+    margin-left: 0px;
+    font-family: "Montserrat";
+    color: #48ff7b;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 2rem;
+    word-spacing: 5px;
+  }
+  p.updates {
+    color: #b8b8b8;
+    font-size: 14px;
+    margin-left: 0px;
+  }
+  input.d-block.m-auto.latestinput {
+    border: none;
+    outline: none;
+    margin-bottom: 5rem;
+    background: #151515;
+    border-radius: 10px;
+    color: #fff;
+    width: 100%;
+    height: 60px;
+    margin-left: 0px !important;
+    padding-left: 1em !important;
+  }
+  button.buttonsign {
+    outline: none !important;
+    border: none !important;
+    padding: 1em !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 100% !important;
+    margin-top: 100px;
+    margin-left: 0px !important;
+    border-radius: 10px;
+    background: #2b2a2a;
+    box-shadow: 10px 10px 4px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 21px;
+    text-transform: uppercase;
+    color: #ffffff;
   }
 }
 
@@ -416,6 +566,57 @@ img.betstoken {
     font-size: 0.8rem;
     color: #000000;
     transition: all 500ms ease-in-out;
+  }
+  h1.headingnew3 {
+    margin-top: 0px;
+    margin-left: 0px;
+    font-family: "Montserrat";
+    color: #48ff7b;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 2rem;
+    word-spacing: 5px;
+  }
+  p.updates {
+    color: #b8b8b8;
+    font-size: 14px;
+    margin-left: 0px;
+  }
+  input.d-block.m-auto.latestinput {
+    border: none;
+    outline: none;
+    margin-bottom: 5rem;
+    background: #151515;
+    border-radius: 10px;
+    color: #fff;
+    width: 100%;
+    height: 60px;
+    margin-left: 0px !important;
+    padding-left: 1em !important;
+  }
+  button.buttonsign {
+    outline: none !important;
+    border: none !important;
+    padding: 1em !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 100% !important;
+    margin-top: 100px;
+    margin-left: 0px !important;
+    border-radius: 10px;
+    background: #2b2a2a;
+    box-shadow: 10px 10px 4px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 21px;
+    text-transform: uppercase;
+    color: #ffffff;
   }
 }
 
@@ -460,5 +661,56 @@ img.betstoken {
     border: 1px solid #0b0b0b;
     margin-top: 20px;
     box-shadow: 0px 0px 2px 0px #0b0b0b;
+  }
+  h1.headingnew3 {
+    margin-top: 0px;
+    margin-left: 0px;
+    font-family: "Montserrat";
+    color: #48ff7b;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 2rem;
+    word-spacing: 5px;
+  }
+  p.updates {
+    color: #b8b8b8;
+    font-size: 14px;
+    margin-left: 0px;
+  }
+  input.d-block.m-auto.latestinput {
+    border: none;
+    outline: none;
+    margin-bottom: 5rem;
+    background: #151515;
+    border-radius: 10px;
+    color: #fff;
+    width: 100%;
+    height: 60px;
+    margin-left: 0px !important;
+    padding-left: 1em !important;
+  }
+  button.buttonsign {
+    outline: none !important;
+    border: none !important;
+    padding: 1em !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 100% !important;
+    margin-top: 100px;
+    margin-left: 0px !important;
+    border-radius: 10px;
+    background: #2b2a2a;
+    box-shadow: 10px 10px 4px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 21px;
+    text-transform: uppercase;
+    color: #ffffff;
   }
 }

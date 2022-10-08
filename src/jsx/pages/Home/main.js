@@ -4,6 +4,7 @@ import logo from "../../../images/bettingnewlogo.png";
 import { BsArrowRightShort } from "react-icons/bs";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import "../../../css/mainnew.css";
+import Footer from "../../components/Elements/Footer";
 
 export default function main() {
   return (
@@ -561,6 +562,85 @@ export default function main() {
           </div>
         </div>
       </div>
+      {/* TOKENOMICS */}
+      <div className="container mb-3">
+        <h1 className="headingnew2 text-center my-3">TOKENOMICS</h1>
+        <div className="row">
+          <div className="col-lg-6 col-md-12">
+            <div className="card text-bg-dark bb">
+              <div className="card-header">
+                <div className="au">
+                  <h5 className="activeh5">SMART</h5>
+                  <p className="usersh5">CONTRACT</p>
+                </div>
+                <div className="bettokenslink d-flex align-items-center">
+                  <img src={logo} alt="" className="btlogo" />
+                  <div className="betslink text-light">
+                    <span className="fw-bolder"> BETS TOKEN </span>:
+                    0x4fabb145d64652e7a623c7c53
+                  </div>
+                  <iconify-icon
+                    icon="fluent:copy-16-regular"
+                    style={{
+                      color: "#46FF7B",
+                      marginLeft: "10px",
+                      cursor: "pointer",
+                    }}
+                  ></iconify-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-6 col-md-12">
+            <div className="card text-bg-dark bb">
+              <div className="card-header">
+                <div className="au">
+                  <h5 className="activeh5">SOURCE</h5>
+                  <p className="usersh5">CODE</p>
+                </div>
+                <div className="d-flex align-items-center githubicon">
+                  <iconify-icon
+                    icon="akar-icons:github-fill"
+                    style={{
+                      color: "#46FF7B",
+                      cursor: "pointer",
+                    }}
+                  ></iconify-icon>
+                  <h2 className="github">Github</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* LATEST UPDATE */}
+      <div className="container my-5">
+        <div className="row my-5">
+          <div className="latestupdatebackground">
+            <div className="latestupdatearea">
+              <h1 className="headingnew3">GET THE LATEST UPDATES</h1>
+              <p className="updates">
+                subscribe to get the latest updates on development,partnerships
+                and marketing.
+              </p>
+              <div className="inputarealatest">
+                <input
+                  type="email"
+                  placeholder="email@domain.com"
+                  className="d-block m-auto latestinput"
+                />
+              </div>
+              <div className="signupbutton">
+                <button className="buttonsign">
+                  SING UP <BsArrowRightShort size={20} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 }
