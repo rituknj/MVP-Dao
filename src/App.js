@@ -7,6 +7,7 @@ import {isMobile} from 'react-device-detect'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaSadCry } from "react-icons/fa";
+import "./App.css";
 
 window.match = 1
 window.anmount = 0

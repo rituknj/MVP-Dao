@@ -5,6 +5,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import "../../../css/mainnew.css";
 import Footer from "../../components/Elements/Footer";
+import Bottomnavbar from "./Bottomnavbar";
 
 export default function main() {
   return (
@@ -639,7 +640,9 @@ export default function main() {
             </div>
           </div>
         </div>
+        
       </div>
+      <Bottomnavbar/>
       <Footer />
     </div>
   );

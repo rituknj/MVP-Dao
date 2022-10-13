@@ -1,0 +1,18 @@
+.bottom-navbar{
+    position: fixed !important;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  color: rgb(236, 236, 236);
+z-index: 999;
+padding: 2rem;
+
+}
+.icon-1{
+    background-color: none !important;
+    color: white;
+}
+a{
+    text-decoration: none !important;
+}

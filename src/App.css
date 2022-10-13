@@ -36,6 +36,13 @@
     transform: rotate(360deg);
   }
 }
-.container{
+/* .container{
   background-image: url(./src/images/mesh1.svg);
+} */
+
+@media screen and (max-width:500px) {
+  .navbar{
+    display: none !important;
+  }
 }
+
