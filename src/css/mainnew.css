@@ -126,6 +126,8 @@ img.svgimg {
   background-color: #0b0b0b;
   border: 1px solid #0b0b0b;
   box-shadow: 0px 0px 2px 0px #0b0b0b;
+  display: block;
+  margin: auto;
 }
 iconify-icon {
   font-size: 24px;
@@ -277,13 +279,14 @@ h5.card-title.number {
   box-shadow: 6px 6px 0px #393939;
 }
 h4.sbs {
-  font-family: "Montserrat";
+  font-family: sans-serif;
   font-style: normal;
   margin: 40px;
-  font-weight: 500;
+  font-weight: 900;
   line-height: 20px;
   text-transform: uppercase;
   color: #ffffff;
+  font-size: 30px;
 }
 
 .card.mb-3.roadmapcard {
@@ -360,17 +363,74 @@ h2.github {
 .d-flex.align-items-center.githubicon {
   margin-bottom: 30px !important;
 }
-
+.safubetsright2 {
+  background: #111111;
+  max-width: 540px;
+  height: 625px;
+}
+.safubetsleft2 {
+  background: #111111;
+  max-width: 540px;
+  height: 625px;
+  display: block;
+  margin-left: auto;
+}
+.safubetsright3 {
+  background: #111111;
+  max-width: 540px;
+  height: 625px;
+}
+.safubetsleft2.left3 {
+  margin-top: -20px;
+}
+.safubetsright2.right2 {
+  margin-top: -20px;
+}
+.safubetsright3.right3 {
+  margin-top: -20px;
+}
+img.daoimg2 {
+  max-width: 400px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -30px;
+}
+img.daoimg1 {
+  max-width: 500px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 220px;
+}
+img.daoimg {
+  max-width: 500px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -20px;
+}
+h5.sbs-heading {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-left: 42px;
+  margin-bottom: -30px;
+  margin-top: 30px;
+}
 .latestupdatebackground {
   margin: 0 auto !important;
   padding: 2% !important;
   overflow: hidden !important;
   background-image: url("../images/mesh.svg");
   background-repeat: no-repeat !important;
-  background-position-x: 20vw !important;
+  /* background-position-x: 20vw !important;
   background-position-y: -20vw !important;
   background-attachment: scroll !important;
-  scroll-behavior: smooth !important;
+  scroll-behavior: smooth !important; */
   background-size: cover;
   border-radius: 50px;
 }
@@ -399,7 +459,7 @@ input.d-block.m-auto.latestinput {
   background: rgba(32, 32, 32, 0.9);
   box-shadow: 10px 10px 4px rgb(0 0 0 / 25%);
   border-radius: 20px;
-  max-width: 450px;
+  max-width: 560px;
 }
 
 h1.headingnew3 {
@@ -446,12 +506,42 @@ button.buttonsign {
     color: #48ff7b;
     font-size: 20px;
   }
+  .card.text-bg-dark.bb {
+    background-color: #0b0b0b;
+    border: 1px solid #0b0b0b;
+    margin-top: 20px;
+    box-shadow: 0px 0px 2px 0px #0b0b0b;
+    display: block;
+    margin: auto;
+  }
+
+  img.daoimg1 {
+    max-width: 380px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 220px;
+  }
   h1.headingnew {
     margin-top: 70px;
     color: #fff;
     font-style: normal;
     font-weight: 900;
     word-spacing: 5px;
+  }
+  img.daoimg {
+    max-width: 374px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -20px;
+  }
+  img.daoimg2 {
+    max-width: 309px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -30px;
   }
   button.bbnow {
     width: 350px;
@@ -618,6 +708,44 @@ button.buttonsign {
     text-transform: uppercase;
     color: #ffffff;
   }
+  img.daoimg1 {
+    max-width: 380px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 220px;
+  }
+  h1.headingnew {
+    margin-top: 70px;
+    color: #fff;
+    font-style: normal;
+    font-weight: 900;
+    word-spacing: 5px;
+  }
+  img.daoimg {
+    max-width: 374px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -20px;
+  }
+  img.daoimg2 {
+    max-width: 309px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -30px;
+  }
+  h4.sbs {
+    font-family: sans-serif;
+    font-style: normal;
+    margin: 40px;
+    font-weight: 900;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-size: 23px;
+  }
 }
 
 @media screen and (max-width: 912px) {
@@ -712,5 +840,26 @@ button.buttonsign {
     line-height: 21px;
     text-transform: uppercase;
     color: #ffffff;
+  }
+  .safubetsleft2 {
+    background: #111111;
+    max-width: 540px;
+    height: 625px;
+    display: block;
+    margin: 40px auto;
+  }
+  .safubetsright2 {
+    background: #111111;
+    max-width: 540px;
+    height: 625px;
+    display: block;
+    margin: auto;
+  }
+  .safubetsright3 {
+    background: #111111;
+    max-width: 540px;
+    height: 625px;
+    display: block;
+    margin: 50px auto;
   }
 }

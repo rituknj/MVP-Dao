@@ -416,10 +416,66 @@ export default function main() {
       </div>
       {/* ECOSYSTEM */}
 
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-6 col-md-12">
+            <div className="safubetsleft2 my-5">
+              <div className="ecc py-2">
+                <h5 className="sbs-heading">DECENTRALIZED</h5>
+                <h4 className="sbs">BETTING</h4>
+                <img
+                  src="https://safu.betswamp.com/asset/dct.svg"
+                  alt=""
+                  className="daoimg1"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-6 col-md-12">
+            <div className="safubetsright2 my-5">
+              <div className="ecc py-2">
+                <h4 className="sbs">DAO</h4>
+                <img
+                  src="https://safu.betswamp.com/asset/card_1.svg"
+                  alt=""
+                  className="daoimg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-6 col-md-12">
+            <div className="safubetsleft2 left3">
+              <div className="ecc py-2">
+                <h4 className="sbs">METAVERSE</h4>
+                <img
+                  src="https://safu.betswamp.com/asset/card_3.svg"
+                  alt=""
+                  className="daoimg2"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-6 col-md-12">
+            <div className="safubetsright3 right3">
+              <div className="ecc py-2">
+                <h4 className="sbs">NFT</h4>
+                <img
+                  src="https://safu.betswamp.com/asset/card_4.svg"
+                  alt=""
+                  className="daoimg2"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* COMPARISON */}
 
       <div className="container">
-        <h1 className="headingnew2 text-center my-3">HOW WE COMPARE</h1>
+        <h1 className="headingnew2 text-center my-5">HOW WE COMPARE</h1>
         <div className="row">
           <div className="col-lg-6 col-md-12">
             <div className="safubetsleft my-5">
@@ -640,9 +696,8 @@ export default function main() {
             </div>
           </div>
         </div>
-        
       </div>
-      <Bottomnavbar/>
+      <Bottomnavbar />
       <Footer />
     </div>
   );
