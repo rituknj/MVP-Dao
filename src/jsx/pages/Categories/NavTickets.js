@@ -32,6 +32,7 @@ export default function NavTickets() {
                   className="nav-link active navItem text-light mx-3"
                   aria-current="page"
                   to="/"
+                  style={{ color: "#fff" }}
                 >
                   HOME
                 </Link>
@@ -41,6 +42,7 @@ export default function NavTickets() {
                   className="nav-link active navItem text-light mx-3"
                   aria-current="page"
                   to="/"
+                  style={{ color: "#bcbcbc" }}
                 >
                   DOCS
                 </Link>

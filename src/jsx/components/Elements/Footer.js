@@ -195,9 +195,14 @@ class Footer extends Component {
               <span className="footer134">
                 <span
                   className="footer2134"
-                  style={{ color: "white", margin: "0.5rem auto" }}
+                  style={{
+                    color: "white",
+                    margin: "0.5rem auto",
+                    fontFamily: "18px",
+                    fontWeight: "700",
+                  }}
                 >
-                  partners
+                  PARTNERS
                 </span>
               </span>
               <br />
@@ -233,8 +238,15 @@ class Footer extends Component {
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12"></div>
                 <div className="col-lg-6 col-md-6 col-sm-12 col-12">
                   <span>
-                    <span className="footer2134" style={{ color: "white" }}>
-                      audit and kyc by
+                    <span
+                      className="footer2134"
+                      style={{
+                        color: "white",
+                        fontFamily: "18px",
+                        fontWeight: "700",
+                      }}
+                    >
+                      AUDIT AND KYC BY
                     </span>
                   </span>
                 </div>
@@ -265,27 +277,52 @@ class Footer extends Component {
                 <div className="social mb-3">
                   <div className="  ">
                     <span>
-                      <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
+                      <a
+                        href="/"
+                        target="_blank"
+                        className="mx-3"
+                        style={{ marginLeft: "2rem" }}
+                      >
                         <img src={fb} alt="" className="img23" />
                       </a>
                     </span>
                     <span>
-                      <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
+                      <a
+                        href="/"
+                        target="_blank"
+                        className="mx-3"
+                        style={{ marginLeft: "2rem" }}
+                      >
                         <img src={tweet} alt="" className="img23" />
                       </a>
                     </span>
                     <span>
-                      <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
+                      <a
+                        href="/"
+                        target="_blank"
+                        className="mx-3"
+                        style={{ marginLeft: "2rem" }}
+                      >
                         <img src={insta} alt="" className="img23" />
                       </a>
                     </span>
                     <span>
-                      <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
+                      <a
+                        href="/"
+                        target="_blank"
+                        className="mx-3"
+                        style={{ marginLeft: "2rem" }}
+                      >
                         <img src={sl} alt="" className="img23" />
                       </a>
                     </span>
                     <span>
-                      <a href="/" target="_blank" className="mx-3" style={{marginLeft:"2rem"}}>
+                      <a
+                        href="/"
+                        target="_blank"
+                        className="mx-3"
+                        style={{ marginLeft: "2rem" }}
+                      >
                         <img src={telegram} alt="" className="img23" />
                       </a>
                     </span>

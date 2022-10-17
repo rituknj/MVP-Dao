@@ -23,7 +23,14 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.nav-link.active {
+  font-size: 13px;
+  font-family: "Montserrat";
+}
+.nav-link.navItem {
+  font-size: 13px;
+  font-family: "Montserrat";
+}
 .App-link {
   color: #61dafb;
 }
@@ -40,9 +47,8 @@
   background-image: url(./src/images/mesh1.svg);
 } */
 
-@media screen and (max-width:500px) {
-  .navbar{
+@media screen and (max-width: 500px) {
+  .navbar {
     display: none !important;
   }
 }
-

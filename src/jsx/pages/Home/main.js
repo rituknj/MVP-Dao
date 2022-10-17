@@ -105,7 +105,10 @@ export default function main() {
                     <MdOutlineKeyboardArrowRight />
                   </span>
                 </div>
-                <p> decentralized peer-to-peer betting protocol</p>
+                <p className="dece-para">
+                  {" "}
+                  decentralized peer-to-peer betting protocol
+                </p>
               </div>
             </div>
 
@@ -214,7 +217,7 @@ export default function main() {
             <div className="newmaincontent">
               <h1 className="headingnew2">CREATE THE BET, STATE THE ODDS</h1>
               <div className="decentralized">
-                <p>
+                <p className="dece-para">
                   {" "}
                   become the bookmaker, create bets on anything verifiable and
                   get rewarded regardless if you win or lose.
@@ -255,7 +258,7 @@ export default function main() {
             <div className="newmaincontent">
               <h1 className="headingnew2">BET ON ANYTHING VERIFIABLE</h1>
               <div className="decentralized">
-                <p>
+                <p className="dece-para">
                   place bets on a vast variety of markets with no restrictions,
                   enjoy attractive odds with instant and limitless withdrawals,
                   no house, no tricks,plus you are guaranteed to get paid
@@ -282,7 +285,7 @@ export default function main() {
                 VALIDATE OUTCOMES OF BETS CORRECTLY AND EARN
               </h1>
               <div className="decentralized">
-                <p>
+                <p className="dece-para">
                   earn passively by becoming a validator, providing accurate
                   verdicts on bets made, build your reputation and unlock access
                   to various nft rewards and bonuses. you don't even have to bet
@@ -324,7 +327,7 @@ export default function main() {
               <div className="newmaincontent">
                 <h1 className="headingnew2">EASY, FAIR AND SAFE</h1>
                 <div className="decentralized">
-                  <p>
+                  <p className="dece-para">
                     a trustless peer-to-peer smart contract built with no
                     central authority, winnings are calculated and distributed
                     directly to your crypto wallet based on the equivalence of
@@ -417,6 +420,7 @@ export default function main() {
       {/* ECOSYSTEM */}
 
       <div className="container">
+        <h1 className="eco-heading">ECOSYSTEM</h1>
         <div className="row">
           <div className="col-lg-6 col-md-12">
             <div className="safubetsleft2 my-5">
@@ -499,7 +503,12 @@ export default function main() {
       {/* ROADMAP */}
 
       <div className="container">
-        <h1 className="headingnew2 text-center my-3">ROADMAP</h1>
+        <h1
+          className="headingnew21 text-center my-3"
+          style={{ fontFamily: "40px" }}
+        >
+          ROADMAP
+        </h1>
 
         <div className="row">
           <div className="card mb-3 roadmapcard">
@@ -511,7 +520,7 @@ export default function main() {
                 </div>
                 <div className="rightpercentarea">
                   <h4 className="sevenfive">75%</h4>
-                  <p>completed</p>
+                  <p style={{ fontWeight: "200" }}>completed</p>
                 </div>
               </div>
               <div className="progress road">
@@ -552,7 +561,7 @@ export default function main() {
                 </div>
                 <div className="rightpercentarea">
                   <h4 className="sevenfive">0%</h4>
-                  <p>completed</p>
+                  <p style={{ fontWeight: "200" }}>completed</p>
                 </div>
               </div>
               <div className="progress road">
@@ -604,7 +613,7 @@ export default function main() {
                 <span className="betspan">BETS</span> TOKEN
               </h1>
               <div className="decentralized">
-                <p>
+                <p style={{ fontSize: "13px" }}>
                   lorem ipsum dolor sit amet consectetur adipisicing elit. nihil
                   nemo, a cupiditate aspernatur explicabo optio aliquid animi id
                   numquam voluptate?
@@ -690,7 +699,7 @@ export default function main() {
               </div>
               <div className="signupbutton">
                 <button className="buttonsign">
-                  SING UP <BsArrowRightShort size={20} />
+                  SIGN UP <BsArrowRightShort size={20} />
                 </button>
               </div>
             </div>

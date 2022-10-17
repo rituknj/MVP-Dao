@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700;900&display=swap");
 
 @font-face {
   font-family: "cursed";
@@ -19,8 +20,20 @@ h1.headingnew2 {
   color: #48ff7b;
   font-style: normal;
   font-weight: 900;
-  font-size: 2.1rem;
+  font-size: 40px;
   word-spacing: 5px;
+}
+h1.headingnew21 {
+  margin-top: 70px;
+  font-family: "Montserrat";
+  color: #48ff7b;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 40px;
+  word-spacing: 5px;
+}
+.betslink {
+  font-size: 13px;
 }
 
 span.betspan {
@@ -32,7 +45,10 @@ span.betspan {
   text-align: center;
   line-height: 50px;
 }
-
+.dece-para {
+  font-size: 13px;
+  font-family: "Montserrat";
+}
 .decentralized {
   display: flex;
   align-items: baseline;
@@ -137,7 +153,7 @@ h5.activeh5 {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 200;
-  font-size: 14px;
+  font-size: 13px;
   padding-left: 12px;
   text-transform: uppercase;
   color: #ffffff;
@@ -149,11 +165,14 @@ p.usersh5 {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 900;
-  font-size: 18px;
+  font-size: 13px;
   text-transform: uppercase;
   color: #ffffff;
   margin-top: -5px;
-  margin-left: 7px;
+  margin-left: 12px;
+}
+.dece-para {
+  font-size: 13px;
 }
 .card-header.newcardheader {
   display: flex;
@@ -254,7 +273,14 @@ h5.card-title.number {
   color: #ffffff;
   text-shadow: 0px 0px 10px #ffffff;
 }
-
+.eco-heading {
+  font-size: 40px;
+  font-weight: 900;
+  font-family: "Red Hat Display";
+  line-height: 48px;
+  color: #48ff7b;
+  text-align: center;
+}
 .ecosystem .cards_b .card_container .img {
   display: flex;
   justify-content: space-between;
@@ -279,14 +305,14 @@ h5.card-title.number {
   box-shadow: 6px 6px 0px #393939;
 }
 h4.sbs {
-  font-family: sans-serif;
+  font-family: "Montserrat";
   font-style: normal;
   margin: 40px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 20px;
   text-transform: uppercase;
   color: #ffffff;
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .card.mb-3.roadmapcard {
@@ -299,6 +325,8 @@ h4.sbs {
 }
 li.liststyle {
   list-style: decimal;
+  font-size: 13px;
+  line-height: 19px;
 }
 h4.phase1 {
   font-family: "Montserrat";
@@ -307,6 +335,7 @@ h4.phase1 {
   text-indent: 5px;
   text-transform: uppercase;
   color: #ffffff;
+  font-size: 28px;
 }
 h4.sevenfive {
   font-family: "Montserrat";
@@ -316,10 +345,11 @@ h4.sevenfive {
   text-indent: 5px;
   text-transform: uppercase;
   color: #ffffff;
+  font-size: 28px;
 }
 .progress.road {
   display: flex;
-  height: 10px;
+  height: 5px;
   overflow: hidden;
   font-size: 0.75rem;
   background-color: #272727 !important;
@@ -413,8 +443,8 @@ img.daoimg {
 h5.sbs-heading {
   font-family: "Montserrat";
   font-style: normal;
-  font-weight: 300;
-  font-size: 12px;
+  font-weight: 200;
+  font-size: 14px;
   text-transform: uppercase;
   color: #ffffff;
   margin-left: 42px;
@@ -436,7 +466,7 @@ h5.sbs-heading {
 }
 p.updates {
   color: #b8b8b8;
-  font-size: 14px;
+  font-size: 13px;
   margin-left: -30px;
 }
 
@@ -469,7 +499,7 @@ h1.headingnew3 {
   color: #48ff7b;
   font-style: normal;
   font-weight: 900;
-  font-size: 2rem;
+  font-size: 32px;
   word-spacing: 5px;
 }
 
