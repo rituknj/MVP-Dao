@@ -464,11 +464,11 @@ h5.sbs-heading {
   background-size: cover;
   border-radius: 50px;
 }
-/* p.updates {
+p.updates {
   color: #b8b8b8;
   font-size: 13px;
   margin-left: -30px;
-} */
+}
 
 input.d-block.m-auto.latestinput {
   border: none;
